@@ -13,7 +13,7 @@
 
 <sub>维护者 [@darega0mae](https://x.com/darega0mae) · 姊妹教程库：[build-with-devin](https://github.com/Till3005/build-with-devin) · [收录你的项目](CONTRIBUTING.md)</sub>
 
-<sub>**11** 个有据可查的 Bot 部署 · **33** 个企业案例 · **4** 个已发布产品 · **28** 个工具与集成 · **19** 篇实战报告</sub>
+<sub>**12** 个有据可查的 Bot 部署 · **34** 个企业案例 · **4** 个已发布产品 · **28** 个工具与集成 · **19** 篇实战报告</sub>
 
 <sub>[English](README.md) · 简体中文 · [日本語](README.ja.md) · [Português](README.pt.md) · [Español](README.es.md) · [Deutsch](README.de.md)</sub>
 
@@ -56,7 +56,8 @@ flowchart LR
 | --- | --- | --- | --- |
 | **Android Bot** | Cognition | Devin 的安卓 App，端到端 | 2026 年 9 月 28 日收到 prompt *"your job is to product manage the android app"* —— 自己开工单、每单开一个 Devin session，**44 天**上线 Google Play 公测：合并 1,134 个 PR、344,651 行 Kotlin、2,841 个截图测试。人类全程只发了 **183 条消息** —— 其中 22 天零干预 —— **88% 的 PR 由它自己合并**。现在负责 Android/iOS 功能对齐。 |
 | **Layout Bot** | Cognition | Devin web app 的布局偏移回归 | 每 3 小时构建生产 `main`，模拟首次/重复/延迟请求访问，把回归追溯到引入它的 PR，开出带前后对比视频的修复。**3 周 159 个 PR；卡顿 −70%。** |
-| **Super Jenny** | Jenny Xu（社区） | 一整个手游工作室 | ~20 个 Bot（dev、Unity、发布、UI、iOS、Android、真机测试）由一个编排 Bot 统领；唯一的人类每天用**表情**回 4 次汇总 Slack 帖。约 50 → **每周 1,900 个 PR**，工作室营收 6 倍，周更发布。已上架为社区模板 **SuperJennyStack**。（[Jenny 的推文](https://x.com/xujennyc)） |
+| **Super Jenny** | Jenny Xu（社区） | 一整个手游工作室 | ~20 个 Bot（dev、Unity、发布、UI、iOS、Android、真机测试）由一个编排 Bot 统领；唯一的人类每天用**表情**回 4 次汇总 Slack 帖。约 50 → **每周 1,900 个 PR**，工作室营收 6 倍，周更发布。已上架为社区模板 **SuperJennyStack**。她随后又做了 **BotSpeak** —— 省 token 的 bot 间简语（ASD-STE100、ACK 代号、emoji 回执；完整语句只留给人类）：6 天内 bot 自主决策 **12×**。（[Jenny 的推文](https://x.com/xujennyc)、[BotSpeak 帖](https://x.com/xujennyc/status/2123111543105868166)） |
+| **dabit3 的舰队** | Nader Dabit（Cognition DevRel） | 个人 5-Bot 组织 + 一个游戏工作室 | **CTO** bot：管全部会话/仓库，VIP iMessage 通道可短信直达每个 bot。**Auto(mation)Bot**：跑他的个人自动化，汇报延迟与效率建议。**DevCommunityBot**：在 Sheets/Notion 上运营大使计划，搭小型数据可视化应用。**DevRelBot**：文档 + 教程视频 —— *它有自己的电脑、自己的 Devin/GitHub/Linear 账号和 ElevenLabs 声纹克隆*，自己开浏览器录真实 UI。外加 **Windfable**：iPhone Duo 上的 Unity iOS RPG，~10 个 SuperJennyStack Bot 每人配专属 macOS+Xcode+Unity，测试折叠/展开双态并附前后截图 + 实机视频。（[入门长文](https://x.com/dabit3/status/2122755275182469515)） |
 | **Onboarding QA Bot** | Cognition（Walden Yan） | 30+ 条 onboarding 流程的 24/7 QA | 自维护 Playwright 脚本、agent 任务队列，以及它自己搭的实时看板 —— "找到的 bug 远超我有耐心去挖的数量"。（[@walden_yan](https://x.com/walden_yan)） |
 | **"Phil"** | Harvey | 协作式 Word 兼容编辑器引擎 | ~30 个 agent 用 **3 周、零人类工程师** 写出 100 万+ 行 Rust + TypeScript —— 全程对照真实 Microsoft Word 行为和模拟律师谈判验证；人类通过记忆 + 决策日志掌舵。（[Gabe Pereyra](https://x.com/gabepereyra)） |
 | **共享 Bot 舰队** | Decagon | on-call、DevEx 优化、讨论串路由 | beta 期间 Slack 里跑了 50+ 个共享 Bot；一个 Chief of Staff Bot 决定何时、如何开新讨论串。（[@tylerxdev 的推文](https://x.com/tylerxdev/status/2122743518712287400)） |
@@ -73,6 +74,8 @@ flowchart LR
 - **定时巡检** —— 按 cron 盯着告警频道的 Bot，拥有这个检查项，回归时自己开修复（Layout Bot 模式）。
 - **汇总上报** —— 一个监督 Bot 把每个下级 Bot 待决策的事收集进一条讨论串（SuperJennyStack 模式）。
 - **Bots × Apps** —— Bot 维护 Devin Apps：自动建新页面/功能并适配变化；Bots 和 Apps 钉在同一侧导航栏（[@dabit3](https://x.com/dabit3)）。
+- **Living evals** —— 定时 Devin 读生产 trace，按行为分组，在系统完整副本（绝不 mock）里回放失败，并把每个失败冻结成 eval PR —— 资产是 skill 文件，不是 eval 本身（Rox：覆盖率 72% vs 手写 43–57%）。
+- **Bots 反过来调 Devin** —— Walden 的 bot 盯用户反馈、回放 prompt、跑实验、造 eval 集，并调 Devin 自己的主动性/自主度参数 —— Bots 造 Bots（[推文](https://x.com/walden_yan/status/2122740852091216274)）。
 - **基准锚定的 swarm** —— Harvey 的教训：当工作能对照可靠基准验证时（真实 Word 行为），小团队可以安全地指挥大规模 swarm。
 
 ### 公开结果
@@ -105,6 +108,8 @@ flowchart LR
 | Compliance Engineer | 从代码里收集合规证据，控制项失效时告警 |
 
 **[→ 复现指南：如何重建每一个有据可查的 Bot](docs/reproducing-devin-bots.md)** —— 扩展教程版在姊妹库 **[build-with-devin](https://github.com/Till3005/build-with-devin)**
+
+站点：**[till3005.github.io/built-with-devin](https://till3005.github.io/built-with-devin/)**（Devin 风格的注册页）· 深度文档：**[Devin Bot 解剖](docs/devin-bots-anatomy.md)**（六个有据可查的机制 + 数字真正说明了什么）· **[Devin 经济学](docs/economics.md)**（所有已发表的成本/回报数字汇一册 —— 另有[可筛选页面](docs/economics.html)）
 
 <p align="right"><a href="#readme">back to top</a></p>
 
@@ -163,6 +168,7 @@ flowchart LR
 | [Crosby](https://devin.ai/customers/crosby) | AI 原生律所 | 每天 20–40 个 bug 报告/告警拿到 first pass，平均 ~5 分钟；12 名工程师服务 50+ 律师 |
 | [Endava](https://devin.ai/customers/endava) | 企业级全员配置 | 2,000+ 员工上平台；四个月 3×；PR 合并率 78% |
 | [Tavrn](https://devin.ai/customers/tavrn) | HIPAA 约束下的舰队 | 8 人队打出 50 人的交付；**6 周 1,800+ PR**，产出 6× |
+| **Rox** | Living Evals —— 每周 Devin 读生产 trace，在完整副本中回放失败，开 eval PR | 评测集覆盖**真实用量的 72%**（手写只有 43–57%）（[全文](https://www.rox.com/articles/living-evals-an-eval-suite-that-grows-from-production)、[推文](https://x.com/rox_ai/status/2110779380666617997)） |
 | [Evinova](https://devin.ai/customers/evinova) | GxP 合规交付 | GxP 文档快 8×；迁移快 3×；66% 边界清晰的 bug 被自主修复 |
 | [Compiled Health](https://devin.ai/customers/compiledhealth) | 临床基准构建 | 2 名研究员 2 个月 = 5–6 名工程师的活；~430 工程师小时、~$17/小时 ≈ 给 4 人队添 4 名工程师 |
 | [Común](https://devin.ai/customers/comun) | 13 人金融科技团队 | 产出 3×；后端周 PR 50 → 170（四周） |

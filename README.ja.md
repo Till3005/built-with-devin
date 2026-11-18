@@ -13,7 +13,7 @@
 
 <sub>Curated by [@darega0mae](https://x.com/darega0mae) · 姉妹チュートリアル：[build-with-devin](https://github.com/Till3005/build-with-devin) · [プロジェクトを追加](CONTRIBUTING.md)</sub>
 
-<sub>**11** 件の実証済み Bot 導入 · **33** 件のエンタープライズ事例 · **4** 件の公開プロダクト · **28** 件のツール・統合 · **19** 件の実践レポート</sub>
+<sub>**12** 件の実証済み Bot 導入 · **34** 件のエンタープライズ事例 · **4** 件の公開プロダクト · **28** 件のツール・統合 · **19** 件の実践レポート</sub>
 
 <sub>[English](README.md) · [简体中文](README.zh.md) · 日本語 · [Português](README.pt.md) · [Español](README.es.md) · [Deutsch](README.de.md)</sub>
 
@@ -56,7 +56,8 @@ flowchart LR
 | --- | --- | --- | --- |
 | **Android Bot** | Cognition | Devin の Android アプリをエンドツーエンドで | 2026 年 9 月 28 日に *"your job is to product manage the android app"* と指示 —— 自分でチケットを起票し、チケットごとに Devin セッションを実行。Google Play オープンベータまで **44 日**：1,134 PR マージ、Kotlin 344,651 行、2,841 のスクリーンショットテスト。人間が送ったのは**合計 183 通のみ** —— 22 日間完全な無干渉 —— **88% の PR は自己マージ**。現在は Android/iOS の機能パリティを担当。 |
 | **Layout Bot** | Cognition | Devin Web アプリのレイアウトシフト回帰 | 3 時間ごとに本番 `main` をビルドし、初回/リピート/遅延リクエストをシミュレート。回帰を起因 PR まで追跡し、before/after 動画つきで修正 PR を作成。**3 週間で 159 PR、カクつき −70%。** |
-| **Super Jenny** | Jenny Xu（コミュニティ） | モバイルゲームスタジオ全体 | ~20 の Bot（dev、Unity、リリース、UI、iOS、Android、実機テスト）を 1 つのオーケストレータ Bot が統括。唯一の人間は集約 Slack スレッドに 1 日 4 回**絵文字で**返答。週 50 → **1,900 PR**、スタジオ収益 6 倍、毎週リリース。コミュニティテンプレート **SuperJennyStack** として公開。（[Jenny のスレッド](https://x.com/xujennyc)） |
+| **Super Jenny** | Jenny Xu（コミュニティ） | モバイルゲームスタジオ全体 | ~20 の Bot（dev、Unity、リリース、UI、iOS、Android、実機テスト）を 1 つのオーケストレータ Bot が統括。唯一の人間は集約 Slack スレッドに 1 日 4 回**絵文字で**返答。週 50 → **1,900 PR**、スタジオ収益 6 倍、毎週リリース。コミュニティテンプレート **SuperJennyStack** として公開。その後 **BotSpeak** を構築 —— トークン節約型の bot 間速記（ASD-STE100、ACK コード、絵文字レシート；完全な文章は人間のみ）：6 日間で bot の自律判断が **12 倍**に。（[Jenny のスレッド](https://x.com/xujennyc)、[BotSpeak ポスト](https://x.com/xujennyc/status/2123111543105868166)） |
+| **dabit3 のフリート** | Nader Dabit（Cognition DevRel） | 個人 5-Bot 組織 + ゲームスタジオ | **CTO** bot：全セッション/リポジトリを管理、VIP iMessage チャネルで SMS 経由ですべての bot に到達。**Auto(mation)Bot**：個人自動化を実行し、レイテンシ/効率改善を報告。**DevCommunityBot**：Sheets/Notion でアンバサダープログラムを運営、ミニデータ可視化アプリを構築。**DevRelBot**：ドキュメント + チュートリアル動画 —— *専用コンピュータ、専用 Devin/GitHub/Linear アカウント、ElevenLabs 音声クローンを持ち*、ブラウザを起動して実際の UI を録画。さらに **Windfable**：iPhone Duo 向け Unity iOS RPG、~10 の SuperJennyStack Bot がそれぞれ専用 macOS+Xcode+Unity を持ち、Duo の折りたたみ/展開モードを前後スクリーンショット + 実機映像でテスト。（[入門](https://x.com/dabit3/status/2122755275182469515)） |
 | **Onboarding QA Bot** | Cognition（Walden Yan） | 30 以上のオンボーディングフローの 24/7 QA | 自己更新する Playwright スクリプト、エージェントジョブキュー、自作のライブボードビューを維持 —— 「自分が発掘する忍耐力よりはるかに多くのバグを見つけた」。（[@walden_yan](https://x.com/walden_yan)） |
 | **"Phil"** | Harvey | 協調型 Word 互換エディタエンジン | ~30 のエージェントが **3 週間・人間エンジニアゼロ** で Rust + TypeScript 100 万行超を執筆 —— 実際の Microsoft Word の挙動と模擬弁護士交渉で継続検証。人間はメモリ + 決定ログで舵取り。（[Gabe Pereyra](https://x.com/gabepereyra)） |
 | **共有 Bot フリート** | Decagon | オンコール、DevEx 最適化、スレッドルーティング | ベータ期間中に Slack で 50+ の共有 Bot を運用。Chief of Staff Bot がスレッドの起動タイミングと方法を決定。（[@tylerxdev のスレッド](https://x.com/tylerxdev/status/2122743518712287400)） |
@@ -73,6 +74,8 @@ flowchart LR
 - **スケジュール監視** —— cron でアラートチャンネルを監視し、そのチェックを所有し、回帰時に修正を開く Bot（Layout Bot パターン）。
 - **ロールアップ報告** —— 1 つの監督 Bot が、すべての下位 Bot の未決定事項を 1 つのスレッドに集約（SuperJennyStack パターン）。
 - **Bots × Apps** —— Bot が Devin Apps を維持：新しいページ/機能を構築し、変化に自動適応。Bots と Apps は同じナビゲーションレールにピン留め（[@dabit3](https://x.com/dabit3)）。
+- **Living evals** —— スケジュールされた Devin が本番トレースを読み、行動ごとにグループ化し、システムの完全なコピー（モック不可）で障害を再生し、各障害を eval PR として凍結 —— 資産は eval ではなく skill ファイル（Rox：カバレッジ 72% vs 手書き 43–57%）。
+- **Devin 自身をチューニングする Bot** —— Walden の bot はユーザーフィードバックを監視し、プロンプトを再生、実験を実行、eval セットを構築し、Devin 自身のプロアクティブ性/自律性パラメータを調整 —— Bots が Bots を作った（[スレッド](https://x.com/walden_yan/status/2122740852091216274)）。
 - **参照グラウンデッド・スウォーム** —— Harvey の教訓：信頼できる参照（実際の Word 挙動）で検証できる仕事なら、小さなチームでも大きな swarm を安全に指揮できる。
 
 ### 公開された結果
@@ -105,6 +108,8 @@ flowchart LR
 | Compliance Engineer | コードから統制証跡を収集し、統制が失効したら警告 |
 
 **[→ 再現ガイド：実証済みのすべての Bot を再構築する方法](docs/reproducing-devin-bots.md)** —— 姉妹リポジトリ **[build-with-devin](https://github.com/Till3005/build-with-devin)** の拡張チュートリアル版も
+
+サイト：**[till3005.github.io/built-with-devin](https://till3005.github.io/built-with-devin/)**（Devin スタイルのレジストリページ）· 深掘り：**[Devin Bot の解剖](docs/devin-bots-anatomy.md)**（実証済み 6 つの機構 + 数字が実際に示すこと）· **[Devin の経済学](docs/economics.md)**（公開済みのコスト/リターン数値を一冊に —— [フィルタ可能なページ](docs/economics.html)版も）
 
 <p align="right"><a href="#readme">back to top</a></p>
 
@@ -163,6 +168,7 @@ flowchart LR
 | [Crosby](https://devin.ai/customers/crosby) | AI ネイティブ法律事務所 | 毎日 20–40 件のバグレポート/アラートに初回対応、各 ~5 分。12 人のエンジニアが 50 人以上の弁護士に対応 |
 | [Endava](https://devin.ai/customers/endava) | 企業全体への提供 | 2,000 人以上の従業員がプラットフォーム利用。4 ヶ月で 3 倍。PR マージ率 78% |
 | [Tavrn](https://devin.ai/customers/tavrn) | HIPAA 制約下のフリート | 8 人のチームが 50 人のように出荷。**6 週間で 1,800 以上の PR**、生産量 6 倍 |
+| **Rox** | Living Evals —— 週次 Devin が本番トレースを読み、完全コピーで障害を再生、eval PR をオープン | eval スイートが**実使用量の 72%**をカバー（手書きは 43–57%）（[記事](https://www.rox.com/articles/living-evals-an-eval-suite-that-grows-from-production)、[スレッド](https://x.com/rox_ai/status/2110779380666617997)） |
 | [Evinova](https://devin.ai/customers/evinova) | GxP 規制下のデリバリー | GxP 文書化 8 倍速。マイグレーション 3 倍速。明確なバグの 66% を自律修正 |
 | [Compiled Health](https://devin.ai/customers/compiledhealth) | 臨床ベンチマーク構築 | 2 人の研究者・2 ヶ月 = 5–6 人のエンジニアの仕事。~430 エンジニア時間・時給 ~$17 ≈ 4 人チームに +4 名分 |
 | [Común](https://devin.ai/customers/comun) | 13 人のフィンテックチーム | 生産量 3 倍。週間バックエンド PR が 4 週間で 50 → 170 |

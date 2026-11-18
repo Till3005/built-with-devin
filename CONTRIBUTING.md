@@ -35,3 +35,4 @@ Maintained is preferred; complete-and-quiet is fine; abandoned stubs get pruned.
 - One line per entry, link first. No marketing copy.
 - Mark unofficial projects clearly — nothing should imply Cognition endorsement.
 - Dead links and abandoned entries get pruned periodically.
+- After editing `README.md`, run `python3 tools/sync.py` — it recomputes the stats line across all six language READMEs and the site, and checks link parity. CI fails on drift.

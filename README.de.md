@@ -13,7 +13,7 @@
 
 <sub>Kuratiert von [@darega0mae](https://x.com/darega0mae) · Schwester-Tutorials: [build-with-devin](https://github.com/Till3005/build-with-devin) · [Projekt einreichen](CONTRIBUTING.md)</sub>
 
-<sub>**11** dokumentierte Bot-Deployments · **33** Enterprise-Fallstudien · **4** veröffentlichte Produkte · **28** Tools & Integrationen · **19** Praxisberichte</sub>
+<sub>**12** dokumentierte Bot-Deployments · **34** Enterprise-Fallstudien · **4** veröffentlichte Produkte · **28** Tools & Integrationen · **19** Praxisberichte</sub>
 
 <sub>[English](README.md) · [简体中文](README.zh.md) · [日本語](README.ja.md) · [Português](README.pt.md) · [Español](README.es.md) · Deutsch</sub>
 
@@ -56,7 +56,8 @@ flowchart LR
 | --- | --- | --- | --- |
 | **Android Bot** | Cognition | Devins Android-App, Ende-zu-Ende | Am 28.09.2026 mit *"your job is to product manage the android app"* beauftragt — stellte eigene Tickets, führte pro Ticket eine Devin-Session aus, erreichte in **44 Tagen** die offene Beta bei Google Play: 1.134 gemergte PRs, 344.651 Zeilen Kotlin, 2.841 Screenshot-Tests. Der Mensch schrieb **insgesamt 183 Nachrichten** — 22 Tage völliger Stille — und **88% der PRs wurden selbst gemergt**. Verantwortet jetzt die Android/iOS-Feature-Parität. |
 | **Layout Bot** | Cognition | Layout-Shift-Regressionen der Devin-Web-App | Baut alle 3 Stunden den Produktions-`main`, simuliert erste/wiederholte/verzögerte Besuche, verfolgt Regressionen bis zum einführenden PR und öffnet Fixes mit Vorher/Nachher-Videos. **159 PRs in 3 Wochen; Ruckeln −70%.** |
-| **Super Jenny** | Jenny Xu (Community) | Ein ganzes Mobile-Game-Studio | ~20 Bots (Dev, Unity, Releases, UI, iOS, Android, Gerätetests) unter einem Orchestrierungs-Bot; der einzige Mensch beantwortet 4×/Tag einen konsolidierten Slack-Thread **mit Emoji**. ~50 → **1.900 PRs/Woche**, Studio-Umsatz ×6, wöchentliche Releases. Als Community-Template **SuperJennyStack** veröffentlicht. ([Jennys Thread](https://x.com/xujennyc)) |
+| **Super Jenny** | Jenny Xu (Community) | Ein ganzes Mobile-Game-Studio | ~20 Bots (Dev, Unity, Releases, UI, iOS, Android, Gerätetests) unter einem Orchestrierungs-Bot; der einzige Mensch beantwortet 4×/Tag einen konsolidierten Slack-Thread **mit Emoji**. ~50 → **1.900 PRs/Woche**, Studio-Umsatz ×6, wöchentliche Releases. Als Community-Template **SuperJennyStack** veröffentlicht. Sie baute dann **BotSpeak** — ein token-sparendes Bot-zu-Bot-Kürzel (ASD-STE100, ACK-Codes, Emoji-Quittungen; vollständige Prosa nur für den Menschen): Bot-Entscheidungen **12×** in 6 Tagen. ([Jennys Thread](https://x.com/xujennyc), [BotSpeak-Post](https://x.com/xujennyc/status/2123111543105868166)) |
+| **dabit3s Flotte** | Nader Dabit (Cognition DevRel) | Eine persönliche 5-Bot-Org + ein Game-Studio | **CTO**-Bot: alle Sessions/Repos, VIP-iMessage-Kanal, um jeden Bot per SMS zu erreichen. **Auto(mation)Bot**: führt seine persönlichen Automatisierungen aus, meldet Latenz- und Effizienz-Empfehlungen. **DevCommunityBot**: betreibt das Ambassador-Programm über Sheets/Notion, baut Mini-Data-Viz-Apps. **DevRelBot**: Docs + Tutorial-Videos — *er hat einen eigenen Computer, eigene Devin/GitHub/Linear-Accounts und einen ElevenLabs-Stimmklon*, bootet einen Browser und zeichnet die echte UI auf. Plus **Windfable**, ein Unity-iOS-RPG für iPhone Duo, bei dem ~10 SuperJennyStack-Bots je eigenes macOS+Xcode+Unity bekommen und Duo-Modi (gefaltet/entfaltet) mit Vorher/Nachher-Screenshots + Gameplay-Video testen. ([Primer](https://x.com/dabit3/status/2122755275182469515)) |
 | **Onboarding QA Bot** | Cognition (Walden Yan) | QA für 30+ Onboarding-Flows, 24/7 | Pflegt selbstaktualisierende Playwright-Skripte, eine Agenten-Job-Queue und ein selbstgebautes Live-Board — „fand weit mehr Bugs, als ich Geduld zum Entdecken gehabt hätte". ([@walden_yan](https://x.com/walden_yan)) |
 | **„Phil"** | Harvey | Kollaborative Word-kompatible Editor-Engine | ~30 Agenten schrieben 1M+ Zeilen Rust + TypeScript in **3 Wochen, ohne menschliche Engineers** — kontinuierlich gegen echtes Microsoft-Word-Verhalten und simulierte Anwaltsverhandlungen verifiziert; Menschen steuern über Gedächtnis + Entscheidungs-Logs. ([Gabe Pereyra](https://x.com/gabepereyra)) |
 | **Geteilte Bot-Flotte** | Decagon | On-Call, DevEx-Optimierung, Thread-Routing | 50+ geteilte Bots in Slack während der Beta; ein Chief-of-Staff-Bot entscheidet, wann und wie Threads gestartet werden. ([@tylerxdevs Thread](https://x.com/tylerxdev/status/2122743518712287400)) |
@@ -73,6 +74,8 @@ flowchart LR
 - **Geplante Checks** — ein Bot, der per Cron einen Alert-Channel überwacht, den Check besitzt und bei Regression Fixes öffnet (Layout-Bot-Muster).
 - **Roll-up-Reporting** — ein Aufsichts-Bot sammelt die offenen Entscheidungen aller untergeordneten Bots in einem einzigen Thread (SuperJennyStack-Muster).
 - **Bots × Apps** — Bots pflegen Devin Apps: sie bauen neue Seiten/Features und passen sich automatisch an Änderungen an; Bots und Apps pinnen an derselben Navigationsleiste ([@dabit3](https://x.com/dabit3)).
+- **Living Evals** — ein geplanter Devin liest Produktions-Traces, gruppiert sie nach Verhalten, spielt Fehler in einer vollständigen Systemkopie (nie Mocks) nach und friert jeden als Eval-PR ein — die Skill-Datei ist das Asset, nicht die Evals (Rox: 72% Coverage vs. 43–57% handgeschrieben).
+- **Bots, die Devin selbst tunen** — Waldens Bot beobachtet User-Feedback, spielt Prompts nach, führt Experimente durch, baut Eval-Sets und justiert Devins eigene Proaktivitäts-/Autonomie-Parameter — Bots bauten Bots ([Thread](https://x.com/walden_yan/status/2122740852091216274)).
 - **Referenz-verankerte Swarms** — Harveys Lektion: Wenn Arbeit gegen eine zuverlässige Referenz geprüft werden kann (echtes Word-Verhalten), kann ein kleines Team einen großen Swarm sicher dirigieren.
 
 ### Gemeldete Ergebnisse
@@ -105,6 +108,8 @@ Sechzehn fertige Bots auf dem [öffentlichen Marktplatz](https://devin.ai/bots/t
 | Compliance Engineer | Sammelt Kontrollnachweise aus dem Code und warnt, wenn eine Kontrolle ausläuft |
 
 **[→ Reproduktions-Guide: wie man jeden dokumentierten Bot nachbaut](docs/reproducing-devin-bots.md)** — und die erweiterte Tutorial-Form im Schwester-Repo **[build-with-devin](https://github.com/Till3005/build-with-devin)**
+
+Site: **[till3005.github.io/built-with-devin](https://till3005.github.io/built-with-devin/)** (Devin-gestylte Registry-Seite) · Deep Dives: **[Anatomie eines Devin Bots](docs/devin-bots-anatomy.md)** (die sechs dokumentierten Mechanismen + was die Zahlen wirklich zeigen) · **[Die Ökonomie von Devin](docs/economics.md)** (jede veröffentlichte Kosten-/Ertragszahl in einem Ledger — auch als [filterbare Seite](docs/economics.html))
 
 <p align="right"><a href="#readme">back to top</a></p>
 
@@ -163,6 +168,7 @@ Veröffentlichte Kundenfälle mit harten Zahlen ([vollständiger Index](https://
 | [Crosby](https://devin.ai/customers/crosby) | KI-native Kanzlei | 20–40 Bug-Reports/Alerts erhalten täglich einen First Pass, je ~5 Min.; 12 Engineers betreuen 50+ Anwälte |
 | [Endava](https://devin.ai/customers/endava) | unternehmensweite Bereitstellung | 2.000+ Mitarbeiter auf der Plattform; 3× in vier Monaten; 78% PR-Merge-Rate |
 | [Tavrn](https://devin.ai/customers/tavrn) | HIPAA-beschränkte Flotte | 8er-Team liefert wie 50; **1.800+ PRs in 6 Wochen**, 6× Output |
+| **Rox** | Living Evals — wöchentlicher Devin liest Produktions-Traces, spielt Fehler in einer vollständigen Kopie nach, öffnet Eval-PRs | Eval-Suite deckt **72% der realen Nutzung** ab vs. 43–57% handgeschrieben ([Artikel](https://www.rox.com/articles/living-evals-an-eval-suite-that-grows-from-production), [Thread](https://x.com/rox_ai/status/2110779380666617997)) |
 | [Evinova](https://devin.ai/customers/evinova) | GxP-regulierte Auslieferung | GxP-Dokumentation 8× schneller; Migrationen 3×; 66% der klaren Bugs autonom behoben |
 | [Compiled Health](https://devin.ai/customers/compiledhealth) | Aufbau eines klinischen Benchmarks | 2 Forscher/2 Monate = Arbeit von 5–6 Engineers; ~430 Engineer-Stunden zu ~$17/h ≈ +4 Engineers in einem 4er-Team |
 | [Común](https://devin.ai/customers/comun) | 13-köpfiges Fintech-Team | 3× Output; wöchentliche Backend-PRs 50 → 170 in vier Wochen |

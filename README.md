@@ -13,7 +13,7 @@
 
 <sub>Curated by [@darega0mae](https://x.com/darega0mae) · Sister tutorials: [build-with-devin](https://github.com/Till3005/build-with-devin) · [Add your project](CONTRIBUTING.md)</sub>
 
-<sub>**11** documented Bot deployments · **33** enterprise case studies · **4** shipped products · **28** tools & integrations · **19** field reports</sub>
+<sub>**12** documented Bot deployments · **34** enterprise case studies · **4** shipped products · **28** tools & integrations · **19** field reports</sub>
 
 <sub>English · [简体中文](README.zh.md) · [日本語](README.ja.md) · [Português](README.pt.md) · [Español](README.es.md) · [Deutsch](README.de.md)</sub>
 
@@ -179,6 +179,7 @@ Published customer cases with hard numbers ([full index](https://devin.ai/custom
 | [Crossmint](https://devin.ai/customers/crossmint) | GOAT open-source scaling | Devin became the repo's #1 contributor during trial |
 | [FE fundinfo](https://devin.ai/customers/fefundinfo) | 1,800-repo automation | 10% immediate capacity increase via test-gen + security fixes |
 | [GE Aerospace](https://devin.ai/customers/geaerospace) | Constrained team story throughput | ~2× user-story output in three months |
+| **Rox** | Living Evals — weekly Devin reads production traces, replays failures in a full copy, opens eval PRs | Eval suite covers **72% of real usage** vs 43–57% hand-written ([write-up](https://www.rox.com/articles/living-evals-an-eval-suite-that-grows-from-production), [thread](https://x.com/rox_ai/status/2110779380666617997)) |
 
 Also on the record: Citi (40,000-developer rollout, 30% tech-vendor spend cut), Itaú, Mercor, Hippo, Mercedes-Benz, Cognizant and Infosys partnerships — see the [customer index](https://devin.ai/customers).
 
@@ -308,4 +309,3 @@ Built something with Devin, or know a deployment we missed? See [CONTRIBUTING.md
 ## License
 
 [CC0-1.0](LICENSE) — dedicated to the public domain. Listings belong to their owners.
-| **Rox** | Living Evals — weekly Devin reads production traces, replays failures in a full copy, opens eval PRs | Eval suite covers **72% of real usage** vs 43–57% hand-written ([write-up](https://www.rox.com/articles/living-evals-an-eval-suite-that-grows-from-production), [thread](https://x.com/rox_ai/status/2110779380666617997)) |
