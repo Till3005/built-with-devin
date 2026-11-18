@@ -38,7 +38,14 @@
     o.drawImage(imgEl, x, y, dw, dh);
     const d = o.getImageData(0, 0, W, H).data;
     const f = new Float32Array(W * H);
-    for (let i = 0; i < W * H; i++) f[i] = d[i * 4 + 3] / 255;
+    const isRender = /\.webp$/i.test(imgEl.src);
+    for (let i = 0; i < W * H; i++) {
+      const a = d[i * 4 + 3] / 255;
+      if (!isRender) { f[i] = a; continue; }
+      // cogs: luminance * alpha — the plastic's own shading drives the dither
+      const lum = (0.2126 * d[i * 4] + 0.7152 * d[i * 4 + 1] + 0.0722 * d[i * 4 + 2]) / 255;
+      f[i] = a * (0.25 + 0.75 * lum);
+    }
     return f;
   }
 
