@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Leitfaden 8 — Design & visuelle Arbeit — build-with-devin guides</title>
+<meta name="description" content="Leitfaden 8 — Design & visuelle Arbeit">
+<link rel="icon" href="../../assets/brand/Devin_Symbol.svg" type="image/svg+xml">
+<link rel="stylesheet" href="../../assets/site.css">
+<link rel="stylesheet" href="../../assets/guides.css">
+</head>
+<body>
+<a class="skip" href="#guide">Skip to content</a>
+<nav><div class="wrap nav-inner">
+  <div class="nav-left">
+    <a class="brand" href="../../index.html" aria-label="Built with Devin">
+      <span class="brand-text">built<strong>-with-</strong></span><img class="brand-mark" src="../../assets/brand/Devin_Primary_Logo.svg" alt="Devin" height="16"><span class="unofficial-chip">unofficial</span>
+    </a>
+  </div>
+  <div class="nav-side">
+    <div class="mode-toggle" role="tablist" aria-label="Site section">
+      <button class="mode-btn" data-mode="built" role="tab" aria-selected="false" onclick="location.href='../../index.html'">Built</button>
+      <button class="mode-btn on" data-mode="build" role="tab" aria-selected="true" onclick="location.href='../../index.html#build'">Build</button>
+      <span class="mode-pill" aria-hidden="true"></span>
+    </div>
+    <a class="cta" href="https://github.com/Till3005/build-with-devin/blob/main/guides/de/design-with-devin.md">GitHub</a>
+  </div>
+</div></nav>
+<main>
+<article class="guide wrap" id="guide">
+  <p class="guide-crumb"><a href="../../index.html#build">← Guides</a> · <a href="../design-with-devin.html">English</a> · <a href="../es/design-with-devin.html">Español</a> · <a href="../zh/design-with-devin.html">中文</a> · <a href="../pt/design-with-devin.html">Português</a> · <a href="../ja/design-with-devin.html">日本語</a></p>
+<h1>Leitfaden 8 — Design &amp; visuelle Arbeit</h1>
+<p><strong>Ziel:</strong> Devin als Art Director und Implementierer für Produktions-Visualdesign nutzen — generierte Bilder, Animations-Systeme, Typografie — nur durch Konversation.
+<strong>Level:</strong> mittel
+<strong>Quell-Deployment:</strong> die <strong>Spraycash</strong>-Landing-Page — das gesamte visuelle System einer Fintech-Site wurde im Devin-Chat mit Kimi K3 entworfen, alle Prompts veröffentlicht: Hero-Imagery, geschichtete Wolken-Animationen, SVG-Draw-on-Ring, Drei-Font-Typosystem.
+<strong>Quellen:</strong> <a href="https://dev.to/ibrahimpima/designing-the-spraycash-ui-with-kimi-k3-in-devin-4l2f">vollständiger Bericht mit Prompts</a></p>
+<h2>Das Muster</h2>
+<p>Design-via-Agent scheitert, wenn Prompts <em>Vibes</em> beschreiben ("mach es premium"). Es funktioniert, wenn du Art Direction machst wie ein Creative Director: <strong>Referenzen, Constraints und ein Kritik-Loop</strong>. Devins Vorteil gegenüber einem Design-Tool ist, dass es die <em>Implementierung</em> produziert — die Animation ist Code, die Bilder sind generiert und platziert, das Typosystem ist ausgeliefertes CSS.</p>
+<pre><code class="language-text">Brief + Referenzen ──► Devin produziert visuelle Assets + Code
+        ▲                         │
+        └──── Kritik-Loop: &quot;die Ring-Animation zeichnet zu schnell,
+              verlangsame das stroke-dashoffset-Easing auf 1.4s&quot; ────┘
+</code></pre>
+<h2>Schritt 1 — Briefen wie ein Creative Director</h2>
+<p>Die Prompts des Spraycash-Berichts teilen eine Form — konkrete Substantive, keine Geschmacks-Adjektive:</p>
+<pre><code class="language-text">Hero section: dark navy (#0A1628) background, a circular progress ring
+as the visual anchor — SVG stroke-dashoffset draw-on animation over
+1.4s ease-out, layered clouds behind it drifting on separate
+translateX loops at 40s/60s/90s periods so the parallax never repeats.
+</code></pre>
+<p>Gib ihm: Paletten-Hexes, den Animations-Mechanismus (nicht "mach es animiert"), Timing-Werte, Layer-Reihenfolge.</p>
+<h2>Schritt 2 — Das Typosystem vor den Pixeln fixieren</h2>
+<p>Spraycash legte früh ein <strong>Drei-Font-System</strong> fest — Display, Body, Mono — bevor Komponenten angefasst wurden. Mach es genauso; es ist die visuelle Entscheidung mit der größten Hebelwirkung:</p>
+<pre><code class="language-text">Type system: &lt;display font&gt; for hero + section heads, &lt;body font&gt; for
+prose, &lt;mono&gt; for numbers/labels. Set the scale: 64/40/28/18/14.
+Nothing else uses another size.
+</code></pre>
+<h2>Schritt 3 — Bilder innerhalb der Session generieren</h2>
+<p>Devin generiert und platziert Assets — benutze keine Stockfotos auf einer designten Seite. Der Bericht zeigt generierte Hero-Imagery, die zur Palette des Briefs passt. Halte generierte Assets konsistent, indem du die Stil-Direktive einmal festlegst (Palette, Licht, Material) und für jede Asset-Anfrage wiederverwendest.</p>
+<h2>Schritt 4 — Mit Mechanismen animieren, nicht mit Adjektiven</h2>
+<table>
+<thead>
+<tr>
+<th>Vage (scheitert)</th>
+<th>Mechanisch (funktioniert)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>"sanfter Eingang"</td>
+<td>"stagger children 80ms, translateY(12px)→0, opacity 0→1, 400ms ease-out"</td>
+</tr>
+<tr>
+<td>"subtiler Parallax"</td>
+<td>"drei Layer, translateX-Loops mit 40/60/90s-Perioden"</td>
+</tr>
+<tr>
+<td>"zeichne den Ring"</td>
+<td>"stroke-dasharray = Umfang, dashoffset C→0 über 1.4s animieren"</td>
+</tr>
+</tbody>
+</table>
+<p>Spraycashs Ring, Wolken und gestaffelte Reveals wurden alle auf diesem Level spezifiziert — und als echtes CSS/SVG ausgeliefert, nicht als Mockups.</p>
+<h2>Schritt 5 — Der Kritik-Loop ist das Handwerk</h2>
+<p>Die eigentliche Lektion des Berichts: Qualität kam von <em>Iterationen</em> — "der Ring zeichnet zu schnell", "die Wolken lesen sich als Rauschen, Opazität um 30 % senken", "Mono-Font auf den Zahlen". Plane 3–5 Kritikrunden pro visuellem Anker ein. Devin hält die ganze Seite im Kontext; jede Runde ist eine Nachricht, kein Ticket.</p>
+<h2>Verifizieren</h2>
+<ul>
+<li>[ ] Die Seite rendert mit <em>null</em> Stock-Imagery — alle Assets generiert oder codiert</li>
+<li>[ ] Jede Animation ist ein benannter Mechanismus mit Timing-Werten im CSS</li>
+<li>[ ] Ein Typosystem, eine Skala — keine streunenden Größen</li>
+<li>[ ] Bei 3+ Breiten betrachtet bricht oder clippt nichts</li>
+</ul>
+<h2>Fallstricke</h2>
+<ul>
+<li><strong>Adjektiv-Prompts.</strong> "Premium", "sleek", "modern" erzeugen Slop. Mechanismen und Werte erzeugen Handwerk.</li>
+<li><strong>One-shotting.</strong> Die erste Renderung zu akzeptieren ist, warum agent-gemachte Seiten agent-gemacht aussehen. Der Kritik-Loop ist, wo Qualität wohnt.</li>
+<li><strong>Das Lock-down verpassen.</strong> Palette + Typosystem <em>zuerst</em> als Constraints setzen; Assets, die vor den Constraints generiert wurden, passen danach nie zusammen.</li>
+</ul>
+<h2>Wissenscheck</h2>
+<ol>
+<li>Warum veröffentlichte der Spraycash-Autor jeden Prompt wörtlich? <em>(Die Prompt-Sequenz <em>ist</em> das Design-Artefakt — Art Direction durch Konversation ist nur reproduzierbar, wenn die Konversation es ist.)</em></li>
+<li>Was braucht "generierte Imagery + geschichtete Animation", was ein Screenshot-Mock nicht braucht? <em>(Auslieferbare Assets und ein funktionierendes Animations-System — die Verifikation ist eine gerenderte Seite, nicht das Bild einer.)</em></li>
+<li>Wann ist Chat-Direktion besser als ein Design-Tool für Landing-Pages? <em>(Wenn der Output ohnehin Produktionscode sein muss — die Design-Session <em>ist</em> die Implementierung.)</em></li>
+</ol>
+<h2>Quellen</h2>
+<ul>
+<li><a href="https://dev.to/ibrahimpima/designing-the-spraycash-ui-with-kimi-k3-in-devin-4l2f">Designing the Spraycash UI with Kimi K3 in Devin</a> — vollständige Prompts und Iterations-Historie</li>
+<li>Verwandt: <a href="https://github.com/Till3005/built-with-devin#patterns--write-ups">built-with-devin — Patterns</a></li>
+</ul>
+</article>
+<footer><div class="wrap foot-base"><span data-i18n="foot.note">Unofficial community project — not affiliated with Cognition AI.</span><span><a href="../../index.html">built-with-devin</a> · <a href="https://github.com/Till3005/build-with-devin">build-with-devin</a></span></div></footer>
+</main>
+<script src="../../assets/theme.js"></script>
+<script src="../../assets/i18n.js"></script>
+<script src="../../assets/i18n-runtime.js"></script>
+</body>
+</html>

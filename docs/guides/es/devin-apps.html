@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Guía 10 — Devin Apps: herramientas en vivo desde un chat — build-with-devin guides</title>
+<meta name="description" content="Guía 10 — Devin Apps: herramientas en vivo desde un chat">
+<link rel="icon" href="../../assets/brand/Devin_Symbol.svg" type="image/svg+xml">
+<link rel="stylesheet" href="../../assets/site.css">
+<link rel="stylesheet" href="../../assets/guides.css">
+</head>
+<body>
+<a class="skip" href="#guide">Skip to content</a>
+<nav><div class="wrap nav-inner">
+  <div class="nav-left">
+    <a class="brand" href="../../index.html" aria-label="Built with Devin">
+      <span class="brand-text">built<strong>-with-</strong></span><img class="brand-mark" src="../../assets/brand/Devin_Primary_Logo.svg" alt="Devin" height="16"><span class="unofficial-chip">unofficial</span>
+    </a>
+  </div>
+  <div class="nav-side">
+    <div class="mode-toggle" role="tablist" aria-label="Site section">
+      <button class="mode-btn" data-mode="built" role="tab" aria-selected="false" onclick="location.href='../../index.html'">Built</button>
+      <button class="mode-btn on" data-mode="build" role="tab" aria-selected="true" onclick="location.href='../../index.html#build'">Build</button>
+      <span class="mode-pill" aria-hidden="true"></span>
+    </div>
+    <a class="cta" href="https://github.com/Till3005/build-with-devin/blob/main/guides/es/devin-apps.md">GitHub</a>
+  </div>
+</div></nav>
+<main>
+<article class="guide wrap" id="guide">
+  <p class="guide-crumb"><a href="../../index.html#build">← Guides</a> · <a href="../devin-apps.html">English</a> · <a href="../de/devin-apps.html">Deutsch</a> · <a href="../zh/devin-apps.html">中文</a> · <a href="../pt/devin-apps.html">Português</a> · <a href="../ja/devin-apps.html">日本語</a></p>
+<h1>Guía 10 — Devin Apps: herramientas en vivo desde un chat</h1>
+<p><strong>Objetivo:</strong> describir una herramienta interna, dashboard o copia de staging — Devin la construye y la sirve en una URL estable que tu equipo abre haciendo sign-in.
+<strong>Nivel:</strong> empieza aquí (guía de plataforma) · <strong>Tiempo:</strong> ~10 minutos hasta la primera App
+<strong>Fuente:</strong> <a href="https://devin.ai/blog/devin-apps">Introducing Devin Apps</a> (13 nov 2026)</p>
+<h2>Qué es</h2>
+<p>Una Devin App es una aplicación web en vivo y privada alojada directamente en la máquina cloud de Devin. Describes la herramienta, Devin la construye, tu equipo la abre desde un enlace — sin hosting, sin pipeline de deploy. Como corre <em>en</em> la máquina de Devin, alcanza tus MCPs, integraciones, codebase y su propia base de datos (SQLite/Postgres en la misma box), y llama a la propia API de Devin.</p>
+<h2>Construir una</h2>
+<ol>
+<li>Sidebar → <strong>Apps</strong> → describe lo que la App debe hacer (o elige una plantilla de prompt: dashboard de métricas, estado de proyecto, cola de review) → <strong>Build with Devin</strong></li>
+<li>Devin hace preguntas de aclaración en la sesión, construye y la pone online — la página de Apps muestra su URL, estado <code>Building</code> hasta que la v1 esté en el aire</li>
+<li><strong>Share</strong> — copia el enlace; dale alcance a personas nombradas, tu org o tu enterprise. Las Apps nunca son públicas; abrir una exige sign-in en Devin</li>
+</ol>
+<p>También puedes decir "publish this as an App" dentro de cualquier sesión que produjo un browser preview.</p>
+<h2>Bucle de actualización</h2>
+<ul>
+<li><strong>Edit in session</strong> en la página de la App → describe el cambio → Devin construye una nueva versión en la misma URL. Cada actualización es un despliegue versionado; si una versión nueva falla al arrancar, la anterior sigue sirviendo.</li>
+<li><strong>Mantenida fresca por automatización:</strong> cablea una automatización (Guía 6) para redesplegar en horario o en cambios de rama — un dashboard que trae datos frescos cada mañana es el uso canónico.</li>
+</ul>
+<h2>Cómo corren (las partes que importan)</h2>
+<ul>
+<li><strong>Hibernación:</strong> las Apps se construyen sobre snapshots de memoria — la máquina duerme cuando no se usa, despierta al abrir (la primera carga puede tardar unos segundos). La facturación sigue el tiempo despierto.</li>
+<li><strong>Stack:</strong> cualquier cosa sirviendo HTTP en un puerto; DB co-localizada en la máquina.</li>
+<li><strong>Frontera de escala:</strong> una máquina — genial para herramientas internas y dashboards, <strong>no</strong> para servicios de producción de alto tráfico.</li>
+</ul>
+<h2>Los tres usos probados</h2>
+<table>
+<thead>
+<tr>
+<th>Uso</th>
+<th>Ejemplo</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Herramientas internas</td>
+<td>Paneles admin, formularios de solicitud, colas de aprobación — los asesinos de la hoja de cálculo compartida</td>
+</tr>
+<tr>
+<td>Dashboards</td>
+<td>Boards de métricas/soporte/ventas trayendo de tus fuentes de datos, refrescados en horario</td>
+</tr>
+<tr>
+<td>Copias beta/staging</td>
+<td>Tu stack real (frontend+backend+DB+workers) corriendo en la máquina de Devin — compañeros abren una copia de staging desde un enlace</td>
+</tr>
+</tbody>
+</table>
+<h2>Checklist de verificación</h2>
+<ul>
+<li>[ ] La App carga en su URL estable después de que la máquina durmiera (espera un cold start de unos segundos)</li>
+<li>[ ] Un cambio por edit-in-session produjo una nueva versión en la misma URL</li>
+<li>[ ] El alcance de compartición es correcto: un compañero sin acceso es detenido en el sign-in</li>
+</ul>
+<h2>Trampas</h2>
+<ul>
+<li><strong>Tráfico de producción.</strong> Una máquina, duerme cuando está ociosa — no apuntes usuarios a ella; apunta a tu equipo.</li>
+<li><strong>Pensamiento estático.</strong> El poder de una App es que <em>vive en el entorno de Devin</em> — conéctala a tus datos/MCPs, o has construido una Vercel más débil.</li>
+</ul>
+<h2>Prueba de conocimiento</h2>
+<ol>
+<li>¿Cuál es la diferencia entre una Devin App y un PR preview? <em>(La App se sirve en vivo desde la máquina de Devin en una URL estable — stateful, persistente, con gate de sign-in — no un artefacto de build.)</em></li>
+<li>¿Por qué importa "tu equipo la abre haciendo sign-in" para herramientas internas? <em>(La auth se hereda de la org — sin sistema de login separado que construir o asegurar.)</em></li>
+<li>¿Qué clase de herramienta interna encaja mejor en Apps? <em>(Dashboards y superficies de staging donde "bastante bueno ahora" vence a "perfecto después" — el coste de mantenimiento es casi cero.)</em></li>
+</ol>
+<h2>Fuentes</h2>
+<ul>
+<li><a href="https://devin.ai/blog/devin-apps">Introducing Devin Apps</a></li>
+<li>Relacionado: <a href="automations-101-event-driven.html">Guía 6 — Automatizaciones orientadas a eventos</a> para refresco programado</li>
+</ul>
+</article>
+<footer><div class="wrap foot-base"><span data-i18n="foot.note">Unofficial community project — not affiliated with Cognition AI.</span><span><a href="../../index.html">built-with-devin</a> · <a href="https://github.com/Till3005/build-with-devin">build-with-devin</a></span></div></footer>
+</main>
+<script src="../../assets/theme.js"></script>
+<script src="../../assets/i18n.js"></script>
+<script src="../../assets/i18n-runtime.js"></script>
+</body>
+</html>

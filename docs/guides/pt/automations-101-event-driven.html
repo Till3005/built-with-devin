@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Guia 6 — Automações orientadas a eventos — build-with-devin guides</title>
+<meta name="description" content="Guia 6 — Automações orientadas a eventos">
+<link rel="icon" href="../../assets/brand/Devin_Symbol.svg" type="image/svg+xml">
+<link rel="stylesheet" href="../../assets/site.css">
+<link rel="stylesheet" href="../../assets/guides.css">
+</head>
+<body>
+<a class="skip" href="#guide">Skip to content</a>
+<nav><div class="wrap nav-inner">
+  <div class="nav-left">
+    <a class="brand" href="../../index.html" aria-label="Built with Devin">
+      <span class="brand-text">built<strong>-with-</strong></span><img class="brand-mark" src="../../assets/brand/Devin_Primary_Logo.svg" alt="Devin" height="16"><span class="unofficial-chip">unofficial</span>
+    </a>
+  </div>
+  <div class="nav-side">
+    <div class="mode-toggle" role="tablist" aria-label="Site section">
+      <button class="mode-btn" data-mode="built" role="tab" aria-selected="false" onclick="location.href='../../index.html'">Built</button>
+      <button class="mode-btn on" data-mode="build" role="tab" aria-selected="true" onclick="location.href='../../index.html#build'">Build</button>
+      <span class="mode-pill" aria-hidden="true"></span>
+    </div>
+    <a class="cta" href="https://github.com/Till3005/build-with-devin/blob/main/guides/pt/automations-101-event-driven.md">GitHub</a>
+  </div>
+</div></nav>
+<main>
+<article class="guide wrap" id="guide">
+  <p class="guide-crumb"><a href="../../index.html#build">← Guides</a> · <a href="../automations-101-event-driven.html">English</a> · <a href="../es/automations-101-event-driven.html">Español</a> · <a href="../de/automations-101-event-driven.html">Deutsch</a> · <a href="../zh/automations-101-event-driven.html">中文</a> · <a href="../ja/automations-101-event-driven.html">日本語</a></p>
+<h1>Guia 6 — Automações orientadas a eventos</h1>
+<p><strong>Objetivo:</strong> ligar eventos externos — Slack, Teams, GitHub, Linear, Jira, PagerDuty, cron, webhooks — a sessões Devin que se iniciam sozinhas.
+<strong>Nível:</strong> comece aqui (guia de plataforma) · <strong>Tempo:</strong> ~20 minutos
+<strong>Fonte:</strong> <a href="https://docs.devin.ai/product-guides/automations">docs de Automations</a> · <a href="https://www.youtube.com/watch?v=6xxKtIpgOyE">walkthrough oficial em vídeo</a></p>
+<h2>A anatomia</h2>
+<p>Toda automação tem quatro partes:</p>
+<table>
+<thead>
+<tr>
+<th>Parte</th>
+<th>O que faz</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Trigger</td>
+<td>O evento que a dispara — uma mensagem de Slack, um CI que falhou, um tick de cron, um webhook HTTP</td>
+</tr>
+<tr>
+<td>Conditions</td>
+<td>Filtros opcionais — só a label <code>bug</code>, só este repo, só mensagens contendo <code>/devin</code></td>
+</tr>
+<tr>
+<td>Preflight check</td>
+<td>Filtro LLM ou script opcional que roda <em>após</em> o match, antes das ações — pode pular o evento ou dividi-lo em itens de trabalho</td>
+</tr>
+<tr>
+<td>Action</td>
+<td>O que roda: iniciar uma sessão, mandar mensagem a uma sessão existente, monitor de triagem ou notificação por email</td>
+</tr>
+</tbody>
+</table>
+<h2>Catálogo de triggers</h2>
+<table>
+<thead>
+<tr>
+<th>Fonte</th>
+<th>Dispara em</th>
+<th>Uso canônico</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Slack</td>
+<td>Nova mensagem, reação adicionada, menção a user-group</td>
+<td>Triagem de <code>#incidents</code>; reação 🚨 → investigar</td>
+</tr>
+<tr>
+<td>Microsoft Teams</td>
+<td>Mensagem, reação</td>
+<td>Responder a bug reports na thread onde foram postados</td>
+</tr>
+<tr>
+<td>GitHub</td>
+<td>Issue, comentário em issue, PR, review de PR, check run, push</td>
+<td>Auto-corrigir CI falhando; comentário <code>/devin</code> → sessão</td>
+</tr>
+<tr>
+<td>GitLab</td>
+<td>MR, comentário em MR, issue, push, pipeline</td>
+<td>Corrigir pipelines falhando</td>
+</tr>
+<tr>
+<td>Linear</td>
+<td>Issue criada/etiquetada/status/prioridade/atribuída/movida</td>
+<td>Implementar tickets quando atribuídos ao Devin</td>
+</tr>
+<tr>
+<td>Jira</td>
+<td>Issue criada/atualizada/etiquetada/status/atribuída/comentada</td>
+<td>O mesmo, em formato Jira</td>
+</tr>
+<tr>
+<td>Pylon</td>
+<td>Issue criada/etiquetada/status</td>
+<td>Triagem de bugs de clientes</td>
+</tr>
+<tr>
+<td>PagerDuty</td>
+<td>Incidente disparado/reconhecido/resolvido</td>
+<td>Investigar incidentes de alta urgência na hora</td>
+</tr>
+<tr>
+<td>Schedule</td>
+<td>Cron ou único</td>
+<td>Varredura diária do Sentry, updates semanais de deps, smoke tests noturnos</td>
+</tr>
+<tr>
+<td>Webhook</td>
+<td>Qualquer POST HTTP</td>
+<td>Todo o resto — Datadog, Sentry, seus próprios sistemas</td>
+</tr>
+</tbody>
+</table>
+<p>Múltiplos triggers numa automação funcionam como OU — ex.: disparar <em>ou</em> num CI falhando do GitHub <em>ou</em> numa reação de Slack.</p>
+<h2>Receita 1 — <code>/devin</code> em qualquer issue</h2>
+<p>O trigger mais implantado no mundo:</p>
+<pre><code class="language-text">Trigger:   GitHub → issue comment, repo = your/repo
+Condition: comment body starts with &quot;/devin&quot;
+Action:    Start session — prompt includes the event payload
+</code></pre>
+<p>Resultado: qualquer pessoa da equipe comenta <code>/devin investigate this</code> numa issue, e uma sessão assume com a thread inteira como contexto.</p>
+<h2>Receita 2 — Auto-reparo de falha de CI</h2>
+<pre><code class="language-text">Trigger:   GitHub → check run, repo = your/repo
+Condition: conclusion = failure
+Action:    Start session: &quot;CI check &lt;name&gt; failed on this commit.
+            Diagnose the failure from the logs, fix it, and push to
+            the same branch.&quot;
+</code></pre>
+<p>O payload do evento carrega o check que falhou + commit para dentro da sessão — sem copiar e colar.</p>
+<h2>Receita 3 — Varredura agendada</h2>
+<pre><code class="language-text">Trigger:   Schedule → daily 09:00
+Action:    Start session: &quot;Sweep yesterday's Sentry issues in
+            &lt;project&gt;. File the top 3 by impact as tickets and
+            start the most actionable one.&quot;
+</code></pre>
+<p>Loops de higiene diários (varreduras do Sentry, updates de dependências, smoke tests) são as automações de maior ROI — transformam "alguém devia checar" em "está checado".</p>
+<h2>Tipos de ação, como escolher</h2>
+<table>
+<thead>
+<tr>
+<th>Ação</th>
+<th>Use quando</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Start session</td>
+<td>O padrão — cada evento ganha uma máquina e contexto novos</td>
+</tr>
+<tr>
+<td>Message session</td>
+<td>Uma sessão de longa vida mantém estado — alimente eventos nela (a semente de um Bot)</td>
+</tr>
+<tr>
+<td>Triage Devin</td>
+<td>Um Devin persistente vigia um canal inteiro de Slack e cria investigações filhas (ver Devin Oncall para incidentes)</td>
+</tr>
+<tr>
+<td>Email notification</td>
+<td>Só avisar que rodou</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Automação vs. Bot:</strong> automações são canos burros — evento entra, sessão sai. Um Bot adiciona memória, julgamento e planejamento multi-sessão em volta dos mesmos triggers. Comece com automações; formate para um Bot quando o trabalho precisar de continuidade (Guias 2–5).</p>
+<h2>Construir</h2>
+<p>Três caminhos de criação na página de Automations:</p>
+<ol>
+<li><strong>Create</strong> — o editor em branco: escolha trigger → conditions → action</li>
+<li><strong>Template</strong> — a galeria de automações pré-configuradas para workflows comuns</li>
+<li><strong>Generate with Devin</strong> — descreva em inglês (<em>"when a CI check fails on my-org/my-repo, have Devin fix it and push to the same branch"</em>), revise o config gerado</li>
+</ol>
+<p>Notas que mordem as pessoas:</p>
+<ul>
+<li>Triggers de Slack precisam do Devin convidado para o canal <strong>e</strong> seu Slack pessoal conectado em Settings → Connections</li>
+<li>Canais privados do Teams só disparam em @menção</li>
+<li>Um trigger de GitHub precisa nomear um repo específico</li>
+<li>Gerencie automações declarativamente com o <strong>provider Terraform</strong> se você roda muitas</li>
+</ul>
+<h2>Checklist de verificação</h2>
+<ul>
+<li>[ ] Dispare o trigger manualmente uma vez (comente <code>/devin test</code>, ou faça push de um commit que falha) e veja uma sessão iniciar com o payload do evento</li>
+<li>[ ] Um evento que não bate (label errada, canal errado) não faz nada</li>
+<li>[ ] A saída da ação cai onde você esperava (PR, thread de Slack, ticket)</li>
+</ul>
+<h2>Armadilhas</h2>
+<ul>
+<li><strong>Loops.</strong> Uma automação cuja saída pode re-disparar a si mesma (o Devin comenta num PR, o trigger vigia "novo comentário") queimará sessões para sempre. Filtre por autor, label ou subtipo de evento.</li>
+<li><strong>Tempestades de trigger.</strong> Um webhook que dispara por commit em vez de por PR pode criar 50 sessões num dia movimentado. Controle: uma automação por <em>unidade reivindicável</em> de trabalho, não por evento bruto.</li>
+<li><strong>Sem gate de aprovação.</strong> Auto-mergear ou auto-deployar num trigger pula o ponto de controle humano — mantenha o padrão "a sessão abre um PR, uma pessoa mergeia" a menos que tenha motivo medido para não ter.</li>
+</ul>
+<h2>Teste de conhecimento</h2>
+<ol>
+<li>Um colega quer que o Devin "vigie toda notificação do GitHub" — o que você pede para ele estreitar primeiro? <em>(Qual subtipo de evento realmente implica trabalho acionável — uma label aplicada, uma review solicitada — não toda notificação.)</em></li>
+<li>Por que um evento que não bate deve produzir <em>nenhuma</em> sessão em vez de uma sessão que decide fazer no-op? <em>(Sessões custam ACUs; filtrar upstream é grátis, filtrar dentro da sessão não é.)</em></li>
+<li>Quando uma automação precisa de um Bot? <em>(Quando o trabalho disparado precisa de julgamento acumulado ao longo do tempo — memória, prioridades, um resultado permanente.)</em></li>
+</ol>
+<h2>Fontes</h2>
+<ul>
+<li><a href="https://docs.devin.ai/product-guides/automations">Automations — docs</a></li>
+<li><a href="https://www.youtube.com/watch?v=6xxKtIpgOyE">Devin Automations QuickStart (vídeo)</a></li>
+<li>Relacionado: <a href="bots-202-scheduled-sentinel.html">Guia 3 — Bot sentinela agendado</a> para adicionar julgamento de Bot em cima de um cron</li>
+</ul>
+</article>
+<footer><div class="wrap foot-base"><span data-i18n="foot.note">Unofficial community project — not affiliated with Cognition AI.</span><span><a href="../../index.html">built-with-devin</a> · <a href="https://github.com/Till3005/build-with-devin">build-with-devin</a></span></div></footer>
+</main>
+<script src="../../assets/theme.js"></script>
+<script src="../../assets/i18n.js"></script>
+<script src="../../assets/i18n-runtime.js"></script>
+</body>
+</html>

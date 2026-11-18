@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Leitfaden 1 — Dein erster Bot — build-with-devin guides</title>
+<meta name="description" content="Leitfaden 1 — Dein erster Bot">
+<link rel="icon" href="../../assets/brand/Devin_Symbol.svg" type="image/svg+xml">
+<link rel="stylesheet" href="../../assets/site.css">
+<link rel="stylesheet" href="../../assets/guides.css">
+</head>
+<body>
+<a class="skip" href="#guide">Skip to content</a>
+<nav><div class="wrap nav-inner">
+  <div class="nav-left">
+    <a class="brand" href="../../index.html" aria-label="Built with Devin">
+      <span class="brand-text">built<strong>-with-</strong></span><img class="brand-mark" src="../../assets/brand/Devin_Primary_Logo.svg" alt="Devin" height="16"><span class="unofficial-chip">unofficial</span>
+    </a>
+  </div>
+  <div class="nav-side">
+    <div class="mode-toggle" role="tablist" aria-label="Site section">
+      <button class="mode-btn" data-mode="built" role="tab" aria-selected="false" onclick="location.href='../../index.html'">Built</button>
+      <button class="mode-btn on" data-mode="build" role="tab" aria-selected="true" onclick="location.href='../../index.html#build'">Build</button>
+      <span class="mode-pill" aria-hidden="true"></span>
+    </div>
+    <a class="cta" href="https://github.com/Till3005/build-with-devin/blob/main/guides/de/bots-101-first-bot.md">GitHub</a>
+  </div>
+</div></nav>
+<main>
+<article class="guide wrap" id="guide">
+  <p class="guide-crumb"><a href="../../index.html#build">← Guides</a> · <a href="../bots-101-first-bot.html">English</a> · <a href="../es/bots-101-first-bot.html">Español</a> · <a href="../zh/bots-101-first-bot.html">中文</a> · <a href="../pt/bots-101-first-bot.html">Português</a> · <a href="../ja/bots-101-first-bot.html">日本語</a></p>
+<h1>Leitfaden 1 — Dein erster Bot</h1>
+<p><strong>Ziel:</strong> einen Devin Bot erstellen, der ein Ergebnis besitzt, und die sechs Mechaniken lernen, auf denen alle folgenden Leitfäden aufbauen.
+<strong>Level:</strong> hier beginnen · <strong>Zeit:</strong> ~15 Minuten
+<strong>Quelle:</strong> <a href="https://docs.devin.ai/work-with-devin/bots">offizielle Bots-Doku</a>, <a href="https://devin.ai/blog/introducing-devin-bots">Launch-Post</a></p>
+<h2>Was ein Bot ist</h2>
+<p>Eine Session erledigt eine Anfrage. Ein Bot <em>besitzt ein Ergebnis</em>: Du formulierst das Ziel einmal in seinem Chat, er plant die Arbeit, startet für jedes Teil eine eigene Devin-Session, überwacht sie und bringt dir nur, was dein Urteil braucht. Er persistiert — Memory, Sessions und Automations überdauern Wochen.</p>
+<p>Die sechs Mechaniken, in der Reihenfolge, in der du ihnen begegnen wirst:</p>
+<table>
+<thead>
+<tr>
+<th>Mechanik</th>
+<th>Was sie ist</th>
+<th>Wo du sie anfasst</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Chat</td>
+<td>Ein Thread für alles, was der Bot besitzt — Ziele, Berichte, Fragen</td>
+<td>Die Seite des Bots / Slack / iMessage</td>
+</tr>
+<tr>
+<td>Sessions</td>
+<td>Jede Arbeitseinheit läuft als eigene Devin-Session auf eigener Maschine</td>
+<td>Vom Bot erzeugt und überwacht</td>
+</tr>
+<tr>
+<td>Needs you</td>
+<td>Entscheidungen, PR-Reviews, Berechtigungsanfragen, Berichte — eine Liste</td>
+<td>Oben im Chat des Bots</td>
+</tr>
+<tr>
+<td>Memory</td>
+<td>Was der Bot lernt, als Dateien gespeichert, bei jedem Session-Start gelesen</td>
+<td>Settings → Memory</td>
+</tr>
+<tr>
+<td>Instructions</td>
+<td>Dauerregeln von Menschen, bei jedem Session-Start gelesen</td>
+<td>Settings → General</td>
+</tr>
+<tr>
+<td>Access</td>
+<td>Die eigenen Verbindungen/Secrets des Bots, plus Grants zwischen Bots</td>
+<td>Settings → Access</td>
+</tr>
+</tbody>
+</table>
+<h2>Schritt 1 — Erstellen</h2>
+<p>Sidebar → <strong>Bots</strong> → <em>Create new Bot</em> → Template wählen oder <em>Start from scratch</em> → benennen.</p>
+<p>Ein neuer Bot ist privat für dich, bis du ihn teilst. Seine Nutzung zählt auf deinen Plan wie jede Session.</p>
+<blockquote>
+<p>Tipp: Ein Template bringt Instructions für einen Job mit (QA Engineer, Data Analyst, …). <em>Start from scratch</em> ist die richtige Wahl für die Leitfäden in diesem Repo — du schreibst den Outcome-Prompt selbst.</p>
+</blockquote>
+<h2>Schritt 2 — Das Ergebnis zuweisen</h2>
+<p>Die erste Nachricht ist der wichtigste Input, den ein Bot je bekommt. Gib ihm ein <em>Ziel</em>, keine Aufgabe:</p>
+<pre><code class="language-text">You own the Android app now. Keep it at feature parity with iOS.
+</code></pre>
+<p>Das ist der wörtliche Prompt, mit dem Cognitions Android Bot gestartet ist. Vergleiche:</p>
+<table>
+<thead>
+<tr>
+<th>Schwach (eine Aufgabe)</th>
+<th>Stark (ein Ergebnis)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>"Fix the checkout button"</td>
+<td>"You own checkout. Keep it fast, correct, and covered by tests."</td>
+</tr>
+<tr>
+<td>"Update the docs"</td>
+<td>"You own the docs. Keep them in step with <code>main</code>."</td>
+</tr>
+<tr>
+<td>"Watch CI"</td>
+<td>"You own build health on <code>main</code>. When a check regresses, find the cause and fix it."</td>
+</tr>
+</tbody>
+</table>
+<p>Eine Aufgabe endet, wenn sie fertig ist; ein Ergebnis lässt den Bot für immer neu planen.</p>
+<h2>Schritt 3 — Mit ihm arbeiten</h2>
+<p>Nachdem das Ergebnis gesetzt ist, sind die meisten deiner Nachrichten Check-ins:</p>
+<pre><code class="language-text">anything waiting on me?
+</code></pre>
+<p>Öffne <strong>Needs you</strong> (oben im Chat), wenn der Bot etwas markiert:</p>
+<table>
+<thead>
+<tr>
+<th>Eintrag</th>
+<th>Dein Zug</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Decision</td>
+<td>Eine Option wählen — der Bot markiert seine Empfehlung</td>
+</tr>
+<tr>
+<td>Review PR / Merge PR</td>
+<td>Reviewen oder mergen</td>
+</tr>
+<tr>
+<td>Permission request</td>
+<td>Neuen Zugriff, eine Automation, einen Netzwerk-Host oder eine Nutzungserhöhung genehmigen oder ablehnen</td>
+</tr>
+<tr>
+<td>Report / FYI</td>
+<td>Lesen</td>
+</tr>
+</tbody>
+</table>
+<p>Du kannst jeden Eintrag in eigenen Worten beantworten, snoozen oder verwerfen.</p>
+<h2>Schritt 4 — Über Memory steuern, nicht über Mikromanagement</h2>
+<ul>
+<li><strong>Instructions</strong> (Settings → General): deine Dauerregeln — werden am Anfang jeder Session gelesen, die der Bot ausführt. Dauerhafte Policy gehört hierhin, nicht in den Chat.</li>
+<li><strong>Memory</strong> (Settings → Memory): Dateien, die der Bot selbst schreibt — Präferenzen, Korrekturen, Projektfakten. Um zu ändern, woran er sich erinnert, sag es ihm im Chat ("remember: we deploy via Cloud Run, never bare VMs"). Jeder, der den Bot nutzen kann, kann sein Memory lesen — behandle das Memory eines geteilten Bots als geteilt.</li>
+</ul>
+<p>Das skalierende Muster: Korrigiere den Bot einmal, lass ihn die Korrektur ins Memory schreiben, und jede künftige Session erbt sie. Cognition merged über 2.000 PRs/Woche in diesem Loop.</p>
+<h2>Schritt 5 — Dort platzieren, wo du arbeitest</h2>
+<ul>
+<li><strong>Slack:</strong> Gib dem Bot eine eigene Slack-App, damit dein Team ihn @-erwähnen oder per DM erreichen kann (Settings → Slack). Jede berichtete Team-Deployment läuft so — der Bot wird ein benannter Teamkollege in einem Channel.</li>
+<li><strong>iMessage:</strong> Schreib dem Bot vom Handy.</li>
+<li><strong>Web:</strong> Der Bots-Abschnitt der Sidebar listet deine und die mit dir geteilten.</li>
+</ul>
+<h2>Schritt 6 — Zeitpläne und Modi</h2>
+<ul>
+<li><strong>Automations:</strong> Im Chat fragen — <em>"run a summary of open PRs every weekday morning"</em> — und der Bot schlägt die Automation zur einmaligen Genehmigung vor. Verwalte sie unter Settings → Automations (pausieren/fortsetzen/entfernen).</li>
+<li><strong>Modes:</strong> Der Bot hat einen eigenen Modus plus einen <strong>Child-Capability</strong>-Default für die von ihm erzeugten Sessions (z. B. <code>Normal / Ultra</code> im Modus-Picker des Chats). Du kannst auch für jede einzelne Session einen anderen Modus verlangen.</li>
+</ul>
+<h2>Lebenszyklus</h2>
+<table>
+<thead>
+<tr>
+<th>Aktion</th>
+<th>Wirkung</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Recycle</td>
+<td>Beendet die aktuelle Session; beim nächsten Öffnen startet eine frische. Im Chat-Menü.</td>
+</tr>
+<tr>
+<td>Archive</td>
+<td>Stoppt Antworten, entfernt ihn aus Bot-Listen, entfernt seine Slack-App und Inter-Bot-Grants (Unarchivieren stellt diese nicht wieder her — du richtest sie neu ein).</td>
+</tr>
+<tr>
+<td>Delete</td>
+<td>Endgültig: Einstellungen, Sessions, Memory, Automations. Kann nicht rückgängig gemacht werden.</td>
+</tr>
+</tbody>
+</table>
+<p>Nur der Ersteller und Rollen mit Manage Bots sehen Archive/Delete. In Enterprise-Plänen sind <code>Use Bots</code> / <code>Manage Bots</code> / <code>Manage Bots across the enterprise</code> separate Berechtigungen in Custom Roles.</p>
+<h2>Verifizieren</h2>
+<ul>
+<li>[ ] Bot erstellt und benannt; Outcome-Prompt im Chat gesendet</li>
+<li>[ ] Bot hat mindestens eine Child-Session gestartet, ohne zweimal gefragt zu werden</li>
+<li>[ ] Eine Entscheidung/ein PR/eine Berechtigungsanfrage erschien in <strong>Needs you</strong> und du hast sie gelöst</li>
+<li>[ ] Eine Korrektur, die du im Chat gegeben hast, erscheint als Memory-Datei unter Settings → Memory</li>
+<li>[ ] (Optional) Bot per @-Erwähnung in Slack erreichbar</li>
+</ul>
+<h2>Fallstricke</h2>
+<ul>
+<li><strong>Task-förmige Prompts.</strong> "Fix X" erzeugt eine Session, keinen Bot. Wenn der Bot fertig ist und schweigt, war der Prompt eine Aufgabe — formuliere ihn als Ownership neu.</li>
+<li><strong>Chat für Policy.</strong> Im Chat getippte Regeln scrollen weg; Regeln in Instructions werden jede Session gelesen. Chat = Richtung und Antworten; Instructions = Gesetz.</li>
+<li><strong>Needs you ignorieren.</strong> Bots sind dafür gebaut, Urteilsaufrufe zu bündeln — ein- bis zweimal täglich prüfen, nicht dauerhaft.</li>
+</ul>
+<h2>Wissenscheck</h2>
+<ol>
+<li>Was überlebt zwischen den Sessions eines Bots, was eine Einmal-Session nicht hat? <em>(Memory — plus das bestehende Ergebnis, Zeitpläne und Oberflächen.)</em></li>
+<li>Warum meldet ein Bot "needs-you" statt mitten in der Session zu fragen? <em>(Urteil geht asynchron in einen Thread; der Mensch ist kein blockierender Aufruf im Loop.)</em></li>
+<li>Welche Mechanik macht aus "einer schlauen Session" "einen Mitarbeiter"? <em>(Ownership eines Ergebnisses — das Ziel bleibt bestehen, nachdem jede einzelne Session endet.)</em></li>
+</ol>
+<h2>Quellen</h2>
+<ul>
+<li><a href="https://docs.devin.ai/work-with-devin/bots">Devin Bots — Docs</a></li>
+<li><a href="https://devin.ai/blog/introducing-devin-bots">Introducing Devin Bots</a></li>
+<li>Weiter: <a href="bots-201-product-owner.html">Leitfaden 2 — Product-owner-Bot</a></li>
+</ul>
+</article>
+<footer><div class="wrap foot-base"><span data-i18n="foot.note">Unofficial community project — not affiliated with Cognition AI.</span><span><a href="../../index.html">built-with-devin</a> · <a href="https://github.com/Till3005/build-with-devin">build-with-devin</a></span></div></footer>
+</main>
+<script src="../../assets/theme.js"></script>
+<script src="../../assets/i18n.js"></script>
+<script src="../../assets/i18n-runtime.js"></script>
+</body>
+</html>

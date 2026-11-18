@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Guía 5 — Enjambre anclado en referencia — build-with-devin guides</title>
+<meta name="description" content="Guía 5 — Enjambre anclado en referencia">
+<link rel="icon" href="../../assets/brand/Devin_Symbol.svg" type="image/svg+xml">
+<link rel="stylesheet" href="../../assets/site.css">
+<link rel="stylesheet" href="../../assets/guides.css">
+</head>
+<body>
+<a class="skip" href="#guide">Skip to content</a>
+<nav><div class="wrap nav-inner">
+  <div class="nav-left">
+    <a class="brand" href="../../index.html" aria-label="Built with Devin">
+      <span class="brand-text">built<strong>-with-</strong></span><img class="brand-mark" src="../../assets/brand/Devin_Primary_Logo.svg" alt="Devin" height="16"><span class="unofficial-chip">unofficial</span>
+    </a>
+  </div>
+  <div class="nav-side">
+    <div class="mode-toggle" role="tablist" aria-label="Site section">
+      <button class="mode-btn" data-mode="built" role="tab" aria-selected="false" onclick="location.href='../../index.html'">Built</button>
+      <button class="mode-btn on" data-mode="build" role="tab" aria-selected="true" onclick="location.href='../../index.html#build'">Build</button>
+      <span class="mode-pill" aria-hidden="true"></span>
+    </div>
+    <a class="cta" href="https://github.com/Till3005/build-with-devin/blob/main/guides/es/bots-204-reference-grounded-swarm.md">GitHub</a>
+  </div>
+</div></nav>
+<main>
+<article class="guide wrap" id="guide">
+  <p class="guide-crumb"><a href="../../index.html#build">← Guides</a> · <a href="../bots-204-reference-grounded-swarm.html">English</a> · <a href="../de/bots-204-reference-grounded-swarm.html">Deutsch</a> · <a href="../zh/bots-204-reference-grounded-swarm.html">中文</a> · <a href="../pt/bots-204-reference-grounded-swarm.html">Português</a> · <a href="../ja/bots-204-reference-grounded-swarm.html">日本語</a></p>
+<h1>Guía 5 — Enjambre anclado en referencia</h1>
+<p><strong>Objetivo:</strong> dirigir un enjambre de agentes para escribir un sistema grande y <em>verificable</em> — donde la corrección se comprueba continuamente contra una referencia confiable, no contra sensaciones.
+<strong>Nivel:</strong> avanzado
+<strong>Implantación de origen:</strong> el <strong>"Phil"</strong> de Harvey — ~30 agentes escribieron un motor de editor colaborativo compatible con Word en Rust + TypeScript: <strong>más de 1M de líneas en 3 semanas, cero ingenieros humanos</strong>. Verificado continuamente contra el comportamiento real de Microsoft Word y negociaciones de abogados simuladas. Los humanos dirigieron mediante memoria + logs de decisión, nunca leyendo código.
+<strong>Fuentes:</strong> relato de lanzamiento de Gabe Pereyra (<a href="https://x.com/gabepereyra">vía @gabepereyra</a>) · <a href="https://devin.ai/blog/introducing-devin-bots">post de lanzamiento</a></p>
+<h2>El patrón</h2>
+<p>Un enjambre falla cuando nadie puede decir si la salida es correcta. Phil funcionó porque cada línea podía comprobarse contra una <strong>referencia de verdad</strong>: el Microsoft Word real. El trabajo del equipo de agentes era <em>igualar</em> — un objetivo objetivo y continuamente verificable — no <em>inventar</em>.</p>
+<pre><code class="language-text">   sistema de referencia (verdad)
+            ▲ compara
+            │
+┌───────────┴────────────┐
+│  enjambre de ~30 agentes│──► 1M+ LOC (Rust + TypeScript)
+└────────────────────────┘
+            ▲ dirige
+            │
+   humanos: memoria + logs de decisión
+   (nunca leyendo el código)
+</code></pre>
+<h2>Cuándo usarlo</h2>
+<table>
+<thead>
+<tr>
+<th>Buen ajuste</th>
+<th>Mal ajuste</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Reimplementar una spec (formato de archivo, protocolo, editor, compilador)</td>
+<td>Productos greenfield sin respuesta objetiva</td>
+</tr>
+<tr>
+<td>Portado/migración con oráculo (el sistema legado sigue corriendo)</td>
+<td>UX nueva donde "correcto" es una llamada de juicio</td>
+</tr>
+<tr>
+<td>Cualquier cosa difeable contra un sistema funcionando</td>
+<td>Sistemas donde la corrección necesita usuarios</td>
+</tr>
+</tbody>
+</table>
+<p>La prueba de fuego: <strong>¿puede una máquina decidir "correcto" sin ti?</strong> Si sí, un enjambre escala; si no, usa un Bot product-owner (Guía 2).</p>
+<h2>Paso 1 — Asegura la referencia primero</h2>
+<p>Antes de que cualquier agente escriba código, la comprobación debe existir:</p>
+<ul>
+<li>La referencia de Harvey: <strong>comportamiento real de Microsoft Word</strong> — los documentos renderizados en el editor del enjambre tenían que igualar a Word</li>
+<li>La tuya puede ser: el sistema legado aún corriendo, una suite de conformidad, golden files, un corpus de tests de la spec, un contrato de API</li>
+</ul>
+<p>Pon la comparación en CI o en un script que el enjambre ejecute constantemente — "¿la salida coincide con la referencia?" debe ser barato y automático, o los agentes se desvían entre comprobaciones.</p>
+<h2>Paso 2 — Descompón en porciones con dueño</h2>
+<p>~30 agentes no compartían un backlog — el trabajo se cortó para que cada agente fuera dueño de un subsistema (modelo de documento, motor de layout, protocolo de colaboración, …). Estrúcturalo como el organigrama de la Guía 4, salvo que cada "empleado" es una sesión de código apuntando a una frontera de módulo:</p>
+<pre><code class="language-text">You own the &lt;module&gt;. Its contract is &lt;interface/reference behavior&gt;.
+Your PRs are accepted when the reference checks pass — not when the
+code looks done.
+</code></pre>
+<h2>Paso 3 — Los humanos dirigen por encima del código</h2>
+<p>Nadie en Harvey leyó el millón de líneas. La dirección ocurrió mediante:</p>
+<ul>
+<li><strong>Memoria</strong> — los hechos acumulados del Bot sobre decisiones tomadas y por qué</li>
+<li><strong>Logs de decisión</strong> — lo que el enjambre eligió en cada bifurcación</li>
+<li><strong>Mensajes de dirección</strong> — "prioriza la fidelidad de track-changes sobre el rendimiento esta semana"</li>
+</ul>
+<p>Tu superficie de revisión es el <em>rastro de decisiones</em>, no el diff. Si te descubres leyendo código generado para saber qué pasa, pide al orquestador el log de decisiones.</p>
+<h2>Paso 4 — Validación adversarial encima</h2>
+<p>Harvey añadió una segunda capa: <strong>negociaciones de abogados simuladas</strong> — uso realista que aflora lo que una suite de conformidad pierde. Tu equivalente: una capa de escenarios sobre el diff de referencia — workflows reales, inputs adversariales, fuzzing. Las comprobaciones de referencia atrapan lo <em>incorrecto</em>; las de escenario atrapan lo <em>frágil</em>.</p>
+<h2>Checklist de verificación</h2>
+<ul>
+<li>[ ] Existe una comprobación de referencia automatizada que corre contra cada cambio</li>
+<li>[ ] El criterio de aceptación de cada agente es "la referencia pasa", nunca "código escrito"</li>
+<li>[ ] Puedes responder "qué decidió el enjambre y por qué" desde logs/memoria sin leer código</li>
+<li>[ ] Un módulo roto deliberadamente es atrapado por la comprobación de referencia, no por ti</li>
+</ul>
+<h2>Trampas</h2>
+<ul>
+<li><strong>Escalar antes del oráculo.</strong> Un enjambre sin comprobación solo produce volumen — Phil funcionó porque Word siempre fue el juez.</li>
+<li><strong>Revisar diffs.</strong> No escala más allá de ~2 agentes; te conviertes en el cuello de botella y pierdes la ventaja de velocidad del enjambre.</li>
+<li><strong>Propiedad ambigua.</strong> Dos agentes editando un módulo producen infierno de merge — las fronteras de propiedad son la arquitectura.</li>
+</ul>
+<h2>Prueba de conocimiento</h2>
+<ol>
+<li>¿Por qué funcionó el enjambre de Harvey donde la mayoría de los intentos multi-agente colapsan? <em>(Una referencia externa confiable — el comportamiento real de Word — hizo la corrección comprobable por máquina a velocidad de enjambre.)</em></li>
+<li>¿Por qué los humanos dirigieron mediante memoria y logs de decisión en vez de revisar código? <em>(1M+ LOC en 3 semanas excede cualquier capacidad humana de lectura; la dirección ocurre en la capa de intención.)</em></li>
+<li>¿Qué prerequisito comprobarías antes de intentar este patrón? <em>(Si tu dominio tiene una referencia contra la que el enjambre pueda comprobarse — si no, construye primero el oráculo.)</em></li>
+</ol>
+<h2>Fuentes</h2>
+<ul>
+<li><a href="https://x.com/gabepereyra">@gabepereyra</a> — relato del Phil de Harvey: ~30 agentes, 1M+ LOC, verificación por referencia a Word, simulaciones de abogados</li>
+<li><a href="https://devin.ai/blog/introducing-devin-bots">Introducing Devin Bots</a></li>
+<li>Relacionado: <a href="bots-203-multi-bot-org.html">Guía 4 — Organización multi-Bot</a> (misma jerarquía, propósito distinto: operación vs. construcción)</li>
+</ul>
+</article>
+<footer><div class="wrap foot-base"><span data-i18n="foot.note">Unofficial community project — not affiliated with Cognition AI.</span><span><a href="../../index.html">built-with-devin</a> · <a href="https://github.com/Till3005/build-with-devin">build-with-devin</a></span></div></footer>
+</main>
+<script src="../../assets/theme.js"></script>
+<script src="../../assets/i18n.js"></script>
+<script src="../../assets/i18n-runtime.js"></script>
+</body>
+</html>

@@ -26,6 +26,13 @@
     if(lang==='en'){
       document.querySelectorAll('[data-i18n],[data-i18n-html]').forEach(el=>{ if(el.dataset.orig) el.innerHTML=el.dataset.orig; });
     }
+    // point guide links at the localized mirror (guides/<lang>/...)
+    document.querySelectorAll('a[href^="guides/"]').forEach(a=>{
+      const h=a.getAttribute('href');
+      const m=h.match(/^guides\/(?:(?:en|zh|ja|pt|es|de)\/)?(.+\.html)$/);
+      if(!m) return;
+      a.setAttribute('href', lang==='en' ? `guides/${m[1]}` : `guides/${lang}/${m[1]}`);
+    });
     document.querySelectorAll('.lang-btn').forEach(b=>{
       b.classList.toggle('on', b.dataset.lang===lang);
       b.setAttribute('aria-selected', b.dataset.lang===lang);

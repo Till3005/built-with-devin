@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Prompts de resultado para Bots, dissecados — build-with-devin guides</title>
+<meta name="description" content="Prompts de resultado para Bots, dissecados">
+<link rel="icon" href="../../assets/brand/Devin_Symbol.svg" type="image/svg+xml">
+<link rel="stylesheet" href="../../assets/site.css">
+<link rel="stylesheet" href="../../assets/guides.css">
+</head>
+<body>
+<a class="skip" href="#guide">Skip to content</a>
+<nav><div class="wrap nav-inner">
+  <div class="nav-left">
+    <a class="brand" href="../../index.html" aria-label="Built with Devin">
+      <span class="brand-text">built<strong>-with-</strong></span><img class="brand-mark" src="../../assets/brand/Devin_Primary_Logo.svg" alt="Devin" height="16"><span class="unofficial-chip">unofficial</span>
+    </a>
+  </div>
+  <div class="nav-side">
+    <div class="mode-toggle" role="tablist" aria-label="Site section">
+      <button class="mode-btn" data-mode="built" role="tab" aria-selected="false" onclick="location.href='../../index.html'">Built</button>
+      <button class="mode-btn on" data-mode="build" role="tab" aria-selected="true" onclick="location.href='../../index.html#build'">Build</button>
+      <span class="mode-pill" aria-hidden="true"></span>
+    </div>
+    <a class="cta" href="https://github.com/Till3005/build-with-devin/blob/main/guides/pt/bot-outcome-prompts.md">GitHub</a>
+  </div>
+</div></nav>
+<main>
+<article class="guide wrap" id="guide">
+  <p class="guide-crumb"><a href="../../index.html#build">← Guides</a> · <a href="../bot-outcome-prompts.html">English</a> · <a href="../es/bot-outcome-prompts.html">Español</a> · <a href="../de/bot-outcome-prompts.html">Deutsch</a> · <a href="../zh/bot-outcome-prompts.html">中文</a> · <a href="../ja/bot-outcome-prompts.html">日本語</a></p>
+<h1>Prompts de resultado para Bots, dissecados</h1>
+<p><strong>Objetivo:</strong> escrever prompts de resultado do jeito que as implantações documentadas realmente fizeram — propriedade de uma área, não uma lista de tarefas.
+<strong>Nível:</strong> intermediário · <strong>Tempo:</strong> 20 min para rascunhar, uma semana para calibrar</p>
+<p>Toda implantação pública de bot que produziu números grandes começou com um prompt curto atribuindo um <em>resultado</em>. Este guia coleta os reais e faz engenharia reversa do porquê funcionam.</p>
+<h2>O exemplar</h2>
+<blockquote>
+<p><em>"your job is to product manage the android app"</em></p>
+</blockquote>
+<p>Toda a atribuição do Android Bot. Uma frase produziu 44 dias de trabalho auto-dirigido: o bot decompôs o resultado em tickets que ele mesmo escreveu, rodou uma sessão Devin por ticket e entregou 1.134 PRs mergeados (<a href="https://devin.ai/blog/introducing-devin-bots">post de lançamento</a>). Note o que o prompt <strong>não</strong> contém: sem lista de tickets, sem critérios de aceite, sem agenda. O resultado em si implica todos eles.</p>
+<h2>A anatomia de um prompt de resultado que funciona</h2>
+<table>
+<thead>
+<tr>
+<th>Elemento</th>
+<th>O que faz</th>
+<th>Exemplo</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Um papel</strong></td>
+<td>Diz ao bot como <em>se comportar</em>, não só o que produzir</td>
+<td>"product manage", "own the QA of onboarding flows"</td>
+</tr>
+<tr>
+<td><strong>Uma superfície delimitada</strong></td>
+<td>Um escopo que o bot consegue ver por inteiro — um app, uma checagem, uma fonte de dados</td>
+<td>"the android app", "layout regressions", "30+ onboarding flows"</td>
+</tr>
+<tr>
+<td><strong>Uma definição de pronto implícita</strong></td>
+<td>Um estado contra o qual o bot pode se verificar</td>
+<td>"feature parity with iOS", "no layout-shift regressions", "every flow green"</td>
+</tr>
+<tr>
+<td><strong>Autoridade permanente</strong></td>
+<td>O bot decide <em>quando</em> e <em>o que depois</em> — é isso que o torna um bot, não um script</td>
+<td>"your job is to…", "keep…", "watch for…"</td>
+</tr>
+</tbody>
+</table>
+<h2>Padrões do marketplace oficial de templates</h2>
+<p>Os 16 <a href="https://devin.ai/bots/templates">templates do marketplace</a> seguem todos a mesma gramática. Formulações reutilizáveis, generalizadas:</p>
+<p><strong>Propriedade de um domínio</strong> — "Find bugs, improvements, performance and refactoring work in a named product area; open one small PR at a time with proof it works." (Software Factory)</p>
+<p><strong>Propriedade de uma checagem</strong> — "Every 3 hours, build production main, simulate first/repeat/deferred visits, and file fixes with before/after videos for any regression you introduce—or find." (padrão Layout Bot)</p>
+<p><strong>Propriedade de um estágio do ciclo de vida</strong> — "Take a ticket or an ask to a tested PR and through review." (Product Engineer)</p>
+<p><strong>Propriedade de uma cadência</strong> — "Weekly: remove dead code, one safe PR per round." (Code Reaper) — resultados agendados são declarados como ritmo, não como gatilho.</p>
+<p><strong>Propriedade do metabolismo do time</strong> — "Watch the channels, post updates, hand work to the right teammate, follow up until done." (Chief of Staff)</p>
+<p><strong>Propriedade da higiene</strong> — "Old flags, stale deps, CVEs — turned into small safe PRs." (Code Health Engineer)</p>
+<h2>Orgs multi-bot: prompts que concedem autoridade</h2>
+<p>Em frotas (SuperJennyStack, Frankie, tigsbot) o prompt do bot chefe contém o <em>contrato de roteamento</em>: qual bot possui qual superfície, e quando escalar para cima em vez de para o lado. O verdadeiro prompt do humano é a spec da thread consolidada: "bring me every open decision in one thread." Veja o <a href="bots-203-multi-bot-org.html">Guia 4</a> para o organograma completo.</p>
+<h2>Anti-padrões</h2>
+<ul>
+<li><strong>Prompts em formato de tarefa.</strong> "Fix these 12 issues" — o bot termina e fica ocioso; você ganha uma sessão, não um bot.</li>
+<li><strong>Resultados não verificáveis.</strong> "Make the app better" — sem auto-checagem, a única saída do bot é spam de Needs-you.</li>
+<li><strong>Escopo oculto.</strong> Se o resultado exige sistemas que o bot não vê (um staging que não alcança, um dashboard que não lê), ele ou trava ou alucina progresso. Dê a superfície ou encolha o resultado.</li>
+<li><strong>Sem história de autoridade de merge.</strong> Os 88% de auto-merge existem porque CI e gates de review foram pré-configurados para merges autônomos. Declare: "merge when CI is green and diff &lt; N lines" ou "always open as draft for human review."</li>
+</ul>
+<h2>Redigindo o seu — o teste das três linhas</h2>
+<p>Um bom prompt de resultado responde, em ordem:</p>
+<ol>
+<li><strong>O que é seu?</strong> — a superfície</li>
+<li><strong>Como é "bom"?</strong> — o estado verificável</li>
+<li><strong>O que você faz a respeito?</strong> — o comportamento permanente</li>
+</ol>
+<p>Se um estranho não conseguisse checar a verdade da linha 2 de fora, aperte-a.</p>
+<h2>Checklist de verificação</h2>
+<ul>
+<li>[ ] Pegue um item real do backlog do seu repo e reescreva como prompt de resultado — superfície, estado verificável, comportamento permanente</li>
+<li>[ ] Mostre a alguém que não conhece o codebase: conseguiria dizer de fora quando o Bot está "vencendo"?</li>
+<li>[ ] A primeira resposta do Bot deve ser um plano ou perguntas de esclarecimento sobre escopo — se perguntar "o que você quer que eu faça primeiro", o prompt não atribuiu propriedade</li>
+</ul>
+<h2>Armadilhas</h2>
+<ul>
+<li><strong>Uma lista de tarefas vestindo fantasia de resultado.</strong> "Do X, then Y, then Z" ainda é checklist — o Bot não pode repriorizar quando o mundo muda.</li>
+<li><strong>"Keep the app good" sem definição de bom.</strong> Sem estado verificável, o Bot escolhe uma — e não será a sua.</li>
+<li><strong>Escopo mais largo que uma superfície.</strong> "Own engineering" falha; "own the iOS app" entrega. Divida pelo que um único estranho conseguiria observar por inteiro.</li>
+</ul>
+<h2>Teste de conhecimento</h2>
+<ol>
+<li>Por que "own the Android app" funciona melhor que "fix Android bugs"? <em>(Propriedade implica julgamento permanente — o Bot decide quais bugs importam, não só se deve corrigir.)</em></li>
+<li>O que há de errado com "make the CI fast"? <em>(Não verificável de fora — sem limiar. "CI under 8 minutes" é.)</em></li>
+<li>Qual das três perguntas "text me if tests fail" responde? <em>(Comportamento permanente — diz o que o Bot faz sobre o estado, nada sobre a superfície ou a meta.)</em></li>
+</ol>
+<h2>Fontes</h2>
+<ul>
+<li><a href="https://devin.ai/blog/introducing-devin-bots">Introducing Devin Bots</a> · <a href="https://docs.devin.ai/work-with-devin/bots">Docs de Bots</a> · <a href="https://devin.ai/bots/templates">Marketplace de templates</a></li>
+<li>Relatos de implantação ligados no <a href="https://github.com/Till3005/built-with-devin#documented-deployments">built-with-devin</a></li>
+</ul>
+</article>
+<footer><div class="wrap foot-base"><span data-i18n="foot.note">Unofficial community project — not affiliated with Cognition AI.</span><span><a href="../../index.html">built-with-devin</a> · <a href="https://github.com/Till3005/build-with-devin">build-with-devin</a></span></div></footer>
+</main>
+<script src="../../assets/theme.js"></script>
+<script src="../../assets/i18n.js"></script>
+<script src="../../assets/i18n-runtime.js"></script>
+</body>
+</html>

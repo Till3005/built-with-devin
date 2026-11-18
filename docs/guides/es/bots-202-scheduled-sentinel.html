@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Guía 3 — Bot centinela programado — build-with-devin guides</title>
+<meta name="description" content="Guía 3 — Bot centinela programado">
+<link rel="icon" href="../../assets/brand/Devin_Symbol.svg" type="image/svg+xml">
+<link rel="stylesheet" href="../../assets/site.css">
+<link rel="stylesheet" href="../../assets/guides.css">
+</head>
+<body>
+<a class="skip" href="#guide">Skip to content</a>
+<nav><div class="wrap nav-inner">
+  <div class="nav-left">
+    <a class="brand" href="../../index.html" aria-label="Built with Devin">
+      <span class="brand-text">built<strong>-with-</strong></span><img class="brand-mark" src="../../assets/brand/Devin_Primary_Logo.svg" alt="Devin" height="16"><span class="unofficial-chip">unofficial</span>
+    </a>
+  </div>
+  <div class="nav-side">
+    <div class="mode-toggle" role="tablist" aria-label="Site section">
+      <button class="mode-btn" data-mode="built" role="tab" aria-selected="false" onclick="location.href='../../index.html'">Built</button>
+      <button class="mode-btn on" data-mode="build" role="tab" aria-selected="true" onclick="location.href='../../index.html#build'">Build</button>
+      <span class="mode-pill" aria-hidden="true"></span>
+    </div>
+    <a class="cta" href="https://github.com/Till3005/build-with-devin/blob/main/guides/es/bots-202-scheduled-sentinel.md">GitHub</a>
+  </div>
+</div></nav>
+<main>
+<article class="guide wrap" id="guide">
+  <p class="guide-crumb"><a href="../../index.html#build">← Guides</a> · <a href="../bots-202-scheduled-sentinel.html">English</a> · <a href="../de/bots-202-scheduled-sentinel.html">Deutsch</a> · <a href="../zh/bots-202-scheduled-sentinel.html">中文</a> · <a href="../pt/bots-202-scheduled-sentinel.html">Português</a> · <a href="../ja/bots-202-scheduled-sentinel.html">日本語</a></p>
+<h1>Guía 3 — Bot centinela programado</h1>
+<p><strong>Objetivo:</strong> un Bot dueño de una comprobación de calidad recurrente — la ejecuta en horario, tria fallos, los rastrea hasta la causa y envía correcciones.
+<strong>Nivel:</strong> intermedio
+<strong>Implantación de origen:</strong> el <strong>Layout Bot</strong> de Cognition — vigila regresiones de layout-shift en la app web de Devin. Cada 3 horas compila el <code>main</code> de producción, simula visitas de primera/repetida/peticiones retrasadas, y envía correcciones. <strong>159 PRs en 3 semanas; lag −70%.</strong>
+<strong>Fuentes:</strong> <a href="https://devin.ai/blog/introducing-devin-bots">post de lanzamiento</a> · <a href="https://docs.devin.ai/product-guides/automations">docs de Automations</a></p>
+<h2>El patrón</h2>
+<p>Algunos trabajos nunca terminan — recurren en el reloj: presupuestos de rendimiento, regresión visual, frescura de dependencias, escaneos de secretos, uptime. Un Bot centinela es dueño <em>de la propia comprobación</em>, no solo de las correcciones: mantiene la comprobación funcionando conforme cambia el código, filtra ruido y solo abre una corrección cuando la regresión es real.</p>
+<pre><code class="language-text">cron ──► el Bot despierta ──► ejecuta la comprobación en condiciones realistas
+                                   │
+                      pass ────────┴──────── fail
+                       │                         │
+                     silencio       reejecuta para filtrar flakes
+                                            │
+                                   rastrea hasta el PR que la introdujo
+                                            │
+                               PR de corrección + evidencia antes/después
+</code></pre>
+<h2>Prerequisitos</h2>
+<ul>
+<li>Una comprobación que pueda correr en la máquina del Bot (build, suite de tests, Lighthouse, script propio)</li>
+<li>Devin Bot creado (Guía 1) o una Automation (Guía 6) — ambos funcionan; un Bot añade juicio entre ejecuciones</li>
+</ul>
+<h2>Paso 1 — El prompt de resultado</h2>
+<p>Reconstruido del comportamiento documentado del Layout Bot:</p>
+<pre><code class="language-text">Your job is to keep &lt;surface&gt; from &lt;regressing&gt;.
+
+Watch &lt;check/channel&gt;, where &lt;the check&gt; posts every &lt;interval&gt;. Take over
+that check and keep it working as the code changes. When something
+regresses: rerun to rule out flakiness, trace the regression to the PR
+that introduced it, and open a fix PR with before/after evidence.
+</code></pre>
+<p>Ejemplos para el slot <code>&lt;check&gt;</code>, todos vistos en implantaciones reales:</p>
+<ul>
+<li>medición de layout-shift en peticiones primeras/repetidas/retrasadas (Layout Bot)</li>
+<li>latencia p95 en tus 5 endpoints más lentos (plantilla Latency Optimizer)</li>
+<li>barrido <code>npm audit</code>/CVE (plantilla Code Health Engineer)</li>
+<li>detección de código muerto (plantilla Code Reaper)</li>
+</ul>
+<h2>Paso 2 — Programarlo</h2>
+<p>Pídeselo al Bot en el chat:</p>
+<pre><code class="language-text">Run this check every 3 hours on a schedule.
+</code></pre>
+<p>El Bot propone una automatización; apruebas una vez. (La Guía 6 cubre automatizaciones hechas a mano si prefieres cablear el cron tú mismo.) Gestiónala después en Settings → Automations del Bot.</p>
+<h2>Paso 3 — Las condiciones realistas importan</h2>
+<p>La comprobación del Layout Bot no es una ejecución — simula <strong>primera visita, visita repetida y peticiones individualmente retrasadas</strong>, porque la regresión que caza solo aparece bajo formas de carga específicas. Codifica tu equivalente:</p>
+<ul>
+<li>Qué entorno — el Bot compila el <code>main</code> de producción en su propia VM, no un dev server</li>
+<li>Qué inputs — caché fría vs. caliente, datos sembrados, orden realista de peticiones</li>
+<li>Qué umbral — un número, no "se siente más lento"</li>
+</ul>
+<h2>Paso 4 — Disciplina de ruido</h2>
+<p>Dos reglas evitan que un centinela grite lobo:</p>
+<ol>
+<li><strong>Reejecutar antes de actuar</strong> — el Layout Bot reejecuta resultados que parecen flaky antes de tratarlos como reales. Escríbelo en el prompt: <em>"rerun any failed check once before acting on it."</em></li>
+<li><strong>Rastrear antes de corregir</strong> — cada regresión se rastrea hasta el PR que la introdujo. Una corrección sin causa es una suposición.</li>
+</ol>
+<h2>Paso 5 — Evidencia en cada corrección</h2>
+<p>Cada uno de los 159 PRs lleva <strong>vídeo antes/después</strong>. Evidencia equivalente para tu comprobación:</p>
+<table>
+<thead>
+<tr>
+<th>Comprobación</th>
+<th>Evidencia en el PR de corrección</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Layout/visual</td>
+<td>Grabación de pantalla o screenshots, antes vs. después</td>
+</tr>
+<tr>
+<td>Latencia</td>
+<td>Números de tiempo, misma medición en ambos sentidos</td>
+</tr>
+<tr>
+<td>Código muerto</td>
+<td>Por qué el código es inalcanzable</td>
+</tr>
+<tr>
+<td>Dependencias/CVEs</td>
+<td>El advisory + el diff que lo resuelve</td>
+</tr>
+</tbody>
+</table>
+<h2>Checklist de verificación</h2>
+<ul>
+<li>[ ] La automatización existe y se dispara en el cron definido (Settings → Automations muestra ejecuciones)</li>
+<li>[ ] Una regresión sembrada produce un PR de corrección con evidencia antes/después</li>
+<li>[ ] Una ejecución flaky produce una reejecución, no una corrección</li>
+<li>[ ] La propia comprobación se mantiene — cuando la app cambió debajo de ella, el Bot actualizó la comprobación</li>
+</ul>
+<h2>Trampas</h2>
+<ul>
+<li><strong>Ser dueño de las correcciones pero no de la comprobación.</strong> Si tu comprobación se rompe y nadie lo nota en una semana, el Bot era dueño de lo incorrecto — el prompt debe asignar la propia comprobación.</li>
+<li><strong>Cron sin juicio.</strong> Una automatización programada simple puede ejecutar la comprobación; un Bot decide si el fallo es real. Usa automatización simple solo para comprobaciones sin triaje (Guía 6).</li>
+<li><strong>Salida solo de alerta.</strong> Un centinela que reporta "regresión encontrada" a un canal crea trabajo para humanos. El valor de la implantación es que <em>corrige</em> — exígeselo.</li>
+</ul>
+<h2>Prueba de conocimiento</h2>
+<ol>
+<li>¿Por qué el centinela compila el <code>main</code> de producción en cron en lugar de esperar a que reporten fallos? <em>(El resultado es "sin regresiones", no "arreglar bugs reportados" — ser dueño significa encontrar problemas antes que los humanos.)</em></li>
+<li>El Layout Bot envía correcciones con vídeos antes/después — ¿qué decisión habilita eso para el revisor? <em>(Confianza para mergear sin reproducir localmente; la prueba viaja con el PR.)</em></li>
+<li>¿Por qué rastrear una regresión hasta el PR que la introdujo en lugar de corregir el síntoma? <em>(Ser dueño de una comprobación es ser dueño de su historia — la corrección cae en la causa y el conocimiento persiste.)</em></li>
+</ol>
+<h2>Fuentes</h2>
+<ul>
+<li><a href="https://devin.ai/blog/introducing-devin-bots">Introducing Devin Bots</a> — mecánica y números del Layout Bot</li>
+<li><a href="https://docs.devin.ai/product-guides/automations">Automations — docs</a> — programaciones, triggers, condiciones</li>
+<li>Relacionado: <a href="automations-101-event-driven.html">Guía 6 — Automatizaciones orientadas a eventos</a> para la versión sin Bot de este bucle</li>
+</ul>
+</article>
+<footer><div class="wrap foot-base"><span data-i18n="foot.note">Unofficial community project — not affiliated with Cognition AI.</span><span><a href="../../index.html">built-with-devin</a> · <a href="https://github.com/Till3005/build-with-devin">build-with-devin</a></span></div></footer>
+</main>
+<script src="../../assets/theme.js"></script>
+<script src="../../assets/i18n.js"></script>
+<script src="../../assets/i18n-runtime.js"></script>
+</body>
+</html>

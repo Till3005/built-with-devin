@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Guia 13 — O cookbook oficial de casos de uso — build-with-devin guides</title>
+<meta name="description" content="Guia 13 — O cookbook oficial de casos de uso">
+<link rel="icon" href="../../assets/brand/Devin_Symbol.svg" type="image/svg+xml">
+<link rel="stylesheet" href="../../assets/site.css">
+<link rel="stylesheet" href="../../assets/guides.css">
+</head>
+<body>
+<a class="skip" href="#guide">Skip to content</a>
+<nav><div class="wrap nav-inner">
+  <div class="nav-left">
+    <a class="brand" href="../../index.html" aria-label="Built with Devin">
+      <span class="brand-text">built<strong>-with-</strong></span><img class="brand-mark" src="../../assets/brand/Devin_Primary_Logo.svg" alt="Devin" height="16"><span class="unofficial-chip">unofficial</span>
+    </a>
+  </div>
+  <div class="nav-side">
+    <div class="mode-toggle" role="tablist" aria-label="Site section">
+      <button class="mode-btn" data-mode="built" role="tab" aria-selected="false" onclick="location.href='../../index.html'">Built</button>
+      <button class="mode-btn on" data-mode="build" role="tab" aria-selected="true" onclick="location.href='../../index.html#build'">Build</button>
+      <span class="mode-pill" aria-hidden="true"></span>
+    </div>
+    <a class="cta" href="https://github.com/Till3005/build-with-devin/blob/main/guides/pt/official-cookbook.md">GitHub</a>
+  </div>
+</div></nav>
+<main>
+<article class="guide wrap" id="guide">
+  <p class="guide-crumb"><a href="../../index.html#build">← Guides</a> · <a href="../official-cookbook.html">English</a> · <a href="../es/official-cookbook.html">Español</a> · <a href="../de/official-cookbook.html">Deutsch</a> · <a href="../zh/official-cookbook.html">中文</a> · <a href="../ja/official-cookbook.html">日本語</a></p>
+<h1>Guia 13 — O cookbook oficial de casos de uso</h1>
+<p><strong>Objetivo:</strong> os padrões de uso comprovados dos próprios docs da Cognition, organizados como um cookbook — o que fatiar para o Devin, e mais de 40 receitas documentadas com prompts para copiar.
+<strong>Nível:</strong> comece aqui para amplitude
+<strong>Fontes:</strong> <a href="https://docs.devin.ai/use-cases/best-practices.html">Best Practices</a> · <a href="https://docs.devin.ai/use-cases/gallery/index.html">Use-case gallery</a> · <a href="https://docs.devin.ai/use-cases/index.html">use-case tutorials</a></p>
+<h2>A única regra por trás de tudo</h2>
+<p>Orientação oficial, lógica literal: escolha trabalho <strong>wide &amp; shallow</strong> — um backlog grande de tarefas simples e horizontalmente escaláveis vence builds complexos do zero, sempre.</p>
+<table>
+<thead>
+<tr>
+<th>Tarefa ideal</th>
+<th>Anti-tarefa</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Subtarefas repetitivas em complexidade de engenheiro júnior</td>
+<td>Features complexas net-new</td>
+</tr>
+<tr>
+<td>&lt; 90 minutos de trabalho manual por fatia</td>
+<td>Qualquer coisa que não se divide</td>
+</tr>
+<tr>
+<td>Verificação passa/falha objetiva</td>
+<td>"Parece certo para mim"</td>
+</tr>
+<tr>
+<td>Isolada, retrocompatível, paralelizável</td>
+<td>Dependências emaranhadas</td>
+</tr>
+</tbody>
+</table>
+<p>Quatro ótimas formas de fatia dos docs: <strong>migrações, refactors, modernizações, backlogs de tech debt.</strong></p>
+<h2>O catálogo de receitas</h2>
+<p>Tudo abaixo é um caso de uso documentado na galeria oficial — cada um vem com um prompt pronto para copiar. Organizado pelo trabalho que tira da semana de um humano.</p>
+<h3>Incidentes &amp; saúde de produção</h3>
+<table>
+<thead>
+<tr>
+<th>Receita</th>
+<th>Mecanismo</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Auto-investigar alertas Datadog/PagerDuty</td>
+<td>Gatilho webhook/API → sessão investiga no incêndio</td>
+</tr>
+<tr>
+<td>Auto-gerar postmortems</td>
+<td>PagerDuty resolve → Devin rascunha timeline, causa raiz, action items</td>
+</tr>
+<tr>
+<td>Correções diárias de erros do Sentry</td>
+<td>Cron noturno puxa erros novos → PRs de correção de manhã</td>
+</tr>
+<tr>
+<td>Depurar um bug report ponta a ponta</td>
+<td>Entregue o relato + logs Datadog + acesso ao DB → causa raiz</td>
+</tr>
+</tbody>
+</table>
+<h3>Higiene agendada (a página de maior ROI dos docs)</h3>
+<table>
+<thead>
+<tr>
+<th>Receita</th>
+<th>Cadência</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>PRs semanais de update de dependências</td>
+<td>Semanal: pacotes desatualizados → PRs de upgrade testados</td>
+</tr>
+<tr>
+<td>E2E noturno em staging</td>
+<td>Noturno: roda a suíte, abre tickets para falhas</td>
+</tr>
+<tr>
+<td>Changelog semanal de PRs mergeados</td>
+<td>Sexta: changelog categorizado → Slack</td>
+</tr>
+<tr>
+<td>Digest diário de saúde Datadog</td>
+<td>Diário: varredura de erros → digest no Slack</td>
+</tr>
+<tr>
+<td>Auditoria diária do design system</td>
+<td>Diário: sinaliza cores hardcoded/tokens faltando em PRs mergeados</td>
+</tr>
+<tr>
+<td>Limpeza de feature flags</td>
+<td>Uma sessão única remove flag + código morto pós-release</td>
+</tr>
+<tr>
+<td>Digest semanal de status no Notion</td>
+<td>Semanal: resumo de PR/commit → Notion</td>
+</tr>
+<tr>
+<td>PRs a partir de transcrições de reunião</td>
+<td>De hora em hora: poll Granola → extrai tarefas de eng → sessões filhas</td>
+</tr>
+</tbody>
+</table>
+<h3>Qualidade de código</h3>
+<table>
+<thead>
+<tr>
+<th>Receita</th>
+<th>Mecanismo</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Auto-corrigir bugs de PR antes do merge</td>
+<td>Devin revisa todo PR, empurra correções para a branch</td>
+</tr>
+<tr>
+<td>Adicionar testes unitários a um serviço</td>
+<td>Construa um skill de escrita de testes, aplique a charge flows/refunds/webhooks</td>
+</tr>
+<tr>
+<td>Pegar regressões visuais</td>
+<td>Skill de repo: screenshot de cada página afetada antes do PR</td>
+</tr>
+<tr>
+<td>Checklist de migração em todo PR</td>
+<td>Skill de repo pega ops destrutivas, valida mudanças de schema</td>
+</tr>
+<tr>
+<td>Dividir um router monolítico</td>
+<td>Router Express de 2.000 linhas → rotas de domínio com middleware compartilhado</td>
+</tr>
+<tr>
+<td>Subir cobertura de código</td>
+<td>Devin analisa a suíte, escreve testes para cobrir as lacunas</td>
+</tr>
+<tr>
+<td>Patchear CVEs conhecidas entre repos</td>
+<td>Skills oficiais (<a href="https://github.com/cognitionai/devin-vuln-fixes">devin-vuln-fixes</a>): inventário somente-leitura → gate de aprovação → patch em alvo confirmado → testes antes/depois → um PR por repo</td>
+</tr>
+</tbody>
+</table>
+<h3>Migrações &amp; feature work</h3>
+<table>
+<thead>
+<tr>
+<th>Receita</th>
+<th>Mecanismo</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>REST→GraphQL de 50 arquivos</td>
+<td>Escopo → pacotes sem conflito → paralelo (Guia 11)</td>
+</tr>
+<tr>
+<td>Skill de upgrade React 18→19</td>
+<td>Transforme o guia oficial de upgrade num skill em fases para seu codebase</td>
+</tr>
+<tr>
+<td>Spec OpenAPI → implementação</td>
+<td>YAML spec → handlers Express + validação Zod + Supertest</td>
+</tr>
+<tr>
+<td>Fluxo de checkout Stripe</td>
+<td>Spec → fluxo funcional + testes + verificação em browser</td>
+</tr>
+<tr>
+<td>i18n num app Next.js</td>
+<td>install next-i18next, extração de strings, checagem em browser em 3 idiomas</td>
+</tr>
+<tr>
+<td>Figma → pixel-perfect</td>
+<td>Figma MCP → componentes a partir de mockups</td>
+</tr>
+<tr>
+<td>Dockerizar um app Django</td>
+<td>Dockerfile multi-stage + compose para Django/Postgres/Redis</td>
+</tr>
+</tbody>
+</table>
+<h3>Gestão de projeto &amp; dados</h3>
+<table>
+<thead>
+<tr>
+<th>Receita</th>
+<th>Mecanismo</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Auto-triage de bugs via Linear</td>
+<td>Label aplicada → Devin investiga</td>
+</tr>
+<tr>
+<td>PRDs → tickets de sprint</td>
+<td>PRD no Notion → tickets Linear escopados</td>
+</tr>
+<tr>
+<td>Planos de implementação de backlog</td>
+<td>Multi-selecionar tickets Linear → planos com score de confiança</td>
+</tr>
+<tr>
+<td>Consultas <code>/dana</code> no Slack</td>
+<td>Consultas de banco de dados em linguagem natural de qualquer canal</td>
+</tr>
+<tr>
+<td>Dashboard custom de uso de API</td>
+<td>Devin constrói um dashboard sob medida na API v3</td>
+</tr>
+</tbody>
+</table>
+<h3>Ficando melhor no próprio Devin ("Devin Optimization")</h3>
+<table>
+<thead>
+<tr>
+<th>Receita</th>
+<th>Lição</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Cortar um prompt de feature 42→12 ACUs</td>
+<td>Autópsia de uma sessão cara: 3 causas raiz → reescrever o prompt</td>
+</tr>
+<tr>
+<td>Corrida de 3 sessões num problema</td>
+<td>Sessões paralelas tentam estratégias de otimização concorrentes; a melhor vence</td>
+</tr>
+<tr>
+<td>8 sessões paralelas de noite</td>
+<td>8 módulos sem testes → PRs de unit tests de manhã</td>
+</tr>
+<tr>
+<td>Avaliar 30 bibliotecas</td>
+<td>Uma sessão por biblioteca → comparação ranqueada com score</td>
+</tr>
+<tr>
+<td>Transformar um hotfix em skill</td>
+<td>Extraia uma sessão de incidente bem-sucedida num skill reutilizável</td>
+</tr>
+<tr>
+<td>Dedup semanal de knowledge</td>
+<td>Sessão agendada mergeia/limpa conflitos de sugestões de knowledge</td>
+</tr>
+<tr>
+<td>Guia de onboarding de equipe</td>
+<td>Devin lê seus próprios docs → um guia de primeiros passos para seu stack</td>
+</tr>
+</tbody>
+</table>
+<h2>Como usar este cookbook</h2>
+<ol>
+<li>Escolha uma receita de <strong>Higiene agendada</strong> — é a primeira vitória mais barata (um loop noturno/semanal sobre o qual você para de pensar)</li>
+<li>Adicione uma de <strong>Incidentes</strong> se você tem PagerDuty/Datadog/Sentry</li>
+<li>Quando uma receita funciona, congele-a como um <strong>skill</strong> (Guia 12) ou um <strong>Bot</strong> (Guias 1–5) — cada linha acima sobrevive como um dos dois</li>
+</ol>
+<h2>Checklist de verificação</h2>
+<ul>
+<li>[ ] Uma receita de higiene está rodando em agenda e produziu seu primeiro PR/relatório</li>
+<li>[ ] Sua saída está congelada como skill, playbook ou Bot — não morando na cabeça de alguém</li>
+</ul>
+<h2>Armadilhas</h2>
+<ul>
+<li><strong>Dez receitas, zero congeladas.</strong> Uma receita que continua prompt manual é esquecida até sexta — operacionalize ou descarte.</li>
+<li><strong>Prompts copiados sem a verificação do seu repo.</strong> Os prompts da galeria assumem que uma suíte de testes existe; adapte a <em>checagem</em>, não só a tarefa.</li>
+</ul>
+<h2>Teste de conhecimento</h2>
+<ol>
+<li>Por que começar com uma receita de higiene agendada em vez de resposta a incidentes? <em>(A vitória mais barata possível — roda enquanto você dorme, e uma correção de lint noturna errada é recuperável; uma ação de incidente errada não é.)</em></li>
+<li>O que "congelar uma receita como skill ou Bot" realmente previne? <em>(Drift de prompt e dependência de pessoa única — a receita sobrevive a quem a escreveu.)</em></li>
+<li>Por que adaptar a parte de verificação de um prompt da galeria antes da parte da tarefa? <em>(A tarefa descreve intenção; a checagem é o que seu repo consegue provar — checagens erradas produzem lixo confiante.)</em></li>
+</ol>
+<h2>Fontes</h2>
+<ul>
+<li><a href="https://docs.devin.ai/use-cases/gallery/index.html">Use-case gallery</a> — todas as receitas acima, cada uma com prompts prontos</li>
+<li><a href="https://docs.devin.ai/use-cases/best-practices.html">Best Practices</a> — a doutrina de fatiamento</li>
+<li><a href="https://docs.devin.ai/use-cases/index.html">Use-case tutorials</a> — integração de API, cobertura de código, containerização, componentes frontend, MCP</li>
+<li>Relacionado: <a href="migrations-at-scale.html">Guia 11 — Migrações em escala</a> · <a href="automations-101-event-driven.html">Guia 6 — Automações</a></li>
+</ul>
+</article>
+<footer><div class="wrap foot-base"><span data-i18n="foot.note">Unofficial community project — not affiliated with Cognition AI.</span><span><a href="../../index.html">built-with-devin</a> · <a href="https://github.com/Till3005/build-with-devin">build-with-devin</a></span></div></footer>
+</main>
+<script src="../../assets/theme.js"></script>
+<script src="../../assets/i18n.js"></script>
+<script src="../../assets/i18n-runtime.js"></script>
+</body>
+</html>

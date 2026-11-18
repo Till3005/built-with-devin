@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Guía 11 — Migraciones a escala — build-with-devin guides</title>
+<meta name="description" content="Guía 11 — Migraciones a escala">
+<link rel="icon" href="../../assets/brand/Devin_Symbol.svg" type="image/svg+xml">
+<link rel="stylesheet" href="../../assets/site.css">
+<link rel="stylesheet" href="../../assets/guides.css">
+</head>
+<body>
+<a class="skip" href="#guide">Skip to content</a>
+<nav><div class="wrap nav-inner">
+  <div class="nav-left">
+    <a class="brand" href="../../index.html" aria-label="Built with Devin">
+      <span class="brand-text">built<strong>-with-</strong></span><img class="brand-mark" src="../../assets/brand/Devin_Primary_Logo.svg" alt="Devin" height="16"><span class="unofficial-chip">unofficial</span>
+    </a>
+  </div>
+  <div class="nav-side">
+    <div class="mode-toggle" role="tablist" aria-label="Site section">
+      <button class="mode-btn" data-mode="built" role="tab" aria-selected="false" onclick="location.href='../../index.html'">Built</button>
+      <button class="mode-btn on" data-mode="build" role="tab" aria-selected="true" onclick="location.href='../../index.html#build'">Build</button>
+      <span class="mode-pill" aria-hidden="true"></span>
+    </div>
+    <a class="cta" href="https://github.com/Till3005/build-with-devin/blob/main/guides/es/migrations-at-scale.md">GitHub</a>
+  </div>
+</div></nav>
+<main>
+<article class="guide wrap" id="guide">
+  <p class="guide-crumb"><a href="../../index.html#build">← Guides</a> · <a href="../migrations-at-scale.html">English</a> · <a href="../de/migrations-at-scale.html">Deutsch</a> · <a href="../zh/migrations-at-scale.html">中文</a> · <a href="../pt/migrations-at-scale.html">Português</a> · <a href="../ja/migrations-at-scale.html">日本語</a></p>
+<h1>Guía 11 — Migraciones a escala</h1>
+<p><strong>Objetivo:</strong> ejecutar una migración grande (lenguaje, framework, base de datos, dependencia, arquitectura) como cientos de PRs pequeños verificados en vez de una reescritura heroica.
+<strong>Nivel:</strong> intermedio → avanzado
+<strong>Fuentes:</strong> <a href="https://docs.devin.ai/use-cases/best-practices.html">Best Practices</a> · <a href="https://docs.devin.ai/use-cases/migration-modernization.html">Migration &amp; Modernization</a> · ejemplos de migración: <a href="https://docs.devin.ai/use-cases/examples/java-upgrades.html">Java upgrades</a>, <a href="https://docs.devin.ai/use-cases/examples/cobol-modernization.html">COBOL</a>, <a href="https://docs.devin.ai/use-cases/examples/sas-to-pyspark.html">SAS→PySpark</a>, <a href="https://docs.devin.ai/use-cases/examples/javascript-to-typescript.html">JS→TS</a>, <a href="https://docs.devin.ai/use-cases/examples/nosql-to-sql.html">NoSQL→SQL</a> · caso Nubank</p>
+<h2>El playbook oficial</h2>
+<p>Los docs del propio Devin son directos sobre lo que escala: <strong>wide &amp; shallow</strong> vence a <strong>tall &amp; deep</strong>. Una migración es el trabajo wide-and-shallow canónico — la misma pequeña transformación aplicada a cientos de unidades independientes.</p>
+<pre><code class="language-text">migración ──► cortar en unidades aisladas (&lt;90 min cada)
+                     │
+            ┌────────┴────────┐
+            ▼                 ▼
+       skill para la     sesiones paralelas,
+       transformación    una porción cada una
+            │                 │
+            └────► verificar por porción (tests/build/CI)
+                             │
+                  revisión humana → merge → repetir
+</code></pre>
+<h2>Paso 1 — Comprueba que tu migración califica</h2>
+<p>De los criterios oficiales — la mayoría debe cumplirse:</p>
+<ul>
+<li>Alto volumen de subtareas repetitivas</li>
+<li>Complejidad de ingeniero júnior por porción</li>
+<li>Cambios aislados, incrementales, retrocompatibles</li>
+<li><strong>Verificación objetiva por porción</strong> (el requisito duro: tests, build, CI o un script propio)</li>
+<li>Dependencias mínimas entre porciones</li>
+</ul>
+<p>No califica: una reescritura de repo entero donde todo debe aterrizar a la vez.</p>
+<h2>Paso 2 — Corta</h2>
+<p>La porción es la unidad atómica más pequeña — un archivo, un notebook, un módulo:</p>
+<table>
+<thead>
+<tr>
+<th>Regla</th>
+<th>Por qué</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>&lt; 90 minutos de ingeniería manual por porción</td>
+<td>La fiabilidad de Devin es por porción</td>
+</tr>
+<tr>
+<td>Independiente + retrocompatible</td>
+<td>Las porciones corren en paralelo y mergean en cualquier orden</td>
+</tr>
+<tr>
+<td>Cada porción lleva su propia verificación</td>
+<td>Sin verificación, sin automatización — este es el gate de fallo</td>
+</tr>
+</tbody>
+</table>
+<p>Ejemplo (oficial): una migración REST→GraphQL de 50 archivos → acotarla, dividir en paquetes de trabajo sin conflictos, correr en paralelo.</p>
+<h2>Paso 3 — Escribe la transformación como un skill</h2>
+<p>Un skill = la receta repetible que toda sesión ejecuta. Ejemplo oficial (Java 7→8, abreviado):</p>
+<pre><code class="language-text">## Procedure
+1. Verify the project is on Java 7
+2. Install the Java 8 JDK
+3. Update build configuration
+4. Identify and replace deprecated Java 7 APIs
+5. Analyze for Java 8 enhancement opportunities
+6. Update unit tests
+7. Test thoroughly
+8. Update documentation
+9. Build and verify
+</code></pre>
+<p>Escribe el tuyo con: pasos explícitos, una referencia de punta a punta (una guía o vídeo) y <strong>múltiples ejemplos de código antes/después</strong> — los pares entrada/salida son la señal de mayor calidad que puedes dar.</p>
+<h2>Paso 4 — Ejecuta sesiones paralelas</h2>
+<p>Con el skill fijado, distribuye porciones entre sesiones — la <a href="https://docs.devin.ai">API</a> o las sesiones hijas de un Bot (Guía 4). Cada porción → una sesión → un PR. La revisión humana hace el gate del merge a <code>main</code>.</p>
+<p>A escala los números se componen: la migración ETL de millones de líneas de Nubank corrió este bucle hasta 8–12× de eficiencia — y un Devin fine-tuned bajó el tiempo por tarea de ~40 → ~10 minutos.</p>
+<h2>Paso 5 — Vigila la tasa de error, no la barra de progreso</h2>
+<p>Las tasas de error pequeñas se componen a través de miles de porciones. Opera en un dashboard, no en sensaciones:</p>
+<ul>
+<li>Sigue la tasa de éxito de porción al primer intento — el skill es tu punto de corrección, no las sesiones</li>
+<li>Las porciones fallidas alimentan de vuelta el skill (el bucle de los propios docs: <em>"feed session links into Devin to patch the gaps"</em>)</li>
+<li>El orden de merge es libre porque las porciones están aisladas — explótalo</li>
+</ul>
+<h2>Checklist de verificación</h2>
+<ul>
+<li>[ ] Toda porción termina en ~90 min y mergea independientemente</li>
+<li>[ ] Una porción que falla la verificación produce una corrección o un ticket señalado — nunca un merge silencioso</li>
+<li>[ ] El skill mejoró mediblemente en las primeras 20 porciones (menos correcciones humanas por porción)</li>
+<li>[ ] El progreso es contable: N/M porciones migradas, tasa de éxito visible</li>
+</ul>
+<h2>Trampas</h2>
+<ul>
+<li><strong>Migraciones sin cortar.</strong> "Migra el repo entero" es el antipatrón oficial — sin aislamiento, sin paralelismo, sin verificación por unidad.</li>
+<li><strong>Sin ejemplos antes/después.</strong> El skill sin ejemplos produce un estilo distinto por sesión.</li>
+<li><strong>Saltarse la revisión humana.</strong> Paralelo ≠ desatendido — cada porción sigue siendo revisada antes de <code>main</code>.</li>
+</ul>
+<h2>Prueba de conocimiento</h2>
+<ol>
+<li>¿Por qué porciones "wide and shallow" en vez de "deep and complete"? <em>(Cada porción debe aterrizar en verde — un PR verificado de 90 minutos se compone; un mega-branch de 3 días se pudre contra main.)</em></li>
+<li>¿Por qué cada porción necesita su propia verificación? <em>(Sin prueba por porción, una migración de 500 PRs son 500 diffs no verificados — la superficie de fallo multiplica en vez de dividir.)</em></li>
+<li>Nubank reportó 8–12× de eficiencia — ¿qué hizo esa cifra creíble y no marketing? <em>(Metodología publicada: tiempos de etapa medidos antes/después en pipelines ETL reales, no una proyección.)</em></li>
+</ol>
+<h2>Fuentes</h2>
+<ul>
+<li><a href="https://docs.devin.ai/use-cases/best-practices.html">Best Practices — docs.devin.ai</a></li>
+<li><a href="https://docs.devin.ai/use-cases/migration-modernization.html">Migration &amp; Modernization + 5 playbooks de ejemplo</a></li>
+<li><a href="https://docs.devin.ai/use-cases/gallery/index.html">Use-case gallery — Migrations</a></li>
+<li>Relacionado: <a href="enterprise-playbook.html">Guía 7 — Rollout enterprise</a> (la Forma 1 es esta guía a escala de org)</li>
+</ul>
+</article>
+<footer><div class="wrap foot-base"><span data-i18n="foot.note">Unofficial community project — not affiliated with Cognition AI.</span><span><a href="../../index.html">built-with-devin</a> · <a href="https://github.com/Till3005/build-with-devin">build-with-devin</a></span></div></footer>
+</main>
+<script src="../../assets/theme.js"></script>
+<script src="../../assets/i18n.js"></script>
+<script src="../../assets/i18n-runtime.js"></script>
+</body>
+</html>

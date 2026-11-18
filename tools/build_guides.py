@@ -87,8 +87,10 @@ def main():
         alt_en = f" · {alts}" if alts else ""
         t = render(en, OUT / f"{en.stem}.html", "../", "en", alt_en, en.name)
         for lang, m in mirrors:
-            render(m, OUT / lang / f"{en.stem}.html", "../../", lang,
-                   f' · <a href="../{en.stem}.html">English</a>', f"{lang}/{en.name}")
+            alt_lang = f' · <a href="../{en.stem}.html">English</a>' + "".join(
+                f' · <a href="../{other}/{en.stem}.html">{LANG_LABEL.get(other, other)}</a>'
+                for other, _ in mirrors if other != lang)
+            render(m, OUT / lang / f"{en.stem}.html", "../../", lang, alt_lang, f"{lang}/{en.name}")
         index_rows.append((en.stem, t, " · ".join(["EN"] + [LANG_LABEL.get(l, l) for l, _ in mirrors])))
     # index page listing all guides
     lis = "\n".join(
@@ -97,9 +99,9 @@ def main():
     body = f'<h1>build-with-devin — guides</h1>\n<div class="rows">{lis}\n</div>'
     title = "Guides"
     (OUT / "index.html").write_text(PAGE.format(
-        lang="en", title=title, desc="16 field-tested Devin guides — English and Chinese editions.",
+        lang="en", title=title, desc="16 field-tested Devin guides — English, 中文, 日本語, Português, Español and Deutsch editions.",
         rel="../", body=body, alt="", mdsrc="../"), encoding="utf-8")
-    print(f"rendered {len(en_files)} guides (+zh mirrors) → docs/guides/")
+    print(f"rendered {len(en_files)} guides + mirrors → docs/guides/")
 
 if __name__ == "__main__":
     main()
