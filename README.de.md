@@ -106,6 +106,8 @@ Sechzehn fertige Bots auf dem [öffentlichen Marktplatz](https://devin.ai/bots/t
 
 **[→ Reproduktions-Guide: wie man jeden dokumentierten Bot nachbaut](docs/reproducing-devin-bots.md)** — und die erweiterte Tutorial-Form im Schwester-Repo **[build-with-devin](https://github.com/Till3005/build-with-devin)**
 
+<p align="right"><a href="#readme">back to top</a></p>
+
 ---
 
 ## Mit Devin gebaute Produkte
@@ -126,6 +128,8 @@ Kleine, reizvolle Builds — der Beweis, dass dieselbe Maschinerie auch Spaß ka
 - **[Mobile Games auf dem iPhone Duo](https://x.com/xujennyc/status/2121625134029209929)** — Jenny Xu und Nader Dabit basteln an Devin-gebauten Mobile Games auf Foldables; Devin [baut und testet Duo-Apps selbst](https://x.com/DevinAI/status/2111161066403123653), auch im Maßstab ([dabit3](https://x.com/dabit3/status/2112939574133760190)).
 - **Devins Selbstporträt** — Bryan Johnson bat Devin, darzustellen, wie es ihn sieht ([Post](https://x.com/bryan_johnson/status/2122818486800191842)).
 - **Der CoS, dessen Job ein Bot übernahm** — Die erste Woche eines Cognition-Chief-of-Staff: Er wachte auf und der neue Chief-of-Staff-Bot machte bereits seinen Job ([Post](https://x.com/arirbrown/status/2122789909731872882)).
+
+<p align="right"><a href="#readme">back to top</a></p>
 
 ---
 
@@ -171,6 +175,8 @@ Veröffentlichte Kundenfälle mit harten Zahlen ([vollständiger Index](https://
 
 Ebenfalls dokumentiert: Citi (Rollout für 40.000 Entwickler, 30% Kürzung bei Tech-Vendor-Ausgaben), Itaú, Mercor, Hippo, Mercedes-Benz, Partnerschaften mit Cognizant und Infosys — siehe den [Kunden-Index](https://devin.ai/customers).
 
+<p align="right"><a href="#readme">back to top</a></p>
+
 ---
 
 ## Bots & Oberflächen
@@ -183,12 +189,16 @@ Devin in anderen Produkten und Kanälen.
 - **[devin-sse-proxy](https://github.com/sotayamashita/devin-sse-proxy)** — Minimaler MCP-Server, der Claude Desktop mit Devins SSE-Transport sprechen lässt und einen Personal API Key durchreicht.
 - **[devin-flow](https://github.com/xlm/devin-flow)** — Visueller Editor für ereignisgesteuerte Devin-Workflows auf der Automations-API, mit Session-Tracking (FastAPI + Vue 3).
 
+<p align="right"><a href="#readme">back to top</a></p>
+
 ---
 
 ## SDKs & API-Tooling
 
 - **[go-devin](https://github.com/gassara-kys/go-devin)** — Go-SDK für die Devin-API.
 - **[llm-devin](https://github.com/ftnext/llm-devin)** — Plugin für Simon Willisons `llm`-CLI zum Aufruf der Devin-API.
+
+<p align="right"><a href="#readme">back to top</a></p>
 
 ---
 
@@ -218,6 +228,8 @@ Was die Community *für* Devin baut statt *mit* Devin.
 - **[Devin Session Exporter](https://github.com/marktwainme/devin-session-exporter)** — Devin-Desktop-Erweiterung, die lokale ACP-Sessionsdatenbanken mit Filtern und Batch-Export nach Markdown/JSON/HTML exportiert.
 - **[devin-acp-shim](https://github.com/wibus-wee/devin-acp-shim)** — Transparenter stdio-Proxy, der Devin CLIs Session-Level-MCP-Capability-Verhandlung repariert — klein, aber er entsperrt MCP-Server für jeden ACP-Host.
 
+<p align="right"><a href="#readme">back to top</a></p>
+
 ---
 
 ## Muster & Erfahrungsberichte
@@ -244,6 +256,8 @@ Dokumentierte reale Nutzung.
 - **[Devin CLIs Kontextlimits in der Praxis](https://qiita.com/ishizakahiroshi/items/cee2a8ea2be18f2ccee3)** — Arbeitsnotizen, um AGENTS.md und Freigaberegeln in die 16KB/32KB-Limits zu bekommen (JP).
 - **[Multi-KI-Orchestrierung auf dem kostenlosen SWE-2](https://qiita.com/ishizakahiroshi/items/72ab801a5f2a8c941b61)** — Ein Design, das Arbeit zwischen Agenten über Devin CLIs dauerhaft kostenloses SWE-2-Tier routet (JP).
 
+<p align="right"><a href="#readme">back to top</a></p>
+
 ---
 
 ## Community-Medien
@@ -256,6 +270,8 @@ Dokumentierte reale Nutzung.
 - **[Vibe Coded Projects](https://vibedprojects.com/ai-tools/devin)** — 373 mit Devin vibe-gecodete Apps, Tools und Sites.
 - **[Devin 2. Jubiläums-Meetup Japan](https://aid.connpass.com/event/412875/)** — Von einem Botschafter organisiertes Community-Event zum zweiten Jahr öffentlichem Devin ([Ankündigung](https://x.com/kinopee_ai/status/2123019189325848847)).
 - **[Devin's Dinner](https://x.com/MattSchrage/status/2121016484155548124)** — Matt Schrages einladungspflichtige NYC-Dinner-Reihe für Gründer und Engineers, die mit Devin arbeiten.
+
+<p align="right"><a href="#readme">back to top</a></p>
 
 ---
 
@@ -273,6 +289,8 @@ Dokumentierte reale Nutzung.
 - [Devin Automations QuickStart](https://www.youtube.com/watch?v=6xxKtIpgOyE) — offizielles Video zu event-/zeitplangesteuerten Agenten-Setups, dem Substrat der Bots
 - [SWE-2 Flash](https://cognition.com/blog/swe-2-flash) — Cognitions schnelles Coding-Modell: übertrifft alle amerikanischen Open-Weight-Modelle auf führenden Evals, 3× SWE-2-Geschwindigkeit zu 1/5 des Preises
 - [Devin Apps](https://devin.ai/blog/devin-apps) — Live-Web-Apps, die Devin auf eigener Maschine baut und unter stabiler URL bereitstellt (interne Tools, Dashboards, Staging-Kopien)
+
+<p align="right"><a href="#readme">back to top</a></p>
 
 ---
 

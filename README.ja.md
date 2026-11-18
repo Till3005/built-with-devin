@@ -106,6 +106,8 @@ flowchart LR
 
 **[→ 再現ガイド：実証済みのすべての Bot を再構築する方法](docs/reproducing-devin-bots.md)** —— 姉妹リポジトリ **[build-with-devin](https://github.com/Till3005/build-with-devin)** の拡張チュートリアル版も
 
+<p align="right"><a href="#readme">back to top</a></p>
+
 ---
 
 ## Devin で作られたプロダクト
@@ -126,6 +128,8 @@ flowchart LR
 - **[iPhone Duo のモバイルゲーム](https://x.com/xujennyc/status/2121625134029209929)** —— Jenny Xu と Nader Dabit がフォルダブル端末で Devin 製モバイルゲームを開発。Devin は [Duo アプリを自分でビルド・テスト](https://x.com/DevinAI/status/2111161066403123653)し、規模化も可能（[dabit3](https://x.com/dabit3/status/2112939574133760190)）。
 - **Devin の自画像** —— Bryan Johnson が Devin に自分をどう見ているか描かせた（[投稿](https://x.com/bryan_johnson/status/2122818486800191842)）。
 - **Bot に仕事を取られた CoS** —— Cognition の新しい chief-of-staff の初週：目覚めると新しい Chief of Staff Bot がすでに彼の仕事をしていた（[投稿](https://x.com/arirbrown/status/2122789909731872882)）。
+
+<p align="right"><a href="#readme">back to top</a></p>
 
 ---
 
@@ -171,6 +175,8 @@ flowchart LR
 
 その他の公開記録：Citi（40,000 人の開発者展開、技術ベンダー支出 30% 削減）、Itaú、Mercor、Hippo、Mercedes-Benz、Cognizant、Infosys との提携 —— [顧客索引](https://devin.ai/customers)を参照。
 
+<p align="right"><a href="#readme">back to top</a></p>
+
 ---
 
 ## Bots と接続面
@@ -183,12 +189,16 @@ flowchart LR
 - **[devin-sse-proxy](https://github.com/sotayamashita/devin-sse-proxy)** —— Claude Desktop が Personal API Key を渡しつつ Devin の SSE transport と会話できる最小 MCP サーバー。
 - **[devin-flow](https://github.com/xlm/devin-flow)** —— Automations API 上のイベント駆動 Devin ワークフローのビジュアルエディタ。セッション追跡つき（FastAPI + Vue 3）。
 
+<p align="right"><a href="#readme">back to top</a></p>
+
 ---
 
 ## SDK・API ツール
 
 - **[go-devin](https://github.com/gassara-kys/go-devin)** —— Devin API の Go SDK。
 - **[llm-devin](https://github.com/ftnext/llm-devin)** —— Simon Willison の `llm` CLI から Devin API を呼ぶプラグイン。
+
+<p align="right"><a href="#readme">back to top</a></p>
 
 ---
 
@@ -218,6 +228,8 @@ Devin *で*作られたものではなく、Devin の*ために*コミュニテ�
 - **[Devin Session Exporter](https://github.com/marktwainme/devin-session-exporter)** —— ローカル ACP セッションデータベースをフィルタ・一括エクスポートできる Devin Desktop 拡張（Markdown/JSON/HTML）。
 - **[devin-acp-shim](https://github.com/wibus-wee/devin-acp-shim)** —— Devin CLI のセッションレベル MCP 能力ネゴシエーションを修正する透過 stdio プロキシ —— 小さいが、すべての ACP ホストで MCP サーバーを解放する。
 
+<p align="right"><a href="#readme">back to top</a></p>
+
 ---
 
 ## パターンと実践記事
@@ -244,6 +256,8 @@ Devin *で*作られたものではなく、Devin の*ために*コミュニテ�
 - **[Devin CLI のコンテキスト上限の実践](https://qiita.com/ishizakahiroshi/items/cee2a8ea2be18f2ccee3)** —— AGENTS.md と承認ルールを 16KB/32KB 上限に収める作業ノート。
 - **[無料 SWE-2 上のマルチ AI オーケストレーション](https://qiita.com/ishizakahiroshi/items/72ab801a5f2a8c941b61)** —— Devin CLI の永久無料 SWE-2 枠でエージェント間のワークルーティングを設計。
 
+<p align="right"><a href="#readme">back to top</a></p>
+
 ---
 
 ## コミュニティメディア
@@ -256,6 +270,8 @@ Devin *で*作られたものではなく、Devin の*ために*コミュニテ�
 - **[Vibe Coded Projects](https://vibedprojects.com/ai-tools/devin)** —— Devin で vibe-code された 373 のアプリ・ツール・サイト。
 - **[Devin 日本 2 周年ミートアップ](https://aid.connpass.com/event/412875/)** —— アンバサダー主催のコミュニティイベント（[発表](https://x.com/kinopee_ai/status/2123019189325848847)）。
 - **[Devin's Dinner](https://x.com/MattSchrage/status/2121016484155548124)** —— Matt Schrage の招待制ニューヨークディナーシリーズ。Devin を使うファウンダーとエンジニア向け。
+
+<p align="right"><a href="#readme">back to top</a></p>
 
 ---
 
@@ -273,6 +289,8 @@ Devin *で*作られたものではなく、Devin の*ために*コミュニテ�
 - [Devin Automations クイックスタート](https://www.youtube.com/watch?v=6xxKtIpgOyE) —— Bots が土台とする、イベント/スケジュールトリガー型エージェント設定の公式ビデオ
 - [SWE-2 Flash](https://cognition.com/blog/swe-2-flash) —— Cognition の高速コーディングモデル：主要評価で全米オープンウェイトモデルを上回り、SWE-2 の 3 倍速・1/5 の価格
 - [Devin Apps](https://devin.ai/blog/devin-apps) —— Devin が自マシンで構築し安定 URL で提供するライブ Web アプリ（内部ツール、ダッシュボード、ステージングコピー）
+
+<p align="right"><a href="#readme">back to top</a></p>
 
 ---
 

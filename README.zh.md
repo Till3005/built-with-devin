@@ -106,6 +106,8 @@ flowchart LR
 
 **[→ 复现指南：如何重建每一个有据可查的 Bot](docs/reproducing-devin-bots.md)** —— 扩展教程版在姊妹库 **[build-with-devin](https://github.com/Till3005/build-with-devin)**
 
+<p align="right"><a href="#readme">back to top</a></p>
+
 ---
 
 ## 用 Devin 做出的产品
@@ -126,6 +128,8 @@ flowchart LR
 - **[iPhone Duo 上的手游](https://x.com/xujennyc/status/2121625134029209929)** —— Jenny Xu 和 Nader Dabit 在折叠机上折腾 Devin 做的手游；Devin [自己就能构建和测试 Duo app](https://x.com/DevinAI/status/2111161066403123653)，还能规模化（[dabit3](https://x.com/dabit3/status/2112939574133760190)）。
 - **Devin 的自画像** —— Bryan Johnson 让 Devin 画出它眼中的他（[帖子](https://x.com/bryan_johnson/status/2122818486800191842)）。
 - **岗位被 Bot 顶掉的 CoS** —— Cognition 一位新任 chief-of-staff 第一周：醒来发现新的 Chief of Staff Bot 已经在干他的活（[帖子](https://x.com/arirbrown/status/2122789909731872882)）。
+
+<p align="right"><a href="#readme">back to top</a></p>
 
 ---
 
@@ -171,6 +175,8 @@ flowchart LR
 
 其他公开记录的：Citi（40,000 名开发者铺开，技术供应商支出降 30%）、Itaú、Mercor、Hippo、Mercedes-Benz、Cognizant 和 Infosys 合作 —— 见[客户索引](https://devin.ai/customers)。
 
+<p align="right"><a href="#readme">back to top</a></p>
+
 ---
 
 ## Bots 与接入面
@@ -183,12 +189,16 @@ flowchart LR
 - **[devin-sse-proxy](https://github.com/sotayamashita/devin-sse-proxy)** —— 极简 MCP server，让 Claude Desktop 在带 Personal API Key 的情况下与 Devin 的 SSE transport 对话。
 - **[devin-flow](https://github.com/xlm/devin-flow)** —— Automations API 上的事件驱动 Devin 工作流可视化编辑器，带 session 追踪（FastAPI + Vue 3）。
 
+<p align="right"><a href="#readme">back to top</a></p>
+
 ---
 
 ## SDK 与 API 工具
 
 - **[go-devin](https://github.com/gassara-kys/go-devin)** —— Devin API 的 Go SDK。
 - **[llm-devin](https://github.com/ftnext/llm-devin)** —— Simon Willison 的 `llm` CLI 插件，用来调 Devin API。
+
+<p align="right"><a href="#readme">back to top</a></p>
 
 ---
 
@@ -218,6 +228,8 @@ flowchart LR
 - **[Devin Session Exporter](https://github.com/marktwainme/devin-session-exporter)** —— Devin Desktop 扩展，把本地 ACP 会话库导出为 Markdown/JSON/HTML，带筛选和批量导出。
 - **[devin-acp-shim](https://github.com/wibus-wee/devin-acp-shim)** —— 透明 stdio 代理，修复 Devin CLI 的会话级 MCP 能力协商 —— 虽小，但为所有 ACP host 解锁了 MCP server。
 
+<p align="right"><a href="#readme">back to top</a></p>
+
 ---
 
 ## 模式与实战文章
@@ -244,6 +256,8 @@ flowchart LR
 - **[Devin CLI 上下文上限实战](https://qiita.com/ishizakahiroshi/items/cee2a8ea2be18f2ccee3)** —— 把 AGENTS.md 和审批规则塞进 16KB/32KB 上限的工作笔记（日文）。
 - **[免费 SWE-2 上的多 AI 编排](https://qiita.com/ishizakahiroshi/items/72ab801a5f2a8c941b61)** —— 利用 Devin CLI 永久免费的 SWE-2 档在多个 agent 间路由工作的设计（日文）。
 
+<p align="right"><a href="#readme">back to top</a></p>
+
 ---
 
 ## 社区媒体
@@ -256,6 +270,8 @@ flowchart LR
 - **[Vibe Coded Projects](https://vibedprojects.com/ai-tools/devin)** —— 373 个用 Devin vibe-code 出的应用、工具和站点。
 - **[Devin 日本 2 周年 meetup](https://aid.connpass.com/event/412875/)** —— 大使主办的社区活动，纪念 Devin 公开两周年（[公告](https://x.com/kinopee_ai/status/2123019189325848847)）。
 - **[Devin's Dinner](https://x.com/MattSchrage/status/2121016484155548124)** —— Matt Schrage 在纽约的邀请制晚宴系列，面向用 Devin 的创始人和工程师。
+
+<p align="right"><a href="#readme">back to top</a></p>
 
 ---
 
@@ -273,6 +289,8 @@ flowchart LR
 - [Devin Automations QuickStart](https://www.youtube.com/watch?v=6xxKtIpgOyE) —— 官方视频：事件/定时触发 agent 配置，Bots 的底层机制
 - [SWE-2 Flash](https://cognition.com/blog/swe-2-flash) —— Cognition 的快速编码模型：主流评测超过所有美国开源权重模型，速度为 SWE-2 的 3×、价格 1/5
 - [Devin Apps](https://devin.ai/blog/devin-apps) —— Devin 在自己机器上构建并以稳定 URL 提供的 live web 应用（内部工具、看板、staging 副本）
+
+<p align="right"><a href="#readme">back to top</a></p>
 
 ---
 
