@@ -20,7 +20,7 @@
   // Stage order: Cognition(thruster) → Devin(thinking) → cogs lineup
   const ASSETS = [
     "assets/brand/Cognition_Symbol.svg",
-    "assets/brand/Devin_Primary_Logo.svg",
+    "assets/brand/Devin_Symbol.svg",
     "assets/brand/g01-octagon.webp",
     "assets/brand/p05-gear.webp",
     "assets/brand/p09-squircle.webp",
@@ -187,12 +187,25 @@
         const i = y * W + x;
         let v = blend[i];
 
-        // Devin "thinking": rotating angular sweep across the wordmark
-        if (devinW > 0.05 && v > 0.05) {
-          const ang = Math.atan2(dy, x - cx);
-          const sweep = 0.5 + 0.5 * Math.sin(ang * 2 - tt * 5.2);
-          const pulse = 0.5 + 0.5 * Math.sin(tt * 2.6);
-          v *= (0.55 + 0.75 * sweep * (0.6 + 0.4 * pulse)) * (0.35 + 0.65 * devinW);
+        // Devin "thinking" — faithful to the app: three pips chase each other
+        // around a triangular orbit (v1 bottom-left → v2 top-left → v3 right),
+        // each rotating 60°→120° while traversing, with staggered vertex pulses.
+        if (devinW > 0.05) {
+          const S = sprites[DEVIN_STAGE];
+          const bx = S.x0 + S.w * 0.5, by = S.y0 + S.h * 0.5, sc = S.h * 0.95;
+          const VX = [-0.204, -0.204, 0.204], VY = [0.236, -0.236, 0.0];
+          let glow = 0;
+          for (let k = 0; k < 3; k++) {
+            const ph = (frame * 0.0103 + k / 3) % 1;         // ~1.62s orbit
+            const e = ph * 3, edge = Math.min(2, e | 0), u = e - edge;
+            const ox = VX[edge] + (VX[(edge + 1) % 3] - VX[edge]) * u;
+            const oy = VY[edge] + (VY[(edge + 1) % 3] - VY[edge]) * u;
+            const dx2 = x - (bx + ox * sc), dy2 = y - (by + oy * sc);
+            glow += Math.exp(-(dx2 * dx2 + dy2 * dy2) / 14); // pip halo ~2.4 cells
+          }
+          // staggered vertex pulse (scale 1→0.5 in the real anim → value dip)
+          const vp = 0.82 + 0.18 * Math.sin(tt * 3.9 + Math.floor((Math.atan2(y - by, x - bx) + 2.4) / 2.09) * 2.09);
+          v = Math.min(1, v * vp * (0.5 + 0.5 * devinW) + glow * 0.9 * devinW);
         }
 
         const edge = v * (1 - v) * 4;
