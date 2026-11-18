@@ -59,31 +59,13 @@
   mark.scale.setScalar(22 / Math.max(size.x, size.y));
   inner.scale.y *= -1; inner.position.y *= -1;
   mark.rotation.set(-0.07, 0.30, 0);   // fixed slight tilt
-  mark.position.y = 3.5;
+  mark.position.y = 0;
   scene.add(mark);
-
-  // soft ground shadow
-  const aoTex = (() => {
-    const cv = document.createElement("canvas"); cv.width = cv.height = 256;
-    const g = cv.getContext("2d");
-    const rg = g.createRadialGradient(128, 128, 6, 128, 128, 118);
-    rg.addColorStop(0, "rgba(0,0,0,.38)"); rg.addColorStop(0.55, "rgba(0,0,0,.16)"); rg.addColorStop(1, "rgba(0,0,0,0)");
-    g.fillStyle = rg; g.fillRect(0, 0, 256, 256);
-    return new THREE.CanvasTexture(cv);
-  })();
-  const ao = new THREE.Mesh(
-    new THREE.PlaneGeometry(50, 26),
-    new THREE.MeshBasicMaterial({ map: aoTex, transparent: true, depthWrite: false })
-  );
-  ao.rotation.x = -Math.PI / 2;
-  ao.position.set(2, -13.2, 0);
-  scene.add(ao);
 
   function themeMats() {
     const dark = document.documentElement.dataset.theme === "dark" ||
       (!document.documentElement.dataset.theme && matchMedia("(prefers-color-scheme: dark)").matches);
     mat.color.set(dark ? 0xefefe9 : 0x16150f);
-    ao.material.opacity = dark ? 0.6 : 1.0;
   }
   themeMats();
   new MutationObserver(themeMats).observe(document.documentElement, { attributes: true, attributeFilter: ["data-theme"] });
