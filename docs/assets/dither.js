@@ -9,7 +9,7 @@
   host.prepend(cv);
   const ctx = cv.getContext("2d");
 
-  const CELL = 6;
+  const CELL = 3;
   let W = 0, H = 0, img, sprites = [], frame = 0, running = true;
 
   const B = [0,32,8,40,2,34,10,42,48,16,56,24,50,18,58,26,12,44,4,36,14,46,6,38,
@@ -79,6 +79,10 @@
     const A = sprites[idx], C = sprites[nxt];
     const d = img.data;
     const tt = frame * 0.012;
+    const dark = document.documentElement.dataset.theme === "dark" ||
+      (!document.documentElement.dataset.theme &&
+       matchMedia("(prefers-color-scheme: dark)").matches);
+    const pr = dark ? 150 : 110, pg = dark ? 200 : 160, pa = dark ? 78 : 58;
 
     for (let y = 0; y < H; y++) {
       const edgeY = Math.min(1, Math.min(y / (H * 0.10), (H - y) / (H * 0.10)));
@@ -91,8 +95,8 @@
         let v = (blend * breathe + warp * edge + Math.sin(x * 0.05 + tt) * 0.03 * edge) * maskX[x] * edgeY;
         const on = v > B[(y % 8) * 8 + (x % 8)];
         const p = i * 4;
-        d[p] = 120; d[p + 1] = 170; d[p + 2] = 255;
-        d[p + 3] = on ? 52 : 0;
+        d[p] = pr; d[p + 1] = pg; d[p + 2] = 255;
+        d[p + 3] = on ? pa : 0;
       }
     }
     ctx.clearRect(0, 0, cv.width, cv.height);

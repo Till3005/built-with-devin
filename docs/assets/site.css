@@ -19,8 +19,10 @@
   --accent-strong:49 124 255;
   --bg-accent-secondary:29 53 82;
 }
+[data-theme="light"], :root:not([data-theme]) {
+}
 @media (prefers-color-scheme: light){
-  :root{
+  :root:not([data-theme]){
     --bg-page:252 252 252;
     --bg-elevated:255 255 255;
     --bg-wash:248 248 248;
@@ -33,6 +35,19 @@
     --accent-strong:0 95 204;
     --bg-accent-secondary:226 239 255;
   }
+}
+[data-theme="light"]{
+  --bg-page:252 252 252;
+  --bg-elevated:255 255 255;
+  --bg-wash:248 248 248;
+  --text-primary:25 25 25;
+  --text-secondary:89 89 89;
+  --text-disabled:25 25 25 / .4;
+  --border-primary:0 0 0 / .08;
+  --border-secondary:0 0 0 / .06;
+  --accent:0 95 204;
+  --accent-strong:0 95 204;
+  --bg-accent-secondary:226 239 255;
 }
 :root{
   --bg:rgb(var(--bg-page));
@@ -64,12 +79,17 @@ nav{position:sticky;top:0;z-index:10;background:rgb(var(--bg-page) / .8);backdro
 nav .wrap{display:flex;align-items:center;justify-content:space-between;height:60px}
 .brand{font:500 15px var(--sans);letter-spacing:-.01em;text-decoration:none;display:flex;align-items:center;gap:9px}
 .brand img{width:20px;height:auto;display:block}
-@media (prefers-color-scheme: dark){.brand img{filter:invert(.94)}}
+[data-theme="dark"] .brand img{filter:invert(.94)}
+@media (prefers-color-scheme: dark){:root:not([data-theme]) .brand img{filter:invert(.94)}}
+#theme-toggle{display:flex;align-items:center;justify-content:center;width:34px;height:34px;border:1px solid var(--line);border-radius:8px;background:transparent;color:var(--mut);cursor:pointer;transition:color .15s,border-color .15s}
+#theme-toggle:hover{color:var(--fg);border-color:var(--mut)}
+#theme-toggle svg{width:16px;height:16px}
 .navlinks{display:flex;gap:28px}
 .navlinks a{font:400 14px var(--sans);color:var(--mut);text-decoration:none;transition:color .15s}
 .navlinks a:hover{color:var(--fg)}
 .cta{font:500 14px var(--sans);background:var(--fg);color:var(--bg);padding:8px 18px;border-radius:8px;text-decoration:none;transition:opacity .15s}
 .cta:hover{opacity:.82}
+.nav-side{display:flex;align-items:center;gap:14px}
 
 /* hero */
 .hero{position:relative;overflow:hidden;padding:150px 0 110px;border-bottom:1px solid var(--line)}
