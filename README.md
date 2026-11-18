@@ -131,8 +131,23 @@ Published customer cases with hard numbers ([full index](https://devin.ai/custom
 | [Hamming](https://devin.ai/customers/hamming) | Devin on the codebase | 25% of total code volume |
 | [Airbyte](https://devin.ai/customers/airbyte) | Connector maintenance | Keeps 700+ connectors running |
 | [Litera](https://devin.ai/customers/litera) | Regression testing | Regression cycles cut 90% |
+| [Ramp](https://devin.ai/customers/ramp) | Technical-debt clearance | **80 merged PRs/week, 10,000+ engineer-hours saved**; a small Devin-savvy team runs it |
+| [Linktree](https://devin.ai/customers/linktree) | Feature + customer-bug pipeline | ~300 PRs authored / ~100 merged last month; the team's reflex is now "can I just Devin it?" |
+| [Bilt](https://devin.ai/customers/bilt) | Org-wide rollout | 800+ merged PRs since Feb, ~117/week average |
+| [Rohlik Group](https://devin.ai/customers/rohlikgroup) | Agent-driven grocery ops | 2× engineering throughput; 4× faster automation rollout incl. warehouse robotics; 50+ MCP integrations |
+| [Crosby](https://devin.ai/customers/crosby) | AI-native law firm | 20–40 bug reports/alerts get a first pass daily, ~5 min each; 12 engineers serve 50+ attorneys |
+| [Endava](https://devin.ai/customers/endava) | Enterprise-wide provision | 2,000+ employees on platform; 3× in four months; 78% PR merge rate |
+| [Tavrn](https://devin.ai/customers/tavrn) | HIPAA-constrained fleet | 8-person team ships like 50; **1,800+ PRs in 6 weeks**, 6× output |
+| [Evinova](https://devin.ai/customers/evinova) | GxP-regulated delivery | 8× faster GxP documentation; 3× faster migrations; 66% of clear-cut bugs fixed autonomously |
+| [Compiled Health](https://devin.ai/customers/compiledhealth) | Clinical benchmark build | 2 researchers/2 months = 5–6 engineers' work; ~430 eng-hours at ~$17/hr ≈ +4 engineers on a 4-person team |
+| [Común](https://devin.ai/customers/comun) | 13-person fintech team | 3× output; weekly backend PRs 50 → 170 in four weeks |
+| [AHEAD](https://devin.ai/customers/ahead) | 8 production workloads | **8–40× time savings** vs manual baselines; fully productive in 2 business days |
+| [The Citation Group](https://devin.ai/customers/thecitationgroup) | Measured-ROI rollout | 271 PRs merged at 80% in 3 months; 50% engineering-efficiency gain; 85% cut in legacy-app refresh |
+| [Latent Health](https://devin.ai/customers/latent) | Pharmacy ops | 30% more PRs/engineer vs Claude Code alone; 50 running automations |
+| [Crossmint](https://devin.ai/customers/crossmint) | GOAT open-source scaling | Devin became the repo's #1 contributor during trial |
+| [FE fundinfo](https://devin.ai/customers/fefundinfo) | 1,800-repo automation | 10% immediate capacity increase via test-gen + security fixes |
 
-Also on the record: Citi (40,000-developer rollout, 30% tech-vendor spend cut), Ramp (tens of thousands of hours of tech debt), Itaú, Tavrn (HIPAA-constrained), Crosby (AI-native law firm), Mercedes-Benz, Cognizant and Infosys partnerships — see the [customer index](https://devin.ai/customers).
+Also on the record: Citi (40,000-developer rollout, 30% tech-vendor spend cut), Itaú, Mercedes-Benz, Cognizant and Infosys partnerships — see the [customer index](https://devin.ai/customers).
 
 ## Bots & surfaces
 
