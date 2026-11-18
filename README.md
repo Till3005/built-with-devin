@@ -15,6 +15,8 @@
 
 <sub>**11** documented Bot deployments · **33** enterprise case studies · **4** shipped products · **28** tools & integrations · **19** field reports</sub>
 
+<sub>English · [简体中文](README.zh.md) · [日本語](README.ja.md) · [Português](README.pt.md) · [Español](README.es.md) · [Deutsch](README.de.md)</sub>
+
 </div>
 
 > *Unofficial community project — not affiliated with, endorsed by, or sponsored by Cognition AI. "Devin" is a trademark of Cognition AI. Brand assets are used under the official kit at [devin.ai/brand](https://devin.ai/brand). Official docs: [docs.devin.ai](https://docs.devin.ai).*
