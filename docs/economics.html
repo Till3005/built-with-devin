@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The economics of Devin — built-with-devin</title>
+<style>
+  :root { --bg:#0d0d09; --fg:#ece9e2; --mut:#9a958a; --acc:#e8ff47; --line:#26241e; --card:#161511; }
+  @media (prefers-color-scheme: light) {
+    :root { --bg:#fafaf7; --fg:#191813; --mut:#6b675e; --acc:#546500; --line:#e4e1d8; --card:#fff; }
+  }
+  * { box-sizing:border-box; margin:0; }
+  body { background:var(--bg); color:var(--fg); font:15px/1.6 -apple-system,"SF Pro",Inter,"Segoe UI",sans-serif; }
+  .wrap { max-width:960px; margin:0 auto; padding:48px 24px 80px; }
+  h1 { font-size:28px; letter-spacing:-.02em; margin-bottom:6px; }
+  .sub { color:var(--mut); font-size:13px; margin-bottom:28px; }
+  .sub a { color:var(--mut); }
+  .toolbar { display:flex; gap:10px; flex-wrap:wrap; margin-bottom:20px; }
+  input[type=search] { flex:1; min-width:200px; padding:9px 14px; border-radius:8px; border:1px solid var(--line); background:var(--card); color:var(--fg); font-size:14px; }
+  .chip { padding:8px 14px; border-radius:99px; border:1px solid var(--line); background:var(--card); color:var(--mut); font-size:13px; cursor:pointer; }
+  .chip.on { border-color:var(--acc); color:var(--acc); }
+  table { width:100%; border-collapse:collapse; font-size:14px; }
+  th,td { text-align:left; padding:10px 12px; border-bottom:1px solid var(--line); vertical-align:top; }
+  th { font-size:11px; text-transform:uppercase; letter-spacing:.08em; color:var(--mut); cursor:pointer; user-select:none; white-space:nowrap; }
+  td.num { font-variant-numeric:tabular-nums; font-weight:600; white-space:nowrap; }
+  a { color:var(--acc); text-decoration:none; }
+  a:hover { text-decoration:underline; }
+  .tag { font-size:11px; padding:2px 8px; border-radius:99px; border:1px solid var(--line); color:var(--mut); white-space:nowrap; }
+  .foot { margin-top:32px; color:var(--mut); font-size:12px; }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <h1>The economics of Devin</h1>
+  <div class="sub">Every published, auditable cost/return figure — <a href="https://github.com/Till3005/built-with-devin">built-with-devin</a>. Sources: named customer stories at devin.ai/customers and cited public reports.</div>
+  <div class="toolbar">
+    <input type="search" id="q" placeholder="Filter — company, metric, source…">
+    <button class="chip on" data-f="">All</button>
+    <button class="chip" data-f="cost">Cost</button>
+    <button class="chip" data-f="throughput">Throughput</button>
+    <button class="chip" data-f="scale">Scale</button>
+    <button class="chip" data-f="community">Community reports</button>
+  </div>
+  <table id="t">
+    <thead><tr><th>Metric</th><th>Company</th><th>Context</th><th></th></tr></thead>
+    <tbody></tbody>
+  </table>
+  <div class="foot">Figures are as-published; where a source revises a number, the ledger follows the source. Unofficial community project — not affiliated with Cognition AI.</div>
+</div>
+<script>
+const D = [
+ ["~$17/hr of engineering output","Compiled Health","cost","~430 engineer-hours delivered by 2 researchers in 2 months — '≈ +4 engineers' on a 4-person team","https://devin.ai/customers/compiledhealth"],
+ ["20× cost savings","Nubank","cost","Millions-of-lines ETL migration program; 8–12× engineering efficiency alongside","https://devin.ai/customers/nubank"],
+ ["85% cost reduction on legacy revamps","The Citation Group","cost","ROI-measured rollout; 271 merged PRs @ 80% in 3 months","https://devin.ai/customers/thecitationgroup"],
+ ["50% engineering efficiency gain","The Citation Group","cost","Same ROI study","https://devin.ai/customers/thecitationgroup"],
+ ["~100 PRs/day","Melius","throughput","A small team at sustained high output","https://devin.ai/customers/melius"],
+ ["1,800+ PRs in 6 weeks","Tavrn","throughput","8-person team shipping like 50 — HIPAA-restricted fleet","https://devin.ai/customers/tavrn"],
+ ["50 → 170 weekly backend PRs","Común","throughput","13-person fintech, in four weeks; 3× output","https://devin.ai/customers/comun"],
+ ["80 merged PRs/week · 10,000+ eng-hours saved","Ramp","throughput","Tech-debt paydown run by a small Devin-fluent team","https://devin.ai/customers/ramp"],
+ ["92% of merged PRs authored by Devin","EBANX","throughput","Devin as primary author","https://devin.ai/customers/ebanx"],
+ ["30% more PRs/engineer vs Claude Code alone","Latent Health","throughput","Pharmacy ops; 50 live automations","https://devin.ai/customers/latent"],
+ ["~2× user-story output in 3 months","GE Aerospace","throughput","Capacity-constrained team","https://devin.ai/customers/geaerospace"],
+ ["2× throughput · 4× automation rollout","Rohlik Group","scale","Agent-driven grocery ops incl. warehouse robotics; 50+ MCP integrations","https://devin.ai/customers/rohlikgroup"],
+ ["3× deployment growth in 4 months · 78% merge rate","Endava","scale","2,000+ employees on the platform","https://devin.ai/customers/endava"],
+ ["8–40× time savings on 8 production workloads","AHEAD","throughput","Full productivity in 2 business days","https://devin.ai/customers/ahead"],
+ ["Devin = repo's top contributor (1,500+ PRs)","Gumroad","throughput","Core repo","https://devin.ai/customers/gumroad"],
+ ["3,000 merged PRs · ~20 eng-months saved","Finch","throughput","Feature + maintenance work","https://devin.ai/customers/finch"],
+ ["700+ connectors kept healthy","Airbyte","scale","Connector maintenance fleet","https://devin.ai/customers/airbyte"],
+ ["90% shorter regression cycles","Litera","throughput","Regression testing","https://devin.ai/customers/litera"],
+ ["70% of incidents root-caused before the engineer","AngelList","scale","Incident triage; Snowflake migration 5.2× faster","https://devin.ai/customers/angellist"],
+ ["80% of incidents investigated pre-human","Modal","scale","Incident response","https://devin.ai/customers/modal"],
+ ["65 → 184 PRs reviewed/month (2.8×)","rakko_inc (JP)","community","Devin auto code-review via playbooks + GitHub Actions","https://zenn.dev/rakko_inc/articles/00cc5a5a679971"],
+ ["177 merged PRs · honest ACU-vs-salary ledger","Leverages (JP)","community","14-team rollout; returns depend on task mix","https://zenn.dev/levtech/articles/9c869303820844"],
+ ["~35 min saved per 10 test cases","Skillnote (JP)","community","QA test-design automation","https://zenn.dev/skillnote/articles/5ba429ca249801"],
+ ["1,134 PRs / 344,651 LOC Kotlin / 44 days","Android Bot (Cognition)","scale","One outcome prompt; 88% self-merged; human sent 183 msgs","https://devin.ai/blog/introducing-devin-bots"],
+ ["~50 → 1,900 PRs/week · revenue ×6","SuperJennyStack","scale","~20-bot studio, emoji-only human replies","https://x.com/xujennyc"],
+ ["1M+ LOC in 3 weeks, zero human engineers","Harvey 'Phil'","scale","~30-agent swarm, verified against real Word","https://x.com/gabepereyra"],
+ ["2.5× throughput per GPU","Decagon AutoResearch","throughput","Replayed production traffic on Modal GPUs","https://x.com/DecagonAI/article/2115511110120120437"],
+ ["4.5× PRs merged per message","1,000+ beta testers","scale","Devin Bots beta aggregate","https://fortune.com/2026/11/17/exclusive-cognition-bets-on-devin-bots-coding-agents-in-challenge-to-anthropics-duet-and-openais-dots/"]
+];
+const tb = document.querySelector("#t tbody");
+const q = document.getElementById("q");
+let cat = "";
+function render(){
+  const f = q.value.toLowerCase();
+  tb.innerHTML = D.filter(r =>
+    (!cat || r[2]===cat) &&
+    (!f || r.join(" ").toLowerCase().includes(f))
+  ).map(r =>
+    `<tr><td class="num">${r[0]}</td><td>${r[1]}</td><td>${r[3]}</td><td><span class="tag">${r[2]}</span> <a href="${r[4]}">source</a></td></tr>`
+  ).join("");
+}
+q.addEventListener("input", render);
+document.querySelectorAll(".chip").forEach(c => c.addEventListener("click", () => {
+  document.querySelectorAll(".chip").forEach(x=>x.classList.remove("on"));
+  c.classList.add("on"); cat = c.dataset.f; render();
+}));
+render();
+</script>
+</body>
+</html>
