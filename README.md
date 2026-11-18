@@ -13,25 +13,40 @@
 
 <sub>Curated by [@darega0mae](https://x.com/darega0mae) · Sister tutorials: [build-with-devin](https://github.com/Till3005/build-with-devin) · [Add your project](CONTRIBUTING.md)</sub>
 
+<sub>**11** documented Bot deployments · **33** enterprise case studies · **4** shipped products · **28** tools & integrations · **19** field reports</sub>
+
 </div>
 
 > *Unofficial community project — not affiliated with, endorsed by, or sponsored by Cognition AI. "Devin" is a trademark of Cognition AI. Brand assets are used under the official kit at [devin.ai/brand](https://devin.ai/brand). Official docs: [docs.devin.ai](https://docs.devin.ai).*
 
+**Built with Devin** is a registry of *verified* work: every entry links to a named deployment, a real repository, or a published account — no vaporware, no marketing paraphrases. The bar for inclusion is in [CONTRIBUTING.md](CONTRIBUTING.md).
+
 ## Contents
 
-- [Devin Bots — official product](#devin-bots--official-product)
-- [Products built with Devin](#products-built-with-devin)
-- [Enterprise deployments](#enterprise-deployments)
-- [Bots & surfaces](#bots--surfaces)
+- [Devin Bots — official product](#devin-bots--official-product) — deployments, reusable patterns, results, the 16-template marketplace
+- [Products built with Devin](#products-built-with-devin) — shipped software where Devin wrote the code
+- [Enterprise deployments](#enterprise-deployments) — published customer cases with hard numbers
+- [Bots & surfaces](#bots--surfaces) — Devin inside Discord, Telegram, Slack and other products
 - [SDKs & API tooling](#sdks--api-tooling)
-- [Tooling around Devin](#tooling-around-devin)
-- [Patterns & write-ups](#patterns--write-ups)
+- [Tooling around Devin](#tooling-around-devin) — what the community builds *for* Devin
+- [Patterns & write-ups](#patterns--write-ups) — documented real-world usage
 - [Community media](#community-media)
 - [Official resources](#official-resources)
 
 ## Devin Bots — official product
 
 Launched **November 17, 2026** ([announcement](https://devin.ai/blog/introducing-devin-bots) · [docs](https://docs.devin.ai/work-with-devin/bots) · [Fortune exclusive](https://fortune.com/2026/11/17/exclusive-cognition-bets-on-devin-bots-coding-agents-in-challenge-to-anthropics-duet-and-openais-dots/)). A Bot is a persistent agent that owns an outcome: it plans the work, runs a Devin session for each piece, keeps memory across weeks, and brings you only the decisions that need your judgment. Bots live in Slack and iMessage, run on schedules or event triggers, and hand work between each other through grants. Bots incorporate technology from the Interaction Company (Poke), which Cognition acquired in July 2026.
+
+```mermaid
+flowchart LR
+    A["Outcome prompt<br/><i>own this, not a ticket</i>"] --> B[Devin Bot]
+    B -->|spawns one per task| S[Devin sessions]
+    S --> P[Pull requests]
+    B <-->|accumulates| M[(Memory)]
+    B -->|only when judgment needed| H[Needs you]
+    H -->|your call| B
+    B -.->|grants| B2[Other Bots]
+```
 
 ### Documented deployments
 
@@ -89,6 +104,8 @@ Sixteen ready-made Bots on the [public marketplace](https://devin.ai/bots/templa
 
 **[→ Reproduction guide: how to rebuild every documented Bot](docs/reproducing-devin-bots.md)** — and its expanded tutorial form in the sister repo **[build-with-devin](https://github.com/Till3005/build-with-devin)**
 
+---
+
 ## Products built with Devin
 
 Real software where Devin wrote the code — not demos, shipped work.
@@ -107,6 +124,8 @@ Small, delightful builds — proof the same machinery does fun work too.
 - **[Mobile games on iPhone Duo](https://x.com/xujennyc/status/2121625134029209929)** — Jenny Xu and Nader Dabit jamming on Devin-built mobile games on foldables; Devin [builds and tests Duo apps itself](https://x.com/DevinAI/status/2111161066403123653), including at scale ([dabit3](https://x.com/dabit3/status/2112939574133760190)).
 - **Devin's self-portrait** — Bryan Johnson asked Devin to render how it sees him ([post](https://x.com/bryan_johnson/status/2122818486800191842)).
 - **The CoS whose job a bot took** — A Cognition chief-of-staff's first week: woke up to the new Chief of Staff Bot already doing his job ([post](https://x.com/arirbrown/status/2122789909731872882)).
+
+---
 
 ## Enterprise deployments
 
@@ -150,6 +169,8 @@ Published customer cases with hard numbers ([full index](https://devin.ai/custom
 
 Also on the record: Citi (40,000-developer rollout, 30% tech-vendor spend cut), Itaú, Mercor, Hippo, Mercedes-Benz, Cognizant and Infosys partnerships — see the [customer index](https://devin.ai/customers).
 
+---
+
 ## Bots & surfaces
 
 Putting Devin inside other products and channels.
@@ -160,10 +181,14 @@ Putting Devin inside other products and channels.
 - **[devin-sse-proxy](https://github.com/sotayamashita/devin-sse-proxy)** — Minimal MCP server letting Claude Desktop talk to Devin's SSE transport while passing a Personal API Key.
 - **[devin-flow](https://github.com/xlm/devin-flow)** — Visual editor for event-driven Devin workflows on the Automations API, with session tracking (FastAPI + Vue 3).
 
+---
+
 ## SDKs & API tooling
 
 - **[go-devin](https://github.com/gassara-kys/go-devin)** — Go SDK for the Devin API.
 - **[llm-devin](https://github.com/ftnext/llm-devin)** — Plugin for Simon Willison's `llm` CLI to call the Devin API.
+
+---
 
 ## Tooling around Devin
 
@@ -191,6 +216,8 @@ Things the community builds *for* Devin rather than *with* it.
 - **[Devin Session Exporter](https://github.com/marktwainme/devin-session-exporter)** — Devin Desktop extension that exports local ACP session databases to Markdown/JSON/HTML with filtering and batch export.
 - **[devin-acp-shim](https://github.com/wibus-wee/devin-acp-shim)** — A transparent stdio proxy that fixes Devin CLI's session-level MCP capability negotiation — small, but it unblocks MCP servers for every ACP host.
 
+---
+
 ## Patterns & write-ups
 
 Documented real-world usage.
@@ -215,6 +242,8 @@ Documented real-world usage.
 - **[Devin CLI's context limits in practice](https://qiita.com/ishizakahiroshi/items/cee2a8ea2be18f2ccee3)** — Working notes on fitting AGENTS.md and approval rules inside the 16KB/32KB caps (JP).
 - **[Multi-AI orchestration on free SWE-2](https://qiita.com/ishizakahiroshi/items/72ab801a5f2a8c941b61)** — A design for routing work between agents using Devin CLI's permanently-free SWE-2 tier (JP).
 
+---
+
 ## Community media
 
 - **[Devin Central](https://devincentral.com)** — Fan-run news desk and tutorials covering what Cognition ships and why it matters. Run by Devin Ambassador Trevor Lowing.
@@ -225,6 +254,8 @@ Documented real-world usage.
 - **[Vibe Coded Projects](https://vibedprojects.com/ai-tools/devin)** — 373 apps, tools and sites vibe-coded with Devin.
 - **[Devin 2nd Anniversary Meetup Japan](https://aid.connpass.com/event/412875/)** — Ambassador-run community event marking two years of public Devin ([announcement](https://x.com/kinopee_ai/status/2123019189325848847)).
 - **[Devin's Dinner](https://x.com/MattSchrage/status/2121016484155548124)** — Matt Schrage's invite-only NYC dinner series for founders and engineers working with Devin.
+
+---
 
 ## Official resources
 
@@ -240,6 +271,8 @@ Documented real-world usage.
 - [Devin Automations QuickStart](https://www.youtube.com/watch?v=6xxKtIpgOyE) — official video walkthrough of event/schedule-triggered agent setups, the substrate Bots build on
 - [SWE-2 Flash](https://cognition.com/blog/swe-2-flash) — Cognition's fast coding model: outperforms all American open-weight models on leading evals, 3× SWE-2 speed at 1/5 the price
 - [Devin Apps](https://devin.ai/blog/devin-apps) — live web apps Devin builds and serves from its own machine at a stable URL (internal tools, dashboards, staging copies)
+
+---
 
 ## Contributing
 
