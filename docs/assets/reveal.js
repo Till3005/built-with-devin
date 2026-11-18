@@ -52,6 +52,35 @@
   const statsEl = document.getElementById("hero-stats");
   if (statsEl) cio.observe(statsEl);
 
+  // ---------------- word-mask title entrance ----------------
+  const titleEl0 = document.getElementById("hero-title");
+  if (titleEl0 && !REDUCED) {
+    const words = titleEl0.textContent.trim().split(/\s+/);
+    titleEl0.innerHTML = words.map((w, i) =>
+      `<span class="wm"><i style="--wi:${i}">${w}</i></span>`).join(" ");
+  }
+
+  // ---------------- hero parallax + scroll-velocity skew ----------------
+  const heroWrap = document.querySelector(".hero .wrap");
+  const ditherCv = document.getElementById("dither");
+  let lastY = window.scrollY, vel = 0, velSkew = 0;
+  function onFrame() {
+    const y = window.scrollY;
+    vel += (Math.abs(y - lastY) - vel) * 0.08;
+    lastY = y;
+    if (heroWrap && y < innerHeight * 1.6) {
+      heroWrap.style.transform = `translateY(${y * 0.18}px)`;
+      if (ditherCv) ditherCv.style.transform = `translateY(${y * 0.42}px)`;
+    }
+    const target = Math.min(Math.abs(vel) * 0.05, 1.4) * Math.sign(vel || 0);
+    velSkew += (target - velSkew) * 0.12;
+    document.querySelectorAll(".rows").forEach(r => {
+      r.style.transform = Math.abs(velSkew) > 0.02 ? `skewY(${velSkew * 0.6}deg)` : "";
+    });
+    requestAnimationFrame(onFrame);
+  }
+  if (!REDUCED) requestAnimationFrame(onFrame);
+
   // ---------------- Built ↔ Build mode switching ----------------
   const MODES = {
     built: {
@@ -122,7 +151,9 @@
     const outV = next === "build" ? viewBuilt : viewBuild;
     const inV = next === "build" ? viewBuild : viewBuilt;
 
-    // phase 1: hero sinks, view leaves
+    // phase 1: accent wipe sweeps in; hero sinks, view leaves
+    const wipe = document.getElementById("wipe");
+    if (wipe && !REDUCED) { wipe.classList.remove("go"); void wipe.offsetWidth; wipe.classList.add("go"); }
     hero.classList.add("swap");
     if (outV) outV.classList.add("out");
     if (statsEl) statsEl.classList.add("swap");
