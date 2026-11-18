@@ -163,3 +163,7 @@ footer{border-top:1px solid var(--line);margin-top:48px}
 .brand-text{font:600 17px var(--sans);letter-spacing:-.01em;color:var(--fg)}
 .brand-text strong{font-weight:400;color:var(--mut)}
 .unofficial-chip{font:500 10px var(--mono);letter-spacing:.06em;text-transform:uppercase;color:var(--mut);border:1px solid var(--line);border-radius:999px;padding:2px 8px;margin-left:8px;vertical-align:2px}
+
+/* composite brand: text + official wordmark (brand kit) */
+.brand-mark{height:16px;width:auto;vertical-align:-3px;margin-left:2px}
+[data-theme="dark"] .brand-mark{filter:invert(.94)}
