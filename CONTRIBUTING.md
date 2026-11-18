@@ -19,6 +19,17 @@ Or open an issue titled `Add: <name>` with the same info and I'll list it.
 - **Tooling around Devin** — tools that extend Devin itself.
 - **Community media** — news, tutorials, directories about Devin.
 
+## Quality bar
+
+This is a curated list, not a directory. An entry must be **real and verifiable**:
+
+- **Working substance** — actual code, not a scaffold, empty README, or "coming soon". If it can't be run or read today, it doesn't get listed.
+- **Honest scope** — the description must say what it actually does, not what it aspires to.
+- **Clean standing** — nothing that exists to circumvent Cognition's terms (e.g. repackaging free-plan access as an API product). Tools that extend Devin legitimately are welcome.
+- **Sources** — claims (numbers, outcomes) must come from the project itself or a linked write-up. No vibes.
+
+Maintained is preferred; complete-and-quiet is fine; abandoned stubs get pruned.
+
 ## Rules
 
 - One line per entry, link first. No marketing copy.
