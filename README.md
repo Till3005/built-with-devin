@@ -1,19 +1,17 @@
 <div align="center">
 
 <picture>
-  <source media="(prefers-color-scheme: dark)" srcset="assets/devin-symbol-dark.svg">
-  <img src="assets/devin-symbol.svg" alt="Devin" width="72">
+  <source media="(prefers-color-scheme: dark)" srcset="assets/cover-dark.svg">
+  <img src="assets/cover-light.svg" alt="Built with Devin" width="100%">
 </picture>
 
-# Built with Devin
-
-**A community showcase of things built by or around [Devin](https://devin.ai)** — real products, Bots, integrations, SDKs, and documented patterns for Cognition's AI software engineer.
+<br/>
 
 [![Awesome](https://awesome.re/badge.svg)](https://awesome.re)
 [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](CONTRIBUTING.md)
 [![License: CC0-1.0](https://img.shields.io/badge/License-CC0_1.0-lightgrey.svg)](LICENSE)
 
-Curated by [@darega0mae](https://x.com/darega0mae) · [Add your project](CONTRIBUTING.md)
+<sub>Curated by [@darega0mae](https://x.com/darega0mae) · [Add your project](CONTRIBUTING.md)</sub>
 
 </div>
 
@@ -33,30 +31,56 @@ Curated by [@darega0mae](https://x.com/darega0mae) · [Add your project](CONTRIB
 
 ## Devin Bots — official product
 
-Launched **November 17, 2026** ([announcement](https://devin.ai/blog/introducing-devin-bots), [docs](https://docs.devin.ai/work-with-devin/bots), [Fortune exclusive](https://fortune.com/2026/11/17/exclusive-cognition-bets-on-devin-bots-coding-agents-in-challenge-to-anthropics-duet-and-openais-dots/)). A Bot is a persistent agent that owns an outcome: it plans the work, runs a Devin session for each piece, keeps memory across weeks, and brings you only the decisions that need your judgment. Bots live in Slack and iMessage, run on schedules or event triggers, and hand work between each other through grants. Bots incorporate technology from the Interaction Company (Poke), which Cognition acquired in July 2026.
+Launched **November 17, 2026** ([announcement](https://devin.ai/blog/introducing-devin-bots) · [docs](https://docs.devin.ai/work-with-devin/bots) · [Fortune exclusive](https://fortune.com/2026/11/17/exclusive-cognition-bets-on-devin-bots-coding-agents-in-challenge-to-anthropics-duet-and-openais-dots/)). A Bot is a persistent agent that owns an outcome: it plans the work, runs a Devin session for each piece, keeps memory across weeks, and brings you only the decisions that need your judgment. Bots live in Slack and iMessage, run on schedules or event triggers, and hand work between each other through grants. Bots incorporate technology from the Interaction Company (Poke), which Cognition acquired in July 2026.
 
 ### Documented deployments
 
-- **Android Bot** — Cognition had an iOS app, no Android team. Prompted with *"your job is to product manage the android app"*, the Bot filed its own tickets, ran a Devin session per ticket, and shipped the app to open beta on Google Play in **44 days**: 1,134 PRs merged, 344,651 lines of Kotlin, 2,841 screenshot tests. Its human sent **183 messages total** — 22 days of complete silence — and **88% of PRs were self-merged**. It now owns Android feature parity with iOS.
-- **Layout Bot** — Owns layout-shift regression on the Devin web app. Every 3 hours it builds production `main` on its own machine, simulates first/repeat/delayed-request visits, traces regressions to the introducing PR, and opens fixes with before/after videos. **159 PRs merged in 3 weeks; lag down 70%.**
-- **Super Jenny** — A mobile game studio staffed by ~20 Bots (development, Unity, releases, UI, iOS, Android, device testing) reporting to one orchestrating Bot. The studio's only human answers a consolidated Slack thread 4×/day **with emoji**. Output went from ~50 to **1,900 PRs/week** and studio revenue 6×'d, shipping weekly ([Jenny's own thread](https://x.com/xujennyc)).
-- **Onboarding QA Bot** — Cognition's Walden Yan runs a Bot that QA's **30+ onboarding flows 24/7**: it maintains self-updating Playwright scripts, keeps an agent job queue, and built itself a live board view — "found way more bugs than I would have had patience to discover" ([@walden_yan](https://x.com/walden_yan)).
-- **Harvey "Phil"** — Harvey's Assistant team used ~30 agents to build a **collaborative Word-compatible editor engine** (Rust + TypeScript, 1M+ lines) in three weeks with no human engineers — verified continuously against real Microsoft Word behavior and simulated lawyer negotiations, steered through accumulated memory and decision logs ([Gabe Pereyra's write-up](https://x.com/gabepereyra)).
-- **Decagon bot fleet** — during beta, Decagon teams stood up **50+ shared Bots** in Slack covering on-call, DevEx optimization, and a Chief of Staff Bot that decides when to spawn threads ([@tylerxdev](https://x.com/tylerxdev)).
-- **Bryan Johnson's personal Bots** — a Bot synthesizes years of his biometric and brain-scan data into a single health readout; another texts his mother a daily update on how he's doing ([launch video](https://vimeo.com/1247688199), [@bryan_johnson](https://x.com/bryan_johnson)).
+| Bot | Owner | What it owns | Reported results |
+| --- | --- | --- | --- |
+| **Android Bot** | Cognition | Devin's Android app, end to end | Prompted *"your job is to product manage the android app"* on Sep 28, 2026 — filed its own tickets, ran a Devin session per ticket, shipped to Google Play open beta in **44 days**: 1,134 PRs merged, 344,651 lines of Kotlin, 2,841 screenshot tests. Its human sent **183 messages total** — 22 days of complete silence — and **88% of PRs were self-merged**. Now owns Android/iOS feature parity. |
+| **Layout Bot** | Cognition | Layout-shift regression on the Devin web app | Every 3 hours it builds production `main`, simulates first/repeat/delayed-request visits, traces regressions to the introducing PR, opens fixes with before/after videos. **159 PRs in 3 weeks; lag −70%.** |
+| **Super Jenny** | Jenny Xu (community) | An entire mobile game studio | ~20 Bots (dev, Unity, releases, UI, iOS, Android, device testing) under one orchestrating Bot; the only human answers a consolidated Slack thread 4×/day **with emoji**. ~50 → **1,900 PRs/week**, studio revenue 6×'d, shipping weekly. Published as community template **SuperJennyStack**. ([Jenny's thread](https://x.com/xujennyc)) |
+| **Onboarding QA Bot** | Cognition (Walden Yan) | QA of 30+ onboarding flows, 24/7 | Maintains self-updating Playwright scripts, an agent job queue, and a live board view it built itself — "found way more bugs than I would have had patience to discover." ([@walden_yan](https://x.com/walden_yan)) |
+| **"Phil"** | Harvey | Collaborative Word-compatible editor engine | ~30 agents wrote 1M+ lines of Rust + TypeScript in **3 weeks, no human engineers** — verified continuously against real Microsoft Word behavior and simulated lawyer negotiations; humans steer through memory + decision logs. ([Gabe Pereyra](https://x.com/gabepereyra)) |
+| **Shared bot fleet** | Decagon | On-call, DevEx optimization, thread routing | 50+ shared Bots in Slack during beta; a Chief of Staff Bot decides when and how to spawn threads. ([@tylerxdev](https://x.com/tylerxdev)) |
+| **Personal data Bots** | Bryan Johnson | Health synthesis + family updates | One Bot synthesizes years of biometric and brain-scan data into a single readout; another texts his mother a daily update on how he's doing. ([launch video](https://vimeo.com/1247688199), [@bryan_johnson](https://x.com/bryan_johnson)) |
 
 ### Documented patterns
 
 - **Outcome prompts** — *"You own the Android app now. Keep it at feature parity with iOS."* Give the Bot a goal, not a backlog.
 - **Bot-to-bot handoffs** — grants let a QA Bot find a bug, pull in a Developer Bot to fix it, retest on staging, and have a PM Bot report status to the channel.
 - **Scheduled checks** — a Bot that watches an alerts channel on a cron, owns the check, and opens fixes when it regresses (Layout Bot pattern).
-- **Roll-up reporting** — one supervising Bot collects every subordinate Bot's pending decisions into a single thread (SuperJennyStack pattern — Jenny's ~20-Bot studio stack is published as a community template).
-- Reported results: **1,000+ beta testers** in the weeks before launch; testers merge **4.5× more PRs per message**; Cognition merges 2,000+ PRs/week and 40×'d its merged-PR throughput, with 1,000+ PRs landed from a single autonomous goal. Named early-access customers include **Decagon, Fireworks AI, and Reducto**, with usage up 10× in the first two weeks ([Fortune](https://fortune.com/2026/11/17/exclusive-cognition-bets-on-devin-bots-coding-agents-in-challenge-to-anthropics-duet-and-openais-dots/)).
-- Other documented usage: preemptive issue triage on **Manim** (the open-source math-visualization repo), firmware work, a bot-led team building a **frontier inference engine**, tennis analytics, accounting automation (trybasis: 20h task → 30 min), and swyx's week-long trial handing over AEO, QA, cross-platform porting, personal admin, and video editing ([@swyx](https://x.com/swyx)) — see the [reproduction guide](docs/reproducing-devin-bots.md#reported-usage-beyond-cognition).
+- **Roll-up reporting** — one supervising Bot collects every subordinate Bot's pending decisions into a single thread (SuperJennyStack pattern).
+- **Reference-grounded swarms** — Harvey's lesson: when work can be checked against a reliable reference (real Word behavior), a small team can direct a large swarm safely.
+
+### Reported results
+
+**1,000+ beta testers** in the weeks before launch. Testers merge **4.5× more PRs per message**; Cognition merges 2,000+ PRs/week, 40×'d its merged-PR throughput, and landed **1,000+ PRs from a single autonomous goal**. Named early-access customers include **Decagon, Fireworks AI, and Reducto**, with usage up 10× in the first two weeks ([Fortune](https://fortune.com/2026/11/17/exclusive-cognition-bets-on-devin-bots-coding-agents-in-challenge-to-anthropics-duet-and-openais-dots/)).
+
+Other documented usage: preemptive issue triage on **Manim**, firmware work, a bot-led team building a **frontier inference engine**, tennis analytics, accounting automation (trybasis: 20h → 30 min), swyx's week-long trial (AEO, QA, cross-platform porting, personal admin, video editing — [@swyx](https://x.com/swyx)), and Cognition's research team compressing "weeks into days" ([@silasalberti](https://x.com/silasalberti)). Full write-ups in the [reproduction guide](docs/reproducing-devin-bots.md#reported-usage-beyond-cognition).
 
 ### Official template library
 
-Sixteen ready-made Bots on the [public marketplace](https://devin.ai/bots/templates): Software Factory, Product Engineer, QA Engineer, Anomaly Watcher, Code Reaper, Chief of Staff, Migration Engineer, Latency Optimizer, iOS Engineer, Android Engineer, Internal Tools Engineer, Data Analyst, Devin Coach, Code Health Engineer, Technical Writer, Compliance Engineer — plus community templates like **SuperJennyStack**.
+Sixteen ready-made Bots on the [public marketplace](https://devin.ai/bots/templates), plus community templates like **SuperJennyStack**:
+
+| Template | What it does |
+| --- | --- |
+| Software Factory | Finds bugs, polish, performance and refactoring work in a named product area; opens one small PR each with proof it works |
+| Product Engineer | Takes a ticket or request to a tested PR and through review |
+| QA Engineer | Tests each PR in a real browser and posts the video of pass/fail |
+| Anomaly Watcher | Twice daily scans product + business data for problems no monitor watches |
+| Code Reaper | Removes dead code weekly, one safe PR at a time |
+| Chief of Staff | Watches channels, posts updates, hands work to the team and follows it to done |
+| Migration Engineer | Owns one big migration as small, tracked PRs with a progress surface |
+| Latency Optimizer | Finds the slowest endpoints/jobs/queries; weekly fix PR with before/after speed |
+| iOS Engineer | SwiftUI features to PR + TestFlight build |
+| Android Engineer | Kotlin features to PR + internal-test build |
+| Internal Tools Engineer | Admin panels and internal tools on your stack |
+| Data Analyst | Answers data questions with the chart and the query behind it |
+| Devin Coach | Teaches your team to use Devin well from your own usage data |
+| Code Health Engineer | Stale flags, old dependencies, CVEs → small safe PRs |
+| Technical Writer | Keeps repo wikis and diagrams in step with `main` after merges |
+| Compliance Engineer | Collects control evidence from code, warns when a control lapses |
 
 **[→ Reproduction guide: how to rebuild every documented Bot](docs/reproducing-devin-bots.md)**
 
@@ -73,23 +97,25 @@ Real software where Devin wrote the code — not demos, shipped work.
 
 Published customer cases with hard numbers ([full index](https://devin.ai/customers)):
 
-- **[Nubank](https://devin.ai/customers/nubank)** — Multi-million-line, 8-year-old ETL monolith → sub-modules. 8–12× engineering efficiency, 20× cost savings; fine-tuned Devin cut ~40 min/task to ~10.
-- **[Wayfair](https://devin.ai/customers/wayfair)** — 1,600+ engineers all-in on cloud agents.
-- **[The Access Group](https://devin.ai/customers/access-group)** — 5× engineering output across 250 products and 2,000+ engineers.
-- **[EBANX](https://devin.ai/customers/ebanx)** — **92% of merged PRs are Devin-authored**.
-- **[Gumroad](https://devin.ai/customers/gumroad)** — Devin is the repo's **#1 contributor**: 1,500+ merged PRs.
-- **[Finch](https://devin.ai/customers/finch)** — 3,000 PRs merged, ~20 engineer-months saved.
-- **[Comarch](https://devin.ai/customers/comarch)** — Rebuilding a 20-year-old, 10-million-line ERP system with Devin.
-- **[AngelList](https://devin.ai/customers/angellist)** — Devin root-causes 70% of incidents before an engineer steps in; Redshift→Snowflake migration 5.2× faster.
-- **[Modal](https://devin.ai/customers/modal)** — Devin investigates 80% of incidents before an engineer opens the thread.
-- **[Reducto](https://devin.ai/customers/reducto)** — Devin Oncall is the first responder; engineers rarely get paged.
-- **[Eight Sleep](https://devin.ai/customers/eight-sleep)** — Ships 8× more across the whole company.
-- **[Exa](https://devin.ai/customers/exa)** — Ships to production without engineers ever pulling code locally.
-- **[RV Tech](https://devin.ai/customers/rvtech)** — Rivian × VW joint venture: 10× testing velocity for software-defined vehicles.
-- **[Melius](https://devin.ai/customers/melius)** — ~100 PRs/day from a small team.
-- **[Hamming](https://devin.ai/customers/hamming)** — Devin writes 25% of total code volume.
-- **[Airbyte](https://devin.ai/customers/airbyte)** — Keeps 700+ connectors running.
-- **[Litera](https://devin.ai/customers/litera)** — Regression cycles cut 90%.
+| Company | Deployment | Reported result |
+| --- | --- | --- |
+| [Nubank](https://devin.ai/customers/nubank) | Multi-million-line, 8-year-old ETL monolith → sub-modules | 8–12× engineering efficiency, 20× cost savings; fine-tuned Devin cut ~40 min/task to ~10 |
+| [Wayfair](https://devin.ai/customers/wayfair) | Cloud agents across the org | 1,600+ engineers all-in |
+| [The Access Group](https://devin.ai/customers/access-group) | Devin across 250 products, 2,000+ engineers | 5× engineering output |
+| [EBANX](https://devin.ai/customers/ebanx) | Devin as primary author | **92% of merged PRs are Devin-authored** |
+| [Gumroad](https://devin.ai/customers/gumroad) | Devin on the core repo | Devin is the repo's **#1 contributor**: 1,500+ merged PRs |
+| [Finch](https://devin.ai/customers/finch) | Feature + maintenance work | 3,000 PRs merged, ~20 engineer-months saved |
+| [Comarch](https://devin.ai/customers/comarch) | 20-year-old, 10M-line ERP rebuild | Full system modernization in progress |
+| [AngelList](https://devin.ai/customers/angellist) | Incident triage + data migration | Devin root-causes 70% of incidents pre-engineer; Redshift→Snowflake 5.2× faster |
+| [Modal](https://devin.ai/customers/modal) | Incident response | 80% of incidents investigated before an engineer opens the thread |
+| [Reducto](https://devin.ai/customers/reducto) | Devin Oncall as first responder | Engineers rarely get paged |
+| [Eight Sleep](https://devin.ai/customers/eight-sleep) | Devin across the company | 8× more shipped |
+| [Exa](https://devin.ai/customers/exa) | End-to-end shipping | Production ships without engineers ever pulling code locally |
+| [RV Tech](https://devin.ai/customers/rvtech) | Rivian × VW JV, software-defined vehicles | 10× testing velocity |
+| [Melius](https://devin.ai/customers/melius) | High-throughput small team | ~100 PRs/day |
+| [Hamming](https://devin.ai/customers/hamming) | Devin on the codebase | 25% of total code volume |
+| [Airbyte](https://devin.ai/customers/airbyte) | Connector maintenance | Keeps 700+ connectors running |
+| [Litera](https://devin.ai/customers/litera) | Regression testing | Regression cycles cut 90% |
 
 Also on the record: Citi (40,000-developer rollout, 30% tech-vendor spend cut), Ramp (tens of thousands of hours of tech debt), Itaú, Tavrn (HIPAA-constrained), Crosby (AI-native law firm), Mercedes-Benz, Cognizant and Infosys partnerships — see the [customer index](https://devin.ai/customers).
 
