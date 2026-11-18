@@ -9,7 +9,7 @@
   host.prepend(cv);
   const ctx = cv.getContext("2d");
 
-  const CELL = 3;
+  const CELL = 2;
   let W = 0, H = 0, img, sprites = [], frame = 0, running = true;
 
   const B = [0,32,8,40,2,34,10,42,48,16,56,24,50,18,58,26,12,44,4,36,14,46,6,38,
