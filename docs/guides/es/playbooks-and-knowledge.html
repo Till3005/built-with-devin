@@ -71,6 +71,9 @@
 </code></pre>
 <p>Las malas entradas son ensayos, deseos ("write good tests") o secretos (nunca pongas credenciales en knowledge — usa el secrets store).</p>
 <h2>Paso 3 — Playbooks para trabajo repetible</h2>
+<blockquote>
+<p><strong>Nota de plataforma (nov 2026):</strong> Los Playbooks están migrando a <strong>Skills</strong> — las cuentas migran de una en una y las nuevas solo tienen Skills (cada playbook se convierte en un skill con el mismo alcance org/enterprise). Todo lo de este paso se aplica igual a los skills: un skill es el mismo procedimiento nombrado e invocable.</p>
+</blockquote>
 <p>Un playbook empaqueta un procedimiento para que cualquier sesión (o Bot) lo ejecute igual. Estructura que funciona:</p>
 <pre><code class="language-markdown"># &lt;Verbo + objeto&gt; — p. ej. &quot;Cut a release&quot;
 ## When to use
