@@ -1,10 +1,11 @@
 /* built-with-devin — devin.ai design language, rebuilt from production tokens */
-@font-face{font-family:"Skandia";src:url(fonts/SkandiaSN_Regular-s.p.0bu82vxlst9jh.woff2) format("woff2");font-weight:400;font-display:swap}
-@font-face{font-family:"Skandia";src:url(fonts/SkandiaSN_Medium-s.p.18ryplsotju00.woff2) format("woff2");font-weight:500;font-display:swap}
-@font-face{font-family:"Skandia";src:url(fonts/SkandiaSN_Bold-s.p.0vvtwhpin0s28.woff2) format("woff2");font-weight:700;font-display:swap}
-@font-face{font-family:"BureauSerif";src:url(fonts/STKBureauSerif_Book-s.p.3jrfzh95ybjbw.woff2) format("woff2");font-weight:400;font-display:swap}
-@font-face{font-family:"GeistMono";src:url(fonts/GeistMono_Regular-s.p.2tw7uc71e2v7r.woff2) format("woff2");font-weight:400;font-display:swap}
-@font-face{font-family:"Inter";src:url(fonts/Inter_latin.p.45535valc9rzk.woff2) format("woff2");font-weight:400;font-display:swap}
+@font-face{font-family:"Inter";src:url(fonts/Inter_Regular.woff2) format("woff2");font-weight:400;font-display:swap}
+@font-face{font-family:"Inter";src:url(fonts/Inter_500.woff2) format("woff2");font-weight:500;font-display:swap}
+@font-face{font-family:"Inter";src:url(fonts/Inter_600.woff2) format("woff2");font-weight:600;font-display:swap}
+@font-face{font-family:"Inter";src:url(fonts/Inter_700.woff2) format("woff2");font-weight:700;font-display:swap}
+@font-face{font-family:"Newsreader";src:url(fonts/newsreader-latin-400.woff2) format("woff2");font-weight:400;font-display:swap}
+@font-face{font-family:"Newsreader";src:url(fonts/newsreader-latin-500.woff2) format("woff2");font-weight:500;font-display:swap}
+@font-face{font-family:"GeistMono";src:url(fonts/GeistMono_Regular.woff2) format("woff2");font-weight:400;font-display:swap}
 
 :root{
   --bg-page:252 252 252;--bg-elevated:255 255 255;--bg-wash:248 248 248;
@@ -26,8 +27,8 @@
   --fg:rgb(var(--text-primary));--mut:rgb(var(--text-secondary));
   --line:rgb(var(--border-primary));--line2:rgb(var(--border-secondary));
   --acc:rgb(var(--accent));--acc-tint:rgb(var(--bg-accent-secondary));
-  --serif:"BureauSerif",Georgia,serif;
-  --sans:"Skandia",system-ui,-apple-system,sans-serif;
+  --serif:"Newsreader",Georgia,serif;
+  --sans:"Inter",system-ui,-apple-system,sans-serif;
   --mono:"GeistMono",ui-monospace,"SF Mono",Menlo,monospace;
   --ease-out:cubic-bezier(.16,1,.3,1);
 }
@@ -157,3 +158,8 @@ footer{border-top:1px solid var(--line);margin-top:48px}
   .view-in,#view-built,#view-build{animation:none;transition:none}
   html{scroll-behavior:auto}
 }
+
+/* community-first branding */
+.brand-text{font:600 17px var(--sans);letter-spacing:-.01em;color:var(--fg)}
+.brand-text strong{font-weight:400;color:var(--mut)}
+.unofficial-chip{font:500 10px var(--mono);letter-spacing:.06em;text-transform:uppercase;color:var(--mut);border:1px solid var(--line);border-radius:999px;padding:2px 8px;margin-left:8px;vertical-align:2px}
