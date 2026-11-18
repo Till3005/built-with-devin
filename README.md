@@ -47,6 +47,7 @@ Launched **November 17, 2026** ([announcement](https://devin.ai/blog/introducing
 - **Scheduled checks** — a Bot that watches an alerts channel on a cron, owns the check, and opens fixes when it regresses (Layout Bot pattern).
 - **Roll-up reporting** — one supervising Bot collects every subordinate Bot's pending decisions into a single thread (SuperJennyStack pattern — Jenny's ~20-Bot studio stack is published as a community template).
 - Reported results: beta testers merge **4.5× more PRs per message**; Cognition merges 2,000+ PRs/week.
+- Other documented usage: open-source issue triage on a math-visualization repo, firmware work, synthesis of years of personal health data, tennis analytics, and accounting automation (trybasis: 20h task → 30 min) — see the [reproduction guide](docs/reproducing-devin-bots.md#reported-usage-beyond-cognition).
 
 ### Official template library
 

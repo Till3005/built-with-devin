@@ -82,6 +82,18 @@ Each [official template](https://devin.ai/bots/templates) encodes one reproducib
 | Technical Writer | Keeps repo wikis/diagrams in step with `main` after merges | Per merge |
 | Compliance Engineer | Collects control evidence from code, warns when a control lapses | Continuous |
 
+## Reported usage beyond Cognition
+
+From the [launch video](https://x.com/cognition/status/2122737511684587551) and early-user reports ([daily.dev summary](https://daily.dev/posts/devin-bots-want-to-be-your-agent-manager-not-your-ai-employee-hhpjo94uh)):
+
+- **Open-source repo maintenance** — a Bot preemptively triaging issues on a math-visualization open-source project, so the maintainer spends time on the code that matters.
+- **Firmware / hardware** — Bots owning firmware work so the hardware builder "stays close to the things they love".
+- **Personal health synthesis** — a Bot analyzing years of personal health data (incl. brain scans) into one readout.
+- **Tennis analytics** — a Bot gathering scattered tennis data into performance insight.
+- **Accounting automation** — trybasis: agents cutting a 20-hour accounting task to ~30 minutes.
+- **Beta-reported jobs** — answer-engine optimization (AEO), QA, cross-platform porting, personal admin automation, video editing; Cognition cites "20-day agent threads" as a real usage pattern.
+- **Dogfooding note** — per Cognition's Russell Kaplan, the Android Bot autonomously caught and fixed an iOS/web-side regression caused by a breaking change; Bots have even built other Bots inside the company.
+
 ## Operating tips (what the successful ones share)
 
 - **Outcome > task:** "own checkout" not "fix the checkout button". The Bot re-plans; a task ends.
