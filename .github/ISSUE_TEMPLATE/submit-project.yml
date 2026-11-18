@@ -1,0 +1,42 @@
+name: Submit a project
+description: Suggest an entry for the built-with-devin registry
+title: "Add: "
+labels: [submission]
+body:
+  - type: input
+    id: name
+    attributes:
+      label: Project name
+      description: The product, bot, tool or deployment to list.
+    validations:
+      required: true
+  - type: input
+    id: link
+    attributes:
+      label: Link
+      description: Repo, demo, post, or session transcript where the project can be verified.
+    validations:
+      required: true
+  - type: dropdown
+    id: section
+    attributes:
+      label: Section
+      options:
+        - Products built with Devin
+        - Bots & integrations
+        - Tooling around Devin
+        - Community media
+    validations:
+      required: true
+  - type: textarea
+    id: description
+    attributes:
+      label: One-sentence description
+      description: What it is and how Devin was involved — honest scope, no aspirations.
+    validations:
+      required: true
+  - type: textarea
+    id: evidence
+    attributes:
+      label: Evidence (optional)
+      description: Anything that proves it's real — screenshots, numbers, a second source.
