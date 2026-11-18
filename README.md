@@ -45,8 +45,14 @@ Launched **November 17, 2026** ([announcement](https://devin.ai/blog/introducing
 - **Outcome prompts** — *"You own the Android app now. Keep it at feature parity with iOS."* Give the Bot a goal, not a backlog.
 - **Bot-to-bot handoffs** — grants let a QA Bot find a bug, pull in a Developer Bot to fix it, retest on staging, and have a PM Bot report status to the channel.
 - **Scheduled checks** — a Bot that watches an alerts channel on a cron, owns the check, and opens fixes when it regresses (Layout Bot pattern).
-- **Roll-up reporting** — one supervising Bot collects every subordinate Bot's pending decisions into a single thread (Super Jenny pattern).
+- **Roll-up reporting** — one supervising Bot collects every subordinate Bot's pending decisions into a single thread (SuperJennyStack pattern — Jenny's ~20-Bot studio stack is published as a community template).
 - Reported results: beta testers merge **4.5× more PRs per message**; Cognition merges 2,000+ PRs/week.
+
+### Official template library
+
+Sixteen ready-made Bots on the [public marketplace](https://devin.ai/bots/templates): Software Factory, Product Engineer, QA Engineer, Anomaly Watcher, Code Reaper, Chief of Staff, Migration Engineer, Latency Optimizer, iOS Engineer, Android Engineer, Internal Tools Engineer, Data Analyst, Devin Coach, Code Health Engineer, Technical Writer, Compliance Engineer — plus community templates like **SuperJennyStack**.
+
+**[→ Reproduction guide: how to rebuild every documented Bot](docs/reproducing-devin-bots.md)**
 
 ## Products built with Devin
 
