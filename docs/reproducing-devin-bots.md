@@ -84,15 +84,22 @@ Each [official template](https://devin.ai/bots/templates) encodes one reproducib
 
 ## Reported usage beyond Cognition
 
+Named beta deployments (all reported Nov 17–18, 2026, day-one of launch):
+
+- **Harvey — "Phil"** ([@gabepereyra's X article](https://x.com/gabepereyra)) — Harvey's Assistant team ran a hierarchical team of ~30 agents that wrote a collaborative, Word-compatible editor engine in Rust + TypeScript (1M+ lines) in three weeks with no human engineers. Two reproduction lessons: (1) give the swarm a *reliable reference* — they checked continuously against real Microsoft Word behavior and simulated lawyer negotiations; (2) humans steer through the Bot's accumulated memory and decision logs, not by reading the code.
+- **Decagon — shared Bot fleet** ([@tylerxdev](https://x.com/tylerxdev)) — 50+ shared Bots in Slack after a few weeks of early access: on-call, DevEx optimization, and a Chief of Staff Bot the team messages instead of managing threads by hand. Lesson: Bots are multiplayer — one shared Bot carries the team's accumulated context, which single-user sessions can't.
+- **Bryan Johnson — personal data Bots** ([@bryan_johnson](https://x.com/bryan_johnson), [launch video](https://x.com/cognition/status/2122737511684587551)) — one Bot synthesizes years of biometric data (incl. brain scans) into a single health readout; another texts his mother a daily update on how he's doing. Lesson: Bots are not limited to codebases — "owning an outcome" extends to personal data pipelines and recurring outbound comms.
+- **swyx — generalist trial** ([@swyx](https://x.com/swyx)) — a week of handing over answer-engine optimization, QA, cross-platform app porting, personal admin automation, and video editing. His read: don't sell "AI employees"; sell the abstraction level above single tasks — managers that own outcomes.
+
 From the [launch video](https://x.com/cognition/status/2122737511684587551) and early-user reports ([daily.dev summary](https://daily.dev/posts/devin-bots-want-to-be-your-agent-manager-not-your-ai-employee-hhpjo94uh)):
 
-- **Open-source repo maintenance** — a Bot preemptively triaging issues on a math-visualization open-source project, so the maintainer spends time on the code that matters.
+- **Open-source repo maintenance** — a Bot preemptively triaging issues on Manim, the math-visualization open-source project, so the maintainer spends time on the code that matters.
 - **Firmware / hardware** — Bots owning firmware work so the hardware builder "stays close to the things they love".
-- **Personal health synthesis** — a Bot analyzing years of personal health data (incl. brain scans) into one readout.
 - **Tennis analytics** — a Bot gathering scattered tennis data into performance insight.
 - **Accounting automation** — trybasis: agents cutting a 20-hour accounting task to ~30 minutes.
-- **Beta-reported jobs** — answer-engine optimization (AEO), QA, cross-platform porting, personal admin automation, video editing; Cognition cites "20-day agent threads" as a real usage pattern.
-- **Dogfooding note** — per Cognition's Russell Kaplan, the Android Bot autonomously caught and fixed an iOS/web-side regression caused by a breaking change; Bots have even built other Bots inside the company.
+- **Inference engineering** — Cognition's Walden Yan reports a bot-led effort that built a frontier inference engine: 40×'d merged-PR throughput, 1,000+ PRs from one autonomous goal ([@walden_yan](https://x.com/walden_yan)).
+- **Research acceleration** — Cognition's research team organically moved day-to-day work onto Bots; latest sprint "compressed weeks into days" ([@silasalberti](https://x.com/silasalberti)).
+- **Dogfooding note** — per Cognition's Russell Kaplan, the Android Bot autonomously caught and fixed an iOS/web-side regression caused by a breaking change; Bots have even built other Bots inside the company ("Bots built Bots").
 
 ## Operating tips (what the successful ones share)
 
