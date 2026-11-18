@@ -76,7 +76,7 @@ def render(md_path: Path, out_path: Path, rel: str, lang: str, alt: str, mdsrc: 
     out_path.write_text(PAGE.format(lang=lang, title=title, desc=desc, rel=rel, body=body, alt=alt, mdsrc=mdsrc), encoding="utf-8")
     return title
 
-LANG_LABEL = {"zh": "中文", "ja": "日本語", "pt": "Português", "es": "Español", "de": "Deutsch"}
+LANG_LABEL = {"zh": "中文", "ja": "日本語", "pt": "Português"}
 
 def main():
     en_files = sorted(p for p in SRC.glob("*.md"))
@@ -99,7 +99,7 @@ def main():
     body = f'<h1>build-with-devin — guides</h1>\n<div class="rows">{lis}\n</div>'
     title = "Guides"
     (OUT / "index.html").write_text(PAGE.format(
-        lang="en", title=title, desc="16 field-tested Devin guides — English, 中文, 日本語, Português, Español and Deutsch editions.",
+        lang="en", title=title, desc="16 field-tested Devin guides — English, 中文, 日本語 and Português editions.",
         rel="../", body=body, alt="", mdsrc="../"), encoding="utf-8")
     print(f"rendered {len(en_files)} guides + mirrors → docs/guides/")
 

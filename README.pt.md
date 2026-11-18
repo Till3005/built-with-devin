@@ -15,7 +15,7 @@
 
 <sub>**12** implantações de Bot documentadas · **35** casos corporativos · **6** produtos lançados · **29** ferramentas e integrações · **21** relatos de campo</sub>
 
-<sub>[English](README.md) · [简体中文](README.zh.md) · [日本語](README.ja.md) · Português · [Español](README.es.md) · [Deutsch](README.de.md)</sub>
+<sub>[English](README.md) · [简体中文](README.zh.md) · [日本語](README.ja.md) · Português</sub>
 
 </div>
 

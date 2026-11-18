@@ -12,7 +12,7 @@ Usage: python3 tools/sync.py [--write]
 import re, sys, pathlib
 
 ROOT = pathlib.Path(__file__).resolve().parent.parent
-LANGS = ['zh', 'de', 'es', 'ja', 'pt']
+LANGS = ['zh', 'ja', 'pt']
 
 def section(lines, start_pat, end_pat=r'^#{2,3} '):
     i = next(i for i, l in enumerate(lines) if re.match(start_pat, l))

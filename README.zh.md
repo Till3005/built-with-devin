@@ -15,7 +15,7 @@
 
 <sub>**12** 个有据可查的 Bot 部署 · **35** 个企业案例 · **6** 个已发布产品 · **29** 个工具与集成 · **21** 篇实战报告</sub>
 
-<sub>[English](README.md) · 简体中文 · [日本語](README.ja.md) · [Português](README.pt.md) · [Español](README.es.md) · [Deutsch](README.de.md)</sub>
+<sub>[English](README.md) · 简体中文 · [日本語](README.ja.md) · [Português](README.pt.md)</sub>
 
 </div>
 

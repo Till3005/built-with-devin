@@ -1,11 +1,11 @@
 // Language runtime: applies I18N dict to [data-i18n] nodes; persists choice.
 (function(){
-  const SUPPORTED=['en','zh','ja','pt','es','de'];
-  const NAMES={en:'EN',zh:'中文',ja:'日本語',pt:'PT',es:'ES',de:'DE'};
+  const SUPPORTED=['en','zh','ja','pt'];
+  const NAMES={en:'EN',zh:'中文',ja:'日本語',pt:'PT'};
   function cur(){ const l=localStorage.getItem('bwd-lang')||'en'; return SUPPORTED.includes(l)?l:'en'; }
   function apply(lang){
     const dict=I18N[lang]||{};
-    document.documentElement.lang={zh:'zh-CN',ja:'ja',pt:'pt-BR',es:'es',de:'de',en:'en'}[lang]||lang;
+    document.documentElement.lang={zh:'zh-CN',ja:'ja',pt:'pt-BR',en:'en'}[lang]||lang;
     document.querySelectorAll('[data-i18n]').forEach(el=>{
       const k=el.dataset.i18n;
       if(!(k in dict)) return;  // en fallback: restore original? store orig once
@@ -29,7 +29,7 @@
     // point guide links at the localized mirror (guides/<lang>/...)
     document.querySelectorAll('a[href^="guides/"]').forEach(a=>{
       const h=a.getAttribute('href');
-      const m=h.match(/^guides\/(?:(?:en|zh|ja|pt|es|de)\/)?(.+\.html)$/);
+      const m=h.match(/^guides\/(?:(?:en|zh|ja|pt)\/)?(.+\.html)$/);
       if(!m) return;
       a.setAttribute('href', lang==='en' ? `guides/${m[1]}` : `guides/${lang}/${m[1]}`);
     });

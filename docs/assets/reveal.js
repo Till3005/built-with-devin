@@ -71,7 +71,7 @@
     build: {
       eyebrow: "The sister repo · 15 field-tested guides",
       title: "Learn to build with Devin.",
-      lede: "Every pattern reverse-engineered from a named deployment — the four bot recipes, the platform tracks, and the workflows the numbers came from. In six languages.",
+      lede: "Every pattern reverse-engineered from a named deployment — the four bot recipes, the platform tracks, and the workflows the numbers came from. In four languages.",
       stats: [["15", "Guides"], ["3", "Tracks"], ["6", "Languages"], ["16", "Official bot templates"], ["40+", "Cookbook recipes"]],
       repo: "https://github.com/Till3005/build-with-devin",
       cta: "Tutorials repo",

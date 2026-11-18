@@ -15,7 +15,7 @@
 
 <sub>**12** documented Bot deployments · **35** enterprise case studies · **6** shipped products · **29** tools & integrations · **21** field reports</sub>
 
-<sub>English · [简体中文](README.zh.md) · [日本語](README.ja.md) · [Português](README.pt.md) · [Español](README.es.md) · [Deutsch](README.de.md)</sub>
+<sub>English · [简体中文](README.zh.md) · [日本語](README.ja.md) · [Português](README.pt.md)</sub>
 
 </div>
 
