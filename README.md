@@ -1,8 +1,8 @@
 <div align="center">
 
 <picture>
-  <source media="(prefers-color-scheme: dark)" srcset="assets/cover-dark.svg">
-  <img src="assets/cover-light.svg" alt="Built with Devin" width="100%">
+  <source media="(prefers-color-scheme: dark)" srcset="assets/cover-dark.png">
+  <img src="assets/cover-light.png" alt="Built with Devin" width="100%">
 </picture>
 
 <br/>

@@ -1,0 +1,41 @@
+<!doctype html>
+<html data-theme="light"><head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="assets/site.css">
+<style>
+  html,body{margin:0;width:1280px;height:640px;overflow:hidden}
+  body{display:flex;align-items:center;justify-content:space-between;padding:0 90px;box-sizing:border-box;background:rgb(var(--bg-page))}
+  .cv-left{display:flex;flex-direction:column;gap:22px}
+  .cv-eyebrow{font:500 15px var(--mono);letter-spacing:.14em;text-transform:uppercase;color:rgb(var(--ink-3))}
+  .cv-brand{display:flex;align-items:center;gap:14px}
+  .cv-brand .bt{font:600 46px var(--sans);letter-spacing:-.02em;color:rgb(var(--ink))}
+  .cv-brand img{height:38px}
+  .cv-chip{font:600 13px var(--mono);letter-spacing:.1em;text-transform:uppercase;color:rgb(var(--ink-3));border:1px solid rgb(var(--line));border-radius:999px;padding:4px 10px}
+  .cv-tag{font:400 22px var(--sans);color:rgb(var(--ink-2));max-width:560px;line-height:1.45}
+  .cv-sub{font:400 15px var(--mono);color:rgb(var(--ink-3))}
+  .cv-right{width:430px;height:430px}
+  #cv-scene{width:100%;height:100%}
+  [data-theme="dark"] .cv-brand img{filter:invert(.94)}
+</style>
+</head><body>
+<div class="cv-left">
+  <div class="cv-eyebrow" id="eyebrow">Community-made · unofficial</div>
+  <div class="cv-brand"><span class="bt" id="bt">built-with-</span><img src="assets/brand/Devin_Primary_Logo.svg" alt="Devin"><span class="cv-chip">unofficial</span></div>
+  <div class="cv-tag" id="tag">Everything built with Devin, verified — deployments, products, tools, economics.</div>
+  <div class="cv-sub" id="sub">github.com/Till3005/built-with-devin</div>
+</div>
+<div class="cv-right"><div id="cv-scene"><div class="hero-media"><div class="media-panel" style="width:430px;height:430px"></div></div></div></div>
+<script src="https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.min.js"></script>
+<script type="importmap">{"imports":{"three":"https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js","three/addons/":"https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/"}}</script>
+<script>
+  const q=new URLSearchParams(location.search);
+  if(q.has('dark'))document.documentElement.dataset.theme='dark';
+  if(q.get('repo')==='build'){
+    bt.textContent='build-with-';
+    tag.textContent='15 field-tested guides to build on Devin — bots, platform, workflows.';
+    sub.textContent='github.com/Till3005/build-with-devin';
+    eyebrow.textContent='Community-made · unofficial · sister to built-with-devin';
+  }
+</script>
+<script type="module" src="assets/hero3d.js"></script>
+</body></html>
