@@ -11,7 +11,7 @@
 [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](CONTRIBUTING.md)
 [![License: CC0-1.0](https://img.shields.io/badge/License-CC0_1.0-lightgrey.svg)](LICENSE)
 
-<sub>Curated by [@darega0mae](https://x.com/darega0mae) · [Add your project](CONTRIBUTING.md)</sub>
+<sub>Curated by [@darega0mae](https://x.com/darega0mae) · Sister tutorials: [build-with-devin](https://github.com/Till3005/build-with-devin) · [Add your project](CONTRIBUTING.md)</sub>
 
 </div>
 
@@ -82,7 +82,7 @@ Sixteen ready-made Bots on the [public marketplace](https://devin.ai/bots/templa
 | Technical Writer | Keeps repo wikis and diagrams in step with `main` after merges |
 | Compliance Engineer | Collects control evidence from code, warns when a control lapses |
 
-**[→ Reproduction guide: how to rebuild every documented Bot](docs/reproducing-devin-bots.md)**
+**[→ Reproduction guide: how to rebuild every documented Bot](docs/reproducing-devin-bots.md)** — and its expanded tutorial form in the sister repo **[build-with-devin](https://github.com/Till3005/build-with-devin)**
 
 ## Products built with Devin
 
