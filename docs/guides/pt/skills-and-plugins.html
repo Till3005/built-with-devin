@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Guia 17 — Skills e plugins: a camada de empacotamento pós-playbook — build-with-devin guides</title>
+<meta name="description" content="Guia 17 — Skills e plugins: a camada de empacotamento pós-playbook">
+<link rel="icon" href="../../assets/brand/Devin_Symbol.svg" type="image/svg+xml">
+<link rel="stylesheet" href="../../assets/site.css">
+<link rel="stylesheet" href="../../assets/guides.css">
+</head>
+<body>
+<a class="skip" href="#guide">Skip to content</a>
+<nav><div class="wrap nav-inner">
+  <div class="nav-left">
+    <a class="brand" href="../../index.html" aria-label="Built with Devin">
+      <span class="brand-text">built<strong>-with-</strong></span><img class="brand-mark" src="../../assets/brand/Devin_Primary_Logo.svg" alt="Devin" height="16"><span class="unofficial-chip">unofficial</span>
+    </a>
+  </div>
+  <div class="nav-side">
+    <div class="mode-toggle" role="tablist" aria-label="Site section">
+      <button class="mode-btn" data-mode="built" role="tab" aria-selected="false" onclick="location.href='../../index.html'">Built</button>
+      <button class="mode-btn on" data-mode="build" role="tab" aria-selected="true" onclick="location.href='../../index.html#build'">Build</button>
+      <span class="mode-pill" aria-hidden="true"></span>
+    </div>
+    <a class="cta" href="https://github.com/Till3005/build-with-devin/blob/main/guides/pt/skills-and-plugins.md">GitHub</a>
+  </div>
+</div></nav>
+<main>
+<article class="guide wrap" id="guide">
+  <p class="guide-crumb"><a href="../../index.html#build">← Guides</a> · <a href="../skills-and-plugins.html">English</a> · <a href="../zh/skills-and-plugins.html">中文</a> · <a href="../ja/skills-and-plugins.html">日本語</a></p>
+<h1>Guia 17 — Skills e plugins: a camada de empacotamento pós-playbook</h1>
+<p><strong>Objetivo:</strong> codificar os procedimentos repetíveis da sua org como <code>SKILL.md</code> para que toda sessão e Bot os siga — e empacotar/compartilhar entre repositórios com plugins.
+<strong>Nível:</strong> intermediário · a camada que substituiu os playbooks
+<strong>Fontes:</strong> <a href="https://docs.devin.ai/product-guides/skills">docs.devin.ai/product-guides/skills</a> · <a href="https://docs.devin.ai/release-notes/overview">release notes</a> · complementa o <a href="playbooks-and-knowledge.html">Guia 9</a></p>
+<h2>Por que skills são a camada que importa agora</h2>
+<p>Os Playbooks estão migrando para Skills: as contas migram uma a uma e contas novas (a partir de 24-out-2026) só têm Skills — cada playbook vira um skill com o mesmo escopo org/enterprise. Skills também seguem o padrão aberto <strong>Agent Skills</strong>, então os mesmos arquivos funcionam em outros agentes de código. Tudo que você sabia sobre escrever playbooks continua valendo; o que mudou é o formato do arquivo e o modelo de descoberta.</p>
+<table>
+<thead>
+<tr>
+<th>Artefato</th>
+<th>Onde vive</th>
+<th>Melhor uso</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Knowledge</td>
+<td>Página Customize / notas do repo</td>
+<td>Contexto permanente — fatos que Devin não consegue saber</td>
+</tr>
+<tr>
+<td>Bot instructions</td>
+<td>O Bot</td>
+<td>Regra do cargo para um "funcionário"</td>
+</tr>
+<tr>
+<td>Skill</td>
+<td><code>SKILL.md</code> no repo, ou num plugin</td>
+<td>Um procedimento nomeado e invocável</td>
+</tr>
+<tr>
+<td>Rule</td>
+<td>Plugin</td>
+<td>Restrição permanente ("never force-push")</td>
+</tr>
+<tr>
+<td>Hook</td>
+<td>Plugin</td>
+<td>Execução determinística em torno de chamadas de ferramenta</td>
+</tr>
+</tbody>
+</table>
+<h2>Passo 1 — Onde os skills ficam</h2>
+<p>Duas fontes de descoberta, ambas automáticas:</p>
+<ol>
+<li><strong>Repositórios</strong> — faça commit de <code>SKILL.md</code>; Devin varre os dez caminhos de vendor em todo repo conectado: <code>.agents/skills/</code> (recomendado), <code>.devin/skills/</code>, <code>.github/skills/</code>, <code>.claude/skills/</code>, <code>.cognition/skills/</code>, <code>.windsurf/skills/</code>, <code>.cursor/skills/</code>, <code>.codex/skills/</code>, <code>.codeium/skills/</code>, <code>.kiro/skills/</code>. Skills de repo seguem a versão da branch — um clone no meio da sessão é varrido ao terminar.</li>
+<li><strong>Plugins</strong> — um plugin empacota skills + rules + MCP servers + hooks, instalado no escopo personal, organization ou enterprise; seus skills entram no contexto antes de qualquer clone.</li>
+</ol>
+<h2>Passo 2 — O contrato do SKILL.md</h2>
+<pre><code class="language-markdown">---
+name: test-before-pr
+description: Run the dev server and verify pages before any frontend PR.
+argument-hint: &lt;environment&gt;
+triggers: [&quot;user&quot;]
+allowed-tools: read, grep, glob
+permissions:
+  allow: [&quot;Exec(npm run *)&quot;]
+---
+
+## Setup
+1. `docker-compose up -d postgres` &amp;&amp; `npm run dev`
+## Verify
+1. Open each page touched by the diff
+2. Screenshot at 1280px and 375px
+</code></pre>
+<p>Campos de frontmatter que mudam o comportamento:</p>
+<ul>
+<li><strong><code>description</code></strong> — a única coisa que Devin vê no início da sessão; decide a invocação automática. Escreva como gatilho ("verify pages before any frontend PR"), não como resumo.</li>
+<li><strong><code>triggers: ["user"]</code></strong> — desativa a invocação automática; use em tudo que é destrutivo (deploys, migrations).</li>
+<li><strong><code>argument-hint</code></strong> + <code>$ARGUMENTS</code>/<code>$1</code> — parametrização: <code>@skills:deploy staging</code>.</li>
+<li><strong><code>allowed-tools</code> / <code>permissions</code></strong> — pré-aprova ou bloqueia ferramentas enquanto o skill está ativo.</li>
+</ul>
+<h2>Passo 3 — Três caminhos de invocação</h2>
+<ul>
+<li><strong>Automática:</strong> Devin casa a tarefa com a <code>description</code> e carrega o corpo no contexto pelo resto da sessão.</li>
+<li><strong>Explícita:</strong> <code>@skills:&lt;nome&gt; [args]</code> numa sessão ou mensagem ao Bot — o jeito confiável de compartilhar um procedimento com o time.</li>
+<li><strong>Sugerida:</strong> depois que Devin aprende algo (como subir sua stack), ele propõe um <code>SKILL.md</code> na timeline da sessão com botão <strong>Create PR</strong> — aceite. É assim que bibliotecas de skills crescem sem sessões de escrita.</li>
+</ul>
+<h2>Passo 4 — Crescendo a biblioteca</h2>
+<ul>
+<li>Rode duas sessões em paralelo contra um skill novo; as lacunas aparecem em minutos.</li>
+<li>Quando você corrige Devin no meio da sessão, adicione a correção ao skill — a próxima sessão já começa mais esperta.</li>
+<li>Promova skills provados num repo para um plugin da org — todo repo passa a tê-los sem copiar.</li>
+</ul>
+<h2>Checklist de verificação</h2>
+<ul>
+<li>[ ] Uma sessão nova lista seu skill pelo nome (name + description carregam no início)</li>
+<li>[ ] <code>@skills:&lt;nome&gt;</code> executa o procedimento literalmente, com argumentos substituídos</li>
+<li>[ ] Um skill <code>triggers:["user"]</code> nunca dispara sozinho</li>
+<li>[ ] Um skill de plugin está disponível antes do repo terminar de clonar</li>
+</ul>
+<h2>Armadilhas</h2>
+<ul>
+<li><strong>Especificar demais.</strong> Comandos/flags/strings específicos são o ponto; prosa rígida não é. Skills que narram cada decisão tiram a capacidade do Devin de se adaptar no meio do caminho.</li>
+<li><strong>Escrever o corpo e esquecer a description.</strong> A invocação automática depende da description; um corpo ótimo com description vaga nunca dispara.</li>
+<li><strong>Deixar skills destrutivos auto-invocarem.</strong> Deploys e migrations ficam atrás de <code>triggers:["user"]</code> ou de um <code>permissions.ask</code> explícito.</li>
+<li><strong>Guardar segredos em skills.</strong> Um skill é lido por toda sessão no escopo — credenciais vão no secrets store, referenciadas como <code>$VAR</code>.</li>
+</ul>
+<h2>Teste de conhecimento</h2>
+<ol>
+<li>Por que a <code>description</code> importa mais que o corpo do skill? <em>(É o único texto carregado no início da sessão — dirige a auto-invocação; o corpo só carrega depois que o skill é escolhido.)</em></li>
+<li>Quando um procedimento deve ser um plugin skill e não um repo skill? <em>(Quando todo repo/sessão do escopo precisa dele — plugins carregam antes do clone e não derivam por branch.)</em></li>
+<li>Como tornar seguro um skill com passos destrutivos? <em>(<code>triggers:["user"]</code> para invocação só explícita, mais <code>permissions.ask</code> nos matchers das ferramentas perigosas.)</em></li>
+</ol>
+<h2>Fontes</h2>
+<ul>
+<li><a href="https://docs.devin.ai/product-guides/skills">Docs de Devin Skills</a> — formato, caminhos de descoberta, frontmatter</li>
+<li><a href="https://docs.devin.ai/release-notes/overview">Release notes</a> — migração playbooks→Skills, página Customize</li>
+<li>Relacionado: <a href="playbooks-and-knowledge.html">Guia 9 — Playbooks &amp; knowledge</a> (a camada de contexto ao lado dos skills)</li>
+</ul>
+</article>
+<footer><div class="wrap foot-base"><span data-i18n="foot.note">Unofficial community project — not affiliated with Cognition AI.</span><span><a href="../../index.html">built-with-devin</a> · <a href="https://github.com/Till3005/build-with-devin">build-with-devin</a></span></div></footer>
+</main>
+<script src="../../assets/theme.js"></script>
+<script src="../../assets/i18n.js"></script>
+<script src="../../assets/i18n-runtime.js"></script>
+</body>
+</html>

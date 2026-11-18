@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>指南 17 — Skills 与 plugins：playbook 之后的封装层 — build-with-devin guides</title>
+<meta name="description" content="指南 17 — Skills 与 plugins：playbook 之后的封装层">
+<link rel="icon" href="../../assets/brand/Devin_Symbol.svg" type="image/svg+xml">
+<link rel="stylesheet" href="../../assets/site.css">
+<link rel="stylesheet" href="../../assets/guides.css">
+</head>
+<body>
+<a class="skip" href="#guide">Skip to content</a>
+<nav><div class="wrap nav-inner">
+  <div class="nav-left">
+    <a class="brand" href="../../index.html" aria-label="Built with Devin">
+      <span class="brand-text">built<strong>-with-</strong></span><img class="brand-mark" src="../../assets/brand/Devin_Primary_Logo.svg" alt="Devin" height="16"><span class="unofficial-chip">unofficial</span>
+    </a>
+  </div>
+  <div class="nav-side">
+    <div class="mode-toggle" role="tablist" aria-label="Site section">
+      <button class="mode-btn" data-mode="built" role="tab" aria-selected="false" onclick="location.href='../../index.html'">Built</button>
+      <button class="mode-btn on" data-mode="build" role="tab" aria-selected="true" onclick="location.href='../../index.html#build'">Build</button>
+      <span class="mode-pill" aria-hidden="true"></span>
+    </div>
+    <a class="cta" href="https://github.com/Till3005/build-with-devin/blob/main/guides/zh/skills-and-plugins.md">GitHub</a>
+  </div>
+</div></nav>
+<main>
+<article class="guide wrap" id="guide">
+  <p class="guide-crumb"><a href="../../index.html#build">← Guides</a> · <a href="../skills-and-plugins.html">English</a> · <a href="../pt/skills-and-plugins.html">Português</a> · <a href="../ja/skills-and-plugins.html">日本語</a></p>
+<h1>指南 17 — Skills 与 plugins：playbook 之后的封装层</h1>
+<p><strong>目标：</strong> 把组织里可重复的流程编码成 <code>SKILL.md</code> 文件，让每个会话和 Bot 都按它执行——并用 plugins 跨仓库打包分享。
+<strong>级别：</strong> 中级 · 取代 playbook 的那一层
+<strong>来源：</strong> <a href="https://docs.devin.ai/product-guides/skills">docs.devin.ai/product-guides/skills</a> · <a href="https://docs.devin.ai/release-notes/overview">release notes</a> · 配套 <a href="playbooks-and-knowledge.html">指南 9</a></p>
+<h2>为什么 skills 是现在最重要的那一层</h2>
+<p>Playbook 正在迁移到 Skills：账号分批迁移，2026-10-24 起的新账号只有 Skills——每个 playbook 会变成一个相同 org/enterprise 作用域的 skill。Skills 还遵循开放的 <strong>Agent Skills</strong> 标准，同样的文件可以在其他编码 agent 上使用。你写 playbook 的经验全部迁移得过来——变的是文件格式和发现机制。</p>
+<table>
+<thead>
+<tr>
+<th>产物</th>
+<th>存放位置</th>
+<th>最适合</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Knowledge</td>
+<td>Customize 页 / 仓库笔记</td>
+<td>常驻上下文——Devin 无从得知的事实</td>
+</tr>
+<tr>
+<td>Bot instructions</td>
+<td>Bot 本体</td>
+<td>一个"员工"的岗位守则</td>
+</tr>
+<tr>
+<td>Skill</td>
+<td>仓库里的 <code>SKILL.md</code>，或 plugin</td>
+<td>一个具名、可调用的流程</td>
+</tr>
+<tr>
+<td>Rule</td>
+<td>Plugin</td>
+<td>常驻约束（"never force-push"）</td>
+</tr>
+<tr>
+<td>Hook</td>
+<td>Plugin</td>
+<td>围绕工具调用的确定性执行</td>
+</tr>
+</tbody>
+</table>
+<h2>第 1 步 — skills 存放在哪</h2>
+<p>两个自动发现的来源：</p>
+<ol>
+<li><strong>仓库</strong> —— 提交 <code>SKILL.md</code> 文件；Devin 扫描每个已连接仓库的全部十个厂商路径：<code>.agents/skills/</code>（推荐）、<code>.devin/skills/</code>、<code>.github/skills/</code>、<code>.claude/skills/</code>、<code>.cognition/skills/</code>、<code>.windsurf/skills/</code>、<code>.cursor/skills/</code>、<code>.codex/skills/</code>、<code>.codeium/skills/</code>、<code>.kiro/skills/</code>。仓库 skill 跟随分支版本——会话中途 clone 的仓库在 clone 完成时就会被扫描。</li>
+<li><strong>Plugins</strong> —— 一个 plugin 打包 skills + rules + MCP servers + hooks，可装在 personal、organization 或 enterprise 作用域；其 skills 在任何仓库 clone 之前就进入上下文。</li>
+</ol>
+<h2>第 2 步 — SKILL.md 契约</h2>
+<pre><code class="language-markdown">---
+name: test-before-pr
+description: Run the dev server and verify pages before any frontend PR.
+argument-hint: &lt;environment&gt;
+triggers: [&quot;user&quot;]
+allowed-tools: read, grep, glob
+permissions:
+  allow: [&quot;Exec(npm run *)&quot;]
+---
+
+## Setup
+1. `docker-compose up -d postgres` &amp;&amp; `npm run dev`
+## Verify
+1. Open each page touched by the diff
+2. Screenshot at 1280px and 375px
+</code></pre>
+<p>会改变行为的 frontmatter 字段：</p>
+<ul>
+<li><strong><code>description</code></strong> —— 会话启动时 Devin 唯一看到的内容；它决定自动调用。写成触发条件（"verify pages before any frontend PR"），而不是摘要。</li>
+<li><strong><code>triggers: ["user"]</code></strong> —— 关闭自动调用；一切破坏性操作（部署、迁移）都应该用它。</li>
+<li><strong><code>argument-hint</code></strong> + <code>$ARGUMENTS</code>/<code>$1</code> —— 参数化：<code>@skills:deploy staging</code>。</li>
+<li><strong><code>allowed-tools</code> / <code>permissions</code></strong> —— skill 激活期间预批准或设卡工具。</li>
+</ul>
+<h2>第 3 步 — 三种调用路径</h2>
+<ul>
+<li><strong>自动：</strong> Devin 用任务匹配 <code>description</code>，命中后把 skill 正文载入上下文，持续到会话结束。</li>
+<li><strong>显式：</strong> 在会话或 Bot 消息里写 <code>@skills:&lt;name&gt; [args]</code>——跨团队共享流程的可靠方式。</li>
+<li><strong>建议产生：</strong> Devin 学到东西后（比如怎么起你的技术栈），会在会话时间线里提议一个 <code>SKILL.md</code>，附 <strong>Create PR</strong> 按钮——接受它。skill 库就是这样不靠专门写作而长出来的。</li>
+</ul>
+<h2>第 4 步 — 养大这个库</h2>
+<ul>
+<li>用两个并行会话打一个新 skill，缺口几分钟就暴露。</li>
+<li>会话中纠正了 Devin 什么，就把这条纠正写进 skill——下一个会话起步就更聪明。</li>
+<li>在单个仓库验证过的 skill 提升为 org plugin，让每个仓库不复制就能用。</li>
+</ul>
+<h2>验证清单</h2>
+<ul>
+<li>[ ] 新会话能按名字列出你的 skill（启动时载入 name + description）</li>
+<li>[ ] <code>@skills:&lt;name&gt;</code> 逐字执行该流程，参数正常替换</li>
+<li>[ ] <code>triggers:["user"]</code> 的 skill 绝不自动触发</li>
+<li>[ ] plugin 装的 skill 在仓库 clone 完成前就可用</li>
+</ul>
+<h2>常见坑</h2>
+<ul>
+<li><strong>过度规约。</strong> 具体命令/flag/字符串才是重点；僵硬的长篇描述不是。把每个决策都写死的 skill 会剥夺 Devin 中途应变的能力。</li>
+<li><strong>只写正文不写 description。</strong> 自动调用认的是 description；正文再好、description 含糊就永远不会被触发。</li>
+<li><strong>让破坏性 skill 自动触发。</strong> 部署和迁移应该关在 <code>triggers:["user"]</code> 或显式的 <code>permissions.ask</code> 后面。</li>
+<li><strong>在 skill 里放 secret。</strong> skill 会被作用域内每个会话读到——凭证放 secrets store，用 <code>$VAR</code> 引用。</li>
+</ul>
+<h2>理解度检查</h2>
+<ol>
+<li>为什么 <code>description</code> 比 skill 正文更重要？<em>（它是会话启动时唯一载入的文本——驱动自动调用；正文只在 skill 被选中后才载入。）</em></li>
+<li>什么时候流程应该做成 plugin skill 而不是仓库 skill？<em>（当作用域内每个仓库/会话都需要它时——plugin 在 clone 前就加载，且不会随分支漂移。）</em></li>
+<li>怎么让含破坏性步骤的 skill 安全？<em>（<code>triggers:["user"]</code> 只允许显式调用，再给危险工具的 matcher 加 <code>permissions.ask</code>。）</em></li>
+</ol>
+<h2>来源</h2>
+<ul>
+<li><a href="https://docs.devin.ai/product-guides/skills">Devin Skills 文档</a> — 文件格式、发现路径、frontmatter</li>
+<li><a href="https://docs.devin.ai/release-notes/overview">Release notes</a> — playbooks→Skills 迁移、Customize 页</li>
+<li>相关：<a href="playbooks-and-knowledge.html">指南 9 — Playbooks &amp; knowledge</a>（skills 旁边的上下文层）</li>
+</ul>
+</article>
+<footer><div class="wrap foot-base"><span data-i18n="foot.note">Unofficial community project — not affiliated with Cognition AI.</span><span><a href="../../index.html">built-with-devin</a> · <a href="https://github.com/Till3005/build-with-devin">build-with-devin</a></span></div></footer>
+</main>
+<script src="../../assets/theme.js"></script>
+<script src="../../assets/i18n.js"></script>
+<script src="../../assets/i18n-runtime.js"></script>
+</body>
+</html>

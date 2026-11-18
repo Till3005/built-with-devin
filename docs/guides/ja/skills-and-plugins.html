@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ガイド 17 — Skills と plugins：playbook の次のパッケージング層 — build-with-devin guides</title>
+<meta name="description" content="ガイド 17 — Skills と plugins：playbook の次のパッケージング層">
+<link rel="icon" href="../../assets/brand/Devin_Symbol.svg" type="image/svg+xml">
+<link rel="stylesheet" href="../../assets/site.css">
+<link rel="stylesheet" href="../../assets/guides.css">
+</head>
+<body>
+<a class="skip" href="#guide">Skip to content</a>
+<nav><div class="wrap nav-inner">
+  <div class="nav-left">
+    <a class="brand" href="../../index.html" aria-label="Built with Devin">
+      <span class="brand-text">built<strong>-with-</strong></span><img class="brand-mark" src="../../assets/brand/Devin_Primary_Logo.svg" alt="Devin" height="16"><span class="unofficial-chip">unofficial</span>
+    </a>
+  </div>
+  <div class="nav-side">
+    <div class="mode-toggle" role="tablist" aria-label="Site section">
+      <button class="mode-btn" data-mode="built" role="tab" aria-selected="false" onclick="location.href='../../index.html'">Built</button>
+      <button class="mode-btn on" data-mode="build" role="tab" aria-selected="true" onclick="location.href='../../index.html#build'">Build</button>
+      <span class="mode-pill" aria-hidden="true"></span>
+    </div>
+    <a class="cta" href="https://github.com/Till3005/build-with-devin/blob/main/guides/ja/skills-and-plugins.md">GitHub</a>
+  </div>
+</div></nav>
+<main>
+<article class="guide wrap" id="guide">
+  <p class="guide-crumb"><a href="../../index.html#build">← Guides</a> · <a href="../skills-and-plugins.html">English</a> · <a href="../zh/skills-and-plugins.html">中文</a> · <a href="../pt/skills-and-plugins.html">Português</a></p>
+<h1>ガイド 17 — Skills と plugins：playbook の次のパッケージング層</h1>
+<p><strong>目標：</strong> 組織の反復手順を <code>SKILL.md</code> としてエンコードし、すべてのセッションと Bot が同じ手順で実行するようにする — plugins でリポジトリをまたいで共有する。
+<strong>レベル：</strong> 中級 · playbook に取って代わった層
+<strong>出典：</strong> <a href="https://docs.devin.ai/product-guides/skills">docs.devin.ai/product-guides/skills</a> · <a href="https://docs.devin.ai/release-notes/overview">release notes</a> · <a href="playbooks-and-knowledge.html">ガイド 9</a> の続編</p>
+<h2>なぜ skills が今いちばん重要な層なのか</h2>
+<p>Playbook は Skills へ移行中です：アカウントは順次移行され、2026-10-24 以降の新規アカウントは Skills のみ — 各 playbook は同じ org/enterprise スコープの skill になります。Skills はオープンな <strong>Agent Skills</strong> 標準に従うため、同じファイルが他のコーディング agent でも動きます。playbook を書く知識はそのまま使えます。変わるのはファイル形式と発見の仕組みだけです。</p>
+<table>
+<thead>
+<tr>
+<th>成果物</th>
+<th>置き場所</th>
+<th>最適な用途</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Knowledge</td>
+<td>Customize ページ / リポジトリノート</td>
+<td>常駐コンテキスト — Devin が知り得ない事実</td>
+</tr>
+<tr>
+<td>Bot instructions</td>
+<td>Bot 本体</td>
+<td>一人の「従業員」への職務規定</td>
+</tr>
+<tr>
+<td>Skill</td>
+<td>リポジトリの <code>SKILL.md</code>、または plugin</td>
+<td>名前付きの呼び出し可能な手順</td>
+</tr>
+<tr>
+<td>Rule</td>
+<td>Plugin</td>
+<td>常時有効な制約（"never force-push"）</td>
+</tr>
+<tr>
+<td>Hook</td>
+<td>Plugin</td>
+<td>ツール呼び出しを巡る決定的な強制</td>
+</tr>
+</tbody>
+</table>
+<h2>ステップ 1 — skills の置き場所</h2>
+<p>自動発見されるソースは2つ：</p>
+<ol>
+<li><strong>リポジトリ</strong> — <code>SKILL.md</code> をコミット。Devin は接続済みの全リポジトリで 10 個のベンダーパスをスキャンします：<code>.agents/skills/</code>（推奨）、<code>.devin/skills/</code>、<code>.github/skills/</code>、<code>.claude/skills/</code>、<code>.cognition/skills/</code>、<code>.windsurf/skills/</code>、<code>.cursor/skills/</code>、<code>.codex/skills/</code>、<code>.codeium/skills/</code>、<code>.kiro/skills/</code>。リポジトリの skill はブランチ版管理 — セッション途中の clone も完了時にスキャンされます。</li>
+<li><strong>Plugins</strong> — plugin は skills + rules + MCP servers + hooks を束ね、personal・organization・enterprise スコープにインストールできます。同梱の skills はリポジトリの clone 前からコンテキストに入ります。</li>
+</ol>
+<h2>ステップ 2 — SKILL.md の契約</h2>
+<pre><code class="language-markdown">---
+name: test-before-pr
+description: Run the dev server and verify pages before any frontend PR.
+argument-hint: &lt;environment&gt;
+triggers: [&quot;user&quot;]
+allowed-tools: read, grep, glob
+permissions:
+  allow: [&quot;Exec(npm run *)&quot;]
+---
+
+## Setup
+1. `docker-compose up -d postgres` &amp;&amp; `npm run dev`
+## Verify
+1. Open each page touched by the diff
+2. Screenshot at 1280px and 375px
+</code></pre>
+<p>挙動を変える frontmatter フィールド：</p>
+<ul>
+<li><strong><code>description</code></strong> — セッション開始時に Devin が唯一目にするテキスト。自動呼び出しを左右します。要約ではなくトリガーとして書く（"verify pages before any frontend PR"）。</li>
+<li><strong><code>triggers: ["user"]</code></strong> — 自動呼び出しを無効化。破壊的なもの（deploy、migration）は必ずこれ。</li>
+<li><strong><code>argument-hint</code></strong> + <code>$ARGUMENTS</code>/<code>$1</code> — パラメータ化：<code>@skills:deploy staging</code>。</li>
+<li><strong><code>allowed-tools</code> / <code>permissions</code></strong> — skill 有効中のツールを事前承認またはゲート。</li>
+</ul>
+<h2>ステップ 3 — 3 つの呼び出し経路</h2>
+<ul>
+<li><strong>自動：</strong> Devin がタスクを <code>description</code> と照合し、ヒットすれば skill 本文をコンテキストに読み込み、セッション終了まで保持します。</li>
+<li><strong>明示：</strong> セッションや Bot メッセージで <code>@skills:&lt;name&gt; [args]</code> — チーム横断で手順を共有する確実な方法。</li>
+<li><strong>提案：</strong> Devin が何かを学んだあと（スタックの起動方法など）、セッションタイムラインに <code>SKILL.md</code> の提案と <strong>Create PR</strong> ボタンが出ます — 受け入れましょう。skill ライブラリはこうして書き下ろしなしに育ちます。</li>
+</ul>
+<h2>ステップ 4 — ライブラリを育てる</h2>
+<ul>
+<li>新しい skill には並行 2 セッションを当てる — ギャップは数分で出ます。</li>
+<li>セッション中に Devin を訂正したら、その訂正を skill に追記 — 次のセッションはより賢く始まります。</li>
+<li>単一リポジトリで実証された skill は org plugin に昇格 — コピーなしで全リポジトリに届きます。</li>
+</ul>
+<h2>検証チェックリスト</h2>
+<ul>
+<li>[ ] 新しいセッションが skill を名前つきで列挙する（起動時に name + description が読まれる）</li>
+<li>[ ] <code>@skills:&lt;name&gt;</code> が手順を逐語実行し、引数が置換される</li>
+<li>[ ] <code>triggers:["user"]</code> の skill が自動発火しない</li>
+<li>[ ] plugin 経由の skill がリポジトリ clone 完了前に利用可能</li>
+</ul>
+<h2>落とし穴</h2>
+<ul>
+<li><strong>過剰な規定。</strong> 具体的なコマンド/フラグ/文字列こそが価値。硬直した長文は違います。あらゆる判断を書き尽くした skill は Devin の途中適応力を奪います。</li>
+<li><strong>本文だけ書いて description を書かない。</strong> 自動呼び出しは description で決まります。本文が良くても description が曖昧なら一度も発火しません。</li>
+<li><strong>破壊的 skill の自動発火。</strong> deploy と migration は <code>triggers:["user"]</code> か明示的な <code>permissions.ask</code> の後ろに置きましょう。</li>
+<li><strong>skill に secret を書く。</strong> skill はスコープ内の全セッションに読まれます — 認証情報は secrets store に入れ <code>$VAR</code> で参照。</li>
+</ul>
+<h2>理解度チェック</h2>
+<ol>
+<li>なぜ <code>description</code> が skill 本文より重要？<em>（セッション開始時に読まれる唯一のテキストであり、自動呼び出しを駆動するから。本文は skill が選ばれた後にのみ読まれる。）</em></li>
+<li>手順をリポジトリ skill ではなく plugin skill にすべき場面は？<em>（スコープ内の全リポジトリ/セッションが必要とするとき — plugin は clone 前に読み込まれ、ブランチごとのドリフトも起きない。）</em></li>
+<li>破壊的ステップを含む skill を安全にするには？<em>（<code>triggers:["user"]</code> で明示呼び出しのみにし、危険なツール matcher に <code>permissions.ask</code> を付ける。）</em></li>
+</ol>
+<h2>出典</h2>
+<ul>
+<li><a href="https://docs.devin.ai/product-guides/skills">Devin Skills ドキュメント</a> — ファイル形式、発見パス、frontmatter</li>
+<li><a href="https://docs.devin.ai/release-notes/overview">Release notes</a> — playbooks→Skills 移行、Customize ページ</li>
+<li>関連：<a href="playbooks-and-knowledge.html">ガイド 9 — Playbooks &amp; knowledge</a>（skills の隣にあるコンテキスト層）</li>
+</ul>
+</article>
+<footer><div class="wrap foot-base"><span data-i18n="foot.note">Unofficial community project — not affiliated with Cognition AI.</span><span><a href="../../index.html">built-with-devin</a> · <a href="https://github.com/Till3005/build-with-devin">build-with-devin</a></span></div></footer>
+</main>
+<script src="../../assets/theme.js"></script>
+<script src="../../assets/i18n.js"></script>
+<script src="../../assets/i18n-runtime.js"></script>
+</body>
+</html>
