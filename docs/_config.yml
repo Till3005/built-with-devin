@@ -1,4 +1,11 @@
 title: Built with Devin
-description: A verified registry of everything built with Devin.
+description: A verified registry of everything built with Devin — bots, products, enterprise deployments, tools and field reports.
+url: "https://till3005.github.io"
+baseurl: "/built-with-devin"
 markdown: kramdown
-theme: null
+plugins:
+  - jekyll-sitemap
+  - jekyll-seo-tag
+exclude:
+  - cover.html
+  - README.md
