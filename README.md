@@ -80,7 +80,7 @@ Putting Devin inside other products and channels.
 
 Things the community builds *for* Devin rather than *with* it.
 
-- **[DevinX / Devinmaxxing](https://x.com/_markfenner)** — Mark Fenner's local model picker for Devin Desktop sessions: local weights via ACP, adaptive cost balancing, reasoning-effort control.
+- **[DevinX / Devinmaxxing](https://x.com/markfenner)** — Mark Fenner's local model picker for Devin Desktop sessions: local weights via ACP, adaptive cost balancing, reasoning-effort control.
 - **[awesome-devin](https://github.com/Icaro0310/awesome-devin)** — The `devin-*` open-source tooling ecosystem: session search, history export, knowledge graphs, eval harnesses, backup, fan-out planners.
 - **[devin-judge](https://github.com/Icaro0310/devin-judge)** — Calibrated local-first decision layer with a Devin ACP backend; no API key needed.
 - **[devin-fusion-byok](https://github.com/kuobibulaien/devin-fusion-byok)** — Bring your own OpenAI-compatible models to Devin Local and Fusion.

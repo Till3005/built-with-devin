@@ -7,7 +7,7 @@ Have something built with Devin, or a bot/integration around it? Add it.
 Open a PR that adds your entry to the right section, in this format:
 
 ```markdown
-- **[Name](https://link)** — One sentence: what it is and how Devin was involved.
+- **[Name](https://example.com)** — One sentence: what it is and how Devin was involved.
 ```
 
 Or open an issue titled `Add: <name>` with the same info and I'll list it.
