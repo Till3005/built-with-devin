@@ -44,17 +44,19 @@
   const loadSvg = url => new Promise((res, rej) => loader.load(url, res, undefined, rej));
 
   // --- extruded mark ---------------------------------------------------------
-  function makeMark(svgData, mat) {
+  function makeMark(svgData, mats) {
     const inner = new THREE.Group();
+    let i = 0;
     for (const path of svgData.paths) {
       for (const shape of SVGLoader.createShapes(path)) {
         const geo = new THREE.ExtrudeGeometry(shape, {
-          depth: 7, bevelEnabled: true, bevelThickness: 2.2,
-          bevelSize: 1.9, bevelSegments: 5, curveSegments: 32,
+          depth: 5, bevelEnabled: true, bevelThickness: 1.4,
+          bevelSize: 1.2, bevelSegments: 5, curveSegments: 32,
         });
         geo.center();
-        const mesh = new THREE.Mesh(geo, mat);
+        const mesh = new THREE.Mesh(geo, mats[i % mats.length]);
         inner.add(mesh);
+        i++;
       }
     }
     const box = new THREE.Box3().setFromObject(inner);
@@ -69,8 +71,8 @@
     return wrap;
   }
 
-  const inkMat = () => new THREE.MeshPhysicalMaterial({
-    color: 0x14140f, metalness: 0.0, roughness: 0.34,
+  const inkMat = c => new THREE.MeshPhysicalMaterial({
+    color: c, metalness: 0.0, roughness: 0.34,
     clearcoat: 0.55, clearcoatRoughness: 0.28,
     envMapIntensity: 0.85,
   });
@@ -80,10 +82,14 @@
     loadSvg("assets/brand/Devin_Symbol.svg"),
   ]);
   // outer groups carry the morph animation so the normalization scale is kept
-  const gCog = new THREE.Group(); gCog.add(makeMark(cogData, inkMat()));
-  const gDevin = new THREE.Group(); gDevin.add(makeMark(devinData, inkMat()));
+  // the cognition mark is three interlocking plates — shade each distinctly
+  // so the geometry reads instead of merging into one blob
+  const gCog = new THREE.Group();
+  gCog.add(makeMark(cogData, [inkMat(0x1b1b17), inkMat(0x2e2e29), inkMat(0x232320)]));
+  const gDevin = new THREE.Group();
+  gDevin.add(makeMark(devinData, [inkMat(0x1b1b17)]));
   // static slight tilt — reads as a solid object without any motion
-  const TILT_Y = 0.38, TILT_X = -0.10;
+  const TILT_Y = 0.16, TILT_X = -0.05;
   scene.add(gCog, gDevin);
 
   // --- natural soft shadow: blurred silhouette sprite, no shadow-map needed ---
@@ -136,12 +142,16 @@
   function themeMats() {
     const dark = document.documentElement.dataset.theme === "dark" ||
       (!document.documentElement.dataset.theme && matchMedia("(prefers-color-scheme: dark)").matches);
-    [gCog, gDevin].forEach(w => w.traverse(o => {
-      if (o.isMesh && o.material.clearcoat !== undefined) {
-        o.material.color.set(dark ? 0xe8e8e2 : 0x14140f);
-        o.material.roughness = dark ? 0.38 : 0.34;
-      }
-    }));
+    const shades = dark ? [0xefefe9, 0xd5d5cf, 0xe2e2dc] : [0x1b1b17, 0x2e2e29, 0x232320];
+    let ci = 0;
+    gCog.traverse(o => {
+      if (o.isMesh && o.material.clearcoat !== undefined)
+        o.material.color.set(shades[(ci++) % 3]);
+    });
+    gDevin.traverse(o => {
+      if (o.isMesh && o.material.clearcoat !== undefined)
+        o.material.color.set(dark ? 0xefefe9 : 0x1b1b17);
+    });
     ao.material.opacity = dark ? 0.6 : 1.0;
   }
   let running = true, lastP = -1;
@@ -161,12 +171,14 @@
     setVis(gDevin, aD);
 
     // cognition settles back and down as it dissolves; devin rises into place
-    gCog.position.set(0, -4 * p, -10 * p);
-    gCog.scale.setScalar(1 - 0.12 * p);
+    // lateral hand-off: cognition slides up-left, devin enters from down-right
+    gCog.position.set(-9 * p, 5 * p, -8 * p);
+    gCog.scale.setScalar(1 - 0.15 * p);
     gCog.rotation.set(TILT_X, TILT_Y, 0);
-    gDevin.position.set(0, 4 * (1 - p), 6 * (1 - p));
-    gDevin.scale.setScalar(1 - 0.10 * (1 - p));
+    gDevin.position.set(9 * (1 - p), -5 * (1 - p), 4 * (1 - p));
+    gDevin.scale.setScalar(1 - 0.12 * (1 - p));
     gDevin.rotation.set(TILT_X, TILT_Y, 0);
+    ao.position.x = 2 - 4 * p;
 
     const top = Math.max(aC, aD);
     ao.material.opacity = (document.documentElement.dataset.theme === "dark" ? 0.6 : 1.0) * top;
