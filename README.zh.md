@@ -123,6 +123,8 @@ flowchart LR
 - **[Courtyard 的 Quick](https://courtyard.io/blog/post/from-a-slack-link-to-production-in-under-48-hours-cloning-shopifys-quick-with-devin)** —— Courtyard 复刻了 Shopify 内部静态站点部署器 "Quick"：从一条 Slack 链接到生产服务（Go、Cloud Run、Bazel、Terraform、SSO、git 后端）只用了 **~21 小时**，全部由 Devin 撰写。
 - **[Frontierfood](https://samyok.com/frontierfood)** —— Cognition 工程师 Samyok Nepal 用 Devin Voice 爬 Google 评论，按位置画出美食的帕累托前沿（[帖子](https://x.com/samyok/status/2098155977199743367)）。
 - **Flappy Asher** —— Russell Kaplan（Cognition 总裁）让 Mac VM 上的 Devin 把婴儿照片做成游戏素材并发布了成品 —— 已上架 TestFlight（[帖子](https://x.com/russelljkaplan/status/2100280085999919555)）。
+- **[Try Devin vending machine](https://github.com/dabit3/vending-machine)** —— dabit3 的活动发码机（Next.js + Convex + Clerk）：参会者在活动页输邮箱领 Devin 额度码。`devin-ai-integration[bot]` 是仓库头号贡献者（266 commits）；线上 [trydevin.ai](https://www.trydevin.ai/)。
+- **[GymClass](https://seed.horacioh.com/writing/how-i-built-a-full-booking-system-as-a-side-project-with-devin-as-my-engineering-partner)** —— Horacio Herrera 给真实武术馆做的订课与学员管理系统（TS/Bun/React/Hono/tRPC，Cloudflare）：一个月功能量，全部在手机上会议间隙指挥 Devin 完成——含订课架构重写和 Vitest→Bun 迁移。
 
 *知道有 Devin 做出的已发布产品？[收录它](CONTRIBUTING.md)。*
 
@@ -168,6 +170,7 @@ flowchart LR
 | [Crosby](https://devin.ai/customers/crosby) | AI 原生律所 | 每天 20–40 个 bug 报告/告警拿到 first pass，平均 ~5 分钟；12 名工程师服务 50+ 律师 |
 | [Endava](https://devin.ai/customers/endava) | 企业级全员配置 | 2,000+ 员工上平台；四个月 3×；PR 合并率 78% |
 | [Tavrn](https://devin.ai/customers/tavrn) | HIPAA 约束下的舰队 | 8 人队打出 50 人的交付；**6 周 1,800+ PR**，产出 6× |
+| [Itaú](https://medium.com/itautech/devin-no-ita%C3%BA-como-escalamos-o-uso-de-agentes-na-engenharia-de-software-b636bedebc5a) | 巴西最大银行的治理优先落地 | 从试点扩到 17,000 人技术组织，满足安全要求（葡语） |
 | **Rox** | Living Evals —— 每周 Devin 读生产 trace，在完整副本中回放失败，开 eval PR | 评测集覆盖**真实用量的 72%**（手写只有 43–57%）（[全文](https://www.rox.com/articles/living-evals-an-eval-suite-that-grows-from-production)、[推文](https://x.com/rox_ai/status/2110779380666617997)） |
 | [Evinova](https://devin.ai/customers/evinova) | GxP 合规交付 | GxP 文档快 8×；迁移快 3×；66% 边界清晰的 bug 被自主修复 |
 | [Compiled Health](https://devin.ai/customers/compiledhealth) | 临床基准构建 | 2 名研究员 2 个月 = 5–6 名工程师的活；~430 工程师小时、~$17/小时 ≈ 给 4 人队添 4 名工程师 |
@@ -179,7 +182,7 @@ flowchart LR
 | [FE fundinfo](https://devin.ai/customers/fefundinfo) | 1,800 仓库自动化 | 靠测试生成 + 安全修复立刻多出 10% 产能 |
 | [GE Aerospace](https://devin.ai/customers/geaerospace) | 受限团队的 story 吞吐 | 三个月内 user-story 产出 ~2× |
 
-其他公开记录的：Citi（40,000 名开发者铺开，技术供应商支出降 30%）、Itaú、Mercor、Hippo、Mercedes-Benz、Cognizant 和 Infosys 合作 —— 见[客户索引](https://devin.ai/customers)。
+其他公开记录的：Citi（40,000 名开发者铺开，技术供应商支出降 30%）、Mercor、Hippo、Mercedes-Benz、Cognizant 和 Infosys 合作 —— 见[客户索引](https://devin.ai/customers)。
 
 <p align="right"><a href="#readme">back to top</a></p>
 
@@ -233,6 +236,7 @@ flowchart LR
 - **[devin-subagents](https://github.com/Duro02/devin-subagents)** —— 把 `devin acp` 会话暴露为 MCP 上可生命周期管理的子 agent：并行派发、阻塞 `wait`、中途调向、权限裁决。
 - **[Devin Session Exporter](https://github.com/marktwainme/devin-session-exporter)** —— Devin Desktop 扩展，把本地 ACP 会话库导出为 Markdown/JSON/HTML，带筛选和批量导出。
 - **[devin-acp-shim](https://github.com/wibus-wee/devin-acp-shim)** —— 透明 stdio 代理，修复 Devin CLI 的会话级 MCP 能力协商 —— 虽小，但为所有 ACP host 解锁了 MCP server。
+- **[hindsight-devin-desktop](https://pypi.org/project/hindsight-devin-desktop/)** —— Vectorize 的 MCP 桥：一条命令给 Devin Desktop 接上持久长期记忆 + 常驻 recall/retain 规则。
 
 <p align="right"><a href="#readme">back to top</a></p>
 
@@ -260,6 +264,8 @@ flowchart LR
 - **[Devin：从 bug 报告到 PR](https://medium.com/@winter.inc/devin-from-bug-report-to-pull-request-25-days-of-ai-day-18-b158daa20f23)** —— 25 天 AI 系列的第 18 天：真实代码库上完整的 ticket→PR 闭环（Medium）。
 - **[角色分工的 bot 开发队 + 轻量 PR 自动合并](https://zenn.dev/kyto64/articles/ai-bot-dev-env)** —— kyto64 的个人开发环境：专职 AI bot 加 Devin，低风险 PR 自动合并（日文）。
 - **[Devin CLI 上下文上限实战](https://qiita.com/ishizakahiroshi/items/cee2a8ea2be18f2ccee3)** —— 把 AGENTS.md 和审批规则塞进 16KB/32KB 上限的工作笔记（日文）。
+- **[NOT A HOTEL 的首次 Devin 试用](https://zenn.dev/notahotel/articles/d401a1046d6076)** —— 从配置到首个合并 PR 不到一小时的 mob 实战记录——含 Devin 对仓库接入分类项的要求（日文）。
+- **[Hello World… Meet Devin](https://jamesin.substack.com/p/hello-world-meet-devin)** —— Jamesin Seidel 上线初期实录：第一次看 Devin 把代码提交进自己仓库，做了个邮件分拣助手（Substack）。
 - **[免费 SWE-2 上的多 AI 编排](https://qiita.com/ishizakahiroshi/items/72ab801a5f2a8c941b61)** —— 利用 Devin CLI 永久免费的 SWE-2 档在多个 agent 间路由工作的设计（日文）。
 
 <p align="right"><a href="#readme">back to top</a></p>

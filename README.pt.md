@@ -123,6 +123,8 @@ Software real em que o Devin escreveu o código — não demos, trabalho lançad
 - **[Quick, da Courtyard](https://courtyard.io/blog/post/from-a-slack-link-to-production-in-under-48-hours-cloning-shopifys-quick-with-devin)** — A Courtyard clonou o deployer interno de sites estáticos "Quick" da Shopify: de um link no Slack a um serviço em produção (Go, Cloud Run, Bazel, Terraform, SSO, git-backed) em **~21 horas**, tudo escrito pelo Devin.
 - **[Frontierfood](https://samyok.com/frontierfood)** — O engenheiro da Cognition Samyok Nepal usou o Devin Voice para raspar reviews do Google e mapear a fronteira de Pareto de comida por localização ([post](https://x.com/samyok/status/2098155977199743367)).
 - **Flappy Asher** — Russell Kaplan (presidente da Cognition) fez o Devin, numa VM Mac, transformar fotos de bebê em sprites de jogo e lançar o resultado — no ar no TestFlight ([post](https://x.com/russelljkaplan/status/2100280085999919555)).
+- **[Try Devin vending machine](https://github.com/dabit3/vending-machine)** — Distribuidor de créditos de evento do dabit3 (Next.js + Convex + Clerk): participantes digitam o email na URL do evento e recebem um código único de crédito Devin. `devin-ai-integration[bot]` é o maior contribuidor do repo (266 commits); no ar em [trydevin.ai](https://www.trydevin.ai/).
+- **[GymClass](https://seed.horacioh.com/writing/how-i-built-a-full-booking-system-as-a-side-project-with-devin-as-my-engineering-partner)** — Sistema de reservas e gestão de turmas do Horacio Herrera para uma academia de artes marciais real (TS/Bun/React/Hono/tRPC, Cloudflare): um mês de features dirigidas do celular entre reuniões — incluindo reescrita da arquitetura de booking e migração Vitest→Bun.
 
 *Conhece um produto lançado feito com Devin? [Adicione-o](CONTRIBUTING.md).*
 
@@ -168,6 +170,7 @@ Casos de clientes publicados com números concretos ([índice completo](https://
 | [Crosby](https://devin.ai/customers/crosby) | Escritório de advocacia AI-nativo | 20–40 relatórios de bugs/alertas recebem primeira análise por dia, ~5 min cada; 12 engenheiros atendem 50+ advogados |
 | [Endava](https://devin.ai/customers/endava) | Provisionamento corporativo | 2.000+ funcionários na plataforma; 3× em quatro meses; taxa de merge de PRs de 78% |
 | [Tavrn](https://devin.ai/customers/tavrn) | Frota sob restrição HIPAA | Time de 8 entrega como 50; **1.800+ PRs em 6 semanas**, produção 6× |
+| [Itaú](https://medium.com/itautech/devin-no-ita%C3%BA-como-escalamos-o-uso-de-agentes-na-engenharia-de-software-b636bedebc5a) | Rollout com governança no maior banco do Brasil | Escalou de casos-piloto para uma organização de engenharia de 17.000 pessoas com requisitos de segurança atendidos |
 | **Rox** | Living Evals — Devin semanal lê traces de produção, reproduz falhas numa cópia completa, abre PRs de eval | A suite cobre **72% do uso real** vs 43–57% escrito à mão ([artigo](https://www.rox.com/articles/living-evals-an-eval-suite-that-grows-from-production), [thread](https://x.com/rox_ai/status/2110779380666617997)) |
 | [Evinova](https://devin.ai/customers/evinova) | Entrega regulada por GxP | Documentação GxP 8× mais rápida; migrações 3×; 66% dos bugs claros corrigidos autonomamente |
 | [Compiled Health](https://devin.ai/customers/compiledhealth) | Construção de benchmark clínico | 2 pesquisadores/2 meses = trabalho de 5–6 engenheiros; ~430 horas-engenheiro a ~$17/h ≈ +4 engenheiros num time de 4 |
@@ -179,7 +182,7 @@ Casos de clientes publicados com números concretos ([índice completo](https://
 | [FE fundinfo](https://devin.ai/customers/fefundinfo) | Automação de 1.800 repositórios | Aumento imediato de 10% na capacidade via geração de testes + correções de segurança |
 | [GE Aerospace](https://devin.ai/customers/geaerospace) | Throughput de stories de time limitado | Produção de user stories ~2× em três meses |
 
-Também registrado: Citi (rollout para 40.000 desenvolvedores, corte de 30% no gasto com fornecedores de tecnologia), Itaú, Mercor, Hippo, Mercedes-Benz, parcerias com Cognizant e Infosys — veja o [índice de clientes](https://devin.ai/customers).
+Também registrado: Citi (rollout para 40.000 desenvolvedores, corte de 30% no gasto com fornecedores de tecnologia), Mercor, Hippo, Mercedes-Benz, parcerias com Cognizant e Infosys — veja o [índice de clientes](https://devin.ai/customers).
 
 <p align="right"><a href="#readme">back to top</a></p>
 
@@ -233,6 +236,7 @@ O que a comunidade constrói *para* o Devin, em vez de *com* ele.
 - **[devin-subagents](https://github.com/Duro02/devin-subagents)** — Expõe sessões `devin acp` como subagentes com ciclo de vida gerenciado via MCP: despacho paralelo, `wait` bloqueante, direcionamento em voo, adjudicação de permissões.
 - **[Devin Session Exporter](https://github.com/marktwainme/devin-session-exporter)** — Extensão do Devin Desktop que exporta bancos de sessões ACP locais para Markdown/JSON/HTML com filtros e exportação em lote.
 - **[devin-acp-shim](https://github.com/wibus-wee/devin-acp-shim)** — Proxy stdio transparente que corrige a negociação de capacidades MCP em nível de sessão do Devin CLI — pequeno, mas desbloqueia servidores MCP para todo host ACP.
+- **[hindsight-devin-desktop](https://pypi.org/project/hindsight-devin-desktop/)** — Ponte MCP da Vectorize que dá ao Devin Desktop memória persistente de longo prazo: um comando liga o servidor Hindsight e as regras recall/retain always-on.
 
 <p align="right"><a href="#readme">back to top</a></p>
 
@@ -260,6 +264,8 @@ Uso real documentado.
 - **[Devin: de bug report a pull request](https://medium.com/@winter.inc/devin-from-bug-report-to-pull-request-25-days-of-ai-day-18-b158daa20f23)** — Dia 18 de uma série de 25 dias de IA: o ciclo completo ticket→PR numa codebase real (Medium).
 - **[Time dev de bots por função + auto-merge de PRs leves](https://zenn.dev/kyto64/articles/ai-bot-dev-env)** — Setup de dev pessoal do kyto64: bots de IA especializados mais Devin, com PRs de baixo risco se auto-mergeando (JP).
 - **[Os limites de contexto do Devin CLI na prática](https://qiita.com/ishizakahiroshi/items/cee2a8ea2be18f2ccee3)** — Notas de trabalho para caber AGENTS.md e regras de aprovação nos limites de 16KB/32KB (JP).
+- **[Primeira sessão Devin da NOT A HOTEL](https://zenn.dev/notahotel/articles/d401a1046d6076)** — Relato de um workshop em mob do setup ao primeiro PR mergeado em menos de uma hora — incluindo as categorias de onboarding que o Devin pede (JP).
+- **[Hello World… Meet Devin](https://jamesin.substack.com/p/hello-world-meet-devin)** — Relato da era de lançamento de Jamesin Seidel: vendo código ser commitado no seu próprio repo pelo Devin pela primeira vez, construindo um assistente de triagem de email (Substack).
 - **[Orquestração multi-IA no SWE-2 grátis](https://qiita.com/ishizakahiroshi/items/72ab801a5f2a8c941b61)** — Um design para rotear trabalho entre agentes usando o tier permanentemente gratuito SWE-2 do Devin CLI (JP).
 
 <p align="right"><a href="#readme">back to top</a></p>

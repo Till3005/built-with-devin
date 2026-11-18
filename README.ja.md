@@ -123,6 +123,8 @@ flowchart LR
 - **[Courtyard の Quick](https://courtyard.io/blog/post/from-a-slack-link-to-production-in-under-48-hours-cloning-shopifys-quick-with-devin)** —— Shopify 内部の静的サイトデプロイヤー "Quick" をクローン：Slack リンク 1 つから本番サービス（Go、Cloud Run、Bazel、Terraform、SSO、git バックド）まで **約 21 時間**。すべて Devin が執筆。
 - **[Frontierfood](https://samyok.com/frontierfood)** —— Cognition エンジニア Samyok Nepal が Devin Voice で Google レビューをスクレイプし、地域別グルメのパレートフロンティアをマッピング（[投稿](https://x.com/samyok/status/2098155977199743367)）。
 - **Flappy Asher** —— Russell Kaplan（Cognition 社長）が Mac VM 上の Devin に赤ちゃんの写真をゲームスプライトにさせて出荷 —— TestFlight で公開中（[投稿](https://x.com/russelljkaplan/status/2100280085999919555)）。
+- **[Try Devin vending machine](https://github.com/dabit3/vending-machine)** —— dabit3 のイベント用クレジット配布機（Next.js + Convex + Clerk）：参加者がイベント URL でメールを入力すると Devin クレジットコードを受け取る。`devin-ai-integration[bot]` がリポジトリのトップ貢献者（266 commits）。本番: [trydevin.ai](https://www.trydevin.ai/)。
+- **[GymClass](https://seed.horacioh.com/writing/how-i-built-a-full-booking-system-as-a-side-project-with-devin-as-my-engineering-partner)** —— Horacio Herrera が実在の武術アカデミー向けに作った予約・クラス管理システム（TS/Bun/React/Hono/tRPC、Cloudflare）：会議の合間にスマホから Devin を指揮して 1 ヶ月分の機能を出荷——予約アーキテクチャの全面書き換えと Vitest→Bun 移行を含む。
 
 *Devin で作った出荷済みプロダクトを知っていますか？[追加してください](CONTRIBUTING.md)。*
 
@@ -168,6 +170,7 @@ flowchart LR
 | [Crosby](https://devin.ai/customers/crosby) | AI ネイティブ法律事務所 | 毎日 20–40 件のバグレポート/アラートに初回対応、各 ~5 分。12 人のエンジニアが 50 人以上の弁護士に対応 |
 | [Endava](https://devin.ai/customers/endava) | 企業全体への提供 | 2,000 人以上の従業員がプラットフォーム利用。4 ヶ月で 3 倍。PR マージ率 78% |
 | [Tavrn](https://devin.ai/customers/tavrn) | HIPAA 制約下のフリート | 8 人のチームが 50 人のように出荷。**6 週間で 1,800 以上の PR**、生産量 6 倍 |
+| [Itaú](https://medium.com/itautech/devin-no-ita%C3%BA-como-escalamos-o-uso-de-agentes-na-engenharia-de-software-b636bedebc5a) | ブラジル最大銀行のガバナンス先行展開 | パイロットから 17,000 人のエンジニア組織へ拡大、セキュリティ要件をクリア（PT-BR） |
 | **Rox** | Living Evals —— 週次 Devin が本番トレースを読み、完全コピーで障害を再生、eval PR をオープン | eval スイートが**実使用量の 72%**をカバー（手書きは 43–57%）（[記事](https://www.rox.com/articles/living-evals-an-eval-suite-that-grows-from-production)、[スレッド](https://x.com/rox_ai/status/2110779380666617997)） |
 | [Evinova](https://devin.ai/customers/evinova) | GxP 規制下のデリバリー | GxP 文書化 8 倍速。マイグレーション 3 倍速。明確なバグの 66% を自律修正 |
 | [Compiled Health](https://devin.ai/customers/compiledhealth) | 臨床ベンチマーク構築 | 2 人の研究者・2 ヶ月 = 5–6 人のエンジニアの仕事。~430 エンジニア時間・時給 ~$17 ≈ 4 人チームに +4 名分 |
@@ -179,7 +182,7 @@ flowchart LR
 | [FE fundinfo](https://devin.ai/customers/fefundinfo) | 1,800 リポジトリ自動化 | テスト生成 + セキュリティ修正で即座に 10% のキャパシティ増 |
 | [GE Aerospace](https://devin.ai/customers/geaerospace) | 制約チームのストーリー処理量 | 3 ヶ月でユーザーストーリー出力 ~2 倍 |
 
-その他の公開記録：Citi（40,000 人の開発者展開、技術ベンダー支出 30% 削減）、Itaú、Mercor、Hippo、Mercedes-Benz、Cognizant、Infosys との提携 —— [顧客索引](https://devin.ai/customers)を参照。
+その他の公開記録：Citi（40,000 人の開発者展開、技術ベンダー支出 30% 削減）、Mercor、Hippo、Mercedes-Benz、Cognizant、Infosys との提携 —— [顧客索引](https://devin.ai/customers)を参照。
 
 <p align="right"><a href="#readme">back to top</a></p>
 
@@ -233,6 +236,7 @@ Devin *で*作られたものではなく、Devin の*ために*コミュニテ�
 - **[devin-subagents](https://github.com/Duro02/devin-subagents)** —— `devin acp` セッションを MCP 上のライフサイクル管理サブエージェントとして公開：並列ディスパッチ、ブロッキング `wait`、途中介入、権限裁定。
 - **[Devin Session Exporter](https://github.com/marktwainme/devin-session-exporter)** —— ローカル ACP セッションデータベースをフィルタ・一括エクスポートできる Devin Desktop 拡張（Markdown/JSON/HTML）。
 - **[devin-acp-shim](https://github.com/wibus-wee/devin-acp-shim)** —— Devin CLI のセッションレベル MCP 能力ネゴシエーションを修正する透過 stdio プロキシ —— 小さいが、すべての ACP ホストで MCP サーバーを解放する。
+- **[hindsight-devin-desktop](https://pypi.org/project/hindsight-devin-desktop/)** —— Vectorize の MCP ブリッジ：1 コマンドで Devin Desktop に永続的な長期記憶と常時 recall/retain ルールを配線。
 
 <p align="right"><a href="#readme">back to top</a></p>
 
@@ -260,6 +264,8 @@ Devin *で*作られたものではなく、Devin の*ために*コミュニテ�
 - **[Devin：バグレポートから PR まで](https://medium.com/@winter.inc/devin-from-bug-report-to-pull-request-25-days-of-ai-day-18-b158daa20f23)** —— 25 日 AI シリーズ 18 日目：実コードベースでの ticket→PR 完全ループ（Medium）。
 - **[役割別 bot 開発チーム + 軽量 PR 自動マージ](https://zenn.dev/kyto64/articles/ai-bot-dev-env)** —— kyto64 の個人開発環境：専門 AI bot + Devin、低リスク PR の自動マージ。
 - **[Devin CLI のコンテキスト上限の実践](https://qiita.com/ishizakahiroshi/items/cee2a8ea2be18f2ccee3)** —— AGENTS.md と承認ルールを 16KB/32KB 上限に収める作業ノート。
+- **[NOT A HOTEL の初めての Devin 導入](https://zenn.dev/notahotel/articles/d401a1046d6076)** —— セットアップから初マージ PR まで 1 時間未満のモブワーク記録——Devin が求めるリポジトリ接続設定の分類項目も紹介。
+- **[Hello World… Meet Devin](https://jamesin.substack.com/p/hello-world-meet-devin)** —— Jamesin Seidel のローンチ期記録：初めて Devin が自分のリポジトリにコードをコミットするのを見た、メール振り分けアシスタント開発（Substack）。
 - **[無料 SWE-2 上のマルチ AI オーケストレーション](https://qiita.com/ishizakahiroshi/items/72ab801a5f2a8c941b61)** —— Devin CLI の永久無料 SWE-2 枠でエージェント間のワークルーティングを設計。
 
 <p align="right"><a href="#readme">back to top</a></p>

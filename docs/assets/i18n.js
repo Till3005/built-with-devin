@@ -1,6 +1,7 @@
 // Built with Devin — UI translations. en = HTML default.
 const I18N = {
 zh: {
+'e8.d':'巴西最大银行的治理优先落地','p5.d':'dabit3 的活动发码机——输邮箱领 Devin 额度码；devin-ai-integration[bot] 是头号贡献者（266 commits）。','p6.d':'真实武术馆的订课系统——一个月功能量，在手机上会议间隙指挥 Devin 完成。','t7.d':'Devin Desktop 的持久长期记忆——经 MCP 一条命令接上 recall/retain。',
 'nav.skip':'跳到内容','nav.dep':'部署','nav.prod':'产品','nav.ent':'企业','nav.tools':'工具','nav.econ':'经济学',
 'hero.eyebrow':'社区制作 · 非官方 · 与 Cognition 无关',
 'hero.title':'用 Devin 造出的一切，皆有据可查。',
@@ -61,6 +62,7 @@ zh: {
 'foot.base1':'© 2026 —— 社区登记库。每个数字都链接出处。'
 },
 ja: {
+'e8.d':'ブラジル最大銀行のガバナンス先行展開','p5.d':'dabit3 のイベント用クレジット配布機——メールを入力して Devin コードを受け取る。devin-ai-integration[bot] がトップ貢献者（266 commits）。','p6.d':'実在の武術アカデミーの予約システム——会議の合間にスマホから指揮して 1 ヶ月分の機能。','t7.d':'Devin Desktop の永続的長期記憶——MCP 経由で 1 コマンドで recall/retain を配線。',
 'nav.skip':'コンテンツへ','nav.dep':'デプロイ','nav.prod':'プロダクト','nav.ent':'エンタープライズ','nav.tools':'ツール','nav.econ':'経済学',
 'hero.eyebrow':'コミュニティ制作 · 非公式 · Cognition 無関係',
 'hero.title':'Devin で作られたすべて、検証済み。',
@@ -121,6 +123,7 @@ ja: {
 'foot.base1':'© 2026 —— コミュニティレジストリ。すべての数値に出典リンク。'
 },
 pt: {
+'e8.d':'Rollout com governança no maior banco do Brasil','p5.d':'Distribuidor de créditos de evento do dabit3 — digite o email, receba um código Devin. devin-ai-integration[bot] é o maior contribuidor (266 commits).','p6.d':'Sistema de reservas de uma academia de artes marciais real — um mês de features dirigidas do celular.','t7.d':'Memória persistente de longo prazo para Devin Desktop — via MCP, um comando liga recall/retain.',
 'nav.skip':'Ir ao conteúdo','nav.dep':'Implantações','nav.prod':'Produtos','nav.ent':'Empresas','nav.tools':'Ferramentas','nav.econ':'Economia',
 'hero.eyebrow':'Feito pela comunidade · não oficial · sem afiliação com a Cognition',
 'hero.title':'Tudo que foi construído com Devin, verificado.',
@@ -181,6 +184,7 @@ pt: {
 'foot.base1':'© 2026 — Um registro comunitário. Cada número linka para a fonte.'
 },
 es: {
+'e8.d':'Despliegue con gobernanza en el mayor banco de Brasil','p5.d':'Dispensador de créditos de evento de dabit3 — escribe tu email, recibe un código Devin. devin-ai-integration[bot] es el mayor contribuidor (266 commits).','p6.d':'Sistema de reservas de una academia de artes marciales real — un mes de features dirigidas desde el móvil.','t7.d':'Memoria persistente a largo plazo para Devin Desktop — vía MCP, un comando conecta recall/retain.',
 'nav.skip':'Ir al contenido','nav.dep':'Despliegues','nav.prod':'Productos','nav.ent':'Empresas','nav.tools':'Herramientas','nav.econ':'Economía',
 'hero.eyebrow':'Hecho por la comunidad · no oficial · sin afiliación con Cognition',
 'hero.title':'Todo lo construido con Devin, verificado.',
@@ -241,6 +245,7 @@ es: {
 'foot.base1':'© 2026 — Un registro comunitario. Cada cifra enlaza a su fuente.'
 },
 de: {
+'e8.d':'Governance-first-Rollout in Brasiliens größter Bank','p5.d':'dabit3s Event-Credit-Spender — E-Mail eingeben, Devin-Code erhalten. devin-ai-integration[bot] ist Top-Contributor (266 Commits).','p6.d':'Buchungssystem einer echten Kampfsportakademie — ein Monat Features, vom Handy aus dirigiert.','t7.d':'Persistente Langzeit-Memory für Devin Desktop — ein Befehl verdrahtet recall/retain über MCP.',
 'nav.skip':'Zum Inhalt','nav.dep':'Deployments','nav.prod':'Produkte','nav.ent':'Enterprise','nav.tools':'Tools','nav.econ':'Ökonomie',
 'hero.eyebrow':'Von der Community · inoffiziell · nicht mit Cognition verbunden',
 'hero.title':'Alles, was mit Devin gebaut wurde — verifiziert.',

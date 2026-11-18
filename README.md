@@ -13,7 +13,7 @@
 
 <sub>Curated by [@darega0mae](https://x.com/darega0mae) · Sister tutorials: [build-with-devin](https://github.com/Till3005/build-with-devin) · [Add your project](CONTRIBUTING.md)</sub>
 
-<sub>**12** documented Bot deployments · **34** enterprise case studies · **4** shipped products · **28** tools & integrations · **19** field reports</sub>
+<sub>**12** documented Bot deployments · **35** enterprise case studies · **6** shipped products · **29** tools & integrations · **21** field reports</sub>
 
 <sub>English · [简体中文](README.zh.md) · [日本語](README.ja.md) · [Português](README.pt.md) · [Español](README.es.md) · [Deutsch](README.de.md)</sub>
 
@@ -125,6 +125,8 @@ Real software where Devin wrote the code — not demos, shipped work.
 - **[Courtyard's Quick](https://courtyard.io/blog/post/from-a-slack-link-to-production-in-under-48-hours-cloning-shopifys-quick-with-devin)** — Courtyard cloned Shopify's internal "Quick" static-site deployer: from a Slack link to a production service (Go, Cloud Run, Bazel, Terraform, SSO, git-backed) in **~21 hours**, all written by Devin.
 - **[Frontierfood](https://samyok.com/frontierfood)** — Cognition engineer Samyok Nepal used Devin Voice to scrape Google reviews and map the Pareto frontier of food by location ([post](https://x.com/samyok/status/2098155977199743367)).
 - **Flappy Asher** — Russell Kaplan (Cognition president) had Devin on a Mac VM turn baby photos into game sprites and ship the result — live in TestFlight ([post](https://x.com/russelljkaplan/status/2100280085999919555)).
+- **[Try Devin vending machine](https://github.com/dabit3/vending-machine)** — dabit3's event credit dispenser (Next.js + Convex + Clerk): attendees enter their email at an event URL and get a unique Devin credit code. `devin-ai-integration[bot]` is the repo's top contributor (266 commits); live at [trydevin.ai](https://www.trydevin.ai/).
+- **[GymClass](https://seed.horacioh.com/writing/how-i-built-a-full-booking-system-as-a-side-project-with-devin-as-my-engineering-partner)** — Horacio Herrera's booking and class-management system for a real martial-arts academy (TS/Bun/React/Hono/tRPC on Cloudflare): a month of features directed from his phone between meetings — including a full booking-architecture rewrite and a Vitest→Bun migration.
 
 *Know a shipped product built with Devin? [Add it](CONTRIBUTING.md).*
 
@@ -179,9 +181,10 @@ Published customer cases with hard numbers ([full index](https://devin.ai/custom
 | [Crossmint](https://devin.ai/customers/crossmint) | GOAT open-source scaling | Devin became the repo's #1 contributor during trial |
 | [FE fundinfo](https://devin.ai/customers/fefundinfo) | 1,800-repo automation | 10% immediate capacity increase via test-gen + security fixes |
 | [GE Aerospace](https://devin.ai/customers/geaerospace) | Constrained team story throughput | ~2× user-story output in three months |
+| [Itaú](https://medium.com/itautech/devin-no-ita%C3%BA-como-escalamos-o-uso-de-agentes-na-engenharia-de-software-b636bedebc5a) | Governance-first rollout at Brazil's largest bank | Scaled from pilot cases to a 17,000-person engineering org with security requirements met (PT-BR) |
 | **Rox** | Living Evals — weekly Devin reads production traces, replays failures in a full copy, opens eval PRs | Eval suite covers **72% of real usage** vs 43–57% hand-written ([write-up](https://www.rox.com/articles/living-evals-an-eval-suite-that-grows-from-production), [thread](https://x.com/rox_ai/status/2110779380666617997)) |
 
-Also on the record: Citi (40,000-developer rollout, 30% tech-vendor spend cut), Itaú, Mercor, Hippo, Mercedes-Benz, Cognizant and Infosys partnerships — see the [customer index](https://devin.ai/customers).
+Also on the record: Citi (40,000-developer rollout, 30% tech-vendor spend cut), Mercor, Hippo, Mercedes-Benz, Cognizant and Infosys partnerships — see the [customer index](https://devin.ai/customers).
 
 <p align="right"><a href="#readme">back to top</a></p>
 
@@ -235,6 +238,7 @@ Things the community builds *for* Devin rather than *with* it.
 - **[devin-subagents](https://github.com/Duro02/devin-subagents)** — Exposes `devin acp` sessions as lifecycle-managed subagents over MCP: parallel dispatch, blocking `wait`, mid-flight steering, permission adjudication.
 - **[Devin Session Exporter](https://github.com/marktwainme/devin-session-exporter)** — Devin Desktop extension that exports local ACP session databases to Markdown/JSON/HTML with filtering and batch export.
 - **[devin-acp-shim](https://github.com/wibus-wee/devin-acp-shim)** — A transparent stdio proxy that fixes Devin CLI's session-level MCP capability negotiation — small, but it unblocks MCP servers for every ACP host.
+- **[hindsight-devin-desktop](https://pypi.org/project/hindsight-devin-desktop/)** — Vectorize's MCP bridge giving Devin Desktop persistent long-term memory: one command wires the Hindsight server plus always-on recall/retain rules.
 
 <p align="right"><a href="#readme">back to top</a></p>
 
@@ -262,6 +266,8 @@ Documented real-world usage.
 - **[Devin: from bug report to pull request](https://medium.com/@winter.inc/devin-from-bug-report-to-pull-request-25-days-of-ai-day-18-b158daa20f23)** — Day 18 of a 25-day AI series: the full ticket-to-PR loop on a real codebase (Medium).
 - **[Role-based bot dev team + light-PR auto-merge](https://zenn.dev/kyto64/articles/ai-bot-dev-env)** — kyto64's personal-dev setup: specialized AI bots plus Devin, with low-risk PRs merging themselves (JP).
 - **[Devin CLI's context limits in practice](https://qiita.com/ishizakahiroshi/items/cee2a8ea2be18f2ccee3)** — Working notes on fitting AGENTS.md and approval rules inside the 16KB/32KB caps (JP).
+- **[NOT A HOTEL's first Devin session](https://zenn.dev/notahotel/articles/d401a1046d6076)** — A mob-workshop report from setup to first merged PR in under an hour — including what repo onboarding categories Devin asks for (JP).
+- **[Hello World… Meet Devin](https://jamesin.substack.com/p/hello-world-meet-devin)** — Jamesin Seidel's launch-era account: watching code get committed into his own repo by Devin for the first time, building an email-triage assistant (Substack).
 - **[Multi-AI orchestration on free SWE-2](https://qiita.com/ishizakahiroshi/items/72ab801a5f2a8c941b61)** — A design for routing work between agents using Devin CLI's permanently-free SWE-2 tier (JP).
 
 <p align="right"><a href="#readme">back to top</a></p>
