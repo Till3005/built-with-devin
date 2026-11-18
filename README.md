@@ -74,6 +74,8 @@ flowchart LR
 - **Scheduled checks** — a Bot that watches an alerts channel on a cron, owns the check, and opens fixes when it regresses (Layout Bot pattern).
 - **Roll-up reporting** — one supervising Bot collects every subordinate Bot's pending decisions into a single thread (SuperJennyStack pattern).
 - **Bots × Apps** — Bots maintain Devin Apps: build new pages/features and adapt to changes automatically; Bots and Apps pin to the same nav rail ([@dabit3](https://x.com/dabit3)).
+- **Living evals** — a scheduled Devin reads production traces, groups them into behaviors, replays failures in a full copy of your system (never mocks), and freezes each as an eval PR — the skill file is the asset, not the evals (Rox: 72% coverage vs 43–57%).
+- **Bots that tune Devin itself** — Walden's bot watches user feedback, replays prompts, runs experiments, builds eval sets, and tunes Devin's own proactivity/autonomy parameters — Bots built Bots ([thread](https://x.com/walden_yan/status/2122740852091216274)).
 - **Bots with their own accounts** — DevRelBot ships tutorial videos by itself because it was provisioned like an employee: own computer, own Devin/GitHub/Linear accounts, own ElevenLabs key — it signs into Devin and records the real UI.
 - **Inter-bot protocol (BotSpeak)** — 20+ Bots generate 700+ messages/day; Jenny solved inbox collapse with a bot-to-bot shorthand (ACK codes, Simplified English, emoji receipts) and full prose only for the human — bot-made decisions 12×'d in 6 days.
 - **Reference-grounded swarms** — Harvey's lesson: when work can be checked against a reliable reference (real Word behavior), a small team can direct a large swarm safely.
@@ -306,3 +308,4 @@ Built something with Devin, or know a deployment we missed? See [CONTRIBUTING.md
 ## License
 
 [CC0-1.0](LICENSE) — dedicated to the public domain. Listings belong to their owners.
+| **Rox** | Living Evals — weekly Devin reads production traces, replays failures in a full copy, opens eval PRs | Eval suite covers **72% of real usage** vs 43–57% hand-written ([write-up](https://www.rox.com/articles/living-evals-an-eval-suite-that-grows-from-production), [thread](https://x.com/rox_ai/status/2110779380666617997)) |
