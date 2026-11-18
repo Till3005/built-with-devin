@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Guide 13 — The official use-case cookbook — build-with-devin guides</title>
+<meta name="description" content="the proven usage patterns from Cognition's own docs, organized as a cookbook — what to slice for Devin, and 40+ documented recipes with prompts to copy.">
+<link rel="icon" href="../assets/brand/Devin_Symbol.svg" type="image/svg+xml">
+<link rel="stylesheet" href="../assets/site.css">
+<link rel="stylesheet" href="../assets/guides.css">
+</head>
+<body>
+<a class="skip" href="#guide">Skip to content</a>
+<nav><div class="wrap nav-inner">
+  <div class="nav-left">
+    <a class="brand" href="../index.html" aria-label="Built with Devin">
+      <span class="brand-text">built<strong>-with-</strong></span><img class="brand-mark" src="../assets/brand/Devin_Primary_Logo.svg" alt="Devin" height="16"><span class="unofficial-chip">unofficial</span>
+    </a>
+  </div>
+  <div class="nav-side">
+    <div class="mode-toggle" role="tablist" aria-label="Site section">
+      <button class="mode-btn" data-mode="built" role="tab" aria-selected="false" onclick="location.href='../index.html'">Built</button>
+      <button class="mode-btn on" data-mode="build" role="tab" aria-selected="true" onclick="location.href='../index.html#build'">Build</button>
+      <span class="mode-pill" aria-hidden="true"></span>
+    </div>
+    <a class="cta" href="https://github.com/Till3005/build-with-devin/blob/main/guides/official-cookbook.md">GitHub</a>
+  </div>
+</div></nav>
+<main>
+<article class="guide wrap" id="guide">
+  <p class="guide-crumb"><a href="../index.html#build">← Guides</a> · <a href="zh/official-cookbook.html">中文</a></p>
+<h1>Guide 13 — The official use-case cookbook</h1>
+<p><strong>Goal:</strong> the proven usage patterns from Cognition's own docs, organized as a cookbook — what to slice for Devin, and 40+ documented recipes with prompts to copy.
+<strong>Level:</strong> start here for breadth
+<strong>Sources:</strong> <a href="https://docs.devin.ai/use-cases/best-practices.html">Best Practices</a> · <a href="https://docs.devin.ai/use-cases/gallery/index.html">Use-case gallery</a> · <a href="https://docs.devin.ai/use-cases/index.html">use-case tutorials</a></p>
+<h2>The one rule behind all of it</h2>
+<p>Official guidance, verbatim logic: pick work that is <strong>wide &amp; shallow</strong> — a large backlog of simple, horizontally-scalable tasks beats complex net-new builds, every time.</p>
+<table>
+<thead>
+<tr>
+<th>Ideal task</th>
+<th>Anti-task</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Repetitive subtasks at junior-engineer complexity</td>
+<td>Net-new complex features</td>
+</tr>
+<tr>
+<td>&lt; 90 minutes of manual work per slice</td>
+<td>Anything unsplittable</td>
+</tr>
+<tr>
+<td>Objective pass/fail verification</td>
+<td>"Looks right to me"</td>
+</tr>
+<tr>
+<td>Isolated, backwards-compatible, parallelizable</td>
+<td>Tangled dependencies</td>
+</tr>
+</tbody>
+</table>
+<p>Four great slice shapes from the docs: <strong>migrations, refactors, modernizations, tech-debt backlogs.</strong></p>
+<h2>The recipe catalog</h2>
+<p>Everything below is a documented use case in the official gallery — each ships with a copy-paste prompt. Organized by the job it removes from a human's week.</p>
+<h3>Incidents &amp; production health</h3>
+<table>
+<thead>
+<tr>
+<th>Recipe</th>
+<th>Mechanism</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Auto-investigate Datadog/PagerDuty alerts</td>
+<td>Webhook/API trigger → session investigates on fire</td>
+</tr>
+<tr>
+<td>Auto-generate postmortems</td>
+<td>PagerDuty resolve → Devin drafts timeline, root cause, action items</td>
+</tr>
+<tr>
+<td>Daily Sentry error fixes</td>
+<td>Nightly cron pulls new errors → fix PRs by morning</td>
+</tr>
+<tr>
+<td>Debug a bug report end-to-end</td>
+<td>Hand Devin the report + Datadog logs + DB access → root cause</td>
+</tr>
+</tbody>
+</table>
+<h3>Scheduled hygiene (the highest-ROI page in the docs)</h3>
+<table>
+<thead>
+<tr>
+<th>Recipe</th>
+<th>Cadence</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Weekly dependency update PRs</td>
+<td>Weekly: outdated packages → tested upgrade PRs</td>
+</tr>
+<tr>
+<td>Nightly E2E on staging</td>
+<td>Nightly: run suite, file tickets for failures</td>
+</tr>
+<tr>
+<td>Weekly changelog from merged PRs</td>
+<td>Friday: categorized changelog → Slack</td>
+</tr>
+<tr>
+<td>Daily Datadog health digest</td>
+<td>Daily: error scan → Slack digest</td>
+</tr>
+<tr>
+<td>Daily design-system audit</td>
+<td>Daily: flag hardcoded colors/missing tokens in merged PRs</td>
+</tr>
+<tr>
+<td>Feature-flag cleanup</td>
+<td>One-time session strips flag + dead code post-release</td>
+</tr>
+<tr>
+<td>Weekly Notion status digest</td>
+<td>Weekly: PR/commit summary → Notion</td>
+</tr>
+<tr>
+<td>PRs from meeting transcripts</td>
+<td>Hourly: poll Granola → extract eng tasks → child sessions</td>
+</tr>
+</tbody>
+</table>
+<h3>Code quality</h3>
+<table>
+<thead>
+<tr>
+<th>Recipe</th>
+<th>Mechanism</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Auto-fix PR bugs before merge</td>
+<td>Devin reviews every PR, pushes fixes to the branch</td>
+</tr>
+<tr>
+<td>Add unit tests to a service</td>
+<td>Build a test-writing skill, apply to charge flows/refunds/webhooks</td>
+</tr>
+<tr>
+<td>Catch visual regressions</td>
+<td>Repo skill: screenshot every affected page before PR</td>
+</tr>
+<tr>
+<td>Migration checklist on every PR</td>
+<td>Repo skill catches destructive ops, validates schema changes</td>
+</tr>
+<tr>
+<td>Split a monolithic router</td>
+<td>2,000-line Express router → domain routes with shared middleware</td>
+</tr>
+<tr>
+<td>Raise code coverage</td>
+<td>Devin analyzes the suite, writes tests to cover gaps</td>
+</tr>
+<tr>
+<td>Patch known CVEs across repos</td>
+<td>Official skills (<a href="https://github.com/cognitionai/devin-vuln-fixes">devin-vuln-fixes</a>): read-only inventory → approval gate → confirmed-target patch → before/after tests → one PR per repo</td>
+</tr>
+</tbody>
+</table>
+<h3>Migrations &amp; feature work</h3>
+<table>
+<thead>
+<tr>
+<th>Recipe</th>
+<th>Mechanism</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>50-file REST→GraphQL</td>
+<td>Scope → conflict-free packages → parallel (Guide 11)</td>
+</tr>
+<tr>
+<td>React 18→19 upgrade skill</td>
+<td>Turn the official upgrade guide into a phased skill for your codebase</td>
+</tr>
+<tr>
+<td>OpenAPI spec → implementation</td>
+<td>YAML spec → Express handlers + Zod validation + Supertest</td>
+</tr>
+<tr>
+<td>Stripe checkout flow</td>
+<td>Spec → working flow + tests + browser verification</td>
+</tr>
+<tr>
+<td>i18n a Next.js app</td>
+<td>next-i18next install, string extraction, 3-language browser check</td>
+</tr>
+<tr>
+<td>Figma → pixel-perfect</td>
+<td>Figma MCP → components from mockups</td>
+</tr>
+<tr>
+<td>Dockerize a Django app</td>
+<td>Multi-stage Dockerfile + compose for Django/Postgres/Redis</td>
+</tr>
+</tbody>
+</table>
+<h3>Project management &amp; data</h3>
+<table>
+<thead>
+<tr>
+<th>Recipe</th>
+<th>Mechanism</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Auto-triage bugs via Linear</td>
+<td>Label applied → Devin investigates</td>
+</tr>
+<tr>
+<td>PRDs → sprint tickets</td>
+<td>Notion PRD → scoped Linear tickets</td>
+</tr>
+<tr>
+<td>Backlog implementation plans</td>
+<td>Multi-select Linear tickets → confidence-scored plans</td>
+</tr>
+<tr>
+<td><code>/dana</code> data queries in Slack</td>
+<td>Plain-English database queries from any channel</td>
+</tr>
+<tr>
+<td>Custom API usage dashboard</td>
+<td>Devin builds a tailored dashboard on the v3 API</td>
+</tr>
+</tbody>
+</table>
+<h3>Getting better at Devin itself ("Devin Optimization")</h3>
+<table>
+<thead>
+<tr>
+<th>Recipe</th>
+<th>Lesson</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Cut a feature prompt 42→12 ACUs</td>
+<td>Autopsy a costly session: 3 root causes → rewrite the prompt</td>
+</tr>
+<tr>
+<td>Race 3 sessions on one problem</td>
+<td>Parallel sessions try competing optimization strategies; best ships</td>
+</tr>
+<tr>
+<td>8 parallel sessions overnight</td>
+<td>8 untested modules → unit-test PRs by morning</td>
+</tr>
+<tr>
+<td>Evaluate 30 libraries</td>
+<td>One session per library → scored, ranked comparison</td>
+</tr>
+<tr>
+<td>Turn a hotfix into a skill</td>
+<td>Extract a successful incident session into a reusable skill</td>
+</tr>
+<tr>
+<td>Weekly knowledge dedup</td>
+<td>Scheduled session merges/conflicts-cleans knowledge suggestions</td>
+</tr>
+<tr>
+<td>Team onboarding guide</td>
+<td>Devin reads its own docs → a getting-started guide for your stack</td>
+</tr>
+</tbody>
+</table>
+<h2>How to use this cookbook</h2>
+<ol>
+<li>Pick one recipe from <strong>Scheduled hygiene</strong> — it's the cheapest first win (a nightly/weekly loop you stop thinking about)</li>
+<li>Add one from <strong>Incidents</strong> if you have PagerDuty/Datadog/Sentry</li>
+<li>When a recipe works, freeze it as a <strong>skill</strong> (Guide 12) or a <strong>Bot</strong> (Guides 1–5) — every row above survives as either</li>
+</ol>
+<h2>Verify it</h2>
+<ul>
+<li>[ ] One hygiene recipe is running on a schedule and produced its first PR/report</li>
+<li>[ ] Its output is frozen as a skill, playbook, or Bot — not living in someone's head</li>
+</ul>
+<h2>Pitfalls</h2>
+<ul>
+<li><strong>Ten recipes, zero frozen.</strong> A recipe that stays a manual prompt is forgotten by Friday — operationalize or drop it.</li>
+<li><strong>Copy-paste prompts without your repo's verification.</strong> The gallery prompts assume a test suite exists; adapt the <em>check</em>, not just the task.</li>
+</ul>
+<h2>Knowledge check</h2>
+<ol>
+<li>Why start with a scheduled-hygiene recipe rather than incident response? <em>(Cheapest possible win — it runs while you sleep, and a wrong nightly lint fix is recoverable; a wrong incident action isn't.)</em></li>
+<li>What does 'freeze a recipe as a skill or Bot' actually prevent? <em>(Prompt drift and single-person dependency — the recipe survives the person who wrote it.)</em></li>
+<li>Why adapt the verification part of a gallery prompt before the task part? <em>(The task describes intent; the check is what your repo can actually prove — wrong checks produce confident garbage.)</em></li>
+</ol>
+<h2>Sources</h2>
+<ul>
+<li><a href="https://docs.devin.ai/use-cases/gallery/index.html">Use-case gallery</a> — all recipes above, each with copy-paste prompts</li>
+<li><a href="https://docs.devin.ai/use-cases/best-practices.html">Best Practices</a> — the slicing doctrine</li>
+<li><a href="https://docs.devin.ai/use-cases/index.html">Use-case tutorials</a> — API integration, code coverage, containerization, frontend components, MCP</li>
+<li>Related: <a href="migrations-at-scale.html">Guide 11 — Migrations at scale</a> · <a href="automations-101-event-driven.html">Guide 6 — Automations</a></li>
+</ul>
+</article>
+<footer><div class="wrap foot-base"><span data-i18n="foot.note">Unofficial community project — not affiliated with Cognition AI.</span><span><a href="../index.html">built-with-devin</a> · <a href="https://github.com/Till3005/build-with-devin">build-with-devin</a></span></div></footer>
+</main>
+<script src="../assets/theme.js"></script>
+<script src="../assets/i18n.js"></script>
+<script src="../assets/i18n-runtime.js"></script>
+</body>
+</html>

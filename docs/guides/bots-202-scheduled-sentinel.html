@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Guide 3 — Scheduled-sentinel Bot — build-with-devin guides</title>
+<meta name="description" content="a Bot that owns a recurring quality check — runs it on a schedule, triages failures, traces them to the cause, and ships fixes.">
+<link rel="icon" href="../assets/brand/Devin_Symbol.svg" type="image/svg+xml">
+<link rel="stylesheet" href="../assets/site.css">
+<link rel="stylesheet" href="../assets/guides.css">
+</head>
+<body>
+<a class="skip" href="#guide">Skip to content</a>
+<nav><div class="wrap nav-inner">
+  <div class="nav-left">
+    <a class="brand" href="../index.html" aria-label="Built with Devin">
+      <span class="brand-text">built<strong>-with-</strong></span><img class="brand-mark" src="../assets/brand/Devin_Primary_Logo.svg" alt="Devin" height="16"><span class="unofficial-chip">unofficial</span>
+    </a>
+  </div>
+  <div class="nav-side">
+    <div class="mode-toggle" role="tablist" aria-label="Site section">
+      <button class="mode-btn" data-mode="built" role="tab" aria-selected="false" onclick="location.href='../index.html'">Built</button>
+      <button class="mode-btn on" data-mode="build" role="tab" aria-selected="true" onclick="location.href='../index.html#build'">Build</button>
+      <span class="mode-pill" aria-hidden="true"></span>
+    </div>
+    <a class="cta" href="https://github.com/Till3005/build-with-devin/blob/main/guides/bots-202-scheduled-sentinel.md">GitHub</a>
+  </div>
+</div></nav>
+<main>
+<article class="guide wrap" id="guide">
+  <p class="guide-crumb"><a href="../index.html#build">← Guides</a> · <a href="zh/bots-202-scheduled-sentinel.html">中文</a></p>
+<h1>Guide 3 — Scheduled-sentinel Bot</h1>
+<p><strong>Goal:</strong> a Bot that owns a recurring quality check — runs it on a schedule, triages failures, traces them to the cause, and ships fixes.
+<strong>Level:</strong> intermediate
+<strong>Source deployment:</strong> Cognition's <strong>Layout Bot</strong> — watches layout-shift regression on the Devin web app. Every 3 hours it builds production <code>main</code>, simulates first/repeat/delayed-request visits, and ships fixes. <strong>159 PRs in 3 weeks; lag −70%.</strong>
+<strong>Sources:</strong> <a href="https://devin.ai/blog/introducing-devin-bots">launch post</a> · <a href="https://docs.devin.ai/product-guides/automations">Automations docs</a></p>
+<h2>The pattern</h2>
+<p>Some work is never done — it recurs on a clock: performance budgets, visual regression, dependency freshness, secret scans, uptime. A sentinel Bot owns <em>the check itself</em>, not just the fixes: it keeps the check working as the codebase changes, filters noise, and opens a fix only when the regression is real.</p>
+<pre><code class="language-text">cron ──► Bot wakes ──► run check under realistic conditions
+                           │
+              pass ────────┴──────── fail
+               │                       │
+             quiet            rerun to filter flakes
+                                       │
+                              trace to introducing PR
+                                       │
+                          fix PR + before/after evidence
+</code></pre>
+<h2>Prerequisites</h2>
+<ul>
+<li>A check that can run on the Bot's machine (build, test suite, Lighthouse, custom script)</li>
+<li>Devin Bot created (Guide 1) or an Automation (Guide 6) — both work; a Bot adds judgment between runs</li>
+</ul>
+<h2>Step 1 — The outcome prompt</h2>
+<p>Reconstructed from the Layout Bot's documented behavior:</p>
+<pre><code class="language-text">Your job is to keep &lt;surface&gt; from &lt;regressing&gt;.
+
+Watch &lt;check/channel&gt;, where &lt;the check&gt; posts every &lt;interval&gt;. Take over
+that check and keep it working as the code changes. When something
+regresses: rerun to rule out flakiness, trace the regression to the PR
+that introduced it, and open a fix PR with before/after evidence.
+</code></pre>
+<p>Examples of the <code>&lt;check&gt;</code> slot, all seen in real deployments:</p>
+<ul>
+<li>layout-shift measurement across first/repeat/delayed requests (Layout Bot)</li>
+<li>p95 latency on your 5 slowest endpoints (Latency Optimizer template)</li>
+<li><code>npm audit</code>/CVE sweep (Code Health Engineer template)</li>
+<li>dead-code detection (Code Reaper template)</li>
+</ul>
+<h2>Step 2 — Schedule it</h2>
+<p>Ask the Bot in chat:</p>
+<pre><code class="language-text">Run this check every 3 hours on a schedule.
+</code></pre>
+<p>The Bot proposes an automation; you approve once. (Guide 6 covers hand-built automations if you'd rather wire the cron yourself.) Manage it later under the Bot's Settings → Automations.</p>
+<h2>Step 3 — Realistic conditions matter</h2>
+<p>The Layout Bot's check isn't one run — it simulates <strong>first visit, repeat visit, and individually delayed requests</strong>, because the regression it hunts only shows under specific load shapes. Encode your equivalent:</p>
+<ul>
+<li>Which environment — the Bot builds production <code>main</code> on its own VM, not a dev server</li>
+<li>Which inputs — cold vs. warm cache, seeded data, realistic request ordering</li>
+<li>Which threshold — a number, not "feels slower"</li>
+</ul>
+<h2>Step 4 — Noise discipline</h2>
+<p>Two rules keep a sentinel from crying wolf:</p>
+<ol>
+<li><strong>Rerun before acting</strong> — the Layout Bot reruns flaky-looking results before treating them as real. Write it into the prompt: <em>"rerun any failed check once before acting on it."</em></li>
+<li><strong>Trace before fixing</strong> — each regression gets traced to the introducing PR. A fix without a cause is a guess.</li>
+</ol>
+<h2>Step 5 — Evidence in every fix</h2>
+<p>Each of the 159 PRs carries <strong>before/after video</strong>. Equivalent evidence for your check:</p>
+<table>
+<thead>
+<tr>
+<th>Check</th>
+<th>Evidence in the fix PR</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Layout/visual</td>
+<td>Screen recording or screenshots, before vs. after</td>
+</tr>
+<tr>
+<td>Latency</td>
+<td>Timing numbers, same measurement both ways</td>
+</tr>
+<tr>
+<td>Dead code</td>
+<td>Why the code is unreachable</td>
+</tr>
+<tr>
+<td>Dependencies/CVEs</td>
+<td>The advisory + the diff that resolves it</td>
+</tr>
+</tbody>
+</table>
+<h2>Verify it</h2>
+<ul>
+<li>[ ] Automation exists and fires on the cron you set (Settings → Automations shows runs)</li>
+<li>[ ] A seeded regression produces a fix PR with before/after evidence</li>
+<li>[ ] A flaky run produces a rerun, not a fix</li>
+<li>[ ] The check itself gets maintained — when the app changed under it, the Bot updated the check</li>
+</ul>
+<h2>Pitfalls</h2>
+<ul>
+<li><strong>Owning fixes but not the check.</strong> If your check breaks and nobody notices for a week, the Bot owned the wrong thing — the prompt must assign the check itself.</li>
+<li><strong>Cron without judgment.</strong> A bare scheduled automation can run the check; a Bot decides whether a failure is real. Use a bare automation only for checks that need zero triage (Guide 6).</li>
+<li><strong>Alert-only output.</strong> A sentinel that reports "regression found" to a channel creates work for humans. The deployment's value is that it <em>fixes</em> — hold it to that.</li>
+</ul>
+<h2>Knowledge check</h2>
+<ol>
+<li>Why does the sentinel build production <code>main</code> on a cron rather than waiting for failures to be reported? <em>(The outcome is 'no regressions', not 'fix reported bugs' — ownership means finding problems before humans do.)</em></li>
+<li>Layout Bot ships fixes with before/after videos — what decision does that enable for the reviewer? <em>(Merge confidence without reproducing locally; the proof travels with the PR.)</em></li>
+<li>Why trace a regression to its introducing PR instead of fixing the symptom? <em>(Ownership of a check means owning its history — the fix lands on the cause and the knowledge persists.)</em></li>
+</ol>
+<h2>Sources</h2>
+<ul>
+<li><a href="https://devin.ai/blog/introducing-devin-bots">Introducing Devin Bots</a> — Layout Bot mechanics and numbers</li>
+<li><a href="https://docs.devin.ai/product-guides/automations">Automations — docs</a> — schedules, triggers, conditions</li>
+<li>Related: <a href="automations-101-event-driven.html">Guide 6 — Event-driven automations</a> for the non-Bot version of this loop</li>
+</ul>
+</article>
+<footer><div class="wrap foot-base"><span data-i18n="foot.note">Unofficial community project — not affiliated with Cognition AI.</span><span><a href="../index.html">built-with-devin</a> · <a href="https://github.com/Till3005/build-with-devin">build-with-devin</a></span></div></footer>
+</main>
+<script src="../assets/theme.js"></script>
+<script src="../assets/i18n.js"></script>
+<script src="../assets/i18n-runtime.js"></script>
+</body>
+</html>

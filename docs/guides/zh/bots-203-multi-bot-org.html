@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>指南 4 — 多 Bot 组织 — build-with-devin guides</title>
+<meta name="description" content="指南 4 — 多 Bot 组织">
+<link rel="icon" href="../../assets/brand/Devin_Symbol.svg" type="image/svg+xml">
+<link rel="stylesheet" href="../../assets/site.css">
+<link rel="stylesheet" href="../../assets/guides.css">
+</head>
+<body>
+<a class="skip" href="#guide">Skip to content</a>
+<nav><div class="wrap nav-inner">
+  <div class="nav-left">
+    <a class="brand" href="../../index.html" aria-label="Built with Devin">
+      <span class="brand-text">built<strong>-with-</strong></span><img class="brand-mark" src="../../assets/brand/Devin_Primary_Logo.svg" alt="Devin" height="16"><span class="unofficial-chip">unofficial</span>
+    </a>
+  </div>
+  <div class="nav-side">
+    <div class="mode-toggle" role="tablist" aria-label="Site section">
+      <button class="mode-btn" data-mode="built" role="tab" aria-selected="false" onclick="location.href='../../index.html'">Built</button>
+      <button class="mode-btn on" data-mode="build" role="tab" aria-selected="true" onclick="location.href='../../index.html#build'">Build</button>
+      <span class="mode-pill" aria-hidden="true"></span>
+    </div>
+    <a class="cta" href="https://github.com/Till3005/build-with-devin/blob/main/guides/zh/bots-203-multi-bot-org.md">GitHub</a>
+  </div>
+</div></nav>
+<main>
+<article class="guide wrap" id="guide">
+  <p class="guide-crumb"><a href="../../index.html#build">← Guides</a> · <a href="../bots-203-multi-bot-org.html">English</a></p>
+<h1>指南 4 — 多 Bot 组织</h1>
+<p><strong>目标：</strong> 一个跑整个业务单元的 Bot 层级——一个编排者向专家 Bot 委派，一个人类通过单一每日 thread 做决策。
+<strong>级别：</strong> 高级
+<strong>出处部署：</strong> Jenny Xu 的 <strong>SuperJennyStack</strong>——~20 个 Bot 运营一家手游工作室。~50 → <strong>1,900 PR/周</strong>，每周发版，工作室收入 ×6。已作为社区模板上架 <a href="https://devin.ai/bots/templates">Bot 市场</a>。官方的 <strong>bot 间 grant 交接</strong>（QA → Developer → 复测 → PM 汇报）用的是同一套机制、更小规模。
+<strong>来源：</strong> Jenny Xu 公开的栈（<a href="https://x.com/cognition/status/2122737511684587551">via 发布报道</a>）· <a href="https://docs.devin.ai/work-with-devin/bots">Bots docs</a></p>
+<h2>模式</h2>
+<p>别建一个什么都会的 Bot——建一家小公司：</p>
+<pre><code class="language-text">                    ┌─────────────┐
+              ┌────►│ Orchestrator │◄──── one roll-up thread
+              │     └──────┬──────┘      (4×/day, emoji answers)
+              │            │ grants: read + message
+     ┌────────┼────────┬───┴─────┬──────────┐
+     ▼        ▼        ▼         ▼          ▼
+  SuperPM  SuperDev  SuperQA  SuperRelease  SuperSupport
+  (what)   (build)   (verify) (ship)        (users)
+</code></pre>
+<p>人类是 CEO：编排者把每个下级 Bot 的待决事项收进<strong>一个 Slack thread，每天 4 次</strong>，用 emoji 回答。</p>
+<h2>前置条件</h2>
+<ul>
+<li>完成第 1 篇——会创建和指挥 Bot</li>
+<li>已连 Slack——这个模式活在 Slack 里；编排者的汇总 thread 就是全部 UX</li>
+<li>一个有边界、岗位可分的领域（一个产品、一间工作室、一块服务区）</li>
+</ul>
+<h2>第 1 步 — 先画组织架构</h2>
+<p>Jenny 公开的栈——抄<em>形态</em>，不抄名字：</p>
+<table>
+<thead>
+<tr>
+<th>Bot</th>
+<th>拥有</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Orchestrator (SuperJenny)</td>
+<td>向所有其它 Bot 委派；把它们的请求汇编成一个 thread；按她的性格/习惯训练</td>
+</tr>
+<tr>
+<td>PM (SuperPM)</td>
+<td>从指标 + 商店评论 + 趋势排出每日修复清单</td>
+</tr>
+<tr>
+<td>Release (SuperRelease)</td>
+<td>每周构建，周五可提商店</td>
+</tr>
+<tr>
+<td>QA (SuperQA)</td>
+<td>真机测试，带视频证据</td>
+</tr>
+<tr>
+<td>Support (SuperSupport)</td>
+<td>起草每条商店评论回复待批准；夜里帮玩家</td>
+</tr>
+</tbody>
+</table>
+<p>其余 ~15 个 Bot 覆盖开发、Unity、UI、iOS、Android、分析。来自该部署的经验法则：<strong>组织架构图上叫得出名字的岗位各配一个 Bot</strong>——不是按任务，按<em>职责</em>。</p>
+<h2>第 2 步 — 建专家 Bot</h2>
+<p>每个岗位一个 Bot，配收窄的 outcome prompt：</p>
+<pre><code class="language-text">You own QA for &lt;product&gt;. Test every release candidate on real devices,
+post video proof, and block release on failures. Report what needs a
+decision to the orchestrator.
+</code></pre>
+<p>每个 Bot 的 Instructions 只写它岗位的规则；共享知识（品牌、发布流程、谁批什么）放进各 Bot 的 instructions 或共享资源——Bot 之间没有全局记忆，所以编排者的 prompt 承载着结缔组织。</p>
+<h2>第 3 步 — 接 grants</h2>
+<p>一个 grant 给 Bot A 对 Bot B 的读/发消息权限——Bot 间交接工作就靠它（Bot 会发起 grant 申请；你批一次卡片）。编排者需要能到达每个专家。</p>
+<p>文档化的官方变体——更小、同机制：</p>
+<pre><code class="language-text">QA Bot finds a bug ──grant──► Developer Bot fixes ──► QA retests on
+staging ──► PM Bot reports status in channel
+</code></pre>
+<p>grant 按窄批准：编排者能读和发消息给专家；专家之间不必互达。</p>
+<h2>第 4 步 — 汇总 thread</h2>
+<p>这是最重要的一条指令——它把 20 个 Bot 的打扰折算成一个习惯：</p>
+<pre><code class="language-text">Collect every pending decision from the Bots you work with into one
+Slack thread, posted at &lt;times&gt; daily. For each item: what's blocked,
+the options, your recommendation. I answer in replies/emoji; treat my
+replies as decisions and relay them.
+</code></pre>
+<p>Jenny <strong>每天 4 次</strong>跑这个、<strong>用 emoji</strong> 回答。纪律：你从不直接和专家说话——编排者转达你的决定并跟进到完成。</p>
+<h2>第 5 步 — 节奏 = 组织的心跳</h2>
+<table>
+<thead>
+<tr>
+<th>节奏</th>
+<th>谁跑</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>每日排序修复清单</td>
+<td>PM Bot（指标 + 评论 + 趋势）</td>
+</tr>
+<tr>
+<td>每周发布候选</td>
+<td>Release Bot → QA Bot 签字</td>
+</tr>
+<tr>
+<td>每日 4 次决策 thread</td>
+<td>Orchestrator</td>
+</tr>
+<tr>
+<td>夜间玩家支持</td>
+<td>Support Bot（起草回复等早晨批准）</td>
+</tr>
+</tbody>
+</table>
+<p>每个 Bot 拥有自己的循环；编排者拥有循环的排程。</p>
+<p>每个 Bot 有自己的循环；orchestrator 掌管循环的日程。</p>
+<h2>第 6 步 — Bot 间协议（BotSpeak）</h2>
+<p>没人提醒你的规模问题：Jenny 的 20+ Bot 每天发 <strong>700+ 条消息</strong>——她根本看不过来。她的解法是 <strong>BotSpeak</strong>：Bot 之间专用的省 token 简语协议（<a href="https://x.com/xujennyc/status/2123111543105868166">原推</a>）：</p>
+<table>
+<thead>
+<tr>
+<th>规则</th>
+<th>含义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>简语</td>
+<td>用 <code>ACK</code> 之类的代号代替完整回复</td>
+</tr>
+<tr>
+<td>ASD-STE100</td>
+<td>简化英语语法——航空文档标准，无歧义且省 token</td>
+</tr>
+<tr>
+<td>emoji 回执</td>
+<td>用 ✅ 表情代替「收到，谢谢」</td>
+</tr>
+<tr>
+<td>无寒暄</td>
+<td>Bot 之间只发对方需要的信息</td>
+</tr>
+<tr>
+<td>对人用完整句</td>
+<td>汇总 thread 仍是带决策上下文的完整句子</td>
+</tr>
+</tbody>
+</table>
+<p>切换后 6 天：Bot 无需她自主决策 <strong>12×</strong>、重复提问 −50%、Bot 间澄清帖 −12%。协议存在的原因不是省 token——是省<em>注意力</em>：bot 间消息变短，人的那一条 thread 才可读。</p>
+<h2>Verify it</h2>
+<ul>
+<li>[ ] 每个专家 Bot 有收窄的 outcome prompt 和生效中的 grants</li>
+<li>[ ] 编排者按时发布合并决策 thread</li>
+<li>[ ] 你用 emoji 答的一个决策被转达并由对应专家解决</li>
+<li>[ ] 一次跨 Bot 交接端到端完成（发现 → 修复 → 验证 → 汇报）</li>
+<li>[ ] 今天你发的消息数 &lt; 已合并 PR 数</li>
+</ul>
+<h2>坑</h2>
+<ul>
+<li><strong>跳过编排者。</strong> N 个 Bot 各自 DM 你就是 N 倍噪声。判断必须汇入单一 thread 组织才成立。</li>
+<li><strong>岗位边界模糊。</strong> "Dev Bot" 和 "Fix Bot" 会打架。边界按组织架构走——QA <em>验证</em>、Release <em>发布</em>、PM <em>排优先级</em>。</li>
+<li><strong>过度 grant。</strong> 网状 grant（人人可达人人）复刻混乱。经编排者走星型拓扑。</li>
+<li><strong>Bot 间写长文。</strong> Bot 互相写段落就是每天 700 条消息的来源——上 BotSpeak 式协议：简语 + emoji 回执 + 无寒暄；只有对人用完整句。</li>
+</ul>
+<h2>自检</h2>
+<ol>
+<li>为什么 SuperJennyStack 把所有人机交互汇成一条线程？<em>（注意力才是瓶颈，不是算力——20 个 Bot 发 20 条线程，等于又是 20 份工作。）</em></li>
+<li>什么时候用 grant 比「问 orchestrator」强？<em>（需要的能力已经归另一个 Bot 所有——grant 借所有权而不是复制所有权。）</em></li>
+<li>「每天 4 次、用 emoji 回复」说明了什么委托深度？<em>（Bot 替代的是决策带宽不是人头——人留下判断层，丢掉了打字层。）</em></li>
+</ol>
+<h2>Sources</h2>
+<ul>
+<li><a href="https://devin.ai/blog/introducing-devin-bots">Introducing Devin Bots</a> — SuperJennyStack 数字、grant 交接变体</li>
+<li><a href="https://devin.ai/bots/templates">Bot marketplace</a> — SuperJennyStack 社区模板 + 16 个官方模板</li>
+<li><a href="https://docs.devin.ai/work-with-devin/bots">Bots docs</a> — grants、memory、access</li>
+<li>相关：<a href="bots-204-reference-grounded-swarm.html">第 5 篇 — 参考基准锚定的 swarm</a>（<em>构建</em>而非<em>运营</em>的 swarm）</li>
+</ul>
+</article>
+<footer><div class="wrap foot-base"><span data-i18n="foot.note">Unofficial community project — not affiliated with Cognition AI.</span><span><a href="../../index.html">built-with-devin</a> · <a href="https://github.com/Till3005/build-with-devin">build-with-devin</a></span></div></footer>
+</main>
+<script src="../../assets/theme.js"></script>
+<script src="../../assets/i18n.js"></script>
+<script src="../../assets/i18n-runtime.js"></script>
+</body>
+</html>

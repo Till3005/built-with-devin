@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>指南 7 — 企业级铺开模式 — build-with-devin guides</title>
+<meta name="description" content="指南 7 — 企业级铺开模式">
+<link rel="icon" href="../../assets/brand/Devin_Symbol.svg" type="image/svg+xml">
+<link rel="stylesheet" href="../../assets/site.css">
+<link rel="stylesheet" href="../../assets/guides.css">
+</head>
+<body>
+<a class="skip" href="#guide">Skip to content</a>
+<nav><div class="wrap nav-inner">
+  <div class="nav-left">
+    <a class="brand" href="../../index.html" aria-label="Built with Devin">
+      <span class="brand-text">built<strong>-with-</strong></span><img class="brand-mark" src="../../assets/brand/Devin_Primary_Logo.svg" alt="Devin" height="16"><span class="unofficial-chip">unofficial</span>
+    </a>
+  </div>
+  <div class="nav-side">
+    <div class="mode-toggle" role="tablist" aria-label="Site section">
+      <button class="mode-btn" data-mode="built" role="tab" aria-selected="false" onclick="location.href='../../index.html'">Built</button>
+      <button class="mode-btn on" data-mode="build" role="tab" aria-selected="true" onclick="location.href='../../index.html#build'">Build</button>
+      <span class="mode-pill" aria-hidden="true"></span>
+    </div>
+    <a class="cta" href="https://github.com/Till3005/build-with-devin/blob/main/guides/zh/enterprise-playbook.md">GitHub</a>
+  </div>
+</div></nav>
+<main>
+<article class="guide wrap" id="guide">
+  <p class="guide-crumb"><a href="../../index.html#build">← Guides</a> · <a href="../enterprise-playbook.html">English</a></p>
+<h1>指南 7 — 企业级铺开模式</h1>
+<p><strong>目标：</strong> 用已经产出公开数字的部署形态，把 Devin 铺到组织规模——不是试验，是已验证的打法。
+<strong>级别：</strong> 中级（写给工程负责人）
+<strong>来源：</strong> 已公开客户案例，<a href="https://devin.ai/customers">devin.ai/customers</a></p>
+<p>六种部署形态，蒸馏自公布了结果的公司。成功的铺开大多用其中两三种，不是六种全上。</p>
+<h2>形态 1 — 遗留迁移引擎（Nubank、Comarch）</h2>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>部署</td>
+<td>Nubank：数百万行、8 年 ETL 单体 → 子模块。Comarch：20 年、千万行 ERP 重建</td>
+</tr>
+<tr>
+<td>结果</td>
+<td>工程效率 8–12×、成本节省 20×（Nubank）</td>
+</tr>
+<tr>
+<td>机制</td>
+<td>在<em>你的</em>代码库上 fine-tune Devin（Nubank 把 ~40 分钟/任务压到 ~10），然后把迁移当持续项目交给它——可追踪的小 PR，不是重写</td>
+</tr>
+</tbody>
+</table>
+<p><strong>怎么抄：</strong> 挑一个有边界的遗留系统；fine-tune 或用 playbook 教；跑 Migration Engineer 式循环——一次大迁移切成带进度面的小 PR。胜利是复利的：每个迁完的模块都让下一个 session 更聪明。</p>
+<h2>形态 2 — 主作者仓库（EBANX、Gumroad、Finch）</h2>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>部署</td>
+<td>EBANX：<strong>92% 已合并 PR 由 Devin 写</strong>。Gumroad：Devin 是 repo <strong>第一贡献者</strong>（1,500+ PR）。Finch：3,000 PR，省 ~20 工程师月</td>
+</tr>
+<tr>
+<td>机制</td>
+<td>Devin 在这些 repo 上不是助手——是默认作者。人类评审和指挥</td>
+</tr>
+</tbody>
+</table>
+<p><strong>怎么抄：</strong> 挑一个高吞吐 repo；ticket 默认路由给 Devin 会话；人类评审。要盯的指标是 authored-PR 占比——超过 ~50% 你就在这个形态里了；低于它，你还在试点期。</p>
+<h2>形态 3 — 常驻一线响应（Modal、Reducto、AngelList）</h2>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>部署</td>
+<td>Modal：<strong>80% 事故在工程师打开 thread 前已被调查</strong>。Reducto：Devin Oncall 是一线；工程师几乎不再被 page。AngelList：Devin 在人工前定位 70% 事故根因</td>
+</tr>
+<tr>
+<td>机制</td>
+<td>PagerDuty/Slack 触发 → 会话带日志/repo 权限调查 → 人醒来前报告已落地</td>
+</tr>
+</tbody>
+</table>
+<p><strong>怎么抄：</strong> <a href="https://docs.devin.ai">Devin Oncall</a> 或 PagerDuty 触发的 automation（第 6 篇，配方：事故 → 调查）。度量"事故预调查占比"——每一点都是换回来的睡眠。</p>
+<h2>形态 4 — 维护舰队（Airbyte、Melius）</h2>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>部署</td>
+<td>Airbyte：维持 <strong>700+ connector</strong> 运转。Melius：~100 PR/天</td>
+</tr>
+<tr>
+<td>机制</td>
+<td>没人想要的长尾——connector 腐化、依赖漂移、过期 flag——路由给持续吞吐的 Bot/automation</td>
+</tr>
+</tbody>
+</table>
+<p><strong>怎么抄：</strong> 盘点你的维护积压（工程师躲着走的活）；用 Code Health Engineer / Code Reaper 式官方模板 Bot 包起来，按周节奏跑。</p>
+<h2>形态 5 — 全员席位（Wayfair、The Access Group、Citi）</h2>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>部署</td>
+<td>Wayfair：1,600+ 工程师全上。Access Group：Devin 覆盖 250 个产品、2,000+ 工程师 → 产出 5×。Citi：40,000 开发者铺开，技术供应商支出砍 30%</td>
+</tr>
+<tr>
+<td>机制</td>
+<td>不是更多 agent——是<em>席位</em>：每个工程师都有 Devin 访问权、共享 playbook、组织级知识</td>
+</tr>
+</tbody>
+</table>
+<p><strong>怎么抄：</strong> 公开案例里的铺开顺序高度一致——试点团队 → 量化结果 → playbook/知识标准化 → 席位扩张。跳过知识层是席位铺开卡死的原因：见 <a href="playbooks-and-knowledge.html">playbooks 篇</a>。</p>
+<h2>形态 6 — 流程闸门（Hamming、Litera、Eight Sleep）</h2>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>部署</td>
+<td>Hamming：Devin 写 25% 代码量。Litera：回归周期缩短 90%。Eight Sleep：交付量 8×</td>
+</tr>
+<tr>
+<td>机制</td>
+<td>Devin 拥有管线的一个阶段——回归测试、QA——而不是整个产品</td>
+</tr>
+</tbody>
+</table>
+<p><strong>怎么抄：</strong> 找人力成本最痛的那个管线阶段（回归周期、QA）；指派给 Bot 或 automation；量这个阶段的前后周期时间。</p>
+<h2>案例隐含的反面教材</h2>
+<ul>
+<li><strong>是同事，不是工具。</strong> 数字大的部署都给 Devin 所有权（repo、面、阶段），不是派活——和第 1–5 篇同一个教训。</li>
+<li><strong>永远试点。</strong> 公开结果共享一个特征：一个<em>毕了业</em>的可量化试点。事先定好毕业标准（PR 占比、事故覆盖、节省工时）。</li>
+<li><strong>没有知识层。</strong> 每个大部署都把规范编码在某处——fine-tune、playbook、bot 指令。没有它，质量随会话漂移。</li>
+</ul>
+<h2>验证</h2>
+<ul>
+<li>[ ] 你的 rollout 文档写清楚了一个管线阶段、一个指标、一条毕业标准——在第一个会话之前</li>
+<li>[ ] 第二周检查点：不查任何人，你能说出 Devin 在该阶段的合并 PR 占比吗？</li>
+</ul>
+<h2>常见陷阱</h2>
+<ul>
+<li><strong>把没毕业的 pilot 直接规模化。</strong> 这里每个大数字都来自一个有退出标准的受测 pilot。</li>
+<li><strong>先买 seat 再想。</strong> 先买席位后定归属阶段等于买架子上灰——正确顺序是 阶段 → pilot → 指标 → 再买 seat。</li>
+</ul>
+<h2>自检</h2>
+<ol>
+<li>为什么六种部署形态都以「一个归属阶段」为原子？<em>（每个公开数字都来自有边界可测量的表面——「到处都用」的组织什么都没发出来。）</em></li>
+<li>什么是毕业标准，为什么要在 pilot 之前定？<em>（一个指标 + 阈值，把 pilot 翻成生产；没有它，pilot 永远漂移或死于感觉。）</em></li>
+<li>为什么每个大型部署都出现 knowledge layer？<em>（规模化的质量一致性需要共享上下文——替代方案是 N 个质量参差的会话。）</em></li>
+</ol>
+<h2>Sources</h2>
+<ul>
+<li><a href="https://devin.ai/customers">devin.ai/customers</a> — 引用的全部案例与数字</li>
+<li><a href="https://github.com/Till3005/built-with-devin#enterprise-deployments">built-with-devin — 企业索引</a> — 登记表里的已核验案例表</li>
+</ul>
+</article>
+<footer><div class="wrap foot-base"><span data-i18n="foot.note">Unofficial community project — not affiliated with Cognition AI.</span><span><a href="../../index.html">built-with-devin</a> · <a href="https://github.com/Till3005/build-with-devin">build-with-devin</a></span></div></footer>
+</main>
+<script src="../../assets/theme.js"></script>
+<script src="../../assets/i18n.js"></script>
+<script src="../../assets/i18n-runtime.js"></script>
+</body>
+</html>

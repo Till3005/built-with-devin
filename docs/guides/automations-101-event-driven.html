@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Guide 6 — Event-driven automations — build-with-devin guides</title>
+<meta name="description" content="wire external events — Slack, Teams, GitHub, Linear, Jira, PagerDuty, cron, webhooks — to Devin sessions that start themselves.">
+<link rel="icon" href="../assets/brand/Devin_Symbol.svg" type="image/svg+xml">
+<link rel="stylesheet" href="../assets/site.css">
+<link rel="stylesheet" href="../assets/guides.css">
+</head>
+<body>
+<a class="skip" href="#guide">Skip to content</a>
+<nav><div class="wrap nav-inner">
+  <div class="nav-left">
+    <a class="brand" href="../index.html" aria-label="Built with Devin">
+      <span class="brand-text">built<strong>-with-</strong></span><img class="brand-mark" src="../assets/brand/Devin_Primary_Logo.svg" alt="Devin" height="16"><span class="unofficial-chip">unofficial</span>
+    </a>
+  </div>
+  <div class="nav-side">
+    <div class="mode-toggle" role="tablist" aria-label="Site section">
+      <button class="mode-btn" data-mode="built" role="tab" aria-selected="false" onclick="location.href='../index.html'">Built</button>
+      <button class="mode-btn on" data-mode="build" role="tab" aria-selected="true" onclick="location.href='../index.html#build'">Build</button>
+      <span class="mode-pill" aria-hidden="true"></span>
+    </div>
+    <a class="cta" href="https://github.com/Till3005/build-with-devin/blob/main/guides/automations-101-event-driven.md">GitHub</a>
+  </div>
+</div></nav>
+<main>
+<article class="guide wrap" id="guide">
+  <p class="guide-crumb"><a href="../index.html#build">← Guides</a> · <a href="zh/automations-101-event-driven.html">中文</a></p>
+<h1>Guide 6 — Event-driven automations</h1>
+<p><strong>Goal:</strong> wire external events — Slack, Teams, GitHub, Linear, Jira, PagerDuty, cron, webhooks — to Devin sessions that start themselves.
+<strong>Level:</strong> start here (platform guide) · <strong>Time:</strong> ~20 minutes
+<strong>Source:</strong> <a href="https://docs.devin.ai/product-guides/automations">Automations docs</a> · <a href="https://www.youtube.com/watch?v=6xxKtIpgOyE">official video walkthrough</a></p>
+<h2>The anatomy</h2>
+<p>Every automation is four parts:</p>
+<table>
+<thead>
+<tr>
+<th>Part</th>
+<th>What it does</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Trigger</td>
+<td>The event that fires it — a Slack message, a failed CI run, a cron tick, an HTTP webhook</td>
+</tr>
+<tr>
+<td>Conditions</td>
+<td>Optional filters — only label <code>bug</code>, only this repo, only messages containing <code>/devin</code></td>
+</tr>
+<tr>
+<td>Preflight check</td>
+<td>Optional LLM filter or script that runs <em>after</em> a match, before actions — can skip the event or split it into work items</td>
+</tr>
+<tr>
+<td>Action</td>
+<td>What runs: start a session, message an existing session, triage monitor, or email notification</td>
+</tr>
+</tbody>
+</table>
+<h2>Trigger catalog</h2>
+<table>
+<thead>
+<tr>
+<th>Source</th>
+<th>Fires on</th>
+<th>Canonical use</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Slack</td>
+<td>New message, reaction added, user-group mention</td>
+<td>Triage <code>#incidents</code>; 🚨 reaction → investigate</td>
+</tr>
+<tr>
+<td>Microsoft Teams</td>
+<td>Message, reaction</td>
+<td>Answer bug reports in the thread they were posted</td>
+</tr>
+<tr>
+<td>GitHub</td>
+<td>Issue, issue comment, PR, PR review, check run, push</td>
+<td>Auto-fix failing CI; <code>/devin</code> comment → session</td>
+</tr>
+<tr>
+<td>GitLab</td>
+<td>MR, MR comment, issue, push, pipeline</td>
+<td>Fix failing pipelines</td>
+</tr>
+<tr>
+<td>Linear</td>
+<td>Issue created/labeled/status/priority/assigned/moved</td>
+<td>Implement tickets when assigned to Devin</td>
+</tr>
+<tr>
+<td>Jira</td>
+<td>Issue created/updated/labeled/status/assigned/commented</td>
+<td>Same, Jira-shaped</td>
+</tr>
+<tr>
+<td>Pylon</td>
+<td>Issue created/tagged/status</td>
+<td>Customer-bug triage</td>
+</tr>
+<tr>
+<td>PagerDuty</td>
+<td>Incident triggered/acknowledged/resolved</td>
+<td>Investigate high-urgency incidents on fire</td>
+</tr>
+<tr>
+<td>Schedule</td>
+<td>Cron or one-time</td>
+<td>Daily Sentry sweep, weekly dep updates, nightly smoke tests</td>
+</tr>
+<tr>
+<td>Webhook</td>
+<td>Any HTTP POST</td>
+<td>Anything else — Datadog, Sentry, your own systems</td>
+</tr>
+</tbody>
+</table>
+<p>Multiple triggers on one automation act as OR — e.g. fire on <em>either</em> a GitHub CI failure <em>or</em> a Slack reaction.</p>
+<h2>Recipe 1 — <code>/devin</code> on any issue</h2>
+<p>The most-deployed trigger in the wild:</p>
+<pre><code class="language-text">Trigger:   GitHub → issue comment, repo = your/repo
+Condition: comment body starts with &quot;/devin&quot;
+Action:    Start session — prompt includes the event payload
+</code></pre>
+<p>Result: anyone on the team comments <code>/devin investigate this</code> on an issue, and a session picks it up with the full thread as context.</p>
+<h2>Recipe 2 — CI failure self-repair</h2>
+<pre><code class="language-text">Trigger:   GitHub → check run, repo = your/repo
+Condition: conclusion = failure
+Action:    Start session: &quot;CI check &lt;name&gt; failed on this commit.
+            Diagnose the failure from the logs, fix it, and push to
+            the same branch.&quot;
+</code></pre>
+<p>The event payload carries the failing check + commit into the session — no human copy-paste.</p>
+<h2>Recipe 3 — Scheduled sweep</h2>
+<pre><code class="language-text">Trigger:   Schedule → daily 09:00
+Action:    Start session: &quot;Sweep yesterday's Sentry issues in
+            &lt;project&gt;. File the top 3 by impact as tickets and
+            start the most actionable one.&quot;
+</code></pre>
+<p>Daily hygiene loops (Sentry sweeps, dependency updates, smoke tests) are the highest-ROI automations — they turn "someone should check" into "it's checked."</p>
+<h2>Action types, choosing between them</h2>
+<table>
+<thead>
+<tr>
+<th>Action</th>
+<th>Use when</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Start session</td>
+<td>The default — each event gets a fresh machine and context</td>
+</tr>
+<tr>
+<td>Message session</td>
+<td>A long-lived session maintains state — feed events into it (the seed of a Bot)</td>
+</tr>
+<tr>
+<td>Triage Devin</td>
+<td>A persistent Devin watches a whole Slack channel and spawns child investigations (see Devin Oncall for incidents)</td>
+</tr>
+<tr>
+<td>Email notification</td>
+<td>Just tell you it ran</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Automation vs. Bot:</strong> automations are dumb pipes — event in, session out. A Bot adds memory, judgment, and multi-session planning around the same triggers. Start with automations; graduate to a Bot when the work needs follow-through (Guides 2–5).</p>
+<h2>Build it</h2>
+<p>Three creation paths on the Automations page:</p>
+<ol>
+<li><strong>Create</strong> — the blank editor: pick trigger → conditions → action</li>
+<li><strong>Template</strong> — the gallery of pre-configured automations for common workflows</li>
+<li><strong>Generate with Devin</strong> — describe it in English (<em>"when a CI check fails on my-org/my-repo, have Devin fix it and push to the same branch"</em>), review the generated config</li>
+</ol>
+<p>Notes that bite people:</p>
+<ul>
+<li>Slack triggers need Devin invited to the channel <strong>and</strong> your personal Slack connected in Settings → Connections</li>
+<li>Private Teams channels only fire on @mention</li>
+<li>A GitHub trigger must name a specific repo</li>
+<li>Manage automations declaratively with the <strong>Terraform provider</strong> if you're running many</li>
+</ul>
+<h2>Verify it</h2>
+<ul>
+<li>[ ] Fire the trigger manually once (comment <code>/devin test</code>, or push a failing commit) and watch a session start with the event payload</li>
+<li>[ ] A non-matching event (wrong label, wrong channel) does nothing</li>
+<li>[ ] The action's output lands where you expected (PR, Slack thread, ticket)</li>
+</ul>
+<h2>Pitfalls</h2>
+<ul>
+<li><strong>Loops.</strong> An automation whose output can re-trigger itself (Devin comments on a PR, the trigger watches "new comment") will burn sessions forever. Gate on author, label, or event subtype.</li>
+<li><strong>Trigger storms.</strong> A webhook that fires per-commit instead of per-PR can spawn 50 sessions on a busy day. Throttle: one automation per <em>claimable unit</em> of work, not per raw event.</li>
+<li><strong>No approval gate.</strong> Auto-merging or auto-deploying on a trigger skips the human control point — keep the "session opens a PR, a person merges" pattern unless you have a measured reason not to.</li>
+</ul>
+<h2>Knowledge check</h2>
+<ol>
+<li>A teammate wants Devin to "watch every GitHub notification" — what do you ask them to narrow first? <em>(Which event subtype actually implies actionable work — a label applied, a review requested — not every notification.)</em></li>
+<li>Why must a non-matching event produce <em>no</em> session rather than a session that decides to no-op? <em>(Sessions cost ACUs; gating upstream is free, gating inside a session is not.)</em></li>
+<li>When does an automation need a Bot instead? <em>(When the triggered work needs judgment accumulated over time — memory, priorities, a standing outcome.)</em></li>
+</ol>
+<h2>Sources</h2>
+<ul>
+<li><a href="https://docs.devin.ai/product-guides/automations">Automations — docs</a></li>
+<li><a href="https://www.youtube.com/watch?v=6xxKtIpgOyE">Devin Automations QuickStart (video)</a></li>
+<li>Related: <a href="bots-202-scheduled-sentinel.html">Guide 3 — Scheduled-sentinel Bot</a> for adding Bot judgment on top of a cron</li>
+</ul>
+</article>
+<footer><div class="wrap foot-base"><span data-i18n="foot.note">Unofficial community project — not affiliated with Cognition AI.</span><span><a href="../index.html">built-with-devin</a> · <a href="https://github.com/Till3005/build-with-devin">build-with-devin</a></span></div></footer>
+</main>
+<script src="../assets/theme.js"></script>
+<script src="../assets/i18n.js"></script>
+<script src="../assets/i18n-runtime.js"></script>
+</body>
+</html>

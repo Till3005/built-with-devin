@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Guide 15 — Living evals from production traces — build-with-devin guides</title>
+<meta name="description" content="an eval suite for your agent that writes itself — a scheduled Devin that reads real production conversations, rebuilds each failure in a full copy of your syste">
+<link rel="icon" href="../assets/brand/Devin_Symbol.svg" type="image/svg+xml">
+<link rel="stylesheet" href="../assets/site.css">
+<link rel="stylesheet" href="../assets/guides.css">
+</head>
+<body>
+<a class="skip" href="#guide">Skip to content</a>
+<nav><div class="wrap nav-inner">
+  <div class="nav-left">
+    <a class="brand" href="../index.html" aria-label="Built with Devin">
+      <span class="brand-text">built<strong>-with-</strong></span><img class="brand-mark" src="../assets/brand/Devin_Primary_Logo.svg" alt="Devin" height="16"><span class="unofficial-chip">unofficial</span>
+    </a>
+  </div>
+  <div class="nav-side">
+    <div class="mode-toggle" role="tablist" aria-label="Site section">
+      <button class="mode-btn" data-mode="built" role="tab" aria-selected="false" onclick="location.href='../index.html'">Built</button>
+      <button class="mode-btn on" data-mode="build" role="tab" aria-selected="true" onclick="location.href='../index.html#build'">Build</button>
+      <span class="mode-pill" aria-hidden="true"></span>
+    </div>
+    <a class="cta" href="https://github.com/Till3005/build-with-devin/blob/main/guides/living-evals.md">GitHub</a>
+  </div>
+</div></nav>
+<main>
+<article class="guide wrap" id="guide">
+  <p class="guide-crumb"><a href="../index.html#build">← Guides</a> · <a href="zh/living-evals.html">中文</a></p>
+<h1>Guide 15 — Living evals from production traces</h1>
+<p><strong>Goal:</strong> an eval suite for <em>your</em> agent that writes itself — a scheduled Devin that reads real production conversations, rebuilds each failure in a full copy of your system, and opens PRs that add the failure as a regression test.
+<strong>Level:</strong> advanced
+<strong>Source deployment:</strong> <strong>Rox's Living Evals</strong> — nobody at Rox hand-writes evals anymore. A weekly Devin reads production traces in Braintrust, rebuilds each failure in a full copy of Rox seeded with synthetic data, replays until the agent makes the same mistake, and opens a PR. The suite covers <strong>72% of real usage vs. 43–57%</strong> for their hand-written evals, and keeps growing week over week.
+<strong>Sources:</strong> <a href="https://www.rox.com/articles/living-evals-an-eval-suite-that-grows-from-production">Living Evals write-up</a> (Brian Xu, Oct 2026) · <a href="https://x.com/rox_ai/status/2110779380666617997">launch thread</a></p>
+<h2>The pattern</h2>
+<pre><code class="language-text">production traces (observability platform)
+        │  weekly sample (~350 conversations)
+        ▼
+group into behaviors (goal · output · mutation · target)
+        │  hundreds of conversations → ~130 behaviors
+        ▼
+for each under-covered behavior:
+   synthesize data → full-copy preview env → replay request
+   → compare vs. production trace → freeze as eval → open PR
+        ▼
+human reviews the PR, not the eval-writing
+</code></pre>
+<h2>Prerequisites</h2>
+<ul>
+<li>An agent or AI feature in production, with <strong>conversation-level tracing</strong> (Rox used Braintrust; LangSmith/self-hosted logging works — you need the request + the records + tool calls touched)</li>
+<li>A deployable copy of your system (preview env, staging, or <code>docker compose up</code> in a VM) — <strong>not mocks</strong></li>
+<li>Tests-as-code in your repo so an eval is just a committed file</li>
+</ul>
+<h2>Step 1 — Make one trace replayable by hand</h2>
+<p>Before scheduling anything: pick one real conversation where your agent failed. Have Devin pull the trace, write synthetic data covering exactly what the request touched, bring up your system copy, and replay the request until the same failure occurs. If you can't reproduce one failure manually, the weekly loop will produce nothing.</p>
+<h2>Step 2 — Freeze it as an eval, not a bug report</h2>
+<p>The artifact is a committed eval, not a Slack message. Rox's convention: the request is copied <strong>word for word</strong> from production; seeded data reproduces the exact conditions (e.g. "the newest meeting has no transcript"). Data-changing requests get a code assertion; reply-only requests get an LLM-judge rubric.</p>
+<h2>Step 3 — Group by behavior before scaling</h2>
+<p>Running the loop on every conversation is wasteful — most requests repeat the same shapes. Rox's four labels define a <em>behavior</em>: <strong>goal</strong> (what the user wants) · <strong>output</strong> (what comes back) · <strong>mutation</strong> (nothing/create/edit/send) · <strong>target</strong> (named vs. inferred object). ~350 conversations a week collapse to ~130 behaviors; build evals for under-covered behaviors only.</p>
+<h2>Step 4 — Encode the whole procedure as a skill</h2>
+<p>The trace→eval loop lives in <strong>one skill file</strong> Devin follows: pull trace → synthesize → preview env → replay → compare → freeze → PR. When the loop produces a bad eval, <strong>fix the skill</strong>, never hand-patch the eval — that's the compounding move.</p>
+<h2>Step 5 — Schedule it weekly</h2>
+<p>Cron automation (Guide 6): pull the week's traces → group → for each under-covered behavior run the loop → open one PR with the new evals. Humans review the PR; Devin owns the suite.</p>
+<h2>Verify it</h2>
+<ul>
+<li>[ ] A real production failure replays deterministically in your preview env — same user request, same bad outcome</li>
+<li>[ ] The eval file is in your repo, runs in CI, and fails on the old behavior / passes on the fix</li>
+<li>[ ] Coverage is measured against <em>production traffic mix</em>, not your guesses — report it like Rox's 72%</li>
+<li>[ ] A bad eval got fixed by editing the skill, not the eval</li>
+</ul>
+<h2>Pitfalls</h2>
+<ul>
+<li><strong>Mocked replay.</strong> Rox's earlier approach replayed through a mocked data layer — mocks can hide bugs in the very code they replace. Use a full copy; the point of a preview env is fidelity.</li>
+<li><strong>Flaky judging.</strong> Even with no code change, ~1 in 8 evals passes some runs and fails others — agents aren't deterministic. Read a failure before trusting it; don't alert on single flakes.</li>
+<li><strong>Evals measuring taste.</strong> The suite catches behavioral regressions (a tool path dead, a supported request unhandled), not style — every failure should point at a fixable defect.</li>
+</ul>
+<h2>Knowledge check</h2>
+<ol>
+<li>Why replay in a full copy instead of a mocked data layer? <em>(Mocks can hide bugs in the code they replace — as the agent edits more state, the mock becomes the thing you're actually testing.)</em></li>
+<li>Why group conversations into behaviors before writing evals? <em>(Most requests repeat shapes — labeling goal/output/mutation/target lets one eval cover many conversations, so coverage maps to real usage.)</em></li>
+<li>What's the compounding move: fixing evals, or fixing the skill? <em>(The skill — a hand-patched eval teaches Devin nothing; a fixed skill produces better evals forever.)</em></li>
+</ol>
+<h2>Sources</h2>
+<ul>
+<li><a href="https://www.rox.com/articles/living-evals-an-eval-suite-that-grows-from-production">Living Evals: an eval suite that grows from production</a> — the full methodology</li>
+<li><a href="https://x.com/rox_ai/status/2110779380666617997">Rox launch thread</a></li>
+<li>Related: <a href="official-cookbook.html">Guide 13 — Official cookbook</a> · <a href="automations-101-event-driven.html">Guide 6 — Automations</a></li>
+</ul>
+</article>
+<footer><div class="wrap foot-base"><span data-i18n="foot.note">Unofficial community project — not affiliated with Cognition AI.</span><span><a href="../index.html">built-with-devin</a> · <a href="https://github.com/Till3005/build-with-devin">build-with-devin</a></span></div></footer>
+</main>
+<script src="../assets/theme.js"></script>
+<script src="../assets/i18n.js"></script>
+<script src="../assets/i18n-runtime.js"></script>
+</body>
+</html>

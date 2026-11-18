@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Guide 1 — Your first Bot — build-with-devin guides</title>
+<meta name="description" content="create a Devin Bot that owns an outcome, and learn the six mechanics every later guide builds on.">
+<link rel="icon" href="../assets/brand/Devin_Symbol.svg" type="image/svg+xml">
+<link rel="stylesheet" href="../assets/site.css">
+<link rel="stylesheet" href="../assets/guides.css">
+</head>
+<body>
+<a class="skip" href="#guide">Skip to content</a>
+<nav><div class="wrap nav-inner">
+  <div class="nav-left">
+    <a class="brand" href="../index.html" aria-label="Built with Devin">
+      <span class="brand-text">built<strong>-with-</strong></span><img class="brand-mark" src="../assets/brand/Devin_Primary_Logo.svg" alt="Devin" height="16"><span class="unofficial-chip">unofficial</span>
+    </a>
+  </div>
+  <div class="nav-side">
+    <div class="mode-toggle" role="tablist" aria-label="Site section">
+      <button class="mode-btn" data-mode="built" role="tab" aria-selected="false" onclick="location.href='../index.html'">Built</button>
+      <button class="mode-btn on" data-mode="build" role="tab" aria-selected="true" onclick="location.href='../index.html#build'">Build</button>
+      <span class="mode-pill" aria-hidden="true"></span>
+    </div>
+    <a class="cta" href="https://github.com/Till3005/build-with-devin/blob/main/guides/bots-101-first-bot.md">GitHub</a>
+  </div>
+</div></nav>
+<main>
+<article class="guide wrap" id="guide">
+  <p class="guide-crumb"><a href="../index.html#build">← Guides</a> · <a href="zh/bots-101-first-bot.html">中文</a></p>
+<h1>Guide 1 — Your first Bot</h1>
+<p><strong>Goal:</strong> create a Devin Bot that owns an outcome, and learn the six mechanics every later guide builds on.
+<strong>Level:</strong> start here · <strong>Time:</strong> ~15 minutes
+<strong>Source:</strong> <a href="https://docs.devin.ai/work-with-devin/bots">official Bots docs</a>, <a href="https://devin.ai/blog/introducing-devin-bots">launch post</a></p>
+<h2>What a Bot is</h2>
+<p>A session does one request. A Bot <em>owns an outcome</em>: you state the goal once in its chat, it plans the work, starts a child Devin session for each piece, monitors them, and only brings you what needs your judgment. It persists — memory, sessions, and automations survive across weeks.</p>
+<p>The six mechanics, in the order you'll meet them:</p>
+<table>
+<thead>
+<tr>
+<th>Mechanic</th>
+<th>What it is</th>
+<th>Where you touch it</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Chat</td>
+<td>One thread for everything the Bot owns — goals, reports, questions</td>
+<td>The Bot's page / Slack / iMessage</td>
+</tr>
+<tr>
+<td>Sessions</td>
+<td>Each piece of work runs as its own Devin session on its own machine</td>
+<td>Spawned and monitored by the Bot</td>
+</tr>
+<tr>
+<td>Needs you</td>
+<td>Decisions, PR reviews, permission requests, reports — one list</td>
+<td>Top of the Bot's chat</td>
+</tr>
+<tr>
+<td>Memory</td>
+<td>What the Bot learns, saved as files, read at every session start</td>
+<td>Settings → Memory</td>
+</tr>
+<tr>
+<td>Instructions</td>
+<td>Standing rules people write, read at every session start</td>
+<td>Settings → General</td>
+</tr>
+<tr>
+<td>Access</td>
+<td>The Bot's own connections/secrets, plus grants between Bots</td>
+<td>Settings → Access</td>
+</tr>
+</tbody>
+</table>
+<h2>Step 1 — Create it</h2>
+<p>Sidebar → <strong>Bots</strong> → <em>Create new Bot</em> → pick a template or <em>Start from scratch</em> → name it.</p>
+<p>A new Bot is private to you until you share it. Its usage counts against your plan like any session.</p>
+<blockquote>
+<p>Tip: a template ships with instructions for one job (QA Engineer, Data Analyst, …). <em>Start from scratch</em> is the right choice for the guides in this repo — you'll write the outcome prompt yourself.</p>
+</blockquote>
+<h2>Step 2 — Assign the outcome</h2>
+<p>The first message is the most important input a Bot ever gets. Give it a <em>goal</em>, not a task:</p>
+<pre><code class="language-text">You own the Android app now. Keep it at feature parity with iOS.
+</code></pre>
+<p>That's the verbatim prompt Cognition's Android Bot started from. Compare:</p>
+<table>
+<thead>
+<tr>
+<th>Weak (a task)</th>
+<th>Strong (an outcome)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>"Fix the checkout button"</td>
+<td>"You own checkout. Keep it fast, correct, and covered by tests."</td>
+</tr>
+<tr>
+<td>"Update the docs"</td>
+<td>"You own the docs. Keep them in step with <code>main</code>."</td>
+</tr>
+<tr>
+<td>"Watch CI"</td>
+<td>"You own build health on <code>main</code>. When a check regresses, find the cause and fix it."</td>
+</tr>
+</tbody>
+</table>
+<p>A task ends when it's done; an outcome makes the Bot re-plan forever.</p>
+<h2>Step 3 — Work with it</h2>
+<p>After the outcome is set, most of your messages are check-ins:</p>
+<pre><code class="language-text">anything waiting on me?
+</code></pre>
+<p>Open <strong>Needs you</strong> (top of the chat) when the Bot flags something:</p>
+<table>
+<thead>
+<tr>
+<th>Item</th>
+<th>Your move</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Decision</td>
+<td>Pick an option — the Bot marks its recommendation</td>
+</tr>
+<tr>
+<td>Review PR / Merge PR</td>
+<td>Review or merge</td>
+</tr>
+<tr>
+<td>Permission request</td>
+<td>Approve or reject new access, an automation, a network host, or a usage-limit increase</td>
+</tr>
+<tr>
+<td>Report / FYI</td>
+<td>Read it</td>
+</tr>
+</tbody>
+</table>
+<p>You can reply in your own words, snooze, or dismiss any item.</p>
+<h2>Step 4 — Steer through memory, not micromanagement</h2>
+<ul>
+<li><strong>Instructions</strong> (Settings → General): your standing rules — read at the start of every session the Bot runs. Put enduring policy here, not chat.</li>
+<li><strong>Memory</strong> (Settings → Memory): files the Bot writes itself — preferences, corrections, project facts. To change what it remembers, just tell it in chat ("remember: we deploy via Cloud Run, never bare VMs"). Everyone who can use the Bot can read its memory — treat shared-Bot memory as shared.</li>
+</ul>
+<p>The pattern that scales: correct the Bot once, let it write the correction to memory, and every future session inherits it. Cognition merges 2,000+ PRs/week on this loop.</p>
+<h2>Step 5 — Put it where you work</h2>
+<ul>
+<li><strong>Slack:</strong> give the Bot its own Slack app so your team can @-mention or DM it (Settings → Slack). Every reported team deployment runs this way — the Bot becomes a named teammate in a channel.</li>
+<li><strong>iMessage:</strong> text the Bot from your phone.</li>
+<li><strong>Web:</strong> the sidebar's Bots section lists yours and the ones shared with you.</li>
+</ul>
+<h2>Step 6 — Schedules and modes</h2>
+<ul>
+<li><strong>Automations:</strong> ask in chat — <em>"run a summary of open PRs every weekday morning"</em> — and the Bot proposes the automation for your one-time approval. Manage them under Settings → Automations (pause/resume/remove).</li>
+<li><strong>Modes:</strong> the Bot has its own mode plus a <strong>Child Capability</strong> default for the sessions it spawns (e.g. <code>Normal / Ultra</code> in the chat's mode picker). You can also ask for a different mode on any single session.</li>
+</ul>
+<h2>Lifecycle</h2>
+<table>
+<thead>
+<tr>
+<th>Action</th>
+<th>Effect</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Recycle</td>
+<td>Terminates the current session; a fresh one starts next open. In the chat menu.</td>
+</tr>
+<tr>
+<td>Archive</td>
+<td>Stops responses, removes it from Bot lists, removes its Slack app and inter-Bot grants (unarchiving doesn't restore those — you set them up again).</td>
+</tr>
+<tr>
+<td>Delete</td>
+<td>Permanent: settings, sessions, memory, automations. Cannot be undone.</td>
+</tr>
+</tbody>
+</table>
+<p>Only the creator and roles with Manage Bots see Archive/Delete. On Enterprise plans, <code>Use Bots</code> / <code>Manage Bots</code> / <code>Manage Bots across the enterprise</code> are separate permissions in custom roles.</p>
+<h2>Verify it</h2>
+<ul>
+<li>[ ] Bot created and named; outcome prompt sent in chat</li>
+<li>[ ] Bot started at least one child session without being asked twice</li>
+<li>[ ] A decision/PR/permission request appeared in <strong>Needs you</strong> and you resolved it</li>
+<li>[ ] One correction you gave in chat shows up as a memory file under Settings → Memory</li>
+<li>[ ] (Optional) Bot reachable via @-mention in Slack</li>
+</ul>
+<h2>Pitfalls</h2>
+<ul>
+<li><strong>Task-shaped prompts.</strong> "Fix X" produces a session, not a Bot. If the Bot finishes and goes quiet, the prompt was a task — restate it as ownership.</li>
+<li><strong>Chat for policy.</strong> Rules typed in chat scroll away; rules in Instructions are read every session. Chat = direction and answers; Instructions = law.</li>
+<li><strong>Ignoring Needs you.</strong> Bots are designed to batch judgment calls — check once or twice a day, not continuously.</li>
+</ul>
+<h2>Knowledge check</h2>
+<ol>
+<li>What survives between a Bot's sessions that a one-off session doesn't have? <em>(Memory — plus the standing outcome, schedules, and surfaces.)</em></li>
+<li>Why does a Bot "needs-you" instead of asking mid-session? <em>(Judgment goes to one thread asynchronously; the human isn't a blocking call in the loop.)</em></li>
+<li>Which mechanic turns "a smart session" into "an employee"? <em>(Ownership of an outcome — the goal persists after any single session ends.)</em></li>
+</ol>
+<h2>Sources</h2>
+<ul>
+<li><a href="https://docs.devin.ai/work-with-devin/bots">Devin Bots — docs</a></li>
+<li><a href="https://devin.ai/blog/introducing-devin-bots">Introducing Devin Bots</a></li>
+<li>Next: <a href="bots-201-product-owner.html">Guide 2 — Product-owner Bot</a></li>
+</ul>
+</article>
+<footer><div class="wrap foot-base"><span data-i18n="foot.note">Unofficial community project — not affiliated with Cognition AI.</span><span><a href="../index.html">built-with-devin</a> · <a href="https://github.com/Till3005/build-with-devin">build-with-devin</a></span></div></footer>
+</main>
+<script src="../assets/theme.js"></script>
+<script src="../assets/i18n.js"></script>
+<script src="../assets/i18n-runtime.js"></script>
+</body>
+</html>

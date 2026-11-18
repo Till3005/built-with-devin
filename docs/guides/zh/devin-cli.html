@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>指南 12 — Devin CLI 与可扩展性 — build-with-devin guides</title>
+<meta name="description" content="指南 12 — Devin CLI 与可扩展性">
+<link rel="icon" href="../../assets/brand/Devin_Symbol.svg" type="image/svg+xml">
+<link rel="stylesheet" href="../../assets/site.css">
+<link rel="stylesheet" href="../../assets/guides.css">
+</head>
+<body>
+<a class="skip" href="#guide">Skip to content</a>
+<nav><div class="wrap nav-inner">
+  <div class="nav-left">
+    <a class="brand" href="../../index.html" aria-label="Built with Devin">
+      <span class="brand-text">built<strong>-with-</strong></span><img class="brand-mark" src="../../assets/brand/Devin_Primary_Logo.svg" alt="Devin" height="16"><span class="unofficial-chip">unofficial</span>
+    </a>
+  </div>
+  <div class="nav-side">
+    <div class="mode-toggle" role="tablist" aria-label="Site section">
+      <button class="mode-btn" data-mode="built" role="tab" aria-selected="false" onclick="location.href='../../index.html'">Built</button>
+      <button class="mode-btn on" data-mode="build" role="tab" aria-selected="true" onclick="location.href='../../index.html#build'">Build</button>
+      <span class="mode-pill" aria-hidden="true"></span>
+    </div>
+    <a class="cta" href="https://github.com/Till3005/build-with-devin/blob/main/guides/zh/devin-cli.md">GitHub</a>
+  </div>
+</div></nav>
+<main>
+<article class="guide wrap" id="guide">
+  <p class="guide-crumb"><a href="../../index.html#build">← Guides</a> · <a href="../devin-cli.html">English</a></p>
+<h1>指南 12 — Devin CLI 与可扩展性</h1>
+<p><strong>目标：</strong> 终端里的本地 Devin——在你机器上跑 agent、把活交给 Devin Cloud，并用 skills、rules、plugins、hooks、subagents 扩展它。
+<strong>级别：</strong> 中级
+<strong>来源：</strong> <a href="https://docs.devin.ai/cli/index.html">Devin CLI docs</a> — <a href="https://docs.devin.ai/cli/introducing-devin-cli.html">introducing</a>、<a href="https://docs.devin.ai/cli/essential-commands.html">essential commands</a>、<a href="https://docs.devin.ai/cli/extensibility/index.html">extensibility</a></p>
+<h2>它是什么</h2>
+<p>Devin CLI 是住在你终端里、连着 Devin Cloud 的编码 agent。两种工作模式，威力在两者之间移动：</p>
+<ul>
+<li><strong>本地</strong> —— 直接编辑你机器上已检出的 repo</li>
+<li><strong>云端</strong> —— <code>devin --cloud</code> 创建/操控/恢复云会话；<code>/handoff</code> 把本地任务交给云端 Devin，<code>/open</code> 把云会话的 PR 拉回你机器</li>
+</ul>
+<pre><code class="language-text">local repo ──/handoff──► Devin Cloud session ──PR──► /open ──► local repo
+     ▲                        │
+     └──── devin ssh / forward (inspect its VM) ────┘
+</code></pre>
+<h2>关键组件</h2>
+<table>
+<thead>
+<tr>
+<th>面</th>
+<th>作用</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>devin ssh</code> / <code>devin forward</code></td>
+<td>SSH 进云会话的 VM、转发端口、<code>scp</code> 文件</td>
+</tr>
+<tr>
+<td>Subagents</td>
+<td>委派给独立 agent（前台/后台），各自带配置和权限</td>
+</tr>
+<tr>
+<td>Models</td>
+<td>自适应路由按任务挑模型；Fusion 是前沿主力 + 廉价副手</td>
+</tr>
+<tr>
+<td>ACP</td>
+<td>通过 Agent Client Protocol 跑在 JetBrains、Zed、Xcode 里</td>
+</tr>
+</tbody>
+</table>
+<h2>可扩展性栈</h2>
+<p>团队在这里把 CLI 变成<em>自己的</em>——和第 9 篇同样的分层，应用在本地：</p>
+<table>
+<thead>
+<tr>
+<th>层</th>
+<th>文件/机制</th>
+<th>用途</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Rules</td>
+<td><code>AGENTS.md</code> / rules 文件</td>
+<td>每个会话都会读的常驻指令</td>
+</tr>
+<tr>
+<td>Skills</td>
+<td><code>SKILL.md</code></td>
+<td>可复用流程——斜杠调用或 agent 自选，可带独立权限/<code>allowed-tools</code></td>
+</tr>
+<tr>
+<td>Plugins</td>
+<td>plugin manifest</td>
+<td>打包 skills + rules + hooks + MCP servers；经<strong>团队 marketplace</strong>分发</td>
+</tr>
+<tr>
+<td>Hooks</td>
+<td>生命周期 hooks</td>
+<td>在 <code>PreToolUse</code>、<code>PostToolUse</code>、<code>SessionStart</code>、<code>SessionEnd</code>… 上跑 shell/LLM 逻辑——拦截或改写工具调用、注入上下文</td>
+</tr>
+<tr>
+<td>MCP</td>
+<td>MCP 配置</td>
+<td>外部工具服务器（stdio / HTTP / SSE）</td>
+</tr>
+</tbody>
+</table>
+<p><strong>导入路径：</strong> <code>read_config_from</code> 可从 Cursor、Windsurf、Claude Code、Copilot、Codex、Kiro、OpenCode、Zed 导入配置——迁移是一个开关，不是重写。</p>
+<h2>三个值得抄的工作流</h2>
+<p><strong>1. 本地 → 云端扇出。</strong> 本地起任务、触到上限、<code>/handoff</code> 给一个在自己机器上继续跑的云会话——PR 用 <code>/open</code> 拉回来。</p>
+<p><strong>2. Skills 当记忆。</strong> 把任何重复流程（第 11 篇的迁移 skill、hotfix runbook、发版切割）写成 <code>SKILL.md</code>——CLI docs 建议把<em>成功会话的记录</em>回灌进 skill 来补缺。plugins 把它们打包分发给全团队。</p>
+<p><strong>3. Hooks 当护栏。</strong> 一个 <code>PreToolUse</code> hook 拦截 <code>rm -rf</code> 模式或对迁移强制评审——执行发生在 hook 里，而不是指望模型自觉。</p>
+<h2>Verify it</h2>
+<ul>
+<li>[ ] <code>devin</code> 能跑本地会话；<code>devin --cloud</code> 能列出/创建云会话</li>
+<li>[ ] 一个 <code>/handoff</code> 的任务在云端完成、PR 经 <code>/open</code> 拉回来了</li>
+<li>[ ] 斜杠命令调用 <code>SKILL.md</code> 跑通了你的流程</li>
+<li>[ ] （企业版）团队 marketplace 能把你的 plugin 发给另一个成员</li>
+</ul>
+<h2>坑</h2>
+<ul>
+<li><strong>并行活用云端。</strong> CLI 是终端里的单个 agent——并行切片请用云会话或 Bot；CLI 是<em>亲手干</em>的那一面。</li>
+<li><strong>Rules 蔓延。</strong> <code>AGENTS.md</code> + 项目 rules + 全局 rules 按优先级相互作用——每条规则只放一层，否则会打架。</li>
+</ul>
+<h2>自检</h2>
+<ol>
+<li>什么时候用 <code>/handoff</code> 上云而不是本地跑完？<em>（工作需要云端并行、组织工具，或跑得比你笔记本开着的时间还长。）</em></li>
+<li>skill、rule、plugin 三者的区别？<em>（skill 是任务规程，rule 是常驻上下文，plugin 是打包两者的容器外加 hooks。）</em></li>
+<li>为什么 hooks + subagents 对团队采用重要？<em>（hooks 在每个 CLI 会话强制执行组织策略；subagents 让一个操作员开一队 agent——两个方向同时扩。）</em></li>
+</ol>
+<h2>Sources</h2>
+<ul>
+<li><a href="https://docs.devin.ai/cli/index.html">Devin CLI docs</a> — quickstart、命令、云集成、可扩展性、ACP、模型</li>
+<li>相关：<a href="playbooks-and-knowledge.html">第 9 篇 — Playbooks 与知识层</a>（同一套约定层，组织级）</li>
+</ul>
+</article>
+<footer><div class="wrap foot-base"><span data-i18n="foot.note">Unofficial community project — not affiliated with Cognition AI.</span><span><a href="../../index.html">built-with-devin</a> · <a href="https://github.com/Till3005/build-with-devin">build-with-devin</a></span></div></footer>
+</main>
+<script src="../../assets/theme.js"></script>
+<script src="../../assets/i18n.js"></script>
+<script src="../../assets/i18n-runtime.js"></script>
+</body>
+</html>

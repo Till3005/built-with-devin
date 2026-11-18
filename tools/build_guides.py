@@ -1,0 +1,103 @@
+#!/usr/bin/env python3
+"""Render build-with-devin guides into static HTML pages for the Pages site.
+
+Source of truth stays the markdown in ../build-with-devin/guides/{,zh}/.
+Output: docs/guides/<name>.html and docs/guides/zh/<name>.html — same site chrome,
+same i18n runtime, plus a prose stylesheet (assets/guides.css).
+
+Run:  python3 tools/build_guides.py   (from the repo root)
+"""
+import re, sys
+from pathlib import Path
+import markdown
+
+ROOT = Path(__file__).resolve().parent.parent
+SRC = ROOT.parent / "build-with-devin" / "guides"
+OUT = ROOT / "docs" / "guides"
+
+PAGE = """<!DOCTYPE html>
+<html lang="{lang}">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>{title} — build-with-devin guides</title>
+<meta name="description" content="{desc}">
+<link rel="icon" href="{rel}assets/brand/Devin_Symbol.svg" type="image/svg+xml">
+<link rel="stylesheet" href="{rel}assets/site.css">
+<link rel="stylesheet" href="{rel}assets/guides.css">
+</head>
+<body>
+<a class="skip" href="#guide">Skip to content</a>
+<nav><div class="wrap nav-inner">
+  <div class="nav-left">
+    <a class="brand" href="{rel}index.html" aria-label="Built with Devin">
+      <span class="brand-text">built<strong>-with-</strong></span><img class="brand-mark" src="{rel}assets/brand/Devin_Primary_Logo.svg" alt="Devin" height="16"><span class="unofficial-chip">unofficial</span>
+    </a>
+  </div>
+  <div class="nav-side">
+    <div class="mode-toggle" role="tablist" aria-label="Site section">
+      <button class="mode-btn" data-mode="built" role="tab" aria-selected="false" onclick="location.href='{rel}index.html'">Built</button>
+      <button class="mode-btn on" data-mode="build" role="tab" aria-selected="true" onclick="location.href='{rel}index.html#build'">Build</button>
+      <span class="mode-pill" aria-hidden="true"></span>
+    </div>
+    <a class="cta" href="https://github.com/Till3005/build-with-devin/blob/main/guides/{mdsrc}">GitHub</a>
+  </div>
+</div></nav>
+<main>
+<article class="guide wrap" id="guide">
+  <p class="guide-crumb"><a href="{rel}index.html#build">← Guides</a>{alt}</p>
+{body}
+</article>
+<footer><div class="wrap foot-base"><span data-i18n="foot.note">Unofficial community project — not affiliated with Cognition AI.</span><span><a href="{rel}index.html">built-with-devin</a> · <a href="https://github.com/Till3005/build-with-devin">build-with-devin</a></span></div></footer>
+</main>
+<script src="{rel}assets/theme.js"></script>
+<script src="{rel}assets/i18n.js"></script>
+<script src="{rel}assets/i18n-runtime.js"></script>
+</body>
+</html>
+"""
+
+def render(md_path: Path, out_path: Path, rel: str, lang: str, alt: str, mdsrc: str):
+    text = md_path.read_text(encoding="utf-8")
+    # rewrite inter-guide .md links to local .html pages (zh links stay in zh/)
+    def fix(m):
+        target = m.group(2)
+        if lang == "zh" and not target.startswith("zh/"):
+            target = target  # stay inside zh/
+        elif lang == "en" and target.startswith("zh/"):
+            target = target[3:]
+        target = re.sub(r"\.md$", ".html", target)
+        return m.group(1) + target + m.group(3)
+    text = re.sub(r"(\]\()([^)]+)(\))", fix, text)
+    title = re.search(r"^# (.+)$", text, re.M).group(1)
+    body = markdown.markdown(text, extensions=["tables", "fenced_code", "attr_list"])
+    desc = re.sub(r"[*_`\[\]()#]", "", re.search(r"^\*\*Goal:\*\*\s*(.+)$", text, re.M).group(1))[:160] if re.search(r"^\*\*Goal:", text, re.M) else title
+    out_path.parent.mkdir(parents=True, exist_ok=True)
+    out_path.write_text(PAGE.format(lang=lang, title=title, desc=desc, rel=rel, body=body, alt=alt, mdsrc=mdsrc), encoding="utf-8")
+    return title
+
+def main():
+    en_files = sorted(p for p in SRC.glob("*.md"))
+    zh_dir = SRC / "zh"
+    index_rows = []
+    for en in en_files:
+        zh = zh_dir / en.name
+        alt_en = f' · <a href="zh/{en.stem}.html">中文</a>' if zh.exists() else ""
+        alt_zh = f' · <a href="../{en.stem}.html">English</a>' if zh.exists() else ""
+        t = render(en, OUT / f"{en.stem}.html", "../", "en", alt_en, en.name)
+        if zh.exists():
+            render(zh, OUT / "zh" / f"{en.stem}.html", "../../", "zh", alt_zh, f"zh/{en.name}")
+        index_rows.append((en.stem, t, zh.exists()))
+    # index page listing all guides
+    lis = "\n".join(
+        f'    <a class="row" href="{s}.html"><span class="row-tag">{i+1:02d}</span><span class="row-title">{t}</span><span class="row-num">{"EN · 中文" if z else "EN"}</span></a>'
+        for i, (s, t, z) in enumerate(index_rows))
+    body = f'<h1>build-with-devin — guides</h1>\n<div class="rows">{lis}\n</div>'
+    title = "Guides"
+    (OUT / "index.html").write_text(PAGE.format(
+        lang="en", title=title, desc="16 field-tested Devin guides — English and Chinese editions.",
+        rel="../", body=body, alt="", mdsrc="../"), encoding="utf-8")
+    print(f"rendered {len(en_files)} guides (+zh mirrors) → docs/guides/")
+
+if __name__ == "__main__":
+    main()

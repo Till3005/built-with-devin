@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>指南 5 — 参考基准锚定的 swarm — build-with-devin guides</title>
+<meta name="description" content="指南 5 — 参考基准锚定的 swarm">
+<link rel="icon" href="../../assets/brand/Devin_Symbol.svg" type="image/svg+xml">
+<link rel="stylesheet" href="../../assets/site.css">
+<link rel="stylesheet" href="../../assets/guides.css">
+</head>
+<body>
+<a class="skip" href="#guide">Skip to content</a>
+<nav><div class="wrap nav-inner">
+  <div class="nav-left">
+    <a class="brand" href="../../index.html" aria-label="Built with Devin">
+      <span class="brand-text">built<strong>-with-</strong></span><img class="brand-mark" src="../../assets/brand/Devin_Primary_Logo.svg" alt="Devin" height="16"><span class="unofficial-chip">unofficial</span>
+    </a>
+  </div>
+  <div class="nav-side">
+    <div class="mode-toggle" role="tablist" aria-label="Site section">
+      <button class="mode-btn" data-mode="built" role="tab" aria-selected="false" onclick="location.href='../../index.html'">Built</button>
+      <button class="mode-btn on" data-mode="build" role="tab" aria-selected="true" onclick="location.href='../../index.html#build'">Build</button>
+      <span class="mode-pill" aria-hidden="true"></span>
+    </div>
+    <a class="cta" href="https://github.com/Till3005/build-with-devin/blob/main/guides/zh/bots-204-reference-grounded-swarm.md">GitHub</a>
+  </div>
+</div></nav>
+<main>
+<article class="guide wrap" id="guide">
+  <p class="guide-crumb"><a href="../../index.html#build">← Guides</a> · <a href="../bots-204-reference-grounded-swarm.html">English</a></p>
+<h1>指南 5 — 参考基准锚定的 swarm</h1>
+<p><strong>目标：</strong> 指挥一个 agent swarm 写出大型且<em>可验证</em>的系统——正确性持续对照可信基准检验，而不是对照感觉。
+<strong>级别：</strong> 高级
+<strong>出处部署：</strong> Harvey 的 <strong>"Phil"</strong>——~30 个 agent 写出协作式、Word 兼容的编辑器引擎（Rust + TypeScript）：<strong>3 周 100 万+ 行，零人类工程师</strong>。持续对照真实 Microsoft Word 行为和模拟律师谈判验证。人类通过记忆 + 决策日志掌舵，从不读代码。
+<strong>来源：</strong> Gabe Pereyra 的发布实录（<a href="https://x.com/gabepereyra">via @gabepereyra</a>）· <a href="https://devin.ai/blog/introducing-devin-bots">launch post</a></p>
+<h2>模式</h2>
+<p>swarm 失败的原因是没人能判断输出对不对。Phil 成功是因为每一行都能对照一个<strong>真值基准</strong>检验：真实的 Microsoft Word。agent 团队的工作是<em>对齐</em>——一个客观的、可持续检验的目标——而不是<em>发明</em>。</p>
+<pre><code class="language-text">   reference system (truth)
+            ▲ compare
+            │
+┌───────────┴────────────┐
+│  swarm of ~30 agents   │──► 1M+ LOC (Rust + TypeScript)
+└────────────────────────┘
+            ▲ steer
+            │
+   humans: memory + decision logs
+   (never reading the code)
+</code></pre>
+<h2>何时用</h2>
+<table>
+<thead>
+<tr>
+<th>适合</th>
+<th>不适合</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>按规范重实现（文件格式、协议、编辑器、编译器）</td>
+<td>没有客观答案的绿地产品</td>
+</tr>
+<tr>
+<td>带 oracle 的移植/迁移（旧系统还能跑）</td>
+<td>"对不对"要靠判断的新 UX</td>
+</tr>
+<tr>
+<td>任何能与工作系统 diff 的东西</td>
+<td>正确性需要用户验证的系统</td>
+</tr>
+</tbody>
+</table>
+<p>试金石：<strong>机器能不能不靠你判定"正确"？</strong> 能，swarm 就可扩展；不能，改用产品所有制 Bot（第 2 篇）。</p>
+<h2>第 1 步 — 先锁定基准</h2>
+<p>任何 agent 写码之前，检查必须已存在：</p>
+<ul>
+<li>Harvey 的基准：<strong>真实 Microsoft Word 行为</strong>——swarm 编辑器渲染的文档必须与 Word 一致</li>
+<li>你的基准可能是：仍在运行的旧系统、一致性测试套件、golden files、规范测试集、API 契约</li>
+</ul>
+<p>把对比放进 CI 或 swarm 高频运行的脚本——"输出是否匹配基准"必须廉价且自动，否则 agent 在两次检查之间漂移。</p>
+<h2>第 2 步 — 拆成各有归属的切片</h2>
+<p>~30 个 agent 不共享同一个 backlog——工作按子系统切分，每个 agent 拥有一个（文档模型、排版引擎、协作协议……）。结构同第 4 篇的组织架构，只是每个"员工"都是对准模块边界的编码会话：</p>
+<pre><code class="language-text">You own the &lt;module&gt;. Its contract is &lt;interface/reference behavior&gt;.
+Your PRs are accepted when the reference checks pass — not when the
+code looks done.
+</code></pre>
+<h2>第 3 步 — 人类在代码之上掌舵</h2>
+<p>Harvey 没人读过那百万行。掌舵靠三层：</p>
+<ul>
+<li><strong>Memory</strong> —— Bot 积累的"做过什么决定、为什么"</li>
+<li><strong>决策日志</strong> —— swarm 在每个岔口选了什么</li>
+<li><strong>方向消息</strong> —— "prioritize track-changes fidelity over performance this week"（本周优先级：修订追踪保真度高于性能）</li>
+</ul>
+<p>你的评审面是<em>决策轨迹</em>，不是 diff。如果你发现自己在读生成代码来弄清发生了什么，去问编排者要决策日志。</p>
+<h2>第 4 步 — 顶层叠加对抗验证</h2>
+<p>Harvey 叠了第二层检查：<strong>模拟律师谈判</strong>——真实使用场景，抓一致性套件漏掉的东西。你的等价物：基准 diff 之上的场景层——真实工作流、对抗输入、fuzzing。基准检查抓<em>错</em>，场景检查抓<em>脆</em>。</p>
+<h2>Verify it</h2>
+<ul>
+<li>[ ] 存在自动化基准检查，且对每个变更运行</li>
+<li>[ ] 每个 agent 的验收标准是"基准通过"，永远不是"代码写了"</li>
+<li>[ ] 不读代码就能从日志/记忆回答"swarm 决定了什么、为什么"</li>
+<li>[ ] 故意弄坏的模块被基准检查抓住，而不是被你抓住</li>
+</ul>
+<h2>坑</h2>
+<ul>
+<li><strong>先有 oracle 再扩规模。</strong> 没有检查的 swarm 只产出体积——Phil 成功是因为 Word 永远是裁判。</li>
+<li><strong>审 diff。</strong> 超过 ~2 个 agent 就不可扩展；你会成为瓶颈并失去 swarm 的速度优势。</li>
+<li><strong>归属模糊。</strong> 两个 agent 改同一个模块就是合并地狱——归属边界就是架构。</li>
+</ul>
+<h2>自检</h2>
+<ol>
+<li>为什么 Harvey 的 swarm 能成而多数多 agent 尝试崩溃？<em>（可信的外部参照——真实 Word 行为——让正确性在 swarm 速度下仍可机器检查。）</em></li>
+<li>为什么人类通过 memory 和 decision log 引导而不是 review 代码？<em>（3 周 1M+ 行超出任何人阅读量；引导发生在意图层。）</em></li>
+<li>采用此模式前要先验证的前提是什么？<em>（你的领域有没有 swarm 可以自我核对的参照——没有就先建 oracle。）</em></li>
+</ol>
+<h2>Sources</h2>
+<ul>
+<li><a href="https://x.com/gabepereyra">@gabepereyra</a> — Harvey Phil 实录：~30 agent、1M+ 行、Word 基准验证、律师模拟</li>
+<li><a href="https://devin.ai/blog/introducing-devin-bots">Introducing Devin Bots</a></li>
+<li>相关：<a href="bots-203-multi-bot-org.html">第 4 篇 — 多 Bot 组织</a>（同一套层级，不同目的：运营 vs 构建）</li>
+</ul>
+</article>
+<footer><div class="wrap foot-base"><span data-i18n="foot.note">Unofficial community project — not affiliated with Cognition AI.</span><span><a href="../../index.html">built-with-devin</a> · <a href="https://github.com/Till3005/build-with-devin">build-with-devin</a></span></div></footer>
+</main>
+<script src="../../assets/theme.js"></script>
+<script src="../../assets/i18n.js"></script>
+<script src="../../assets/i18n-runtime.js"></script>
+</body>
+</html>

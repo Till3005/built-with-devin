@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>指南 13 — 官方用例食谱 — build-with-devin guides</title>
+<meta name="description" content="指南 13 — 官方用例食谱">
+<link rel="icon" href="../../assets/brand/Devin_Symbol.svg" type="image/svg+xml">
+<link rel="stylesheet" href="../../assets/site.css">
+<link rel="stylesheet" href="../../assets/guides.css">
+</head>
+<body>
+<a class="skip" href="#guide">Skip to content</a>
+<nav><div class="wrap nav-inner">
+  <div class="nav-left">
+    <a class="brand" href="../../index.html" aria-label="Built with Devin">
+      <span class="brand-text">built<strong>-with-</strong></span><img class="brand-mark" src="../../assets/brand/Devin_Primary_Logo.svg" alt="Devin" height="16"><span class="unofficial-chip">unofficial</span>
+    </a>
+  </div>
+  <div class="nav-side">
+    <div class="mode-toggle" role="tablist" aria-label="Site section">
+      <button class="mode-btn" data-mode="built" role="tab" aria-selected="false" onclick="location.href='../../index.html'">Built</button>
+      <button class="mode-btn on" data-mode="build" role="tab" aria-selected="true" onclick="location.href='../../index.html#build'">Build</button>
+      <span class="mode-pill" aria-hidden="true"></span>
+    </div>
+    <a class="cta" href="https://github.com/Till3005/build-with-devin/blob/main/guides/zh/official-cookbook.md">GitHub</a>
+  </div>
+</div></nav>
+<main>
+<article class="guide wrap" id="guide">
+  <p class="guide-crumb"><a href="../../index.html#build">← Guides</a> · <a href="../official-cookbook.html">English</a></p>
+<h1>指南 13 — 官方用例食谱</h1>
+<p><strong>目标：</strong> Cognition 官方文档里已验证的用法模式，整理成食谱——什么活该切给 Devin，以及 40+ 个带可复制 prompt 的文档化配方。
+<strong>级别：</strong> 入门（广度篇）
+<strong>来源：</strong> <a href="https://docs.devin.ai/use-cases/best-practices.html">Best Practices</a> · <a href="https://docs.devin.ai/use-cases/gallery/index.html">Use-case gallery</a> · <a href="https://docs.devin.ai/use-cases/index.html">use-case tutorials</a></p>
+<h2>统领一切的那条规则</h2>
+<p>官方指导，原话逻辑：挑 <strong>wide &amp; shallow</strong>（宽而浅）的活——一大池简单、可水平扩展的任务永远胜过复杂的全新构建。</p>
+<table>
+<thead>
+<tr>
+<th>理想任务</th>
+<th>反面任务</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>初级工程师复杂度的重复性子任务</td>
+<td>全新的复杂功能</td>
+</tr>
+<tr>
+<td>每片 &lt; 90 分钟人工量</td>
+<td>拆不开的东西</td>
+</tr>
+<tr>
+<td>客观的通过/失败验证</td>
+<td>"看着对就行"</td>
+</tr>
+<tr>
+<td>隔离、向后兼容、可并行</td>
+<td>纠缠的依赖</td>
+</tr>
+</tbody>
+</table>
+<p>文档点名的四种最佳切片形态：<strong>迁移、重构、现代化、技术债积压。</strong></p>
+<h2>食谱目录</h2>
+<p>以下全部是官方 gallery 里的文档化用例——每个都带可复制 prompt。按"它从人一周里拿走什么活"组织。</p>
+<h3>事故与生产健康</h3>
+<table>
+<thead>
+<tr>
+<th>配方</th>
+<th>机制</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>自动调查 Datadog/PagerDuty 告警</td>
+<td>Webhook/API 触发 → 会话起火即查</td>
+</tr>
+<tr>
+<td>自动生成 postmortem</td>
+<td>PagerDuty 关闭 → Devin 起草时间线、根因、行动项</td>
+</tr>
+<tr>
+<td>每日修 Sentry 新错误</td>
+<td>每晚 cron 拉新错误 → 早上有修复 PR</td>
+</tr>
+<tr>
+<td>端到端调试 bug 报告</td>
+<td>把报告 + Datadog 日志 + DB 权限交给 Devin → 根因</td>
+</tr>
+</tbody>
+</table>
+<h3>定时卫生（文档里 ROI 最高的一页）</h3>
+<table>
+<thead>
+<tr>
+<th>配方</th>
+<th>节奏</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>每周依赖更新 PR</td>
+<td>每周：过期包 → 已测试升级 PR</td>
+</tr>
+<tr>
+<td>每晚跑 staging E2E</td>
+<td>每晚：跑套件、失败建工单</td>
+</tr>
+<tr>
+<td>每周从已合并 PR 生成 changelog</td>
+<td>周五：分类 changelog → Slack</td>
+</tr>
+<tr>
+<td>每日 Datadog 健康摘要</td>
+<td>每日：错误扫描 → Slack 摘要</td>
+</tr>
+<tr>
+<td>每日设计系统审计</td>
+<td>每日：标记已合并 PR 里的硬编码颜色/缺失 token</td>
+</tr>
+<tr>
+<td>Feature-flag 清理</td>
+<td>发布后一次性会话剥掉 flag + 死代码</td>
+</tr>
+<tr>
+<td>每周 Notion 状态摘要</td>
+<td>每周：PR/commit 汇总 → Notion</td>
+</tr>
+<tr>
+<td>从会议记录生成 PR</td>
+<td>每小时：轮询 Granola → 提取工程任务 → 子会话</td>
+</tr>
+</tbody>
+</table>
+<h3>代码质量</h3>
+<table>
+<thead>
+<tr>
+<th>配方</th>
+<th>机制</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>合并前自动修 PR bug</td>
+<td>Devin 审每个 PR，把修复推到分支</td>
+</tr>
+<tr>
+<td>给服务补单测</td>
+<td>建一个写测试 skill，套用到收费/退款/webhook 流程</td>
+</tr>
+<tr>
+<td>抓视觉回归</td>
+<td>repo skill：PR 前对每个受影响页面截图</td>
+</tr>
+<tr>
+<td>每个 PR 跑迁移检查清单</td>
+<td>repo skill 抓破坏性操作、校验 schema 变更</td>
+</tr>
+<tr>
+<td>拆巨型 router</td>
+<td>2,000 行 Express router → 按域拆路由共享中间件</td>
+</tr>
+<tr>
+<td>提覆盖率</td>
+<td>Devin 分析测试套件、写测试补缺口</td>
+</tr>
+<tr>
+<td>跨 repo 修已知 CVE</td>
+<td>官方 skills（<a href="https://github.com/cognitionai/devin-vuln-fixes">devin-vuln-fixes</a>）：只读盘点 → 审批门 → 确认版本补丁 → 前后测试 → 每 repo 一个 PR</td>
+</tr>
+</tbody>
+</table>
+<h3>迁移与功能开发</h3>
+<table>
+<thead>
+<tr>
+<th>配方</th>
+<th>机制</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>50 文件 REST→GraphQL</td>
+<td>定范围 → 无冲突工作包 → 并行（第 11 篇）</td>
+</tr>
+<tr>
+<td>React 18→19 升级 skill</td>
+<td>把官方升级指南变成适配你代码库的分阶段 skill</td>
+</tr>
+<tr>
+<td>OpenAPI spec → 实现</td>
+<td>YAML spec → Express handler + Zod 校验 + Supertest</td>
+</tr>
+<tr>
+<td>Stripe checkout 流程</td>
+<td>spec → 能跑的流程 + 测试 + 浏览器验证</td>
+</tr>
+<tr>
+<td>Next.js 应用 i18n</td>
+<td>装 next-i18next、抽字符串、3 语言浏览器检查</td>
+</tr>
+<tr>
+<td>Figma → 像素级还原</td>
+<td>Figma MCP → 从 mockup 生成组件</td>
+</tr>
+<tr>
+<td>Django 应用 docker 化</td>
+<td>多阶段 Dockerfile + Django/Postgres/Redis compose</td>
+</tr>
+</tbody>
+</table>
+<h3>项目管理与数据</h3>
+<table>
+<thead>
+<tr>
+<th>配方</th>
+<th>机制</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Linear 自动分拣 bug</td>
+<td>打 label → Devin 调查</td>
+</tr>
+<tr>
+<td>PRD → sprint 工单</td>
+<td>Notion PRD → 切成 Linear ticket</td>
+</tr>
+<tr>
+<td>积压任务实施方案</td>
+<td>多选 Linear ticket → 带置信度评分的方案</td>
+</tr>
+<tr>
+<td>Slack 里 <code>/dana</code> 查数据</td>
+<td>任意频道用自然语言查数据库</td>
+</tr>
+<tr>
+<td>定制 API 用量仪表盘</td>
+<td>Devin 在 v3 API 上建定制看板</td>
+</tr>
+</tbody>
+</table>
+<h3>让 Devin 自己变更好（"Devin Optimization"）</h3>
+<table>
+<thead>
+<tr>
+<th>配方</th>
+<th>教训</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>功能 prompt 从 42→12 ACU</td>
+<td>解剖一个昂贵会话：3 个根因 → 重写 prompt</td>
+</tr>
+<tr>
+<td>3 个会话赛跑一个问题</td>
+<td>并行会话竞速不同优化策略；最好的上线</td>
+</tr>
+<tr>
+<td>一夜 8 个并行会话</td>
+<td>8 个无测试模块 → 早上有单测 PR</td>
+</tr>
+<tr>
+<td>评估 30 个库</td>
+<td>每库一个会话 → 打分排序对比</td>
+</tr>
+<tr>
+<td>把 hotfix 提炼成 skill</td>
+<td>从一次成功的事故会话抽出可复用 skill</td>
+</tr>
+<tr>
+<td>每周知识去重</td>
+<td>定时会话合并/清理知识建议</td>
+</tr>
+<tr>
+<td>团队上手指南</td>
+<td>Devin 读自己的文档 → 按你技术栈写入门指南</td>
+</tr>
+</tbody>
+</table>
+<h2>怎么用这本食谱</h2>
+<ol>
+<li>从<strong>定时卫生</strong>挑一个——最便宜的首胜（一个你不用再过脑的每晚/每周循环）</li>
+<li>有 PagerDuty/Datadog/Sentry 就加一个<strong>事故</strong>配方</li>
+<li>某个配方起效后，冻结成 <strong>skill</strong>（第 12 篇）或 <strong>Bot</strong>（第 1–5 篇）——上表每一行都能以这两种形态存续</li>
+</ol>
+<h2>验证</h2>
+<ul>
+<li>[ ] 有一个卫生循环 recipe 在按计划运行，并产出了第一个 PR/报告</li>
+<li>[ ] 它的产出物已固化成 skill、playbook 或 Bot——不活在某个人的脑子里</li>
+</ul>
+<h2>常见陷阱</h2>
+<ul>
+<li><strong>十个 recipe，零个固化。</strong> 停留为手动 prompt 的 recipe 到周五就被遗忘——要么固化要么扔掉。</li>
+<li><strong>复制 prompt 却没换验证。</strong> gallery 的 prompt 默认你有测试套件；要改的是<em>检查</em>，不只是任务。</li>
+</ul>
+<h2>自检</h2>
+<ol>
+<li>为什么先从定时卫生循环入手而不是事故响应？<em>（最便宜的胜利——睡觉时也在跑，错误的深夜 lint 修复可恢复，错误的事故操作不可恢复。）</em></li>
+<li>「把 recipe 固化成 skill 或 Bot」实际防止了什么？<em>（prompt 漂移和单人依赖——写出它的人走了，recipe 还活着。）</em></li>
+<li>为什么先改 gallery prompt 的验证部分再改任务部分？<em>（任务描述意图；检查才是你的仓库真正能证明的东西——错检查产出自信的垃圾。）</em></li>
+</ol>
+<h2>Sources</h2>
+<ul>
+<li><a href="https://docs.devin.ai/use-cases/gallery/index.html">Use-case gallery</a> — 以上全部配方，每个带可复制 prompt</li>
+<li><a href="https://docs.devin.ai/use-cases/best-practices.html">Best Practices</a> — 切片教条</li>
+<li><a href="https://docs.devin.ai/use-cases/index.html">Use-case tutorials</a> — API 集成、覆盖率、容器化、前端组件、MCP</li>
+<li>相关：<a href="migrations-at-scale.html">第 11 篇 — 规模化迁移</a> · <a href="automations-101-event-driven.html">第 6 篇 — Automations</a></li>
+</ul>
+</article>
+<footer><div class="wrap foot-base"><span data-i18n="foot.note">Unofficial community project — not affiliated with Cognition AI.</span><span><a href="../../index.html">built-with-devin</a> · <a href="https://github.com/Till3005/build-with-devin">build-with-devin</a></span></div></footer>
+</main>
+<script src="../../assets/theme.js"></script>
+<script src="../../assets/i18n.js"></script>
+<script src="../../assets/i18n-runtime.js"></script>
+</body>
+</html>

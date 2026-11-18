@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>指南 11 — 规模化迁移 — build-with-devin guides</title>
+<meta name="description" content="指南 11 — 规模化迁移">
+<link rel="icon" href="../../assets/brand/Devin_Symbol.svg" type="image/svg+xml">
+<link rel="stylesheet" href="../../assets/site.css">
+<link rel="stylesheet" href="../../assets/guides.css">
+</head>
+<body>
+<a class="skip" href="#guide">Skip to content</a>
+<nav><div class="wrap nav-inner">
+  <div class="nav-left">
+    <a class="brand" href="../../index.html" aria-label="Built with Devin">
+      <span class="brand-text">built<strong>-with-</strong></span><img class="brand-mark" src="../../assets/brand/Devin_Primary_Logo.svg" alt="Devin" height="16"><span class="unofficial-chip">unofficial</span>
+    </a>
+  </div>
+  <div class="nav-side">
+    <div class="mode-toggle" role="tablist" aria-label="Site section">
+      <button class="mode-btn" data-mode="built" role="tab" aria-selected="false" onclick="location.href='../../index.html'">Built</button>
+      <button class="mode-btn on" data-mode="build" role="tab" aria-selected="true" onclick="location.href='../../index.html#build'">Build</button>
+      <span class="mode-pill" aria-hidden="true"></span>
+    </div>
+    <a class="cta" href="https://github.com/Till3005/build-with-devin/blob/main/guides/zh/migrations-at-scale.md">GitHub</a>
+  </div>
+</div></nav>
+<main>
+<article class="guide wrap" id="guide">
+  <p class="guide-crumb"><a href="../../index.html#build">← Guides</a> · <a href="../migrations-at-scale.html">English</a></p>
+<h1>指南 11 — 规模化迁移</h1>
+<p><strong>目标：</strong> 把大型迁移（语言、框架、数据库、依赖、架构）跑成几百个已验证的小 PR，而不是一次英雄式重写。
+<strong>级别：</strong> 中级 → 高级
+<strong>来源：</strong> <a href="https://docs.devin.ai/use-cases/best-practices.html">Best Practices</a> · <a href="https://docs.devin.ai/use-cases/migration-modernization.html">Migration &amp; Modernization</a> · 迁移示例：<a href="https://docs.devin.ai/use-cases/examples/java-upgrades.html">Java upgrades</a>、<a href="https://docs.devin.ai/use-cases/examples/cobol-modernization.html">COBOL</a>、<a href="https://docs.devin.ai/use-cases/examples/sas-to-pyspark.html">SAS→PySpark</a>、<a href="https://docs.devin.ai/use-cases/examples/javascript-to-typescript.html">JS→TS</a>、<a href="https://docs.devin.ai/use-cases/examples/nosql-to-sql.html">NoSQL→SQL</a> · Nubank 案例</p>
+<h2>官方 playbook</h2>
+<p>Devin 自己的文档对什么能扩展说得很直白：<strong>wide &amp; shallow</strong>（宽而浅）胜过 <strong>tall &amp; deep</strong>（高而深）。迁移就是典型的宽而浅工作——同一个小变换施加到几百个相互独立的单元上。</p>
+<pre><code class="language-text">migration ──► slice into isolated units (&lt;90 min each)
+                 │
+        ┌────────┴────────┐
+        ▼                 ▼
+   skill for the      parallel sessions,
+   transformation     one slice each
+        │                 │
+        └────► verify per slice (tests/build/CI)
+                        │
+              human review → merge → repeat
+</code></pre>
+<h2>第 1 步 — 确认你的迁移够格</h2>
+<p>官方标准——大部分应满足：</p>
+<ul>
+<li>大量重复性子任务</li>
+<li>每片复杂度属初级工程师水平</li>
+<li>隔离的、增量的、向后兼容的变更</li>
+<li><strong>每片有客观验证</strong>（硬性要求：测试、构建、CI 或自定义脚本）</li>
+<li>片间依赖最小</li>
+</ul>
+<p>不够格的：必须一次性整体落地的全 repo 重写。</p>
+<h2>第 2 步 — 切片</h2>
+<p>切片是最小原子单元——一个文件、一个 notebook、一个模块：</p>
+<table>
+<thead>
+<tr>
+<th>规则</th>
+<th>为什么</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>每片 &lt; 90 分钟人工工程量</td>
+<td>Devin 的可靠性是按片计的</td>
+</tr>
+<tr>
+<td>独立 + 向后兼容</td>
+<td>各片可并行、任意顺序合并</td>
+</tr>
+<tr>
+<td>每片自带验证</td>
+<td>没验证就没自动化——这是失败闸门</td>
+</tr>
+</tbody>
+</table>
+<p>官方示例：50 文件的 REST→GraphQL 迁移 → 定范围、拆成无冲突的工作包、并行跑。</p>
+<h2>第 3 步 — 把变换写成 skill</h2>
+<p>一个 skill = 每个会话都跑的同一个配方。官方示例（Java 7→8，节选）：</p>
+<pre><code class="language-text">## Procedure
+1. Verify the project is on Java 7
+2. Install the Java 8 JDK
+3. Update build configuration
+4. Identify and replace deprecated Java 7 APIs
+5. Analyze for Java 8 enhancement opportunities
+6. Update unit tests
+7. Test thoroughly
+8. Update documentation
+9. Build and verify
+</code></pre>
+<p>写你自己的：明确步骤、一个端到端参照（指南或视频）、<strong>多个 before/after 代码示例</strong>——输入/输出对是最高质量的信号。</p>
+<h2>第 4 步 — 并行会话</h2>
+<p>skill 定稿后，把切片扇出到各会话——走 <a href="https://docs.devin.ai">API</a> 或 Bot 的子会话（第 4 篇）。每片 → 一个会话 → 一个 PR。人工评审把关合入 <code>main</code>。</p>
+<p>规模上来后数字复利：Nubank 的数百万行 ETL 迁移跑这套循环到了 8–12× 效率——fine-tuned Devin 把单任务时间从 ~40 分钟压到 ~10。</p>
+<h2>第 5 步 — 盯错误率，不盯进度条</h2>
+<p>小错误率会在几千片上复利。按仪表盘运营，不凭感觉：</p>
+<ul>
+<li>跟踪每片一次通过率——skill 才是你的修复点，不是会话</li>
+<li>失败的片回灌进 skill（文档自己的回路：<em>"feed session links into Devin to patch the gaps"</em>——把会话链接喂给 Devin 修补缺口）</li>
+<li>片是隔离的所以合并顺序自由——利用它</li>
+</ul>
+<h2>Verify it</h2>
+<ul>
+<li>[ ] 每片 ~90 分钟内完成且可独立合并</li>
+<li>[ ] 验证失败的片产出修复或被标记的工单——绝不静默合入</li>
+<li>[ ] skill 在前 20 片上可度量地变好（每片人工纠正减少）</li>
+<li>[ ] 进度可数：已迁 N/M 片、通过率可见</li>
+</ul>
+<h2>坑</h2>
+<ul>
+<li><strong>没切片的迁移。</strong> "Migrate the whole repo" 是官方反面教材——无隔离、无并行、无单元验证。</li>
+<li><strong>没有 before/after 示例。</strong> 没示例的 skill 让每个会话产出不同风格。</li>
+<li><strong>跳过人工评审。</strong> 并行 ≠ 无人值守——每片进 <code>main</code> 前仍要过审。</li>
+</ul>
+<h2>自检</h2>
+<ol>
+<li>为什么「广而浅」切片好过「深而全」？<em>（每片必须落地为绿——90 分钟的已验证 PR 会复利；3 天大分支会被 main 甩烂。）</em></li>
+<li>为什么每片都要自带验证？<em>（没有逐片证明，500 个 PR 的迁移就是 500 个未验证 diff——失败面是乘出来的不是除出来的。）</em></li>
+<li>Nubank 报 8–12× 效率——为什么这数字可信而非营销？<em>（公开方法论：真实 ETL 管线前后阶段耗时实测，不是推算。）</em></li>
+</ol>
+<h2>Sources</h2>
+<ul>
+<li><a href="https://docs.devin.ai/use-cases/best-practices.html">Best Practices — docs.devin.ai</a></li>
+<li><a href="https://docs.devin.ai/use-cases/migration-modernization.html">Migration &amp; Modernization + 5 个示例 playbook</a></li>
+<li><a href="https://docs.devin.ai/use-cases/gallery/index.html">Use-case gallery — Migrations</a></li>
+<li>相关：<a href="enterprise-playbook.html">第 7 篇 — 企业级铺开</a>（形态 1 就是本篇的组织级版本）</li>
+</ul>
+</article>
+<footer><div class="wrap foot-base"><span data-i18n="foot.note">Unofficial community project — not affiliated with Cognition AI.</span><span><a href="../../index.html">built-with-devin</a> · <a href="https://github.com/Till3005/build-with-devin">build-with-devin</a></span></div></footer>
+</main>
+<script src="../../assets/theme.js"></script>
+<script src="../../assets/i18n.js"></script>
+<script src="../../assets/i18n-runtime.js"></script>
+</body>
+</html>

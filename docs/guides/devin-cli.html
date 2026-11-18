@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Guide 12 — Devin CLI & extensibility — build-with-devin guides</title>
+<meta name="description" content="the local-terminal Devin — run the agent on your machine, hand work to Devin Cloud, and extend it with skills, rules, plugins, hooks, and subagents.">
+<link rel="icon" href="../assets/brand/Devin_Symbol.svg" type="image/svg+xml">
+<link rel="stylesheet" href="../assets/site.css">
+<link rel="stylesheet" href="../assets/guides.css">
+</head>
+<body>
+<a class="skip" href="#guide">Skip to content</a>
+<nav><div class="wrap nav-inner">
+  <div class="nav-left">
+    <a class="brand" href="../index.html" aria-label="Built with Devin">
+      <span class="brand-text">built<strong>-with-</strong></span><img class="brand-mark" src="../assets/brand/Devin_Primary_Logo.svg" alt="Devin" height="16"><span class="unofficial-chip">unofficial</span>
+    </a>
+  </div>
+  <div class="nav-side">
+    <div class="mode-toggle" role="tablist" aria-label="Site section">
+      <button class="mode-btn" data-mode="built" role="tab" aria-selected="false" onclick="location.href='../index.html'">Built</button>
+      <button class="mode-btn on" data-mode="build" role="tab" aria-selected="true" onclick="location.href='../index.html#build'">Build</button>
+      <span class="mode-pill" aria-hidden="true"></span>
+    </div>
+    <a class="cta" href="https://github.com/Till3005/build-with-devin/blob/main/guides/devin-cli.md">GitHub</a>
+  </div>
+</div></nav>
+<main>
+<article class="guide wrap" id="guide">
+  <p class="guide-crumb"><a href="../index.html#build">← Guides</a> · <a href="zh/devin-cli.html">中文</a></p>
+<h1>Guide 12 — Devin CLI &amp; extensibility</h1>
+<p><strong>Goal:</strong> the local-terminal Devin — run the agent on your machine, hand work to Devin Cloud, and extend it with skills, rules, plugins, hooks, and subagents.
+<strong>Level:</strong> intermediate
+<strong>Sources:</strong> <a href="https://docs.devin.ai/cli/index.html">Devin CLI docs</a> — <a href="https://docs.devin.ai/cli/introducing-devin-cli.html">introducing</a>, <a href="https://docs.devin.ai/cli/essential-commands.html">essential commands</a>, <a href="https://docs.devin.ai/cli/extensibility/index.html">extensibility</a></p>
+<h2>What it is</h2>
+<p>Devin CLI is a coding agent that lives in your terminal and connects to Devin Cloud. Two working modes, and the power is in moving between them:</p>
+<ul>
+<li><strong>Local</strong> — it edits your checked-out repo on your machine</li>
+<li><strong>Cloud</strong> — <code>devin --cloud</code> creates/steers/resumes cloud sessions; <code>/handoff</code> sends a local task to a cloud Devin, <code>/open</code> pulls a cloud session's PR back to your machine</li>
+</ul>
+<pre><code class="language-text">local repo ──/handoff──► Devin Cloud session ──PR──► /open ──► local repo
+     ▲                        │
+     └──── devin ssh / forward (inspect its VM) ────┘
+</code></pre>
+<h2>The pieces that matter</h2>
+<table>
+<thead>
+<tr>
+<th>Surface</th>
+<th>What it does</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>devin ssh</code> / <code>devin forward</code></td>
+<td>SSH into a cloud session's VM, forward its ports, <code>scp</code> files</td>
+</tr>
+<tr>
+<td>Subagents</td>
+<td>Delegate to independent agents (foreground/background) with own profiles and permissions</td>
+</tr>
+<tr>
+<td>Models</td>
+<td>Adaptive routing picks the model per task; Fusion pairs a frontier lead + cheap sidekick</td>
+</tr>
+<tr>
+<td>ACP</td>
+<td>Runs inside JetBrains, Zed, Xcode via the Agent Client Protocol</td>
+</tr>
+</tbody>
+</table>
+<h2>The extensibility stack</h2>
+<p>This is where teams make the CLI <em>theirs</em> — same layering as Guide 9, applied locally:</p>
+<table>
+<thead>
+<tr>
+<th>Layer</th>
+<th>File/mechanism</th>
+<th>Use for</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Rules</td>
+<td><code>AGENTS.md</code> / rules files</td>
+<td>Always-on instructions every session reads</td>
+</tr>
+<tr>
+<td>Skills</td>
+<td><code>SKILL.md</code></td>
+<td>Reusable procedures — slash-invoked or agent-chosen, with own permissions/<code>allowed-tools</code></td>
+</tr>
+<tr>
+<td>Plugins</td>
+<td>plugin manifest</td>
+<td>Bundle skills + rules + hooks + MCP servers; share through a <strong>team marketplace</strong></td>
+</tr>
+<tr>
+<td>Hooks</td>
+<td>lifecycle hooks</td>
+<td>Shell/LLM logic on <code>PreToolUse</code>, <code>PostToolUse</code>, <code>SessionStart</code>, <code>SessionEnd</code>… — block or rewrite tool calls, inject context</td>
+</tr>
+<tr>
+<td>MCP</td>
+<td>MCP config</td>
+<td>External tool servers (stdio / HTTP / SSE)</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Import path:</strong> <code>read_config_from</code> imports settings from Cursor, Windsurf, Claude Code, Copilot, Codex, Kiro, OpenCode, Zed — migration is one flag, not a rewrite.</p>
+<h2>Three workflows worth copying</h2>
+<p><strong>1. Local → cloud fan-out.</strong> Start a task locally, hit its limits, <code>/handoff</code> to a cloud session that keeps going on its own machine — pull the PR back with <code>/open</code>.</p>
+<p><strong>2. Skills as memory.</strong> Turn any repeated procedure (Guide 11's migration skill, a hotfix runbook, a release cut) into a <code>SKILL.md</code> — the CLI docs note feeding <em>successful session transcripts</em> back into skills to close gaps. Plugins package and share them to the whole team.</p>
+<p><strong>3. Guardrails via hooks.</strong> <code>PreToolUse</code> hook that blocks <code>rm -rf</code> patterns or forces review on migrations — enforcement lives in the hook, not in hoped-for model behavior.</p>
+<h2>Verify it</h2>
+<ul>
+<li>[ ] <code>devin</code> runs a local session; <code>devin --cloud</code> lists/creates cloud sessions</li>
+<li>[ ] A <code>/handoff</code>'d task completed in the cloud and its PR came back via <code>/open</code></li>
+<li>[ ] A <code>SKILL.md</code> invoked by slash command ran your procedure</li>
+<li>[ ] (Enterprise) team marketplace serves your plugin to another member</li>
+</ul>
+<h2>Pitfalls</h2>
+<ul>
+<li><strong>Local for parallel work.</strong> The CLI is one agent in your terminal — for parallel slices use cloud sessions or a Bot; the CLI is the <em>hands-on</em> surface.</li>
+<li><strong>Rules sprawl.</strong> <code>AGENTS.md</code> + project rules + global rules interact by precedence — keep each rule in exactly one layer or they fight.</li>
+</ul>
+<h2>Knowledge check</h2>
+<ol>
+<li>When do you use <code>/handoff</code> to Devin Cloud instead of finishing locally? <em>(When the work needs cloud-scale parallelism, org tools, or runs longer than your laptop stays open.)</em></li>
+<li>What's the difference between a skill, a rule, and a plugin? <em>(A skill is a task procedure, a rule is standing context, a plugin is the package that ships both plus hooks.)</em></li>
+<li>Why does hooks + subagents matter for team adoption? <em>(Hooks enforce org policy at every CLI session; subagents let one operator run a fleet — the two scale in opposite directions.)</em></li>
+</ol>
+<h2>Sources</h2>
+<ul>
+<li><a href="https://docs.devin.ai/cli/index.html">Devin CLI docs</a> — quickstart, commands, cloud integration, extensibility, ACP, models</li>
+<li>Related: <a href="playbooks-and-knowledge.html">Guide 9 — Playbooks &amp; knowledge</a> (same conventions layer, org-wide)</li>
+</ul>
+</article>
+<footer><div class="wrap foot-base"><span data-i18n="foot.note">Unofficial community project — not affiliated with Cognition AI.</span><span><a href="../index.html">built-with-devin</a> · <a href="https://github.com/Till3005/build-with-devin">build-with-devin</a></span></div></footer>
+</main>
+<script src="../assets/theme.js"></script>
+<script src="../assets/i18n.js"></script>
+<script src="../assets/i18n-runtime.js"></script>
+</body>
+</html>

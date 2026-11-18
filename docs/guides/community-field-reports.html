@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Guide 14 — Community field reports — build-with-devin guides</title>
+<meta name="description" content="what engineers who ran Devin on real work actually learned — including the failures. Distilled from published hands-on accounts, both glowing and hostile.">
+<link rel="icon" href="../assets/brand/Devin_Symbol.svg" type="image/svg+xml">
+<link rel="stylesheet" href="../assets/site.css">
+<link rel="stylesheet" href="../assets/guides.css">
+</head>
+<body>
+<a class="skip" href="#guide">Skip to content</a>
+<nav><div class="wrap nav-inner">
+  <div class="nav-left">
+    <a class="brand" href="../index.html" aria-label="Built with Devin">
+      <span class="brand-text">built<strong>-with-</strong></span><img class="brand-mark" src="../assets/brand/Devin_Primary_Logo.svg" alt="Devin" height="16"><span class="unofficial-chip">unofficial</span>
+    </a>
+  </div>
+  <div class="nav-side">
+    <div class="mode-toggle" role="tablist" aria-label="Site section">
+      <button class="mode-btn" data-mode="built" role="tab" aria-selected="false" onclick="location.href='../index.html'">Built</button>
+      <button class="mode-btn on" data-mode="build" role="tab" aria-selected="true" onclick="location.href='../index.html#build'">Build</button>
+      <span class="mode-pill" aria-hidden="true"></span>
+    </div>
+    <a class="cta" href="https://github.com/Till3005/build-with-devin/blob/main/guides/community-field-reports.md">GitHub</a>
+  </div>
+</div></nav>
+<main>
+<article class="guide wrap" id="guide">
+  <p class="guide-crumb"><a href="../index.html#build">← Guides</a> · <a href="zh/community-field-reports.html">中文</a></p>
+<h1>Guide 14 — Community field reports</h1>
+<p><strong>Goal:</strong> what engineers who ran Devin on real work actually learned — including the failures. Distilled from published hands-on accounts, both glowing and hostile.
+<strong>Level:</strong> start here for judgment
+<strong>Sources:</strong> linked per report below</p>
+<p>This guide is deliberately balanced: where Devin reliably wins, where it burns money, and the working style that separates the two outcomes.</p>
+<h2>The pattern that repeats across every report</h2>
+<p>Users who get results treat Devin as an <strong>asynchronous junior engineer</strong>, not a code generator. Scott Wu (Cognition CEO) describes the internal workflow in <a href="https://www.lennysnewsletter.com/p/how-devin-replaces-your-junior-engineers">Lenny's Newsletter</a>: delegate well-scoped tasks, let them run while you do meetings, review PRs. <a href="https://every.to/chain-of-thought/coding-with-devin-my-new-ai-programming-agent">Every's account</a> lands on the same frame — it requires a <em>skill set</em>: learning what it's good at, writing tasks it understands, knowing when to step in, and learning to trust work done differently than you'd do it.</p>
+<h2>Where Devin won, documented</h2>
+<p><strong>End-to-end prototyping.</strong> From a blank repo, Devin scaffolded a FastAPI + React "City Explorer" (images/weather/news integrations), ran it locally, opened a PR, and deployed a public URL — ~90 minutes, ~2 human interventions (<a href="https://medium.com/@sambhavgaur_70582/copilot-cursor-or-devin-my-hands-on-weekend-with-ai-that-codes-and-deploys-acc708e802b3">Medium hands-on</a>). <a href="https://blog.scottlogic.com/2025/10/20/rapid-development-with-devin.html">Scott Logic</a> reports the same arc on a real client prototype — with a crucial iteration lesson below.</p>
+<p><strong>Work that needs a runtime.</strong> In a <a href="https://web.archive.org/web/20260718112612/https://mohitkhare.me/blog/devin-vs-claude-code/">head-to-head with Claude Code</a>, Devin lost on fitting-into-your-conventions tasks but won clearly where a machine helps: memory-leak hunting where it profiled, took heap snapshots under load, and produced a report — the agent's own VM is the feature.</p>
+<p><strong>Live troubleshooting.</strong> <a href="https://www.faros.ai/blog/how-to-use-devin-ai-troubleshooting">Faros</a> used Devin <em>during a customer call</em>: it read the introspection API code and generated a working <code>curl</code> in seconds — collapsing a 1–2 day follow-up loop into the call itself.</p>
+<p><strong>Real migrations with fresh docs.</strong> A Tailwind 3→4 + DaisyUI 4→5 upgrade on a gnarly Vue→React codebase worked when the team fed Devin current docs via the Context7 MCP — the prompt carried the <em>context</em>, not just the task (<a href="https://medium.com/design-bootcamp/day-7-of-30-getting-to-know-devon-ai-and-working-with-him-743c351cd0c4">Bootcamp write-up</a>).</p>
+<p><strong>Self-verification.</strong> A <a href="https://architecttocto.substack.com/p/the-only-coding-agent-worth-paying">year-long practitioner comparison</a> marks Devin's browser-driven e2e testing as the threshold moment: it navigates to what it built and checks it — a feedback loop that resembles engineering, not generation.</p>
+<p><strong>Beyond code.</strong> A Cognition researcher reports Devin rebuilt — and finished — a Lean formalization that had taken him much of a semester nine years earlier, in <strong>under 15 minutes</strong> (<a href="https://x.com/penlume/status/2115806616796921885">post</a>). Math formalization rewards the same trait as migrations: a machine-checkable definition of done.</p>
+<p><strong>Wired into observability.</strong> <a href="https://medium.com/lets-code-future/how-i-turned-devin-into-a-performance-analysis-agent-with-dynatrace-mcp-753d3f4790a2">Dynatrace MCP + Devin</a> turns Devin into a performance-analysis agent: it queries live metrics and traces, then diagnoses — the MCP server carries production context the repo can't (Medium). See also <a href="https://medium.com/@winter.inc/devin-from-bug-report-to-pull-request-25-days-of-ai-day-18-b158daa20f23">Devin: from bug report to pull request</a> for the plain ticket→PR loop end-to-end.</p>
+<h2>Where it failed, documented</h2>
+<ul>
+<li><strong>Vague or over-broad prompts.</strong> Scott Logic's first prompt produced an unusable scaffold; narrowing the stack and the ask ("just the models") fixed it. Devin over-builds — tell it what <em>not</em> to build.</li>
+<li><strong>Convention-fitting tasks.</strong> "Add pagination to this endpoint" came back misaligned with codebase conventions in two independent reports (<a href="https://www.amillionmonkeys.co.uk/blog/ai-coding-tools-small-studios">amillionmonkeys</a>, <a href="https://web.archive.org/web/20260718112612/https://mohitkhare.me/blog/devin-vs-claude-code/">mohitkhare</a>) — Devin builds in isolation unless you carry the conventions to it (→ Guide 9).</li>
+<li><strong>Uncheckable work.</strong> <a href="https://expectedwrong.com/devin-appraised">expectedwrong</a> and <a href="https://dev.to/alanwest/i-gave-devin-10-real-tasks-it-completed-3-3063">alanwest's 10-task test</a> document the failure mode: confident output that's broken or absent, credit burned in loops. Their tasks skewed to work with no clear verification — the same gate the official playbook makes mandatory (Guide 11).</li>
+</ul>
+<h2>Named team deployments (community, with numbers)</h2>
+<p>Real orgs publishing their Devin operating data — mostly from Japan's engineering community, which documents unusually well:</p>
+<table>
+<thead>
+<tr>
+<th>Team</th>
+<th>Deployment</th>
+<th>Reported result</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>rakko_inc</td>
+<td>Devin auto code-review via Playbooks + GitHub Actions + Devin API — pre-digests every PR before human review</td>
+<td><strong>65 → 184 reviewed PRs/month (2.8×)</strong>; humans start from Devin's summary (<a href="https://zenn.dev/rakko_inc/articles/00cc5a5a679971">report</a>, JP)</td>
+</tr>
+<tr>
+<td>Skillnote (QA)</td>
+<td>PR → Actions → Devin generates test-design drafts (CSV/Excel, incl. "why this case") posted to the PR</td>
+<td>~<strong>35 min saved per 10 test cases</strong>; Devin-designed cases caught bugs humans missed (<a href="https://zenn.dev/skillnote/articles/5ba429ca249801">report</a>, JP)</td>
+</tr>
+<tr>
+<td>arufian</td>
+<td>Serverless GitHub-event automation (no standing server): labels <code>devin:fix</code>/<code>devin:plan</code> drive Devin sessions, with a <strong>priority × complexity policy table</strong> and a plan-first approval flow</td>
+<td>Safety scans gate risky PRs; high-complexity work gets plan → human approve → <code>run that plan</code> (<a href="https://zenn.dev/arufian/articles/f80a62f5217cee">report</a>, JP)</td>
+</tr>
+<tr>
+<td>Leverages (levtech)</td>
+<td>Org rollout: 14 teams / ~30 people</td>
+<td><strong>177 merged PRs</strong> in ~2.5 months; they measure ROI as <code>ACU cost − hours saved × wage</code> and track task-type mix (<a href="https://zenn.dev/levtech/articles/9c869303820844">report</a>, JP)</td>
+</tr>
+<tr>
+<td>Decagon</td>
+<td>AutoResearch on Devin Cloud: one orchestrator Devin + parallel subagents competing hypotheses; every idea verified against replayed production traffic on Modal GPUs</td>
+<td><strong>up to 2.5× more throughput per GPU</strong> on support traffic (<a href="https://x.com/DecagonAI/article/2115511110120120437">writeup</a>)</td>
+</tr>
+<tr>
+<td>Nader Dabit</td>
+<td>Personal 5-bot org — <strong>CTO</strong> (all sessions/repos, iMessage VIP), <strong>Auto(mation)Bot</strong> (runs his automations, perf reports), <strong>DevCommunityBot</strong> (ambassador program data → mini-apps), <strong>DevRelBot</strong> (docs + tutorial videos with <em>its own computer, own Devin/GitHub/Linear accounts, ElevenLabs voice clone</em>)</td>
+<td>Plus <strong>Windfable</strong>: ~10 SuperJennyStack Bots on a Unity iOS RPG, each with own macOS+Xcode+Unity, testing iPhone Duo folded/unfolded modes with screenshot/video diffs (<a href="https://x.com/dabit3/status/2122755275182469515">primer</a>)</td>
+</tr>
+<tr>
+<td>Mark Fenner</td>
+<td>Solo operator running four job-specific Bots under a coordinating Chief Agent Bot ("Frankie")</td>
+<td>Consolidated updates via one decision surface — the multi-Bot org shape works without a team (<a href="https://x.com/markfenner/status/2122740244328145211">walkthrough</a>)</td>
+</tr>
+</tbody>
+</table>
+<p>The reusable ideas inside: <strong>policy-table gating</strong> (arufian: only auto-PR low-risk work, plan-first for complex), <strong>fixed-output prompting</strong> (Skillnote: fixed CSV format + inline Python for conversion kills output variance), <strong>reviewer-pre-digest</strong> (rakko: Devin summarizes + flags before the human reads), and <strong>accounting for it honestly</strong> (levtech's ACU-vs-wages ROI formula).</p>
+<h2>The distilled lessons</h2>
+<ol>
+<li><strong>Scope the slice, not the project.</strong> The successes are all bounded units; the failures are "go build/fix this broadly." (Official doctrine: Guide 13.)</li>
+<li><strong>Verify or don't delegate.</strong> Give Devin work where a machine can check "done" — tests, builds, a working <code>curl</code>, a rendered page.</li>
+<li><strong>Carry context, not assumptions.</strong> Conventions, current docs (via MCP), your stack's shape — the failures are context failures, not capability failures.</li>
+<li><strong>Delegate; don't watch.</strong> The ROI in every positive report is <em>asynchrony</em> — tasks run while you do something else. Watching it type is how you decide it's "slow."</li>
+<li><strong>Iterate the prompt, not the tool.</strong> Scott Logic's fix wasn't a different agent — it was a narrower prompt. Treat a failed first run as a prompt bug.</li>
+</ol>
+<h2>Scott Wu's internal top-5 (from the Lenny's interview)</h2>
+<p>The tasks Cognition itself delegates most: <strong>frontend fixes, version upgrades, documentation, incident response, testing</strong> — plus a "first line of defense" pattern where Devin analyzes crashes before humans engage, and DeepWiki research to <em>write better prompts</em>.</p>
+<h2>Verify it</h2>
+<ul>
+<li>[ ] Pick one report closest to your own stack and re-read the original, not the distillation — does the number still hold in context?</li>
+<li>[ ] Write down the one lesson you'd bet money on reproducing in your org; if you can't name it, pick another report</li>
+</ul>
+<h2>Pitfalls</h2>
+<ul>
+<li><strong>Survivorship bias.</strong> The glowing reports publish numbers; the quiet failures publish nothing. Read the failures in this collection as the median experience, the wins as the ceiling.</li>
+<li><strong>Cargo-culting.</strong> Scott Logic's prompt iteration worked <em>because</em> they iterated — copying their final prompt without their loop gets you their start, not their result.</li>
+</ul>
+<h2>Knowledge check</h2>
+<ol>
+<li>What do the failure reports have in common that the success reports lack? <em>(Unverifiable delegation — the failures gave Devin work where nobody could check 'done'; every success defined a check.)</em></li>
+<li>Why is Faros's 'debugging on a customer call' a deployment lesson, not an anecdote? <em>(It shows the live-triage motion: the agent as first responder while the human keeps the customer relationship.)</em></li>
+<li>Why does this guide count a hostile report as a source on equal footing? <em>(Adversarial reports surface the boundary conditions — you learn the map's edges from people who walked off them.)</em></li>
+</ol>
+<h2>Sources</h2>
+<ul>
+<li><a href="https://blog.scottlogic.com/2025/10/20/rapid-development-with-devin.html">Scott Logic — Rapid development with Devin</a></li>
+<li><a href="https://www.lennysnewsletter.com/p/how-devin-replaces-your-junior-engineers">Lenny's Newsletter — Scott Wu on Cognition's internal Devin usage</a></li>
+<li><a href="https://every.to/chain-of-thought/coding-with-devin-my-new-ai-programming-agent">Every — Coding with Devin</a></li>
+<li><a href="https://web.archive.org/web/20260718112612/https://mohitkhare.me/blog/devin-vs-claude-code/">dev&gt;notes — Devin vs Claude Code</a></li>
+<li><a href="https://www.faros.ai/blog/how-to-use-devin-ai-troubleshooting">Faros — Devin for live troubleshooting</a></li>
+<li><a href="https://medium.com/@sambhavgaur_70582/copilot-cursor-or-devin-my-hands-on-weekend-with-ai-that-codes-and-deploys-acc708e802b3">Medium — Copilot, Cursor or Devin weekend</a></li>
+<li><a href="https://medium.com/design-bootcamp/day-7-of-30-getting-to-know-devon-ai-and-working-with-him-743c351cd0c4">Bootcamp — Day 7 with Devin (Tailwind/DaisyUI migration)</a></li>
+<li><a href="https://architecttocto.substack.com/p/the-only-coding-agent-worth-paying">architect to CTO — The only coding agent worth paying for</a></li>
+<li><a href="https://expectedwrong.com/devin-appraised">expectedwrong — Devin, appraised</a> · <a href="https://dev.to/alanwest/i-gave-devin-10-real-tasks-it-completed-3-3063">dev.to — 10 real tasks, 3 completed</a> · <a href="https://www.amillionmonkeys.co.uk/blog/ai-coding-tools-small-studios">amillionmonkeys</a></li>
+<li><a href="https://dev.to/signadot/test-devins-changes-end-to-end-with-signadot-a0">Signadot — Testing Devin's changes end to end</a></li>
+</ul>
+</article>
+<footer><div class="wrap foot-base"><span data-i18n="foot.note">Unofficial community project — not affiliated with Cognition AI.</span><span><a href="../index.html">built-with-devin</a> · <a href="https://github.com/Till3005/build-with-devin">build-with-devin</a></span></div></footer>
+</main>
+<script src="../assets/theme.js"></script>
+<script src="../assets/i18n.js"></script>
+<script src="../assets/i18n-runtime.js"></script>
+</body>
+</html>

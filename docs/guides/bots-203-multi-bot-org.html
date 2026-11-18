@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Guide 4 — Multi-Bot organization — build-with-devin guides</title>
+<meta name="description" content="a hierarchy of Bots that runs an entire business unit — one orchestrator delegating to specialist Bots, one human deciding through a single daily thread.">
+<link rel="icon" href="../assets/brand/Devin_Symbol.svg" type="image/svg+xml">
+<link rel="stylesheet" href="../assets/site.css">
+<link rel="stylesheet" href="../assets/guides.css">
+</head>
+<body>
+<a class="skip" href="#guide">Skip to content</a>
+<nav><div class="wrap nav-inner">
+  <div class="nav-left">
+    <a class="brand" href="../index.html" aria-label="Built with Devin">
+      <span class="brand-text">built<strong>-with-</strong></span><img class="brand-mark" src="../assets/brand/Devin_Primary_Logo.svg" alt="Devin" height="16"><span class="unofficial-chip">unofficial</span>
+    </a>
+  </div>
+  <div class="nav-side">
+    <div class="mode-toggle" role="tablist" aria-label="Site section">
+      <button class="mode-btn" data-mode="built" role="tab" aria-selected="false" onclick="location.href='../index.html'">Built</button>
+      <button class="mode-btn on" data-mode="build" role="tab" aria-selected="true" onclick="location.href='../index.html#build'">Build</button>
+      <span class="mode-pill" aria-hidden="true"></span>
+    </div>
+    <a class="cta" href="https://github.com/Till3005/build-with-devin/blob/main/guides/bots-203-multi-bot-org.md">GitHub</a>
+  </div>
+</div></nav>
+<main>
+<article class="guide wrap" id="guide">
+  <p class="guide-crumb"><a href="../index.html#build">← Guides</a> · <a href="zh/bots-203-multi-bot-org.html">中文</a></p>
+<h1>Guide 4 — Multi-Bot organization</h1>
+<p><strong>Goal:</strong> a hierarchy of Bots that runs an entire business unit — one orchestrator delegating to specialist Bots, one human deciding through a single daily thread.
+<strong>Level:</strong> advanced
+<strong>Source deployment:</strong> Jenny Xu's <strong>SuperJennyStack</strong> — ~20 Bots running a mobile game studio. ~50 → <strong>1,900 PRs/week</strong>, weekly releases, studio revenue 6×'d. Published as a community template in the <a href="https://devin.ai/bots/templates">Bot marketplace</a>. The official <strong>bot-to-bot grant handoff</strong> (QA → Developer → retest → PM report) uses the same mechanics at smaller scale.
+<strong>Sources:</strong> Jenny Xu's published stack (<a href="https://x.com/cognition/status/2122737511684587551">via launch coverage</a>) · <a href="https://docs.devin.ai/work-with-devin/bots">Bots docs</a> · <a href="https://x.com/xujennyc/status/2123111543105868166">BotSpeak post</a></p>
+<h2>The pattern</h2>
+<p>Don't build one Bot that does everything — build a small company:</p>
+<pre><code class="language-text">                    ┌─────────────┐
+              ┌────►│ Orchestrator │◄──── one roll-up thread
+              │     └──────┬──────┘      (4×/day, emoji answers)
+              │            │ grants: read + message
+     ┌────────┼────────┬───┴─────┬──────────┐
+     ▼        ▼        ▼         ▼          ▼
+  SuperPM  SuperDev  SuperQA  SuperRelease  SuperSupport
+  (what)   (build)   (verify) (ship)        (users)
+</code></pre>
+<p>The human is the CEO: the orchestrator collects every subordinate Bot's pending decisions into <strong>one Slack thread, 4×/day</strong>, answered with emoji.</p>
+<h2>Prerequisites</h2>
+<ul>
+<li>Guide 1 done — you can create and instruct a Bot</li>
+<li>Slack connected — this pattern lives in Slack; the orchestrator's roll-up thread is the whole UX</li>
+<li>A bounded domain with separable jobs (a product, a studio, a service area)</li>
+</ul>
+<h2>Step 1 — Design the org chart first</h2>
+<p>Jenny's published stack — copy the <em>shape</em>, not the names:</p>
+<table>
+<thead>
+<tr>
+<th>Bot</th>
+<th>Owns</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Orchestrator (SuperJenny)</td>
+<td>Delegation to every other Bot; compiles their asks into one thread; trained on her personality/quirks</td>
+</tr>
+<tr>
+<td>PM (SuperPM)</td>
+<td>Ranked daily fix list from metrics + store reviews + trends</td>
+</tr>
+<tr>
+<td>Release (SuperRelease)</td>
+<td>Weekly build, ready for store submission Friday</td>
+</tr>
+<tr>
+<td>QA (SuperQA)</td>
+<td>Real-device tests with video proof</td>
+</tr>
+<tr>
+<td>Support (SuperSupport)</td>
+<td>Drafts every store-review reply for approval; helps players overnight</td>
+</tr>
+</tbody>
+</table>
+<p>Remaining ~15 Bots cover development, Unity, UI, iOS, Android, analytics. Rule of thumb from the deployment: <strong>one Bot per job you could name on an org chart</strong> — not per task, per <em>responsibility</em>.</p>
+<h2>Step 2 — Create the specialists</h2>
+<p>For each job, a Bot with a scoped outcome prompt:</p>
+<pre><code class="language-text">You own QA for &lt;product&gt;. Test every release candidate on real devices,
+post video proof, and block release on failures. Report what needs a
+decision to the orchestrator.
+</code></pre>
+<p>Keep each Bot's Instructions focused on its job's rules; shared knowledge (brand, deploy process, who approves what) goes in each Bot's instructions or a shared resource — there is no global memory across Bots, so the orchestrator's prompts carry the connective tissue.</p>
+<h2>Step 3 — Wire grants</h2>
+<p>A grant gives Bot A read/message access to Bot B — this is how Bots hand work to each other (the Bots ask for the grant; you approve the card once). The orchestrator needs access to every specialist.</p>
+<p>The documented official variant — smaller, same mechanics:</p>
+<pre><code class="language-text">QA Bot finds a bug ──grant──► Developer Bot fixes ──► QA retests on
+staging ──► PM Bot reports status in channel
+</code></pre>
+<p>Approve grants narrowly: the orchestrator reads and messages specialists; specialists don't all need to reach each other.</p>
+<h2>Step 4 — The roll-up thread</h2>
+<p>This is the single most important instruction — it converts 20 Bots' worth of interruptions into one habit:</p>
+<pre><code class="language-text">Collect every pending decision from the Bots you work with into one
+Slack thread, posted at &lt;times&gt; daily. For each item: what's blocked,
+the options, your recommendation. I answer in replies/emoji; treat my
+replies as decisions and relay them.
+</code></pre>
+<p>Jenny runs this <strong>4×/day</strong> and answers <strong>with emoji</strong>. The discipline: you never talk to the specialists — the orchestrator relays your decision and follows it to done.</p>
+<h2>Step 5 — Cadence = the org's heartbeat</h2>
+<table>
+<thead>
+<tr>
+<th>Cadence</th>
+<th>Who runs it</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Daily ranked fix list</td>
+<td>PM Bot (metrics + reviews + trends)</td>
+</tr>
+<tr>
+<td>Weekly release candidate</td>
+<td>Release Bot → QA Bot sign-off</td>
+</tr>
+<tr>
+<td>4×/day decision thread</td>
+<td>Orchestrator</td>
+</tr>
+<tr>
+<td>Overnight player help</td>
+<td>Support Bot (drafts replies for morning approval)</td>
+</tr>
+</tbody>
+</table>
+<p>Each Bot owns its loop; the orchestrator owns the schedule of loops.</p>
+<h2>Step 6 — Inter-bot protocol (BotSpeak)</h2>
+<p>The scale problem nobody warns you about: Jenny's 20+ Bots were sending <strong>700+ messages/day</strong> — she couldn't keep up. Her fix was <strong>BotSpeak</strong>, a token-saving shorthand Bots use <em>with each other</em> (<a href="https://x.com/xujennyc/status/2123111543105868166">her writeup</a>):</p>
+<table>
+<thead>
+<tr>
+<th>Rule</th>
+<th>What it means</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Shorthand</td>
+<td><code>ACK</code> and friends instead of full replies</td>
+</tr>
+<tr>
+<td>ASD-STE100</td>
+<td>Simplified English grammar — the aviation doc standard, unambiguous and cheap in tokens</td>
+</tr>
+<tr>
+<td>Emoji receipts</td>
+<td>React ✅ instead of "got it, thanks"</td>
+</tr>
+<tr>
+<td>No niceties</td>
+<td>Bots send each other only what the other needs</td>
+</tr>
+<tr>
+<td>Human gets prose</td>
+<td>The roll-up thread stays full sentences with decision context</td>
+</tr>
+</tbody>
+</table>
+<p>Six days after switching: decisions made by Bots without her <strong>12×'d</strong>, repeated asks −50%, inter-bot clarifying posts −12%. The protocol exists because token waste isn't the real cost — <em>attention</em> waste is: shorter bot-to-bot messages mean the human's one thread stays readable.</p>
+<h2>Verify it</h2>
+<ul>
+<li>[ ] Every specialist Bot has a scoped outcome prompt and active grants</li>
+<li>[ ] The orchestrator posts the consolidated decision thread on schedule</li>
+<li>[ ] A decision you answered via emoji got relayed and resolved by the right specialist</li>
+<li>[ ] A cross-Bot handoff completed end-to-end (find → fix → verify → report)</li>
+<li>[ ] Total human messages today &lt; number of merged PRs</li>
+</ul>
+<h2>Pitfalls</h2>
+<ul>
+<li><strong>Skipping the orchestrator.</strong> N Bots each DMing you is N× noise. The org only works if judgment funnels through one thread.</li>
+<li><strong>Vague job boundaries.</strong> "Dev Bot" and "Fix Bot" will collide. Boundaries follow the org chart — QA <em>verifies</em>, Release <em>ships</em>, PM <em>prioritizes</em>.</li>
+<li><strong>Over-granting.</strong> Mesh grants (everyone can reach everyone) recreate chaos. Hub-and-spoke through the orchestrator.</li>
+<li><strong>Prose between Bots.</strong> Bots writing paragraphs to each other is how you get 700 messages/day — adopt a BotSpeak-style protocol: shorthand + emoji receipts + no niceties; full sentences only for the human.</li>
+</ul>
+<h2>Knowledge check</h2>
+<ol>
+<li>Why does SuperJennyStack route all human contact through <em>one</em> consolidated thread? <em>(Attention is the bottleneck, not compute — 20 Bots generating 20 threads is just 20 jobs again.)</em></li>
+<li>When does a grant beat 'ask the orchestrator'? <em>(When the needed capability is already owned by another Bot — grants borrow ownership instead of duplicating it.)</em></li>
+<li>What does the human's '4×/day with emoji' cadence imply about delegation depth? <em>(Decision bandwidth, not headcount, is what Bots replace — the human kept the judgment layer and lost the typing layer.)</em></li>
+</ol>
+<h2>Sources</h2>
+<ul>
+<li><a href="https://devin.ai/blog/introducing-devin-bots">Introducing Devin Bots</a> — SuperJennyStack numbers, grant-handoff variant</li>
+<li><a href="https://devin.ai/bots/templates">Bot marketplace</a> — SuperJennyStack community template + 16 official templates</li>
+<li><a href="https://docs.devin.ai/work-with-devin/bots">Bots docs</a> — grants, memory, access</li>
+<li>Related: <a href="bots-204-reference-grounded-swarm.html">Guide 5 — Reference-grounded swarm</a> for swarms that <em>write</em> rather than <em>operate</em></li>
+</ul>
+</article>
+<footer><div class="wrap foot-base"><span data-i18n="foot.note">Unofficial community project — not affiliated with Cognition AI.</span><span><a href="../index.html">built-with-devin</a> · <a href="https://github.com/Till3005/build-with-devin">build-with-devin</a></span></div></footer>
+</main>
+<script src="../assets/theme.js"></script>
+<script src="../assets/i18n.js"></script>
+<script src="../assets/i18n-runtime.js"></script>
+</body>
+</html>

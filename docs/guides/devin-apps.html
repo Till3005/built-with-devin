@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Guide 10 — Devin Apps: ship live tools from a chat — build-with-devin guides</title>
+<meta name="description" content="describe an internal tool, dashboard, or staging copy — Devin builds it and serves it at a stable URL your team opens by signing in.">
+<link rel="icon" href="../assets/brand/Devin_Symbol.svg" type="image/svg+xml">
+<link rel="stylesheet" href="../assets/site.css">
+<link rel="stylesheet" href="../assets/guides.css">
+</head>
+<body>
+<a class="skip" href="#guide">Skip to content</a>
+<nav><div class="wrap nav-inner">
+  <div class="nav-left">
+    <a class="brand" href="../index.html" aria-label="Built with Devin">
+      <span class="brand-text">built<strong>-with-</strong></span><img class="brand-mark" src="../assets/brand/Devin_Primary_Logo.svg" alt="Devin" height="16"><span class="unofficial-chip">unofficial</span>
+    </a>
+  </div>
+  <div class="nav-side">
+    <div class="mode-toggle" role="tablist" aria-label="Site section">
+      <button class="mode-btn" data-mode="built" role="tab" aria-selected="false" onclick="location.href='../index.html'">Built</button>
+      <button class="mode-btn on" data-mode="build" role="tab" aria-selected="true" onclick="location.href='../index.html#build'">Build</button>
+      <span class="mode-pill" aria-hidden="true"></span>
+    </div>
+    <a class="cta" href="https://github.com/Till3005/build-with-devin/blob/main/guides/devin-apps.md">GitHub</a>
+  </div>
+</div></nav>
+<main>
+<article class="guide wrap" id="guide">
+  <p class="guide-crumb"><a href="../index.html#build">← Guides</a> · <a href="zh/devin-apps.html">中文</a></p>
+<h1>Guide 10 — Devin Apps: ship live tools from a chat</h1>
+<p><strong>Goal:</strong> describe an internal tool, dashboard, or staging copy — Devin builds it and serves it at a stable URL your team opens by signing in.
+<strong>Level:</strong> start here (platform guide) · <strong>Time:</strong> ~10 minutes to first App
+<strong>Source:</strong> <a href="https://devin.ai/blog/devin-apps">Introducing Devin Apps</a> (Nov 13, 2026)</p>
+<h2>What it is</h2>
+<p>A Devin App is a live, private web application hosted directly on Devin's cloud machine. You describe the tool, Devin builds it, your team opens it from a link — no hosting, no deploy pipeline. Because it runs <em>on</em> Devin's machine, it can reach your MCPs, integrations, codebase, and its own database (SQLite/Postgres on the same box), and call the Devin API itself.</p>
+<h2>Build one</h2>
+<ol>
+<li>Sidebar → <strong>Apps</strong> → describe what the App should do (or pick a prompt template: metrics dashboard, project status, review queue) → <strong>Build with Devin</strong></li>
+<li>Devin asks clarifying questions in the session, builds, and puts it online — the Apps page shows its URL, status <code>Building</code> until v1 is live</li>
+<li><strong>Share</strong> — copy the link; scope it to named people, your org, or your enterprise. Apps are never public; opening one requires a Devin sign-in</li>
+</ol>
+<p>You can also say "publish this as an App" inside any session that produced a browser preview.</p>
+<h2>Update loop</h2>
+<ul>
+<li><strong>Edit in session</strong> on the App's page → describe the change → Devin builds a new version at the same URL. Every update is a versioned deployment; if a new version fails to start, the previous one keeps serving.</li>
+<li><strong>Automation-kept-fresh:</strong> wire an automation (Guide 6) to redeploy on a schedule or on branch changes — a dashboard that pulls fresh data every morning is the canonical use.</li>
+</ul>
+<h2>How they run (the parts that matter)</h2>
+<ul>
+<li><strong>Hibernation:</strong> Apps build on memory snapshots — the machine sleeps when unused, wakes on open (first load can take a few seconds). Billing follows awake-time.</li>
+<li><strong>Stack:</strong> anything serving HTTP on a port; DB co-located on the machine.</li>
+<li><strong>Scale boundary:</strong> one machine — great for internal tools and dashboards, <strong>not</strong> high-traffic production services.</li>
+</ul>
+<h2>The three proven uses</h2>
+<table>
+<thead>
+<tr>
+<th>Use</th>
+<th>Example</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Internal tools</td>
+<td>Admin panels, request forms, approval queues — the shared-spreadsheet killers</td>
+</tr>
+<tr>
+<td>Dashboards</td>
+<td>Metrics/support/sales boards pulling from your own data sources, refreshed on schedule</td>
+</tr>
+<tr>
+<td>Beta/staging copies</td>
+<td>Your real stack (frontend+backend+DB+workers) running on Devin's machine — teammates open a staging copy from a link</td>
+</tr>
+</tbody>
+</table>
+<h2>Verify it</h2>
+<ul>
+<li>[ ] App loads at its stable URL after the machine slept (expect a few-second cold start)</li>
+<li>[ ] An edit-in-session change produced a new version at the same URL</li>
+<li>[ ] Share scope is right: a teammate without access is stopped at sign-in</li>
+</ul>
+<h2>Pitfalls</h2>
+<ul>
+<li><strong>Production traffic.</strong> One machine, sleeps when idle — don't point users at it; point your team at it.</li>
+<li><strong>Static thinking.</strong> An App's power is that it <em>lives in Devin's environment</em> — wire it to your data/MCPs, or you've built a weaker Vercel.</li>
+</ul>
+<h2>Knowledge check</h2>
+<ol>
+<li>What's the difference between a Devin App and a PR preview? <em>(The App is served live from Devin's machine at a stable URL — stateful, persistent, sign-in gated — not a build artifact.)</em></li>
+<li>Why does 'your team opens it by signing in' matter for internal tools? <em>(Auth is inherited from the org — no separate login system to build or secure.)</em></li>
+<li>Which class of internal tool fits Apps best? <em>(Dashboards and staging surfaces where 'good enough now' beats 'perfect later' — the maintenance cost is near zero.)</em></li>
+</ol>
+<h2>Sources</h2>
+<ul>
+<li><a href="https://devin.ai/blog/devin-apps">Introducing Devin Apps</a></li>
+<li>Related: <a href="automations-101-event-driven.html">Guide 6 — Event-driven automations</a> for scheduled refresh</li>
+</ul>
+</article>
+<footer><div class="wrap foot-base"><span data-i18n="foot.note">Unofficial community project — not affiliated with Cognition AI.</span><span><a href="../index.html">built-with-devin</a> · <a href="https://github.com/Till3005/build-with-devin">build-with-devin</a></span></div></footer>
+</main>
+<script src="../assets/theme.js"></script>
+<script src="../assets/i18n.js"></script>
+<script src="../assets/i18n-runtime.js"></script>
+</body>
+</html>

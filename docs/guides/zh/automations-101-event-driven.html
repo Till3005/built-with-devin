@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>指南 6 — 事件驱动的 Automations — build-with-devin guides</title>
+<meta name="description" content="指南 6 — 事件驱动的 Automations">
+<link rel="icon" href="../../assets/brand/Devin_Symbol.svg" type="image/svg+xml">
+<link rel="stylesheet" href="../../assets/site.css">
+<link rel="stylesheet" href="../../assets/guides.css">
+</head>
+<body>
+<a class="skip" href="#guide">Skip to content</a>
+<nav><div class="wrap nav-inner">
+  <div class="nav-left">
+    <a class="brand" href="../../index.html" aria-label="Built with Devin">
+      <span class="brand-text">built<strong>-with-</strong></span><img class="brand-mark" src="../../assets/brand/Devin_Primary_Logo.svg" alt="Devin" height="16"><span class="unofficial-chip">unofficial</span>
+    </a>
+  </div>
+  <div class="nav-side">
+    <div class="mode-toggle" role="tablist" aria-label="Site section">
+      <button class="mode-btn" data-mode="built" role="tab" aria-selected="false" onclick="location.href='../../index.html'">Built</button>
+      <button class="mode-btn on" data-mode="build" role="tab" aria-selected="true" onclick="location.href='../../index.html#build'">Build</button>
+      <span class="mode-pill" aria-hidden="true"></span>
+    </div>
+    <a class="cta" href="https://github.com/Till3005/build-with-devin/blob/main/guides/zh/automations-101-event-driven.md">GitHub</a>
+  </div>
+</div></nav>
+<main>
+<article class="guide wrap" id="guide">
+  <p class="guide-crumb"><a href="../../index.html#build">← Guides</a> · <a href="../automations-101-event-driven.html">English</a></p>
+<h1>指南 6 — 事件驱动的 Automations</h1>
+<p><strong>目标：</strong> 把外部事件——Slack、Teams、GitHub、Linear、Jira、PagerDuty、cron、webhook——接到会自己启动的 Devin 会话上。
+<strong>级别：</strong> 入门（平台篇）· <strong>用时：</strong> ~20 分钟
+<strong>来源：</strong> <a href="https://docs.devin.ai/product-guides/automations">Automations docs</a> · <a href="https://www.youtube.com/watch?v=6xxKtIpgOyE">官方视频演示</a></p>
+<h2>解剖</h2>
+<p>每个 automation 都是四个部分：</p>
+<table>
+<thead>
+<tr>
+<th>部分</th>
+<th>作用</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Trigger</td>
+<td>触发它的事件——一条 Slack 消息、一次失败的 CI、一次 cron 跳动、一个 HTTP webhook</td>
+</tr>
+<tr>
+<td>Conditions</td>
+<td>可选过滤——只要 <code>bug</code> label、只要这个 repo、只要含 <code>/devin</code> 的消息</td>
+</tr>
+<tr>
+<td>Preflight check</td>
+<td>可选 LLM 过滤或脚本，在命中<em>之后</em>、动作之前跑——可跳过事件或拆成工作项</td>
+</tr>
+<tr>
+<td>Action</td>
+<td>跑什么：启动会话、给现有会话发消息、triage monitor、或邮件通知</td>
+</tr>
+</tbody>
+</table>
+<h2>触发器目录</h2>
+<table>
+<thead>
+<tr>
+<th>来源</th>
+<th>触发于</th>
+<th>典型用途</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Slack</td>
+<td>新消息、新增 reaction、用户组提及</td>
+<td>分拣 <code>#incidents</code>；🚨 reaction → 调查</td>
+</tr>
+<tr>
+<td>Microsoft Teams</td>
+<td>消息、reaction</td>
+<td>在 bug 报告所在的 thread 里作答</td>
+</tr>
+<tr>
+<td>GitHub</td>
+<td>Issue、issue 评论、PR、PR 评审、check run、push</td>
+<td>自动修失败 CI；<code>/devin</code> 评论 → 会话</td>
+</tr>
+<tr>
+<td>GitLab</td>
+<td>MR、MR 评论、issue、push、pipeline</td>
+<td>修失败 pipeline</td>
+</tr>
+<tr>
+<td>Linear</td>
+<td>Issue 创建/标记/状态/优先级/指派/移动</td>
+<td>工单指派给 Devin 时实现它</td>
+</tr>
+<tr>
+<td>Jira</td>
+<td>Issue 创建/更新/标记/状态/指派/评论</td>
+<td>同上，Jira 形态</td>
+</tr>
+<tr>
+<td>Pylon</td>
+<td>Issue 创建/标记/状态</td>
+<td>客户 bug 分拣</td>
+</tr>
+<tr>
+<td>PagerDuty</td>
+<td>事故触发/确认/解决</td>
+<td>高优事故触发即查</td>
+</tr>
+<tr>
+<td>Schedule</td>
+<td>Cron 或一次性</td>
+<td>每日 Sentry 清扫、每周依赖更新、每晚冒烟</td>
+</tr>
+<tr>
+<td>Webhook</td>
+<td>任意 HTTP POST</td>
+<td>其它一切——Datadog、Sentry、你自己的系统</td>
+</tr>
+</tbody>
+</table>
+<p>一个 automation 上的多个触发器按 OR 生效——例如 GitHub CI 失败<em>或</em> Slack reaction 任一即触发。</p>
+<h2>配方 1 — 任意 issue 上 <code>/devin</code></h2>
+<p>野外部署最多的触发器：</p>
+<pre><code class="language-text">Trigger:   GitHub → issue comment, repo = your/repo
+Condition: comment body starts with &quot;/devin&quot;
+Action:    Start session — prompt includes the event payload
+</code></pre>
+<p>效果：团队任何人在 issue 评论 <code>/devin investigate this</code>，会话就带着完整 thread 上下文接单。</p>
+<h2>配方 2 — CI 失败自修复</h2>
+<pre><code class="language-text">Trigger:   GitHub → check run, repo = your/repo
+Condition: conclusion = failure
+Action:    Start session: &quot;CI check &lt;name&gt; failed on this commit.
+            Diagnose the failure from the logs, fix it, and push to
+            the same branch.&quot;
+</code></pre>
+<p>事件载荷把失败的 check + commit 带进会话——零人工复制粘贴。</p>
+<h2>配方 3 — 定时清扫</h2>
+<pre><code class="language-text">Trigger:   Schedule → daily 09:00
+Action:    Start session: &quot;Sweep yesterday's Sentry issues in
+            &lt;project&gt;. File the top 3 by impact as tickets and
+            start the most actionable one.&quot;
+</code></pre>
+<p>每日卫生循环（Sentry 清扫、依赖更新、冒烟测试）是 ROI 最高的 automation——它们把"该有人看看"变成"已经看了"。</p>
+<h2>动作类型怎么选</h2>
+<table>
+<thead>
+<tr>
+<th>动作</th>
+<th>何时用</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Start session</td>
+<td>默认——每个事件得到全新机器和上下文</td>
+</tr>
+<tr>
+<td>Message session</td>
+<td>一个长驻会话持有状态——把事件喂进去（Bot 的种子形态）</td>
+</tr>
+<tr>
+<td>Triage Devin</td>
+<td>一个常驻 Devin 盯整个 Slack 频道并派生子调查（事故场景见 Devin Oncall）</td>
+</tr>
+<tr>
+<td>Email notification</td>
+<td>只是告诉你它跑了</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Automation vs Bot：</strong> automation 是哑管道——事件进、会话出。Bot 在同一批触发器外加记忆、判断和跨会话规划。先用 automation；当工作需要跟进到底时再升级成 Bot（第 2–5 篇）。</p>
+<h2>动手建</h2>
+<p>Automations 页面上三条创建路径：</p>
+<ol>
+<li><strong>Create</strong> —— 空白编辑器：选 trigger → conditions → action</li>
+<li><strong>Template</strong> —— 常见工作流的预配 automation 画廊</li>
+<li><strong>Generate with Devin</strong> —— 用英文描述（<em>"when a CI check fails on my-org/my-repo, have Devin fix it and push to the same branch"</em>），复核生成的配置</li>
+</ol>
+<p>咬过人的细节：</p>
+<ul>
+<li>Slack 触发器需要把 Devin 拉进频道<strong>并且</strong>在 Settings → Connections 连上你个人的 Slack</li>
+<li>Teams 私有频道只在 @mention 时触发</li>
+<li>GitHub 触发器必须指定具体 repo</li>
+<li>automation 多了用 <strong>Terraform provider</strong> 声明式管理</li>
+</ul>
+<h2>Verify it</h2>
+<ul>
+<li>[ ] 手动触发一次（评论 <code>/devin test</code> 或推一个失败 commit），看到会话带着事件载荷启动</li>
+<li>[ ] 不匹配的事件（错 label、错频道）什么都不发生</li>
+<li>[ ] 动作产出落在你预期的位置（PR、Slack thread、工单）</li>
+</ul>
+<h2>自检</h2>
+<ol>
+<li>同事想让 Devin「盯所有 GitHub 通知」——你先让他收窄什么？<em>（哪种事件子类型才代表可操作的工作——打了某个 label、被请求 review——而不是所有通知。）</em></li>
+<li>为什么不匹配的事件应该直接不产出会话，而不是让会话自己判断后跳过？<em>（会话要烧 ACU；上游拦截免费，会话内拦截不免费。）</em></li>
+<li>什么情况下 automation 应该升级成 Bot？<em>（触发的工作需要随时间积累的判断力——记忆、优先级、一个持续的目标。）</em></li>
+</ol>
+<h2>常见陷阱</h2>
+<ul>
+<li><strong>死循环。</strong> 产出物会再次触发自身的 automation（Devin 在 PR 上评论、触发器监听「新评论」）会无限烧会话。按作者、label 或事件子类型拦截。</li>
+<li><strong>触发风暴。</strong> 按 commit 触发而非按 PR 触发的 webhook，在繁忙日可能一次性拉起 50 个会话。节流：一个 automation 对应一个<em>可认领的工作单元</em>，而不是每个原始事件。</li>
+<li><strong>没有审批门。</strong> 触发即自动合并/自动部署等于跳过人工控制点——除非你测量过理由充分，否则保持「会话开 PR、人来合并」。</li>
+</ul>
+<h2>Sources</h2>
+<ul>
+<li><a href="https://docs.devin.ai/product-guides/automations">Automations — docs</a></li>
+<li><a href="https://www.youtube.com/watch?v=6xxKtIpgOyE">Devin Automations QuickStart (video)</a></li>
+<li>相关：<a href="bots-202-scheduled-sentinel.html">第 3 篇 — 定时哨兵 Bot</a>（在 cron 之上加 Bot 判断）</li>
+</ul>
+</article>
+<footer><div class="wrap foot-base"><span data-i18n="foot.note">Unofficial community project — not affiliated with Cognition AI.</span><span><a href="../../index.html">built-with-devin</a> · <a href="https://github.com/Till3005/build-with-devin">build-with-devin</a></span></div></footer>
+</main>
+<script src="../../assets/theme.js"></script>
+<script src="../../assets/i18n.js"></script>
+<script src="../../assets/i18n-runtime.js"></script>
+</body>
+</html>

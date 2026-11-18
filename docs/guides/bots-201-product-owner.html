@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Guide 2 — Product-owner Bot — build-with-devin guides</title>
+<meta name="description" content="a Bot that product-manages an entire app surface — files its own tickets, builds them, merges, and reports daily.">
+<link rel="icon" href="../assets/brand/Devin_Symbol.svg" type="image/svg+xml">
+<link rel="stylesheet" href="../assets/site.css">
+<link rel="stylesheet" href="../assets/guides.css">
+</head>
+<body>
+<a class="skip" href="#guide">Skip to content</a>
+<nav><div class="wrap nav-inner">
+  <div class="nav-left">
+    <a class="brand" href="../index.html" aria-label="Built with Devin">
+      <span class="brand-text">built<strong>-with-</strong></span><img class="brand-mark" src="../assets/brand/Devin_Primary_Logo.svg" alt="Devin" height="16"><span class="unofficial-chip">unofficial</span>
+    </a>
+  </div>
+  <div class="nav-side">
+    <div class="mode-toggle" role="tablist" aria-label="Site section">
+      <button class="mode-btn" data-mode="built" role="tab" aria-selected="false" onclick="location.href='../index.html'">Built</button>
+      <button class="mode-btn on" data-mode="build" role="tab" aria-selected="true" onclick="location.href='../index.html#build'">Build</button>
+      <span class="mode-pill" aria-hidden="true"></span>
+    </div>
+    <a class="cta" href="https://github.com/Till3005/build-with-devin/blob/main/guides/bots-201-product-owner.md">GitHub</a>
+  </div>
+</div></nav>
+<main>
+<article class="guide wrap" id="guide">
+  <p class="guide-crumb"><a href="../index.html#build">← Guides</a> · <a href="zh/bots-201-product-owner.html">中文</a></p>
+<h1>Guide 2 — Product-owner Bot</h1>
+<p><strong>Goal:</strong> a Bot that product-manages an entire app surface — files its own tickets, builds them, merges, and reports daily.
+<strong>Level:</strong> intermediate · <strong>Human load after setup:</strong> ~1 message per 6 merged PRs
+<strong>Source deployment:</strong> Cognition's <strong>Android Bot</strong> — shipped the Devin Android app to Google Play open beta in <strong>44 days</strong>: 1,134 merged PRs, 344,651 lines of Kotlin, 2,841 screenshot tests, 1,217 tickets. Its human sent <strong>183 messages total</strong> (22 days of silence), and <strong>88% of PRs were self-merged</strong>. It now owns Android/iOS feature parity.
+<strong>Sources:</strong> <a href="https://devin.ai/blog/introducing-devin-bots">launch post</a> · <a href="https://fortune.com/2026/11/17/exclusive-cognition-bets-on-devin-bots-coding-agents-in-challenge-to-anthropics-duet-and-openais-dots/">Fortune</a> · Russell Kaplan's dogfooding notes</p>
+<h2>The pattern</h2>
+<p>One Bot owns a <em>surface</em> — an app, a site, a service — the way a PM owns it: it decides what to build, turns that into tickets, runs a session per ticket, and keeps the surface alive indefinitely. The human acts as the executive it reports to.</p>
+<pre><code class="language-text">Bot ──► files tickets ──► session per ticket ──► PR ──► CI + Devin Review ──► merge
+ │                                                                           │
+ └──────────── daily report + Needs-you decisions ◄──────────────────────────┘
+</code></pre>
+<h2>Prerequisites</h2>
+<ul>
+<li>A repository the Bot can fully own (app repo with CI, review, and a merge path)</li>
+<li>Devin Review enabled on the repo, and CI checks wired</li>
+<li>A Slack app for the Bot (recommended — every documented deployment reports in Slack)</li>
+</ul>
+<h2>Step 1 — The outcome prompt</h2>
+<p>The real one, verbatim from Cognition:</p>
+<pre><code class="language-text">your job is to product manage the android app. Basically, you're going to
+autonomously create the entire thing, but we need to figure out what the
+blockers are for you doing that first.
+</code></pre>
+<p>Reconstructed template for your surface:</p>
+<pre><code class="language-text">Your job is to product manage &lt;surface&gt;. You're going to autonomously
+&lt;build / keep parity with &lt;reference&gt;&gt;, but first enumerate the blockers
+to you doing that — where the code lives, how to build and test it, and
+how changes merge — then start working through them.
+</code></pre>
+<p>Note the shape: <strong>ownership + autonomy + blockers-first</strong>. Don't hand it a backlog; hand it a mandate and make it surface what it needs.</p>
+<h2>Step 2 — Phase one: unblock, don't build</h2>
+<p>The Android Bot didn't write code first — it enumerated blockers: repo access, build commands, how to test on a device/emulator, the merge path. Your version of that list:</p>
+<ul>
+<li>Can it build the project on its machine? (Blueprint/snapshot dependencies)</li>
+<li>Can it produce installable artifacts (APK/TestFlight/preview deploy)?</li>
+<li>Does it know the merge policy — which checks must pass, who reviews?</li>
+<li>Does it have the credentials it needs (store keys, signing) — or a documented grant request for them?</li>
+</ul>
+<p>Let it finish this audit before it files product tickets. Every blocker it resolves here is a stalled session you won't see later.</p>
+<h2>Step 3 — The working loop</h2>
+<p>Once unblocked, the steady state is:</p>
+<ol>
+<li>Bot files a ticket for the next unit of work it decides on</li>
+<li>A child session implements it and opens a PR — small, with proof it works</li>
+<li>CI + Devin Review gate the merge</li>
+<li>Bot merges (or asks you when judgment is needed — it landed in Needs you)</li>
+<li>Daily report lands in Slack — the Android Bot's reports include a <strong>screen recording</strong> of what changed</li>
+</ol>
+<p>Set up the reporting in the Bot's Instructions, not chat:</p>
+<pre><code class="language-text">Every day, post a report in #&lt;channel&gt;: what shipped, what's in flight,
+what needs a human. Include a screen recording of visible changes.
+</code></pre>
+<h2>Step 4 — Your job as its executive</h2>
+<p>The 183 messages over 44 days fell into two buckets:</p>
+<ul>
+<li><strong>Judgment calls</strong> — security review sign-off, a design trade-off, an approval card</li>
+<li><strong>Direction</strong> — "be more ambitious" is the documented example</li>
+</ul>
+<p>Everything else — tickets, implementation, fixes, self-merges — is the Bot's job. If you're answering implementation questions, you're managing too low. Correct once → it lands in memory → next session inherits it.</p>
+<h2>Steady state</h2>
+<p>After the initial build, the same Bot switches to <em>owning</em> the surface:</p>
+<ul>
+<li>Keeps parity with a reference project (Android Bot now tracks iOS features)</li>
+<li>Triages incoming reports (it fields Google Play beta feedback)</li>
+<li>Catches cross-surface regressions — the Android Bot autonomously found and fixed an iOS/web-side break caused by someone else's change</li>
+</ul>
+<h2>Verify it</h2>
+<ul>
+<li>[ ] Bot's first act was a blocker audit, not a PR</li>
+<li>[ ] It files and works its own ticket queue without being asked</li>
+<li>[ ] PRs are small and carry proof (tests, screenshots, recordings)</li>
+<li>[ ] Daily report posts to Slack with visible evidence</li>
+<li>[ ] You went a full day sending zero messages and PRs still merged</li>
+</ul>
+<h2>Pitfalls</h2>
+<ul>
+<li><strong>Skipping the blocker phase.</strong> A product-owner Bot that starts coding before it can build/test/merge produces orphaned PRs.</li>
+<li><strong>Big PRs.</strong> The deployment's safety comes from small, verifiable units. If PRs balloon, instruct: <em>"one ticket, one concern, one PR."</em></li>
+<li><strong>Reviewing code instead of direction.</strong> At 30+ PRs/week you can't review each diff — gate on CI + Devin Review + the Bot's evidence, and spend your messages on direction.</li>
+</ul>
+<h2>Knowledge check</h2>
+<ol>
+<li>Android Bot merged 88% of its own PRs — what made self-merge safe enough to allow? <em>(Verification existed: 2,841 screenshot tests plus review gates; ownership worked because 'done' was machine-checkable.)</em></li>
+<li>Why file tickets instead of just prompting sessions directly? <em>(Tickets create an auditable queue the Bot triages by priority — and the human reviews one queue, not 50 sessions.)</em></li>
+<li>What does '22 days of silence' tell you about the control model? <em>(Escalation-by-exception works only when the Bot's definition of done is verifiable; silence is the feature, not neglect.)</em></li>
+</ol>
+<h2>Sources</h2>
+<ul>
+<li><a href="https://devin.ai/blog/introducing-devin-bots">Introducing Devin Bots</a> — Android Bot numbers and prompt</li>
+<li><a href="https://fortune.com/2026/11/17/exclusive-cognition-bets-on-devin-bots-coding-agents-in-challenge-to-anthropics-duet-and-openais-dots/">Fortune exclusive</a> — 183 messages, 88% self-merge, dogfooding notes</li>
+<li>Related: <a href="bots-203-multi-bot-org.html">Guide 4 — Multi-Bot organization</a> when one surface becomes a business</li>
+</ul>
+</article>
+<footer><div class="wrap foot-base"><span data-i18n="foot.note">Unofficial community project — not affiliated with Cognition AI.</span><span><a href="../index.html">built-with-devin</a> · <a href="https://github.com/Till3005/build-with-devin">build-with-devin</a></span></div></footer>
+</main>
+<script src="../assets/theme.js"></script>
+<script src="../assets/i18n.js"></script>
+<script src="../assets/i18n-runtime.js"></script>
+</body>
+</html>

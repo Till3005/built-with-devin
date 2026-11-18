@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>指南 3 — 定时哨兵 Bot — build-with-devin guides</title>
+<meta name="description" content="指南 3 — 定时哨兵 Bot">
+<link rel="icon" href="../../assets/brand/Devin_Symbol.svg" type="image/svg+xml">
+<link rel="stylesheet" href="../../assets/site.css">
+<link rel="stylesheet" href="../../assets/guides.css">
+</head>
+<body>
+<a class="skip" href="#guide">Skip to content</a>
+<nav><div class="wrap nav-inner">
+  <div class="nav-left">
+    <a class="brand" href="../../index.html" aria-label="Built with Devin">
+      <span class="brand-text">built<strong>-with-</strong></span><img class="brand-mark" src="../../assets/brand/Devin_Primary_Logo.svg" alt="Devin" height="16"><span class="unofficial-chip">unofficial</span>
+    </a>
+  </div>
+  <div class="nav-side">
+    <div class="mode-toggle" role="tablist" aria-label="Site section">
+      <button class="mode-btn" data-mode="built" role="tab" aria-selected="false" onclick="location.href='../../index.html'">Built</button>
+      <button class="mode-btn on" data-mode="build" role="tab" aria-selected="true" onclick="location.href='../../index.html#build'">Build</button>
+      <span class="mode-pill" aria-hidden="true"></span>
+    </div>
+    <a class="cta" href="https://github.com/Till3005/build-with-devin/blob/main/guides/zh/bots-202-scheduled-sentinel.md">GitHub</a>
+  </div>
+</div></nav>
+<main>
+<article class="guide wrap" id="guide">
+  <p class="guide-crumb"><a href="../../index.html#build">← Guides</a> · <a href="../bots-202-scheduled-sentinel.html">English</a></p>
+<h1>指南 3 — 定时哨兵 Bot</h1>
+<p><strong>目标：</strong> 一个拥有某 recurring 质量检查的 Bot——按时间表运行它、分拣失败、追到根因、交付修复。
+<strong>级别：</strong> 中级
+<strong>出处部署：</strong> Cognition 的 <strong>Layout Bot</strong>——盯 Devin web app 的 layout-shift 回归。每 3 小时构建生产 <code>main</code>，模拟首次/重复/延迟请求三种访问，提交修复。<strong>3 周 159 个 PR；卡顿 −70%。</strong>
+<strong>来源：</strong> <a href="https://devin.ai/blog/introducing-devin-bots">launch post</a> · <a href="https://docs.devin.ai/product-guides/automations">Automations docs</a></p>
+<h2>模式</h2>
+<p>有些活永远干不完——它按时钟循环：性能预算、视觉回归、依赖保鲜、密钥扫描、可用性。哨兵 Bot 拥有的是<em>检查本身</em>，不只是修复：代码库变化时它维护检查持续有效、过滤噪声、只在回归为真时开修复 PR。</p>
+<pre><code class="language-text">cron ──► Bot wakes ──► run check under realistic conditions
+                           │
+              pass ────────┴──────── fail
+               │                       │
+             quiet            rerun to filter flakes
+                                       │
+                              trace to introducing PR
+                                       │
+                          fix PR + before/after evidence
+</code></pre>
+<h2>前置条件</h2>
+<ul>
+<li>能在 Bot 机器上跑的检查（build、测试套件、Lighthouse、自定义脚本）</li>
+<li>已建 Devin Bot（第 1 篇）或 Automation（第 6 篇）——两者都行；Bot 在两次运行之间多一层判断力</li>
+</ul>
+<h2>第 1 步 — outcome prompt</h2>
+<p>按 Layout Bot 的公开行为重构：</p>
+<pre><code class="language-text">Your job is to keep &lt;surface&gt; from &lt;regressing&gt;.
+
+Watch &lt;check/channel&gt;, where &lt;the check&gt; posts every &lt;interval&gt;. Take over
+that check and keep it working as the code changes. When something
+regresses: rerun to rule out flakiness, trace the regression to the PR
+that introduced it, and open a fix PR with before/after evidence.
+</code></pre>
+<p><code>&lt;check&gt;</code> 槽位的真实部署示例：</p>
+<ul>
+<li>跨首次/重复/延迟请求的 layout-shift 度量（Layout Bot）</li>
+<li>你最慢 5 个端点的 p95 延迟（Latency Optimizer 模板）</li>
+<li><code>npm audit</code>/CVE 扫描（Code Health Engineer 模板）</li>
+<li>死代码检测（Code Reaper 模板）</li>
+</ul>
+<h2>第 2 步 — 排定周期</h2>
+<p>在聊天里对 Bot 说：</p>
+<pre><code class="language-text">Run this check every 3 hours on a schedule.
+</code></pre>
+<p>Bot 会提议一个 automation；你批准一次。（想自己配 cron 的话见第 6 篇手工 automation。）之后可在 Bot 的 Settings → Automations 管理。</p>
+<h2>第 3 步 — 真实条件才有意义</h2>
+<p>Layout Bot 的检查不是跑一次——它模拟<strong>首次访问、重复访问、单独延迟请求</strong>，因为它抓的回归只在特定负载形态下出现。编码你的等价条件：</p>
+<ul>
+<li>哪个环境——Bot 在自己 VM 上构建生产 <code>main</code>，不是 dev server</li>
+<li>哪些输入——冷/热缓存、种子数据、真实请求顺序</li>
+<li>哪个阈值——一个数字，不是"感觉变慢"</li>
+</ul>
+<h2>第 4 步 — 噪声纪律</h2>
+<p>两条规则防哨兵喊狼来了：</p>
+<ol>
+<li><strong>先重跑再行动</strong>——Layout Bot 对疑似抖动结果先重跑。写进 prompt：<em>"rerun any failed check once before acting on it."</em></li>
+<li><strong>先溯源再修复</strong>——每个回归都追到引入它的 PR。没有根因的修复是猜。</li>
+</ol>
+<h2>第 5 步 — 每个修复都带证据</h2>
+<p>159 个 PR 每个都带<strong>前后对比视频</strong>。你的检查的等价证据：</p>
+<table>
+<thead>
+<tr>
+<th>检查</th>
+<th>修复 PR 里的证据</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Layout/视觉</td>
+<td>录屏或截图，前 vs 后</td>
+</tr>
+<tr>
+<td>延迟</td>
+<td>时序数字，两次同口径测量</td>
+</tr>
+<tr>
+<td>死代码</td>
+<td>为什么这段代码不可达</td>
+</tr>
+<tr>
+<td>依赖/CVE</td>
+<td>安全公告 + 解决它的 diff</td>
+</tr>
+</tbody>
+</table>
+<h2>Verify it</h2>
+<ul>
+<li>[ ] automation 存在并按你设的 cron 触发（Settings → Automations 能看到运行记录）</li>
+<li>[ ] 人为埋的回归产出了带前后证据的修复 PR</li>
+<li>[ ] 疑似抖动的运行触发了重跑而不是修复</li>
+<li>[ ] 检查本身被维护——app 在它底下变化时 Bot 更新了检查</li>
+</ul>
+<h2>坑</h2>
+<ul>
+<li><strong>拥有修复却没拥有检查。</strong> 检查坏了一周没人发现，说明 Bot 拥有错了对象——prompt 必须把检查本身指派给它。</li>
+<li><strong>有 cron 没判断。</strong> 裸定时 automation 能跑检查；Bot 决定失败是否真实。只有完全不需要分拣的检查才用裸 automation（第 6 篇）。</li>
+<li><strong>只报警不修复。</strong> 往频道里发"发现回归"的哨兵是在给人类造活。这个部署的价值在于它<em>修</em>——按这个标准要它。</li>
+</ul>
+<h2>自检</h2>
+<ol>
+<li>为什么哨兵按计划构建生产 <code>main</code>，而不是等故障被人报上来？<em>（目标是「没有回归」而不是「修已报 bug」——所有权意味着在人发现问题之前先发现。）</em></li>
+<li>Layout Bot 修 PR 时附 before/after 视频——这给 reviewer 带来了什么？<em>（不用本地复现就有合并信心；证据随 PR 走。）</em></li>
+<li>为什么回归要追到引入它的那个 PR 而不是只修症状？<em>（拥有检查意味着拥有其历史——修复落在根因上，知识留下来。）</em></li>
+</ol>
+<h2>Sources</h2>
+<ul>
+<li><a href="https://devin.ai/blog/introducing-devin-bots">Introducing Devin Bots</a> — Layout Bot 机制与数字</li>
+<li><a href="https://docs.devin.ai/product-guides/automations">Automations — docs</a> — 排程、触发器、条件</li>
+<li>相关：<a href="automations-101-event-driven.html">第 6 篇 — 事件驱动的 Automations</a>（这个循环的非 Bot 版本）</li>
+</ul>
+</article>
+<footer><div class="wrap foot-base"><span data-i18n="foot.note">Unofficial community project — not affiliated with Cognition AI.</span><span><a href="../../index.html">built-with-devin</a> · <a href="https://github.com/Till3005/build-with-devin">build-with-devin</a></span></div></footer>
+</main>
+<script src="../../assets/theme.js"></script>
+<script src="../../assets/i18n.js"></script>
+<script src="../../assets/i18n-runtime.js"></script>
+</body>
+</html>

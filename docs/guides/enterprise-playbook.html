@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Guide 7 — Enterprise rollout patterns — build-with-devin guides</title>
+<meta name="description" content="deploy Devin at org scale using the shapes that already produced published numbers — not experimentation, the proven motions.">
+<link rel="icon" href="../assets/brand/Devin_Symbol.svg" type="image/svg+xml">
+<link rel="stylesheet" href="../assets/site.css">
+<link rel="stylesheet" href="../assets/guides.css">
+</head>
+<body>
+<a class="skip" href="#guide">Skip to content</a>
+<nav><div class="wrap nav-inner">
+  <div class="nav-left">
+    <a class="brand" href="../index.html" aria-label="Built with Devin">
+      <span class="brand-text">built<strong>-with-</strong></span><img class="brand-mark" src="../assets/brand/Devin_Primary_Logo.svg" alt="Devin" height="16"><span class="unofficial-chip">unofficial</span>
+    </a>
+  </div>
+  <div class="nav-side">
+    <div class="mode-toggle" role="tablist" aria-label="Site section">
+      <button class="mode-btn" data-mode="built" role="tab" aria-selected="false" onclick="location.href='../index.html'">Built</button>
+      <button class="mode-btn on" data-mode="build" role="tab" aria-selected="true" onclick="location.href='../index.html#build'">Build</button>
+      <span class="mode-pill" aria-hidden="true"></span>
+    </div>
+    <a class="cta" href="https://github.com/Till3005/build-with-devin/blob/main/guides/enterprise-playbook.md">GitHub</a>
+  </div>
+</div></nav>
+<main>
+<article class="guide wrap" id="guide">
+  <p class="guide-crumb"><a href="../index.html#build">← Guides</a> · <a href="zh/enterprise-playbook.html">中文</a></p>
+<h1>Guide 7 — Enterprise rollout patterns</h1>
+<p><strong>Goal:</strong> deploy Devin at org scale using the shapes that already produced published numbers — not experimentation, the proven motions.
+<strong>Level:</strong> intermediate (written for eng leads)
+<strong>Source:</strong> published customer cases, <a href="https://devin.ai/customers">devin.ai/customers</a></p>
+<p>Six deployment shapes, distilled from the companies that published results. Most successful rollouts use two or three of these, not all six.</p>
+<h2>Shape 1 — The legacy-migration engine (Nubank, Comarch)</h2>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Deployment</td>
+<td>Nubank: multi-million-line, 8-year-old ETL monolith → sub-modules. Comarch: 20-year, 10M-line ERP rebuild</td>
+</tr>
+<tr>
+<td>Result</td>
+<td>8–12× engineering efficiency, 20× cost savings (Nubank)</td>
+</tr>
+<tr>
+<td>Mechanism</td>
+<td>Fine-tune Devin on <em>your</em> codebase (Nubank cut ~40 min/task to ~10), then point it at the migration as a continuous program — tracked small PRs, not a rewrite</td>
+</tr>
+</tbody>
+</table>
+<p><strong>How to copy:</strong> pick one bounded legacy system; fine-tune or teach via playbook; run Migration Engineer-style loop — one big migration as small tracked PRs with a progress surface. The win compounds: each migrated module makes the next session smarter.</p>
+<h2>Shape 2 — The primary-author repo (EBANX, Gumroad, Finch)</h2>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Deployment</td>
+<td>EBANX: <strong>92% of merged PRs Devin-authored</strong>. Gumroad: Devin is the repo's <strong>#1 contributor</strong> (1,500+ PRs). Finch: 3,000 PRs, ~20 engineer-months saved</td>
+</tr>
+<tr>
+<td>Mechanism</td>
+<td>Devin isn't an assistant on these repos — it's the default author. Humans review and direct</td>
+</tr>
+</tbody>
+</table>
+<p><strong>How to copy:</strong> pick one high-velocity repo; route tickets to Devin sessions by default; humans review. The metric to watch is authored-PR share — above ~50%, you're in this shape; below it, you're still in pilot mode.</p>
+<h2>Shape 3 — The always-on first responder (Modal, Reducto, AngelList)</h2>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Deployment</td>
+<td>Modal: <strong>80% of incidents investigated before an engineer opens the thread</strong>. Reducto: Devin Oncall is first responder; engineers rarely paged. AngelList: Devin root-causes 70% of incidents pre-engineer</td>
+</tr>
+<tr>
+<td>Mechanism</td>
+<td>PagerDuty/Slack trigger → session investigates with logs/repo access → report lands before the human wakes</td>
+</tr>
+</tbody>
+</table>
+<p><strong>How to copy:</strong> <a href="https://docs.devin.ai">Devin Oncall</a> or a PagerDuty-triggered automation (Guide 6, recipe: incident → investigate). Measure % of incidents pre-investigated — every point of it is human sleep recovered.</p>
+<h2>Shape 4 — The maintenance fleet (Airbyte, Melius)</h2>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Deployment</td>
+<td>Airbyte: keeps <strong>700+ connectors</strong> running. Melius: ~100 PRs/day</td>
+</tr>
+<tr>
+<td>Mechanism</td>
+<td>The long tail nobody wants — connector rot, dependency drift, stale flags — routed to Bots/automations that churn through it continuously</td>
+</tr>
+</tbody>
+</table>
+<p><strong>How to copy:</strong> enumerate your maintenance backlog (the work engineers avoid); wrap it in Code Health Engineer / Code Reaper-style Bots (official templates) with weekly cadence.</p>
+<h2>Shape 5 — The org-wide seat (Wayfair, The Access Group, Citi)</h2>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Deployment</td>
+<td>Wayfair: 1,600+ engineers all-in. Access Group: Devin across 250 products, 2,000+ engineers → 5× output. Citi: 40,000-developer rollout, 30% tech-vendor spend cut</td>
+</tr>
+<tr>
+<td>Mechanism</td>
+<td>Not more agents — the <em>seat</em>: every engineer has Devin access, shared playbooks, org-level knowledge</td>
+</tr>
+</tbody>
+</table>
+<p><strong>How to copy:</strong> the rollout order in the published cases is consistent — pilot team → measured results → playbook/knowledge standardization → seat expansion. Skipping the knowledge step is why seat rollouts stall: see <a href="playbooks-and-knowledge.html">playbooks guide</a>.</p>
+<h2>Shape 6 — The process gate (Hamming, Litera, Eight Sleep)</h2>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Deployment</td>
+<td>Hamming: Devin writes 25% of code volume. Litera: regression cycles cut 90%. Eight Sleep: 8× more shipped</td>
+</tr>
+<tr>
+<td>Mechanism</td>
+<td>Devin owns a stage of the pipeline — regression testing, QA — not the whole product</td>
+</tr>
+</tbody>
+</table>
+<p><strong>How to copy:</strong> find the pipeline stage with the worst human cost (regression cycles, QA); assign it to a Bot or automation; measure the stage's cycle time before/after.</p>
+<h2>Anti-patterns the cases imply</h2>
+<ul>
+<li><strong>Tool, not colleague.</strong> The high-number deployments give Devin ownership (repos, surfaces, stages), not assignments — same lesson as Guides 1–5.</li>
+<li><strong>Pilot forever.</strong> Published results all share one trait: a measured pilot that <em>graduated</em>. Set the graduation criterion upfront (PR share, incidents covered, hours saved).</li>
+<li><strong>No knowledge layer.</strong> Every big deployment encodes conventions somewhere — fine-tunes, playbooks, Bot instructions. Without it, quality varies by session.</li>
+</ul>
+<h2>Verify it</h2>
+<ul>
+<li>[ ] Your rollout doc names one pipeline stage, one metric, and a graduation criterion — before the first session</li>
+<li>[ ] Week-2 checkpoint: can you state Devin's merged-PR share on that stage without querying anyone?</li>
+</ul>
+<h2>Pitfalls</h2>
+<ul>
+<li><strong>Scaling the pilot that never graduated.</strong> Every big number here came after a measured pilot with an exit criterion.</li>
+<li><strong>License-first thinking.</strong> Buying seats before naming the owned stage produces shelfware — the pattern is stage → pilot → metric → then seats.</li>
+</ul>
+<h2>Knowledge check</h2>
+<ol>
+<li>Why do all six deployment shapes share 'an owned stage' as their atom? <em>(Every published number came from a bounded, measurable surface — orgs that deployed 'everywhere' published nothing.)</em></li>
+<li>What's the graduation criterion and why set it before the pilot? <em>(A metric + threshold that flips pilot → production; without it, pilots drift forever or get killed by vibes.)</em></li>
+<li>Why does the knowledge layer appear in every large deployment? <em>(Consistency at scale requires shared context — the alternative is N different-quality sessions.)</em></li>
+</ol>
+<h2>Sources</h2>
+<ul>
+<li><a href="https://devin.ai/customers">devin.ai/customers</a> — all cases and numbers cited</li>
+<li><a href="https://github.com/Till3005/built-with-devin#enterprise-deployments">built-with-devin — enterprise index</a> — the registry's verified case table</li>
+</ul>
+</article>
+<footer><div class="wrap foot-base"><span data-i18n="foot.note">Unofficial community project — not affiliated with Cognition AI.</span><span><a href="../index.html">built-with-devin</a> · <a href="https://github.com/Till3005/build-with-devin">build-with-devin</a></span></div></footer>
+</main>
+<script src="../assets/theme.js"></script>
+<script src="../assets/i18n.js"></script>
+<script src="../assets/i18n-runtime.js"></script>
+</body>
+</html>

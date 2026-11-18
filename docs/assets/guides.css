@@ -1,0 +1,27 @@
+/* guides — prose typography on the site design language */
+.guide{max-width:720px;padding:120px 0 80px;font:400 16px/1.75 var(--sans);color:var(--fg)}
+.guide-crumb{font:500 12px var(--mono);letter-spacing:.04em;margin-bottom:32px}
+.guide-crumb a{color:var(--mut);text-decoration:none}
+.guide-crumb a:hover{color:var(--fg)}
+.guide h1{font:600 30px/1.25 var(--sans);letter-spacing:-.02em;margin:0 0 20px}
+.guide h2{font:600 20px/1.3 var(--sans);letter-spacing:-.01em;margin:44px 0 12px;padding-top:16px;border-top:1px solid var(--line)}
+.guide h3{font:600 16px var(--sans);margin:28px 0 8px}
+.guide p{margin:0 0 14px;color:var(--fg)}
+.guide p strong,.guide li strong{color:var(--fg)}
+.guide a{color:var(--acc);text-decoration:none}
+.guide a:hover{text-decoration:underline}
+.guide ul,.guide ol{margin:0 0 16px;padding-left:22px}
+.guide li{margin-bottom:6px}
+.guide blockquote{margin:0 0 16px;padding:8px 16px;border-left:2px solid var(--acc);background:var(--panel);color:var(--mut);border-radius:0 8px 8px 0}
+.guide blockquote p{margin:0;color:var(--mut)}
+.guide code{font:400 13px var(--mono);background:var(--panel);border:1px solid var(--line);border-radius:5px;padding:1px 5px}
+.guide pre{margin:0 0 18px;padding:16px;background:var(--panel);border:1px solid var(--line);border-radius:10px;overflow-x:auto}
+.guide pre code{background:none;border:0;padding:0;font-size:13px;line-height:1.6;color:var(--fg)}
+.guide table{width:100%;border-collapse:collapse;margin:0 0 18px;font-size:14px;display:block;overflow-x:auto}
+.guide th{font:500 11px var(--mono);letter-spacing:.05em;text-transform:uppercase;color:var(--mut);text-align:left;padding:8px 12px;border-bottom:1px solid var(--line)}
+.guide td{padding:10px 12px;border-bottom:1px solid var(--line);vertical-align:top}
+.guide td code{white-space:normal}
+.guide hr{border:0;border-top:1px solid var(--line);margin:32px 0}
+.guide input[type=checkbox]{margin-right:8px;accent-color:var(--acc)}
+.guide li:has(> input[type=checkbox]){list-style:none;margin-left:-22px}
+[data-theme="dark"] .guide code{color:#cdd6e4}
