@@ -222,7 +222,7 @@ Devin *で*作られたものではなく、Devin の*ために*コミュニテ�
 - **[Mako](https://github.com/Verbiflow/mako)** —— すべてのコーディングエージェント向けローカルワークスペース。Devin の会話を ACP 経由で引き継ぎ —— 実行、フォロー、再開、マシン間移動。
 - **[ax](https://zenn.dev/kuwashima/articles/ax-cross-agent-session-picker)** —— fzf セッションピッカー。Devin を他の 18 のエージェント CLI と一緒に再開（日本語）。
 - **[Kiro Crew の Devin CLI パッチ](https://zenn.dev/dario_okazaki/articles/e5eda2aca4fdd2)** —— Kiro Crew の管理 bot フリートに Devin CLI を追加する非公式パッチ。bot ごとの権限処理つき（日本語）。
-- **[Devin for VS Code](https://github.com/shayanline/devin-vscode)** —— VS Code 内の完全な Devin CLI チャットパネル（[Marketplace](https://marketplace.visualstudio.com/items?itemName=shayanline.devin-vscode)）：`@` でワークスペースコンテキスト、Keep/Undo の差分レビュー、ワークスペース別の再開可能チャット、CLI の instructions/skills/plugins/MCP/hooks の設定エディタ内蔵。
+- **[Devin for VS Code](https://github.com/shayanline/devin-vscode)** —— VS Code 内の完全な Devin CLI チャットパネル：`@` でワークスペースコンテキスト、Keep/Undo の差分レビュー、ワークスペース別の再開可能チャット、CLI の instructions/skills/plugins/MCP/hooks の設定エディタ内蔵。
 - **[Devin Switch](https://github.com/ansuman-shukla/devin-switch)** —— 複数 Devin CLI ログインを管理するネイティブ macOS アプリ + CLI：分離されたアカウントプロファイル、共有ローカル会話履歴、使用量/リセット表示、並行起動。
 - **[Devin Token Monitor](https://github.com/TH-Chou/devin-usage-monitor)** —— ネイティブ macOS メニューバーアプリ（VSIX 付き）。CLI のローカル SQLite メトリクスをライブコストダッシュボードに —— トークン推移、モデルドーナツ、リクエスト別 TTFT/トークン速度、予算アラート、CSV エクスポート、6 言語対応。
 - **[devin-desktop-zh](https://github.com/cby122/devin-desktop-zh)** —— 手作りの Devin Desktop 簡体字中国語ローカライズ：33,457 文字列の辞書 + 注入/再署名パイプラインで独立した `Devin 中文版.app` を生成 —— Agent Skill として公開されワークフロー全体が再現可能。

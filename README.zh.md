@@ -222,7 +222,7 @@ flowchart LR
 - **[Mako](https://github.com/Verbiflow/mako)** —— 全 agent 本地工作台；经 ACP 接管 Devin 会话 —— 运行、跟随、恢复、跨机迁移。
 - **[ax](https://zenn.dev/kuwashima/articles/ax-cross-agent-session-picker)** —— fzf session 选择器，能把 Devin 和其他 18 个 agent CLI 一起恢复（日文）。
 - **[Kiro Crew 的 Devin CLI 补丁](https://zenn.dev/dario_okazaki/articles/e5eda2aca4fdd2)** —— 非官方补丁，把 Devin CLI 加进 Kiro Crew 托管 bot 舰队，带逐 bot 权限处理（日文）。
-- **[Devin for VS Code](https://github.com/shayanline/devin-vscode)** —— VS Code 内的完整 Devin CLI 聊天面板（[Marketplace](https://marketplace.visualstudio.com/items?itemName=shayanline.devin-vscode)）：`@` 引用工作区上下文、Keep/Undo diff 评审、按工作区恢复会话、CLI 的 instructions/skills/plugins/MCP/hooks 内置设置编辑器。
+- **[Devin for VS Code](https://github.com/shayanline/devin-vscode)** —— VS Code 内的完整 Devin CLI 聊天面板：`@` 引用工作区上下文、Keep/Undo diff 评审、按工作区恢复会话、CLI 的 instructions/skills/plugins/MCP/hooks 内置设置编辑器。
 - **[Devin Switch](https://github.com/ansuman-shukla/devin-switch)** —— 原生 macOS 应用 + CLI，管理多个 Devin CLI 登录：隔离的账号配置、共享本地会话历史、用量/重置时间显示、并发启动。
 - **[Devin Token Monitor](https://github.com/TH-Chou/devin-usage-monitor)** —— 原生 macOS 菜单栏应用（附 VSIX），把 CLI 本地 SQLite 指标变成实时成本仪表盘 —— token 趋势、模型占比、逐请求 TTFT/速度、预算告警、CSV 导出、六种语言。
 - **[devin-desktop-zh](https://github.com/cby122/devin-desktop-zh)** —— 手工打造的 Devin Desktop 简体中文本地化：33,457 条字符串字典 + 注入/重签名流水线，产出独立的 `Devin 中文版.app` —— 以 Agent Skill 形式发布，整个流程可复现。
