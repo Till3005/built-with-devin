@@ -52,10 +52,7 @@ Launched **November 17, 2026** ([announcement](https://devin.ai/blog/introducing
 
 Real software where Devin wrote the code — not demos, shipped work.
 
-- **[Moonshore](https://x.com/darega0mae)** — Multi-tenant B2B travel-agency ERP built end-to-end with Devin: order lifecycles, double-entry accounting, PostgreSQL RLS isolation, and a lunar-phase dithered-sea UI. 100+ Devin-driven PRs.
-- **[devin-desktop-lite](https://github.com/Till3005/devin-desktop-lite)** — Unofficial desktop client & terminal harness for the Devin CLI: ACP communication, multi-agent dynamic workflows, heap-pressure eviction for long-running session boards.
-- **Distillation Encyclopedia** — 300+ chapters of book and topic distillations produced by structured Devin workflows, with a static knowledge-base app and EPUB pipeline.
-- **FDE Course Platform** — Forward Deployed Engineer training platform (FastAPI + web) built with Devin: interactive lessons, quizzes, grading, instructor tooling.
+*Know a shipped product built with Devin? [Add it](CONTRIBUTING.md).*
 
 ## Bots & surfaces
 
