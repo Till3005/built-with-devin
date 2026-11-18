@@ -1,3 +1,8 @@
+---
+layout: default
+title: Reproducing Devin Bots — a field guide — Built with Devin
+---
+
 # Reproducing Devin Bots — a field guide
 
 Everything publicly documented about how the flagship Devin Bots were set up, condensed into recipes you can recreate. Sources: [Cognition's launch post](https://devin.ai/blog/introducing-devin-bots) (Nov 17, 2026), the [Bots docs](https://docs.devin.ai/work-with-devin/bots), the [Fortune exclusive](https://fortune.com/2026/11/17/exclusive-cognition-bets-on-devin-bots-coding-agents-in-challenge-to-anthropics-duet-and-openais-dots/), and Jenny Xu's [SuperJennyStack thread](https://x.com/cognition/status/2122737511684587551).

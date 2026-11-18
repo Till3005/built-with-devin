@@ -3,36 +3,46 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>The economics of Devin — built-with-devin</title>
+<title>The economics of Devin — Built with Devin</title>
+<meta name="description" content="Every published, auditable cost/return figure for Devin in one filterable ledger.">
+<link rel="icon" href="assets/devin-symbol.svg" type="image/svg+xml">
+<link rel="stylesheet" href="assets/site.css">
 <style>
-  :root { --bg:#0d0d09; --fg:#ece9e2; --mut:#9a958a; --acc:#e8ff47; --line:#26241e; --card:#161511; }
-  @media (prefers-color-scheme: light) {
-    :root { --bg:#fafaf7; --fg:#191813; --mut:#6b675e; --acc:#546500; --line:#e4e1d8; --card:#fff; }
-  }
-  * { box-sizing:border-box; margin:0; }
-  body { background:var(--bg); color:var(--fg); font:15px/1.6 -apple-system,"SF Pro",Inter,"Segoe UI",sans-serif; }
-  .wrap { max-width:960px; margin:0 auto; padding:48px 24px 80px; }
-  h1 { font-size:28px; letter-spacing:-.02em; margin-bottom:6px; }
-  .sub { color:var(--mut); font-size:13px; margin-bottom:28px; }
-  .sub a { color:var(--mut); }
-  .toolbar { display:flex; gap:10px; flex-wrap:wrap; margin-bottom:20px; }
-  input[type=search] { flex:1; min-width:200px; padding:9px 14px; border-radius:8px; border:1px solid var(--line); background:var(--card); color:var(--fg); font-size:14px; }
-  .chip { padding:8px 14px; border-radius:99px; border:1px solid var(--line); background:var(--card); color:var(--mut); font-size:13px; cursor:pointer; }
-  .chip.on { border-color:var(--acc); color:var(--acc); }
-  table { width:100%; border-collapse:collapse; font-size:14px; }
-  th,td { text-align:left; padding:10px 12px; border-bottom:1px solid var(--line); vertical-align:top; }
-  th { font-size:11px; text-transform:uppercase; letter-spacing:.08em; color:var(--mut); cursor:pointer; user-select:none; white-space:nowrap; }
-  td.num { font-variant-numeric:tabular-nums; font-weight:600; white-space:nowrap; }
-  a { color:var(--acc); text-decoration:none; }
-  a:hover { text-decoration:underline; }
-  .tag { font-size:11px; padding:2px 8px; border-radius:99px; border:1px solid var(--line); color:var(--mut); white-space:nowrap; }
-  .foot { margin-top:32px; color:var(--mut); font-size:12px; }
+  main{padding:80px 0 24px}
+  main h1{font:400 clamp(34px,5vw,52px)/1.08 var(--serif);letter-spacing:-.02em;margin-bottom:14px}
+  .sub{color:var(--mut);font-size:15px;margin-bottom:36px;max-width:60ch}
+  .sub a{color:var(--acc);text-decoration:none}
+  .toolbar{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:28px}
+  input[type=search]{flex:1;min-width:200px;padding:11px 16px;border-radius:99px;border:1px solid var(--line);background:var(--panel);color:var(--fg);font-size:14px;outline:none}
+  input[type=search]:focus{border-color:var(--acc)}
+  .chip{padding:9px 16px;border-radius:99px;border:1px solid var(--line);background:transparent;color:var(--mut);font:500 13px var(--sans);cursor:pointer;transition:all .15s}
+  .chip:hover{color:var(--fg)}
+  .chip.on{border-color:var(--acc);color:var(--acc)}
+  td.num{font-variant-numeric:tabular-nums;font-weight:600;white-space:nowrap}
+  .tag{font:500 10px var(--mono);text-transform:uppercase;letter-spacing:.08em;padding:3px 8px;border-radius:99px;border:1px solid var(--line);color:var(--mut);white-space:nowrap}
+  td a{color:var(--acc);text-decoration:none}
+  td a:hover{text-decoration:underline}
+  .foot{margin-top:36px;color:var(--mut);font-size:13px;border-top:1px solid var(--line);padding-top:24px}
 </style>
 </head>
 <body>
-<div class="wrap">
+<nav><div class="wrap">
+  <a class="brand" href="./index.html">
+    <svg viewBox="0 0 24 24" fill="none"><rect x="3" y="3" width="18" height="18" rx="2" stroke="currentColor" stroke-width="2"/><path d="M8 8h5a4 4 0 0 1 0 8H8V8z" fill="currentColor"/></svg>
+    Built with Devin
+  </a>
+  <div class="navlinks">
+    <a href="index.html#deployments">Deployments</a>
+    <a href="index.html#enterprise">Enterprise</a>
+    <a href="index.html#tools">Tools</a>
+    <a href="https://github.com/Till3005/build-with-devin">Tutorials</a>
+  </div>
+  <a class="cta" href="https://github.com/Till3005/built-with-devin">GitHub</a>
+</div></nav>
+<div class="wrap"><main>
+  <span class="eyebrow">Ledger</span>
   <h1>The economics of Devin</h1>
-  <div class="sub">Every published, auditable cost/return figure — <a href="https://github.com/Till3005/built-with-devin">built-with-devin</a>. Sources: named customer stories at devin.ai/customers and cited public reports.</div>
+  <p class="sub">Every published, auditable cost/return figure — only numbers that appear in a named customer story or cited public report. Nothing extrapolated.</p>
   <div class="toolbar">
     <input type="search" id="q" placeholder="Filter — company, metric, source…">
     <button class="chip on" data-f="">All</button>
@@ -46,7 +56,7 @@
     <tbody></tbody>
   </table>
   <div class="foot">Figures are as-published; where a source revises a number, the ledger follows the source. Unofficial community project — not affiliated with Cognition AI.</div>
-</div>
+</main></div>
 <script>
 const D = [
  ["~$17/hr of engineering output","Compiled Health","cost","~430 engineer-hours delivered by 2 researchers in 2 months — '≈ +4 engineers' on a 4-person team","https://devin.ai/customers/compiledhealth"],

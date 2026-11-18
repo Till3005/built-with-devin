@@ -1,3 +1,8 @@
+---
+layout: default
+title: The economics of Devin — Built with Devin
+---
+
 # The economics of Devin
 
 A running ledger of the *published, auditable* cost/return numbers — the thing every evaluation eventually asks for. Only figures that appear in a named customer story or a public report are included; nothing is extrapolated.

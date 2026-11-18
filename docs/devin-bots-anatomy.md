@@ -1,3 +1,8 @@
+---
+layout: default
+title: Anatomy of a Devin Bot — Built with Devin
+---
+
 # Anatomy of a Devin Bot
 
 A deep dive into how Devin Bots actually work under the documented mechanics — for anyone evaluating, reproducing, or writing about them. Everything below is sourced from the [official docs](https://docs.devin.ai/work-with-devin/bots), the [launch post](https://devin.ai/blog/introducing-devin-bots), or named public deployments; each claim carries its source.
