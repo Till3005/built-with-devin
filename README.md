@@ -45,6 +45,7 @@ Launched **November 17, 2026** ([announcement](https://devin.ai/blog/introducing
 | **Shared bot fleet** | Decagon | On-call, DevEx optimization, thread routing | 50+ shared Bots in Slack during beta; a Chief of Staff Bot decides when and how to spawn threads. ([@tylerxdev's thread](https://x.com/tylerxdev/status/2122743518712287400)) |
 | **AutoResearch loop** | Decagon | An inference research lab | One Devin orchestrates; subagents chase competing hypotheses in parallel; every idea verified against replayed production traffic on Modal GPUs — **up to 2.5× more throughput per GPU** ([full writeup](https://x.com/DecagonAI/article/2115511110120120437), [@devindevelopers](https://x.com/devindevelopers/status/2115601107581821172)). |
 | **Frankie's org** | Mark Fenner (community) | Personal agent fleet | Four Bots with distinct jobs coordinated by "Frankie, my Chief Agent", which brings consolidated updates back ([walkthrough](https://x.com/markfenner/status/2122740244328145211)). |
+| **tigsbot** | @0xtigs (community) | Personal multi-project fleet | Each project lives in a Slack channel run by one Bot; a Chief-of-Staff Bot answers "what's the latest on everything?" and pings him when *he's* the blocker; specialist Bots manage single-license or complex-setup software ([setup](https://x.com/0xtigs/status/2122742784176034056)). |
 | **Electra** | Basis | Internal tools + code, self-directed | A named Devin teammate (pre-Bots): decides what needs doing, writes and tests code, ships updates to internal tools, and pushes the team — Basis runs one 20-day thread per tax agent ([post](https://x.com/trybasis/status/2113307030203089189), [20-day thread](https://x.com/trybasis/status/2120658137766100992)). |
 | **Personal data Bots** | Bryan Johnson | Health synthesis + family updates | One Bot synthesizes years of biometric and brain-scan data into a single readout; another texts his mother a daily update on how he's doing. ([post](https://x.com/bryan_johnson/status/2122814114976383406), [launch video](https://vimeo.com/1247688199)) |
 
@@ -98,6 +99,14 @@ Real software where Devin wrote the code — not demos, shipped work.
 - **Flappy Asher** — Russell Kaplan (Cognition president) had Devin on a Mac VM turn baby photos into game sprites and ship the result — live in TestFlight ([post](https://x.com/russelljkaplan/status/2100280085999919555)).
 
 *Know a shipped product built with Devin? [Add it](CONTRIBUTING.md).*
+
+### Side quests
+
+Small, delightful builds — proof the same machinery does fun work too.
+
+- **[Mobile games on iPhone Duo](https://x.com/xujennyc/status/2121625134029209929)** — Jenny Xu and Nader Dabit jamming on Devin-built mobile games on foldables; Devin [builds and tests Duo apps itself](https://x.com/DevinAI/status/2111161066403123653), including at scale ([dabit3](https://x.com/dabit3/status/2112939574133760190)).
+- **Devin's self-portrait** — Bryan Johnson asked Devin to render how it sees him ([post](https://x.com/bryan_johnson/status/2122818486800191842)).
+- **The CoS whose job a bot took** — A Cognition chief-of-staff's first week: woke up to the new Chief of Staff Bot already doing his job ([post](https://x.com/arirbrown/status/2122789909731872882)).
 
 ## Enterprise deployments
 
@@ -174,6 +183,8 @@ Documented real-world usage.
 - **[Classifying 700 support inquiries](https://zenn.dev/canly/articles/9c19bb123e208c)** — canly pointed Devin at their ticket history to find what "cause unidentified" actually was — Devin as a data analyst, not a coder (JP).
 - **[Datadog CCM × Devin weekly cost ops](https://zenn.dev/hubble/articles/091e29a0c86ec3)** and **[Dependabot PRs triaged by Devin first](https://zenn.dev/hubble/articles/88429bd24db476)** — hubble's two standing loops: weekly cloud-cost reduction, and Devin investigating every dependency bump before a human sees it (JP).
 - **[Role-based bot dev team + light-PR auto-merge](https://zenn.dev/kyto64/articles/ai-bot-dev-env)** — kyto64's personal-dev setup: specialized AI bots plus Devin, with low-risk PRs merging themselves (JP).
+- **[Devin CLI's context limits in practice](https://qiita.com/ishizakahiroshi/items/cee2a8ea2be18f2ccee3)** — Working notes on fitting AGENTS.md and approval rules inside the 16KB/32KB caps (JP).
+- **[Multi-AI orchestration on free SWE-2](https://qiita.com/ishizakahiroshi/items/72ab801a5f2a8c941b61)** — A design for routing work between agents using Devin CLI's permanently-free SWE-2 tier (JP).
 
 ## Community media
 
