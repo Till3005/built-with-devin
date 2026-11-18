@@ -179,6 +179,17 @@ Things the community builds *for* Devin rather than *with* it.
 - **[Mako](https://github.com/Verbiflow/mako)** — Local workspace for every coding agent; carries Devin conversations over ACP — run, follow, resume, and move them across machines.
 - **[ax](https://zenn.dev/kuwashima/articles/ax-cross-agent-session-picker)** — fzf session picker that resumes Devin alongside 18 other agent CLIs (JP).
 - **[Kiro Crew patch for Devin CLI](https://zenn.dev/dario_okazaki/articles/e5eda2aca4fdd2)** — Unofficial patch adding Devin CLI to Kiro Crew's managed bot fleet, with per-bot permission handling (JP).
+- **[Devin for VS Code](https://github.com/shayanline/devin-vscode)** — A full chat panel for Devin CLI inside VS Code ([Marketplace](https://marketplace.visualstudio.com/items?itemName=shayanline.devin-vscode)): workspace context via `@`, Keep/Undo diff review, per-workspace resumable chats, and a settings editor for the CLI's instructions, skills, plugins, MCP servers and hooks.
+- **[Devin Switch](https://github.com/ansuman-shukla/devin-switch)** — Native macOS app + CLI for multiple Devin CLI logins: isolated account profiles, shared local conversation history, usage/reset display, and concurrent launches.
+- **[Devin Token Monitor](https://github.com/TH-Chou/devin-usage-monitor)** — Native macOS menu-bar app (and VSIX) that turns the CLI's local SQLite metrics into live cost dashboards — token trends, model donut, per-request TTFT/tokens-per-second, budget alerts, CSV export, six languages.
+- **[devin-desktop-zh](https://github.com/cby122/devin-desktop-zh)** — A hand-built Simplified-Chinese localization of Devin Desktop: a 33,457-string dictionary plus the injection/re-signing pipeline that produces a separate `Devin 中文版.app` — shipped as an Agent Skill so the whole workflow is repeatable.
+- **[devin-tui](https://github.com/fenner888/devin-tui)** — Mark Fenner's full-screen terminal UI for Devin over `devin acp`: React + Ink, tool calls, inline diffs, plan view, per-session spend.
+- **[Devin Remote](https://github.com/zouhall/devin-remote)** — A browser console for Devin CLI sessions — drive local Devin from any browser, including a phone: streaming chat, permissions, modes, models, usage stats.
+- **[Devin Pocket](https://github.com/BOTOOM/devin-pocket)** — Mobile-first Devin CLI client over ACP; runs on Android/Termux, Linux and macOS.
+- **[devin-control](https://github.com/Icaro0310/devin-control)** — Policy-gated ACP client: isolated Devin sessions behind allow/deny/ask rules.
+- **[devin-subagents](https://github.com/Duro02/devin-subagents)** — Exposes `devin acp` sessions as lifecycle-managed subagents over MCP: parallel dispatch, blocking `wait`, mid-flight steering, permission adjudication.
+- **[Devin Session Exporter](https://github.com/marktwainme/devin-session-exporter)** — Devin Desktop extension that exports local ACP session databases to Markdown/JSON/HTML with filtering and batch export.
+- **[devin-acp-shim](https://github.com/wibus-wee/devin-acp-shim)** — A transparent stdio proxy that fixes Devin CLI's session-level MCP capability negotiation — small, but it unblocks MCP servers for every ACP host.
 
 ## Patterns & write-ups
 
@@ -198,6 +209,8 @@ Documented real-world usage.
 - **[Vulnerability impact analysis via Devin Automations](https://zenn.dev/rescuenow/articles/2ee1c4b66ecec8)** — rescuenow's scheduled Automation investigates blast radius when a CVE drops (JP).
 - **[Classifying 700 support inquiries](https://zenn.dev/canly/articles/9c19bb123e208c)** — canly pointed Devin at their ticket history to find what "cause unidentified" actually was — Devin as a data analyst, not a coder (JP).
 - **[Datadog CCM × Devin weekly cost ops](https://zenn.dev/hubble/articles/091e29a0c86ec3)** and **[Dependabot PRs triaged by Devin first](https://zenn.dev/hubble/articles/88429bd24db476)** — hubble's two standing loops: weekly cloud-cost reduction, and Devin investigating every dependency bump before a human sees it (JP).
+- **[Devin as a performance-analysis agent with Dynatrace MCP](https://medium.com/lets-code-future/how-i-turned-devin-into-a-performance-analysis-agent-with-dynatrace-mcp-753d3f4790a2)** — Wiring Devin to live observability data so it diagnoses latency itself, not just the code (Medium).
+- **[Devin: from bug report to pull request](https://medium.com/@winter.inc/devin-from-bug-report-to-pull-request-25-days-of-ai-day-18-b158daa20f23)** — Day 18 of a 25-day AI series: the full ticket-to-PR loop on a real codebase (Medium).
 - **[Role-based bot dev team + light-PR auto-merge](https://zenn.dev/kyto64/articles/ai-bot-dev-env)** — kyto64's personal-dev setup: specialized AI bots plus Devin, with low-risk PRs merging themselves (JP).
 - **[Devin CLI's context limits in practice](https://qiita.com/ishizakahiroshi/items/cee2a8ea2be18f2ccee3)** — Working notes on fitting AGENTS.md and approval rules inside the 16KB/32KB caps (JP).
 - **[Multi-AI orchestration on free SWE-2](https://qiita.com/ishizakahiroshi/items/72ab801a5f2a8c941b61)** — A design for routing work between agents using Devin CLI's permanently-free SWE-2 tier (JP).
