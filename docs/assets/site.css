@@ -167,3 +167,9 @@ footer{border-top:1px solid var(--line);margin-top:48px}
 /* composite brand: text + official wordmark (brand kit) */
 .brand-mark{height:16px;width:auto;vertical-align:-3px;margin-left:2px}
 [data-theme="dark"] .brand-mark{filter:invert(.94)}
+
+.lang-switch{display:flex;gap:2px;margin-right:10px;align-items:center}
+.lang-btn{font:500 11px var(--mono);letter-spacing:.02em;padding:5px 8px;border-radius:99px;border:none;background:transparent;color:var(--mut);cursor:pointer;transition:all .15s}
+.lang-btn:hover{color:var(--fg)}
+.lang-btn.on{background:var(--panel);color:var(--fg);box-shadow:inset 0 0 0 1px var(--line)}
+@media(max-width:860px){.lang-switch{display:none}}
