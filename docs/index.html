@@ -7,13 +7,12 @@
 <meta name="description" content="A curated registry of everything built with Devin: bot deployments, shipped products, enterprise case studies, tools and field reports — verified, sourced, living.">
 <meta property="og:title" content="Built with Devin">
 <meta property="og:description" content="A verified registry of real work built with Devin — bots, products, enterprise deployments.">
-<link rel="icon" href="../assets/devin-symbol.svg" type="image/svg+xml">
+<link rel="icon" href="assets/brand/Devin_Symbol.svg" type="image/svg+xml">
 <link rel="stylesheet" href="assets/site.css">
 <link rel="canonical" href="https://till3005.github.io/built-with-devin/">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://till3005.github.io/built-with-devin/">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="theme-color" content="#141414">
 <script src="assets/theme.js" defer></script>
 <script src="assets/dither.js" defer></script>
 <script src="assets/reveal.js" defer></script>
@@ -21,17 +20,17 @@
 <body>
 <a class="skip" href="#deployments">Skip to content</a>
 <nav><div class="wrap nav-inner">
-  <a class="brand" href="./">
-    <img src="assets/brand/Devin_Symbol.svg" alt="" width="20">
-    Built with Devin
-  </a>
-  <div class="navlinks">
-    <a href="#deployments">Deployments</a>
-    <a href="#products">Products</a>
-    <a href="#enterprise">Enterprise</a>
-    <a href="#tools">Tools</a>
-    <a href="economics.html">Economics</a>
-    <a href="https://github.com/Till3005/build-with-devin">Tutorials</a>
+  <div class="nav-left">
+    <a class="brand" href="./" aria-label="Built with Devin">
+      <img src="assets/brand/Devin_Primary_Logo.svg" alt="Devin" height="20">
+    </a>
+    <div class="navlinks">
+      <a href="#deployments">Deployments</a>
+      <a href="#products">Products</a>
+      <a href="#enterprise">Enterprise</a>
+      <a href="#tools">Tools</a>
+      <a href="economics.html">Economics</a>
+    </div>
   </div>
   <div class="nav-side">
     <div class="mode-toggle" role="tablist" aria-label="Site section">
@@ -40,15 +39,25 @@
       <span class="mode-pill" aria-hidden="true"></span>
     </div>
     <button id="theme-toggle" aria-label="Toggle theme"></button>
-    <a class="cta magnet" href="https://github.com/Till3005/built-with-devin">GitHub</a>
+    <a class="cta" href="https://github.com/Till3005/built-with-devin">GitHub</a>
   </div>
 </div></nav>
 
-<header class="hero"><div class="wrap" style="position:relative;z-index:1">
-  <span class="eyebrow" id="hero-eyebrow">Community registry · unofficial</span>
-  <h1 id="hero-title">Everything built with Devin, verified.</h1>
-  <p class="lede" id="hero-lede">A living registry of real work: named bot deployments, shipped products, enterprise case studies and the tools around them. Every entry links to a source — no vaporware, no marketing paraphrase.</p>
-  <div class="stats" id="hero-stats">
+<main>
+<header class="hero"><div class="wrap">
+  <div class="hero-grid">
+    <div class="hero-copy">
+      <span class="eyebrow" id="hero-eyebrow">Community registry · unofficial</span>
+      <h1 id="hero-title">Everything built with Devin, verified.</h1>
+      <p class="lede" id="hero-lede">A living registry of real work: named bot deployments, shipped products, enterprise case studies and the tools around them. Every entry links to a source.</p>
+      <div class="hero-ctas">
+        <a class="btn btn-p" href="#deployments">Browse the registry</a>
+        <a class="btn btn-s" href="https://github.com/Till3005/built-with-devin/blob/main/CONTRIBUTING.md">Submit a project</a>
+      </div>
+    </div>
+    <div class="hero-media"><div class="media-panel"><canvas id="dither-slot"></canvas></div></div>
+  </div>
+  <div class="stats" id="hero-stats" style="margin-top:64px">
     <div class="stat"><b>11</b><span>Bot deployments</span></div>
     <div class="stat"><b>33</b><span>Enterprise cases</span></div>
     <div class="stat"><b>4</b><span>Shipped products</span></div>
@@ -57,10 +66,9 @@
   </div>
 </div></header>
 
-<div id="wipe" aria-hidden="true"></div>
 <div id="view-built">
 <section id="deployments"><div class="wrap">
-  <div class="sec-head"><h2>Documented bot deployments</h2><a href="https://github.com/Till3005/built-with-devin#documented-deployments">All 11 →</a></div>
+  <div class="sec-head"><h2>Documented bot deployments</h2><p class="sec-sub">Named bots with published ownership, scope and results — every figure links to its source.</p><a class="sec-more" href="https://github.com/Till3005/built-with-devin#documented-deployments">All 11 →</a></div>
   <div class="rows">
     <a class="row" href="https://devin.ai/blog/introducing-devin-bots"><span class="row-tag">Cognition</span><span><span class="row-title">Android Bot — product-managed the Devin Android app</span><div class="row-desc">One sentence of ownership. 44 days, 1,134 merged PRs, 344,651 lines of Kotlin — 88% self-merged, 183 human messages.</div></span><span class="row-num">44 days</span></a>
     <a class="row" href="https://devin.ai/blog/introducing-devin-bots"><span class="row-tag">Cognition</span><span><span class="row-title">Layout Bot — owns layout-shift regressions</span><div class="row-desc">Builds production main every 3 hours, simulates three visit shapes, ships fixes with before/after video.</div></span><span class="row-num">159 PRs · −70% jank</span></a>
@@ -72,17 +80,17 @@
 </div></section>
 
 <section id="products"><div class="wrap">
-  <div class="sec-head"><h2>Products built with Devin</h2><a href="https://github.com/Till3005/built-with-devin#products-built-with-devin">All →</a></div>
-  <div class="cards">
-    <a class="card" href="https://devin.ai/customers/eon"><span class="k">98%</span><h3>Era by Eon</h3><p>Simulated enterprises for training agents — 74 vendor-faithful systems. 98% of merged PRs Devin-authored.</p></a>
-    <a class="card" href="https://courtyard.io/blog/post/from-a-slack-link-to-production-in-under-48-hours-cloning-shopifys-quick-with-devin"><span class="k">~21h</span><h3>Courtyard's Quick</h3><p>Shopify's internal deployer cloned from a Slack link to production — entirely Devin-written.</p></a>
-    <a class="card" href="https://samyok.com/frontierfood"><span class="k">↗</span><h3>Frontierfood</h3><p>Devin Voice scraped reviews to map the Pareto frontier of food by location.</p></a>
-    <a class="card" href="https://x.com/russelljkaplan/status/2100280085999919555"><span class="k">↗</span><h3>Flappy Asher</h3><p>Baby photos → game sprites on a Mac VM, shipped to TestFlight.</p></a>
+  <div class="sec-head"><h2>Products built with Devin</h2><p class="sec-sub">Shipped things you can touch — with the Devin share of the work on the record.</p><a class="sec-more" href="https://github.com/Till3005/built-with-devin#products-built-with-devin">All →</a></div>
+  <div class="feat">
+    <article><div class="media-panel"><span class="mp-stat">98%</span></div><h3><a href="https://devin.ai/customers/eon">Era by Eon</a></h3><p>Simulated enterprises for training agents — 74 vendor-faithful systems. 98% of merged PRs Devin-authored.</p></article>
+    <article><div class="media-panel"><span class="mp-stat">~21h</span></div><h3><a href="https://courtyard.io/blog/post/from-a-slack-link-to-production-in-under-48-hours-cloning-shopifys-quick-with-devin">Courtyard's Quick</a></h3><p>Shopify's internal deployer cloned from a Slack link to production — entirely Devin-written.</p></article>
+    <article><div class="media-panel"><span class="mp-icon"><img src="assets/brand/p09-squircle.webp" alt=""></span></div><h3><a href="https://samyok.com/frontierfood">Frontierfood</a></h3><p>Devin Voice scraped reviews to map the Pareto frontier of food by location.</p></article>
+    <article><div class="media-panel"><span class="mp-icon"><img src="assets/brand/p05-gear.webp" alt=""></span></div><h3><a href="https://x.com/russelljkaplan/status/2100280085999919555">Flappy Asher</a></h3><p>Baby photos → game sprites on a Mac VM, shipped to TestFlight.</p></article>
   </div>
 </div></section>
 
 <section id="enterprise"><div class="wrap">
-  <div class="sec-head"><h2>Enterprise deployments</h2><a href="https://github.com/Till3005/built-with-devin#enterprise-deployments">All 33 →</a></div>
+  <div class="sec-head"><h2>Enterprise deployments</h2><p class="sec-sub">Thirty-three published case studies; the strongest numbers, in one table.</p><a class="sec-more" href="https://github.com/Till3005/built-with-devin#enterprise-deployments">All 33 →</a></div>
   <table>
     <tr><th>Company</th><th>Deployment</th><th>Reported result</th></tr>
     <tr><td class="co">Nubank</td><td>Multi-million-line ETL migration program</td><td>8–12× efficiency · <a href="https://devin.ai/customers/nubank">20× cost savings</a></td></tr>
@@ -93,35 +101,35 @@
     <tr><td class="co">Modal</td><td>Incident response</td><td><a href="https://devin.ai/customers/modal">80% of incidents investigated pre-engineer</a></td></tr>
     <tr><td class="co">The Citation Group</td><td>ROI-measured rollout</td><td><a href="https://devin.ai/customers/thecitationgroup">85% cost cut on legacy revamps</a></td></tr>
   </table>
-  <p style="margin-top:24px"><a href="economics.html" style="color:var(--acc);text-decoration:none">→ The economics ledger — every published cost/return figure, filterable</a></p>
+  <p style="margin-top:28px"><a href="economics.html" style="color:var(--acc);text-decoration:none;font-weight:500">→ The economics ledger — every published cost/return figure, filterable</a></p>
 </div></section>
 
 <section id="tools"><div class="wrap">
-  <div class="sec-head"><h2>Built around Devin</h2><a href="https://github.com/Till3005/built-with-devin#tooling-around-devin">All 28 →</a></div>
-  <div class="cards">
-    <a class="card" href="https://x.com/markfenner"><h3>DevinX / Devinmaxxing</h3><p>Local model picker for Devin Desktop — local weights via ACP, reasoning-effort control. By ambassador Mark Fenner.</p></a>
-    <a class="card" href="https://github.com/Duoasa/QuotaView"><h3>QuotaView</h3><p>macOS "Dynamic Island" for agents — Devin Desktop + CLI sessions, approvals, quotas.</p></a>
-    <a class="card" href="https://github.com/Verbiflow/mako"><h3>Mako</h3><p>Local workspace taking over Devin conversations via ACP — run, follow, resume across machines.</p></a>
-    <a class="card" href="https://github.com/fenner888/BuzzforDevin"><h3>Buzz for Devin</h3><p>Community Buzz fork adding devin acp as a native runtime — your own authenticated Devin in shared agent communities.</p></a>
-    <a class="card" href="https://github.com/cby122/devin-desktop-zh"><h3>devin-desktop-zh</h3><p>Hand-built Simplified-Chinese localization of Devin Desktop — 33,457-string dictionary, agent-skill pipeline.</p></a>
-    <a class="card" href="https://github.com/Icaro0310/awesome-devin"><h3>awesome-devin</h3><p>The devin-* open-source ecosystem: session search, knowledge graphs, eval harnesses.</p></a>
+  <div class="sec-head"><h2>Built around Devin</h2><p class="sec-sub">The community toolchain — CLIs, monitors, ACP bridges, localizations.</p><a class="sec-more" href="https://github.com/Till3005/built-with-devin#tooling-around-devin">All 28 →</a></div>
+  <div class="rows">
+    <a class="row" href="https://x.com/markfenner"><span class="row-tag">Desktop</span><span><span class="row-title">DevinX / Devinmaxxing</span><div class="row-desc">Local model picker for Devin Desktop — local weights via ACP, reasoning-effort control. By ambassador Mark Fenner.</div></span></a>
+    <a class="row" href="https://github.com/Duoasa/QuotaView"><span class="row-tag">macOS</span><span><span class="row-title">QuotaView</span><div class="row-desc">A "Dynamic Island" for agents — Devin Desktop + CLI sessions, approvals, quotas at a glance.</div></span></a>
+    <a class="row" href="https://github.com/Verbiflow/mako"><span class="row-tag">ACP</span><span><span class="row-title">Mako</span><div class="row-desc">Local workspace taking over Devin conversations via ACP — run, follow, resume across machines.</div></span></a>
+    <a class="row" href="https://github.com/fenner888/BuzzforDevin"><span class="row-tag">Runtime</span><span><span class="row-title">Buzz for Devin</span><div class="row-desc">Community Buzz fork adding devin acp as a native runtime — your own authenticated Devin in shared agent communities.</div></span></a>
+    <a class="row" href="https://github.com/cby122/devin-desktop-zh"><span class="row-tag">i18n</span><span><span class="row-title">devin-desktop-zh</span><div class="row-desc">Hand-built Simplified-Chinese localization of Devin Desktop — 33,457-string dictionary, agent-skill pipeline.</div></span></a>
+    <a class="row" href="https://github.com/Icaro0310/awesome-devin"><span class="row-tag">Index</span><span><span class="row-title">awesome-devin</span><div class="row-desc">The devin-* open-source ecosystem: session search, knowledge graphs, eval harnesses.</div></span></a>
   </div>
 </div></section>
 
 <section id="deep"><div class="wrap">
   <div class="sec-head"><h2>Deep dives &amp; learning</h2></div>
-  <div class="rows">
-    <a class="row" href="devin-bots-anatomy.html"><span class="row-tag">Deep dive</span><span><span class="row-title">Anatomy of a Devin Bot</span><div class="row-desc">The six documented mechanisms — chat, sessions, Needs-you, memory, grants, Slack — each mapped to a named deployment.</div></span></a>
-    <a class="row" href="economics.html"><span class="row-tag">Ledger</span><span><span class="row-title">The economics of Devin</span><div class="row-desc">Every published, auditable cost/return figure in one filterable ledger.</div></span></a>
-    <a class="row" href="reproducing-devin-bots.html"><span class="row-tag">Guide</span><span><span class="row-title">Reproducing Devin Bots</span><div class="row-desc">How to rebuild every documented bot — the four deployment recipes and the 16-template marketplace.</div></span></a>
-    <a class="row" href="https://github.com/Till3005/build-with-devin"><span class="row-tag">Tutorials</span><span><span class="row-title">build-with-devin — the sister repo</span><div class="row-desc">15 field-tested guides: every pattern reverse-engineered from a named deployment, in six languages.</div></span></a>
+  <div class="feat">
+    <article><div class="media-panel"><span class="mp-icon"><img src="assets/brand/g01-octagon.webp" alt=""></span></div><h3><a href="devin-bots-anatomy.html">Anatomy of a Devin Bot</a></h3><p>The six documented mechanisms — chat, sessions, Needs-you, memory, grants, Slack — each mapped to a named deployment.</p></article>
+    <article><div class="media-panel"><span class="mp-icon"><img src="assets/brand/n07-four-lobe-plate.webp" alt=""></span></div><h3><a href="economics.html">The economics of Devin</a></h3><p>Every published, auditable cost/return figure in one filterable ledger.</p></article>
+    <article><div class="media-panel"><span class="mp-icon"><img src="assets/brand/r3-16-trapezoid.webp" alt=""></span></div><h3><a href="reproducing-devin-bots.html">Reproducing Devin Bots</a></h3><p>How to rebuild every documented bot — the four deployment recipes and the 16-template marketplace.</p></article>
+    <article><div class="media-panel"><span class="mp-icon"><img src="assets/brand/p05-gear.webp" alt=""></span></div><h3><a href="https://github.com/Till3005/build-with-devin">build-with-devin — the sister repo</a></h3><p>15 field-tested guides: every pattern reverse-engineered from a named deployment, in six languages.</p></article>
   </div>
 </div></section>
 </div>
 
 <div id="view-build" hidden>
 <section><div class="wrap">
-  <div class="sec-head"><h2>Devin Bots track</h2><a href="https://github.com/Till3005/build-with-devin/tree/main/guides">All 15 →</a></div>
+  <div class="sec-head"><h2>Devin Bots track</h2><p class="sec-sub">Five guides that walk from one bot to a full organization — each reverse-engineered from a named deployment.</p><a class="sec-more" href="https://github.com/Till3005/build-with-devin/tree/main/guides">All 15 →</a></div>
   <div class="rows">
     <a class="row" href="https://github.com/Till3005/build-with-devin/blob/main/guides/bots-101-first-bot.md"><span class="row-tag">101</span><span><span class="row-title">Your first Bot</span><div class="row-desc">The full mechanism — chat, sessions, Needs-you, memory, grants — one evening, one bot.</div></span><span class="row-num">Foundational</span></a>
     <a class="row" href="https://github.com/Till3005/build-with-devin/blob/main/guides/bots-201-product-owner.md"><span class="row-tag">201</span><span><span class="row-title">The product-owner pattern</span><div class="row-desc">Reproducing the Android Bot: one sentence of ownership, 44 days, 1,134 PRs.</div></span><span class="row-num">Android Bot</span></a>
@@ -132,7 +140,7 @@
 </div></section>
 
 <section><div class="wrap">
-  <div class="sec-head"><h2>Platform track</h2><a href="https://github.com/Till3005/build-with-devin">Repo →</a></div>
+  <div class="sec-head"><h2>Platform track</h2><p class="sec-sub">The surface area underneath the bots.</p><a class="sec-more" href="https://github.com/Till3005/build-with-devin">Repo →</a></div>
   <div class="rows">
     <a class="row" href="https://github.com/Till3005/build-with-devin/blob/main/guides/automations-101-event-driven.md"><span class="row-tag">Auto</span><span><span class="row-title">Event-driven automations</span><div class="row-desc">Slack, webhooks and schedules firing Devin sessions — the machine room.</div></span></a>
     <a class="row" href="https://github.com/Till3005/build-with-devin/blob/main/guides/enterprise-playbook.md"><span class="row-tag">Org</span><span><span class="row-title">The enterprise playbook</span><div class="row-desc">Six deployment shapes — Nubank, EBANX, Gumroad, Modal, Airbyte and more.</div></span></a>
@@ -143,7 +151,7 @@
 </div></section>
 
 <section><div class="wrap">
-  <div class="sec-head"><h2>Workflows track</h2><a href="https://github.com/Till3005/build-with-devin">Repo →</a></div>
+  <div class="sec-head"><h2>Workflows track</h2><p class="sec-sub">Field-proven ways of working.</p><a class="sec-more" href="https://github.com/Till3005/build-with-devin">Repo →</a></div>
   <div class="rows">
     <a class="row" href="https://github.com/Till3005/build-with-devin/blob/main/guides/migrations-at-scale.md"><span class="row-tag">Move</span><span><span class="row-title">Migrations at scale</span><div class="row-desc">Slice methodology: wide &amp; shallow, &lt;90 min per slice, verify every slice.</div></span></a>
     <a class="row" href="https://github.com/Till3005/build-with-devin/blob/main/guides/devin-cli.md"><span class="row-tag">CLI</span><span><span class="row-title">Devin CLI &amp; extensions</span><div class="row-desc">Local agent, /handoff to cloud, ACP for JetBrains/Zed/Xcode.</div></span></a>
@@ -153,11 +161,12 @@
   </div>
 </div></section>
 </div>
+</main>
 
 <footer><div class="wrap">
   <div class="foot-grid">
     <div class="foot-brand">
-      <img src="assets/brand/Devin_Symbol.svg" alt="" width="22">
+      <img src="assets/brand/Devin_Primary_Logo.svg" alt="Devin" height="22">
       <p>Unofficial community project — not affiliated with, endorsed by, or sponsored by Cognition AI. "Devin" is a trademark of Cognition AI. Brand assets used under the official kit at devin.ai/brand.</p>
     </div>
     <div class="foot-col"><h4>Registry</h4>
@@ -180,7 +189,7 @@
     </div>
   </div>
   <div class="foot-base">
-    <span>© 2026 — A community registry. Every figure links to its source; where a source revises a number, the registry follows.</span>
+    <span>© 2026 — A community registry. Every figure links to its source.</span>
     <span>CC0-1.0 · Zero tracking</span>
   </div>
 </div></footer>
