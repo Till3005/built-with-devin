@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ガイド 1 — 初めての Bot — build-with-devin guides</title>
+<meta name="description" content="ガイド 1 — 初めての Bot">
+<link rel="icon" href="../../assets/brand/Devin_Symbol.svg" type="image/svg+xml">
+<link rel="stylesheet" href="../../assets/site.css">
+<link rel="stylesheet" href="../../assets/guides.css">
+</head>
+<body>
+<a class="skip" href="#guide">Skip to content</a>
+<nav><div class="wrap nav-inner">
+  <div class="nav-left">
+    <a class="brand" href="../../index.html" aria-label="Built with Devin">
+      <span class="brand-text">built<strong>-with-</strong></span><img class="brand-mark" src="../../assets/brand/Devin_Primary_Logo.svg" alt="Devin" height="16"><span class="unofficial-chip">unofficial</span>
+    </a>
+  </div>
+  <div class="nav-side">
+    <div class="mode-toggle" role="tablist" aria-label="Site section">
+      <button class="mode-btn" data-mode="built" role="tab" aria-selected="false" onclick="location.href='../../index.html'">Built</button>
+      <button class="mode-btn on" data-mode="build" role="tab" aria-selected="true" onclick="location.href='../../index.html#build'">Build</button>
+      <span class="mode-pill" aria-hidden="true"></span>
+    </div>
+    <a class="cta" href="https://github.com/Till3005/build-with-devin/blob/main/guides/ja/bots-101-first-bot.md">GitHub</a>
+  </div>
+</div></nav>
+<main>
+<article class="guide wrap" id="guide">
+  <p class="guide-crumb"><a href="../../index.html#build">← Guides</a> · <a href="../bots-101-first-bot.html">English</a></p>
+<h1>ガイド 1 — 初めての Bot</h1>
+<p><strong>目標：</strong> 成果（アウトカム）を所有する Devin Bot を作成し、以降のすべてのガイドの基礎となる 6 つの機構を学ぶ。
+<strong>レベル：</strong> ここから始める · <strong>所要時間：</strong> 約15分
+<strong>出典：</strong> <a href="https://docs.devin.ai/work-with-devin/bots">Bots 公式ドキュメント</a>、<a href="https://devin.ai/blog/introducing-devin-bots">ローンチ記事</a></p>
+<h2>Bot とは</h2>
+<p>セッションは一つのリクエストをこなす。Bot は<em>成果を所有する</em>：チャットで目標を一度伝えれば、Bot が作業を計画し、各部分ごとに子 Devin セッションを立ち上げ、監視し、あなたの判断が必要なものだけを持ち込む。永続する——メモリ、セッション、自動化は数週間をまたいで生き続ける。</p>
+<p>登場順に並べた 6 つの機構：</p>
+<table>
+<thead>
+<tr>
+<th>機構</th>
+<th>内容</th>
+<th>操作する場所</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Chat</td>
+<td>Bot が所有するすべて（目標・レポート・質問）を集約する一つのスレッド</td>
+<td>Bot のページ / Slack / iMessage</td>
+</tr>
+<tr>
+<td>Sessions</td>
+<td>各作業が独立した Devin セッションとして専用マシンで実行される</td>
+<td>Bot が生成・監視</td>
+</tr>
+<tr>
+<td>Needs you</td>
+<td>判断、PR レビュー、権限リクエスト、レポート——一つのリスト</td>
+<td>Bot チャットの上部</td>
+</tr>
+<tr>
+<td>Memory</td>
+<td>Bot が学んだこと。ファイルとして保存され、全セッション開始時に読まれる</td>
+<td>Settings → Memory</td>
+</tr>
+<tr>
+<td>Instructions</td>
+<td>人間が書く恒常ルール。全セッション開始時に読まれる</td>
+<td>Settings → General</td>
+</tr>
+<tr>
+<td>Access</td>
+<td>Bot 自身の接続・シークレット、および Bot 間の付与</td>
+<td>Settings → Access</td>
+</tr>
+</tbody>
+</table>
+<h2>ステップ 1 — 作成する</h2>
+<p>サイドバー → <strong>Bots</strong> → <em>Create new Bot</em> → テンプレートを選ぶか <em>Start from scratch</em> → 名前を付ける。</p>
+<p>新しい Bot は共有するまで自分専用。使用量は通常のセッションと同じくプランにカウントされる。</p>
+<blockquote>
+<p>ヒント：テンプレートには特定の職務（QA Engineer、Data Analyst など）向けの指示が同梱される。このリポジトリのガイドでは <em>Start from scratch</em> が正解——成果プロンプトは自分で書く。</p>
+</blockquote>
+<h2>ステップ 2 — 成果を割り当てる</h2>
+<p>最初のメッセージが Bot が受け取る最も重要な入力である。<em>タスク</em>ではなく<em>目標</em>を与える：</p>
+<pre><code class="language-text">You own the Android app now. Keep it at feature parity with iOS.
+</code></pre>
+<p>これは Cognition の Android Bot が実際に受けたプロンプトの原文。比較してみよう：</p>
+<table>
+<thead>
+<tr>
+<th>弱い（タスク）</th>
+<th>強い（成果）</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>「チェックアウトボタンを直して」</td>
+<td>「チェックアウトはあなたの担当。速く、正確で、テストでカバーされた状態を保て」</td>
+</tr>
+<tr>
+<td>「ドキュメントを更新して」</td>
+<td>「ドキュメントはあなたの担当。常に <code>main</code> と同期させよ」</td>
+</tr>
+<tr>
+<td>「CI を見てて」</td>
+<td>「<code>main</code> のビルド健全性はあなたの担当。チェックが退行したら原因を調べて直せ」</td>
+</tr>
+</tbody>
+</table>
+<p>タスクは終われば完了するが、成果は Bot に永遠の再計画を促す。</p>
+<h2>ステップ 3 — 一緒に働く</h2>
+<p>成果が設定された後、あなたのメッセージの大半はチェックインになる：</p>
+<pre><code class="language-text">anything waiting on me?
+</code></pre>
+<p>Bot が何かを報告したら <strong>Needs you</strong>（チャット上部）を開く：</p>
+<table>
+<thead>
+<tr>
+<th>項目</th>
+<th>あなたの対応</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Decision</td>
+<td>選択肢を選ぶ——Bot が推奨案をマークする</td>
+</tr>
+<tr>
+<td>Review PR / Merge PR</td>
+<td>レビューまたはマージ</td>
+</tr>
+<tr>
+<td>Permission request</td>
+<td>新しいアクセス、自動化、ネットワークホスト、使用量上限の引き上げを承認または拒否</td>
+</tr>
+<tr>
+<td>Report / FYI</td>
+<td>読むだけ</td>
+</tr>
+</tbody>
+</table>
+<p>どの項目にも、自分の言葉で返信するか、スヌーズするか、無視するかを選べる。</p>
+<h2>ステップ 4 — マイクロ管理ではなくメモリで操る</h2>
+<ul>
+<li><strong>Instructions</strong>（Settings → General）：あなたの恒常ルール——Bot が起動する全セッションの開始時に読まれる。恒久的な方針はチャットではなくここに。</li>
+<li><strong>Memory</strong>（Settings → Memory）：Bot が自分で書くファイル——好み、修正、プロジェクトの事実。記憶を変えたければチャットで伝えるだけ（「覚えておいて：デプロイは Cloud Run。ベア VM は絶対ダメ」）。Bot を使える全員がメモリを読める——共有 Bot のメモリは共有情報として扱う。</li>
+</ul>
+<p>スケールするパターン：Bot を一度修正し、それをメモリに書かせる。以後の全セッションがそれを継承する。Cognition はこのループで週 2,000 件以上の PR をマージしている。</p>
+<h2>ステップ 5 — 働く場所に置く</h2>
+<ul>
+<li><strong>Slack：</strong> Bot 専用の Slack アプリを与えれば、チームが @メンションや DM を送れる（Settings → Slack）。報告されているすべてのチーム導入がこの形——Bot がチャンネル内の名前付きのチームメイトになる。</li>
+<li><strong>iMessage：</strong> スマホから Bot にテキストを送る。</li>
+<li><strong>Web：</strong> サイドバーの Bots セクションに、自分の Bot と共有された Bot が並ぶ。</li>
+</ul>
+<h2>ステップ 6 — スケジュールとモード</h2>
+<ul>
+<li><strong>Automations：</strong> チャットで頼む——「開いている PR のサマリーを平日毎朝実行して」——Bot が自動化案を作成し、あなたの一度きりの承認を求める。Settings → Automations で管理（一時停止/再開/削除）。</li>
+<li><strong>Modes：</strong> Bot には自身のモードに加え、生成するセッション向けの <strong>Child Capability</strong> デフォルトがある（チャットのモード選択で <code>Normal / Ultra</code> など）。個別のセッションで別モードを指定することも可能。</li>
+</ul>
+<h2>ライフサイクル</h2>
+<table>
+<thead>
+<tr>
+<th>操作</th>
+<th>効果</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Recycle</td>
+<td>現在のセッションを終了；次回オープン時に新しいセッションが始まる。チャットメニューから</td>
+</tr>
+<tr>
+<td>Archive</td>
+<td>応答を停止し、Bot 一覧から外し、Slack アプリと Bot 間付与を削除（アーカイブ解除してもそれらは復元されない——設定し直す必要がある）</td>
+</tr>
+<tr>
+<td>Delete</td>
+<td>完全削除：設定、セッション、メモリ、自動化。元に戻せない</td>
+</tr>
+</tbody>
+</table>
+<p>Archive/Delete を見られるのは作成者と Manage Bots 権限を持つロールのみ。Enterprise プランでは <code>Use Bots</code> / <code>Manage Bots</code> / <code>Manage Bots across the enterprise</code> がカスタムロール内の独立した権限。</p>
+<h2>検証チェックリスト</h2>
+<ul>
+<li>[ ] Bot を作成・命名し、チャットで成果プロンプトを送信した</li>
+<li>[ ] Bot が二度言われなくても少なくとも一つの子セッションを開始した</li>
+<li>[ ] <strong>Needs you</strong> に判断/PR/権限リクエストが現れ、解決した</li>
+<li>[ ] チャットで与えた修正が Settings → Memory にメモリファイルとして現れた</li>
+<li>[ ] （任意）Slack で @メンションにより Bot と連絡できた</li>
+</ul>
+<h2>落とし穴</h2>
+<ul>
+<li><strong>タスク型プロンプト。</strong> 「X を直せ」は Bot ではなくセッションを生む。Bot が終わって静かになったら、それはタスクだった——所有の形で言い直す。</li>
+<li><strong>チャットで方針を書く。</strong> チャットに書いたルールは流れて消える；Instructions のルールは毎セッション読まれる。チャット = 指示と回答、Instructions = 法律。</li>
+<li><strong>Needs you の放置。</strong> Bot は判断をまとめて持ってくる設計——常時監視ではなく、1 日 1〜2 回確認する。</li>
+</ul>
+<h2>理解度チェック</h2>
+<ol>
+<li>単発セッションにないもので、Bot のセッション間で生き残るものは？<em>（メモリ——加えて恒常の成果、スケジュール、接続面）</em></li>
+<li>Bot がセッション途中で聞かず "needs-you" に回すのはなぜ？<em>（判断は一つのスレッドに非同期で集約される；人間はループ内のブロッキング呼び出しではない）</em></li>
+<li>「賢いセッション」を「従業員」に変える機構は？<em>（成果の所有——個々のセッションが終わっても目標が残る）</em></li>
+</ol>
+<h2>出典</h2>
+<ul>
+<li><a href="https://docs.devin.ai/work-with-devin/bots">Devin Bots — ドキュメント</a></li>
+<li><a href="https://devin.ai/blog/introducing-devin-bots">Introducing Devin Bots</a></li>
+<li>次：<a href="bots-201-product-owner.html">ガイド 2 — プロダクトオーナー Bot</a></li>
+</ul>
+</article>
+<footer><div class="wrap foot-base"><span data-i18n="foot.note">Unofficial community project — not affiliated with Cognition AI.</span><span><a href="../../index.html">built-with-devin</a> · <a href="https://github.com/Till3005/build-with-devin">build-with-devin</a></span></div></footer>
+</main>
+<script src="../../assets/theme.js"></script>
+<script src="../../assets/i18n.js"></script>
+<script src="../../assets/i18n-runtime.js"></script>
+</body>
+</html>

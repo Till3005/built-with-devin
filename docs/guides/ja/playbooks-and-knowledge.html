@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ガイド 9 — プレイブックとナレッジ：組織の規約をエンコードする — build-with-devin guides</title>
+<meta name="description" content="ガイド 9 — プレイブックとナレッジ：組織の規約をエンコードする">
+<link rel="icon" href="../../assets/brand/Devin_Symbol.svg" type="image/svg+xml">
+<link rel="stylesheet" href="../../assets/site.css">
+<link rel="stylesheet" href="../../assets/guides.css">
+</head>
+<body>
+<a class="skip" href="#guide">Skip to content</a>
+<nav><div class="wrap nav-inner">
+  <div class="nav-left">
+    <a class="brand" href="../../index.html" aria-label="Built with Devin">
+      <span class="brand-text">built<strong>-with-</strong></span><img class="brand-mark" src="../../assets/brand/Devin_Primary_Logo.svg" alt="Devin" height="16"><span class="unofficial-chip">unofficial</span>
+    </a>
+  </div>
+  <div class="nav-side">
+    <div class="mode-toggle" role="tablist" aria-label="Site section">
+      <button class="mode-btn" data-mode="built" role="tab" aria-selected="false" onclick="location.href='../../index.html'">Built</button>
+      <button class="mode-btn on" data-mode="build" role="tab" aria-selected="true" onclick="location.href='../../index.html#build'">Build</button>
+      <span class="mode-pill" aria-hidden="true"></span>
+    </div>
+    <a class="cta" href="https://github.com/Till3005/build-with-devin/blob/main/guides/ja/playbooks-and-knowledge.md">GitHub</a>
+  </div>
+</div></nav>
+<main>
+<article class="guide wrap" id="guide">
+  <p class="guide-crumb"><a href="../../index.html#build">← Guides</a> · <a href="../playbooks-and-knowledge.html">English</a></p>
+<h1>ガイド 9 — プレイブックとナレッジ：組織の規約をエンコードする</h1>
+<p><strong>目標：</strong> 最高のエンジニアが当たり前と思っていることを書き下し——プレイブック（再現可能な手順）とナレッジ（恒常コンテキスト）として——Devin セッションと Bot を組織スケールで信頼できるものにする。
+<strong>レベル：</strong> 中級 · 大規模な公開導入すべてに共通する層
+<strong>出典：</strong> <a href="https://docs.devin.ai">docs.devin.ai</a> · <a href="enterprise-playbook.html">ガイド 7</a> の導入教訓</p>
+<h2>なぜこの層がすべてを決めるのか</h2>
+<p>公開されたすべてのエンタープライズ成果——Nubank の 8–12 倍、EBANX の 92% 自作成 PR、Wayfair の 1,600 席——はエンコードされた規約の上に立っている。それがなければ、Devin の出力はセッションごとにばらつく：毎回あなたのスタック、マージルール、テスト習慣を再発見する。あれば、500 回目のセッションも、最高の調子の日の最高のエンジニアのように振る舞う。</p>
+<p>相補的な 2 つの成果物：</p>
+<table>
+<thead>
+<tr>
+<th>成果物</th>
+<th>内容</th>
+<th>たとえ</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>ナレッジ</td>
+<td>Devin が読む恒常コンテキスト——リポジトリの事実、規約、環境の落とし穴</td>
+<td>オンボーディング資料</td>
+</tr>
+<tr>
+<td>プレイブック</td>
+<td>名前付きの再現可能な手順——トリガー、手順、受入基準</td>
+<td>誰でも呼べるランブック</td>
+</tr>
+</tbody>
+</table>
+<h2>ステップ 1 — 自分の修正を掘り起こす</h2>
+<p>最も安いナレッジはすでに存在する：過去 20 の Devin セッションを遡り、あなたが修正を打った箇所をすべて集める——<em>「デプロイは Cloud Run」</em>、<em>「<code>git push --force</code> は絶対禁止」</em>、<em>「テスト前に <code>npm run db:seed</code> が要る」</em>。各修正は、重要だった証拠つきのナレッジ項目である。</p>
+<p>掘り起こす対象は他にも：
+- 人間が Devin の PR に繰り返し書くコードレビューコメント
+- 変更が<em>なぜ</em>その形になったかを説明する PR 説明文
+- オンボーディング資料——新入社員に伝えること全般</p>
+<h2>ステップ 2 — 残るナレッジ項目を書く</h2>
+<p>良い項目は 1 行、命令形、スコープ付き：</p>
+<pre><code class="language-text">- Deploy only via `make deploy-cloudrun` — never run gcloud directly.
+- Migrations require a matching rollback file in prisma/rollbacks/.
+- The staging seed user is qa+admin@corp.io; never create real-looking users.
+</code></pre>
+<p>悪い項目は小説、願望（「いいテストを書け」）、またはシークレット（クレデンシャルをナレッジに入れるな——シークレットストアを使え）。</p>
+<h2>ステップ 3 — 再現可能な作業のプレイブック化</h2>
+<p>プレイブックは手順をパッケージ化し、どのセッション（や Bot）も同じやり方で実行できるようにする。機能する構造：</p>
+<pre><code class="language-markdown"># &lt;動詞 + 目的語&gt; — 例：&quot;Cut a release&quot;
+## When to use
+&lt;トリガー条件&gt;
+## Steps
+1. &lt;決定的な手順&gt;
+2. ...
+## Acceptance
+&lt;合否チェック&gt;
+## Failure modes
+- &lt;既知の破損 → 対処&gt;
+</code></pre>
+<p>組織全体に公開し、セッション・自動化・Bot のすべてが呼べるようにする——これが一回きりの成功セッションを組織能力に変える。</p>
+<h2>ステップ 4 — Bot への供給</h2>
+<p>Bot の <strong>Instructions</strong>（ガイド 1）はナレッジの Bot スコープ版——全セッション開始時に読まれるルール。職務の法律はそこへ、組織の法律はナレッジへ、手順はプレイブックへ。層分けが各成果物を小さく最新に保つ。</p>
+<h2>ステップ 5 — 修正ループ</h2>
+<p>ナレッジは腐る。真実を保つループ：</p>
+<ol>
+<li>セッション/Bot が間違える → チャットで修正</li>
+<li>Bot が修正をメモリに書く（またはナレッジに追加）</li>
+<li>週次レビュー：繰り返し現れる Bot メモリ項目を組織ナレッジに昇格；1 か月誰も発動していない項目は削除</li>
+</ol>
+<p>まさにこのための公式 Bot テンプレート Devin Coach がある——Devin がどこで詰まったかを週次報告し、毎回 1 つの修正案（メモ、スキル、セットアップ変更）を提示する。</p>
+<h2>検証チェックリスト</h2>
+<ul>
+<li>[ ] あなたのリポジトリでの新規セッションが、ナレッジに答えのある質問をゼロ件尋ねる</li>
+<li>[ ] Bot に与えた直近の修正がそのメモリファイルに現れている</li>
+<li>[ ] 異なる 2 つのセッションが同じプレイブックを実行し、同じ形の結果を出す</li>
+</ul>
+<h2>落とし穴</h2>
+<ul>
+<li><strong>願望を書く。</strong> 「ベストプラクティスに従え」は何も変えない；「テスト前に <code>npm run db:seed</code> を実行せよ」はすべてを変える。</li>
+<li><strong>放置。</strong> 陳腐化したナレッジは無いより悪い——Devin は自信満々に従う。月次でレビュー。</li>
+<li><strong>ドキュメントの複製。</strong> ナレッジに入れるべきは Devin が<em>間違える</em>か<em>知り得ない</em>ものであり、wiki のコピーではない。</li>
+</ul>
+<h2>理解度チェック</h2>
+<ol>
+<li>プレイブックとナレッジの違いは？<em>（プレイブックは名前付きタスクの再現可能な手順；ナレッジは全セッションが前提とすべき恒常コンテキスト）</em></li>
+<li>「最高のエンジニアが当たり前と思うことを書き下せ」が実際のエンタープライズ・ボトルネックなのはなぜ？<em>（エージェントの品質は限界ではなかった——欠けたコンテキストが限界；ナレッジ層は組織の規約が住む場所）</em></li>
+<li>規約が部族知識のままではなくプレイブックになるのはいつか？<em>（セッションが、書かれた手順が防げたはずの形で間違えた最初の瞬間）</em></li>
+</ol>
+<h2>出典</h2>
+<ul>
+<li><a href="https://docs.devin.ai">docs.devin.ai</a> — ナレッジ、プレイブック、Bot の instructions/memory</li>
+<li>関連：<a href="enterprise-playbook.html">ガイド 7 — エンタープライズ導入パターン</a>（この層はほとんどの導入が飛ばすステップ）</li>
+</ul>
+</article>
+<footer><div class="wrap foot-base"><span data-i18n="foot.note">Unofficial community project — not affiliated with Cognition AI.</span><span><a href="../../index.html">built-with-devin</a> · <a href="https://github.com/Till3005/build-with-devin">build-with-devin</a></span></div></footer>
+</main>
+<script src="../../assets/theme.js"></script>
+<script src="../../assets/i18n.js"></script>
+<script src="../../assets/i18n-runtime.js"></script>
+</body>
+</html>

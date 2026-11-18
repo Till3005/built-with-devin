@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ガイド 8 — デザインとビジュアルワーク — build-with-devin guides</title>
+<meta name="description" content="ガイド 8 — デザインとビジュアルワーク">
+<link rel="icon" href="../../assets/brand/Devin_Symbol.svg" type="image/svg+xml">
+<link rel="stylesheet" href="../../assets/site.css">
+<link rel="stylesheet" href="../../assets/guides.css">
+</head>
+<body>
+<a class="skip" href="#guide">Skip to content</a>
+<nav><div class="wrap nav-inner">
+  <div class="nav-left">
+    <a class="brand" href="../../index.html" aria-label="Built with Devin">
+      <span class="brand-text">built<strong>-with-</strong></span><img class="brand-mark" src="../../assets/brand/Devin_Primary_Logo.svg" alt="Devin" height="16"><span class="unofficial-chip">unofficial</span>
+    </a>
+  </div>
+  <div class="nav-side">
+    <div class="mode-toggle" role="tablist" aria-label="Site section">
+      <button class="mode-btn" data-mode="built" role="tab" aria-selected="false" onclick="location.href='../../index.html'">Built</button>
+      <button class="mode-btn on" data-mode="build" role="tab" aria-selected="true" onclick="location.href='../../index.html#build'">Build</button>
+      <span class="mode-pill" aria-hidden="true"></span>
+    </div>
+    <a class="cta" href="https://github.com/Till3005/build-with-devin/blob/main/guides/ja/design-with-devin.md">GitHub</a>
+  </div>
+</div></nav>
+<main>
+<article class="guide wrap" id="guide">
+  <p class="guide-crumb"><a href="../../index.html#build">← Guides</a> · <a href="../design-with-devin.html">English</a></p>
+<h1>ガイド 8 — デザインとビジュアルワーク</h1>
+<p><strong>目標：</strong> Devin をアートディレクター兼実装者として使い、本番のビジュアルデザイン——生成画像、アニメーションシステム、タイポグラフィ——を会話だけで作る。
+<strong>レベル：</strong> 中級
+<strong>出典となる導入事例：</strong> <strong>Spraycash</strong> ランディングページ——フィンテックサイトの全ビジュアルシステムを Devin チャット内で Kimi K3 と設計、全プロンプト公開：ヒーロー画像、レイヤードクラウドアニメーション、SVG 描画リング、3 フォントタイプシステム。
+<strong>出典：</strong> <a href="https://dev.to/ibrahimpima/designing-the-spraycash-ui-with-kimi-k3-in-devin-4l2f">全プロンプト付き記事</a></p>
+<h2>パターン</h2>
+<p>エージェント経由のデザインは、プロンプトが<em>雰囲気</em>を記述するとき失敗する（「プレミアム感で」）。デザイナーにブリーフするようにアートディレクションすると機能する：<strong>参照、制約、批評ループ</strong>。デザインツールに対する Devin の優位は<em>実装</em>を産むこと——アニメーションはコード、画像は生成されて配置され、タイプシステムは出荷される CSS。</p>
+<pre><code class="language-text">ブリーフ + 参照 ──► Devin がビジュアルアセット + コードを生成
+        ▲                     │
+        └──── 批評ループ：「リングのアニメーションが速すぎる、
+              stroke-dashoffset のイージングを 1.4s に遅く」─────┘
+</code></pre>
+<h2>ステップ 1 — クリエイティブディレクターのようにブリーフする</h2>
+<p>Spraycash 記事のプロンプトは一つの形を共有——具体的な名詞、趣味の形容詞なし：</p>
+<pre><code class="language-text">Hero section: dark navy (#0A1628) background, a circular progress ring
+as the visual anchor — SVG stroke-dashoffset draw-on animation over
+1.4s ease-out, layered clouds behind it drifting on separate
+translateX loops at 40s/60s/90s periods so the parallax never repeats.
+</code></pre>
+<p>与えるもの：パレットの hex 値、アニメーションの機構（「動かして」ではない）、タイミング値、レイヤー順。</p>
+<h2>ステップ 2 — ピクセルの前にタイプシステムを固める</h2>
+<p>Spraycash はコンポーネントに触る前に <strong>3 フォントシステム</strong>——ディスプレイ、本文、モノ——を早期に固定した。同じことをする；これが単独で最もレバレッジの高い視覚決定：</p>
+<pre><code class="language-text">Type system: &lt;display font&gt; for hero + section heads, &lt;body font&gt; for
+prose, &lt;mono&gt; for numbers/labels. Set the scale: 64/40/28/18/14.
+Nothing else uses another size.
+</code></pre>
+<h2>ステップ 3 — セッション内で画像を生成する</h2>
+<p>Devin はアセットを生成して配置する——デザインされたページにストックフォトを貼るな。記事はブリーフのパレットに合わせた生成ヒーロー画像を示す。スタイル指示（パレット、照明、材質）を一度固定し、すべてのアセット要求で再利用すれば、生成アセットの一貫性が保てる。</p>
+<h2>ステップ 4 — 形容詞ではなく機構でアニメーションする</h2>
+<table>
+<thead>
+<tr>
+<th>曖昧（失敗）</th>
+<th>機械的（成功）</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>「なめらかな入場」</td>
+<td>"stagger children 80ms, translateY(12px)→0, opacity 0→1, 400ms ease-out"</td>
+</tr>
+<tr>
+<td>「さりげないパララックス」</td>
+<td>"three layers, translateX loops at 40/60/90s periods"</td>
+</tr>
+<tr>
+<td>「リングを描画」</td>
+<td>"stroke-dasharray = circumference, animate dashoffset C→0 over 1.4s"</td>
+</tr>
+</tbody>
+</table>
+<p>Spraycash のリング、雲、段階的出現はすべてこのレベルで指定された——そしてモックではなく実際の CSS/SVG として出荷された。</p>
+<h2>ステップ 5 — 批評ループこそがクラフト</h2>
+<p>記事の本当の教訓：品質は<em>反復</em>から来た——「リングの描画が速すぎる」「雲がノイズに見える、不透明度 30% 下げ」「数字にモノフォント」。視覚的アンカーごとに 3〜5 回の批評ラウンドを見積もる。Devin はページ全体をコンテキストに保持する；各ラウンドはチケットではなくメッセージ一つ。</p>
+<h2>検証チェックリスト</h2>
+<ul>
+<li>[ ] ページがストック画像<em>ゼロ</em>でレンダリングされる——全アセットが生成かコード</li>
+<li>[ ] すべてのアニメーションが CSS 内にタイミング値を持つ名前付き機構</li>
+<li>[ ] タイプシステム 1 つ、スケール 1 つ——迷子のサイズなし</li>
+<li>[ ] 3 つ以上の幅で確認し、破損やクリップなし</li>
+</ul>
+<h2>落とし穴</h2>
+<ul>
+<li><strong>形容詞プロンプト。</strong> 「プレミアム」「洗練」「モダン」はスロップを生む。機構と値がクラフトを生む。</li>
+<li><strong>一発撮り。</strong> 最初のレンダーを受け入れるからエージェント製ページがエージェント製に見える。品質は批評ループに住む。</li>
+<li><strong>固定化の欠落。</strong> パレット + タイプシステムを<em>先に</em>制約として設定；制約設定前に生成されたアセットは後から決して合わない。</li>
+</ul>
+<h2>理解度チェック</h2>
+<ol>
+<li>なぜ Spraycash の著者は全プロンプトを原文で公開したか？<em>（プロンプト列こそがデザイン成果物——会話によるアートディレクションは、会話が再現可能なときだけ再現可能）</em></li>
+<li>「生成画像 + レイヤードアニメーション」に必要で、スクリーンショットのモックにないものは？<em>（出荷可能なアセットと動作するアニメーションシステム——検証は画像ではなくレンダリングされたページ）</em></li>
+<li>ランディングページでデザインツールよりチャット指示が優れるのはいつか？<em>（出力がどうせ本番コードになるとき——デザインセッションこそが実装）</em></li>
+</ol>
+<h2>出典</h2>
+<ul>
+<li><a href="https://dev.to/ibrahimpima/designing-the-spraycash-ui-with-kimi-k3-in-devin-4l2f">Designing the Spraycash UI with Kimi K3 in Devin</a> — 全プロンプトと反復履歴</li>
+<li>関連：<a href="https://github.com/Till3005/built-with-devin#patterns--write-ups">built-with-devin — パターン</a></li>
+</ul>
+</article>
+<footer><div class="wrap foot-base"><span data-i18n="foot.note">Unofficial community project — not affiliated with Cognition AI.</span><span><a href="../../index.html">built-with-devin</a> · <a href="https://github.com/Till3005/build-with-devin">build-with-devin</a></span></div></footer>
+</main>
+<script src="../../assets/theme.js"></script>
+<script src="../../assets/i18n.js"></script>
+<script src="../../assets/i18n-runtime.js"></script>
+</body>
+</html>

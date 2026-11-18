@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ガイド 14 — コミュニティ実践レポート — build-with-devin guides</title>
+<meta name="description" content="ガイド 14 — コミュニティ実践レポート">
+<link rel="icon" href="../../assets/brand/Devin_Symbol.svg" type="image/svg+xml">
+<link rel="stylesheet" href="../../assets/site.css">
+<link rel="stylesheet" href="../../assets/guides.css">
+</head>
+<body>
+<a class="skip" href="#guide">Skip to content</a>
+<nav><div class="wrap nav-inner">
+  <div class="nav-left">
+    <a class="brand" href="../../index.html" aria-label="Built with Devin">
+      <span class="brand-text">built<strong>-with-</strong></span><img class="brand-mark" src="../../assets/brand/Devin_Primary_Logo.svg" alt="Devin" height="16"><span class="unofficial-chip">unofficial</span>
+    </a>
+  </div>
+  <div class="nav-side">
+    <div class="mode-toggle" role="tablist" aria-label="Site section">
+      <button class="mode-btn" data-mode="built" role="tab" aria-selected="false" onclick="location.href='../../index.html'">Built</button>
+      <button class="mode-btn on" data-mode="build" role="tab" aria-selected="true" onclick="location.href='../../index.html#build'">Build</button>
+      <span class="mode-pill" aria-hidden="true"></span>
+    </div>
+    <a class="cta" href="https://github.com/Till3005/build-with-devin/blob/main/guides/ja/community-field-reports.md">GitHub</a>
+  </div>
+</div></nav>
+<main>
+<article class="guide wrap" id="guide">
+  <p class="guide-crumb"><a href="../../index.html#build">← Guides</a> · <a href="../community-field-reports.html">English</a></p>
+<h1>ガイド 14 — コミュニティ実践レポート</h1>
+<p><strong>目標：</strong> 実際の業務で Devin を運用したエンジニアたちが学んだこと——失敗も含めて。称賛的・批判的双方の公開体験記から抽出。
+<strong>レベル：</strong> 判断力を得るならここから
+<strong>出典：</strong> 各レポートごとにリンク</p>
+<p>このガイドは意図的にバランスを取っている：Devin が確実に勝つ領域、金を燃やす領域、そして二つの結果を分ける働き方。</p>
+<h2>すべてのレポートに繰り返されるパターン</h2>
+<p>成果を出すユーザーは Devin をコード生成器ではなく<strong>非同期のジュニアエンジニア</strong>として扱う。Scott Wu（Cognition CEO）は <a href="https://www.lennysnewsletter.com/p/how-devin-replaces-your-junior-engineers">Lenny's Newsletter</a> で内部ワークフローを説明している：範囲を絞ったタスクを委任し、会議中に走らせ、PR をレビューする。<a href="https://every.to/chain-of-thought/coding-with-devin-my-new-ai-programming-agent">Every の記事</a>も同じ枠組みに落ちる——これは<em>スキルセット</em>を要する：何が得意かを学び、理解できるタスクを書き、介入すべきときを知り、自分とは違うやり方でされた仕事を信頼することを学ぶ。</p>
+<h2>Devin が勝った、記録された事例</h2>
+<p><strong>エンドツーエンドのプロトタイピング。</strong> 空のリポジトリから、Devin が FastAPI + React の「City Explorer」（画像/天気/ニュース連携）をスキャフォールドし、ローカルで実行し、PR を開き、公開 URL にデプロイ——約 90 分、人間の介入約 2 回（<a href="https://medium.com/@sambhavgaur_70582/copilot-cursor-or-devin-my-hands-on-weekend-with-ai-that-codes-and-deploys-acc708e802b3">Medium 体験記</a>）。<a href="https://blog.scottlogic.com/2025/10/20/rapid-development-with-devin.html">Scott Logic</a> は実際のクライアントプロトタイプで同じ弧を報告——下記に重要な反復の教訓。</p>
+<p><strong>ランタイムが要る仕事。</strong> <a href="https://web.archive.org/web/20260718112612/https://mohitkhare.me/blog/devin-vs-claude-code/">Claude Code との直接対決</a>で、Devin は規約に合わせるタスクでは負けたが、マシンが活きる領域では明確に勝った：メモリリーク狩りでプロファイリング、負荷下でのヒープスナップショット、レポート生成——エージェント自身の VM が機能。</p>
+<p><strong>ライブトラブルシューティング。</strong> <a href="https://www.faros.ai/blog/how-to-use-devin-ai-troubleshooting">Faros</a> は<em>顧客電話中に</em> Devin を使用：イントロスペクション API のコードを読み、動作する <code>curl</code> を数秒で生成——1〜2 日のフォローアップループを通話内に圧縮。</p>
+<p><strong>最新ドキュメントを伴う実際の移行。</strong> 厄介な Vue→React コードベースでの Tailwind 3→4 + DaisyUI 4→5 アップグレードは、チームが Context7 MCP 経由で最新ドキュメントを供給したとき機能した——プロンプトはタスクだけでなく<em>コンテキスト</em>を運んだ（<a href="https://medium.com/design-bootcamp/day-7-of-30-getting-to-know-devon-ai-and-working-with-him-743c351cd0c4">Bootcamp 記事</a>）。</p>
+<p><strong>自己検証。</strong> <a href="https://architecttocto.substack.com/p/the-only-coding-agent-worth-paying">1 年間の実践者比較</a>は Devin のブラウザ駆動 e2e テストを閾値の瞬間と評する：作ったものに自分で遷移して確認する——生成ではなくエンジニアリングに似たフィードバックループ。</p>
+<p><strong>コードを超えて。</strong> Cognition の研究者は、9 年前に学期の大半を費やした Lean 形式化を Devin が再構築し——完成させたと報告。<strong>15 分以内</strong>で（<a href="https://x.com/penlume/status/2115806616796921885">投稿</a>）。数学の形式化は移行と同じ特性を報酬とする：機械チェック可能な完了定義。</p>
+<p><strong>オブザーバビリティへの配線。</strong> <a href="https://medium.com/lets-code-future/how-i-turned-devin-into-a-performance-analysis-agent-with-dynatrace-mcp-753d3f4790a2">Dynatrace MCP + Devin</a>は Devin をパフォーマンス分析エージェントに変える：ライブ指標とトレースを問い合わせて診断——MCP サーバーがリポジトリにない本番コンテキストを運ぶ（Medium）。素直なチケット→PR ループの全行程は <a href="https://medium.com/@winter.inc/devin-from-bug-report-to-pull-request-25-days-of-ai-day-18-b158daa20f23">Devin: バグレポートから PR へ</a>も参照。</p>
+<h2>失敗した、記録された事例</h2>
+<ul>
+<li><strong>曖昧または広すぎるプロンプト。</strong> Scott Logic の最初のプロンプトは使えないスキャフォールドを産んだ；スタックと依頼を絞る（「モデルだけ」）ことで修正。Devin は作りすぎる——何を作る<em>な</em>かを伝える。</li>
+<li><strong>規約適合タスク。</strong> 「このエンドポイントにページネーションを追加」がコードベースの規約と不整合で返ってきた事例が独立した 2 レポートにある（<a href="https://www.amillionmonkeys.co.uk/blog/ai-coding-tools-small-studios">amillionmonkeys</a>、<a href="https://web.archive.org/web/20260718112612/https://mohitkhare.me/blog/devin-vs-claude-code/">mohitkhare</a>）——規約を運ばない限り Devin は孤立して作る（→ ガイド 9）。</li>
+<li><strong>検査不能な仕事。</strong> <a href="https://expectedwrong.com/devin-appraised">expectedwrong</a>と <a href="https://dev.to/alanwest/i-gave-devin-10-real-tasks-it-completed-3-3063">alanwest の 10 タスク検査</a>が失敗モードを記録：壊れているか存在しない自信満々の出力、ループで燃えるクレジット。彼らのタスクは明確な検証のない仕事に偏っていた——公式プレイブックが必須とするのと同じゲート（ガイド 11）。</li>
+</ul>
+<h2>名付けられたチーム導入（コミュニティ、数値つき）</h2>
+<p>Devin の運用データを公開している実組織——異常に記録の良い日本のエンジニアリングコミュニティからが多い：</p>
+<table>
+<thead>
+<tr>
+<th>チーム</th>
+<th>導入</th>
+<th>報告された結果</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>rakko_inc</td>
+<td>Playbooks + GitHub Actions + Devin API による Devin 自動コードレビュー——人間のレビュー前に全 PR を事前消化</td>
+<td><strong>月間レビュー PR 65 → 184 件（2.8 倍）</strong>；人間は Devin の要約から開始（<a href="https://zenn.dev/rakko_inc/articles/00cc5a5a679971">レポート</a>、日本語）</td>
+</tr>
+<tr>
+<td>Skillnote（QA）</td>
+<td>PR → Actions → Devin がテスト設計ドラフト（CSV/Excel、「なぜこのケースか」含む）を生成し PR に投稿</td>
+<td><strong>10 テストケースあたり約 35 分節約</strong>；Devin 設計ケースが人間が見逃したバグを捕捉（<a href="https://zenn.dev/skillnote/articles/5ba429ca249801">レポート</a>、日本語）</td>
+</tr>
+<tr>
+<td>arufian</td>
+<td>サーバーレスの GitHub イベント自動化（常駐サーバーなし）：<code>devin:fix</code>/<code>devin:plan</code> ラベルが Devin セッションを駆動、<strong>優先度 × 複雑度ポリシーテーブル</strong>と計画優先承認フロー</td>
+<td>安全スキャンがリスキーな PR をゲート；高複雑度の仕事は計画 → 人間承認 → <code>run that plan</code>（<a href="https://zenn.dev/arufian/articles/f80a62f5217cee">レポート</a>、日本語）</td>
+</tr>
+<tr>
+<td>Leverages（levtech）</td>
+<td>組織展開：14 チーム / 約30人</td>
+<td>約2.5か月で<strong>177 マージ PR</strong>；ROI を <code>ACU コスト − 節約時間 × 賃金</code> で計測しタスク種別の構成も追跡（<a href="https://zenn.dev/levtech/articles/9c869303820844">レポート</a>、日本語）</td>
+</tr>
+<tr>
+<td>Decagon</td>
+<td>Devin Cloud 上の AutoResearch：1 体のオーケストレーター Devin + 仮説を競わせる並列サブエージェント；すべてのアイデアを Modal GPU 上で再生した本番トラフィックに対して検証</td>
+<td>サポートトラフィックで<strong>GPU あたり最大 2.5 倍のスループット</strong>（<a href="https://x.com/DecagonAI/article/2115511110120120437">記事</a>）</td>
+</tr>
+<tr>
+<td>Nader Dabit</td>
+<td>個人 5 Bot 組織——<strong>CTO</strong>（全セッション/リポジトリ、iMessage VIP）、<strong>Auto(mation)Bot</strong>（自動化の運行、性能レポート）、<strong>DevCommunityBot</strong>（アンバサダープログラムのデータ → ミニアプリ）、<strong>DevRelBot</strong>（ドキュメント + <em>自分専用のコンピュータ、専用 Devin/GitHub/Linear アカウント、ElevenLabs 音声クローン</em>で作るチュートリアル動画）</td>
+<td>加えて <strong>Windfable</strong>：Unity iOS RPG のための約 10 の SuperJennyStack Bot、それぞれ専用 macOS+Xcode+Unity 持ち、iPhone Duo の折り畳み/展開両モードをスクリーンショット/動画差分でテスト（<a href="https://x.com/dabit3/status/2122755275182469515">入門</a>）</td>
+</tr>
+<tr>
+<td>Mark Fenner</td>
+<td>調整役 Chief Agent Bot（"Frankie"）の下で職務別 4 Bot を運営する一人オペレーター</td>
+<td>1 つの決裁面に集約された更新——チームなしでもマルチ Bot 組織形が機能（<a href="https://x.com/markfenner/status/2122740244328145211">ウォークスルー</a>）</td>
+</tr>
+</tbody>
+</table>
+<p>中にある再利用可能なアイデア：<strong>ポリシーテーブルゲーティング</strong>（arufian：低リスク作業だけ自動 PR、複雑なものは計画優先）、<strong>固定出力プロンプト</strong>（Skillnote：固定 CSV 形式 + 変換用インライン Python が出力ばらつきを殺す）、<strong>レビュアー事前消化</strong>（rakko：人間が読む前に Devin が要約 + フラグ）、<strong>正直な会計</strong>（levtech の ACU 対賃金 ROI 式）。</p>
+<h2>抽出された教訓</h2>
+<ol>
+<li><strong>プロジェクトではなくスライスをスコープする。</strong> 成功はすべて境界のある単位；失敗は「広くこれを作って/直して」。（公式ドクトリン：ガイド 13。）</li>
+<li><strong>検証するか委任しないか。</strong> 機械が「完了」をチェックできる仕事を Devin に——テスト、ビルド、動く <code>curl</code>、レンダリングされたページ。</li>
+<li><strong>仮定ではなくコンテキストを運ぶ。</strong> 規約、（MCP 経由の）最新ドキュメント、スタックの形——失敗は能力の失敗ではなくコンテキストの失敗。</li>
+<li><strong>委任する；見守らない。</strong> すべての好意的レポートの ROI は<em>非同期性</em>——あなたが別のことをしている間にタスクが走る。タイピングを見つめるのが「遅い」と判断する方法。</li>
+<li><strong>ツールではなくプロンプトを反復する。</strong> Scott Logic の修正は別のエージェントではなく、より狭いプロンプトだった。最初の失敗実行はプロンプトのバグとして扱う。</li>
+</ol>
+<h2>Scott Wu の社内トップ 5（Lenny's インタビューより）</h2>
+<p>Cognition 自身が最も委任するタスク：<strong>フロントエンド修正、バージョンアップグレード、ドキュメント、インシデント対応、テスト</strong>——加えて「第一防御線」パターン（人間が関わる前に Devin がクラッシュを分析）と、<em>より良いプロンプトを書く</em>ための DeepWiki リサーチ。</p>
+<h2>検証チェックリスト</h2>
+<ul>
+<li>[ ] 自スタックに最も近いレポートを 1 つ選び、蒸留版ではなく原文を読み直した——数値は文脈の中でも成立するか？</li>
+<li>[ ] 自組織で再現できると金を賭けられる教訓を 1 つ書き下した；名付けられなければ別のレポートを選ぶ</li>
+</ul>
+<h2>落とし穴</h2>
+<ul>
+<li><strong>生存者バイアス。</strong> 称賛レポートは数値を公開し；静かな失敗は何も公開しない。このコレクションの失敗を中央値の体験、勝利を天井として読む。</li>
+<li><strong>カーゴカルト。</strong> Scott Logic のプロンプト反復が機能したのは<em>反復したから</em>——ループなしで最終プロンプトを真似ても、彼らの結果ではなく開始点が手に入る。</li>
+</ul>
+<h2>理解度チェック</h2>
+<ol>
+<li>失敗レポートに共通し成功レポートに欠けているものは？<em>（検証不能な委任——失敗は「完了」を誰もチェックできない仕事を Devin に与えた；すべての成功がチェックを定義していた）</em></li>
+<li>Faros の「顧客電話中のデバッグ」が逸話でなく導入の教訓なのはなぜ？<em>（ライブトリアージの動作を示す：人間が顧客関係を保つ間にエージェントが第一応答者になる）</em></li>
+<li>なぜこのガイドは敵対的レポートを同等の出典として数えるのか？<em>（敵対的レポートは境界条件を明らかにする——地図の端は、その外に歩み出た人から学ぶ）</em></li>
+</ol>
+<h2>出典</h2>
+<ul>
+<li><a href="https://blog.scottlogic.com/2025/10/20/rapid-development-with-devin.html">Scott Logic — Rapid development with Devin</a></li>
+<li><a href="https://www.lennysnewsletter.com/p/how-devin-replaces-your-junior-engineers">Lenny's Newsletter — Scott Wu on Cognition's internal Devin usage</a></li>
+<li><a href="https://every.to/chain-of-thought/coding-with-devin-my-new-ai-programming-agent">Every — Coding with Devin</a></li>
+<li><a href="https://web.archive.org/web/20260718112612/https://mohitkhare.me/blog/devin-vs-claude-code/">dev&gt;notes — Devin vs Claude Code</a></li>
+<li><a href="https://www.faros.ai/blog/how-to-use-devin-ai-troubleshooting">Faros — Devin for live troubleshooting</a></li>
+<li><a href="https://medium.com/@sambhavgaur_70582/copilot-cursor-or-devin-my-hands-on-weekend-with-ai-that-codes-and-deploys-acc708e802b3">Medium — Copilot, Cursor or Devin weekend</a></li>
+<li><a href="https://medium.com/design-bootcamp/day-7-of-30-getting-to-know-devon-ai-and-working-with-him-743c351cd0c4">Bootcamp — Day 7 with Devin（Tailwind/DaisyUI 移行）</a></li>
+<li><a href="https://architecttocto.substack.com/p/the-only-coding-agent-worth-paying">architect to CTO — The only coding agent worth paying for</a></li>
+<li><a href="https://expectedwrong.com/devin-appraised">expectedwrong — Devin, appraised</a> · <a href="https://dev.to/alanwest/i-gave-devin-10-real-tasks-it-completed-3-3063">dev.to — 10 real tasks, 3 completed</a> · <a href="https://www.amillionmonkeys.co.uk/blog/ai-coding-tools-small-studios">amillionmonkeys</a></li>
+<li><a href="https://dev.to/signadot/test-devins-changes-end-to-end-with-signadot-a0">Signadot — Testing Devin's changes end to end</a></li>
+</ul>
+</article>
+<footer><div class="wrap foot-base"><span data-i18n="foot.note">Unofficial community project — not affiliated with Cognition AI.</span><span><a href="../../index.html">built-with-devin</a> · <a href="https://github.com/Till3005/build-with-devin">build-with-devin</a></span></div></footer>
+</main>
+<script src="../../assets/theme.js"></script>
+<script src="../../assets/i18n.js"></script>
+<script src="../../assets/i18n-runtime.js"></script>
+</body>
+</html>

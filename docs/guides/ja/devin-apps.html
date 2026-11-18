@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ガイド 10 — Devin Apps：チャットから実働ツールを出荷する — build-with-devin guides</title>
+<meta name="description" content="ガイド 10 — Devin Apps：チャットから実働ツールを出荷する">
+<link rel="icon" href="../../assets/brand/Devin_Symbol.svg" type="image/svg+xml">
+<link rel="stylesheet" href="../../assets/site.css">
+<link rel="stylesheet" href="../../assets/guides.css">
+</head>
+<body>
+<a class="skip" href="#guide">Skip to content</a>
+<nav><div class="wrap nav-inner">
+  <div class="nav-left">
+    <a class="brand" href="../../index.html" aria-label="Built with Devin">
+      <span class="brand-text">built<strong>-with-</strong></span><img class="brand-mark" src="../../assets/brand/Devin_Primary_Logo.svg" alt="Devin" height="16"><span class="unofficial-chip">unofficial</span>
+    </a>
+  </div>
+  <div class="nav-side">
+    <div class="mode-toggle" role="tablist" aria-label="Site section">
+      <button class="mode-btn" data-mode="built" role="tab" aria-selected="false" onclick="location.href='../../index.html'">Built</button>
+      <button class="mode-btn on" data-mode="build" role="tab" aria-selected="true" onclick="location.href='../../index.html#build'">Build</button>
+      <span class="mode-pill" aria-hidden="true"></span>
+    </div>
+    <a class="cta" href="https://github.com/Till3005/build-with-devin/blob/main/guides/ja/devin-apps.md">GitHub</a>
+  </div>
+</div></nav>
+<main>
+<article class="guide wrap" id="guide">
+  <p class="guide-crumb"><a href="../../index.html#build">← Guides</a> · <a href="../devin-apps.html">English</a></p>
+<h1>ガイド 10 — Devin Apps：チャットから実働ツールを出荷する</h1>
+<p><strong>目標：</strong> 社内ツール、ダッシュボード、ステージングコピーを説明する——Devin が構築し、チームがサインインして開ける安定 URL で提供する。
+<strong>レベル：</strong> ここから始める（プラットフォームガイド）· <strong>所要時間：</strong> 最初の App まで約10分
+<strong>出典：</strong> <a href="https://devin.ai/blog/devin-apps">Introducing Devin Apps</a>（2026 年 11 月 13 日）</p>
+<h2>概要</h2>
+<p>Devin App は Devin のクラウドマシン上に直接ホストされる、実働のプライベート Web アプリケーション。ツールを説明すれば Devin が構築し、チームはリンクから開く——ホスティングもデプロイパイプラインも不要。Devin のマシン<em>上</em>で動くので、MCP、インテグレーション、コードベース、自身のデータベース（同じマシン上の SQLite/Postgres）に届き、Devin API 自体も呼べる。</p>
+<h2>作り方</h2>
+<ol>
+<li>サイドバー → <strong>Apps</strong> → App がやるべきことを記述（またはプロンプトテンプレートを選択：メトリクスダッシュボード、プロジェクト状況、レビューキュー）→ <strong>Build with Devin</strong></li>
+<li>Devin がセッション内で確認質問をし、構築してオンライン化——Apps ページに URL が表示され、v1 が公開されるまでステータスは <code>Building</code></li>
+<li><strong>Share</strong> —— リンクをコピー；指定メンバー、組織、エンタープライズにスコープ。App は決して公開されない；開くには Devin サインインが必要</li>
+</ol>
+<p>ブラウザプレビューを生成したセッション内で「publish this as an App」と言うこともできる。</p>
+<h2>更新ループ</h2>
+<ul>
+<li>App ページの <strong>Edit in session</strong> → 変更を記述 → Devin が同じ URL に新バージョンを構築。すべての更新はバージョン管理されたデプロイ；新バージョンが起動に失敗しても前バージョンが提供を続ける</li>
+<li><strong>自動化で鮮度維持：</strong> 自動化（ガイド 6）を配線し、スケジュールまたはブランチ変更で再デプロイ——毎朝新しいデータを引くダッシュボードが定番の用途</li>
+</ul>
+<h2>動作の仕組み（重要な部分）</h2>
+<ul>
+<li><strong>ハイバネーション：</strong> App はメモリスナップショット上に構築——未使用時はマシンがスリープし、開くと起床（初回ロードに数秒かかることがある）。課金は起きている時間に連動</li>
+<li><strong>スタック：</strong> ポートで HTTP を提供できるものなら何でも；DB は同じマシンに同居</li>
+<li><strong>スケールの境界：</strong> 1 台のマシン——社内ツールやダッシュボードには最適、高トラフィックの本番サービスには<strong>不向き</strong></li>
+</ul>
+<h2>実証済みの 3 つの用途</h2>
+<table>
+<thead>
+<tr>
+<th>用途</th>
+<th>例</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>社内ツール</td>
+<td>管理パネル、申請フォーム、承認キュー——共有スプレッドシートの殺し屋</td>
+</tr>
+<tr>
+<td>ダッシュボード</td>
+<td>自社データソースから引くメトリクス/サポート/営業ボード、スケジュール更新</td>
+</tr>
+<tr>
+<td>ベータ/ステージングコピー</td>
+<td>実際のスタック（フロントエンド+バックエンド+DB+ワーカー）を Devin のマシンで稼働——チームメイトがリンクからステージングコピーを開く</td>
+</tr>
+</tbody>
+</table>
+<h2>検証チェックリスト</h2>
+<ul>
+<li>[ ] マシンがスリープした後も App が安定 URL で読み込める（数秒のコールドスタートは想定内）</li>
+<li>[ ] Edit in session の変更が同じ URL に新バージョンを生んだ</li>
+<li>[ ] 共有スコープが正しい：アクセス権のないチームメイトがサインインで止められる</li>
+</ul>
+<h2>落とし穴</h2>
+<ul>
+<li><strong>本番トラフィック。</strong> 1 台のマシンでアイドル時にスリープ——ユーザーではなくチームに向ける。</li>
+<li><strong>静的な考え方。</strong> App の強みは <em>Devin の環境内に生きる</em>こと——データ/MCP に配線しなければ、弱い Vercel を作っただけ。</li>
+</ul>
+<h2>理解度チェック</h2>
+<ol>
+<li>Devin App と PR プレビューの違いは？<em>（App は Devin のマシンから安定 URL で実働配信される——ステートフル、永続、サインインゲート付き。ビルド成果物ではない）</em></li>
+<li>社内ツールで「チームがサインインして開く」ことが重要な理由は？<em>（認証が組織から継承される——別途ログインシステムを作り守る必要がない）</em></li>
+<li>どの種類の社内ツールが App に最も合うか？<em>（「後で完璧」より「今すぐ十分」が勝るダッシュボードとステージング面——メンテコストはほぼゼロ）</em></li>
+</ol>
+<h2>出典</h2>
+<ul>
+<li><a href="https://devin.ai/blog/devin-apps">Introducing Devin Apps</a></li>
+<li>関連：<a href="automations-101-event-driven.html">ガイド 6 — イベント駆動の自動化</a> 定期更新用</li>
+</ul>
+</article>
+<footer><div class="wrap foot-base"><span data-i18n="foot.note">Unofficial community project — not affiliated with Cognition AI.</span><span><a href="../../index.html">built-with-devin</a> · <a href="https://github.com/Till3005/build-with-devin">build-with-devin</a></span></div></footer>
+</main>
+<script src="../../assets/theme.js"></script>
+<script src="../../assets/i18n.js"></script>
+<script src="../../assets/i18n-runtime.js"></script>
+</body>
+</html>

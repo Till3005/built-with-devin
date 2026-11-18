@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ガイド 6 — イベント駆動の自動化 — build-with-devin guides</title>
+<meta name="description" content="ガイド 6 — イベント駆動の自動化">
+<link rel="icon" href="../../assets/brand/Devin_Symbol.svg" type="image/svg+xml">
+<link rel="stylesheet" href="../../assets/site.css">
+<link rel="stylesheet" href="../../assets/guides.css">
+</head>
+<body>
+<a class="skip" href="#guide">Skip to content</a>
+<nav><div class="wrap nav-inner">
+  <div class="nav-left">
+    <a class="brand" href="../../index.html" aria-label="Built with Devin">
+      <span class="brand-text">built<strong>-with-</strong></span><img class="brand-mark" src="../../assets/brand/Devin_Primary_Logo.svg" alt="Devin" height="16"><span class="unofficial-chip">unofficial</span>
+    </a>
+  </div>
+  <div class="nav-side">
+    <div class="mode-toggle" role="tablist" aria-label="Site section">
+      <button class="mode-btn" data-mode="built" role="tab" aria-selected="false" onclick="location.href='../../index.html'">Built</button>
+      <button class="mode-btn on" data-mode="build" role="tab" aria-selected="true" onclick="location.href='../../index.html#build'">Build</button>
+      <span class="mode-pill" aria-hidden="true"></span>
+    </div>
+    <a class="cta" href="https://github.com/Till3005/build-with-devin/blob/main/guides/ja/automations-101-event-driven.md">GitHub</a>
+  </div>
+</div></nav>
+<main>
+<article class="guide wrap" id="guide">
+  <p class="guide-crumb"><a href="../../index.html#build">← Guides</a> · <a href="../automations-101-event-driven.html">English</a></p>
+<h1>ガイド 6 — イベント駆動の自動化</h1>
+<p><strong>目標：</strong> 外部イベント——Slack、Teams、GitHub、Linear、Jira、PagerDuty、cron、webhook——を、自分で起動する Devin セッションに配線する。
+<strong>レベル：</strong> ここから始める（プラットフォームガイド）· <strong>所要時間：</strong> 約20分
+<strong>出典：</strong> <a href="https://docs.devin.ai/product-guides/automations">Automations ドキュメント</a> · <a href="https://www.youtube.com/watch?v=6xxKtIpgOyE">公式動画ウォークスルー</a></p>
+<h2>構造</h2>
+<p>すべての自動化は 4 部品：</p>
+<table>
+<thead>
+<tr>
+<th>部品</th>
+<th>役割</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Trigger</td>
+<td>発火させるイベント——Slack メッセージ、失敗した CI 実行、cron の刻み、HTTP webhook</td>
+</tr>
+<tr>
+<td>Conditions</td>
+<td>任意のフィルター——ラベル <code>bug</code> のみ、このリポジトリのみ、<code>/devin</code> を含むメッセージのみ</td>
+</tr>
+<tr>
+<td>Preflight check</td>
+<td>任意の LLM フィルターまたはスクリプト。マッチ<em>後</em>・アクション前に走り、イベントをスキップしたり作業項目に分割したりできる</td>
+</tr>
+<tr>
+<td>Action</td>
+<td>実行内容：セッション開始、既存セッションへのメッセージ、トリアージ監視、メール通知</td>
+</tr>
+</tbody>
+</table>
+<h2>トリガーカタログ</h2>
+<table>
+<thead>
+<tr>
+<th>ソース</th>
+<th>発火条件</th>
+<th>定番の用途</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Slack</td>
+<td>新規メッセージ、リアクション追加、ユーザーグループメンション</td>
+<td><code>#incidents</code> のトリアージ；🚨 リアクション → 調査</td>
+</tr>
+<tr>
+<td>Microsoft Teams</td>
+<td>メッセージ、リアクション</td>
+<td>投稿されたスレッド内でバグ報告に回答</td>
+</tr>
+<tr>
+<td>GitHub</td>
+<td>issue、issue コメント、PR、PR レビュー、チェック実行、push</td>
+<td>失敗した CI の自動修正；<code>/devin</code> コメント → セッション</td>
+</tr>
+<tr>
+<td>GitLab</td>
+<td>MR、MR コメント、issue、push、パイプライン</td>
+<td>失敗したパイプラインの修正</td>
+</tr>
+<tr>
+<td>Linear</td>
+<td>issue 作成/ラベル/ステータス/優先度/アサイン/移動</td>
+<td>Devin にアサインされたチケットを実装</td>
+</tr>
+<tr>
+<td>Jira</td>
+<td>issue 作成/更新/ラベル/ステータス/アサイン/コメント</td>
+<td>同上、Jira 形</td>
+</tr>
+<tr>
+<td>Pylon</td>
+<td>issue 作成/タグ/ステータス</td>
+<td>顧客バグのトリアージ</td>
+</tr>
+<tr>
+<td>PagerDuty</td>
+<td>インシデント発生/確認/解決</td>
+<td>高緊急度インシデントを発生時に調査</td>
+</tr>
+<tr>
+<td>Schedule</td>
+<td>cron または一回限り</td>
+<td>日次 Sentry スイープ、週次依存更新、夜間スモークテスト</td>
+</tr>
+<tr>
+<td>Webhook</td>
+<td>任意の HTTP POST</td>
+<td>それ以外全部——Datadog、Sentry、自社システム</td>
+</tr>
+</tbody>
+</table>
+<p>1 つの自動化に複数トリガーを付けると OR 動作——例：GitHub CI 失敗<em>または</em> Slack リアクションのどちらでも発火。</p>
+<h2>レシピ 1 — 任意の issue で <code>/devin</code></h2>
+<p>世の中で最も導入されているトリガー：</p>
+<pre><code class="language-text">Trigger:   GitHub → issue comment, repo = your/repo
+Condition: comment body starts with &quot;/devin&quot;
+Action:    Start session — prompt includes the event payload
+</code></pre>
+<p>結果：チームの誰かが issue に <code>/devin investigate this</code> とコメントすると、スレッド全文をコンテキストにしたセッションが拾う。</p>
+<h2>レシピ 2 — CI 失敗の自己修復</h2>
+<pre><code class="language-text">Trigger:   GitHub → check run, repo = your/repo
+Condition: conclusion = failure
+Action:    Start session: &quot;CI check &lt;name&gt; failed on this commit.
+            Diagnose the failure from the logs, fix it, and push to
+            the same branch.&quot;
+</code></pre>
+<p>イベントペイロードが失敗したチェック + コミットをセッションに運ぶ——人間のコピペ不要。</p>
+<h2>レシピ 3 — 定期スイープ</h2>
+<pre><code class="language-text">Trigger:   Schedule → daily 09:00
+Action:    Start session: &quot;Sweep yesterday's Sentry issues in
+            &lt;project&gt;. File the top 3 by impact as tickets and
+            start the most actionable one.&quot;
+</code></pre>
+<p>日次の衛生ループ（Sentry スイープ、依存更新、スモークテスト）は最も ROI の高い自動化——「誰かが確認すべき」を「確認済み」に変える。</p>
+<h2>アクション種別の選び方</h2>
+<table>
+<thead>
+<tr>
+<th>アクション</th>
+<th>使う場面</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Start session</td>
+<td>デフォルト——各イベントに新しいマシンとコンテキスト</td>
+</tr>
+<tr>
+<td>Message session</td>
+<td>長寿命セッションが状態を持つ場合——イベントをそこに流し込む（Bot の種）</td>
+</tr>
+<tr>
+<td>Triage Devin</td>
+<td>常駐 Devin が Slack チャンネル全体を監視し、子調査を生成（インシデントには Devin Oncall 参照）</td>
+</tr>
+<tr>
+<td>Email notification</td>
+<td>実行したことだけ伝える</td>
+</tr>
+</tbody>
+</table>
+<p><strong>自動化 vs Bot：</strong> 自動化は無口な管——イベントが入り、セッションが出る。Bot は同じトリガーの周りにメモリ・判断・マルチセッション計画を足す。まず自動化から始め、作業に継続的な遂行が要るようになったら Bot に卒業する（ガイド 2–5）。</p>
+<h2>作り方</h2>
+<p>Automations ページの 3 つの作成経路：</p>
+<ol>
+<li><strong>Create</strong> —— 空のエディタ：トリガー → 条件 → アクションを選ぶ</li>
+<li><strong>Template</strong> —— よくあるワークフロー向けの事前設定済み自動化ギャラリー</li>
+<li><strong>Generate with Devin</strong> —— 英語で記述（<em>"when a CI check fails on my-org/my-repo, have Devin fix it and push to the same branch"</em>）、生成された設定をレビュー</li>
+</ol>
+<p>人がハマる注意点：</p>
+<ul>
+<li>Slack トリガーには Devin のチャンネル招待<strong>と</strong> Settings → Connections での個人 Slack 接続の両方が必要</li>
+<li>Teams のプライベートチャンネルは @メンションでのみ発火</li>
+<li>GitHub トリガーは特定リポジトリを指名する必要がある</li>
+<li>多数運用するなら <strong>Terraform provider</strong> で宣言的管理</li>
+</ul>
+<h2>検証チェックリスト</h2>
+<ul>
+<li>[ ] トリガーを手動で一度発火（<code>/devin test</code> とコメント、または失敗コミットを push）し、イベントペイロード付きでセッションが始まるのを確認した</li>
+<li>[ ] マッチしないイベント（違うラベル、違うチャンネル）が何も起こさない</li>
+<li>[ ] アクションの出力が期待した場所に着地した（PR、Slack スレッド、チケット）</li>
+</ul>
+<h2>落とし穴</h2>
+<ul>
+<li><strong>ループ。</strong> 出力が自分を再トリガーしうる自動化（Devin が PR にコメント、トリガーが「新規コメント」を監視）はセッションを永久に燃やす。作者、ラベル、イベントサブタイプでゲートする。</li>
+<li><strong>トリガー嵐。</strong> PR 単位ではなくコミット単位で発火する webhook は、忙しい日に 50 セッションを生む。絞る：生イベント単位ではなく<em>作業請求単位</em>に 1 自動化。</li>
+<li><strong>承認ゲートなし。</strong> トリガーによる自動マージ・自動デプロイは人間の制御点をスキップする——計測された理由がない限り「セッションが PR を開き、人がマージする」形を維持する。</li>
+</ul>
+<h2>理解度チェック</h2>
+<ol>
+<li>同僚が Devin に「GitHub 通知を全部監視してほしい」と言った——まず何を絞らせるか？<em>（どのイベントサブタイプが実際に実行可能な仕事を意味するか——ラベル付与、レビュー依頼など——すべての通知ではなく）</em></li>
+<li>なぜマッチしないイベントは「no-op を決めるセッション」ではなく<em>セッションゼロ</em>でなければならないか？<em>（セッションは ACU を消費する；上流でゲートするのは無料、セッション内でゲートするのは有料）</em></li>
+<li>自動化が Bot を必要とするのはいつか？<em>（トリガーされた作業が時間をかけて蓄積される判断を要するとき——メモリ、優先度、恒常の成果）</em></li>
+</ol>
+<h2>出典</h2>
+<ul>
+<li><a href="https://docs.devin.ai/product-guides/automations">Automations — ドキュメント</a></li>
+<li><a href="https://www.youtube.com/watch?v=6xxKtIpgOyE">Devin Automations QuickStart（動画）</a></li>
+<li>関連：<a href="bots-202-scheduled-sentinel.html">ガイド 3 — 定期監視 Bot</a> cron の上に Bot の判断を載せる</li>
+</ul>
+</article>
+<footer><div class="wrap foot-base"><span data-i18n="foot.note">Unofficial community project — not affiliated with Cognition AI.</span><span><a href="../../index.html">built-with-devin</a> · <a href="https://github.com/Till3005/build-with-devin">build-with-devin</a></span></div></footer>
+</main>
+<script src="../../assets/theme.js"></script>
+<script src="../../assets/i18n.js"></script>
+<script src="../../assets/i18n-runtime.js"></script>
+</body>
+</html>

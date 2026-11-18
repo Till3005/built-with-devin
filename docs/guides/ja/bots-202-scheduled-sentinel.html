@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ガイド 3 — 定期監視 Bot — build-with-devin guides</title>
+<meta name="description" content="ガイド 3 — 定期監視 Bot">
+<link rel="icon" href="../../assets/brand/Devin_Symbol.svg" type="image/svg+xml">
+<link rel="stylesheet" href="../../assets/site.css">
+<link rel="stylesheet" href="../../assets/guides.css">
+</head>
+<body>
+<a class="skip" href="#guide">Skip to content</a>
+<nav><div class="wrap nav-inner">
+  <div class="nav-left">
+    <a class="brand" href="../../index.html" aria-label="Built with Devin">
+      <span class="brand-text">built<strong>-with-</strong></span><img class="brand-mark" src="../../assets/brand/Devin_Primary_Logo.svg" alt="Devin" height="16"><span class="unofficial-chip">unofficial</span>
+    </a>
+  </div>
+  <div class="nav-side">
+    <div class="mode-toggle" role="tablist" aria-label="Site section">
+      <button class="mode-btn" data-mode="built" role="tab" aria-selected="false" onclick="location.href='../../index.html'">Built</button>
+      <button class="mode-btn on" data-mode="build" role="tab" aria-selected="true" onclick="location.href='../../index.html#build'">Build</button>
+      <span class="mode-pill" aria-hidden="true"></span>
+    </div>
+    <a class="cta" href="https://github.com/Till3005/build-with-devin/blob/main/guides/ja/bots-202-scheduled-sentinel.md">GitHub</a>
+  </div>
+</div></nav>
+<main>
+<article class="guide wrap" id="guide">
+  <p class="guide-crumb"><a href="../../index.html#build">← Guides</a> · <a href="../bots-202-scheduled-sentinel.html">English</a></p>
+<h1>ガイド 3 — 定期監視 Bot</h1>
+<p><strong>目標：</strong> 定期的な品質チェックを所有する Bot——スケジュールで実行し、失敗をトリアージし、原因まで追跡し、修正を出荷する。
+<strong>レベル：</strong> 中級
+<strong>出典となる導入事例：</strong> Cognition の <strong>Layout Bot</strong>——Devin web アプリのレイアウトシフト退行を監視。3 時間ごとに本番 <code>main</code> をビルドし、初回/再訪/遅延リクエストの訪問をシミュレートして修正を出荷する。<strong>3 週間で 159 PR；ラグ −70%。</strong>
+<strong>出典：</strong> <a href="https://devin.ai/blog/introducing-devin-bots">ローンチ記事</a> · <a href="https://docs.devin.ai/product-guides/automations">Automations ドキュメント</a></p>
+<h2>パターン</h2>
+<p>「終わることのない」仕事がある——時計の上で再発する：パフォーマンス予算、視覚退行、依存関係の鮮度、シークレットスキャン、稼働率。監視 Bot は修正だけでなく<em>チェック自体</em>を所有する：コードベースの変化に合わせてチェックを維持し、ノイズを除去し、退行が本物のときだけ修正を開く。</p>
+<pre><code class="language-text">cron ──► Bot 起床 ──► 現実に近い条件でチェック実行
+                              │
+                  pass ───────┴──────── fail
+                   │                      │
+                  静寂              フレーク除外のため再実行
+                                          │
+                                導入した PR まで追跡
+                                          │
+                            修正 PR + 前後の証拠
+</code></pre>
+<h2>前提条件</h2>
+<ul>
+<li>Bot のマシン上で実行できるチェック（ビルド、テストスイート、Lighthouse、自作スクリプト）</li>
+<li>Devin Bot（ガイド 1）または Automation（ガイド 6）——どちらでも動く；Bot は実行と実行の間に判断を挟める</li>
+</ul>
+<h2>ステップ 1 — 成果プロンプト</h2>
+<p>Layout Bot の文書化された挙動から再構成：</p>
+<pre><code class="language-text">Your job is to keep &lt;surface&gt; from &lt;regressing&gt;.
+
+Watch &lt;check/channel&gt;, where &lt;the check&gt; posts every &lt;interval&gt;. Take over
+that check and keep it working as the code changes. When something
+regresses: rerun to rule out flakiness, trace the regression to the PR
+that introduced it, and open a fix PR with before/after evidence.
+</code></pre>
+<p><code>&lt;check&gt;</code> に入る実例（すべて実際の導入で観測）：</p>
+<ul>
+<li>初回/再訪/個別遅延リクエストにまたがるレイアウトシフト計測（Layout Bot）</li>
+<li>最も遅い 5 エンドポイントの p95 レイテンシ（Latency Optimizer テンプレート）</li>
+<li><code>npm audit</code>/CVE スイープ（Code Health Engineer テンプレート）</li>
+<li>デッドコード検出（Code Reaper テンプレート）</li>
+</ul>
+<h2>ステップ 2 — スケジュール設定</h2>
+<p>チャットで Bot に頼む：</p>
+<pre><code class="language-text">Run this check every 3 hours on a schedule.
+</code></pre>
+<p>Bot が自動化案を作成し、あなたは一度承認する（cron を自分で配線したい場合はガイド 6 の手動自動化を参照）。以後は Bot の Settings → Automations で管理。</p>
+<h2>ステップ 3 — 現実に近い条件が重要</h2>
+<p>Layout Bot のチェックは一発の実行ではない——<strong>初回訪問、再訪問、個別遅延リクエスト</strong>をシミュレートする。狩っている退行が特定の負荷形状でしか現れないからだ。あなた版の等価物を定義する：</p>
+<ul>
+<li>どの環境か——Bot は dev サーバーではなく自分の VM で本番 <code>main</code> をビルドする</li>
+<li>どの入力か——コールド vs ウォームキャッシュ、シードデータ、現実的なリクエスト順序</li>
+<li>どの閾値か——「なんか遅い」ではなく数値</li>
+</ul>
+<h2>ステップ 4 — ノイズ規律</h2>
+<p>監視 Bot が狼少年にならないための 2 ルール：</p>
+<ol>
+<li><strong>行動前に再実行</strong>——Layout Bot はフレークらしき結果を本物として扱う前に再実行する。プロンプトに書き込む：<em>"rerun any failed check once before acting on it."</em></li>
+<li><strong>修正前に追跡</strong>——各退行は導入した PR まで追跡される。原因のない修正は推測である。</li>
+</ol>
+<h2>ステップ 5 — すべての修正に証拠を</h2>
+<p>159 の PR それぞれが<strong>前後の動画</strong>を持つ。あなたのチェックでの等価物：</p>
+<table>
+<thead>
+<tr>
+<th>チェック</th>
+<th>修正 PR に入れる証拠</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>レイアウト/視覚</td>
+<td>画面録画またはスクリーンショット、前後比較</td>
+</tr>
+<tr>
+<td>レイテンシ</td>
+<td>タイミング数値、同じ計測方法で</td>
+</tr>
+<tr>
+<td>デッドコード</td>
+<td>そのコードに到達しない理由</td>
+</tr>
+<tr>
+<td>依存関係/CVE</td>
+<td>アドバイザリ + それを解決する diff</td>
+</tr>
+</tbody>
+</table>
+<h2>検証チェックリスト</h2>
+<ul>
+<li>[ ] 自動化が存在し、設定した cron で発火する（Settings → Automations に実行履歴）</li>
+<li>[ ] 仕込んだ退行が前後証拠付きの修正 PR を生成した</li>
+<li>[ ] フレークな実行が修正ではなく再実行を生成した</li>
+<li>[ ] チェック自体がメンテされる——アプリが変わったとき Bot がチェックを更新した</li>
+</ul>
+<h2>落とし穴</h2>
+<ul>
+<li><strong>修正は所有するがチェックは所有しない。</strong> チェックが壊れて 1 週間誰も気づかないなら、Bot は間違ったものを所有していた——プロンプトはチェック自体を割り当てる必要がある。</li>
+<li><strong>判断なしの cron。</strong> 素のスケジュール自動化はチェックを実行できるが、失敗が本物かの判断は Bot がする。トリアージ不要のチェックにだけ素の自動化を使う（ガイド 6）。</li>
+<li><strong>アラートだけの出力。</strong> チャンネルに「退行を検出」と報告するだけの監視は人間に仕事を作る。この導入の価値は<em>修正する</em>こと——それを基準に据える。</li>
+</ul>
+<h2>理解度チェック</h2>
+<ol>
+<li>なぜ監視 Bot は失敗報告を待たず cron で本番 <code>main</code> をビルドするのか？<em>（成果は「報告されたバグを直す」ではなく「退行がない」——所有とは人間より先に問題を見つけること）</em></li>
+<li>Layout Bot が前後動画付きで修正を出す——レビュアーにどんな判断を可能にするか？<em>（ローカル再現なしのマージ確信；証拠が PR と共に移動する）</em></li>
+<li>症状を直すのでなく導入 PR まで退行を追跡する理由は？<em>（チェックの所有は履歴の所有を含む——修正が原因に着地し、知識が残る）</em></li>
+</ol>
+<h2>出典</h2>
+<ul>
+<li><a href="https://devin.ai/blog/introducing-devin-bots">Introducing Devin Bots</a> — Layout Bot の機構と数値</li>
+<li><a href="https://docs.devin.ai/product-guides/automations">Automations — ドキュメント</a> — スケジュール、トリガー、条件</li>
+<li>関連：<a href="automations-101-event-driven.html">ガイド 6 — イベント駆動の自動化</a> Bot なし版のこのループ</li>
+</ul>
+</article>
+<footer><div class="wrap foot-base"><span data-i18n="foot.note">Unofficial community project — not affiliated with Cognition AI.</span><span><a href="../../index.html">built-with-devin</a> · <a href="https://github.com/Till3005/build-with-devin">build-with-devin</a></span></div></footer>
+</main>
+<script src="../../assets/theme.js"></script>
+<script src="../../assets/i18n.js"></script>
+<script src="../../assets/i18n-runtime.js"></script>
+</body>
+</html>

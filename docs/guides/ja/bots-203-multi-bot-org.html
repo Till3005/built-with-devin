@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ガイド 4 — マルチ Bot 組織 — build-with-devin guides</title>
+<meta name="description" content="ガイド 4 — マルチ Bot 組織">
+<link rel="icon" href="../../assets/brand/Devin_Symbol.svg" type="image/svg+xml">
+<link rel="stylesheet" href="../../assets/site.css">
+<link rel="stylesheet" href="../../assets/guides.css">
+</head>
+<body>
+<a class="skip" href="#guide">Skip to content</a>
+<nav><div class="wrap nav-inner">
+  <div class="nav-left">
+    <a class="brand" href="../../index.html" aria-label="Built with Devin">
+      <span class="brand-text">built<strong>-with-</strong></span><img class="brand-mark" src="../../assets/brand/Devin_Primary_Logo.svg" alt="Devin" height="16"><span class="unofficial-chip">unofficial</span>
+    </a>
+  </div>
+  <div class="nav-side">
+    <div class="mode-toggle" role="tablist" aria-label="Site section">
+      <button class="mode-btn" data-mode="built" role="tab" aria-selected="false" onclick="location.href='../../index.html'">Built</button>
+      <button class="mode-btn on" data-mode="build" role="tab" aria-selected="true" onclick="location.href='../../index.html#build'">Build</button>
+      <span class="mode-pill" aria-hidden="true"></span>
+    </div>
+    <a class="cta" href="https://github.com/Till3005/build-with-devin/blob/main/guides/ja/bots-203-multi-bot-org.md">GitHub</a>
+  </div>
+</div></nav>
+<main>
+<article class="guide wrap" id="guide">
+  <p class="guide-crumb"><a href="../../index.html#build">← Guides</a> · <a href="../bots-203-multi-bot-org.html">English</a></p>
+<h1>ガイド 4 — マルチ Bot 組織</h1>
+<p><strong>目標：</strong> 事業部門全体を運営する Bot 階層——スペシャリスト Bot に委任するオーケストレーター 1 体と、日次スレッド 1 本で決裁する人間 1 人。
+<strong>レベル：</strong> 上級
+<strong>出典となる導入事例：</strong> Jenny Xu の <strong>SuperJennyStack</strong>——モバイルゲームスタジオを運営する約 20 の Bot。週 約50 → <strong>1,900 PR</strong>、週次リリース、スタジオ収益 6 倍。<a href="https://devin.ai/bots/templates">Bot マーケットプレイス</a>にコミュニティテンプレートとして公開済み。公式の <strong>bot 間 grant ハンドオフ</strong>（QA → Developer → 再テスト → PM レポート）も同じ機構を小規模で使っている。
+<strong>出典：</strong> Jenny Xu の公開スタック（<a href="https://x.com/cognition/status/2122737511684587551">ローンチ報道経由</a>）· <a href="https://docs.devin.ai/work-with-devin/bots">Bots ドキュメント</a> · <a href="https://x.com/xujennyc/status/2123111543105868166">BotSpeak 記事</a></p>
+<h2>パターン</h2>
+<p>何でもできる Bot を 1 体作るな——小さな会社を作れ：</p>
+<pre><code class="language-text">                    ┌─────────────┐
+              ┌────►│ オーケストレーター │◄──── 集約スレッド 1 本
+              │     └──────┬──────┘      （1日4回、絵文字で回答）
+              │            │ grants: 読取 + メッセージ
+     ┌────────┼────────┬───┴─────┬──────────┐
+     ▼        ▼        ▼         ▼          ▼
+  SuperPM  SuperDev  SuperQA  SuperRelease  SuperSupport
+  （何を）  （作る）   （検証）  （出荷）      （ユーザー）
+</code></pre>
+<p>人間は CEO：オーケストレーターが全部下 Bot の未決事項を <strong>Slack スレッド 1 本に 1 日 4 回</strong>集約し、絵文字で回答する。</p>
+<h2>前提条件</h2>
+<ul>
+<li>ガイド 1 完了——Bot の作成と指示ができる</li>
+<li>Slack 接続済み——このパターンは Slack 上に生きる；オーケストレーターの集約スレッドが UX のすべて</li>
+<li>職務分離できる境界あるドメイン（プロダクト、スタジオ、サービス領域）</li>
+</ul>
+<h2>ステップ 1 — まず組織図を設計する</h2>
+<p>Jenny の公開スタック——名前ではなく<em>形</em>を写す：</p>
+<table>
+<thead>
+<tr>
+<th>Bot</th>
+<th>所有するもの</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>オーケストレーター（SuperJenny）</td>
+<td>他の全 Bot への委任；各 Bot の要求を 1 スレッドに集約；彼女の人格・癖で学習済み</td>
+</tr>
+<tr>
+<td>PM（SuperPM）</td>
+<td>指標 + ストアレビュー + トレンドからの日次順位付き修正リスト</td>
+</tr>
+<tr>
+<td>リリース（SuperRelease）</td>
+<td>週次ビルド、金曜にストア提出可能な状態へ</td>
+</tr>
+<tr>
+<td>QA（SuperQA）</td>
+<td>動画証拠付きの実機テスト</td>
+</tr>
+<tr>
+<td>サポート（SuperSupport）</td>
+<td>全ストアレビュー返信の下書きを承認用に作成；夜間にプレイヤーを支援</td>
+</tr>
+</tbody>
+</table>
+<p>残り約 15 の Bot が開発、Unity、UI、iOS、Android、分析を担当。この導入からの目安：<strong>組織図で名付けられる職務 1 つにつき Bot 1 体</strong>——タスクごとではなく<em>責任</em>ごと。</p>
+<h2>ステップ 2 — スペシャリストを作成する</h2>
+<p>職務ごとに、スコープを絞った成果プロンプトの Bot を 1 体：</p>
+<pre><code class="language-text">You own QA for &lt;product&gt;. Test every release candidate on real devices,
+post video proof, and block release on failures. Report what needs a
+decision to the orchestrator.
+</code></pre>
+<p>各 Bot の Instructions はその職務のルールに集中させる；共有知識（ブランド、デプロイ手順、承認権限）は各 Bot の instructions か共有リソースに——Bot 間にグローバルメモリは存在しないので、結合組織はオーケストレーターのプロンプトが担う。</p>
+<h2>ステップ 3 — grant を配線する</h2>
+<p>grant は Bot A に Bot B への読取/メッセージ権を与える——Bot 同士が仕事を渡し合う仕組み（Bot が grant を要求し、あなたはカードを一度承認する）。オーケストレーターは全スペシャリストへのアクセスが必要。</p>
+<p>文書化された公式の小規模版——同じ機構：</p>
+<pre><code class="language-text">QA Bot がバグ発見 ──grant──► Developer Bot が修正 ──► QA がステージングで
+再テスト ──► PM Bot がチャンネルに状況報告
+</code></pre>
+<p>grant は狭く承認する：オーケストレーターはスペシャリストを読みメッセージする；スペシャリスト同士が全員互いに届く必要はない。</p>
+<h2>ステップ 4 — 集約スレッド</h2>
+<p>最も重要な指示——20 Bot 分の割り込みを 1 つの習慣に変換する：</p>
+<pre><code class="language-text">Collect every pending decision from the Bots you work with into one
+Slack thread, posted at &lt;times&gt; daily. For each item: what's blocked,
+the options, your recommendation. I answer in replies/emoji; treat my
+replies as decisions and relay them.
+</code></pre>
+<p>Jenny はこれを <strong>1 日 4 回</strong>運用し、<strong>絵文字で</strong>答える。規律：スペシャリストとは直接話さない——オーケストレーターがあなたの決定を中継し、完了まで追う。</p>
+<h2>ステップ 5 — ケイデンス = 組織の心拍</h2>
+<table>
+<thead>
+<tr>
+<th>ケイデンス</th>
+<th>実行者</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>日次の順位付き修正リスト</td>
+<td>PM Bot（指標 + レビュー + トレンド）</td>
+</tr>
+<tr>
+<td>週次リリース候補</td>
+<td>Release Bot → QA Bot のサインオフ</td>
+</tr>
+<tr>
+<td>1 日 4 回の決裁スレッド</td>
+<td>オーケストレーター</td>
+</tr>
+<tr>
+<td>夜間のプレイヤー支援</td>
+<td>Support Bot（翌朝承認用の返信下書き）</td>
+</tr>
+</tbody>
+</table>
+<p>各 Bot が自分のループを所有；オーケストレーターはループ群のスケジュールを所有する。</p>
+<h2>ステップ 6 — Bot 間プロトコル（BotSpeak）</h2>
+<p>誰も教えてくれないスケール問題：Jenny の 20+ Bot は<strong>1 日 700+ メッセージ</strong>を送っていた——彼女は追いつけなかった。解決策は <strong>BotSpeak</strong>——Bot <em>同士が</em>使うトークン節約の簡略語（<a href="https://x.com/xujennyc/status/2123111543105868166">本人の解説</a>）：</p>
+<table>
+<thead>
+<tr>
+<th>ルール</th>
+<th>意味</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>簡略語</td>
+<td>全文返信の代わりに <code>ACK</code> などの符丁</td>
+</tr>
+<tr>
+<td>ASD-STE100</td>
+<td>簡略化英語文法——航空ドキュメント標準、曖昧さゼロでトークン安</td>
+</tr>
+<tr>
+<td>絵文字レシート</td>
+<td>「了解、ありがとう」の代わりに ✅ リアクション</td>
+</tr>
+<tr>
+<td>社交辞令なし</td>
+<td>Bot は相手が必要なものだけを送る</td>
+</tr>
+<tr>
+<td>人間には通常文</td>
+<td>集約スレッドは判断文脈つきの完全な文章のまま</td>
+</tr>
+</tbody>
+</table>
+<p>切替 6 日後：Bot が彼女なしで下した決定 <strong>12 倍</strong>、繰り返し質問 −50%、Bot 間の確認投稿 −12%。このプロトコルが存在するのは、真のコストがトークン浪費ではなく<em>注意力</em>浪費だから：bot 間メッセージが短いほど、人間の唯一のスレッドは読みやすく保たれる。</p>
+<h2>検証チェックリスト</h2>
+<ul>
+<li>[ ] 全スペシャリスト Bot がスコープ付き成果プロンプトと有効な grant を持つ</li>
+<li>[ ] オーケストレーターが集約決裁スレッドをスケジュール通り投稿する</li>
+<li>[ ] 絵文字で答えた決定が正しいスペシャリストに中継・解決された</li>
+<li>[ ] Bot 間ハンドオフがエンドツーエンドで完走した（発見 → 修正 → 検証 → 報告）</li>
+<li>[ ] 今日の人間メッセージ総数 &lt; マージされた PR 数</li>
+</ul>
+<h2>落とし穴</h2>
+<ul>
+<li><strong>オーケストレーターの省略。</strong> N 体の Bot がそれぞれ DM してくるのは N 倍のノイズ。判断が 1 スレッドに漏斗されるときだけ組織は機能する。</li>
+<li><strong>曖昧な職務境界。</strong> 「Dev Bot」と「Fix Bot」は衝突する。境界は組織図に従う——QA は<em>検証</em>、Release は<em>出荷</em>、PM は<em>優先順位付け</em>。</li>
+<li><strong>過剰な grant。</strong> メッシュ型 grant（全員が全員に届く）はカオスの再現。オーケストレーター中心のハブ＆スポークに。</li>
+<li><strong>Bot 間の長文。</strong> Bot 同士が段落を書き合うと 1 日 700 メッセージになる——BotSpeak 式プロトコルを採用：簡略語 + 絵文字レシート + 辞令なし；完全な文章は人間宛のみ。</li>
+</ul>
+<h2>理解度チェック</h2>
+<ol>
+<li>なぜ SuperJennyStack は人間との接触をすべて<em>1 本の</em>集約スレッドに通すのか？<em>（ボトルネックは計算ではなく注意力——20 Bot が 20 スレッドを生むのは 20 の職場を再現するだけ）</em></li>
+<li>「オーケストレーターに聞く」より grant が勝るのはいつか？<em>（必要な能力がすでに別の Bot に所有されているとき——grant は複製ではなく所有の借用）</em></li>
+<li>人間の「1 日 4 回・絵文字」ケイデンスが示す委任の深さは？<em>（Bot が置き換えるのは人数ではなく決裁帯域——人間は判断層を残し、タイピング層を手放した）</em></li>
+</ol>
+<h2>出典</h2>
+<ul>
+<li><a href="https://devin.ai/blog/introducing-devin-bots">Introducing Devin Bots</a> — SuperJennyStack の数値、grant ハンドオフの亜種</li>
+<li><a href="https://devin.ai/bots/templates">Bot マーケットプレイス</a> — SuperJennyStack コミュニティテンプレート + 公式テンプレート 16 種</li>
+<li><a href="https://docs.devin.ai/work-with-devin/bots">Bots ドキュメント</a> — grants、メモリ、アクセス</li>
+<li>関連：<a href="bots-204-reference-grounded-swarm.html">ガイド 5 — 参照基盤スウォーム</a> <em>運用</em>ではなく<em>執筆</em>するスウォーム向け</li>
+</ul>
+</article>
+<footer><div class="wrap foot-base"><span data-i18n="foot.note">Unofficial community project — not affiliated with Cognition AI.</span><span><a href="../../index.html">built-with-devin</a> · <a href="https://github.com/Till3005/build-with-devin">build-with-devin</a></span></div></footer>
+</main>
+<script src="../../assets/theme.js"></script>
+<script src="../../assets/i18n.js"></script>
+<script src="../../assets/i18n-runtime.js"></script>
+</body>
+</html>

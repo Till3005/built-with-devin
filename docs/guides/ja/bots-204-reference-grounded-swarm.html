@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ガイド 5 — 参照基盤スウォーム — build-with-devin guides</title>
+<meta name="description" content="ガイド 5 — 参照基盤スウォーム">
+<link rel="icon" href="../../assets/brand/Devin_Symbol.svg" type="image/svg+xml">
+<link rel="stylesheet" href="../../assets/site.css">
+<link rel="stylesheet" href="../../assets/guides.css">
+</head>
+<body>
+<a class="skip" href="#guide">Skip to content</a>
+<nav><div class="wrap nav-inner">
+  <div class="nav-left">
+    <a class="brand" href="../../index.html" aria-label="Built with Devin">
+      <span class="brand-text">built<strong>-with-</strong></span><img class="brand-mark" src="../../assets/brand/Devin_Primary_Logo.svg" alt="Devin" height="16"><span class="unofficial-chip">unofficial</span>
+    </a>
+  </div>
+  <div class="nav-side">
+    <div class="mode-toggle" role="tablist" aria-label="Site section">
+      <button class="mode-btn" data-mode="built" role="tab" aria-selected="false" onclick="location.href='../../index.html'">Built</button>
+      <button class="mode-btn on" data-mode="build" role="tab" aria-selected="true" onclick="location.href='../../index.html#build'">Build</button>
+      <span class="mode-pill" aria-hidden="true"></span>
+    </div>
+    <a class="cta" href="https://github.com/Till3005/build-with-devin/blob/main/guides/ja/bots-204-reference-grounded-swarm.md">GitHub</a>
+  </div>
+</div></nav>
+<main>
+<article class="guide wrap" id="guide">
+  <p class="guide-crumb"><a href="../../index.html#build">← Guides</a> · <a href="../bots-204-reference-grounded-swarm.html">English</a></p>
+<h1>ガイド 5 — 参照基盤スウォーム</h1>
+<p><strong>目標：</strong> エージェントの群れに大規模で<em>検証可能な</em>システムを書かせる——正しさを雰囲気ではなく信頼できる参照に対して継続的にチェックする。
+<strong>レベル：</strong> 上級
+<strong>出典となる導入事例：</strong> Harvey の <strong>「Phil」</strong>——約 30 のエージェントが Rust + TypeScript で Word 互換の共同編集エンジンを記述：<strong>3 週間で 100 万行超、人間のエンジニア 0 人</strong>。実際の Microsoft Word の挙動とシミュレートされた弁護士の交渉に対して継続検証。人間はメモリ + 決定ログを通じて操縦し、コードは一切読まなかった。
+<strong>出典：</strong> Gabe Pereyra のローンチ記事（<a href="https://x.com/gabepereyra">@gabepereyra</a> 経由）· <a href="https://devin.ai/blog/introducing-devin-bots">ローンチ記事</a></p>
+<h2>パターン</h2>
+<p>出力が正しいか誰も判定できないとき、スウォームは失敗する。Phil が機能したのは、すべての行が<strong>真実の参照</strong>——本物の Microsoft Word——に対して検査できたから。エージェントチームの仕事は<em>発明</em>ではなく<em>一致</em>——客観的で継続的に検査可能な目標。</p>
+<pre><code class="language-text">   参照システム（真実）
+            ▲ 比較
+            │
+┌───────────┴────────────┐
+│  約30体のエージェント群   │──► 100万行超（Rust + TypeScript）
+└────────────────────────┘
+            ▲ 操縦
+            │
+   人間：メモリ + 決定ログ
+   （コードは読まない）
+</code></pre>
+<h2>適用場面</h2>
+<table>
+<thead>
+<tr>
+<th>向いている</th>
+<th>向いていない</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>仕様の再実装（ファイル形式、プロトコル、エディタ、コンパイラ）</td>
+<td>客観的な答えのないグリーンフィールド製品</td>
+</tr>
+<tr>
+<td>オラクルのある移植/移行（旧システムがまだ動く）</td>
+<td>「正しさ」が判断問題である新規 UX</td>
+</tr>
+<tr>
+<td>動作中システムと diff 可能なあらゆるもの</td>
+<td>正しさの判定にユーザーが要るシステム</td>
+</tr>
+</tbody>
+</table>
+<p>リトマス試験：<strong>機械があなたなしに「正しい」を決定できるか？</strong> できればスウォームはスケールする；できなければプロダクトオーナー Bot（ガイド 2）を使う。</p>
+<h2>ステップ 1 — 先に参照を確保する</h2>
+<p>どのエージェントがコードを書くより前に、チェックが存在しなければならない：</p>
+<ul>
+<li>Harvey の参照：<strong>本物の Microsoft Word の挙動</strong>——スウォームのエディタでレンダリングした文書が Word と一致する必要があった</li>
+<li>あなたの場合：まだ稼働している旧システム、適合性スイート、ゴールデンファイル、仕様テスト集、API 契約</li>
+</ul>
+<p>比較を CI かスウォームが常時走らせるスクリプトに組み込む——「出力が参照と一致するか」は安価で自動でなければならない。さもないとエージェントはチェックとチェックの間に漂流する。</p>
+<h2>ステップ 2 — 所有されるスライスに分解する</h2>
+<p>約 30 のエージェントは一つのバックログを共有しなかった——各エージェントがサブシステム（文書モデル、レイアウトエンジン、共同編集プロトコル…）を所有するよう作業が切り分けられた。ガイド 4 の組織図と同じ構造だが、すべての「従業員」がモジュール境界を向いたコーディングセッション：</p>
+<pre><code class="language-text">You own the &lt;module&gt;. Its contract is &lt;interface/reference behavior&gt;.
+Your PRs are accepted when the reference checks pass — not when the
+code looks done.
+</code></pre>
+<h2>ステップ 3 — 人間はコードの上から操縦する</h2>
+<p>Harvey の誰も 100 万行を読まなかった。操縦は以下を通じて行われた：</p>
+<ul>
+<li><strong>メモリ</strong>——Bot が蓄積した、下された決定とその理由の事実</li>
+<li><strong>決定ログ</strong>——分岐ごとにスウォームが選んだもの</li>
+<li><strong>方向メッセージ</strong>——「今週はパフォーマンスより変更履歴の忠実度を優先」</li>
+</ul>
+<p>あなたのレビュー対象は diff ではなく<em>決定の軌跡</em>。生成コードを読んで状況を把握しようとしている自分に気づいたら、オーケストレーターに決定ログを求める。</p>
+<h2>ステップ 4 — 上に敵対的検証を重ねる</h2>
+<p>Harvey は第 2 のチェックを重ねた：<strong>シミュレートされた弁護士の交渉</strong>——適合性スイートが見逃すものを浮かび上がらせる現実的な使用。あなたの等価物：参照 diff の上のシナリオ層——実ワークフロー、敵対的入力、ファジング。参照チェックは<em>誤り</em>を捕らえ、シナリオチェックは<em>脆さ</em>を捕らえる。</p>
+<h2>検証チェックリスト</h2>
+<ul>
+<li>[ ] 自動化された参照チェックが存在し、すべての変更に対して走る</li>
+<li>[ ] 各エージェントの受入基準が「コードを書いた」ではなく「参照が通る」</li>
+<li>[ ] コードを読まずにログ/メモリから「スウォームが何をなぜ決めたか」を答えられる</li>
+<li>[ ] 意意図的に壊したモジュールがあなたではなく参照チェックに捕捉される</li>
+</ul>
+<h2>落とし穴</h2>
+<ul>
+<li><strong>オラクル以前のスケーリング。</strong> チェックのないスウォームは量を産むだけ——Phil が機能したのは Word が常に審判だったから。</li>
+<li><strong>diff のレビュー。</strong> エージェント約 2 体を超えるとスケールしない；あなたがボトルネックになり、スウォームの速度優位を失う。</li>
+<li><strong>曖昧な所有。</strong> 2 体のエージェントが 1 つのモジュールを編集するとマージ地獄になる——所有の境界こそがアーキテクチャ。</li>
+</ul>
+<h2>理解度チェック</h2>
+<ol>
+<li>大抵のマルチエージェント試行が崩壊する中、なぜ Harvey のスウォームは機能したか？<em>（信頼できる外部参照——実際の Word の挙動——が正しさをスウォーム速度で機械検査可能にした）</em></li>
+<li>なぜ人間はコードレビューではなくメモリと決定ログで操縦したか？<em>（3 週間の 100 万行超は人間の読解容量を超える；操縦は意図の層で起こる）</em></li>
+<li>このパターンを試す前に確認すべき前提は？<em>（あなたのドメインに、スウォームが自己検査できる参照があるか——なければ先にオラクルを作る）</em></li>
+</ol>
+<h2>出典</h2>
+<ul>
+<li><a href="https://x.com/gabepereyra">@gabepereyra</a> — Harvey の Phil 記事：約 30 エージェント、100 万行超、Word 参照検証、弁護士シミュレーション</li>
+<li><a href="https://devin.ai/blog/introducing-devin-bots">Introducing Devin Bots</a></li>
+<li>関連：<a href="bots-203-multi-bot-org.html">ガイド 4 — マルチ Bot 組織</a>（同じ階層、目的は異なる：運用 vs 構築）</li>
+</ul>
+</article>
+<footer><div class="wrap foot-base"><span data-i18n="foot.note">Unofficial community project — not affiliated with Cognition AI.</span><span><a href="../../index.html">built-with-devin</a> · <a href="https://github.com/Till3005/build-with-devin">build-with-devin</a></span></div></footer>
+</main>
+<script src="../../assets/theme.js"></script>
+<script src="../../assets/i18n.js"></script>
+<script src="../../assets/i18n-runtime.js"></script>
+</body>
+</html>

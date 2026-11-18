@@ -76,22 +76,24 @@ def render(md_path: Path, out_path: Path, rel: str, lang: str, alt: str, mdsrc: 
     out_path.write_text(PAGE.format(lang=lang, title=title, desc=desc, rel=rel, body=body, alt=alt, mdsrc=mdsrc), encoding="utf-8")
     return title
 
+LANG_LABEL = {"zh": "中文", "ja": "日本語", "pt": "Português", "es": "Español", "de": "Deutsch"}
+
 def main():
     en_files = sorted(p for p in SRC.glob("*.md"))
-    zh_dir = SRC / "zh"
     index_rows = []
     for en in en_files:
-        zh = zh_dir / en.name
-        alt_en = f' · <a href="zh/{en.stem}.html">中文</a>' if zh.exists() else ""
-        alt_zh = f' · <a href="../{en.stem}.html">English</a>' if zh.exists() else ""
+        mirrors = [(d.name, d / en.name) for d in SRC.iterdir() if d.is_dir() and (d / en.name).exists()]
+        alts = " · ".join(f'<a href="{lang}/{en.stem}.html">{LANG_LABEL.get(lang, lang)}</a>' for lang, _ in mirrors)
+        alt_en = f" · {alts}" if alts else ""
         t = render(en, OUT / f"{en.stem}.html", "../", "en", alt_en, en.name)
-        if zh.exists():
-            render(zh, OUT / "zh" / f"{en.stem}.html", "../../", "zh", alt_zh, f"zh/{en.name}")
-        index_rows.append((en.stem, t, zh.exists()))
+        for lang, m in mirrors:
+            render(m, OUT / lang / f"{en.stem}.html", "../../", lang,
+                   f' · <a href="../{en.stem}.html">English</a>', f"{lang}/{en.name}")
+        index_rows.append((en.stem, t, " · ".join(["EN"] + [LANG_LABEL.get(l, l) for l, _ in mirrors])))
     # index page listing all guides
     lis = "\n".join(
-        f'    <a class="row" href="{s}.html"><span class="row-tag">{i+1:02d}</span><span class="row-title">{t}</span><span class="row-num">{"EN · 中文" if z else "EN"}</span></a>'
-        for i, (s, t, z) in enumerate(index_rows))
+        f'    <a class="row" href="{s}.html"><span class="row-tag">{i+1:02d}</span><span class="row-title">{t}</span><span class="row-num">{langs}</span></a>'
+        for i, (s, t, langs) in enumerate(index_rows))
     body = f'<h1>build-with-devin — guides</h1>\n<div class="rows">{lis}\n</div>'
     title = "Guides"
     (OUT / "index.html").write_text(PAGE.format(

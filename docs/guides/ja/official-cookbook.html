@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ガイド 13 — 公式ユースケース・クックブック — build-with-devin guides</title>
+<meta name="description" content="ガイド 13 — 公式ユースケース・クックブック">
+<link rel="icon" href="../../assets/brand/Devin_Symbol.svg" type="image/svg+xml">
+<link rel="stylesheet" href="../../assets/site.css">
+<link rel="stylesheet" href="../../assets/guides.css">
+</head>
+<body>
+<a class="skip" href="#guide">Skip to content</a>
+<nav><div class="wrap nav-inner">
+  <div class="nav-left">
+    <a class="brand" href="../../index.html" aria-label="Built with Devin">
+      <span class="brand-text">built<strong>-with-</strong></span><img class="brand-mark" src="../../assets/brand/Devin_Primary_Logo.svg" alt="Devin" height="16"><span class="unofficial-chip">unofficial</span>
+    </a>
+  </div>
+  <div class="nav-side">
+    <div class="mode-toggle" role="tablist" aria-label="Site section">
+      <button class="mode-btn" data-mode="built" role="tab" aria-selected="false" onclick="location.href='../../index.html'">Built</button>
+      <button class="mode-btn on" data-mode="build" role="tab" aria-selected="true" onclick="location.href='../../index.html#build'">Build</button>
+      <span class="mode-pill" aria-hidden="true"></span>
+    </div>
+    <a class="cta" href="https://github.com/Till3005/build-with-devin/blob/main/guides/ja/official-cookbook.md">GitHub</a>
+  </div>
+</div></nav>
+<main>
+<article class="guide wrap" id="guide">
+  <p class="guide-crumb"><a href="../../index.html#build">← Guides</a> · <a href="../official-cookbook.html">English</a></p>
+<h1>ガイド 13 — 公式ユースケース・クックブック</h1>
+<p><strong>目標:</strong> Cognition 公式ドキュメントで実証済みの使用パターンをクックブックとして整理 — Devin に切り分けるべき仕事とは何か、そしてプロンプト付きでコピーできる 40 以上の文書化レシピ。
+<strong>レベル:</strong> まずは網羅性のためにここから
+<strong>出典:</strong> <a href="https://docs.devin.ai/use-cases/best-practices.html">Best Practices</a> · <a href="https://docs.devin.ai/use-cases/gallery/index.html">Use-case gallery</a> · <a href="https://docs.devin.ai/use-cases/index.html">use-case tutorials</a></p>
+<h2>すべてを貫く唯一のルール</h2>
+<p>公式ガイダンスのロジックをそのまま言うと:<strong>wide &amp; shallow</strong>(広く浅い)仕事を選べ — シンプルで水平方向にスケールするタスクの大きなバックログは、複雑な新規構築に常に勝る。</p>
+<table>
+<thead>
+<tr>
+<th>理想的なタスク</th>
+<th>アンチタスク</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>ジュニアエンジニア程度の複雑さの反復的サブタスク</td>
+<td>新規の複雑な機能</td>
+</tr>
+<tr>
+<td>スライスあたり手作業 90 分未満</td>
+<td>分割不可能なもの</td>
+</tr>
+<tr>
+<td>客観的な合否検証</td>
+<td>「なんか良さそう」</td>
+</tr>
+<tr>
+<td>分離され、後方互換で、並列化可能</td>
+<td>絡み合った依存関係</td>
+</tr>
+</tbody>
+</table>
+<p>ドキュメントにある 4 つの優れたスライス形:<strong>マイグレーション、リファクタ、モダナイゼーション、技術的負債バックログ。</strong></p>
+<h2>レシピカタログ</h2>
+<p>以下はすべて公式ギャラリーに文書化されたユースケース — それぞれコピペ可能なプロンプト付き。人間の週から取り除いてくれる仕事別に整理。</p>
+<h3>インシデント &amp; 本番健全性</h3>
+<table>
+<thead>
+<tr>
+<th>レシピ</th>
+<th>仕組み</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Datadog/PagerDuty アラートの自動調査</td>
+<td>Webhook/API トリガー → 発火時にセッションが調査</td>
+</tr>
+<tr>
+<td>ポストモーテムの自動生成</td>
+<td>PagerDuty 解決 → Devin がタイムライン・根本原因・アクションアイテムを起草</td>
+</tr>
+<tr>
+<td>Sentry エラーの毎日修正</td>
+<td>夜間 cron が新規エラーを取得 → 朝には修正 PR</td>
+</tr>
+<tr>
+<td>バグレポートの end-to-end デバッグ</td>
+<td>レポート + Datadog ログ + DB アクセスを Devin に渡す → 根本原因</td>
+</tr>
+</tbody>
+</table>
+<h3>定期ハイジーン(ドキュメントで最も ROI の高いページ)</h3>
+<table>
+<thead>
+<tr>
+<th>レシピ</th>
+<th>頻度</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>週次の依存関係更新 PR</td>
+<td>週次:古いパッケージ → テスト済みアップグレード PR</td>
+</tr>
+<tr>
+<td>ステージングでの夜間 E2E</td>
+<td>夜間:スイート実行、失敗分をチケット化</td>
+</tr>
+<tr>
+<td>マージ済み PR からの週次変更履歴</td>
+<td>金曜:分類済み変更履歴 → Slack</td>
+</tr>
+<tr>
+<td>Datadog ヘルスの日次ダイジェスト</td>
+<td>日次:エラースキャン → Slack ダイジェスト</td>
+</tr>
+<tr>
+<td>デザインシステムの日次監査</td>
+<td>日次:マージ済み PR のハードコード色・欠落トークンを検出</td>
+</tr>
+<tr>
+<td>フィーチャーフラグの掃除</td>
+<td>リリース後に一度だけのセッションでフラグ + デッドコードを剥がす</td>
+</tr>
+<tr>
+<td>Notion ステータスの週次ダイジェスト</td>
+<td>週次:PR/コミット要約 → Notion</td>
+</tr>
+<tr>
+<td>会議議事録からの PR</td>
+<td>毎時:Granola をポーリング → エンジニアリングタスク抽出 → 子セッション</td>
+</tr>
+</tbody>
+</table>
+<h3>コード品質</h3>
+<table>
+<thead>
+<tr>
+<th>レシピ</th>
+<th>仕組み</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>マージ前に PR のバグを自動修正</td>
+<td>Devin が全 PR をレビューし、ブランチに修正をプッシュ</td>
+</tr>
+<tr>
+<td>サービスへのユニットテスト追加</td>
+<td>テスト作成スキルを構築し、課金フロー/返金/webhook に適用</td>
+</tr>
+<tr>
+<td>ビジュアルリグレッションの捕捉</td>
+<td>リポジトリスキル:PR 前に影響ページすべてをスクリーンショット</td>
+</tr>
+<tr>
+<td>全 PR のマイグレーションチェックリスト</td>
+<td>リポジトリスキルが破壊的操作を捕捉し、スキーマ変更を検証</td>
+</tr>
+<tr>
+<td>モノリシックルーターの分割</td>
+<td>2,000 行の Express ルーター → 共有ミドルウェア付きドメインルート</td>
+</tr>
+<tr>
+<td>コードカバレッジの向上</td>
+<td>Devin がスイートを分析し、ギャップを埋めるテストを作成</td>
+</tr>
+<tr>
+<td>リポジトリ横断の既知 CVE パッチ</td>
+<td>公式スキル(<a href="https://github.com/cognitionai/devin-vuln-fixes">devin-vuln-fixes</a>):読み取り専用棚卸し → 承認ゲート → 確認済み対象パッチ → before/after テスト → リポジトリごとに 1 PR</td>
+</tr>
+</tbody>
+</table>
+<h3>マイグレーション &amp; 機能開発</h3>
+<table>
+<thead>
+<tr>
+<th>レシピ</th>
+<th>仕組み</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>50 ファイルの REST→GraphQL</td>
+<td>スコープ → 競合しないパッケージ → 並列(ガイド 11)</td>
+</tr>
+<tr>
+<td>React 18→19 アップグレードスキル</td>
+<td>公式アップグレードガイドを自社コードベース向けの段階的スキルに変換</td>
+</tr>
+<tr>
+<td>OpenAPI 仕様 → 実装</td>
+<td>YAML 仕様 → Express ハンドラ + Zod バリデーション + Supertest</td>
+</tr>
+<tr>
+<td>Stripe チェックアウトフロー</td>
+<td>仕様 → 動作するフロー + テスト + ブラウザ検証</td>
+</tr>
+<tr>
+<td>Next.js アプリの i18n</td>
+<td>next-i18next 導入、文字列抽出、3 言語ブラウザチェック</td>
+</tr>
+<tr>
+<td>Figma → ピクセルパーフェクト</td>
+<td>Figma MCP → モックアップからコンポーネント</td>
+</tr>
+<tr>
+<td>Django アプリの Docker 化</td>
+<td>マルチステージ Dockerfile + Django/Postgres/Redis 用 compose</td>
+</tr>
+</tbody>
+</table>
+<h3>プロジェクト管理 &amp; データ</h3>
+<table>
+<thead>
+<tr>
+<th>レシピ</th>
+<th>仕組み</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Linear 経由のバグ自動トリアージ</td>
+<td>ラベル適用 → Devin が調査</td>
+</tr>
+<tr>
+<td>PRD → スプリントチケット</td>
+<td>Notion PRD → スコープ済み Linear チケット</td>
+</tr>
+<tr>
+<td>バックログの実装計画</td>
+<td>Linear チケットを複数選択 → 信頼度スコア付き計画</td>
+</tr>
+<tr>
+<td>Slack の <code>/dana</code> データクエリ</td>
+<td>どのチャネルからでも平易な英語でデータベースクエリ</td>
+</tr>
+<tr>
+<td>カスタム API 使用状況ダッシュボード</td>
+<td>Devin が v3 API 上にオーダーメイドのダッシュボードを構築</td>
+</tr>
+</tbody>
+</table>
+<h3>Devin 自体の上達("Devin Optimization")</h3>
+<table>
+<thead>
+<tr>
+<th>レシピ</th>
+<th>教訓</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>機能プロンプトを 42→12 ACU に削減</td>
+<td>高コストセッションの解剖:3 つの根本原因 → プロンプト書き直し</td>
+</tr>
+<tr>
+<td>1 問題を 3 セッションで競争</td>
+<td>並列セッションが競合する最適化戦略を試行;ベストを出荷</td>
+</tr>
+<tr>
+<td>夜通し 8 並列セッション</td>
+<td>テストなしモジュール 8 個 → 朝にはユニットテスト PR</td>
+</tr>
+<tr>
+<td>30 ライブラリの評価</td>
+<td>ライブラリごとに 1 セッション → スコア付きランキング比較</td>
+</tr>
+<tr>
+<td>ホットフィックスをスキル化</td>
+<td>成功したインシデントセッションを再利用可能なスキルに抽出</td>
+</tr>
+<tr>
+<td>週次のナレッジ重複排除</td>
+<td>定期セッションがナレッジ提案をマージ・競合整理</td>
+</tr>
+<tr>
+<td>チームオンボーディングガイド</td>
+<td>Devin が自社ドキュメントを読む → あなたのスタック向け入門ガイド</td>
+</tr>
+</tbody>
+</table>
+<h2>このクックブックの使い方</h2>
+<ol>
+<li><strong>定期ハイジーン</strong>から 1 レシピ選ぶ — 最も安い初勝利(考えなくても回り続ける夜間/週次ループ)</li>
+<li>PagerDuty/Datadog/Sentry があれば <strong>インシデント</strong>から 1 つ追加</li>
+<li>レシピが動いたら <strong>スキル</strong>(ガイド 12)か <strong>Bot</strong>(ガイド 1–5)に凍結する — 上の行すべてはどちらかの形で生き残る</li>
+</ol>
+<h2>検証チェックリスト</h2>
+<ul>
+<li>[ ] ハイジーンレシピ 1 つがスケジュールで動き、最初の PR/レポートを出した</li>
+<li>[ ] その出力がスキル・プレイブック・Bot に凍結されている — 誰かの頭の中に住んでいない</li>
+</ul>
+<h2>落とし穴</h2>
+<ul>
+<li><strong>レシピ 10 個、凍結ゼロ。</strong> 手動プロンプトのままのレシピは金曜には忘れられる — 運用化するか捨てるか。</li>
+<li><strong>自社リポジトリの検証なしのコピペプロンプト。</strong> ギャラリーのプロンプトはテストスイートの存在を前提にしている;タスクだけでなく<em>チェック</em>を適応させる。</li>
+</ul>
+<h2>理解度チェック</h2>
+<ol>
+<li>なぜインシデント対応より先に定期ハイジーンレシピから始めるのか?<em>(最も安い勝利だから — 寝ている間に回り、夜間 lint 修正の失敗は回復可能だが、インシデント操作の失敗は回復不能だ。)</em></li>
+<li>「レシピをスキルか Bot に凍結する」とは実際に何を防ぐのか?<em>(プロンプトドリフトと個人依存 — レシピは書いた人を越えて生き残る。)</em></li>
+<li>なぜタスク部分より先にギャラリープロンプトの検証部分を適応させるのか?<em>(タスクは意図を記述するだけ;チェックこそが自社リポジトリが実際に証明できるもの — 間違ったチェックは自信満々のゴミを生む。)</em></li>
+</ol>
+<h2>出典</h2>
+<ul>
+<li><a href="https://docs.devin.ai/use-cases/gallery/index.html">Use-case gallery</a> — 上の全レシピ、それぞれコピペプロンプト付き</li>
+<li><a href="https://docs.devin.ai/use-cases/best-practices.html">Best Practices</a> — スライスの教義</li>
+<li><a href="https://docs.devin.ai/use-cases/index.html">Use-case tutorials</a> — API 統合、コードカバレッジ、コンテナ化、フロントエンドコンポーネント、MCP</li>
+<li>関連:<a href="migrations-at-scale.html">ガイド 11 — スケールするマイグレーション</a> · <a href="automations-101-event-driven.html">ガイド 6 — オートメーション</a></li>
+</ul>
+</article>
+<footer><div class="wrap foot-base"><span data-i18n="foot.note">Unofficial community project — not affiliated with Cognition AI.</span><span><a href="../../index.html">built-with-devin</a> · <a href="https://github.com/Till3005/build-with-devin">build-with-devin</a></span></div></footer>
+</main>
+<script src="../../assets/theme.js"></script>
+<script src="../../assets/i18n.js"></script>
+<script src="../../assets/i18n-runtime.js"></script>
+</body>
+</html>
