@@ -146,8 +146,9 @@ Published customer cases with hard numbers ([full index](https://devin.ai/custom
 | [Latent Health](https://devin.ai/customers/latent) | Pharmacy ops | 30% more PRs/engineer vs Claude Code alone; 50 running automations |
 | [Crossmint](https://devin.ai/customers/crossmint) | GOAT open-source scaling | Devin became the repo's #1 contributor during trial |
 | [FE fundinfo](https://devin.ai/customers/fefundinfo) | 1,800-repo automation | 10% immediate capacity increase via test-gen + security fixes |
+| [GE Aerospace](https://devin.ai/customers/geaerospace) | Constrained team story throughput | ~2× user-story output in three months |
 
-Also on the record: Citi (40,000-developer rollout, 30% tech-vendor spend cut), Itaú, GE Aerospace, Mercor, Hippo, Mercedes-Benz, Cognizant and Infosys partnerships — see the [customer index](https://devin.ai/customers).
+Also on the record: Citi (40,000-developer rollout, 30% tech-vendor spend cut), Itaú, Mercor, Hippo, Mercedes-Benz, Cognizant and Infosys partnerships — see the [customer index](https://devin.ai/customers).
 
 ## Bots & surfaces
 
