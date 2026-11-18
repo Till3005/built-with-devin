@@ -16,6 +16,8 @@ title: The economics of Devin — Built with Devin
 <link rel="stylesheet" href="assets/site.css">
 <script src="assets/theme.js" defer></script>
 <script src="assets/reveal.js" defer></script>
+<script src="assets/i18n.js"></script>
+<script src="assets/i18n-runtime.js" defer></script>
 <style>
   main{padding:80px 0 24px}
   main h1{font:400 clamp(34px,5vw,52px)/1.08 var(--serif);letter-spacing:-.02em;margin-bottom:14px}
@@ -38,10 +40,10 @@ title: The economics of Devin — Built with Devin
 <nav><div class="wrap nav-inner">
   <div class="nav-left"><a class="brand" href="./index.html" aria-label="Built with Devin"><span class="brand-text">built<strong>-with-</strong></span><img class="brand-mark" src="assets/brand/Devin_Primary_Logo.svg" alt="Devin" height="16"><span class="unofficial-chip">unofficial</span></a>
   <div class="navlinks">
-    <a href="index.html#deployments">Deployments</a>
-    <a href="index.html#enterprise">Enterprise</a>
-    <a href="index.html#tools">Tools</a>
-    <a href="https://github.com/Till3005/build-with-devin">Tutorials</a>
+    <a href="index.html#deployments" data-i18n="nav.dep">Deployments</a>
+    <a href="index.html#enterprise" data-i18n="nav.ent">Enterprise</a>
+    <a href="index.html#tools" data-i18n="nav.tools">Tools</a>
+    <a href="https://github.com/Till3005/build-with-devin" data-i18n="nav.tut">Tutorials</a>
   </div></div>
   <div class="nav-side">
     <button id="theme-toggle" aria-label="Toggle theme"></button>
@@ -49,22 +51,22 @@ title: The economics of Devin — Built with Devin
   </div>
 </div></nav>
 <div class="wrap"><main>
-  <span class="eyebrow">Ledger</span>
-  <h1>The economics of Devin</h1>
-  <p class="sub">Every published, auditable cost/return figure — only numbers that appear in a named customer story or cited public report. Nothing extrapolated.</p>
+  <span class="eyebrow" data-i18n="econ.eye">Ledger</span>
+  <h1 data-i18n="econ.h1">The economics of Devin</h1>
+  <p class="sub" data-i18n="econ.sub">Every published, auditable cost/return figure — only numbers that appear in a named customer story or cited public report. Nothing extrapolated.</p>
   <div class="toolbar">
-    <input type="search" id="q" placeholder="Filter — company, metric, source…">
-    <button class="chip on" data-f="">All</button>
-    <button class="chip" data-f="cost">Cost</button>
-    <button class="chip" data-f="throughput">Throughput</button>
-    <button class="chip" data-f="scale">Scale</button>
-    <button class="chip" data-f="community">Community reports</button>
+    <input type="search" id="q" data-i18n-placeholder="econ.q" placeholder="Filter — company, metric, source…">
+    <button class="chip on" data-f="" data-i18n="econ.all">All</button>
+    <button class="chip" data-f="cost" data-i18n="econ.cost">Cost</button>
+    <button class="chip" data-f="throughput" data-i18n="econ.tput">Throughput</button>
+    <button class="chip" data-f="scale" data-i18n="econ.scale">Scale</button>
+    <button class="chip" data-f="community" data-i18n="econ.comm">Community reports</button>
   </div>
   <table id="t">
     <thead><tr><th>Metric</th><th>Company</th><th>Context</th><th></th></tr></thead>
     <tbody></tbody>
   </table>
-  <div class="foot">Figures are as-published; where a source revises a number, the ledger follows the source. Unofficial community project — not affiliated with Cognition AI. Brand assets via devin.ai/brand ("ready for whatever you're making").</div>
+  <div class="foot" data-i18n-html="econ.foot">Figures are as-published; where a source revises a number, the ledger follows the source. Unofficial community project — not affiliated with Cognition AI. Brand assets via devin.ai/brand ("ready for whatever you're making").</div>
 </main></div>
 <script>
 const D = [

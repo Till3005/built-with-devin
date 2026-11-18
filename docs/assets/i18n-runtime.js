@@ -12,6 +12,11 @@
       if(!el.dataset.orig) el.dataset.orig=el.innerHTML;
       el.innerHTML=dict[k];
     });
+    document.querySelectorAll('[data-i18n-placeholder]').forEach(el=>{
+      const k=el.dataset.i18nPlaceholder;
+      if(!el.dataset.origAttr) el.dataset.origAttr=el.getAttribute('placeholder')||'';
+      el.setAttribute('placeholder', (dict[k]!==undefined)?dict[k]:el.dataset.origAttr);
+    });
     document.querySelectorAll('[data-i18n-html]').forEach(el=>{
       const k=el.dataset.i18nHtml||el.getAttribute('data-i18n-html');
       if(!el.dataset.orig) el.dataset.orig=el.innerHTML;
@@ -38,6 +43,14 @@
       wrap.appendChild(b);
     });
     side.prepend(wrap);
+    const sel=document.createElement('select');
+    sel.className='lang-sel'; sel.setAttribute('aria-label','Language');
+    SUPPORTED.forEach(l=>{const o=document.createElement('option');o.value=l;o.textContent=NAMES[l];sel.appendChild(o);});
+    sel.onchange=()=>apply(sel.value);
+    side.prepend(sel);
+    const sync=()=>{sel.value=cur();};
+    wrap.addEventListener('click',()=>setTimeout(sync,0));
+    sel.value=cur();
   }
   document.addEventListener('DOMContentLoaded',()=>{ build(); apply(cur()); });
   window.__setLang=apply;

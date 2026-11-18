@@ -1,6 +1,7 @@
 // Built with Devin — UI translations. en = HTML default.
 const I18N = {
 zh: {
+'nav.tut':'教程','econ.eye':'台账','econ.h1':'Devin 的经济学','econ.sub':'所有已发表、可审计的成本/回报数字——只收出现在具名客户案例或公开报告中的数，绝不外推。','econ.q':'筛选——公司、指标、来源…','econ.all':'全部','econ.cost':'成本','econ.tput':'吞吐','econ.scale':'规模','econ.comm':'社区报告','econ.foot':'数字按发表时的原样收录；来源修订时台账跟随。非官方社区项目——与 Cognition AI 无关。品牌素材取自 devin.ai/brand（"ready for whatever you\'re making"）。',
 'e8.d':'巴西最大银行的治理优先落地','p5.d':'dabit3 的活动发码机——输邮箱领 Devin 额度码；devin-ai-integration[bot] 是头号贡献者（266 commits）。','p6.d':'真实武术馆的订课系统——一个月功能量，在手机上会议间隙指挥 Devin 完成。','t7.d':'Devin Desktop 的持久长期记忆——经 MCP 一条命令接上 recall/retain。',
 'nav.skip':'跳到内容','nav.dep':'部署','nav.prod':'产品','nav.ent':'企业','nav.tools':'工具','nav.econ':'经济学',
 'hero.eyebrow':'社区制作 · 非官方 · 与 Cognition 无关',
@@ -35,7 +36,7 @@ zh: {
 'dd1.d':'六个有据可查的机制——chat、sessions、Needs-you、记忆、grants、Slack——逐一映射到实名部署。',
 'dd2.d':'所有已发表、可审计的成本/回报数字，汇于一张可筛选台账。',
 'dd3.d':'如何重建每一个有据可查的 bot——四套部署配方与 16 模板市场。',
-'dd4.d':'16 篇实战指南：每个模式都逆向自实名部署，六种语言。',
+'dd4.d':'16 篇实战指南：每个模式都逆向自实名部署——中英双语版。',
 'b.bots.h':'Devin Bots 轨道','b.bots.sub':'五篇指南，从一个 bot 走到整个组织——每篇都逆向自实名部署。','b.bots.more':'全部 →',
 'b.plat.h':'平台轨道','b.plat.sub':'bot 底下的水面面积。','b.plat.more':'仓库 →',
 'b.work.h':'工作流轨道','b.work.sub':'实战验证过的工作方式。','b.work.more':'仓库 →',
@@ -62,6 +63,7 @@ zh: {
 'foot.base1':'© 2026 —— 社区登记库。每个数字都链接出处。'
 },
 ja: {
+'nav.tut':'チュートリアル','econ.eye':'台帳','econ.h1':'Devin の経済学','econ.sub':'公開済み・監査可能なコスト/リターン数値すべて——実名の顧客事例か引用可能な公開レポートに現れる数字のみ。外挿なし。','econ.q':'絞り込み — 企業・指標・出典…','econ.all':'すべて','econ.cost':'コスト','econ.tput':'スループット','econ.scale':'スケール','econ.comm':'コミュニティレポート','econ.foot':'数値は公開時のまま。出典が数字を修正した場合、台帳もそれに従います。非公式コミュニティプロジェクト — Cognition AI 無関係。ブランド素材は devin.ai/brand より（"ready for whatever you\'re making"）。',
 'e8.d':'ブラジル最大銀行のガバナンス先行展開','p5.d':'dabit3 のイベント用クレジット配布機——メールを入力して Devin コードを受け取る。devin-ai-integration[bot] がトップ貢献者（266 commits）。','p6.d':'実在の武術アカデミーの予約システム——会議の合間にスマホから指揮して 1 ヶ月分の機能。','t7.d':'Devin Desktop の永続的長期記憶——MCP 経由で 1 コマンドで recall/retain を配線。',
 'nav.skip':'コンテンツへ','nav.dep':'デプロイ','nav.prod':'プロダクト','nav.ent':'エンタープライズ','nav.tools':'ツール','nav.econ':'経済学',
 'hero.eyebrow':'コミュニティ制作 · 非公式 · Cognition 無関係',
@@ -96,7 +98,7 @@ ja: {
 'dd1.d':'実証済み 6 つの機構——chat、sessions、Needs-you、メモリ、grants、Slack——それぞれ実名デプロイに対応。',
 'dd2.d':'公開済み・監査可能なコスト/リターン数値をすべて、フィルタ可能な一冊の台帳に。',
 'dd3.d':'実証済みの全 Bot を再構築する方法——4 つのデプロイレシピと 16 テンプレートのマーケット。',
-'dd4.d':'16 の実践ガイド：すべてのパターンが実名デプロイからの逆算、6 言語。',
+'dd4.d':'16 の実践ガイド：すべてのパターンが実名デプロイからの逆算——英中 2 言語版。',
 'b.bots.h':'Devin Bots トラック','b.bots.sub':'1 つの Bot から組織全体までの 5 ガイド——すべて実名デプロイから逆算。','b.bots.more':'すべて →',
 'b.plat.h':'プラットフォームトラック','b.plat.sub':'Bot の下にある接地面。','b.plat.more':'リポジトリ →',
 'b.work.h':'ワークフロートラック','b.work.sub':'現場で実証された働き方。','b.work.more':'リポジトリ →',
@@ -123,6 +125,7 @@ ja: {
 'foot.base1':'© 2026 —— コミュニティレジストリ。すべての数値に出典リンク。'
 },
 pt: {
+'nav.tut':'Tutoriais','econ.eye':'Livro-razão','econ.h1':'A economia do Devin','econ.sub':'Cada cifra publicada e auditável de custo/retorno — só números que aparecem num caso de cliente nomeado ou relatório público citado. Nada extrapolado.','econ.q':'Filtrar — empresa, métrica, fonte…','econ.all':'Todas','econ.cost':'Custo','econ.tput':'Throughput','econ.scale':'Escala','econ.comm':'Relatos da comunidade','econ.foot':'Cifras conforme publicadas; quando uma fonte revisa um número, o livro-razão segue a fonte. Projeto comunitário não oficial — sem afiliação com a Cognition AI. Assets de marca via devin.ai/brand ("ready for whatever you\'re making").',
 'e8.d':'Rollout com governança no maior banco do Brasil','p5.d':'Distribuidor de créditos de evento do dabit3 — digite o email, receba um código Devin. devin-ai-integration[bot] é o maior contribuidor (266 commits).','p6.d':'Sistema de reservas de uma academia de artes marciais real — um mês de features dirigidas do celular.','t7.d':'Memória persistente de longo prazo para Devin Desktop — via MCP, um comando liga recall/retain.',
 'nav.skip':'Ir ao conteúdo','nav.dep':'Implantações','nav.prod':'Produtos','nav.ent':'Empresas','nav.tools':'Ferramentas','nav.econ':'Economia',
 'hero.eyebrow':'Feito pela comunidade · não oficial · sem afiliação com a Cognition',
@@ -157,7 +160,7 @@ pt: {
 'dd1.d':'Os seis mecanismos documentados — chat, sessions, Needs-you, memória, grants, Slack — cada um mapeado a uma implantação nomeada.',
 'dd2.d':'Cada número publicado e auditável de custo/retorno num livro-razão filtrável.',
 'dd3.d':'Como reconstruir cada bot documentado — as quatro receitas de implantação e o marketplace de 16 templates.',
-'dd4.d':'16 guias testados em campo: cada padrão derivado por engenharia reversa de uma implantação nomeada, em seis idiomas.',
+'dd4.d':'16 guias testados em campo: cada padrão derivado por engenharia reversa de uma implantação nomeada — edições em inglês e chinês.',
 'b.bots.h':'Trilha Devin Bots','b.bots.sub':'Cinco guias de um bot até uma organização inteira — cada um derivado de uma implantação nomeada.','b.bots.more':'Todos →',
 'b.plat.h':'Trilha de plataforma','b.plat.sub':'A superfície embaixo dos bots.','b.plat.more':'Repo →',
 'b.work.h':'Trilha de workflows','b.work.sub':'Formas de trabalhar provadas em campo.','b.work.more':'Repo →',
@@ -184,6 +187,7 @@ pt: {
 'foot.base1':'© 2026 — Um registro comunitário. Cada número linka para a fonte.'
 },
 es: {
+'nav.tut':'Tutoriales','econ.eye':'Libro mayor','econ.h1':'La economía de Devin','econ.sub':'Cada cifra publicada y auditable de costo/retorno — solo números que aparecen en un caso de cliente nombrado o informe público citado. Nada extrapolado.','econ.q':'Filtrar — empresa, métrica, fuente…','econ.all':'Todas','econ.cost':'Costo','econ.tput':'Throughput','econ.scale':'Escala','econ.comm':'Informes de la comunidad','econ.foot':'Cifras tal como se publicaron; cuando una fuente revisa un número, el libro mayor sigue a la fuente. Proyecto comunitario no oficial — sin afiliación con Cognition AI. Assets de marca vía devin.ai/brand ("ready for whatever you\'re making").',
 'e8.d':'Despliegue con gobernanza en el mayor banco de Brasil','p5.d':'Dispensador de créditos de evento de dabit3 — escribe tu email, recibe un código Devin. devin-ai-integration[bot] es el mayor contribuidor (266 commits).','p6.d':'Sistema de reservas de una academia de artes marciales real — un mes de features dirigidas desde el móvil.','t7.d':'Memoria persistente a largo plazo para Devin Desktop — vía MCP, un comando conecta recall/retain.',
 'nav.skip':'Ir al contenido','nav.dep':'Despliegues','nav.prod':'Productos','nav.ent':'Empresas','nav.tools':'Herramientas','nav.econ':'Economía',
 'hero.eyebrow':'Hecho por la comunidad · no oficial · sin afiliación con Cognition',
@@ -218,7 +222,7 @@ es: {
 'dd1.d':'Los seis mecanismos documentados — chat, sessions, Needs-you, memoria, grants, Slack — cada uno mapeado a un despliegue nombrado.',
 'dd2.d':'Cada cifra publicada y auditable de costo/retorno en un libro mayor filtrable.',
 'dd3.d':'Cómo reconstruir cada bot documentado — las cuatro recetas de despliegue y el marketplace de 16 plantillas.',
-'dd4.d':'16 guías probadas en campo: cada patrón derivado por ingeniería inversa de un despliegue nombrado, en seis idiomas.',
+'dd4.d':'16 guías probadas en campo: cada patrón derivado por ingeniería inversa de un despliegue nombrado — ediciones en inglés y chino.',
 'b.bots.h':'Ruta Devin Bots','b.bots.sub':'Cinco guías de un bot a una organización entera — cada una derivada de un despliegue nombrado.','b.bots.more':'Todas →',
 'b.plat.h':'Ruta de plataforma','b.plat.sub':'La superficie debajo de los bots.','b.plat.more':'Repo →',
 'b.work.h':'Ruta de workflows','b.work.sub':'Formas de trabajar probadas en campo.','b.work.more':'Repo →',
@@ -245,6 +249,7 @@ es: {
 'foot.base1':'© 2026 — Un registro comunitario. Cada cifra enlaza a su fuente.'
 },
 de: {
+'nav.tut':'Tutorials','econ.eye':'Ledger','econ.h1':'Die Ökonomie von Devin','econ.sub':'Jede veröffentlichte, auditierbare Kosten-/Ertragszahl — nur Zahlen aus benannten Kundenstorys oder zitierbaren öffentlichen Berichten. Nichts extrapoliert.','econ.q':'Filtern — Unternehmen, Metrik, Quelle…','econ.all':'Alle','econ.cost':'Kosten','econ.tput':'Durchsatz','econ.scale':'Skalierung','econ.comm':'Community-Berichte','econ.foot':'Zahlen wie veröffentlicht; revidiert eine Quelle eine Zahl, folgt das Ledger der Quelle. Inoffizielles Community-Projekt — nicht mit Cognition AI verbunden. Marken-Assets via devin.ai/brand („ready for whatever you\'re making").',
 'e8.d':'Governance-first-Rollout in Brasiliens größter Bank','p5.d':'dabit3s Event-Credit-Spender — E-Mail eingeben, Devin-Code erhalten. devin-ai-integration[bot] ist Top-Contributor (266 Commits).','p6.d':'Buchungssystem einer echten Kampfsportakademie — ein Monat Features, vom Handy aus dirigiert.','t7.d':'Persistente Langzeit-Memory für Devin Desktop — ein Befehl verdrahtet recall/retain über MCP.',
 'nav.skip':'Zum Inhalt','nav.dep':'Deployments','nav.prod':'Produkte','nav.ent':'Enterprise','nav.tools':'Tools','nav.econ':'Ökonomie',
 'hero.eyebrow':'Von der Community · inoffiziell · nicht mit Cognition verbunden',
@@ -279,7 +284,7 @@ de: {
 'dd1.d':'Die sechs dokumentierten Mechanismen — Chat, Sessions, Needs-you, Gedächtnis, Grants, Slack — jeweils einem benannten Deployment zugeordnet.',
 'dd2.d':'Jede veröffentlichte, auditierbare Kosten-/Ertragszahl in einem filterbaren Ledger.',
 'dd3.d':'Wie man jeden dokumentierten Bot nachbaut — die vier Deployment-Rezepte und das 16-Template-Marketplace.',
-'dd4.d':'16 praxiserprobte Guides: jedes Muster aus einem benannten Deployment rückentwickelt, in sechs Sprachen.',
+'dd4.d':'16 praxiserprobte Guides: jedes Muster aus einem benannten Deployment rückentwickelt — englische und chinesische Ausgaben.',
 'b.bots.h':'Devin-Bots-Track','b.bots.sub':'Fünf Guides von einem Bot bis zur ganzen Organisation — jeder aus einem benannten Deployment abgeleitet.','b.bots.more':'Alle →',
 'b.plat.h':'Plattform-Track','b.plat.sub':'Die Oberfläche unter den Bots.','b.plat.more':'Repo →',
 'b.work.h':'Workflows-Track','b.work.sub':'Praxiserprobte Arbeitsweisen.','b.work.more':'Repo →',
