@@ -1,13 +1,27 @@
+<div align="center">
+
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="assets/devin-symbol-dark.svg">
+  <img src="assets/devin-symbol.svg" alt="Devin" width="72">
+</picture>
+
 # Built with Devin
 
-> A community showcase of things **built by or around Devin** — real products, bots, integrations, SDKs, and patterns for working with Cognition's AI software engineer.
+**A community showcase of things built by or around [Devin](https://devin.ai)** — real products, Bots, integrations, SDKs, and documented patterns for Cognition's AI software engineer.
 
-Curated by [@darega0mae](https://x.com/darega0mae). Submissions welcome — see [Contributing](CONTRIBUTING.md).
+[![Awesome](https://awesome.re/badge.svg)](https://awesome.re)
+[![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](CONTRIBUTING.md)
+[![License: CC0-1.0](https://img.shields.io/badge/License-CC0_1.0-lightgrey.svg)](LICENSE)
 
-*This is an unofficial community project, not affiliated with, endorsed by, or sponsored by Cognition AI. "Devin" is a trademark of Cognition AI. For official documentation, see [docs.devin.ai](https://docs.devin.ai).*
+Curated by [@darega0mae](https://x.com/darega0mae) · [Add your project](CONTRIBUTING.md)
+
+</div>
+
+> *Unofficial community project — not affiliated with, endorsed by, or sponsored by Cognition AI. "Devin" is a trademark of Cognition AI. Brand assets are used under the official kit at [devin.ai/brand](https://devin.ai/brand). Official docs: [docs.devin.ai](https://docs.devin.ai).*
 
 ## Contents
 
+- [Devin Bots — official product](#devin-bots--official-product)
 - [Products built with Devin](#products-built-with-devin)
 - [Bots & surfaces](#bots--surfaces)
 - [SDKs & API tooling](#sdks--api-tooling)
@@ -15,6 +29,24 @@ Curated by [@darega0mae](https://x.com/darega0mae). Submissions welcome — see 
 - [Patterns & write-ups](#patterns--write-ups)
 - [Community media](#community-media)
 - [Official resources](#official-resources)
+
+## Devin Bots — official product
+
+Launched **November 17, 2026** ([announcement](https://devin.ai/blog/introducing-devin-bots), [docs](https://docs.devin.ai/work-with-devin/bots)). A Bot is a persistent agent that owns an outcome: it plans the work, runs a Devin session for each piece, keeps memory across weeks, and brings you only the decisions that need your judgment. Bots live in Slack and iMessage, run on schedules or event triggers, and hand work between each other through grants.
+
+### Documented deployments
+
+- **Android Bot** — Cognition had an iOS app, no Android team. Prompted with *"your job is to product manage the android app"*, the Bot filed its own tickets, ran a Devin session per ticket, and shipped the app to open beta on Google Play in **44 days**: 1,134 PRs merged, 344,651 lines of Kotlin, 2,841 screenshot tests — while its human sent ~1 message per 6 PRs. It now owns Android feature parity with iOS.
+- **Layout Bot** — Owns layout-shift regression on the Devin web app. Every 3 hours it builds production `main` on its own machine, simulates first/repeat/delayed-request visits, traces regressions to the introducing PR, and opens fixes with before/after videos. **159 PRs merged in 3 weeks; lag down 70%.**
+- **Super Jenny** — A mobile game studio staffed by ~20 Bots (development, Unity, releases, UI, iOS, Android, device testing) reporting to one orchestrating Bot. The studio's only human answers a consolidated Slack thread 4×/day **with emoji**. Output went from ~50 to **1,900 PRs/week**, shipping weekly.
+
+### Documented patterns
+
+- **Outcome prompts** — *"You own the Android app now. Keep it at feature parity with iOS."* Give the Bot a goal, not a backlog.
+- **Bot-to-bot handoffs** — grants let a QA Bot find a bug, pull in a Developer Bot to fix it, retest on staging, and have a PM Bot report status to the channel.
+- **Scheduled checks** — a Bot that watches an alerts channel on a cron, owns the check, and opens fixes when it regresses (Layout Bot pattern).
+- **Roll-up reporting** — one supervising Bot collects every subordinate Bot's pending decisions into a single thread (Super Jenny pattern).
+- Reported results: beta testers merge **4.5× more PRs per message**; Cognition merges 2,000+ PRs/week.
 
 ## Products built with Devin
 
@@ -69,9 +101,14 @@ Documented real-world usage.
 ## Official resources
 
 - [Devin Community](https://devin.ai/community) — events, ambassador applications, event support
-- [docs.devin.ai](https://docs.devin.ai) — official documentation (Automations, Bots, integrations)
+- [docs.devin.ai](https://docs.devin.ai) — documentation: [Bots](https://docs.devin.ai/work-with-devin/bots), [Automations](https://docs.devin.ai/product-guides/automations), integrations
+- [devin.ai/brand](https://devin.ai/brand) — official brand kit
 - [Devin Discord](https://devin.ai/community) and [r/DevinAI](https://www.reddit.com/r/DevinAI/) — official community spaces
 - [CognitionAI/qa-devin](https://github.com/CognitionAI/qa-devin) — Cognition's own "Devin doing QA" reference repo
+
+## Contributing
+
+Built something with Devin, or know a deployment we missed? See [CONTRIBUTING.md](CONTRIBUTING.md) — one line, link first, no marketing copy.
 
 ## License
 
