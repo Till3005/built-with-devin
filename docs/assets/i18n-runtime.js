@@ -33,6 +33,13 @@
       if(!m) return;
       a.setAttribute('href', lang==='en' ? `guides/${m[1]}` : `guides/${lang}/${m[1]}`);
     });
+    // deep-dive pages: zh mirror exists; other langs stay on English
+    document.querySelectorAll('a').forEach(a=>{
+      const h=a.getAttribute('href')||'';
+      const m=h.match(/^(?:zh\/)?(devin-bots-anatomy|reproducing-devin-bots|economics)\.html$/);
+      if(!m) return;
+      a.setAttribute('href', lang==='zh' ? `zh/${m[1]}.html` : `${m[1]}.html`);
+    });
     document.querySelectorAll('.lang-btn').forEach(b=>{
       b.classList.toggle('on', b.dataset.lang===lang);
       b.setAttribute('aria-selected', b.dataset.lang===lang);
