@@ -152,6 +152,8 @@ Things the community builds *for* Devin rather than *with* it.
 - **[nix-devin-cli](https://github.com/broady/nix-devin-cli)** — Devin CLI packaged for Nix with nightly auto-updates across macOS and Linux.
 - **[QuotaView](https://github.com/Duoasa/QuotaView)** — macOS "Dynamic Island" for AI agents: tracks Devin Desktop and Devin CLI sessions, approvals and quota alongside Claude/Codex/Grok.
 - **[Mako](https://github.com/Verbiflow/mako)** — Local workspace for every coding agent; carries Devin conversations over ACP — run, follow, resume, and move them across machines.
+- **[ax](https://zenn.dev/kuwashima/articles/ax-cross-agent-session-picker)** — fzf session picker that resumes Devin alongside 18 other agent CLIs (JP).
+- **[Kiro Crew patch for Devin CLI](https://zenn.dev/dario_okazaki/articles/e5eda2aca4fdd2)** — Unofficial patch adding Devin CLI to Kiro Crew's managed bot fleet, with per-bot permission handling (JP).
 
 ## Patterns & write-ups
 
@@ -167,6 +169,11 @@ Documented real-world usage.
 - **[Org rollout at Leverages](https://zenn.dev/levtech/articles/9c869303820844)** — 14 teams, 177 merged PRs, and an honest ACU-vs-wages ROI formula (JP).
 - **[Rapid development with Devin](https://blog.scottlogic.com/2025/10/20/rapid-development-with-devin.html)** — Scott Logic's practitioner account, including the prompt-iteration lessons.
 - **[Scott Wu on Cognition's internal usage](https://www.lennysnewsletter.com/p/how-devin-replaces-your-junior-engineers)** — how Cognition itself delegates: async junior-engineer workflow, top-5 task types, first-line-of-defense crash analysis.
+- **[E2E testing Devin's changes with Signadot](https://dev.to/signadot/test-devins-changes-end-to-end-with-signadot-a0)** — Devin + Signadot MCP: it runs the changed microservice in its VM, sandboxes it against real cluster traffic, and runs the Playwright suite — closing the loop Devin can't close alone in a multi-service system.
+- **[Vulnerability impact analysis via Devin Automations](https://zenn.dev/rescuenow/articles/2ee1c4b66ecec8)** — rescuenow's scheduled Automation investigates blast radius when a CVE drops (JP).
+- **[Classifying 700 support inquiries](https://zenn.dev/canly/articles/9c19bb123e208c)** — canly pointed Devin at their ticket history to find what "cause unidentified" actually was — Devin as a data analyst, not a coder (JP).
+- **[Datadog CCM × Devin weekly cost ops](https://zenn.dev/hubble/articles/091e29a0c86ec3)** and **[Dependabot PRs triaged by Devin first](https://zenn.dev/hubble/articles/88429bd24db476)** — hubble's two standing loops: weekly cloud-cost reduction, and Devin investigating every dependency bump before a human sees it (JP).
+- **[Role-based bot dev team + light-PR auto-merge](https://zenn.dev/kyto64/articles/ai-bot-dev-env)** — kyto64's personal-dev setup: specialized AI bots plus Devin, with low-risk PRs merging themselves (JP).
 
 ## Community media
 
@@ -176,6 +183,8 @@ Documented real-world usage.
 - **[Agents In Use](https://agentsinuse.com)** — Directory of real agent use cases, including Devin entries.
 - **[BitsExplorer — Built with Devin](https://bitsexplorer.com/built-with/devin)** — 340+ public projects verified by Devin's commit trailer (evidence, not self-report).
 - **[Vibe Coded Projects](https://vibedprojects.com/ai-tools/devin)** — 373 apps, tools and sites vibe-coded with Devin.
+- **[Devin 2nd Anniversary Meetup Japan](https://aid.connpass.com/event/412875/)** — Ambassador-run community event marking two years of public Devin ([announcement](https://x.com/kinopee_ai/status/2123019189325848847)).
+- **[Devin's Dinner](https://x.com/MattSchrage/status/2121016484155548124)** — Matt Schrage's invite-only NYC dinner series for founders and engineers working with Devin.
 
 ## Official resources
 
