@@ -23,6 +23,7 @@ Curated by [@darega0mae](https://x.com/darega0mae) · [Add your project](CONTRIB
 
 - [Devin Bots — official product](#devin-bots--official-product)
 - [Products built with Devin](#products-built-with-devin)
+- [Enterprise deployments](#enterprise-deployments)
 - [Bots & surfaces](#bots--surfaces)
 - [SDKs & API tooling](#sdks--api-tooling)
 - [Tooling around Devin](#tooling-around-devin)
@@ -63,7 +64,34 @@ Sixteen ready-made Bots on the [public marketplace](https://devin.ai/bots/templa
 
 Real software where Devin wrote the code — not demos, shipped work.
 
+- **[Era by Eon](https://devin.ai/customers/eon)** — Simulated companies (74 vendor-faithful systems: Salesforce, Slack, Zendesk, Jira…) for training and evaluating AI agents. **98% of merged PRs written by Devin**, 300+ day-long sessions, 2,720 sessions launched by other sessions.
+- **[Courtyard's Quick](https://courtyard.io/blog/post/from-a-slack-link-to-production-in-under-48-hours-cloning-shopifys-quick-with-devin)** — Courtyard cloned Shopify's internal "Quick" static-site deployer: from a Slack link to a production service (Go, Cloud Run, Bazel, Terraform, SSO, git-backed) in **~21 hours**, all written by Devin.
+
 *Know a shipped product built with Devin? [Add it](CONTRIBUTING.md).*
+
+## Enterprise deployments
+
+Published customer cases with hard numbers ([full index](https://devin.ai/customers)):
+
+- **[Nubank](https://devin.ai/customers/nubank)** — Multi-million-line, 8-year-old ETL monolith → sub-modules. 8–12× engineering efficiency, 20× cost savings; fine-tuned Devin cut ~40 min/task to ~10.
+- **[Wayfair](https://devin.ai/customers/wayfair)** — 1,600+ engineers all-in on cloud agents.
+- **[The Access Group](https://devin.ai/customers/access-group)** — 5× engineering output across 250 products and 2,000+ engineers.
+- **[EBANX](https://devin.ai/customers/ebanx)** — **92% of merged PRs are Devin-authored**.
+- **[Gumroad](https://devin.ai/customers/gumroad)** — Devin is the repo's **#1 contributor**: 1,500+ merged PRs.
+- **[Finch](https://devin.ai/customers/finch)** — 3,000 PRs merged, ~20 engineer-months saved.
+- **[Comarch](https://devin.ai/customers/comarch)** — Rebuilding a 20-year-old, 10-million-line ERP system with Devin.
+- **[AngelList](https://devin.ai/customers/angellist)** — Devin root-causes 70% of incidents before an engineer steps in; Redshift→Snowflake migration 5.2× faster.
+- **[Modal](https://devin.ai/customers/modal)** — Devin investigates 80% of incidents before an engineer opens the thread.
+- **[Reducto](https://devin.ai/customers/reducto)** — Devin Oncall is the first responder; engineers rarely get paged.
+- **[Eight Sleep](https://devin.ai/customers/eight-sleep)** — Ships 8× more across the whole company.
+- **[Exa](https://devin.ai/customers/exa)** — Ships to production without engineers ever pulling code locally.
+- **[RV Tech](https://devin.ai/customers/rvtech)** — Rivian × VW joint venture: 10× testing velocity for software-defined vehicles.
+- **[Melius](https://devin.ai/customers/melius)** — ~100 PRs/day from a small team.
+- **[Hamming](https://devin.ai/customers/hamming)** — Devin writes 25% of total code volume.
+- **[Airbyte](https://devin.ai/customers/airbyte)** — Keeps 700+ connectors running.
+- **[Litera](https://devin.ai/customers/litera)** — Regression cycles cut 90%.
+
+Also on the record: Citi (40,000-developer rollout, 30% tech-vendor spend cut), Ramp (tens of thousands of hours of tech debt), Itaú, Tavrn (HIPAA-constrained), Crosby (AI-native law firm), Mercedes-Benz, Cognizant and Infosys partnerships — see the [customer index](https://devin.ai/customers).
 
 ## Bots & surfaces
 
@@ -97,6 +125,7 @@ Documented real-world usage.
 - **[SAST auto-remediation pipeline](https://github.com/Cognition-Partner-Workshops/uc-cve-remediation-regulatory-compliance/pull/16)** — GitHub Actions workflow that scans PRs with OWASP Dependency-Check and dispatches a Devin session to remediate CVEs ≥ 7.0, with verification scans and an escalation circuit breaker.
 - **[Attributing Devin PRs to their requesters](https://tech.enechange.co.jp/entry/2025/06/22/165504)** — ENECHANGE's GitHub Actions setup for recording which engineer instructed Devin, solving productivity-measurement gaps when all PRs show `devin-ai-integration[bot]` (Japanese).
 - **[Fixing stale mailbox alarms](https://agentsinuse.com/use-cases/devin-to-clear-mailbox-alarm/)** — Devin tracing a Cloudflare Workers test flake to a stale continuation alarm and adding regression coverage (via Agents In Use).
+- **[Designing the Spraycash UI in Devin](https://dev.to/ibrahimpima/designing-the-spraycash-ui-with-kimi-k3-in-devin-4l2f)** — A fintech landing page art-directed entirely through Devin chat: generated imagery, layered cloud animation, SVG draw-on ring, and a three-font type system — every prompt published.
 
 ## Community media
 
@@ -104,6 +133,8 @@ Documented real-world usage.
 - **[Voices — ambassador directory](https://devincentral.com/voices)** — Unofficial map of ~190 Devin Ambassadors worldwide.
 - **[devin-cli.github.io](https://devin-cli.github.io)** — Community docs on what Devin's API, Slack, and Linear surfaces cover and how to automate them.
 - **[Agents In Use](https://agentsinuse.com)** — Directory of real agent use cases, including Devin entries.
+- **[BitsExplorer — Built with Devin](https://bitsexplorer.com/built-with/devin)** — 340+ public projects verified by Devin's commit trailer (evidence, not self-report).
+- **[Vibe Coded Projects](https://vibedprojects.com/ai-tools/devin)** — 373 apps, tools and sites vibe-coded with Devin.
 
 ## Official resources
 
@@ -113,6 +144,8 @@ Documented real-world usage.
 - [Devin Discord](https://devin.ai/community) and [r/DevinAI](https://www.reddit.com/r/DevinAI/) — official community spaces
 - [CognitionAI/qa-devin](https://github.com/CognitionAI/qa-devin) — Cognition's own "Devin doing QA" reference repo
 - [Devin Automations QuickStart](https://www.youtube.com/watch?v=6xxKtIpgOyE) — official video walkthrough of event/schedule-triggered agent setups, the substrate Bots build on
+- [SWE-2 Flash](https://cognition.com/blog/swe-2-flash) — Cognition's fast coding model: outperforms all American open-weight models on leading evals, 3× SWE-2 speed at 1/5 the price
+- [Devin Apps](https://devin.ai/blog/devin-apps) — live web apps Devin builds and serves from its own machine at a stable URL (internal tools, dashboards, staging copies)
 
 ## Contributing
 
