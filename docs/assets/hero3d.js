@@ -24,16 +24,17 @@
   camera.position.set(0, 1.5, 54);
   camera.lookAt(0, 0.5, 0);
 
-  const key = new THREE.DirectionalLight(0xffffff, 2.2);
+  const key = new THREE.DirectionalLight(0xfff5e8, 1.6);
   key.position.set(12, 26, 24); scene.add(key);
-  const fill = new THREE.DirectionalLight(0xdfe8ff, 0.5);
+  const fill = new THREE.DirectionalLight(0xeaf0ff, 0.65);
   fill.position.set(-16, -4, 10); scene.add(fill);
-  const rim = new THREE.DirectionalLight(0x9fc4ff, 0.7);
+  const rim = new THREE.DirectionalLight(0xd8e6ff, 0.5);
   rim.position.set(-10, 14, -20); scene.add(rim);
 
   const mat = new THREE.MeshPhysicalMaterial({
-    color: 0x14140f, metalness: 0.0, roughness: 0.34,
-    clearcoat: 0.55, clearcoatRoughness: 0.28, envMapIntensity: 0.85,
+    color: 0x16150f, metalness: 0.0, roughness: 0.52,
+    clearcoat: 0.18, clearcoatRoughness: 0.55, envMapIntensity: 0.6,
+    sheen: 0.3, sheenColor: 0xffffff, sheenRoughness: 0.7,
   });
 
   const loader = new SVGLoader();
@@ -55,10 +56,10 @@
   inner.position.sub(c);
   const mark = new THREE.Group();
   mark.add(inner);
-  mark.scale.setScalar(26 / Math.max(size.x, size.y));
+  mark.scale.setScalar(22 / Math.max(size.x, size.y));
   inner.scale.y *= -1; inner.position.y *= -1;
   mark.rotation.set(-0.07, 0.30, 0);   // fixed slight tilt
-  mark.position.y = 2;
+  mark.position.y = 3.5;
   scene.add(mark);
 
   // soft ground shadow
@@ -71,17 +72,17 @@
     return new THREE.CanvasTexture(cv);
   })();
   const ao = new THREE.Mesh(
-    new THREE.PlaneGeometry(56, 34),
+    new THREE.PlaneGeometry(50, 26),
     new THREE.MeshBasicMaterial({ map: aoTex, transparent: true, depthWrite: false })
   );
   ao.rotation.x = -Math.PI / 2;
-  ao.position.set(2, -15.5, 0);
+  ao.position.set(2, -13.2, 0);
   scene.add(ao);
 
   function themeMats() {
     const dark = document.documentElement.dataset.theme === "dark" ||
       (!document.documentElement.dataset.theme && matchMedia("(prefers-color-scheme: dark)").matches);
-    mat.color.set(dark ? 0xefefe9 : 0x14140f);
+    mat.color.set(dark ? 0xefefe9 : 0x16150f);
     ao.material.opacity = dark ? 0.6 : 1.0;
   }
   themeMats();
