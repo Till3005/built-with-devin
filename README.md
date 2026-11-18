@@ -32,7 +32,7 @@ Curated by [@darega0mae](https://x.com/darega0mae) · [Add your project](CONTRIB
 
 ## Devin Bots — official product
 
-Launched **November 17, 2026** ([announcement](https://devin.ai/blog/introducing-devin-bots), [docs](https://docs.devin.ai/work-with-devin/bots)). A Bot is a persistent agent that owns an outcome: it plans the work, runs a Devin session for each piece, keeps memory across weeks, and brings you only the decisions that need your judgment. Bots live in Slack and iMessage, run on schedules or event triggers, and hand work between each other through grants.
+Launched **November 17, 2026** ([announcement](https://devin.ai/blog/introducing-devin-bots), [docs](https://docs.devin.ai/work-with-devin/bots), [Fortune exclusive](https://fortune.com/2026/11/17/exclusive-cognition-bets-on-devin-bots-coding-agents-in-challenge-to-anthropics-duet-and-openais-dots/)). A Bot is a persistent agent that owns an outcome: it plans the work, runs a Devin session for each piece, keeps memory across weeks, and brings you only the decisions that need your judgment. Bots live in Slack and iMessage, run on schedules or event triggers, and hand work between each other through grants. Bots incorporate technology from the Interaction Company (Poke), which Cognition acquired in July 2026.
 
 ### Documented deployments
 
@@ -46,7 +46,7 @@ Launched **November 17, 2026** ([announcement](https://devin.ai/blog/introducing
 - **Bot-to-bot handoffs** — grants let a QA Bot find a bug, pull in a Developer Bot to fix it, retest on staging, and have a PM Bot report status to the channel.
 - **Scheduled checks** — a Bot that watches an alerts channel on a cron, owns the check, and opens fixes when it regresses (Layout Bot pattern).
 - **Roll-up reporting** — one supervising Bot collects every subordinate Bot's pending decisions into a single thread (SuperJennyStack pattern — Jenny's ~20-Bot studio stack is published as a community template).
-- Reported results: beta testers merge **4.5× more PRs per message**; Cognition merges 2,000+ PRs/week.
+- Reported results: beta testers merge **4.5× more PRs per message**; Cognition merges 2,000+ PRs/week. Named early-access customers include **Decagon, Fireworks AI, and Reducto**, with usage up 10× in the first two weeks ([Fortune](https://fortune.com/2026/11/17/exclusive-cognition-bets-on-devin-bots-coding-agents-in-challenge-to-anthropics-duet-and-openais-dots/)).
 - Other documented usage: open-source issue triage on a math-visualization repo, firmware work, synthesis of years of personal health data, tennis analytics, and accounting automation (trybasis: 20h task → 30 min) — see the [reproduction guide](docs/reproducing-devin-bots.md#reported-usage-beyond-cognition).
 
 ### Official template library
@@ -108,6 +108,7 @@ Documented real-world usage.
 - [devin.ai/brand](https://devin.ai/brand) — official brand kit
 - [Devin Discord](https://devin.ai/community) and [r/DevinAI](https://www.reddit.com/r/DevinAI/) — official community spaces
 - [CognitionAI/qa-devin](https://github.com/CognitionAI/qa-devin) — Cognition's own "Devin doing QA" reference repo
+- [Devin Automations QuickStart](https://www.youtube.com/watch?v=6xxKtIpgOyE) — official video walkthrough of event/schedule-triggered agent setups, the substrate Bots build on
 
 ## Contributing
 
