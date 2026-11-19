@@ -296,6 +296,22 @@
 <li>有 PagerDuty/Datadog/Sentry 就加一个<strong>事故</strong>配方</li>
 <li>某个配方起效后，冻结成 <strong>skill</strong>（第 12 篇）或 <strong>Bot</strong>（第 1–5 篇）——上表每一行都能以这两种形态存续</li>
 </ol>
+<h2>实录演示 —— 一条食谱真跑一遍，录于 Devin CLI v3000.14（swe-2-flash-medium）</h2>
+<p>拿「代码质量」栏里的 <strong>Raise code coverage</strong> 食谱端到端跑了一遍：一个小仓库里放着故意少测的 <code>orders.py</code>（折扣码、运费档位、边界条件）。prompt 只有一行，剩下的全交给 Devin。</p>
+<p><strong>视频（74 秒，无声）：</strong> 食谱 prompt → 读文件 → 写测试 → 命令审批 → 全绿。</p>
+<p><a href="https://till3005.github.io/built-with-devin/assets/guides/official-cookbook/walkthrough.mp4"><img alt="Devin 在写缺失的测试用例——test_orders.py 的 diff，下方是权限菜单" src="https://till3005.github.io/built-with-devin/assets/guides/official-cookbook/walkthrough-poster.webp" /></a></p>
+<p><img alt="1. swe-2-flash-medium 上的 CLI REPL——Pro 方案免费档" src="https://till3005.github.io/built-with-devin/assets/guides/official-cookbook/step0-repl.webp" />
+<em>1. swe-2-flash-medium 上的 CLI REPL——Pro 方案，免费档</em></p>
+<p><img alt="2. 食谱 prompt 已提交——Devin 先读 orders.py 和 test_orders.py 再动手" src="https://till3005.github.io/built-with-devin/assets/guides/official-cookbook/step1-recipe-prompt.webp" />
+<em>2. 食谱 prompt 已提交——Devin 先读 orders.py 和 test_orders.py</em></p>
+<p><img alt="3. 写测试——+43 行新用例：空购物车、SAVE10/SAVE20/未知码、每个运费档" src="https://till3005.github.io/built-with-devin/assets/guides/official-cookbook/step2-writing-tests.webp" />
+<em>3. 写测试——+43 行覆盖空购物车、折扣码、每个运费档</em></p>
+<p><img alt="4. 命令审批——跑测试套件也要先批准" src="https://till3005.github.io/built-with-devin/assets/guides/official-cookbook/step3-command-approval.webp" />
+<em>4. 命令审批——<code>python3 -m unittest -v test_orders.py</code> 等一个 Allow</em></p>
+<p><img alt="5. 11 个测试全过——报告点名每个已覆盖分支；orders.py 未动、零提交" src="https://till3005.github.io/built-with-devin/assets/guides/official-cookbook/step4-all-tests-pass.webp" />
+<em>5. 11 个测试全过——每个原先未测的分支都被点名；orders.py 未动、零提交</em></p>
+<p><img alt="6. /exit 后验证——16 个测试全绿，改动停在工作区未提交" src="https://till3005.github.io/built-with-devin/assets/guides/official-cookbook/step5-verify-exit.webp" />
+<em>6. /exit 后验证——<code>Ran 16 tests ... OK</code>，改动按指令未提交</em></p>
 <h2>验证</h2>
 <ul>
 <li>[ ] 有一个卫生循环 recipe 在按计划运行，并产出了第一个 PR/报告</li>

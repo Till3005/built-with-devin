@@ -296,6 +296,22 @@
 <li>Adicione uma de <strong>Incidentes</strong> se você tem PagerDuty/Datadog/Sentry</li>
 <li>Quando uma receita funciona, congele-a como um <strong>skill</strong> (Guia 12) ou um <strong>Bot</strong> (Guias 1–5) — cada linha acima sobrevive como um dos dois</li>
 </ol>
+<h2>Passo a passo real — uma receita executada de verdade, no Devin CLI v3000.14 (swe-2-flash-medium)</h2>
+<p>A receita <strong>Raise code coverage</strong> da prateleira <em>Code quality</em>, executada de ponta a ponta num repositório pequeno com um <code>orders.py</code> propositalmente sub-testado (códigos de desconto, faixas de frete, casos de borda). Um prompt de uma linha; o Devin fez o resto.</p>
+<p><strong>Vídeo (74 s, sem áudio):</strong> prompt da receita → leitura → edição dos testes → aprovação de comando → tudo verde.</p>
+<p><a href="https://till3005.github.io/built-with-devin/assets/guides/official-cookbook/walkthrough.mp4"><img alt="Devin escrevendo os casos de teste que faltavam — diff de test_orders.py com o menu de permissão aberto" src="https://till3005.github.io/built-with-devin/assets/guides/official-cookbook/walkthrough-poster.webp" /></a></p>
+<p><img alt="1. O REPL do CLI em swe-2-flash-medium — plano Pro, cota gratuita" src="https://till3005.github.io/built-with-devin/assets/guides/official-cookbook/step0-repl.webp" />
+<em>1. O REPL do CLI em swe-2-flash-medium — plano Pro, cota gratuita</em></p>
+<p><img alt="2. O prompt da receita enviado — Devin lê orders.py e test_orders.py antes de mexer" src="https://till3005.github.io/built-with-devin/assets/guides/official-cookbook/step1-recipe-prompt.webp" />
+<em>2. O prompt da receita enviado — primeiro lê orders.py e test_orders.py</em></p>
+<p><img alt="3. Escrevendo testes — +43 linhas de casos novos: carrinho vazio, SAVE10/SAVE20/código desconhecido, toda faixa de frete" src="https://till3005.github.io/built-with-devin/assets/guides/official-cookbook/step2-writing-tests.webp" />
+<em>3. Escrevendo testes — +43 linhas cobrindo carrinho vazio, códigos de desconto e toda faixa de frete</em></p>
+<p><img alt="4. Aprovação de comando — rodar a suíte também pede permissão" src="https://till3005.github.io/built-with-devin/assets/guides/official-cookbook/step3-command-approval.webp" />
+<em>4. Aprovação de comando — <code>python3 -m unittest -v test_orders.py</code> espera um Allow</em></p>
+<p><img alt="5. 11 testes passando — o relatório cita cada branch coberta; orders.py intacto, sem commits" src="https://till3005.github.io/built-with-devin/assets/guides/official-cookbook/step4-all-tests-pass.webp" />
+<em>5. 11 testes passando — cada branch antes sem teste citada; orders.py intacto, sem commits</em></p>
+<p><img alt="6. Verificado após /exit — 16 testes verdes, mudanças continuam não commitadas" src="https://till3005.github.io/built-with-devin/assets/guides/official-cookbook/step5-verify-exit.webp" />
+<em>6. Verificado após /exit — <code>Ran 16 tests ... OK</code>, mudanças não commitadas como instruído</em></p>
 <h2>Checklist de verificação</h2>
 <ul>
 <li>[ ] Uma receita de higiene está rodando em agenda e produziu seu primeiro PR/relatório</li>

@@ -296,6 +296,22 @@
 <li>Add one from <strong>Incidents</strong> if you have PagerDuty/Datadog/Sentry</li>
 <li>When a recipe works, freeze it as a <strong>skill</strong> (Guide 12) or a <strong>Bot</strong> (Guides 1–5) — every row above survives as either</li>
 </ol>
+<h2>Walkthrough — one recipe run for real, on Devin CLI v3000.14 (swe-2-flash-medium)</h2>
+<p>The <strong>Raise code coverage</strong> recipe from the <em>Code quality</em> shelf, run end-to-end on a small repo with a deliberately under-tested <code>orders.py</code> (discount codes, shipping tiers, edge cases). A one-line prompt; Devin did the rest.</p>
+<p><strong>Video (74 s, silent):</strong> recipe prompt → reads → test-writing edit → command approval → all green.</p>
+<p><a href="https://till3005.github.io/built-with-devin/assets/guides/official-cookbook/walkthrough.mp4"><img alt="Devin writing the missing test cases — diff of test_orders.py with the permission menu open" src="https://till3005.github.io/built-with-devin/assets/guides/official-cookbook/walkthrough-poster.webp" /></a></p>
+<p><img alt="1. The CLI REPL on swe-2-flash-medium — Pro plan, free tier" src="https://till3005.github.io/built-with-devin/assets/guides/official-cookbook/step0-repl.webp" />
+<em>1. The CLI REPL on swe-2-flash-medium — free tier on a Pro plan</em></p>
+<p><img alt="2. The recipe prompt — Devin reads orders.py and test_orders.py before touching anything" src="https://till3005.github.io/built-with-devin/assets/guides/official-cookbook/step1-recipe-prompt.webp" />
+<em>2. The recipe prompt submitted — Devin reads orders.py and test_orders.py first</em></p>
+<p><img alt="3. Writing tests — +43 lines of new cases: empty cart, SAVE10/SAVE20/unknown code, every shipping tier" src="https://till3005.github.io/built-with-devin/assets/guides/official-cookbook/step2-writing-tests.webp" />
+<em>3. Writing tests — +43 lines covering empty cart, discount codes, and every shipping tier</em></p>
+<p><img alt="4. Command approval — running the suite still asks first" src="https://till3005.github.io/built-with-devin/assets/guides/official-cookbook/step3-command-approval.webp" />
+<em>4. Command approval — <code>python3 -m unittest -v test_orders.py</code> waits for an Allow</em></p>
+<p><img alt="5. All 11 tests pass — the report names every branch covered; orders.py unchanged, no commits" src="https://till3005.github.io/built-with-devin/assets/guides/official-cookbook/step4-all-tests-pass.webp" />
+<em>5. All 11 tests pass — every previously untested branch named; orders.py untouched, no commits</em></p>
+<p><img alt="6. Verified after /exit — 16 tests green, changes are uncommitted working-tree edits" src="https://till3005.github.io/built-with-devin/assets/guides/official-cookbook/step5-verify-exit.webp" />
+<em>6. Verified after /exit — <code>Ran 16 tests ... OK</code>, changes stay uncommitted as instructed</em></p>
 <h2>Verify it</h2>
 <ul>
 <li>[ ] One hygiene recipe is running on a schedule and produced its first PR/report</li>
