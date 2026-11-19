@@ -303,7 +303,7 @@ flowchart LR
 - [CognitionAI/qa-devin](https://github.com/CognitionAI/qa-devin) —— Cognition 自家的 "Devin 做 QA" 参考仓库
 - [CognitionAI/devin-vuln-fixes](https://github.com/cognitionai/devin-vuln-fixes) —— 官方 agent 技能，修复真实 CVE（GitLab CVSS 10.0、PHP/Node RCE）：只读盘点 → 审批门 → 确认目标 → 前后测试 → 每仓库一个聚焦 PR
 - [用 Devin 在 Modal 上训练并部署自定义模型](https://gist.github.com/dabit3/866caaab49a4a5371ae01655fecad34b) —— Cognition 工程师 Nader Dabit 的可运行模板
-- [Devin for Startups](https://devin.ai/startups) —— 合格团队最高 $65k credits；[Devin for Gaming](https://talofagames.com/devin-for-gaming/) —— Talofa × Cognition 三周工作室 cohort，含线下工作坊和 credit 奖励
+- [Devin for Startups](https://devin.ai/startups) —— 合格团队最高 $65k credits；[Devin for Gaming](https://talofagames.com/devin-for-gaming/) —— Talofa × Cognition 三周工作室 cohort，含线下工作坊和 credit 奖励；**[poke.com/bots](https://poke.com/bots)** —— 限时实验（11/18 起）：给 Poke 发短信说出你想建的东西、说明为什么值这些 credits，就能拿一个免费 Devin Bot —— 共 10,000 个账号、每席最高 $10,000（Nader Dabit 称总额 ~$1 亿），绕过 $200/月的 Max 门槛（[公告](https://x.com/walden_yan)、[报道](https://news.sulat.com/2026/11/19/devin-bots-giveaway/)）
 - [Devin Automations QuickStart](https://www.youtube.com/watch?v=6xxKtIpgOyE) —— 官方视频：事件/定时触发 agent 配置，Bots 的底层机制
 - [SWE-2 Flash](https://cognition.com/blog/swe-2-flash) —— Cognition 的快速编码模型：主流评测超过所有美国开源权重模型，速度为 SWE-2 的 3×、价格 1/5
 - [Devin Apps](https://devin.ai/blog/devin-apps) —— Devin 在自己机器上构建并以稳定 URL 提供的 live web 应用（内部工具、看板、staging 副本）
