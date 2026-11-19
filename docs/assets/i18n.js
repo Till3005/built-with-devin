@@ -19,7 +19,7 @@ zh: {
 'd3.t':'SuperJennyStack —— ~20 个 bot 的游戏工作室','d3.d':'唯一的人类每天用表情回 4 次汇总 Slack 帖。已成为社区模板。',
 'd4.t':'"Phil" —— 30 个 agent 的 swarm 写出 Word 兼容编辑器','d4.d':'3 周 100 万+ 行 Rust+TS，零人类工程师——持续对照真实 Microsoft Word 验证。',
 'd5.t':'AutoResearch —— Devin Cloud 上的推理研究实验室','d5.d':'编排 Devin + 并行子代理竞逐假设，在 Modal GPU 上用回放的生产流量验证。',
-'d6.t':'Electra —— 自己决定做什么的具名队友','d6.d':'写并测代码、更新内部工具、推着团队走；一个税务 agent 单线程跑了 20 天。',
+'d6.t':'Electra —— 自己决定做什么的具名队友','d6.d':'写并测代码、更新内部工具、推着团队走；一个税务 agent 单线程跑了 20 天。','d7.t':'Venus Williams —— 网球数据 Bot','d7.d':'七届大满贯冠军把职业网球备战交给 Bot：对手打法、球拍调试、比赛分析。',
 'p1.d':'训练 agent 的模拟企业——74 个厂商级保真系统。98% 的合并 PR 由 Devin 撰写。',
 'p2.d':'从一条 Slack 链接到生产，复刻 Shopify 内部部署器——全部由 Devin 撰写。',
 'p3.d':'Devin Voice 抓取评论，绘制按地点的美食帕累托前沿。',
@@ -65,7 +65,7 @@ zh: {
 'foot.c4':'Devin 社区',
 'foot.base1':'© 2026 —— 社区登记库。每个数字都链接出处。',
 'method.h':'收录门槛','method.1t':'实名归属','method.1d':'每个条目背后都有具名的人或公司。','method.2t':'公开范围','method.2d':'它负责什么，有据可查。','method.3t':'数字带出处','method.3d':'每个数字都能点出去核对。','method.4t':'拒收','method.4d':'无法核实的说法、营销话术、空气项目。','method.data':'完整注册表数据集（机器可读 JSON）：','method.embed':'运行着已验证的部署？嵌入徽章：',
-'timeline.h':'Bots 时间线','tl.1.t':'Cognition 收购 The Interaction Company（Poke）','tl.1.d':'后来成为 Bots 的 iMessage 通道的班底。','tl.2.t':'Android Bot 接到一句话任命','tl.2.d':'“你的工作是给安卓 App 当产品经理。”','tl.3.t':'Devin 安卓版上线 Google Play 公测','tl.3.d':'1,134 个合并 PR、344,651 行 Kotlin、88% 自主合并——人类全程只发了 183 条消息。','tl.4.t':'Devin Bots 正式发布','tl.4.d':'Fortune 独家报道；Super Jenny、Decagon 等具名舰队同周公开。','tl.5.t':'poke.com/bots 开启','tl.5.d':'发短信给 Poke 说想法、pitch 应得的 credits——1 万个名额，单席最高 $10k。','tl.6.t':'Devin for Gaming demo day','tl.6.d':'Talofa × Cognition 一期在旧金山结业——三周搭出的工作室 Bot 舰队。',
+'timeline.h':'Bots 时间线','tl.1.t':'Cognition 收购 The Interaction Company（Poke）','tl.1.d':'后来成为 Bots 的 iMessage 通道的班底。','tl.2.t':'Android Bot 接到一句话任命','tl.2.d':'“你的工作是给安卓 App 当产品经理。”','tl.3.t':'Devin 安卓版上线 Google Play 公测','tl.3.d':'1,134 个合并 PR、344,651 行 Kotlin、88% 自主合并——人类全程只发了 183 条消息。','tl.4.t':'Devin Bots 正式发布','tl.4.d':'Fortune 独家报道；Super Jenny、Decagon 等具名舰队同周公开。','tl.5.t':'poke.com/bots 开启','tl.5.d':'发短信给 Poke 说想法、pitch 应得的 credits——1 万个名额，单席最高 $10k。','tl.6.t':'Devin for Gaming demo day','tl.6.d':'Talofa × Cognition 一期在旧金山结业——三周搭出的工作室 Bot 舰队。','tl.7.t':'Marc Benioff 称 Slack 是“受信任的 agent 基础设施”','tl.7.d':'Salesforce CEO 点名 Cognition 的 Slack 原生 Bot 舰队——Bots 所栖身的通道获得背书。',
 },
 ja: {
 'nav.tut':'チュートリアル','econ.eye':'台帳','econ.h1':'Devin の経済学','econ.sub':'公開済み・監査可能なコスト/リターン数値すべて——実名の顧客事例か引用可能な公開レポートに現れる数字のみ。外挿なし。','econ.q':'絞り込み — 企業・指標・出典…','econ.all':'すべて','econ.cost':'コスト','econ.tput':'スループット','econ.scale':'スケール','econ.comm':'コミュニティレポート','econ.foot':'数値は公開時のまま。出典が数字を修正した場合、台帳もそれに従います。非公式コミュニティプロジェクト — Cognition AI 無関係。ブランド素材は devin.ai/brand より（"ready for whatever you\'re making"）。',
@@ -86,7 +86,7 @@ ja: {
 'd3.t':'SuperJennyStack —— ~20 Bot のゲームスタジオ','d3.d':'唯一の人間は 1 日 4 回、絵文字で Slack 集約スレッドに回答。コミュニティテンプレート化済み。',
 'd4.t':'「Phil」—— 30 エージェントの swarm が Word 互換エディタを開発','d4.d':'3 週間で 100 万行超の Rust+TS、人間エンジニアゼロ——本物の Microsoft Word と継続的に照合。',
 'd5.t':'AutoResearch —— Devin Cloud 上の推論研究ラボ','d5.d':'オーケストレーター Devin + 並列サブエージェントが仮説を競走、Modal GPU で再生本番トラフィックと照合。',
-'d6.t':'Electra —— 自分でやることを決める名前付きチームメイト','d6.d':'コードを書いてテストし、内部ツールを更新し、チームを前に進める。ある税務エージェントは 1 スレッドを 20 日間継続。',
+'d6.t':'Electra —— 自分でやることを決める名前付きチームメイト','d6.d':'コードを書いてテストし、内部ツールを更新し、チームを前に進める。ある税務エージェントは 1 スレッドを 20 日間継続。','d7.t':'Venus Williams —— テニスデータ Bot','d7.d':'グランドスラム 7 度の優勝者がプロテニスの準備を Bot に任せる：対戦相手の戦法・ラケット調整・試合分析。',
 'p1.d':'エージェント訓練用のシミュレート企業——74 のベンダー忠実システム。マージ PR の 98% が Devin 作。',
 'p2.d':'Slack リンクから本番まで、Shopify 社内デプロイヤーを複製——すべて Devin 作。',
 'p3.d':'Devin Voice がレビューをスクレイプし、場所別グルメのパレートフロンティアを描画。',
@@ -132,7 +132,7 @@ ja: {
 'foot.c4':'Devin コミュニティ',
 'foot.base1':'© 2026 —— コミュニティレジストリ。すべての数値に出典リンク。',
 'method.h':'収録基準','method.1t':'実名の帰属','method.1d':'すべての項目に個人または企業の名が付く。','method.2t':'公開された範囲','method.2d':'何を担当しているかが記録にある。','method.3t':'出典付きの数値','method.3d':'すべての数字に出典リンク。','method.4t':'不採用','method.4d':'検証不能な主張、マーケ言い換え、vaporware。','method.data':'レジストリ全量の機械可読 JSON：','method.embed':'検証済みデプロイを運用中？バッジを埋め込む：',
-'timeline.h':'Bots タイムライン','tl.1.t':'Cognition が The Interaction Company（Poke）を買収','tl.1.d':'後に Bots の iMessage 面となるチーム。','tl.2.t':'Android Bot が一文の任命を受ける','tl.2.d':'「あなたの仕事は Android アプリのプロダクト管理」。','tl.3.t':'Devin Android が Google Play オープンベータへ','tl.3.d':'1,134 マージ PR・344,651 行の Kotlin・88% セルフマージ——人間のメッセージは計183件。','tl.4.t':'Devin Bots ローンチ','tl.4.d':'Fortune 独占；Super Jenny・Decagon など実名フリートが同週に公開。','tl.5.t':'poke.com/bots 開始','tl.5.d':'Poke にアイデアを送り、相応のクレジットを pitch——1万アカウント、各最大 $10k。','tl.6.t':'Devin for Gaming デモデイ','tl.6.d':'Talofa × Cognition 第1期が SF で締め括り——3週間で作ったスタジオ Bot フリート。',
+'timeline.h':'Bots タイムライン','tl.1.t':'Cognition が The Interaction Company（Poke）を買収','tl.1.d':'後に Bots の iMessage 面となるチーム。','tl.2.t':'Android Bot が一文の任命を受ける','tl.2.d':'「あなたの仕事は Android アプリのプロダクト管理」。','tl.3.t':'Devin Android が Google Play オープンベータへ','tl.3.d':'1,134 マージ PR・344,651 行の Kotlin・88% セルフマージ——人間のメッセージは計183件。','tl.4.t':'Devin Bots ローンチ','tl.4.d':'Fortune 独占；Super Jenny・Decagon など実名フリートが同週に公開。','tl.5.t':'poke.com/bots 開始','tl.5.d':'Poke にアイデアを送り、相応のクレジットを pitch——1万アカウント、各最大 $10k。','tl.6.t':'Devin for Gaming デモデイ','tl.6.d':'Talofa × Cognition 第1期が SF で締め括り——3週間で作ったスタジオ Bot フリート。','tl.7.t':'Marc Benioff が Slack を「信頼されるエージェント基盤」と評価','tl.7.d':'Salesforce CEO が Cognition の Slack ネイティブな Bot フリートを言及——Bot が棲むチャネルへの名指しの裏付け。',
 },
 pt: {
 'nav.tut':'Tutoriais','econ.eye':'Livro-razão','econ.h1':'A economia do Devin','econ.sub':'Cada cifra publicada e auditável de custo/retorno — só números que aparecem num caso de cliente nomeado ou relatório público citado. Nada extrapolado.','econ.q':'Filtrar — empresa, métrica, fonte…','econ.all':'Todas','econ.cost':'Custo','econ.tput':'Throughput','econ.scale':'Escala','econ.comm':'Relatos da comunidade','econ.foot':'Cifras conforme publicadas; quando uma fonte revisa um número, o livro-razão segue a fonte. Projeto comunitário não oficial — sem afiliação com a Cognition AI. Assets de marca via devin.ai/brand ("ready for whatever you\'re making").',
@@ -153,7 +153,7 @@ pt: {
 'd3.t':'SuperJennyStack — um estúdio de jogos com ~20 bots','d3.d':'Um humano responde um thread consolidado no Slack 4×/dia com emoji. Agora é um template da comunidade.',
 'd4.t':'"Phil" — um swarm de 30 agentes escreveu um editor compatível com Word','d4.d':'1M+ linhas de Rust+TS em 3 semanas, zero engenheiros humanos — verificado continuamente contra o Microsoft Word real.',
 'd5.t':'AutoResearch — um laboratório de pesquisa de inferência no Devin Cloud','d5.d':'Devin orquestrador + subagentes paralelos disputando hipóteses, verificados contra tráfego de produção reproduzido em GPUs Modal.',
-'d6.t':'Electra — uma colega nomeada que decide o que fazer','d6.d':'Escreve e testa código, atualiza ferramentas internas, mantém o time andando; um agente fiscal rodou um único thread por 20 dias.',
+'d6.t':'Electra — uma colega nomeada que decide o que fazer','d6.d':'Escreve e testa código, atualiza ferramentas internas, mantém o time andando; um agente fiscal rodou um único thread por 20 dias.','d7.t':'Venus Williams — Bots de dados de tênis','d7.d':'A heptacampeã de Grand Slam delega a preparação no circuito aos Bots: jogos das rivais, ajuste de raquetes, análise de partidas.',
 'p1.d':'Empresas simuladas para treinar agentes — 74 sistemas fiéis aos fornecedores. 98% dos PRs mergeados escritos pelo Devin.',
 'p2.d':'O deployer interno da Shopify clonado de um link do Slack até produção — inteiramente escrito pelo Devin.',
 'p3.d':'Devin Voice raspou avaliações para mapear a fronteira de Pareto de comida por localização.',
@@ -199,6 +199,6 @@ pt: {
 'foot.c4':'Comunidade Devin',
 'foot.base1':'© 2026 — Um registro comunitário. Cada número linka para a fonte.',
 'method.h':'O critério de inclusão','method.1t':'Dono nomeado','method.1d':'Uma pessoa ou empresa responde por cada entrada.','method.2t':'Escopo publicado','method.2d':'O que o bot, produto ou rollout faz consta em registro.','method.3t':'Números com fonte','method.3d':'Cada cifra linka para onde foi publicada.','method.4t':'Rejeitado','method.4d':'Alegações sem dono, paráfrase de marketing, vaporware.','method.data':'O registro completo em JSON legível por máquina:','method.embed':'Mantém um deployment verificado? Incorpore o selo:',
-'timeline.h':'A linha do tempo dos Bots','tl.1.t':'Cognition adquire a The Interaction Company (Poke)','tl.1.d':'A equipe que vira a superfície iMessage dos Bots.','tl.2.t':'Android Bot recebe uma frase de posse','tl.2.d':'“Seu trabalho é gerenciar o app Android.”','tl.3.t':'Devin Android chega ao beta aberto do Google Play','tl.3.d':'1.134 PRs mergeados, 344.651 linhas de Kotlin, 88% self-merge — 183 mensagens humanas no total.','tl.4.t':'Lançamento do Devin Bots','tl.4.d':'Exclusivo da Fortune; frotas nomeadas como Super Jenny e Decagon publicam na mesma semana.','tl.5.t':'poke.com/bots abre','tl.5.d':'Mande sua ideia ao Poke e pitche os créditos merecidos — Bots grátis para 10.000 contas, até $10k cada.','tl.6.t':'Demo day do Devin for Gaming','tl.6.d':'Coorte 1 Talofa × Cognition encerra em SF — frotas de bots de estúdio em três semanas.',
+'timeline.h':'A linha do tempo dos Bots','tl.1.t':'Cognition adquire a The Interaction Company (Poke)','tl.1.d':'A equipe que vira a superfície iMessage dos Bots.','tl.2.t':'Android Bot recebe uma frase de posse','tl.2.d':'“Seu trabalho é gerenciar o app Android.”','tl.3.t':'Devin Android chega ao beta aberto do Google Play','tl.3.d':'1.134 PRs mergeados, 344.651 linhas de Kotlin, 88% self-merge — 183 mensagens humanas no total.','tl.4.t':'Lançamento do Devin Bots','tl.4.d':'Exclusivo da Fortune; frotas nomeadas como Super Jenny e Decagon publicam na mesma semana.','tl.5.t':'poke.com/bots abre','tl.5.d':'Mande sua ideia ao Poke e pitche os créditos merecidos — Bots grátis para 10.000 contas, até $10k cada.','tl.6.t':'Demo day do Devin for Gaming','tl.6.d':'Coorte 1 Talofa × Cognition encerra em SF — frotas de bots de estúdio em três semanas.','tl.7.t':'Marc Benioff chama o Slack de "infraestrutura confiável para agentes"','tl.7.d':'O CEO da Salesforce cita as frotas de bots Slack-nativas da Cognition — o canal onde os Bots vivem ganha um endosso nominado.',
 }
 };

@@ -13,7 +13,7 @@
 
 <sub>Curated by [@darega0mae](https://x.com/darega0mae) · Sister tutorials: [build-with-devin](https://github.com/Till3005/build-with-devin) · [Add your project](CONTRIBUTING.md)</sub>
 
-<sub>**13** documented Bot deployments · **35** enterprise case studies · **6** shipped products · **31** tools & integrations · **26** field reports</sub>
+<sub>**14** documented Bot deployments · **35** enterprise case studies · **6** shipped products · **31** tools & integrations · **26** field reports</sub>
 
 <sub>English · [简体中文](README.zh.md) · [日本語](README.ja.md) · [Português](README.pt.md)</sub>
 
@@ -67,6 +67,7 @@ flowchart LR
 | **Rewards Chief-of-Staff** | Avinash (Cognition, MENA) | Daily standup + rewards for a personal bot fleet | Adapts SuperJennyStack's roll-up pattern: one Bot reviews every other Bot each day and "rewards" good work so the fleet self-improves — his suggested first deployment for new Bots users. ([coverage](https://news.sulat.com/2026/11/18/devin-bots/)) |
 | **Electra** | Basis | Internal tools + code, self-directed | A named Devin teammate (pre-Bots): decides what needs doing, writes and tests code, ships updates to internal tools, and pushes the team — Basis runs one 20-day thread per tax agent ([post](https://x.com/trybasis/status/2113307030203089189), [20-day thread](https://x.com/trybasis/status/2120658137766100992)). |
 | **Personal data Bots** | Bryan Johnson | Health synthesis + family updates | One Bot synthesizes years of biometric and brain-scan data into a single readout; another texts his mother a daily update on how he's doing. ([post](https://x.com/bryan_johnson/status/2122814114976383406)) |
+| **Tennis data Bots** | Venus Williams | Pro-tennis preparation and match data | The seven-time Grand Slam singles champion uses Devin Bots to make sense of pro-tennis prep — opponent plays, racket tuning for humidity and temperature, match analysis, meals and rest. ([Cognition video](https://x.com/cognition/status/2123093354196140285), [@walden_yan](https://x.com/walden_yan/status/2123105884125671605)) |
 
 ### Documented patterns
 
@@ -307,7 +308,7 @@ Documented real-world usage.
 - [CognitionAI/qa-devin](https://github.com/CognitionAI/qa-devin) — Cognition's own "Devin doing QA" reference repo
 - [CognitionAI/devin-vuln-fixes](https://github.com/cognitionai/devin-vuln-fixes) — official agent skills that patch real CVEs (GitLab CVSS 10.0, PHP/Node RCEs): read-only inventory → approval gate → confirmed-target patch → before/after tests → one focused PR per repo
 - [Train & deploy custom models on Modal with Devin](https://gist.github.com/dabit3/866caaab49a4a5371ae01655fecad34b) — Cognition engineer Nader Dabit's working template
-- [Devin for Startups](https://devin.ai/startups) — up to $65k in credits for eligible teams; [Devin for Gaming](https://talofagames.com/devin-for-gaming/) — Talofa × Cognition 3-week studio cohort with in-person workshops and credit prizes; **[poke.com/bots](https://poke.com/bots)** — limited-time experiment (launched Nov 18): text Poke your idea, pitch how many credits it deserves, get a free Devin Bot — 10,000 accounts at up to $10,000 each (~$100M total per Nader Dabit), bypassing the $200/mo Max requirement ([announcement](https://x.com/walden_yan), [coverage](https://news.sulat.com/2026/11/19/devin-bots-giveaway/))
+- [Devin for Startups](https://devin.ai/startups) — up to $65k in credits for eligible teams; [Devin for Gaming](https://talofagames.com/devin-for-gaming/) — Talofa × Cognition 3-week studio cohort with in-person workshops and credit prizes; **[poke.com/bots](https://poke.com/bots)** — limited-time experiment (launched Nov 18): text Poke your idea, pitch how many credits it deserves, get a free Devin Bot — 10,000 accounts at up to $10,000 each (~$100M total per Nader Dabit), bypassing the $200/mo Max requirement; the top negotiated grant reported so far is $1,887 ([walden_yan](https://x.com/walden_yan/status/2123326058644828366), [coverage](https://news.sulat.com/2026/11/19/devin-bots-giveaway/))
 - [Devin Automations QuickStart](https://www.youtube.com/watch?v=6xxKtIpgOyE) — official video walkthrough of event/schedule-triggered agent setups, the substrate Bots build on
 - [SWE-2 Flash](https://cognition.com/blog/swe-2-flash) — Cognition's fast coding model: outperforms all American open-weight models on leading evals, 3× SWE-2 speed at 1/5 the price
 - [Devin Apps](https://devin.ai/blog/devin-apps) — live web apps Devin builds and serves from its own machine at a stable URL (internal tools, dashboards, staging copies)

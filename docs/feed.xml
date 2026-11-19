@@ -4,7 +4,7 @@
   <title>Built with Devin — registry updates</title>
   <link>https://till3005.github.io/built-with-devin/</link>
   <description>New entries indexed in the built-with-devin registry.</description>
-  <lastBuildDate>Thu, 19 Nov 2026 12:30:11 +0000</lastBuildDate>
+  <lastBuildDate>Thu, 19 Nov 2026 13:07:16 +0000</lastBuildDate>
   <item>
     <title>Indexed: Rewards Chief-of-Staff</title>
     <link>https://till3005.github.io/built-with-devin/#deployments</link>
@@ -18,6 +18,13 @@
     <guid isPermaLink="false">bot:Personal data Bots</guid>
     <pubDate>Thu, 19 Nov 2026 00:00:00 +0000</pubDate>
     <description>Bryan Johnson — Health synthesis + family updates</description>
+  </item>
+  <item>
+    <title>Indexed: Tennis data Bots</title>
+    <link>https://till3005.github.io/built-with-devin/#deployments</link>
+    <guid isPermaLink="false">bot:Tennis data Bots</guid>
+    <pubDate>Thu, 19 Nov 2026 00:00:00 +0000</pubDate>
+    <description>Venus Williams — Pro-tennis preparation and match data</description>
   </item>
   <item>
     <title>Indexed: Bilt</title>
@@ -172,13 +179,6 @@
     <guid isPermaLink="false">enterprise:EBANX</guid>
     <pubDate>Wed, 18 Nov 2026 00:00:00 +0000</pubDate>
     <description>Devin as primary author</description>
-  </item>
-  <item>
-    <title>Indexed: Gumroad</title>
-    <link>https://till3005.github.io/built-with-devin/#enterprise</link>
-    <guid isPermaLink="false">enterprise:Gumroad</guid>
-    <pubDate>Wed, 18 Nov 2026 00:00:00 +0000</pubDate>
-    <description>Devin on the core repo</description>
   </item>
 </channel>
 </rss>

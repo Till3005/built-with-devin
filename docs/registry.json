@@ -3,7 +3,7 @@
   "generated_from": "https://github.com/Till3005/built-with-devin/blob/main/README.md",
   "license": "CC0-1.0",
   "counts": {
-    "bot_deployments": 13,
+    "bot_deployments": 14,
     "bot_templates": 16,
     "products": 6,
     "enterprise_cases": 35
@@ -176,6 +176,23 @@
         {
           "text": "post",
           "url": "https://x.com/bryan_johnson/status/2122814114976383406"
+        }
+      ],
+      "updated_on": "2026-11-19"
+    },
+    {
+      "name": "Tennis data Bots",
+      "owner": "Venus Williams",
+      "owns": "Pro-tennis preparation and match data",
+      "results": "The seven-time Grand Slam singles champion uses Devin Bots to make sense of pro-tennis prep — opponent plays, racket tuning for humidity and temperature, match analysis, meals and rest. (Cognition video, @waldenyan)",
+      "sources": [
+        {
+          "text": "Cognition video",
+          "url": "https://x.com/cognition/status/2123093354196140285"
+        },
+        {
+          "text": "@walden_yan",
+          "url": "https://x.com/walden_yan/status/2123105884125671605"
         }
       ],
       "updated_on": "2026-11-19"

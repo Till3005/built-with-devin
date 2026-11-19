@@ -13,7 +13,7 @@
 
 <sub>Curado por [@darega0mae](https://x.com/darega0mae) · Tutoriais irmãos: [build-with-devin](https://github.com/Till3005/build-with-devin) · [Adicione seu projeto](CONTRIBUTING.md)</sub>
 
-<sub>**13** implantações de Bot documentadas · **35** casos corporativos · **6** produtos lançados · **31** ferramentas e integrações · **26** relatos de campo</sub>
+<sub>**14** implantações de Bot documentadas · **35** casos corporativos · **6** produtos lançados · **31** ferramentas e integrações · **26** relatos de campo</sub>
 
 <sub>[English](README.md) · [简体中文](README.zh.md) · [日本語](README.ja.md) · Português</sub>
 
@@ -67,6 +67,7 @@ flowchart LR
 | **Chief-of-Staff de recompensas** | Avinash (Cognition, MENA) | Standup diário + recompensas para uma frota pessoal de bots | Adapta o padrão roll-up do SuperJennyStack: um Bot revisa todos os outros a cada dia e "recompensa" o bom trabalho, deixando a frota se auto-aperfeiçoar — sua sugestão de primeira implantação para novos usuários de Bots. ([cobertura](https://news.sulat.com/2026/11/18/devin-bots/)) |
 | **Electra** | Basis | Ferramentas internas + código, autodirigida | Uma colega Devin com nome (pré-Bots): decide o que precisa ser feito, escreve e testa código, lança atualizações em ferramentas internas e empurra o time — a Basis roda uma thread de 20 dias por agente fiscal ([post](https://x.com/trybasis/status/2113307030203089189), [thread de 20 dias](https://x.com/trybasis/status/2120658137766100992)). |
 | **Bots de dados pessoais** | Bryan Johnson | Síntese de saúde + atualizações à família | Um Bot sintetiza anos de dados biométricos e de exames cerebrais num único relatório; outro manda à mãe dele um resumo diário de como ele está. ([post](https://x.com/bryan_johnson/status/2122814114976383406)) |
+| **Bots de dados de tênis** | Venus Williams | Preparação de tênis profissional + dados de jogo | A heptacampeã de Grand Slam usa Devin Bots para organizar a preparação no circuito — jogos das adversárias, ajuste de raquetes por umidade e temperatura, análise de partidas, refeições e descanso. ([vídeo da Cognition](https://x.com/cognition/status/2123093354196140285), [@walden_yan](https://x.com/walden_yan/status/2123105884125671605)) |
 
 ### Padrões documentados
 
@@ -307,7 +308,7 @@ Uso real documentado.
 - [CognitionAI/qa-devin](https://github.com/CognitionAI/qa-devin) — o repo de referência da própria Cognition de "Devin fazendo QA"
 - [CognitionAI/devin-vuln-fixes](https://github.com/cognitionai/devin-vuln-fixes) — skills de agente oficiais que corrigem CVEs reais (GitLab CVSS 10.0, RCEs de PHP/Node): inventário somente-leitura → portão de aprovação → patch de alvo confirmado → testes antes/depois → um PR focado por repo
 - [Treine e faça deploy de modelos custom na Modal com Devin](https://gist.github.com/dabit3/866caaab49a4a5371ae01655fecad34b) — template funcional do engenheiro da Cognition Nader Dabit
-- [Devin for Startups](https://devin.ai/startups) — até $65k em créditos para times elegíveis; [Devin for Gaming](https://talofagames.com/devin-for-gaming/) — cohort de estúdio de 3 semanas Talofa × Cognition com workshops presenciais e prêmios em créditos; **[poke.com/bots](https://poke.com/bots)** — experimento por tempo limitado (lançado 18/11): mande texto pro Poke com sua ideia, convença-o de quantos créditos ela merece e ganhe um Devin Bot grátis — 10.000 contas, até $10.000 cada (~$100M no total, segundo Nader Dabit), ignorando o requisito do plano Max de $200/mês ([anúncio](https://x.com/walden_yan), [cobertura](https://news.sulat.com/2026/11/19/devin-bots-giveaway/))
+- [Devin for Startups](https://devin.ai/startups) — até $65k em créditos para times elegíveis; [Devin for Gaming](https://talofagames.com/devin-for-gaming/) — cohort de estúdio de 3 semanas Talofa × Cognition com workshops presenciais e prêmios em créditos; **[poke.com/bots](https://poke.com/bots)** — experimento por tempo limitado (lançado 18/11): mande texto pro Poke com sua ideia, convença-o de quantos créditos ela merece e ganhe um Devin Bot grátis — 10.000 contas, até $10.000 cada (~$100M no total, segundo Nader Dabit), ignorando o requisito do plano Max de $200/mês; a maior concessão negociada relatada até agora é de $1.887 ([walden_yan](https://x.com/walden_yan/status/2123326058644828366), [cobertura](https://news.sulat.com/2026/11/19/devin-bots-giveaway/))
 - [Devin Automations QuickStart](https://www.youtube.com/watch?v=6xxKtIpgOyE) — vídeo oficial de configurações de agente disparadas por evento/agenda, o substrato sobre o qual os Bots são construídos
 - [SWE-2 Flash](https://cognition.com/blog/swe-2-flash) — modelo de código rápido da Cognition: supera todos os modelos open-weight americanos nas principais evals, 3× a velocidade do SWE-2 a 1/5 do preço
 - [Devin Apps](https://devin.ai/blog/devin-apps) — web apps ao vivo que o Devin constrói e serve da própria máquina em URL estável (ferramentas internas, dashboards, cópias de staging)
