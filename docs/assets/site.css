@@ -42,7 +42,7 @@ a{color:inherit}
 
 /* nav — devin.ai fixed bar: solid bg, py-3, wordmark + links + dark pill */
 nav{position:fixed;top:0;left:0;right:0;z-index:50;background:var(--bg)}
-.nav-inner{display:flex;align-items:center;justify-content:space-between;padding:12px 0}
+.nav-inner{display:flex;align-items:center;justify-content:space-between;padding:12px 24px}
 .nav-left{display:flex;align-items:center;gap:40px;min-width:0}
 .brand{display:flex;align-items:center;text-decoration:none;flex-shrink:0}
 .brand svg{height:20px;width:auto;display:block}
@@ -142,7 +142,7 @@ footer{border-top:1px solid var(--line);margin-top:48px}
 .foot-col h4{font:500 16px var(--sans);margin-bottom:16px}
 .foot-col a{display:block;font:400 14px var(--sans);color:var(--mut);text-decoration:none;padding:4px 0}
 .foot-col a:hover{color:var(--fg)}
-.foot-base{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;border-top:1px solid var(--line);padding:20px 0 32px;font:400 12px var(--sans);color:var(--mut)}
+.foot-base{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;border-top:1px solid var(--line);padding:20px 24px 32px;font:400 12px var(--sans);color:var(--mut)}
 
 /* view switching — restrained crossfade, no wipe theatrics */
 #view-built,#view-build{transition:opacity .3s var(--ease-out),transform .3s var(--ease-out)}
@@ -177,7 +177,7 @@ footer{border-top:1px solid var(--line);margin-top:48px}
 
 /* mobile nav — two rows: full brand on top, controls below */
 @media(max-width:640px){
-.nav-inner{flex-wrap:wrap;row-gap:8px;padding:10px 0}
+.nav-inner{flex-wrap:wrap;row-gap:8px;padding:10px 24px}
 nav .brand-text{font-size:13px}
 nav .brand-mark{height:15px}
 nav .unofficial-chip{font-size:9px;padding:1px 6px}
@@ -190,3 +190,20 @@ nav .unofficial-chip{font-size:9px;padding:1px 6px}
 @media(max-width:480px){
 .nav-side .cta{display:none}
 }
+
+/* ── mobile hardening ─────────────────────────────── */
+html,body{overflow-x:clip}
+img,svg,video{max-width:100%;height:auto}
+
+@media(max-width:640px){
+.hero{padding:64px 0 48px}
+section{padding:48px 0}
+.sec-head{margin-bottom:32px}
+.stat{min-width:45%;padding:20px 16px 20px 0}
+.stat b{font-size:26px}
+.mode-btn{min-height:32px;display:inline-flex;align-items:center;padding:4px 12px}
+.lang-sel{min-height:32px;max-width:64px;font-size:11px;padding:4px 8px}
+#theme-toggle{width:32px;height:32px}
+main{padding-top:56px}
+}
+@media(max-width:640px){table{display:block;overflow-x:auto}}

@@ -25,3 +25,16 @@
 .guide input[type=checkbox]{margin-right:8px;accent-color:var(--acc)}
 .guide li:has(> input[type=checkbox]){list-style:none;margin-left:-22px}
 [data-theme="dark"] .guide code{color:#cdd6e4}
+
+/* ── mobile hardening ─────────────────────────────── */
+@media(max-width:640px){
+.guide{padding:88px 0 56px;font-size:15.5px;line-height:1.7}
+.guide h1{font-size:26px}
+.guide-crumb{display:flex;flex-wrap:wrap;gap:6px 14px;margin-bottom:24px}
+.guide-crumb a{padding:4px 0}
+.guide table{font-size:13px;box-shadow:inset -18px 0 18px -18px rgb(0 0 0/.25)}
+.guide th,.guide td{padding:8px 10px}
+.guide pre{padding:12px}
+.guide pre code{font-size:12px}
+}
+.guide code{overflow-wrap:anywhere}
