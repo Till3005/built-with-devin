@@ -183,11 +183,12 @@ Action:    Start session: &quot;Sweep yesterday's Sentry issues in
 </table>
 <p><strong>自動化 vs Bot：</strong> 自動化は無口な管——イベントが入り、セッションが出る。Bot は同じトリガーの周りにメモリ・判断・マルチセッション計画を足す。まず自動化から始め、作業に継続的な遂行が要るようになったら Bot に卒業する（ガイド 2–5）。</p>
 <h2>作り方</h2>
-<p>Automations ページの 3 つの作成経路：</p>
+<p>Automations ページ右上の <strong>Create automation</strong> ドロップダウンに 4 つの作成経路：</p>
 <ol>
-<li><strong>Create</strong> —— 空のエディタ：トリガー → 条件 → アクションを選ぶ</li>
-<li><strong>Template</strong> —— よくあるワークフロー向けの事前設定済み自動化ギャラリー</li>
-<li><strong>Generate with Devin</strong> —— 英語で記述（<em>"when a CI check fails on my-org/my-repo, have Devin fix it and push to the same branch"</em>）、生成された設定をレビュー</li>
+<li><strong>Create manually</strong> —— 空のエディタ：トリガー → 条件 → アクションを選ぶ</li>
+<li><strong>Create from template</strong> —— よくあるワークフロー向けの事前設定済み自動化ギャラリー</li>
+<li><strong>Create with Devin</strong> —— 平易な言葉で記述（<em>"when a CI check fails on my-org/my-repo, have Devin fix it and push to the same branch"</em>）；セッションが設定を質問し、組み立てた自動化を承認に出す</li>
+<li><strong>Ask Devin for suggestions</strong> —— Devin がリポジトリを走査し、作る価値のある自動化を提案</li>
 </ol>
 <p>人がハマる注意点：</p>
 <ul>
@@ -196,6 +197,26 @@ Action:    Start session: &quot;Sweep yesterday's Sentry issues in
 <li>GitHub トリガーは特定リポジトリを指名する必要がある</li>
 <li>多数運用するなら <strong>Terraform provider</strong> で宣言的管理</li>
 </ul>
+<h2>実録ウォークスルー — automation を実際に作成・発火・検証、Devin Desktop v3.14（Pro プラン）で収録</h2>
+<p><em>Create with Devin</em> 経路を端から端まで：毎週 changelog スイープを平易に記述 → 設定質問に回答 → 生成された automation を承認 → 手動発火 → 本物のレポートが届くまで。</p>
+<p><strong>動画（5 分、無音、4 倍速）：</strong> Automations ページ → 生成セッション → 承認カード → 手動発火 → レポート。</p>
+<p><a href="https://till3005.github.io/built-with-devin/assets/guides/automations-101-event-driven/walkthrough.mp4"><img alt="生成セッションのオプションカード — アカウントの既存 automation を既に把握している" src="https://till3005.github.io/built-with-devin/assets/guides/automations-101-event-driven/walkthrough-poster.webp" /></a></p>
+<p><img alt="1. Automations ページ — 既存の automation と Create automation ドロップダウン" src="https://till3005.github.io/built-with-devin/assets/guides/automations-101-event-driven/step1-automations-page.webp" />
+<em>1. Automations ページ — 既存の automation と Create automation ドロップダウン</em></p>
+<p><img alt="2. 4 つの作成経路 — Create manually / from template / with Devin / ask for suggestions" src="https://till3005.github.io/built-with-devin/assets/guides/automations-101-event-driven/step2-create-options.webp" />
+<em>2. 4 つの作成経路 — Create manually / from template / with Devin / ask for suggestions</em></p>
+<p><img alt="3. 生成セッションは的を絞った質問をする — 既存の automation を既に列挙" src="https://till3005.github.io/built-with-devin/assets/guides/automations-101-event-driven/step3-generate-options.webp" />
+<em>3. 生成セッションは的を絞った質問をする — 既存の automation を把握済み</em></p>
+<p><img alt="4. すべての作成が承認カードにゲートされる — トリガー・範囲・run-as・ネットワークポリシーを表示" src="https://till3005.github.io/built-with-devin/assets/guides/automations-101-event-driven/step4-approve-card.webp" />
+<em>4. すべての作成が承認カードにゲートされる — トリガー・範囲・run-as・ネットワークポリシーを表示</em></p>
+<p><img alt="5. Automation 作成完了 — 毎週金曜 10:00（北京時間）、読み取り専用レポート、メール通知" src="https://till3005.github.io/built-with-devin/assets/guides/automations-101-event-driven/step5-created.webp" />
+<em>5. Automation 作成完了 — 毎週金曜 10:00（北京時間）、読み取り専用レポート、メール通知</em></p>
+<p><img alt="6. 手動発火 — 同じ承認カードのゲート；起動したセッションがサイドバーに現れる" src="https://till3005.github.io/built-with-devin/assets/guides/automations-101-event-driven/step6-manual-run.webp" />
+<em>6. 手動発火 — 同じ承認カードのゲート；起動したセッションがサイドバーに現れる</em></p>
+<p><img alt="7. 正直なつまずき — 起動セッションの git プロキシ経由 clone が 403 を返した（2 回）；github.com をネットワークポリシーに追加 + 匿名 clone フォールバックで解決" src="https://till3005.github.io/built-with-devin/assets/guides/automations-101-event-driven/step7-403-fix.webp" />
+<em>7. 正直なつまずき — 起動セッションの git プロキシ経由 clone が 2 回 403；修復は github.com をネットワークポリシーに追加 + 匿名 clone フォールバック——automation が起動するセッションはローカル shell の git アクセスを自動では引き継がない</em></p>
+<p><img alt="8. 検証された出力 — 今週の 103 コミットを分類した本物の changelog、artifact として配信" src="https://till3005.github.io/built-with-devin/assets/guides/automations-101-event-driven/step8-report.webp" />
+<em>8. 検証された出力 — 今週の 103 コミットを分類した本物の changelog、artifact として配信</em></p>
 <h2>検証チェックリスト</h2>
 <ul>
 <li>[ ] トリガーを手動で一度発火（<code>/devin test</code> とコメント、または失敗コミットを push）し、イベントペイロード付きでセッションが始まるのを確認した</li>

@@ -183,11 +183,12 @@ Action:    Start session: &quot;Sweep yesterday's Sentry issues in
 </table>
 <p><strong>Automation vs. Bot:</strong> automations are dumb pipes — event in, session out. A Bot adds memory, judgment, and multi-session planning around the same triggers. Start with automations; graduate to a Bot when the work needs follow-through (Guides 2–5).</p>
 <h2>Build it</h2>
-<p>Three creation paths on the Automations page:</p>
+<p>Four creation paths on the Automations page, under the <strong>Create automation</strong> dropdown:</p>
 <ol>
-<li><strong>Create</strong> — the blank editor: pick trigger → conditions → action</li>
-<li><strong>Template</strong> — the gallery of pre-configured automations for common workflows</li>
-<li><strong>Generate with Devin</strong> — describe it in English (<em>"when a CI check fails on my-org/my-repo, have Devin fix it and push to the same branch"</em>), review the generated config</li>
+<li><strong>Create manually</strong> — the blank editor: pick trigger → conditions → action</li>
+<li><strong>Create from template</strong> — the gallery of pre-configured automations for common workflows</li>
+<li><strong>Create with Devin</strong> — describe it in English (<em>"when a CI check fails on my-org/my-repo, have Devin fix it and push to the same branch"</em>); a session asks config questions, then presents the assembled automation for approval</li>
+<li><strong>Ask Devin for suggestions</strong> — Devin scans your repos and proposes automations worth having</li>
 </ol>
 <p>Notes that bite people:</p>
 <ul>
@@ -196,6 +197,26 @@ Action:    Start session: &quot;Sweep yesterday's Sentry issues in
 <li>A GitHub trigger must name a specific repo</li>
 <li>Manage automations declaratively with the <strong>Terraform provider</strong> if you're running many</li>
 </ul>
+<h2>Walkthrough — an automation built, fired and verified on Devin Desktop v3.14 (Pro plan)</h2>
+<p>The <em>Create with Devin</em> path end-to-end: describe a weekly changelog sweep in plain language, answer its config questions, approve the generated automation, fire it manually — and watch a real report land.</p>
+<p><strong>Video (5 min, silent, 4× speed):</strong> Automations page → generate session → approval cards → manual run → report.</p>
+<p><a href="https://till3005.github.io/built-with-devin/assets/guides/automations-101-event-driven/walkthrough.mp4"><img alt="The generate session's option card — it already knows the account's existing automations" src="https://till3005.github.io/built-with-devin/assets/guides/automations-101-event-driven/walkthrough-poster.webp" /></a></p>
+<p><img alt="1. The Automations page — existing automations plus the Create automation dropdown" src="https://till3005.github.io/built-with-devin/assets/guides/automations-101-event-driven/step1-automations-page.webp" />
+<em>1. The Automations page — existing automations plus the Create automation dropdown</em></p>
+<p><img alt="2. Four creation paths — Create manually / from template / with Devin / ask for suggestions" src="https://till3005.github.io/built-with-devin/assets/guides/automations-101-event-driven/step2-create-options.webp" />
+<em>2. Four creation paths — Create manually / from template / with Devin / ask for suggestions</em></p>
+<p><img alt="3. The generate session asks targeted questions — it already lists your existing automations" src="https://till3005.github.io/built-with-devin/assets/guides/automations-101-event-driven/step3-generate-options.webp" />
+<em>3. The generate session asks targeted questions — it already knows your existing automations</em></p>
+<p><img alt="4. Every creation is gated on an approval card — trigger, scope, run-as and network policy shown" src="https://till3005.github.io/built-with-devin/assets/guides/automations-101-event-driven/step4-approve-card.webp" />
+<em>4. Every creation is gated on an approval card — trigger, scope, run-as and network policy shown</em></p>
+<p><img alt="5. Automation created — weekly Friday 10:00 CST, read-only report, email notification" src="https://till3005.github.io/built-with-devin/assets/guides/automations-101-event-driven/step5-created.webp" />
+<em>5. Automation created — weekly Friday 10:00 CST, read-only report, email notification</em></p>
+<p><img alt="6. The manual fire — same approval-card gate; the spawned session appears in the sidebar" src="https://till3005.github.io/built-with-devin/assets/guides/automations-101-event-driven/step6-manual-run.webp" />
+<em>6. The manual fire — same approval-card gate; the spawned session appears in the sidebar</em></p>
+<p><img alt="7. An honest hiccup — the spawned session's git-proxy clone 403'd; adding github.com to its network policy plus an anonymous-clone fallback fixed it" src="https://till3005.github.io/built-with-devin/assets/guides/automations-101-event-driven/step7-403-fix.webp" />
+<em>7. An honest hiccup — the spawned session's git-proxy clone returned 403 (twice); the fix was adding github.com to its network policy plus an anonymous-clone fallback — automation sessions don't automatically share your shell's git access</em></p>
+<p><img alt="8. The verified output — a real categorized changelog of the week's 103 commits, delivered as a file" src="https://till3005.github.io/built-with-devin/assets/guides/automations-101-event-driven/step8-report.webp" />
+<em>8. The verified output — a real categorized changelog of the week's 103 commits, delivered as an artifact</em></p>
 <h2>Verify it</h2>
 <ul>
 <li>[ ] Fire the trigger manually once (comment <code>/devin test</code>, or push a failing commit) and watch a session start with the event payload</li>

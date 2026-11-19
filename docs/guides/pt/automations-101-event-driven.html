@@ -183,11 +183,12 @@ Action:    Start session: &quot;Sweep yesterday's Sentry issues in
 </table>
 <p><strong>Automação vs. Bot:</strong> automações são canos burros — evento entra, sessão sai. Um Bot adiciona memória, julgamento e planejamento multi-sessão em volta dos mesmos triggers. Comece com automações; formate para um Bot quando o trabalho precisar de continuidade (Guias 2–5).</p>
 <h2>Construir</h2>
-<p>Três caminhos de criação na página de Automations:</p>
+<p>Quatro caminhos de criação na página de Automations, no dropdown <strong>Create automation</strong>:</p>
 <ol>
-<li><strong>Create</strong> — o editor em branco: escolha trigger → conditions → action</li>
-<li><strong>Template</strong> — a galeria de automações pré-configuradas para workflows comuns</li>
-<li><strong>Generate with Devin</strong> — descreva em inglês (<em>"when a CI check fails on my-org/my-repo, have Devin fix it and push to the same branch"</em>), revise o config gerado</li>
+<li><strong>Create manually</strong> — o editor em branco: escolha trigger → conditions → action</li>
+<li><strong>Create from template</strong> — a galeria de automações pré-configuradas para workflows comuns</li>
+<li><strong>Create with Devin</strong> — descreva em linguagem simples (<em>"when a CI check fails on my-org/my-repo, have Devin fix it and push to the same branch"</em>); uma sessão pergunta a configuração e apresenta a automação montada para aprovação</li>
+<li><strong>Ask Devin for suggestions</strong> — Devin escaneia seus repos e propõe automações que valem a pena</li>
 </ol>
 <p>Notas que mordem as pessoas:</p>
 <ul>
@@ -196,6 +197,26 @@ Action:    Start session: &quot;Sweep yesterday's Sentry issues in
 <li>Um trigger de GitHub precisa nomear um repo específico</li>
 <li>Gerencie automações declarativamente com o <strong>provider Terraform</strong> se você roda muitas</li>
 </ul>
+<h2>Passo a passo real — uma automação criada, disparada e verificada no Devin Desktop v3.14 (plano Pro)</h2>
+<p>O caminho <em>Create with Devin</em> de ponta a ponta: descrever uma varredura semanal de changelog em linguagem simples → responder às perguntas de configuração → aprovar a automação gerada → disparar manualmente → e ver um relatório real chegar.</p>
+<p><strong>Vídeo (5 min, sem áudio, 4× velocidade):</strong> página de Automations → sessão geradora → cartões de aprovação → disparo manual → relatório.</p>
+<p><a href="https://till3005.github.io/built-with-devin/assets/guides/automations-101-event-driven/walkthrough.mp4"><img alt="O cartão de opções da sessão geradora — ela já conhece as automações existentes da conta" src="https://till3005.github.io/built-with-devin/assets/guides/automations-101-event-driven/walkthrough-poster.webp" /></a></p>
+<p><img alt="1. A página Automations — automações existentes e o dropdown Create automation" src="https://till3005.github.io/built-with-devin/assets/guides/automations-101-event-driven/step1-automations-page.webp" />
+<em>1. A página Automations — automações existentes e o dropdown Create automation</em></p>
+<p><img alt="2. Quatro caminhos de criação — Create manually / from template / with Devin / ask for suggestions" src="https://till3005.github.io/built-with-devin/assets/guides/automations-101-event-driven/step2-create-options.webp" />
+<em>2. Quatro caminhos de criação — Create manually / from template / with Devin / ask for suggestions</em></p>
+<p><img alt="3. A sessão geradora faz perguntas certeiras — já lista suas automações existentes" src="https://till3005.github.io/built-with-devin/assets/guides/automations-101-event-driven/step3-generate-options.webp" />
+<em>3. A sessão geradora faz perguntas certeiras — já conhece suas automações existentes</em></p>
+<p><img alt="4. Toda criação passa por um cartão de aprovação — trigger, escopo, run-as e política de rede à mostra" src="https://till3005.github.io/built-with-devin/assets/guides/automations-101-event-driven/step4-approve-card.webp" />
+<em>4. Toda criação passa por um cartão de aprovação — trigger, escopo, run-as e política de rede à mostra</em></p>
+<p><img alt="5. Automação criada — semanal sexta 10:00 CST, relatório somente-leitura, notificação por email" src="https://till3005.github.io/built-with-devin/assets/guides/automations-101-event-driven/step5-created.webp" />
+<em>5. Automação criada — semanal sexta 10:00 CST, relatório somente-leitura, notificação por email</em></p>
+<p><img alt="6. O disparo manual — mesmo portão de cartão de aprovação; a sessão gerada aparece na barra lateral" src="https://till3005.github.io/built-with-devin/assets/guides/automations-101-event-driven/step6-manual-run.webp" />
+<em>6. O disparo manual — mesmo portão de cartão de aprovação; a sessão gerada aparece na barra lateral</em></p>
+<p><img alt="7. Um tropeço honesto — o clone via proxy git da sessão gerada retornou 403 (duas vezes); adicionar github.com à política de rede + fallback de clone anônimo resolveu" src="https://till3005.github.io/built-with-devin/assets/guides/automations-101-event-driven/step7-403-fix.webp" />
+<em>7. Um tropeço honesto — o clone via proxy git da sessão gerada retornou 403 (duas vezes); a correção foi adicionar github.com à política de rede + fallback de clone anônimo — sessões de automação não herdam automaticamente o acesso git do seu shell</em></p>
+<p><img alt="8. A saída verificada — um changelog categorizado real dos 103 commits da semana, entregue como artifact" src="https://till3005.github.io/built-with-devin/assets/guides/automations-101-event-driven/step8-report.webp" />
+<em>8. A saída verificada — um changelog categorizado real dos 103 commits da semana, entregue como artifact</em></p>
 <h2>Checklist de verificação</h2>
 <ul>
 <li>[ ] Dispare o trigger manualmente uma vez (comente <code>/devin test</code>, ou faça push de um commit que falha) e veja uma sessão iniciar com o payload do evento</li>
