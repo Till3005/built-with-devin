@@ -14,14 +14,16 @@
       "owner": "Cognition",
       "owns": "Devin's Android app, end to end",
       "results": "Prompted \"your job is to product manage the android app\" on Sep 28, 2026 — filed its own tickets, ran a Devin session per ticket, shipped to Google Play open beta in 44 days: 1,134 PRs merged, 344,651 lines of Kotlin, 2,841 screenshot tests. Its human sent 183 messages total — 22 days of complete silence — and 88% of PRs were self-merged. Now owns Android/iOS feature parity.",
-      "sources": []
+      "sources": [],
+      "updated_on": "2026-11-18"
     },
     {
       "name": "Layout Bot",
       "owner": "Cognition",
       "owns": "Layout-shift regression on the Devin web app",
       "results": "Every 3 hours it builds production main, simulates first/repeat/delayed-request visits, traces regressions to the introducing PR, opens fixes with before/after videos. 159 PRs in 3 weeks; lag −70%.",
-      "sources": []
+      "sources": [],
+      "updated_on": "2026-11-18"
     },
     {
       "name": "Super Jenny",
@@ -37,7 +39,8 @@
           "text": "BotSpeak post",
           "url": "https://x.com/xujennyc/status/2123111543105868166"
         }
-      ]
+      ],
+      "updated_on": "2026-11-18"
     },
     {
       "name": "dabit3's fleet",
@@ -49,7 +52,8 @@
           "text": "primer",
           "url": "https://x.com/dabit3/status/2122755275182469515"
         }
-      ]
+      ],
+      "updated_on": "2026-11-18"
     },
     {
       "name": "Onboarding QA Bot",
@@ -61,7 +65,8 @@
           "text": "@walden_yan",
           "url": "https://x.com/walden_yan"
         }
-      ]
+      ],
+      "updated_on": "2026-11-18"
     },
     {
       "name": "\"Phil\"",
@@ -73,7 +78,8 @@
           "text": "Gabe Pereyra",
           "url": "https://x.com/gabepereyra"
         }
-      ]
+      ],
+      "updated_on": "2026-11-18"
     },
     {
       "name": "Shared bot fleet",
@@ -85,7 +91,8 @@
           "text": "@tylerxdev's thread",
           "url": "https://x.com/tylerxdev/status/2122743518712287400"
         }
-      ]
+      ],
+      "updated_on": "2026-11-18"
     },
     {
       "name": "AutoResearch loop",
@@ -101,7 +108,8 @@
           "text": "@devindevelopers",
           "url": "https://x.com/devindevelopers/status/2115601107581821172"
         }
-      ]
+      ],
+      "updated_on": "2026-11-18"
     },
     {
       "name": "Frankie's org",
@@ -113,7 +121,8 @@
           "text": "walkthrough",
           "url": "https://x.com/markfenner/status/2122740244328145211"
         }
-      ]
+      ],
+      "updated_on": "2026-11-18"
     },
     {
       "name": "tigsbot",
@@ -125,7 +134,8 @@
           "text": "setup",
           "url": "https://x.com/0xtigs/status/2122742784176034056"
         }
-      ]
+      ],
+      "updated_on": "2026-11-18"
     },
     {
       "name": "Rewards Chief-of-Staff",
@@ -137,7 +147,8 @@
           "text": "coverage",
           "url": "https://news.sulat.com/2026/11/18/devin-bots/"
         }
-      ]
+      ],
+      "updated_on": "2026-11-19"
     },
     {
       "name": "Electra",
@@ -153,7 +164,8 @@
           "text": "20-day thread",
           "url": "https://x.com/trybasis/status/2120658137766100992"
         }
-      ]
+      ],
+      "updated_on": "2026-11-18"
     },
     {
       "name": "Personal data Bots",
@@ -169,73 +181,90 @@
           "text": "launch video",
           "url": "https://vimeo.com/1247688199"
         }
-      ]
+      ],
+      "updated_on": "2026-11-18"
     }
   ],
   "bot_templates": [
     {
       "name": "Software Factory",
-      "does": "Finds bugs, polish, performance and refactoring work in a named product area; opens one small PR each with proof it works"
+      "does": "Finds bugs, polish, performance and refactoring work in a named product area; opens one small PR each with proof it works",
+      "updated_on": "2026-11-18"
     },
     {
       "name": "Product Engineer",
-      "does": "Takes a ticket or request to a tested PR and through review"
+      "does": "Takes a ticket or request to a tested PR and through review",
+      "updated_on": "2026-11-18"
     },
     {
       "name": "QA Engineer",
-      "does": "Tests each PR in a real browser and posts the video of pass/fail"
+      "does": "Tests each PR in a real browser and posts the video of pass/fail",
+      "updated_on": "2026-11-18"
     },
     {
       "name": "Anomaly Watcher",
-      "does": "Twice daily scans product + business data for problems no monitor watches"
+      "does": "Twice daily scans product + business data for problems no monitor watches",
+      "updated_on": "2026-11-18"
     },
     {
       "name": "Code Reaper",
-      "does": "Removes dead code weekly, one safe PR at a time"
+      "does": "Removes dead code weekly, one safe PR at a time",
+      "updated_on": "2026-11-18"
     },
     {
       "name": "Chief of Staff",
-      "does": "Watches channels, posts updates, hands work to the team and follows it to done"
+      "does": "Watches channels, posts updates, hands work to the team and follows it to done",
+      "updated_on": "2026-11-18"
     },
     {
       "name": "Migration Engineer",
-      "does": "Owns one big migration as small, tracked PRs with a progress surface"
+      "does": "Owns one big migration as small, tracked PRs with a progress surface",
+      "updated_on": "2026-11-18"
     },
     {
       "name": "Latency Optimizer",
-      "does": "Finds the slowest endpoints/jobs/queries; weekly fix PR with before/after speed"
+      "does": "Finds the slowest endpoints/jobs/queries; weekly fix PR with before/after speed",
+      "updated_on": "2026-11-18"
     },
     {
       "name": "iOS Engineer",
-      "does": "SwiftUI features to PR + TestFlight build"
+      "does": "SwiftUI features to PR + TestFlight build",
+      "updated_on": "2026-11-18"
     },
     {
       "name": "Android Engineer",
-      "does": "Kotlin features to PR + internal-test build"
+      "does": "Kotlin features to PR + internal-test build",
+      "updated_on": "2026-11-18"
     },
     {
       "name": "Internal Tools Engineer",
-      "does": "Admin panels and internal tools on your stack"
+      "does": "Admin panels and internal tools on your stack",
+      "updated_on": "2026-11-18"
     },
     {
       "name": "Data Analyst",
-      "does": "Answers data questions with the chart and the query behind it"
+      "does": "Answers data questions with the chart and the query behind it",
+      "updated_on": "2026-11-18"
     },
     {
       "name": "Devin Coach",
-      "does": "Teaches your team to use Devin well from your own usage data"
+      "does": "Teaches your team to use Devin well from your own usage data",
+      "updated_on": "2026-11-18"
     },
     {
       "name": "Code Health Engineer",
-      "does": "Stale flags, old dependencies, CVEs → small safe PRs"
+      "does": "Stale flags, old dependencies, CVEs → small safe PRs",
+      "updated_on": "2026-11-18"
     },
     {
       "name": "Technical Writer",
-      "does": "Keeps repo wikis and diagrams in step with main after merges"
+      "does": "Keeps repo wikis and diagrams in step with main after merges",
+      "updated_on": "2026-11-18"
     },
     {
       "name": "Compliance Engineer",
-      "does": "Collects control evidence from code, warns when a control lapses"
+      "does": "Collects control evidence from code, warns when a control lapses",
+      "updated_on": "2026-11-18"
     }
   ],
   "products": [
@@ -247,7 +276,8 @@
           "text": "Era by Eon",
           "url": "https://devin.ai/customers/eon"
         }
-      ]
+      ],
+      "updated_on": "2026-11-18"
     },
     {
       "name": "Courtyard's Quick",
@@ -257,7 +287,8 @@
           "text": "Courtyard's Quick",
           "url": "https://courtyard.io/blog/post/from-a-slack-link-to-production-in-under-48-hours-cloning-shopifys-quick-with-devin"
         }
-      ]
+      ],
+      "updated_on": "2026-11-18"
     },
     {
       "name": "Frontierfood",
@@ -271,7 +302,8 @@
           "text": "post",
           "url": "https://x.com/samyok/status/2098155977199743367"
         }
-      ]
+      ],
+      "updated_on": "2026-11-18"
     },
     {
       "name": "Flappy Asher",
@@ -281,7 +313,8 @@
           "text": "post",
           "url": "https://x.com/russelljkaplan/status/2100280085999919555"
         }
-      ]
+      ],
+      "updated_on": "2026-11-18"
     },
     {
       "name": "Try Devin vending machine",
@@ -295,7 +328,8 @@
           "text": "trydevin.ai",
           "url": "https://www.trydevin.ai/"
         }
-      ]
+      ],
+      "updated_on": "2026-11-18"
     },
     {
       "name": "GymClass",
@@ -305,7 +339,8 @@
           "text": "GymClass",
           "url": "https://seed.horacioh.com/writing/how-i-built-a-full-booking-system-as-a-side-project-with-devin-as-my-engineering-partner"
         }
-      ]
+      ],
+      "updated_on": "2026-11-18"
     }
   ],
   "enterprise_cases": [
@@ -318,7 +353,8 @@
           "text": "Nubank",
           "url": "https://devin.ai/customers/nubank"
         }
-      ]
+      ],
+      "updated_on": "2026-11-18"
     },
     {
       "company": "Wayfair",
@@ -329,7 +365,8 @@
           "text": "Wayfair",
           "url": "https://devin.ai/customers/wayfair"
         }
-      ]
+      ],
+      "updated_on": "2026-11-18"
     },
     {
       "company": "The Access Group",
@@ -340,7 +377,8 @@
           "text": "The Access Group",
           "url": "https://devin.ai/customers/access-group"
         }
-      ]
+      ],
+      "updated_on": "2026-11-18"
     },
     {
       "company": "EBANX",
@@ -351,7 +389,8 @@
           "text": "EBANX",
           "url": "https://devin.ai/customers/ebanx"
         }
-      ]
+      ],
+      "updated_on": "2026-11-18"
     },
     {
       "company": "Gumroad",
@@ -362,7 +401,8 @@
           "text": "Gumroad",
           "url": "https://devin.ai/customers/gumroad"
         }
-      ]
+      ],
+      "updated_on": "2026-11-18"
     },
     {
       "company": "Finch",
@@ -373,7 +413,8 @@
           "text": "Finch",
           "url": "https://devin.ai/customers/finch"
         }
-      ]
+      ],
+      "updated_on": "2026-11-18"
     },
     {
       "company": "Comarch",
@@ -384,7 +425,8 @@
           "text": "Comarch",
           "url": "https://devin.ai/customers/comarch"
         }
-      ]
+      ],
+      "updated_on": "2026-11-18"
     },
     {
       "company": "AngelList",
@@ -395,7 +437,8 @@
           "text": "AngelList",
           "url": "https://devin.ai/customers/angellist"
         }
-      ]
+      ],
+      "updated_on": "2026-11-18"
     },
     {
       "company": "Modal",
@@ -406,7 +449,8 @@
           "text": "Modal",
           "url": "https://devin.ai/customers/modal"
         }
-      ]
+      ],
+      "updated_on": "2026-11-18"
     },
     {
       "company": "Reducto",
@@ -417,7 +461,8 @@
           "text": "Reducto",
           "url": "https://devin.ai/customers/reducto"
         }
-      ]
+      ],
+      "updated_on": "2026-11-18"
     },
     {
       "company": "Eight Sleep",
@@ -428,7 +473,8 @@
           "text": "Eight Sleep",
           "url": "https://devin.ai/customers/eight-sleep"
         }
-      ]
+      ],
+      "updated_on": "2026-11-18"
     },
     {
       "company": "Exa",
@@ -439,7 +485,8 @@
           "text": "Exa",
           "url": "https://devin.ai/customers/exa"
         }
-      ]
+      ],
+      "updated_on": "2026-11-18"
     },
     {
       "company": "RV Tech",
@@ -450,7 +497,8 @@
           "text": "RV Tech",
           "url": "https://devin.ai/customers/rvtech"
         }
-      ]
+      ],
+      "updated_on": "2026-11-18"
     },
     {
       "company": "Melius",
@@ -461,7 +509,8 @@
           "text": "Melius",
           "url": "https://devin.ai/customers/melius"
         }
-      ]
+      ],
+      "updated_on": "2026-11-18"
     },
     {
       "company": "Hamming",
@@ -472,7 +521,8 @@
           "text": "Hamming",
           "url": "https://devin.ai/customers/hamming"
         }
-      ]
+      ],
+      "updated_on": "2026-11-18"
     },
     {
       "company": "Airbyte",
@@ -483,7 +533,8 @@
           "text": "Airbyte",
           "url": "https://devin.ai/customers/airbyte"
         }
-      ]
+      ],
+      "updated_on": "2026-11-18"
     },
     {
       "company": "Litera",
@@ -494,7 +545,8 @@
           "text": "Litera",
           "url": "https://devin.ai/customers/litera"
         }
-      ]
+      ],
+      "updated_on": "2026-11-18"
     },
     {
       "company": "Ramp",
@@ -505,7 +557,8 @@
           "text": "Ramp",
           "url": "https://devin.ai/customers/ramp"
         }
-      ]
+      ],
+      "updated_on": "2026-11-18"
     },
     {
       "company": "Linktree",
@@ -516,7 +569,8 @@
           "text": "Linktree",
           "url": "https://devin.ai/customers/linktree"
         }
-      ]
+      ],
+      "updated_on": "2026-11-18"
     },
     {
       "company": "Bilt",
@@ -531,7 +585,8 @@
           "text": "Bots testimonials",
           "url": "https://devin.ai/bots"
         }
-      ]
+      ],
+      "updated_on": "2026-11-19"
     },
     {
       "company": "Rohlik Group",
@@ -542,7 +597,8 @@
           "text": "Rohlik Group",
           "url": "https://devin.ai/customers/rohlikgroup"
         }
-      ]
+      ],
+      "updated_on": "2026-11-18"
     },
     {
       "company": "Crosby",
@@ -553,7 +609,8 @@
           "text": "Crosby",
           "url": "https://devin.ai/customers/crosby"
         }
-      ]
+      ],
+      "updated_on": "2026-11-18"
     },
     {
       "company": "Endava",
@@ -564,7 +621,8 @@
           "text": "Endava",
           "url": "https://devin.ai/customers/endava"
         }
-      ]
+      ],
+      "updated_on": "2026-11-18"
     },
     {
       "company": "Tavrn",
@@ -575,7 +633,8 @@
           "text": "Tavrn",
           "url": "https://devin.ai/customers/tavrn"
         }
-      ]
+      ],
+      "updated_on": "2026-11-18"
     },
     {
       "company": "Evinova",
@@ -586,7 +645,8 @@
           "text": "Evinova",
           "url": "https://devin.ai/customers/evinova"
         }
-      ]
+      ],
+      "updated_on": "2026-11-18"
     },
     {
       "company": "Compiled Health",
@@ -597,7 +657,8 @@
           "text": "Compiled Health",
           "url": "https://devin.ai/customers/compiledhealth"
         }
-      ]
+      ],
+      "updated_on": "2026-11-18"
     },
     {
       "company": "Común",
@@ -608,7 +669,8 @@
           "text": "Común",
           "url": "https://devin.ai/customers/comun"
         }
-      ]
+      ],
+      "updated_on": "2026-11-18"
     },
     {
       "company": "AHEAD",
@@ -619,7 +681,8 @@
           "text": "AHEAD",
           "url": "https://devin.ai/customers/ahead"
         }
-      ]
+      ],
+      "updated_on": "2026-11-18"
     },
     {
       "company": "The Citation Group",
@@ -630,7 +693,8 @@
           "text": "The Citation Group",
           "url": "https://devin.ai/customers/thecitationgroup"
         }
-      ]
+      ],
+      "updated_on": "2026-11-18"
     },
     {
       "company": "Latent Health",
@@ -641,7 +705,8 @@
           "text": "Latent Health",
           "url": "https://devin.ai/customers/latent"
         }
-      ]
+      ],
+      "updated_on": "2026-11-18"
     },
     {
       "company": "Crossmint",
@@ -652,7 +717,8 @@
           "text": "Crossmint",
           "url": "https://devin.ai/customers/crossmint"
         }
-      ]
+      ],
+      "updated_on": "2026-11-18"
     },
     {
       "company": "FE fundinfo",
@@ -663,7 +729,8 @@
           "text": "FE fundinfo",
           "url": "https://devin.ai/customers/fefundinfo"
         }
-      ]
+      ],
+      "updated_on": "2026-11-18"
     },
     {
       "company": "GE Aerospace",
@@ -674,7 +741,8 @@
           "text": "GE Aerospace",
           "url": "https://devin.ai/customers/geaerospace"
         }
-      ]
+      ],
+      "updated_on": "2026-11-18"
     },
     {
       "company": "Itaú",
@@ -685,7 +753,8 @@
           "text": "Itaú",
           "url": "https://medium.com/itautech/devin-no-ita%C3%BA-como-escalamos-o-uso-de-agentes-na-engenharia-de-software-b636bedebc5a"
         }
-      ]
+      ],
+      "updated_on": "2026-11-18"
     },
     {
       "company": "Rox",
@@ -700,7 +769,315 @@
           "text": "thread",
           "url": "https://x.com/rox_ai/status/2110779380666617997"
         }
-      ]
+      ],
+      "updated_on": "2026-11-18"
     }
-  ]
+  ],
+  "source_checks": {
+    "https://courtyard.io/blog/post/from-a-slack-link-to-production-in-under-48-hours-cloning-shopifys-quick-with-devin": {
+      "ok": true,
+      "status": 200,
+      "checked_at": "2026-11-19T12:23:14+00:00"
+    },
+    "https://devin.ai/bots": {
+      "ok": true,
+      "status": 200,
+      "checked_at": "2026-11-19T12:23:14+00:00"
+    },
+    "https://devin.ai/customers/access-group": {
+      "ok": true,
+      "status": 200,
+      "checked_at": "2026-11-19T12:23:14+00:00"
+    },
+    "https://devin.ai/customers/ahead": {
+      "ok": true,
+      "status": 200,
+      "checked_at": "2026-11-19T12:23:14+00:00"
+    },
+    "https://devin.ai/customers/airbyte": {
+      "ok": true,
+      "status": 200,
+      "checked_at": "2026-11-19T12:23:14+00:00"
+    },
+    "https://devin.ai/customers/angellist": {
+      "ok": true,
+      "status": 200,
+      "checked_at": "2026-11-19T12:23:14+00:00"
+    },
+    "https://devin.ai/customers/bilt": {
+      "ok": true,
+      "status": 200,
+      "checked_at": "2026-11-19T12:23:14+00:00"
+    },
+    "https://devin.ai/customers/comarch": {
+      "ok": true,
+      "status": 200,
+      "checked_at": "2026-11-19T12:23:14+00:00"
+    },
+    "https://devin.ai/customers/compiledhealth": {
+      "ok": true,
+      "status": 200,
+      "checked_at": "2026-11-19T12:23:14+00:00"
+    },
+    "https://devin.ai/customers/comun": {
+      "ok": true,
+      "status": 200,
+      "checked_at": "2026-11-19T12:23:14+00:00"
+    },
+    "https://devin.ai/customers/crosby": {
+      "ok": true,
+      "status": 200,
+      "checked_at": "2026-11-19T12:23:14+00:00"
+    },
+    "https://devin.ai/customers/crossmint": {
+      "ok": true,
+      "status": 200,
+      "checked_at": "2026-11-19T12:23:14+00:00"
+    },
+    "https://devin.ai/customers/ebanx": {
+      "ok": true,
+      "status": 200,
+      "checked_at": "2026-11-19T12:23:14+00:00"
+    },
+    "https://devin.ai/customers/eight-sleep": {
+      "ok": true,
+      "status": 200,
+      "checked_at": "2026-11-19T12:23:14+00:00"
+    },
+    "https://devin.ai/customers/endava": {
+      "ok": true,
+      "status": 200,
+      "checked_at": "2026-11-19T12:23:14+00:00"
+    },
+    "https://devin.ai/customers/eon": {
+      "ok": true,
+      "status": 200,
+      "checked_at": "2026-11-19T12:23:14+00:00"
+    },
+    "https://devin.ai/customers/evinova": {
+      "ok": true,
+      "status": 200,
+      "checked_at": "2026-11-19T12:23:14+00:00"
+    },
+    "https://devin.ai/customers/exa": {
+      "ok": true,
+      "status": 200,
+      "checked_at": "2026-11-19T12:23:14+00:00"
+    },
+    "https://devin.ai/customers/fefundinfo": {
+      "ok": true,
+      "status": 200,
+      "checked_at": "2026-11-19T12:23:14+00:00"
+    },
+    "https://devin.ai/customers/finch": {
+      "ok": true,
+      "status": 200,
+      "checked_at": "2026-11-19T12:23:14+00:00"
+    },
+    "https://devin.ai/customers/geaerospace": {
+      "ok": true,
+      "status": 200,
+      "checked_at": "2026-11-19T12:23:14+00:00"
+    },
+    "https://devin.ai/customers/gumroad": {
+      "ok": true,
+      "status": 200,
+      "checked_at": "2026-11-19T12:23:14+00:00"
+    },
+    "https://devin.ai/customers/hamming": {
+      "ok": true,
+      "status": 200,
+      "checked_at": "2026-11-19T12:23:14+00:00"
+    },
+    "https://devin.ai/customers/latent": {
+      "ok": true,
+      "status": 200,
+      "checked_at": "2026-11-19T12:23:14+00:00"
+    },
+    "https://devin.ai/customers/linktree": {
+      "ok": true,
+      "status": 200,
+      "checked_at": "2026-11-19T12:23:14+00:00"
+    },
+    "https://devin.ai/customers/litera": {
+      "ok": true,
+      "status": 200,
+      "checked_at": "2026-11-19T12:23:14+00:00"
+    },
+    "https://devin.ai/customers/melius": {
+      "ok": true,
+      "status": 200,
+      "checked_at": "2026-11-19T12:23:14+00:00"
+    },
+    "https://devin.ai/customers/modal": {
+      "ok": true,
+      "status": 200,
+      "checked_at": "2026-11-19T12:23:14+00:00"
+    },
+    "https://devin.ai/customers/nubank": {
+      "ok": true,
+      "status": 200,
+      "checked_at": "2026-11-19T12:23:14+00:00"
+    },
+    "https://devin.ai/customers/ramp": {
+      "ok": true,
+      "status": 200,
+      "checked_at": "2026-11-19T12:23:14+00:00"
+    },
+    "https://devin.ai/customers/reducto": {
+      "ok": true,
+      "status": 200,
+      "checked_at": "2026-11-19T12:23:14+00:00"
+    },
+    "https://devin.ai/customers/rohlikgroup": {
+      "ok": true,
+      "status": 200,
+      "checked_at": "2026-11-19T12:23:14+00:00"
+    },
+    "https://devin.ai/customers/rvtech": {
+      "ok": true,
+      "status": 200,
+      "checked_at": "2026-11-19T12:23:14+00:00"
+    },
+    "https://devin.ai/customers/tavrn": {
+      "ok": true,
+      "status": 200,
+      "checked_at": "2026-11-19T12:23:14+00:00"
+    },
+    "https://devin.ai/customers/thecitationgroup": {
+      "ok": true,
+      "status": 200,
+      "checked_at": "2026-11-19T12:23:14+00:00"
+    },
+    "https://devin.ai/customers/wayfair": {
+      "ok": true,
+      "status": 200,
+      "checked_at": "2026-11-19T12:23:14+00:00"
+    },
+    "https://github.com/dabit3/vending-machine": {
+      "ok": true,
+      "status": 200,
+      "checked_at": "2026-11-19T12:23:14+00:00"
+    },
+    "https://medium.com/itautech/devin-no-ita%C3%BA-como-escalamos-o-uso-de-agentes-na-engenharia-de-software-b636bedebc5a": {
+      "ok": false,
+      "status": 403,
+      "checked_at": "2026-11-19T12:23:14+00:00"
+    },
+    "https://news.sulat.com/2026/11/18/devin-bots/": {
+      "ok": true,
+      "status": 200,
+      "checked_at": "2026-11-19T12:23:14+00:00"
+    },
+    "https://samyok.com/frontierfood": {
+      "ok": true,
+      "status": 200,
+      "checked_at": "2026-11-19T12:23:14+00:00"
+    },
+    "https://seed.horacioh.com/writing/how-i-built-a-full-booking-system-as-a-side-project-with-devin-as-my-engineering-partner": {
+      "ok": true,
+      "status": 200,
+      "checked_at": "2026-11-19T12:23:14+00:00"
+    },
+    "https://vimeo.com/1247688199": {
+      "ok": false,
+      "status": 404,
+      "checked_at": "2026-11-19T12:23:14+00:00"
+    },
+    "https://www.rox.com/articles/living-evals-an-eval-suite-that-grows-from-production": {
+      "ok": true,
+      "status": 200,
+      "checked_at": "2026-11-19T12:23:14+00:00"
+    },
+    "https://www.trydevin.ai/": {
+      "ok": true,
+      "status": 200,
+      "checked_at": "2026-11-19T12:23:14+00:00"
+    },
+    "https://x.com/0xtigs/status/2122742784176034056": {
+      "ok": true,
+      "status": 200,
+      "checked_at": "2026-11-19T12:23:14+00:00"
+    },
+    "https://x.com/DecagonAI/article/2115511110120120437": {
+      "ok": true,
+      "status": 200,
+      "checked_at": "2026-11-19T12:23:14+00:00"
+    },
+    "https://x.com/bryan_johnson/status/2122814114976383406": {
+      "ok": true,
+      "status": 200,
+      "checked_at": "2026-11-19T12:23:14+00:00"
+    },
+    "https://x.com/dabit3/status/2122755275182469515": {
+      "ok": true,
+      "status": 200,
+      "checked_at": "2026-11-19T12:23:14+00:00"
+    },
+    "https://x.com/devindevelopers/status/2115601107581821172": {
+      "ok": true,
+      "status": 200,
+      "checked_at": "2026-11-19T12:23:14+00:00"
+    },
+    "https://x.com/gabepereyra": {
+      "ok": true,
+      "status": 200,
+      "checked_at": "2026-11-19T12:23:14+00:00"
+    },
+    "https://x.com/markfenner/status/2122740244328145211": {
+      "ok": true,
+      "status": 200,
+      "checked_at": "2026-11-19T12:23:14+00:00"
+    },
+    "https://x.com/rox_ai/status/2110779380666617997": {
+      "ok": true,
+      "status": 200,
+      "checked_at": "2026-11-19T12:23:14+00:00"
+    },
+    "https://x.com/russelljkaplan/status/2100280085999919555": {
+      "ok": true,
+      "status": 200,
+      "checked_at": "2026-11-19T12:23:14+00:00"
+    },
+    "https://x.com/samyok/status/2098155977199743367": {
+      "ok": true,
+      "status": 200,
+      "checked_at": "2026-11-19T12:23:14+00:00"
+    },
+    "https://x.com/trybasis/status/2113307030203089189": {
+      "ok": true,
+      "status": 200,
+      "checked_at": "2026-11-19T12:23:14+00:00"
+    },
+    "https://x.com/trybasis/status/2120658137766100992": {
+      "ok": true,
+      "status": 200,
+      "checked_at": "2026-11-19T12:23:14+00:00"
+    },
+    "https://x.com/tylerxdev/status/2122743518712287400": {
+      "ok": true,
+      "status": 200,
+      "checked_at": "2026-11-19T12:23:14+00:00"
+    },
+    "https://x.com/walden_yan": {
+      "ok": true,
+      "status": 200,
+      "checked_at": "2026-11-19T12:23:14+00:00"
+    },
+    "https://x.com/xujennyc": {
+      "ok": true,
+      "status": 200,
+      "checked_at": "2026-11-19T12:23:14+00:00"
+    },
+    "https://x.com/xujennyc/status/2123111543105868166": {
+      "ok": true,
+      "status": 200,
+      "checked_at": "2026-11-19T12:23:14+00:00"
+    }
+  },
+  "source_checks_summary": {
+    "checked_at": "2026-11-19T12:23:14+00:00",
+    "total": 60,
+    "broken": 2
+  }
 }

@@ -66,7 +66,7 @@ flowchart LR
 | **tigsbot** | @0xtigs（社区） | 个人多项目舰队 | 每个项目占一个 Slack 频道、由一个 Bot 运营；一个 Chief-of-Staff Bot 回答 "所有项目最新进展？" 并在*他自己*成为瓶颈时戳他；专职 Bot 管理单许可证或复杂安装的软件（[配置](https://x.com/0xtigs/status/2122742784176034056)）。 |
 | **奖励制 Chief-of-Staff** | Avinash（Cognition，MENA） | 个人 bot 舰队的每日站会 + 奖励 | 借鉴 SuperJennyStack 的汇总模式：一个 Bot 每天评审其他所有 Bot 并"奖励"干得好的，让舰队自我改进——他建议新手把这个作为第一个部署。（[报道](https://news.sulat.com/2026/11/18/devin-bots/)） |
 | **Electra** | Basis | 内部工具 + 代码，自主导向 | 一个有名字的 Devin 队友（Bots 之前）：自己决定该做什么、写码并测试、给内部工具推更新、反过来推动团队 —— Basis 给每个税务 agent 跑一条 20 天的长线程（[帖子](https://x.com/trybasis/status/2113307030203089189)、[20 天线程](https://x.com/trybasis/status/2120658137766100992)）。 |
-| **个人数据 Bot** | Bryan Johnson | 健康数据综合 + 给家人汇报 | 一个 Bot 把多年的生物指标和脑扫描数据综合成单一读数；另一个每天给他母亲发一条他的近况短信。（[帖子](https://x.com/bryan_johnson/status/2122814114976383406)、[发布视频](https://vimeo.com/1247688199)） |
+| **个人数据 Bot** | Bryan Johnson | 健康数据综合 + 给家人汇报 | 一个 Bot 把多年的生物指标和脑扫描数据综合成单一读数；另一个每天给他母亲发一条他的近况短信。（[帖子](https://x.com/bryan_johnson/status/2122814114976383406)） |
 
 ### 有据可查的模式
 
