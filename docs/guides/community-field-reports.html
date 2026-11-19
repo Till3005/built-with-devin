@@ -51,11 +51,14 @@
 <p><strong>Real migrations with fresh docs.</strong> A Tailwind 3→4 + DaisyUI 4→5 upgrade on a gnarly Vue→React codebase worked when the team fed Devin current docs via the Context7 MCP — the prompt carried the <em>context</em>, not just the task (<a href="https://medium.com/design-bootcamp/day-7-of-30-getting-to-know-devon-ai-and-working-with-him-743c351cd0c4">Bootcamp write-up</a>).</p>
 <p><strong>Self-verification.</strong> A <a href="https://architecttocto.substack.com/p/the-only-coding-agent-worth-paying">year-long practitioner comparison</a> marks Devin's browser-driven e2e testing as the threshold moment: it navigates to what it built and checks it — a feedback loop that resembles engineering, not generation.</p>
 <p><strong>Beyond code.</strong> A Cognition researcher reports Devin rebuilt — and finished — a Lean formalization that had taken him much of a semester nine years earlier, in <strong>under 15 minutes</strong> (<a href="https://x.com/penlume/status/2115806616796921885">post</a>). Math formalization rewards the same trait as migrations: a machine-checkable definition of done.</p>
+<p><strong>Tedious-but-necessary cleanup.</strong> A month of hands-on use reports stale-repository cleanup and a "modernize this" legacy build environment (gulp/webpack-era → current tooling) done in about an hour — the mundane queue is where offloading pays most (<a href="https://zenn.dev/mei999/articles/7d6132f1ca36b6">report</a>, JP).</p>
 <p><strong>Wired into observability.</strong> <a href="https://medium.com/lets-code-future/how-i-turned-devin-into-a-performance-analysis-agent-with-dynatrace-mcp-753d3f4790a2">Dynatrace MCP + Devin</a> turns Devin into a performance-analysis agent: it queries live metrics and traces, then diagnoses — the MCP server carries production context the repo can't (Medium). See also <a href="https://medium.com/@winter.inc/devin-from-bug-report-to-pull-request-25-days-of-ai-day-18-b158daa20f23">Devin: from bug report to pull request</a> for the plain ticket→PR loop end-to-end.</p>
 <h2>Where it failed, documented</h2>
 <ul>
 <li><strong>Vague or over-broad prompts.</strong> Scott Logic's first prompt produced an unusable scaffold; narrowing the stack and the ask ("just the models") fixed it. Devin over-builds — tell it what <em>not</em> to build.</li>
 <li><strong>Convention-fitting tasks.</strong> "Add pagination to this endpoint" came back misaligned with codebase conventions in two independent reports (<a href="https://www.amillionmonkeys.co.uk/blog/ai-coding-tools-small-studios">amillionmonkeys</a>, <a href="https://web.archive.org/web/20260718112612/https://mohitkhare.me/blog/devin-vs-claude-code/">mohitkhare</a>) — Devin builds in isolation unless you carry the conventions to it (→ Guide 9).</li>
+<li><strong>Graceful-degradation edge cases.</strong> In a <a href="https://dev.to/dextralabs/devin-ai-vs-claude-code-vs-cursor-agent-which-one-actually-ships-production-code-benchmarks-3mi2">three-agent shootout</a> on the same rate-limiting task, Devin's implementation matched codebase conventions and its Redis sliding-window was correct — but the Redis-down path threw an unhandled rejection instead of falling through. Wouldn't have shipped without a human reading the error path.</li>
+<li><strong>When the whole category doesn't fit.</strong> <a href="https://zenn.dev/vesslabs/articles/da9593d77369ee">vesslabs</a> ran a disciplined one-week, 10-session Pro evaluation across 3 repos and deliberately <em>didn't</em> adopt — not because Devin failed, but because the cloud-agent strengths didn't match their shape: requesters were all engineers (Slack/Jira entry points became session-tracking overhead), session sharing was redundant at 6 people, the iOS simulator can't run on a Linux sandbox, and per-part cost breakdown was missing. The right rejection is as instructive as an adoption.</li>
 <li><strong>Uncheckable work.</strong> <a href="https://expectedwrong.com/devin-appraised">expectedwrong</a> and <a href="https://dev.to/alanwest/i-gave-devin-10-real-tasks-it-completed-3-3063">alanwest's 10-task test</a> document the failure mode: confident output that's broken or absent, credit burned in loops. Their tasks skewed to work with no clear verification — the same gate the official playbook makes mandatory (Guide 11).</li>
 </ul>
 <h2>Named team deployments (community, with numbers)</h2>
@@ -132,7 +135,7 @@
 </ul>
 <h2>The distilled lessons</h2>
 <ol>
-<li><strong>Scope the slice, not the project.</strong> The successes are all bounded units; the failures are "go build/fix this broadly." (Official doctrine: Guide 13.)</li>
+<li><strong>Scope the slice, not the project.</strong> The successes are all bounded units; the failures are "go build/fix this broadly." (Official doctrine: Guide 13.) A community-reported sweet spot: roughly ±150–250 lines changed, 3–5 files, ~30 minutes of agent work (<a href="https://qiita.com/FAL-coffee/items/be4d59093dd2bb06fb69">FAL-coffee</a>, JP).</li>
 <li><strong>Verify or don't delegate.</strong> Give Devin work where a machine can check "done" — tests, builds, a working <code>curl</code>, a rendered page.</li>
 <li><strong>Carry context, not assumptions.</strong> Conventions, current docs (via MCP), your stack's shape — the failures are context failures, not capability failures.</li>
 <li><strong>Delegate; don't watch.</strong> The ROI in every positive report is <em>asynchrony</em> — tasks run while you do something else. Watching it type is how you decide it's "slow."</li>
@@ -178,6 +181,10 @@
 <li><a href="https://zenn.dev/smartcamp/articles/97ac804043530e">SMARTCAMP — Trivy scan → Devin remediation pipeline</a> (JP)</li>
 <li><a href="https://zenn.dev/canly/articles/9c19bb123e208c">canly — Classifying ~700 support inquiries with Devin</a> (JP)</li>
 <li><a href="https://zenn.dev/smasato/articles/6aebb0da2f56eb">smasato — Maximizing Devin: tips for success</a> (JP/EN)</li>
+<li><a href="https://zenn.dev/vesslabs/articles/da9593d77369ee">vesslabs — Why we decided not to adopt Devin</a> (JP/EN)</li>
+<li><a href="https://dev.to/dextralabs/devin-ai-vs-claude-code-vs-cursor-agent-which-one-actually-ships-production-code-benchmarks-3mi2">Dextra — Devin vs Claude Code vs Cursor Agent shootout</a></li>
+<li><a href="https://qiita.com/FAL-coffee/items/be4d59093dd2bb06fb69">FAL-coffee — The first article for teams adopting Devin</a> (JP)</li>
+<li><a href="https://zenn.dev/mei999/articles/7d6132f1ca36b6">mei999 — Using Devin to the fullest: cleanup, modernization, automation</a> (JP/EN)</li>
 </ul>
 <nav class="guide-pager"><a class="pg-prev" href="enterprise-playbook.html"><span class="pg-dir">← Previous</span><span class="pg-t">Guide 7 — Enterprise rollout patterns</span></a></nav>
 </article>

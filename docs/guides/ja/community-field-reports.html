@@ -51,11 +51,14 @@
 <p><strong>最新ドキュメントを伴う実際の移行。</strong> 厄介な Vue→React コードベースでの Tailwind 3→4 + DaisyUI 4→5 アップグレードは、チームが Context7 MCP 経由で最新ドキュメントを供給したとき機能した——プロンプトはタスクだけでなく<em>コンテキスト</em>を運んだ（<a href="https://medium.com/design-bootcamp/day-7-of-30-getting-to-know-devon-ai-and-working-with-him-743c351cd0c4">Bootcamp 記事</a>）。</p>
 <p><strong>自己検証。</strong> <a href="https://architecttocto.substack.com/p/the-only-coding-agent-worth-paying">1 年間の実践者比較</a>は Devin のブラウザ駆動 e2e テストを閾値の瞬間と評する：作ったものに自分で遷移して確認する——生成ではなくエンジニアリングに似たフィードバックループ。</p>
 <p><strong>コードを超えて。</strong> Cognition の研究者は、9 年前に学期の大半を費やした Lean 形式化を Devin が再構築し——完成させたと報告。<strong>15 分以内</strong>で（<a href="https://x.com/penlume/status/2115806616796921885">投稿</a>）。数学の形式化は移行と同じ特性を報酬とする：機械チェック可能な完了定義。</p>
+<p><strong>退屈だが必要なクリーンアップ。</strong> 1 か月の実践レポート：放置リポジトリの整理と、「modernize this」の一言で gulp/webpack 時代のビルド環境を現代構成に刷新（約 1 時間）——地味なキューこそオフロードの価値が最大（<a href="https://zenn.dev/mei999/articles/7d6132f1ca36b6">レポート</a>）。</p>
 <p><strong>オブザーバビリティへの配線。</strong> <a href="https://medium.com/lets-code-future/how-i-turned-devin-into-a-performance-analysis-agent-with-dynatrace-mcp-753d3f4790a2">Dynatrace MCP + Devin</a>は Devin をパフォーマンス分析エージェントに変える：ライブ指標とトレースを問い合わせて診断——MCP サーバーがリポジトリにない本番コンテキストを運ぶ（Medium）。素直なチケット→PR ループの全行程は <a href="https://medium.com/@winter.inc/devin-from-bug-report-to-pull-request-25-days-of-ai-day-18-b158daa20f23">Devin: バグレポートから PR へ</a>も参照。</p>
 <h2>失敗した、記録された事例</h2>
 <ul>
 <li><strong>曖昧または広すぎるプロンプト。</strong> Scott Logic の最初のプロンプトは使えないスキャフォールドを産んだ；スタックと依頼を絞る（「モデルだけ」）ことで修正。Devin は作りすぎる——何を作る<em>な</em>かを伝える。</li>
 <li><strong>規約適合タスク。</strong> 「このエンドポイントにページネーションを追加」がコードベースの規約と不整合で返ってきた事例が独立した 2 レポートにある（<a href="https://www.amillionmonkeys.co.uk/blog/ai-coding-tools-small-studios">amillionmonkeys</a>、<a href="https://web.archive.org/web/20260718112612/https://mohitkhare.me/blog/devin-vs-claude-code/">mohitkhare</a>）——規約を運ばない限り Devin は孤立して作る（→ ガイド 9）。</li>
+<li><strong>グレースフルデグラデーションのエッジ。</strong> <a href="https://dev.to/dextralabs/devin-ai-vs-claude-code-vs-cursor-agent-which-one-actually-ships-production-code-benchmarks-3mi2">3 エージェント対決</a>の同じレート制限タスクで、Devin の実装はコードベースの規約に合致し Redis スライディングウィンドウも正しかった——しかし Redis 障害パスがフォールスルーではなく未処理 rejection を投げた。人間がエラーパスを読まなければ出荷できなかった。</li>
+<li><strong>カテゴリごと合わないケース。</strong> <a href="https://zenn.dev/vesslabs/articles/da9593d77369ee">vesslabs</a> は Pro で 1 週間・10 セッション・3 リポジトリの厳密な評価を行い、意図的に<em>不採用</em>を選んだ——Devin が失敗したのではなく、クラウドエージェントの強みが自社と合わなかった：依頼者が全員エンジニア（Slack/Jira の入口がセッション追跡の負担化）、6 人ではセッション共有が不要、iOS シミュレータが Linux サンドボックスで動かない、部位ごとのコスト内訳が取れない。正しい不採用は採用と同じくらい学びがある。</li>
 <li><strong>検査不能な仕事。</strong> <a href="https://expectedwrong.com/devin-appraised">expectedwrong</a>と <a href="https://dev.to/alanwest/i-gave-devin-10-real-tasks-it-completed-3-3063">alanwest の 10 タスク検査</a>が失敗モードを記録：壊れているか存在しない自信満々の出力、ループで燃えるクレジット。彼らのタスクは明確な検証のない仕事に偏っていた——公式プレイブックが必須とするのと同じゲート（ガイド 11）。</li>
 </ul>
 <h2>名付けられたチーム導入（コミュニティ、数値つき）</h2>
@@ -132,7 +135,7 @@
 </ul>
 <h2>抽出された教訓</h2>
 <ol>
-<li><strong>プロジェクトではなくスライスをスコープする。</strong> 成功はすべて境界のある単位；失敗は「広くこれを作って/直して」。（公式ドクトリン：ガイド 13。）</li>
+<li><strong>プロジェクトではなくスライスをスコープする。</strong> 成功はすべて境界のある単位；失敗は「広くこれを作って/直して」。（公式ドクトリン：ガイド 13。）コミュニティ報告のスイートスポット：変更約 ±150–250 行、3–5 ファイル、エージェント作業 ~30 分（<a href="https://qiita.com/FAL-coffee/items/be4d59093dd2bb06fb69">FAL-coffee</a>）。</li>
 <li><strong>検証するか委任しないか。</strong> 機械が「完了」をチェックできる仕事を Devin に——テスト、ビルド、動く <code>curl</code>、レンダリングされたページ。</li>
 <li><strong>仮定ではなくコンテキストを運ぶ。</strong> 規約、（MCP 経由の）最新ドキュメント、スタックの形——失敗は能力の失敗ではなくコンテキストの失敗。</li>
 <li><strong>委任する；見守らない。</strong> すべての好意的レポートの ROI は<em>非同期性</em>——あなたが別のことをしている間にタスクが走る。タイピングを見つめるのが「遅い」と判断する方法。</li>
@@ -178,6 +181,10 @@
 <li><a href="https://zenn.dev/smartcamp/articles/97ac804043530e">SMARTCAMP — Trivy スキャン → Devin 修復パイプライン</a>（日本語）</li>
 <li><a href="https://zenn.dev/canly/articles/9c19bb123e208c">canly — 約 700 件の問い合わせを Devin で分類</a>（日本語）</li>
 <li><a href="https://zenn.dev/smasato/articles/6aebb0da2f56eb">smasato — Devin を最大化する：成功のための Tips</a>（日本語）</li>
+<li><a href="https://zenn.dev/vesslabs/articles/da9593d77369ee">vesslabs — Devin の採用を見送った理由</a></li>
+<li><a href="https://dev.to/dextralabs/devin-ai-vs-claude-code-vs-cursor-agent-which-one-actually-ships-production-code-benchmarks-3mi2">Dextra — Devin vs Claude Code vs Cursor Agent 対決</a></li>
+<li><a href="https://qiita.com/FAL-coffee/items/be4d59093dd2bb06fb69">FAL-coffee — Devin を導入したチームが最初に読む記事</a></li>
+<li><a href="https://zenn.dev/mei999/articles/7d6132f1ca36b6">mei999 — Devin を使い倒した：整理・モダナイズ・自動化</a></li>
 </ul>
 <nav class="guide-pager"><a class="pg-prev" href="enterprise-playbook.html"><span class="pg-dir">← Previous</span><span class="pg-t">ガイド 7 — エンタープライズ導入パターン</span></a></nav>
 </article>
