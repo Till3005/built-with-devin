@@ -13,7 +13,7 @@
 
 <sub>Curado por [@darega0mae](https://x.com/darega0mae) · Tutoriais irmãos: [build-with-devin](https://github.com/Till3005/build-with-devin) · [Adicione seu projeto](CONTRIBUTING.md)</sub>
 
-<sub>**13** implantações de Bot documentadas · **35** casos corporativos · **6** produtos lançados · **29** ferramentas e integrações · **22** relatos de campo</sub>
+<sub>**13** implantações de Bot documentadas · **35** casos corporativos · **6** produtos lançados · **29** ferramentas e integrações · **24** relatos de campo</sub>
 
 <sub>[English](README.md) · [简体中文](README.zh.md) · [日本語](README.ja.md) · Português</sub>
 
@@ -168,7 +168,7 @@ Casos de clientes publicados com números concretos ([índice completo](https://
 | [Litera](https://devin.ai/customers/litera) | Testes de regressão | Ciclos de regressão reduzidos em 90% |
 | [Ramp](https://devin.ai/customers/ramp) | Limpeza de dívida técnica | **80 PRs mergeados/semana, 10.000+ horas de engenharia economizadas**; um time pequeno e versado em Devin opera |
 | [Linktree](https://devin.ai/customers/linktree) | Pipeline de features + bugs de clientes | ~300 PRs escritos / ~100 mergeados no último mês; o reflexo do time virou "dá pra só mandar pro Devin?" |
-| [Bilt](https://devin.ai/customers/bilt) | Rollout em toda a organização | 800+ PRs mergeados desde fevereiro, média ~117/semana |
+| [Bilt](https://devin.ai/customers/bilt) | Rollout em toda a organização | 800+ PRs mergeados desde fevereiro, média ~117/semana; **seus Devin Bots mergearam ~1.600 PRs numa única semana** pós-lançamento — VP de Engenharia Will Laughlin ([depoimentos Bots](https://devin.ai/bots)) |
 | [Rohlik Group](https://devin.ai/customers/rohlikgroup) | Operações de supermercado dirigidas por agentes | Throughput de engenharia 2×; rollout de automação 4× mais rápido incl. robótica de armazém; 50+ integrações MCP |
 | [Crosby](https://devin.ai/customers/crosby) | Escritório de advocacia AI-nativo | 20–40 relatórios de bugs/alertas recebem primeira análise por dia, ~5 min cada; 12 engenheiros atendem 50+ advogados |
 | [Endava](https://devin.ai/customers/endava) | Provisionamento corporativo | 2.000+ funcionários na plataforma; 3× em quatro meses; taxa de merge de PRs de 78% |
@@ -269,6 +269,8 @@ Uso real documentado.
 - **[Os limites de contexto do Devin CLI na prática](https://qiita.com/ishizakahiroshi/items/cee2a8ea2be18f2ccee3)** — Notas de trabalho para caber AGENTS.md e regras de aprovação nos limites de 16KB/32KB (JP).
 - **[Primeira sessão Devin da NOT A HOTEL](https://zenn.dev/notahotel/articles/d401a1046d6076)** — Relato de um workshop em mob do setup ao primeiro PR mergeado em menos de uma hora — incluindo as categorias de onboarding que o Devin pede (JP).
 - **[Hello World… Meet Devin](https://jamesin.substack.com/p/hello-world-meet-devin)** — Relato da era de lançamento de Jamesin Seidel: vendo código ser commitado no seu próprio repo pelo Devin pela primeira vez, construindo um assistente de triagem de email (Substack).
+- **[Devin Bots quer ser seu gerente de agentes, não seu funcionário de IA](https://daily.dev/posts/devin-bots-want-to-be-your-agent-manager-not-your-ai-employee-hhpjo94uh)** — análise do lançamento pelo daily.dev com quebra de sentimento das respostas (55% positivo / 30% misto / 15% cético): as críticas substantivas se concentram em três pontos — quem revisa um Bot que revisa a si mesmo, segurança de credenciais, e se gerenciar uma frota é mesmo menos trabalho que gerenciar pessoas.
+- **[O que o post de lançamento não disse](https://aiholics.com/devin-bots-cognition-persistent-agents-goals/)** — a leitura crítica mais afiada: sem detalhes públicos de preço/plano, números não verificados, e duas perguntas que ninguém respondeu — como um Bot evita desviar do objetivo ao longo de semanas, e o que acontece quando dois Bots coordenando discordam.
 - **[Migrando uma org de Grok Bots para Devin Bots](https://www.rickblalock.dev/scratch-notes/learnings-from-moving-my-grok-bots-to-devin-bots/)** — o primeiro relato independente da beta: portar uma org existente de Grok-bots custou ~$300 de uso único e uma noite; a orquestração de engenharia foi "encantadora", mas o trabalho de negócios voltou pro Grok, resultando num setup híbrido Grok Bot ↔ Devin Bot. Log de fricção honesto: os bots traziam decisões *demais*, nem sempre as certas — "me trate como um VP, não como um estagiário."
 - **[Orquestração multi-IA no SWE-2 grátis](https://qiita.com/ishizakahiroshi/items/72ab801a5f2a8c941b61)** — Um design para rotear trabalho entre agentes usando o tier permanentemente gratuito SWE-2 do Devin CLI (JP).
 

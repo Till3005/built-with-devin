@@ -13,7 +13,7 @@
 
 <sub>Curated by [@darega0mae](https://x.com/darega0mae) · 姉妹チュートリアル：[build-with-devin](https://github.com/Till3005/build-with-devin) · [プロジェクトを追加](CONTRIBUTING.md)</sub>
 
-<sub>**13** 件の実証済み Bot 導入 · **35** 件のエンタープライズ事例 · **6** 件の公開プロダクト · **29** 件のツール・統合 · **22** 件の実践レポート</sub>
+<sub>**13** 件の実証済み Bot 導入 · **35** 件のエンタープライズ事例 · **6** 件の公開プロダクト · **29** 件のツール・統合 · **24** 件の実践レポート</sub>
 
 <sub>[English](README.md) · [简体中文](README.zh.md) · 日本語 · [Português](README.pt.md)</sub>
 
@@ -168,7 +168,7 @@ flowchart LR
 | [Litera](https://devin.ai/customers/litera) | リグレッションテスト | リグレッションサイクル 90% 削減 |
 | [Ramp](https://devin.ai/customers/ramp) | 技術的負債の解消 | **週 80 PR マージ、10,000 時間超のエンジニア工数削減**。Devin に精通した小チームが運用 |
 | [Linktree](https://devin.ai/customers/linktree) | 機能 + 顧客バグパイプライン | 先月 ~300 PR 執筆 / ~100 マージ。チームの反射は「Devin でやれるか？」に |
-| [Bilt](https://devin.ai/customers/bilt) | 組織全体への展開 | 2 月以降 800 以上のマージ PR、週平均 ~117 |
+| [Bilt](https://devin.ai/customers/bilt) | 組織全体への展開 | 2 月以降 800 以上のマージ PR、週平均 ~117；リリース後**Devin Bots が 1 週間で ~1,600 PR をマージ**——VP Engineering Will Laughlin（[Bots の声](https://devin.ai/bots)）|
 | [Rohlik Group](https://devin.ai/customers/rohlikgroup) | エージェント駆動の食料品オペレーション | エンジニアリングスループット 2 倍。倉庫ロボットを含む自動化展開 4 倍速。50 以上の MCP 統合 |
 | [Crosby](https://devin.ai/customers/crosby) | AI ネイティブ法律事務所 | 毎日 20–40 件のバグレポート/アラートに初回対応、各 ~5 分。12 人のエンジニアが 50 人以上の弁護士に対応 |
 | [Endava](https://devin.ai/customers/endava) | 企業全体への提供 | 2,000 人以上の従業員がプラットフォーム利用。4 ヶ月で 3 倍。PR マージ率 78% |
@@ -269,6 +269,8 @@ Devin *で*作られたものではなく、Devin の*ために*コミュニテ�
 - **[Devin CLI のコンテキスト上限の実践](https://qiita.com/ishizakahiroshi/items/cee2a8ea2be18f2ccee3)** —— AGENTS.md と承認ルールを 16KB/32KB 上限に収める作業ノート。
 - **[NOT A HOTEL の初めての Devin 導入](https://zenn.dev/notahotel/articles/d401a1046d6076)** —— セットアップから初マージ PR まで 1 時間未満のモブワーク記録——Devin が求めるリポジトリ接続設定の分類項目も紹介。
 - **[Hello World… Meet Devin](https://jamesin.substack.com/p/hello-world-meet-devin)** —— Jamesin Seidel のローンチ期記録：初めて Devin が自分のリポジトリにコードをコミットするのを見た、メール振り分けアシスタント開発（Substack）。
+- **[Devin Bots が目指すのは AI 社員ではなくエージェントのマネージャー](https://daily.dev/posts/devin-bots-want-to-be-your-agent-manager-not-your-ai-employee-hhpjo94uh)** —— daily.dev のローンチ分析とリプライ感情内訳（好意的 55% / 中立 30% / 懐疑的 15%）：実質的な批判は 3 点に集中——自己レビューする Bot を誰がレビューするのか、クレデンシャルセキュリティ、フリート管理は本当に人間管理より楽なのか。
+- **[発表記事が言わなかったこと](https://aiholics.com/devin-bots-cognition-persistent-agents-goals/)** —— 最も鋭い批判的考察：公開された価格/プラン詳細なし、未検証の数字、そして誰も答えていない 2 つの疑問——Bot が数週間で目標からドリフトしない仕組み、調整中の 2 つの Bot が対立したらどうなるか。
 - **[Grok Bots 組織を Devin Bots に移植](https://www.rickblalock.dev/scratch-notes/learnings-from-moving-my-grok-bots-to-devin-bots/)** —— 初の独立系ベータ実測レポート：既存の Grok-bot 組織の移植に約 $300 の一時利用料と一晩。エンジニアリングのオーケストレーションは「痛快」だがビジネス業務は Grok に戻し、Grok Bot ↔ Devin Bot のハイブリッド構成に。正直な摩擦ログ：Bot が持ってくる判断が多すぎ、必ずしも適切ではない——「インターンではなく VP のように扱ってくれ」。
 - **[無料 SWE-2 上のマルチ AI オーケストレーション](https://qiita.com/ishizakahiroshi/items/72ab801a5f2a8c941b61)** —— Devin CLI の永久無料 SWE-2 枠でエージェント間のワークルーティングを設計。
 

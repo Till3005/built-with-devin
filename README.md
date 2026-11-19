@@ -13,7 +13,7 @@
 
 <sub>Curated by [@darega0mae](https://x.com/darega0mae) · Sister tutorials: [build-with-devin](https://github.com/Till3005/build-with-devin) · [Add your project](CONTRIBUTING.md)</sub>
 
-<sub>**13** documented Bot deployments · **35** enterprise case studies · **6** shipped products · **29** tools & integrations · **22** field reports</sub>
+<sub>**13** documented Bot deployments · **35** enterprise case studies · **6** shipped products · **29** tools & integrations · **24** field reports</sub>
 
 <sub>English · [简体中文](README.zh.md) · [日本語](README.ja.md) · [Português](README.pt.md)</sub>
 
@@ -168,7 +168,7 @@ Published customer cases with hard numbers ([full index](https://devin.ai/custom
 | [Litera](https://devin.ai/customers/litera) | Regression testing | Regression cycles cut 90% |
 | [Ramp](https://devin.ai/customers/ramp) | Technical-debt clearance | **80 merged PRs/week, 10,000+ engineer-hours saved**; a small Devin-savvy team runs it |
 | [Linktree](https://devin.ai/customers/linktree) | Feature + customer-bug pipeline | ~300 PRs authored / ~100 merged last month; the team's reflex is now "can I just Devin it?" |
-| [Bilt](https://devin.ai/customers/bilt) | Org-wide rollout | 800+ merged PRs since Feb, ~117/week average |
+| [Bilt](https://devin.ai/customers/bilt) | Org-wide rollout | 800+ merged PRs since Feb, ~117/week average; **their Devin Bots merged ~1,600 PRs in a single week** post-launch — VP Engineering Will Laughlin ([Bots testimonials](https://devin.ai/bots)) |
 | [Rohlik Group](https://devin.ai/customers/rohlikgroup) | Agent-driven grocery ops | 2× engineering throughput; 4× faster automation rollout incl. warehouse robotics; 50+ MCP integrations |
 | [Crosby](https://devin.ai/customers/crosby) | AI-native law firm | 20–40 bug reports/alerts get a first pass daily, ~5 min each; 12 engineers serve 50+ attorneys |
 | [Endava](https://devin.ai/customers/endava) | Enterprise-wide provision | 2,000+ employees on platform; 3× in four months; 78% PR merge rate |
@@ -269,6 +269,8 @@ Documented real-world usage.
 - **[Devin CLI's context limits in practice](https://qiita.com/ishizakahiroshi/items/cee2a8ea2be18f2ccee3)** — Working notes on fitting AGENTS.md and approval rules inside the 16KB/32KB caps (JP).
 - **[NOT A HOTEL's first Devin session](https://zenn.dev/notahotel/articles/d401a1046d6076)** — A mob-workshop report from setup to first merged PR in under an hour — including what repo onboarding categories Devin asks for (JP).
 - **[Hello World… Meet Devin](https://jamesin.substack.com/p/hello-world-meet-devin)** — Jamesin Seidel's launch-era account: watching code get committed into his own repo by Devin for the first time, building an email-triage assistant (Substack).
+- **[Devin Bots want to be your agent manager](https://daily.dev/posts/devin-bots-want-to-be-your-agent-manager-not-your-ai-employee-hhpjo94uh)** — daily.dev's launch analysis and reply-sentiment breakdown (55% positive / 30% mixed / 15% skeptical): the substantive criticism cluster is self-review (who checks a Bot that checks itself), credential security, and whether managing a fleet is actually less work than managing people.
+- **[What the launch post leaves unsaid](https://aiholics.com/devin-bots-cognition-persistent-agents-goals/)** — the sharpest critical read: no public pricing/plan detail, unverified figures, and two open questions nobody has answered — how a Bot avoids drifting from its goal over weeks, and what happens when two coordinating Bots disagree.
 - **[Moving a Grok Bots org onto Devin Bots](https://www.rickblalock.dev/scratch-notes/learnings-from-moving-my-grok-bots-to-devin-bots/)** — the first independent beta field report: porting an existing Grok-bot org cost ~$300 of one-time usage and an evening; engineering orchestration "delightful" but business work moved back to Grok, leaving a hybrid Grok Bot ↔ Devin Bot setup. Honest friction log: bots brought him *too many* decisions, not always the right ones — "treat me like a VP, not an intern."
 - **[Multi-AI orchestration on free SWE-2](https://qiita.com/ishizakahiroshi/items/72ab801a5f2a8c941b61)** — A design for routing work between agents using Devin CLI's permanently-free SWE-2 tier (JP).
 

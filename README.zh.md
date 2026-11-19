@@ -13,7 +13,7 @@
 
 <sub>维护者 [@darega0mae](https://x.com/darega0mae) · 姊妹教程库：[build-with-devin](https://github.com/Till3005/build-with-devin) · [收录你的项目](CONTRIBUTING.md)</sub>
 
-<sub>**13** 个有据可查的 Bot 部署 · **35** 个企业案例 · **6** 个已发布产品 · **29** 个工具与集成 · **22** 篇实战报告</sub>
+<sub>**13** 个有据可查的 Bot 部署 · **35** 个企业案例 · **6** 个已发布产品 · **29** 个工具与集成 · **24** 篇实战报告</sub>
 
 <sub>[English](README.md) · 简体中文 · [日本語](README.ja.md) · [Português](README.pt.md)</sub>
 
@@ -168,7 +168,7 @@ flowchart LR
 | [Litera](https://devin.ai/customers/litera) | 回归测试 | 回归周期缩短 90% |
 | [Ramp](https://devin.ai/customers/ramp) | 技术债清理 | **每周 80 个合并 PR，省 10,000+ 工程师小时**；由一个小而熟 Devin 的团队运营 |
 | [Linktree](https://devin.ai/customers/linktree) | 功能 + 客户 bug 流水线 | 上月 ~300 个 PR 撰写 / ~100 合并；团队的条件反射变成了 "can I just Devin it?" |
-| [Bilt](https://devin.ai/customers/bilt) | 全组织铺开 | 2 月以来 800+ 合并 PR，周均 ~117 |
+| [Bilt](https://devin.ai/customers/bilt) | 全组织铺开 | 2 月以来 800+ 合并 PR，周均 ~117；发布后**其 Devin Bots 单周合并 ~1,600 PR**——工程 VP Will Laughlin（[Bots 评价](https://devin.ai/bots)）|
 | [Rohlik Group](https://devin.ai/customers/rohlikgroup) | agent 驱动的杂货零售 | 工程吞吐 2×；含仓储机器人在内的自动化上线快 4×；50+ MCP 集成 |
 | [Crosby](https://devin.ai/customers/crosby) | AI 原生律所 | 每天 20–40 个 bug 报告/告警拿到 first pass，平均 ~5 分钟；12 名工程师服务 50+ 律师 |
 | [Endava](https://devin.ai/customers/endava) | 企业级全员配置 | 2,000+ 员工上平台；四个月 3×；PR 合并率 78% |
@@ -269,6 +269,8 @@ flowchart LR
 - **[Devin CLI 上下文上限实战](https://qiita.com/ishizakahiroshi/items/cee2a8ea2be18f2ccee3)** —— 把 AGENTS.md 和审批规则塞进 16KB/32KB 上限的工作笔记（日文）。
 - **[NOT A HOTEL 的首次 Devin 试用](https://zenn.dev/notahotel/articles/d401a1046d6076)** —— 从配置到首个合并 PR 不到一小时的 mob 实战记录——含 Devin 对仓库接入分类项的要求（日文）。
 - **[Hello World… Meet Devin](https://jamesin.substack.com/p/hello-world-meet-devin)** —— Jamesin Seidel 上线初期实录：第一次看 Devin 把代码提交进自己仓库，做了个邮件分拣助手（Substack）。
+- **[Devin Bots 想做的是你的 agent 经理，不是你的 AI 员工](https://daily.dev/posts/devin-bots-want-to-be-your-agent-manager-not-your-ai-employee-hhpjo94uh)** —— daily.dev 的发布分析与评论区情绪统计（55% 正面 / 30% 混杂 / 15% 怀疑）：实质质疑集中在三点——谁来审一个负责审查的 Bot、凭证安全、管理一支舰队是否真比管理人省事。
+- **[发布文没说的那些](https://aiholics.com/devin-bots-cognition-persistent-agents-goals/)** —— 最犀利的一篇批判性阅读：没有公开定价/档位细节、数字未经核实，以及两个没人回答的问题——Bot 几周后怎么不偏离目标、两个协调中的 Bot 意见不一致时怎么办。
 - **[把 Grok Bots 组织移植到 Devin Bots](https://www.rickblalock.dev/scratch-notes/learnings-from-moving-my-grok-bots-to-devin-bots/)** —— 第一份独立的 beta 实测报告：把一个现成的 Grok-bot 组织移植过去花了约 $300 一次性用量和一个晚上；工程编排"令人愉悦"，但业务侧工作又被搬回了 Grok，最终落成 Grok Bot ↔ Devin Bot 混合架构。诚实的摩擦日志：bot 带给他的决策太多且不总是对的——"把我当 VP，别当实习生。"
 - **[免费 SWE-2 上的多 AI 编排](https://qiita.com/ishizakahiroshi/items/72ab801a5f2a8c941b61)** —— 利用 Devin CLI 永久免费的 SWE-2 档在多个 agent 间路由工作的设计（日文）。
 
