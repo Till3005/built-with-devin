@@ -80,7 +80,7 @@
 <p>Desde a v3.13.4 (Desktop) / v3000.13.4 (CLI), uma sessão local roda num <strong>processo em background</strong>, não dentro da janela que a iniciou:</p>
 <ul>
 <li>Fechar ou reabrir o Devin Desktop — ou o CLI — <strong>não</strong> para a sessão.</li>
-<li>A mesma sessão abre em <strong>vários clientes ao mesmo tempo</strong>: janela do desktop e terminal anexados, cada um mostrando saída e perguntas.</li>
+<li>A mesma sessão é <strong>visível a todos os clientes</strong> (<code>devin ls</code>, a lista do Desktop), mas a anexação é exclusiva: o segundo cliente vê um banner de trava e o force-open para o primeiro e transfere a sessão.</li>
 <li><code>devin daemon</code> inicia/para/verifica o processo; ele sai ~10 min depois que a última sessão e o último cliente saem.</li>
 <li><code>--process-model</code> escolhe <code>daemon</code> vs <code>in-process</code>; <code>process_model</code> no <code>config.json</code> ou <code>/config</code> define o padrão.</li>
 <li><code>devin ls</code>, <code>devin -r</code> e <code>/resume</code> abrem um <strong>monitor de sessões</strong> — sessões por última atualização, com status, diretório e contagem de mensagens.</li>
@@ -95,10 +95,34 @@
 <h2>Dois fluxos que valem copiar</h2>
 <p><strong>1. Local → cloud → local.</strong> Trabalhe no Devin Local, bata no limite (precisa de ferramentas da org, mais paralelismo, mais tempo que o laptop fica aberto), <code>/handoff</code> pro cloud, revise o PR de volta em casa. O daemon torna as duas metades retomáveis.</p>
 <p><strong>2. Uma janela, todas as superfícies.</strong> Command Center para a visão da frota, Local para o repo em que você está, um Bot para o resultado que você não quer cuidar — Desktop é o único lugar onde os três dividem uma janela.</p>
+<h2>Passo a passo real — gravado no Devin Desktop v3.14.30825</h2>
+<p>Uma execução de verdade, não uma montagem: macOS, plano Pro. Uma sessão Devin Local edita um <code>demo-repo</code> descartável em SWE-2 High, sobrevive ao fechamento do app e é passada entre o CLI e o Desktop.</p>
+<p><strong>Vídeo (91 s, sem áudio):</strong> Command Center → abas → Bots → Devin Local → prova do daemon → IDE view.</p>
+<p><a href="https://till3005.github.io/built-with-devin/assets/guides/devin-desktop/walkthrough.mp4"><img alt="Sessão Devin Local terminando em SWE-2 High — 2 arquivos alterados no demo-repo" src="https://till3005.github.io/built-with-devin/assets/guides/devin-desktop/walkthrough-poster.webp" /></a></p>
+<p><img alt="1. Command Center Home — sessões recentes, Your Bots, alternador Cloud/Local no composer" src="https://till3005.github.io/built-with-devin/assets/guides/devin-desktop/step1-command-center.webp" />
+<em>1. Command Center Home — sessões recentes, Your Bots e o alternador Cloud/Local no composer</em></p>
+<p><img alt="2. O seletor de modelo do composer — níveis de capacidade e previews de modelos" src="https://till3005.github.io/built-with-devin/assets/guides/devin-desktop/step2-model-picker.webp" />
+<em>2. O seletor de modelo do composer: níveis de capacidade (Fusion → Free) e previews incl. SWE-2 Lightning/Flash</em></p>
+<p><img alt="3. Uma sessão em nuvem abre como aba; a barra direita tem Computer, Files, Changes, Terminal" src="https://till3005.github.io/built-with-devin/assets/guides/devin-desktop/step3-session-tab.webp" />
+<em>3. Uma sessão em nuvem abre como aba — a barra direita tem Computer, Files, Changes, Terminal</em></p>
+<p><img alt="4. O menu &quot;...&quot; do cabeçalho da sessão — uso, arquivar, config de rede, criar automation/skill da sessão" src="https://till3005.github.io/built-with-devin/assets/guides/devin-desktop/step4-session-menu.webp" />
+<em>4. O menu "..." do cabeçalho da sessão; servidores MCP aparecem aqui quando a sessão os tem (esta não tem)</em></p>
+<p><img alt="5. Bots no Desktop — a página Bots abre, mas enviar mensagens exige Max ou Teams" src="https://till3005.github.io/built-with-devin/assets/guides/devin-desktop/step5-bots-gate.webp" />
+<em>5. Bots no Desktop: a página abre, mas este plano não envia mensagens a um Bot — "Bots require Max or Teams" (lacuna honesta)</em></p>
+<p><img alt="6. Devin Local pede aprovação antes de rodar comandos — Allow ou Reject, um a um" src="https://till3005.github.io/built-with-devin/assets/guides/devin-desktop/step6-local-approval.webp" />
+<em>6. Devin Local pede aprovação antes de rodar comandos — Allow ou Reject, um a um</em></p>
+<p><img alt="7. A sessão Local terminou em SWE-2 High — 2 arquivos alterados, com diff de revisão rápida" src="https://till3005.github.io/built-with-devin/assets/guides/devin-desktop/step7-local-done.webp" />
+<em>7. A sessão Local terminou em SWE-2 High — 2 arquivos alterados, com diff de revisão rápida</em></p>
+<p><img alt="8. Prova do daemon: ao sair do Desktop, devin ls ainda lista a sessão; retomar anexa com o transcript completo" src="https://till3005.github.io/built-with-devin/assets/guides/devin-desktop/step8-cli-attached.webp" />
+<em>8. Prova do daemon: ao sair do Desktop, <code>devin ls</code> ainda lista a sessão — retomar anexa com o transcript completo</em></p>
+<p><img alt="9. O segundo cliente vê banner de trava; Force open transfere a sessão, o primeiro desconecta" src="https://till3005.github.io/built-with-devin/assets/guides/devin-desktop/step9-force-open.webp" />
+<em>9. Dois clientes não co-pilotam: o segundo vê banner de trava, Force open transfere a sessão, o primeiro desconecta</em></p>
+<p><img alt="10. IDE view: Source Control lista as edições da sessão; abas não salvas mostram um ponto até Cmd+S" src="https://till3005.github.io/built-with-devin/assets/guides/devin-desktop/step10-ide-view.webp" />
+<em>10. IDE view: um editor real em volta da mesma sessão — Source Control lista suas edições; abas não salvas mostram um ponto até Cmd+S</em></p>
 <h2>Verifique</h2>
 <ul>
 <li>[ ] Uma sessão Devin Local sobrevive a fechar e reabrir o Desktop</li>
-<li>[ ] A mesma sessão local anexada do Desktop e do <code>devin</code> CLI ao mesmo tempo</li>
+<li>[ ] <code>devin ls</code> viu uma sessão criada no Desktop e <code>devin -r</code> a retomou com o transcript completo</li>
 <li>[ ] <code>devin ls</code> abriu o monitor de sessões e entrou numa sessão em execução</li>
 <li>[ ] Um Bot criado no chat do Desktop respondeu nesse chat</li>
 </ul>
@@ -110,7 +134,7 @@
 </ul>
 <h2>Teste rápido</h2>
 <ol>
-<li>O que mudou nas sessões locais na v3.13.4? <em>(Passaram a rodar num processo em background — fechar o app não as interrompe mais, e vários clientes podem anexar à mesma sessão.)</em></li>
+<li>O que mudou nas sessões locais na v3.13.4? <em>(Passaram a rodar num processo em background — fechar o app não as interrompe mais, e qualquer cliente pode ver e assumir a sessão.)</em></li>
 <li>Quando escolher Devin Local em vez de sessão cloud? <em>(Quando você quer edições práticas no repo checked-out com contexto local; delegue ao cloud para escala ou integrações da org.)</em></li>
 <li>O que há no menu "..." do cabeçalho da sessão? <em>(Os MCP servers da sessão — liga/desliga ou reautentica por sessão.)</em></li>
 </ol>

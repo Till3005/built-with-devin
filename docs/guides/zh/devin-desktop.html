@@ -80,7 +80,7 @@
 <p>自 v3.13.4（Desktop）/ v3000.13.4（CLI）起，本地会话跑在<strong>后台进程</strong>里，而不是开在启动它的窗口里：</p>
 <ul>
 <li>关掉或重开 Devin Desktop——或 CLI——<strong>不会</strong>停掉会话。</li>
-<li>同一会话可以<strong>同时挂在多个客户端</strong>：Desktop 窗口和终端一起连着，各自都能看到输出和提问。</li>
+<li>同一会话<strong>对所有客户端可见</strong>（<code>devin ls</code>、Desktop 列表），但挂接是独占的：第二个客户端会看到锁定横幅，Force open 会踢掉第一个客户端、把会话抢过来。</li>
 <li><code>devin daemon</code> 启动/停止/查看这个进程；最后一个会话和客户端都离开后约 10 分钟它自己退出。</li>
 <li><code>--process-model</code> 在 <code>daemon</code> 和 <code>in-process</code> 之间选；<code>config.json</code> 里的 <code>process_model</code> 或 <code>/config</code> 设默认值。</li>
 <li><code>devin ls</code>、<code>devin -r</code>、<code>/resume</code> 打开<strong>会话监视器</strong>——按最近更新排序的会话列表，带状态、目录和消息数。</li>
@@ -95,10 +95,34 @@
 <h2>两个值得抄的工作流</h2>
 <p><strong>1. 本地 → 云端 → 本地。</strong> 在 Devin Local 干活，碰到瓶颈（需要组织工具、更大并行、比笔记本开着的时间还长），<code>/handoff</code> 到云端，review 完把 PR 拉回来。daemon 让两段都能断点续接。</p>
 <p><strong>2. 一个窗口，所有面。</strong> Command Center 看舰队全局，Local 处理手头这个 repo，Bot 负责你不想盯的产出——Desktop 是唯一让三者共享一个窗口的地方。</p>
+<h2>实录演示 —— 录于 Devin Desktop v3.14.30825</h2>
+<p>真跑了一遍，不是拼出来的图：macOS、Pro 方案。一次 Devin Local 会话在一个丢弃用的 <code>demo-repo</code> 里用 SWE-2 High 改代码，Desktop 退出后它还在跑，还在 CLI 和 Desktop 之间换手。</p>
+<p><strong>视频（91 秒，无声）：</strong> Command Center → 标签页 → Bots → Devin Local → daemon 实证 → IDE 视图。</p>
+<p><a href="https://till3005.github.io/built-with-devin/assets/guides/devin-desktop/walkthrough.mp4"><img alt="Devin Local 会话在 SWE-2 High 上收尾——demo-repo 里改了 2 个文件" src="https://till3005.github.io/built-with-devin/assets/guides/devin-desktop/walkthrough-poster.webp" /></a></p>
+<p><img alt="1. Command Center 首页——最近会话、Your Bots、输入框上的 Cloud/Local 开关" src="https://till3005.github.io/built-with-devin/assets/guides/devin-desktop/step1-command-center.webp" />
+<em>1. Command Center 首页——最近会话、Your Bots，以及输入框上的 Cloud/Local 开关</em></p>
+<p><img alt="2. 输入框的模型选择器——能力档位加模型预览" src="https://till3005.github.io/built-with-devin/assets/guides/devin-desktop/step2-model-picker.webp" />
+<em>2. 输入框的模型选择器：能力档位（Fusion → Free）和预览模型（含 SWE-2 Lightning/Flash）</em></p>
+<p><img alt="3. 云端会话以标签页打开；右栏是 Computer、Files、Changes、Terminal" src="https://till3005.github.io/built-with-devin/assets/guides/devin-desktop/step3-session-tab.webp" />
+<em>3. 云端会话以标签页打开——右栏是 Computer、Files、Changes、Terminal</em></p>
+<p><img alt="4. 会话顶栏 &quot;...&quot; 菜单——用量、归档、网络配置、从会话建 automation/skill" src="https://till3005.github.io/built-with-devin/assets/guides/devin-desktop/step4-session-menu.webp" />
+<em>4. 会话顶栏 "..." 菜单；会话配有 MCP 服务器时它会出现在这里（这个没有）</em></p>
+<p><img alt="5. Desktop 里的 Bots——Bots 页面能打开，但发消息要 Max 或 Teams" src="https://till3005.github.io/built-with-devin/assets/guides/devin-desktop/step5-bots-gate.webp" />
+<em>5. Desktop 里的 Bots：页面能开，但这个方案给 Bot 发消息要 Max 或 Teams（如实记录）</em></p>
+<p><img alt="6. Devin Local 执行命令前要批准——逐条 Allow 或 Reject" src="https://till3005.github.io/built-with-devin/assets/guides/devin-desktop/step6-local-approval.webp" />
+<em>6. Devin Local 执行命令前要批准——逐条 Allow 或 Reject</em></p>
+<p><img alt="7. Local 会话在 SWE-2 High 上跑完——改了 2 个文件，带快速 diff 预览" src="https://till3005.github.io/built-with-devin/assets/guides/devin-desktop/step7-local-done.webp" />
+<em>7. Local 会话在 SWE-2 High 上跑完——改了 2 个文件，带快速 diff 预览</em></p>
+<p><img alt="8. daemon 实证：退出 Desktop，devin ls 仍列着会话；resume 接上，完整记录都在" src="https://till3005.github.io/built-with-devin/assets/guides/devin-desktop/step8-cli-attached.webp" />
+<em>8. daemon 实证：退出 Desktop，<code>devin ls</code> 仍列着这个会话——resume 接上，完整记录都在</em></p>
+<p><img alt="9. 第二个客户端看到锁定横幅；Force open 抢过会话，第一个客户端断开" src="https://till3005.github.io/built-with-devin/assets/guides/devin-desktop/step9-force-open.webp" />
+<em>9. 双客户端不能共驾：第二个看到锁定横幅，Force open 抢过会话，第一个断开</em></p>
+<p><img alt="10. IDE 视图：Source Control 列出会话的改动；未保存标签页有圆点，Cmd+S 保存" src="https://till3005.github.io/built-with-devin/assets/guides/devin-desktop/step10-ide-view.webp" />
+<em>10. IDE 视图：同一会话外裹着一个真编辑器——Source Control 列出它的改动；未保存标签页显示圆点，Cmd+S 保存</em></p>
 <h2>验证它</h2>
 <ul>
 <li>[ ] 一个 Devin Local 会话在关掉再打开 Desktop 后仍在跑</li>
-<li>[ ] 同一个本地会话同时从 Desktop 和 <code>devin</code> CLI 连上</li>
+<li>[ ] <code>devin ls</code> 看到了 Desktop 开的会话，<code>devin -r</code> 带完整记录把它接了回来</li>
 <li>[ ] <code>devin ls</code> 打开了会话监视器并接进一个正在跑的会话</li>
 <li>[ ] 从 Desktop 聊天里建的 Bot 在同一个聊天里回话</li>
 </ul>
@@ -110,7 +134,7 @@
 </ul>
 <h2>自测</h2>
 <ol>
-<li>v3.13.4 里本地会话变了什么？（改跑在后台进程里——关应用不再停会话，多个客户端可同时挂同一会话。）</li>
+<li>v3.13.4 里本地会话变了什么？（改跑在后台进程里——关应用不再停会话，任何客户端都能看到并接管同一会话。）</li>
 <li>什么时候选 Devin Local 而不是云会话？（想在你的检出 repo 里带本地上下文亲手改时；要规模或组织集成时交给云端。）</li>
 <li>会话头部 "..." 菜单里有什么？（该会话的 MCP servers——按会话开关或重新授权。）</li>
 </ol>
