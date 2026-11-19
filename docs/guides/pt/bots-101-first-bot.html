@@ -119,6 +119,25 @@
 </tbody>
 </table>
 <p>Uma tarefa acaba quando termina; um resultado faz o Bot re-planejar para sempre.</p>
+<h3>Uma primeira atribuição limitada</h3>
+<p>"Propriedade" é a <em>forma</em> certa, mas delimite a <em>superfície</em> na primeira rodada: um fluxo, um ambiente, um revisor — você. O padrão do guia de campo ANO é o ponto de partida confiável:</p>
+<pre><code class="language-text">Own the newsletter signup check for [project] on staging.
+Use [repository], [staging URL] and the test mailbox I provide.
+Check the journey from submitting the form to receiving the
+correct welcome email and opening its resource link.
+
+Start with one run. Show me the result before proposing a schedule.
+If you find a defect, reproduce it, make the smallest suitable fix,
+and open a pull request with the evidence.
+
+Do not merge, deploy, email real subscribers, change billing,
+or connect another service without asking me.
+
+Return: what passed/failed, screenshots or a short recording,
+the PR if a fix was needed, anything you could not verify,
+and any decision you need from me.
+</code></pre>
+<p>As linhas estruturais: a definição da jornada (formulário → email → link, não só "o form funciona"), <em>uma execução antes do agendamento</em>, a cerca explícita de não-merge/não-deploy, e a evidência nomeada que você espera. Amplie a atribuição só depois que o Bot devolver evidência confiável duas vezes.</p>
 <h2>Passo 3 — Trabalhar com ele</h2>
 <p>Depois que o resultado está definido, a maioria das suas mensagens são check-ins:</p>
 <pre><code class="language-text">anything waiting on me?
@@ -157,6 +176,12 @@
 <li><strong>Memory</strong> (Settings → Memory): arquivos que o próprio Bot escreve — preferências, correções, fatos do projeto. Para mudar o que ele lembra, basta dizer no chat ("remember: we deploy via Cloud Run, never bare VMs"). Todo mundo que pode usar o Bot pode ler sua memória — trate a memória de um Bot compartilhado como compartilhada.</li>
 </ul>
 <p>O padrão que escala: corrija o Bot uma vez, deixe-o gravar a correção na memória, e toda sessão futura a herda. A Cognition mergeia mais de 2.000 PRs/semana nesse loop.</p>
+<h2>Antes de compartilhar — acesso e uso</h2>
+<p>Duas coisas que os posts de lançamento pulam e a documentação explicita:</p>
+<ul>
+<li><strong>Um Bot privado herda seus recursos sem perguntar.</strong> O acesso que você já tem pode ser registrado como grants sem novo prompt de permissão — um Bot privado não é uma sandbox. Antes de compartilhar, abra Settings → Access e remova grants que a tarefa não precisa. Se colegas devem copiar o método sem ver sua conversa ou credenciais, compartilhe um <em>template</em>, não o Bot.</li>
+<li><strong>O uso de um Bot cobre o chat dele mais toda sessão que ele dispara.</strong> Max: consome sua cota incluída e depois on-demand — sem cap separado de Bot. Teams: sua cota e depois créditos do time; um admin pode definir cap on-demand específico do Bot. Enterprise: conta no limite do criador, a menos que receba um próprio. Uma instrução de gasto no chat não é um cap configurado — defina o limite em Settings, não o descreva em prosa.</li>
+</ul>
 <h2>Passo 5 — Colocar onde você trabalha</h2>
 <ul>
 <li><strong>Slack:</strong> dê ao Bot seu próprio app Slack para que sua equipe possa @-mencionar ou mandar DM (Settings → Slack). Toda implantação de equipe reportada roda assim — o Bot vira um colega nomeado num canal.</li>
@@ -214,11 +239,17 @@
 </ol>
 <h2>Fontes</h2>
 <ul>
-<li><a href="https://docs.devin.ai/work-with-devin/bots">Devin Bots — docs</a></li>
+<li><a href="https://ainativeoperators.ai/blog/devin-bots-guide">AI Native Operators — Devin Bots: give an agent a job to own</a> —— guia de campo da comunidade; o padrão de primeira atribuição limitada e os avisos de acesso/uso acima vêm daqui</li>
+<li>
+<p>Anterior: <a href="talking-to-devin.html">Guia 18 — Falando com Devin</a> (a doutrina sob o outcome prompt)</p>
+</li>
+<li>
+<p><a href="https://docs.devin.ai/work-with-devin/bots">Devin Bots — docs</a></p>
+</li>
 <li><a href="https://devin.ai/blog/introducing-devin-bots">Introducing Devin Bots</a></li>
 <li>Próximo: <a href="bots-201-product-owner.html">Guia 2 — Bot product-owner</a></li>
 </ul>
-<nav class="guide-pager"><a class="pg-next" href="bots-201-product-owner.html"><span class="pg-dir">Next →</span><span class="pg-t">Guia 2 — Bot product-owner</span></a></nav>
+<nav class="guide-pager"><a class="pg-prev" href="devin-cli.html"><span class="pg-dir">← Previous</span><span class="pg-t">Guia 12 — Devin CLI &amp; extensibilidade</span></a><a class="pg-next" href="official-cookbook.html"><span class="pg-dir">Next →</span><span class="pg-t">Guia 13 — O cookbook oficial de casos de uso</span></a></nav>
 </article>
 <footer><div class="wrap foot-base"><span data-i18n="foot.note">Unofficial community project — not affiliated with Cognition AI.</span><span><a href="../../index.html">built-with-devin</a> · <a href="https://github.com/Till3005/build-with-devin">build-with-devin</a></span></div></footer>
 </main>

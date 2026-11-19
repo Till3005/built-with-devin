@@ -119,6 +119,25 @@
 </tbody>
 </table>
 <p>任务做完就结束；结果让 Bot 永远重新规划。</p>
+<h3>有界的第一个任务</h3>
+<p>"所有权"是对的<em>形状</em>，但第一次跑要把<em>面</em>收窄：一条流程、一个环境、一个审阅人——你。ANO 实战指南的模式是最稳的起点：</p>
+<pre><code class="language-text">Own the newsletter signup check for [project] on staging.
+Use [repository], [staging URL] and the test mailbox I provide.
+Check the journey from submitting the form to receiving the
+correct welcome email and opening its resource link.
+
+Start with one run. Show me the result before proposing a schedule.
+If you find a defect, reproduce it, make the smallest suitable fix,
+and open a pull request with the evidence.
+
+Do not merge, deploy, email real subscribers, change billing,
+or connect another service without asking me.
+
+Return: what passed/failed, screenshots or a short recording,
+the PR if a fix was needed, anything you could not verify,
+and any decision you need from me.
+</code></pre>
+<p>承重的那几行：旅程的定义（表单 → 邮件 → 链接，不只是"表单能用"）、<em>先跑一次再谈排程</em>、明写的禁 merge/禁部署边界、以及点名要的证据。Bot 连续两次交回可信证据之后，再扩大任务面。</p>
 <h2>第 3 步 — 与它协作</h2>
 <p>结果设定后，你的消息大多是查岗：</p>
 <pre><code class="language-text">anything waiting on me?
@@ -157,6 +176,12 @@
 <li><strong>Memory</strong>（Settings → Memory）：Bot 自己写的文件——偏好、纠正、项目事实。要改它的记忆，直接在聊天里说（"remember: we deploy via Cloud Run, never bare VMs"）。能用这个 Bot 的人都能读它的记忆——共享 Bot 的记忆按共享对待。</li>
 </ul>
 <p>可扩展的模式：纠正 Bot 一次，让它把纠正写进记忆，之后每个会话都继承。Cognition 就靠这个循环每周合并 2,000+ PR。</p>
+<h2>共享之前——权限与用量</h2>
+<p>发布帖不会讲但文档写明了两件事：</p>
+<ul>
+<li><strong>私有 Bot 会不打招呼继承你的资源。</strong> 你已有的权限可以不经新的确认就被记录成 grants——私有 Bot 不是沙箱。共享之前打开 Settings → Access，摘掉任务不需要的 grants。如果想让队友抄方法但看不到你的对话和凭证，共享<em>模板</em>，不是 Bot 本体。</li>
+<li><strong>Bot 的用量 = 它的聊天 + 它起的全部会话。</strong> Max：先用你的包含额度再用按需付费——没有单独的 Bot 上限。Teams：你的额度然后团队点数，管理员可以设 Bot 专属按需上限。Enterprise：默认计入创建者上限，除非单独分配。聊天里写的花费指令不是配置好的上限——上限在 Settings 里设，别用自然语言描述。</li>
+</ul>
 <h2>第 5 步 — 放到你工作的地方</h2>
 <ul>
 <li><strong>Slack：</strong> 给 Bot 配自己的 Slack app，团队就能 @ 或私信它（Settings → Slack）。所有公开的团队部署都这么跑——Bot 变成频道里一个有名有姓的队友。</li>
@@ -214,11 +239,12 @@
 </ol>
 <h2>Sources</h2>
 <ul>
-<li><a href="https://docs.devin.ai/work-with-devin/bots">Devin Bots — docs</a></li>
-<li><a href="https://devin.ai/blog/introducing-devin-bots">Introducing Devin Bots</a></li>
-<li>下一篇：<a href="bots-201-product-owner.html">第 2 篇 — 产品所有制 Bot</a></li>
+<li><a href="https://docs.devin.ai/work-with-devin/bots">Devin Bots — docs</a> —— 机制、权限、用量上限</li>
+<li><a href="https://devin.ai/blog/introducing-devin-bots">Introducing Devin Bots</a> —— 发布帖，Android Bot 的原话 prompt</li>
+<li><a href="https://ainativeoperators.ai/blog/devin-bots-guide">AI Native Operators — Devin Bots: give an agent a job to own</a> —— 社区实战指南；上面的有界首个任务和权限/用量提醒出自此</li>
+<li>上一篇：<a href="talking-to-devin.html">指南 18 — 跟 Devin 说话</a>（outcome prompt 底下的基本法）· 下一篇：<a href="bots-201-product-owner.html">第 2 篇 — 产品所有制 Bot</a></li>
 </ul>
-<nav class="guide-pager"><a class="pg-next" href="bots-201-product-owner.html"><span class="pg-dir">Next →</span><span class="pg-t">指南 2 — 产品所有制 Bot</span></a></nav>
+<nav class="guide-pager"><a class="pg-prev" href="devin-cli.html"><span class="pg-dir">← Previous</span><span class="pg-t">指南 12 — Devin CLI 与可扩展性</span></a><a class="pg-next" href="official-cookbook.html"><span class="pg-dir">Next →</span><span class="pg-t">指南 13 — 官方用例食谱</span></a></nav>
 </article>
 <footer><div class="wrap foot-base"><span data-i18n="foot.note">Unofficial community project — not affiliated with Cognition AI.</span><span><a href="../../index.html">built-with-devin</a> · <a href="https://github.com/Till3005/build-with-devin">build-with-devin</a></span></div></footer>
 </main>

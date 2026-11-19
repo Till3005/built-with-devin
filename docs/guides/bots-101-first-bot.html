@@ -119,6 +119,25 @@
 </tbody>
 </table>
 <p>A task ends when it's done; an outcome makes the Bot re-plan forever.</p>
+<h3>A bounded first assignment</h3>
+<p>Ownership is the right <em>shape</em>, but bound the <em>surface</em> on the first run: one flow, one environment, one reviewer — you. The ANO field guide's pattern is the reliable starter:</p>
+<pre><code class="language-text">Own the newsletter signup check for [project] on staging.
+Use [repository], [staging URL] and the test mailbox I provide.
+Check the journey from submitting the form to receiving the
+correct welcome email and opening its resource link.
+
+Start with one run. Show me the result before proposing a schedule.
+If you find a defect, reproduce it, make the smallest suitable fix,
+and open a pull request with the evidence.
+
+Do not merge, deploy, email real subscribers, change billing,
+or connect another service without asking me.
+
+Return: what passed/failed, screenshots or a short recording,
+the PR if a fix was needed, anything you could not verify,
+and any decision you need from me.
+</code></pre>
+<p>The load-bearing lines: the journey definition (form → email → link, not just "form works"), <em>one run before a schedule</em>, the explicit no-merge/no-deploy fence, and the named evidence you expect back. Expand the assignment only after the Bot returns evidence you can trust twice.</p>
 <h2>Step 3 — Work with it</h2>
 <p>After the outcome is set, most of your messages are check-ins:</p>
 <pre><code class="language-text">anything waiting on me?
@@ -157,6 +176,12 @@
 <li><strong>Memory</strong> (Settings → Memory): files the Bot writes itself — preferences, corrections, project facts. To change what it remembers, just tell it in chat ("remember: we deploy via Cloud Run, never bare VMs"). Everyone who can use the Bot can read its memory — treat shared-Bot memory as shared.</li>
 </ul>
 <p>The pattern that scales: correct the Bot once, let it write the correction to memory, and every future session inherits it. Cognition merges 2,000+ PRs/week on this loop.</p>
+<h2>Before you share it — access and usage</h2>
+<p>Two things the launch posts skip that the docs spell out:</p>
+<ul>
+<li><strong>A private Bot inherits your resources without asking.</strong> Access you already have can be recorded as grants with no new permission prompt — a private Bot is not a sandbox. Before sharing, open Settings → Access and strip grants the job doesn't need. If teammates should copy the method without seeing your conversation or credentials, share a <em>template</em>, not the Bot.</li>
+<li><strong>A Bot's usage covers its chat plus every session it spawns.</strong> Max: draws your included quota then on-demand — no separate Bot cap. Teams: your quota then team credits, an admin can set a Bot-specific on-demand cap. Enterprise: counts against the creator's limit unless assigned its own. A spending instruction in chat is not a configured cap — set the limit in Settings, don't describe it in prose.</li>
+</ul>
 <h2>Step 5 — Put it where you work</h2>
 <ul>
 <li><strong>Slack:</strong> give the Bot its own Slack app so your team can @-mention or DM it (Settings → Slack). Every reported team deployment runs this way — the Bot becomes a named teammate in a channel.</li>
@@ -214,11 +239,12 @@
 </ol>
 <h2>Sources</h2>
 <ul>
-<li><a href="https://docs.devin.ai/work-with-devin/bots">Devin Bots — docs</a></li>
-<li><a href="https://devin.ai/blog/introducing-devin-bots">Introducing Devin Bots</a></li>
-<li>Next: <a href="bots-201-product-owner.html">Guide 2 — Product-owner Bot</a></li>
+<li><a href="https://docs.devin.ai/work-with-devin/bots">Devin Bots — docs</a> — mechanics, access, usage limits</li>
+<li><a href="https://devin.ai/blog/introducing-devin-bots">Introducing Devin Bots</a> — launch post, the Android Bot prompt</li>
+<li><a href="https://ainativeoperators.ai/blog/devin-bots-guide">AI Native Operators — Devin Bots: give an agent a job to own</a> — community field guide; the bounded-first-assignment pattern and access/usage caveats above</li>
+<li>Back: <a href="talking-to-devin.html">Guide 18 — Talking to Devin</a> (the doctrine under the outcome prompt) · Next: <a href="bots-201-product-owner.html">Guide 2 — Product-owner Bot</a></li>
 </ul>
-<nav class="guide-pager"><a class="pg-next" href="bots-201-product-owner.html"><span class="pg-dir">Next →</span><span class="pg-t">Guide 2 — Product-owner Bot</span></a></nav>
+<nav class="guide-pager"><a class="pg-prev" href="devin-cli.html"><span class="pg-dir">← Previous</span><span class="pg-t">Guide 12 — Devin CLI &amp; extensibility</span></a><a class="pg-next" href="official-cookbook.html"><span class="pg-dir">Next →</span><span class="pg-t">Guide 13 — The official use-case cookbook</span></a></nav>
 </article>
 <footer><div class="wrap foot-base"><span data-i18n="foot.note">Unofficial community project — not affiliated with Cognition AI.</span><span><a href="../index.html">built-with-devin</a> · <a href="https://github.com/Till3005/build-with-devin">build-with-devin</a></span></div></footer>
 </main>

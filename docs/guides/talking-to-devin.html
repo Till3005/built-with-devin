@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Guide 18 — Talking to Devin: the prompting doctrine — build-with-devin guides</title>
+<meta name="description" content="Write instructions Devin can&#x27;t misread — the difference between a session that ships and one that wanders.">
+<link rel="icon" href="../assets/brand/Devin_Symbol.svg" type="image/svg+xml">
+<link rel="stylesheet" href="../assets/site.css">
+<link rel="stylesheet" href="../assets/guides.css">
+
+<meta property="og:title" content="Guide 18 — Talking to Devin: the prompting doctrine">
+<meta property="og:description" content="Write instructions Devin can&#x27;t misread — the difference between a session that ships and one that wanders.">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://till3005.github.io/built-with-devin/guides/talking-to-devin.html">
+<meta property="og:image" content="https://till3005.github.io/built-with-devin/assets/img/og-build.png?v=3">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://till3005.github.io/built-with-devin/assets/img/og-build.png?v=3">
+</head>
+<body>
+<a class="skip" href="#guide">Skip to content</a>
+<nav><div class="wrap nav-inner">
+  <div class="nav-left">
+    <a class="brand" href="../index.html" aria-label="Built with Devin">
+      <span class="brand-text">built<strong>-with-</strong></span><img class="brand-mark" src="../assets/brand/Devin_Primary_Logo.svg" alt="Devin" height="16"><span class="unofficial-chip">unofficial</span>
+    </a>
+  </div>
+  <div class="nav-side">
+    <div class="mode-toggle" role="tablist" aria-label="Site section">
+      <button class="mode-btn" data-mode="built" role="tab" aria-selected="false" onclick="location.href='../index.html'">Built</button>
+      <button class="mode-btn on" data-mode="build" role="tab" aria-selected="true" onclick="location.href='../index.html#build'">Build</button>
+      <span class="mode-pill" aria-hidden="true"></span>
+    </div>
+    <a class="cta" href="https://github.com/Till3005/build-with-devin/blob/main/guides/talking-to-devin.md">GitHub</a>
+  </div>
+</div></nav>
+<main>
+<article class="guide wrap" id="guide">
+  <p class="guide-crumb"><a href="../index.html#build">← Guides</a> · <a href="zh/talking-to-devin.html">中文</a> · <a href="pt/talking-to-devin.html">Português</a> · <a href="ja/talking-to-devin.html">日本語</a></p>
+<h1>Guide 18 — Talking to Devin: the prompting doctrine</h1>
+<p><strong>Goal:</strong> Write instructions Devin can't misread — the difference between a session that ships and one that wanders.
+<strong>Level:</strong> Start here
+<strong>Sources:</strong> <a href="https://devin.ai/agents101">Coding Agents 101</a> (Cognition, June 2025) · <a href="https://docs.devin.ai/essential-guidelines/instructing-devin-effectively">Instructing Devin Effectively</a> — both official, both distilled below with field notes</p>
+<h2>Why this guide is first</h2>
+<p>Every other guide in this repo assumes one skill: you can tell Devin what you want in a way it can't misread. Cognition's own guidance — <em>Coding Agents 101</em> and the docs' <em>Instructing Devin Effectively</em> — says the same thing from two angles: <strong>the engineers who get the most out of agents write like they're briefing a junior teammate, not like they're filing a wish.</strong> This guide is that doctrine, condensed and wired to the rest of the curriculum.</p>
+<h2>The four rules that carry everything else</h2>
+<p><strong>1. Say how, not just what.</strong> "Fix the C++ bindings for our search module to pass the new unit tests — be careful, you'll need to recompile the bindings each time before testing." You know the traps in your codebase; name them. Open-ended briefs ("make the app look better", "improve database performance") return open-ended results.</p>
+<p><strong>2. Tell it where to start.</strong> Repo, directory, file, reference implementation, docs URL — anything you'd want if the task landed on <em>your</em> desk. "Use <code>authTemplate.rs</code> as a reference to maintain consistency in error handling" beats a style paragraph every time.</p>
+<p><strong>3. Define success as something checkable.</strong> Not "make sure it works" — a check Devin can run: <em>endpoint returns 200 with fields X/Y/Z</em>, <em>component renders with zero console errors at 1440px and 375px</em>, <code>npm test</code> green. Devin has a full machine — browser, shell, IDE. Tell it to verify its own work ("run <code>npm run dev</code> and confirm <code>/settings</code> renders") and it will QA before you ever see the PR.</p>
+<p><strong>4. Give it feedback loops, not feedback vibes.</strong> Type checkers, linters, tests, CI — the agent's superpower is iterating against error messages. If your repo can't tell it when it's wrong, you're the feedback loop, and that's the expensive configuration.</p>
+<h2>The reference brief</h2>
+<p>Cognition's own model prompt, annotated:</p>
+<blockquote>
+<p>In the Devin repo, build a tool that monitors RAM and CPU usage of the remote machines Devin runs on. — <em>scope and purpose, one line</em></p>
+<ul>
+<li>Create a background task that launches when devin.rs starts — <em>step-by-step, not a blob</em></li>
+<li>It opens a connection to all forked remote machines and monitors usage — <em>mechanism named</em></li>
+<li>If usage exceeds 80%, emit a new type of Devin event (check how we use Kafka) — <em>success criterion + pointer to existing pattern</em></li>
+<li>Architect so it doesn't block other operations — <em>constraint the author already knows</em></li>
+</ul>
+</blockquote>
+<p>Notice what's absent: aesthetic opinions, hedging, "maybe", "if you think it's a good idea". Every line is a decision already made by a human who knows the system.</p>
+<h2>Defense: what to keep for yourself</h2>
+<p>The 101 guide is blunt about the limit: <strong>expect ~80% time savings on large tickets, not full automation.</strong> For anything beyond a few files, plan for multiple feedback cycles. The winning posture is <em>architect reviewing a junior's draft PR</em> — you hold correctness, Devin holds keystrokes.</p>
+<p>Practical consequences:</p>
+<ul>
+<li><strong>Scope hard.</strong> "Do not merge, deploy, or touch billing without asking me" — write the fence explicitly, don't rely on implied sense.</li>
+<li><strong>Split big work into verifiable sub-tasks</strong> — one session per sub-task, each with its own success check (this is also why Guide 11's migration pattern works: hundreds of small PRs, each verifiable).</li>
+<li><strong>Use Skills for the repeatable</strong> — anything you'll ask more than twice goes in a <code>SKILL.md</code>; Devin invokes it automatically (Guide 16).</li>
+</ul>
+<h2>From instructing to owning</h2>
+<p>A session instruction answers <em>"do this task well"</em>. A Bot outcome prompt answers <em>"own this area"</em>. The doctrine is the same — specificity, boundaries, checkable success — but the object changes from a task to a responsibility. Once you're fluent here, <a href="bot-outcome-prompts.html">the outcome-prompts reference</a> shows how the same muscles produce the Android Bot's 1,134 PRs.</p>
+<h2>Verify it</h2>
+<ul>
+<li>[ ] Given a real task from your backlog, you can write a brief with: named repo/files, a reference pattern, an explicit success check, and a stated boundary — in under 10 minutes.</li>
+<li>[ ] The resulting session completes without a mid-flight clarification you'd call obvious.</li>
+<li>[ ] Devin verifies its own work before the PR — you asked it to in the brief.</li>
+</ul>
+<h2>Pitfalls</h2>
+<ul>
+<li><strong>Prompts that encode your own confusion.</strong> If you can't state the success check, the task isn't ready — co-develop a PRD with Devin first (the 101 guide endorses this) rather than hoping it intuits the goal.</li>
+<li><strong>Under-permissioned ambition.</strong> "Fix CI" from an account that can't see CI produces confident wrongness. Match the brief to the access you actually granted.</li>
+<li><strong>Reviewing output, not correctness.</strong> A green test run and a plausible diff are evidence of progress, not proof the behavior is right. You still own verification.</li>
+</ul>
+<h2>Knowledge check</h2>
+<ol>
+<li><em>"Add unit tests" fails where "add unit tests for the retry path in <code>poller.ts</code>, mocking <code>fetch</code>, covering timeout and 5xx" succeeds — why?</em> Because the second brief removes the agent's need to make judgment calls you'd want made your way: what to test, which edges matter, what to mock. Every unspecified decision is a coin flip you don't control.</li>
+<li><em>Devin opened a PR with a clean diff and green CI. Done?</em> Not yet — CI green means the checks passed, not that the intent is met. The last verification layer is still yours; that asymmetry is the deal (~80% savings, human on correctness).</li>
+<li><em>When do instructions graduate to Skills?</em> When you catch yourself re-typing them. A third occurrence is a SKILL.md — Guide 16 covers the format and discovery paths.</li>
+</ol>
+<h2>Sources</h2>
+<ul>
+<li><a href="https://devin.ai/agents101">Coding Agents 101</a> — Cognition's prompting doctrine: say-how, where-to-start, defensive prompting, feedback loops, the 80% rule</li>
+<li><a href="https://docs.devin.ai/essential-guidelines/instructing-devin-effectively">Instructing Devin Effectively</a> — the official do/don't list and the reference brief dissected above</li>
+<li><a href="https://docs.devin.ai/tutorial-library">Devin tutorial library</a> + <a href="https://devin.ai/university">Devin University</a> — official videos and courses if you want the same material in another medium</li>
+<li>Field note: every report in <a href="community-field-reports.html">community field reports</a> converges on the same conclusion — briefs, not wishes</li>
+<li>Next: <a href="bots-101-first-bot.html">Guide 1 — Your first Bot</a> (same doctrine, bigger object) · <a href="bot-outcome-prompts.html">Outcome prompts reference</a></li>
+</ul>
+<nav class="guide-pager"><a class="pg-next" href="devin-desktop.html"><span class="pg-dir">Next →</span><span class="pg-t">Guide 17 — Devin Desktop</span></a></nav>
+</article>
+<footer><div class="wrap foot-base"><span data-i18n="foot.note">Unofficial community project — not affiliated with Cognition AI.</span><span><a href="../index.html">built-with-devin</a> · <a href="https://github.com/Till3005/build-with-devin">build-with-devin</a></span></div></footer>
+</main>
+<script src="../assets/theme.js"></script>
+<script src="../assets/i18n.js"></script>
+<script src="../assets/i18n-runtime.js"></script>
+</body>
+</html>
