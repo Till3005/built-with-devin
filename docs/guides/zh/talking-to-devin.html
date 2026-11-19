@@ -70,6 +70,22 @@
 </ul>
 <h2>从"指令"到"所有权"</h2>
 <p>会话指令回答的是<em>"把这件事做好"</em>。Bot 的 outcome prompt 回答的是<em>"把这块地盘管好"</em>。教义相同——具体、边界、可检查的成功——只是对象从任务变成了责任。练熟了这里的写法，<a href="bot-outcome-prompts.html">outcome-prompts 参考</a>会展示同一套肌肉怎么产出 Android Bot 的 1,134 个 PR。</p>
+<h2>实录演示 —— 录于 Devin CLI v3000.14（swe-2-flash-medium）</h2>
+<p>教义实盘跑在一个丢弃用的 <code>demo-repo</code> 上：四行 brief——做法+机制、点名文件、可检验的成功线、明确边界。一次会话，零中途澄清，自检通过。</p>
+<p><strong>视频（90 秒，无声）：</strong> brief → 改代码 → 权限提示 → 自检 → 边界被遵守。</p>
+<p><a href="https://till3005.github.io/built-with-devin/assets/guides/talking-to-devin/walkthrough.mp4"><img alt="SWE-2 Flash Medium 完成任务——5 个 unittest 全绿，未提交" src="https://till3005.github.io/built-with-devin/assets/guides/talking-to-devin/walkthrough-poster.webp" /></a></p>
+<p><img alt="1. CLI REPL 在 demo-repo 里跑 SWE-2 Flash Medium，composer 就绪" src="https://till3005.github.io/built-with-devin/assets/guides/talking-to-devin/step1-repl-flash.webp" />
+<em>1. CLI REPL 在 demo-repo 里跑 SWE-2 Flash Medium——composer 就绪</em></p>
+<p><img alt="2. 那份 brief——四行对应四条规则：怎么做、从哪开始、成功检查、边界" src="https://till3005.github.io/built-with-devin/assets/guides/talking-to-devin/step2-the-brief.webp" />
+<em>2. 那份 brief——四行对应四条规则：怎么做、从哪开始、成功检查、边界</em></p>
+<p><img alt="3. 中途：正在写 test_app.py——权限提示给出 Allow / accept-edits / bypass / deny" src="https://till3005.github.io/built-with-devin/assets/guides/talking-to-devin/step3-edits-approval.webp" />
+<em>3. 中途：正在写 test_app.py——权限提示给出 Allow / accept-edits / bypass / deny</em></p>
+<p><img alt="4. 自证：agent 请求跑的正是点名的检查——python3 -m unittest -v" src="https://till3005.github.io/built-with-devin/assets/guides/talking-to-devin/step4-self-check-prompt.webp" />
+<em>4. 自证：agent 请求跑的正是点名的检查——<code>python3 -m unittest -v</code></em></p>
+<p><img alt="5. 完成——5 个测试全过；汇报自己写明 &quot;No commit made.&quot;" src="https://till3005.github.io/built-with-devin/assets/guides/talking-to-devin/step5-tests-green.webp" />
+<em>5. 完成——5 个测试全过；汇报自己写明边界已守："No commit made."</em></p>
+<p><img alt="6. /exit 后——devin -r 恢复提示；git status 证明边界守住了：两个文件被改、零新提交" src="https://till3005.github.io/built-with-devin/assets/guides/talking-to-devin/step6-no-commit.webp" />
+<em>6. /exit 后——<code>devin -r</code> 恢复提示，<code>git status</code> 证明边界守住了：两个文件被改、零新提交</em></p>
 <h2>验证一下</h2>
 <ul>
 <li>[ ] 拿你 backlog 里的一个真实任务，你能在 10 分钟内写出含：点名的仓库/文件、参考模式、明确的验收检查、声明的边界的指令。</li>

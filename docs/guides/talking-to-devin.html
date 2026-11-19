@@ -70,6 +70,22 @@
 </ul>
 <h2>From instructing to owning</h2>
 <p>A session instruction answers <em>"do this task well"</em>. A Bot outcome prompt answers <em>"own this area"</em>. The doctrine is the same — specificity, boundaries, checkable success — but the object changes from a task to a responsibility. Once you're fluent here, <a href="bot-outcome-prompts.html">the outcome-prompts reference</a> shows how the same muscles produce the Android Bot's 1,134 PRs.</p>
+<h2>Walkthrough — recorded on Devin CLI v3000.14 (swe-2-flash-medium)</h2>
+<p>The doctrine run live on a throwaway <code>demo-repo</code>: a four-line brief — scope + mechanism, named files, a checkable success line, an explicit boundary. One session, zero mid-flight clarifications, self-verified.</p>
+<p><strong>Video (90 s, no audio):</strong> brief → edits → permission prompts → self-check → boundary honored.</p>
+<p><a href="https://till3005.github.io/built-with-devin/assets/guides/talking-to-devin/walkthrough.mp4"><img alt="SWE-2 Flash Medium finishing the task — 5 unittest tests green, no commit made" src="https://till3005.github.io/built-with-devin/assets/guides/talking-to-devin/walkthrough-poster.webp" /></a></p>
+<p><img alt="1. The CLI REPL on SWE-2 Flash Medium, composer ready in demo-repo" src="https://till3005.github.io/built-with-devin/assets/guides/talking-to-devin/step1-repl-flash.webp" />
+<em>1. The CLI REPL on SWE-2 Flash Medium — composer ready in demo-repo</em></p>
+<p><img alt="2. The brief — four doctrine rules in four lines: how, where, success check, boundary" src="https://till3005.github.io/built-with-devin/assets/guides/talking-to-devin/step2-the-brief.webp" />
+<em>2. The brief — four doctrine rules in four lines: how, where, success check, boundary</em></p>
+<p><img alt="3. Mid-run: writing test_app.py; the permission prompt offers Allow / accept-edits / bypass / deny" src="https://till3005.github.io/built-with-devin/assets/guides/talking-to-devin/step3-edits-approval.webp" />
+<em>3. Mid-run: writing test_app.py — the permission prompt offers Allow / accept-edits / bypass / deny</em></p>
+<p><img alt="4. The agent requests exactly the named check: python3 -m unittest -v" src="https://till3005.github.io/built-with-devin/assets/guides/talking-to-devin/step4-self-check-prompt.webp" />
+<em>4. Self-verification: the agent requests exactly the named check — <code>python3 -m unittest -v</code></em></p>
+<p><img alt="5. Done — 5 tests all OK; the report itself says &quot;No commit made.&quot;" src="https://till3005.github.io/built-with-devin/assets/guides/talking-to-devin/step5-tests-green.webp" />
+<em>5. Done — 5 tests all OK; the report itself confirms the boundary: "No commit made."</em></p>
+<p><img alt="6. After /exit — devin -r resume hint; git status shows both files modified, zero new commits" src="https://till3005.github.io/built-with-devin/assets/guides/talking-to-devin/step6-no-commit.webp" />
+<em>6. After /exit — the <code>devin -r</code> resume hint, and <code>git status</code> proving the fence held: two modified files, no new commit</em></p>
 <h2>Verify it</h2>
 <ul>
 <li>[ ] Given a real task from your backlog, you can write a brief with: named repo/files, a reference pattern, an explicit success check, and a stated boundary — in under 10 minutes.</li>

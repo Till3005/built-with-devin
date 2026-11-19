@@ -70,6 +70,22 @@
 </ul>
 <h2>De instruir para delegar posse</h2>
 <p>Uma instrução de sessão responde <em>"faça esta tarefa bem"</em>. Um outcome prompt de Bot responde <em>"assuma esta área"</em>. A doutrina é a mesma — especificidade, limites, sucesso verificável — mas o objeto muda de tarefa para responsabilidade. Fluente aqui, a <a href="bot-outcome-prompts.html">referência de outcome-prompts</a> mostra como os mesmos músculos produzem os 1.134 PRs do Android Bot.</p>
+<h2>Passo a passo real — gravado no Devin CLI v3000.14 (swe-2-flash-medium)</h2>
+<p>A doutrina executada num <code>demo-repo</code> descartável: um brief de quatro linhas — escopo + mecanismo, arquivos nomeados, linha de sucesso verificável, fronteira explícita. Uma sessão, zero esclarecimentos no meio, auto-verificado.</p>
+<p><strong>Vídeo (90 s, sem áudio):</strong> brief → edições → prompts de permissão → auto-checagem → fronteira honrada.</p>
+<p><a href="https://till3005.github.io/built-with-devin/assets/guides/talking-to-devin/walkthrough.mp4"><img alt="SWE-2 Flash Medium concluindo a tarefa — 5 testes unittest verdes, nenhum commit" src="https://till3005.github.io/built-with-devin/assets/guides/talking-to-devin/walkthrough-poster.webp" /></a></p>
+<p><img alt="1. O REPL do CLI em SWE-2 Flash Medium — composer pronto no demo-repo" src="https://till3005.github.io/built-with-devin/assets/guides/talking-to-devin/step1-repl-flash.webp" />
+<em>1. O REPL do CLI em SWE-2 Flash Medium — composer pronto no demo-repo</em></p>
+<p><img alt="2. O brief — quatro regras em quatro linhas: como, onde, critério de sucesso, fronteira" src="https://till3005.github.io/built-with-devin/assets/guides/talking-to-devin/step2-the-brief.webp" />
+<em>2. O brief — quatro regras em quatro linhas: como, onde, critério de sucesso, fronteira</em></p>
+<p><img alt="3. No meio: escrevendo test_app.py — o prompt de permissão oferece Allow / accept-edits / bypass / deny" src="https://till3005.github.io/built-with-devin/assets/guides/talking-to-devin/step3-edits-approval.webp" />
+<em>3. No meio: escrevendo test_app.py — o prompt de permissão oferece Allow / accept-edits / bypass / deny</em></p>
+<p><img alt="4. Auto-verificação: o agente pede exatamente a checagem nomeada — python3 -m unittest -v" src="https://till3005.github.io/built-with-devin/assets/guides/talking-to-devin/step4-self-check-prompt.webp" />
+<em>4. Auto-verificação: o agente pede exatamente a checagem nomeada — <code>python3 -m unittest -v</code></em></p>
+<p><img alt="5. Feito — 5 testes OK; o próprio relatório confirma a fronteira: &quot;No commit made.&quot;" src="https://till3005.github.io/built-with-devin/assets/guides/talking-to-devin/step5-tests-green.webp" />
+<em>5. Feito — 5 testes OK; o próprio relatório confirma a fronteira: "No commit made."</em></p>
+<p><img alt="6. Depois de /exit — a dica devin -r e o git status provando a cerca: dois arquivos modificados, nenhum commit novo" src="https://till3005.github.io/built-with-devin/assets/guides/talking-to-devin/step6-no-commit.webp" />
+<em>6. Depois de /exit — a dica <code>devin -r</code> e o <code>git status</code> provando que a cerca segurou: dois arquivos modificados, nenhum commit novo</em></p>
 <h2>Verifique</h2>
 <ul>
 <li>[ ] Dada uma tarefa real do seu backlog, você escreve em menos de 10 minutos um brief com: repo/arquivos nomeados, padrão de referência, check de sucesso explícito e limite declarado.</li>
