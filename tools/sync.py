@@ -116,6 +116,11 @@ def main():
                 drift.append(f'index.html: {label} = {m.group(2)}, want {c[key]}')
     (ROOT / 'docs/index.html').write_text(idx) if '--write' in sys.argv else None
 
+    # machine-readable export: regenerate docs/registry.json whenever README truth moved
+    if '--write' in sys.argv:
+        import subprocess
+        subprocess.run([sys.executable, str(ROOT / 'tools/export_registry.py')], check=True)
+
     # link parity: every en URL must exist in each lang README
     en_urls = urls(en) - {'https://till3005.github.io/built-with-devin/'}
     for lang in LANGS:

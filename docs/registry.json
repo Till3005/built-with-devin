@@ -1,0 +1,706 @@
+{
+  "$schema": "https://till3005.github.io/built-with-devin/registry.schema.json",
+  "generated_from": "https://github.com/Till3005/built-with-devin/blob/main/README.md",
+  "license": "CC0-1.0",
+  "counts": {
+    "bot_deployments": 13,
+    "bot_templates": 16,
+    "products": 6,
+    "enterprise_cases": 35
+  },
+  "bot_deployments": [
+    {
+      "name": "Android Bot",
+      "owner": "Cognition",
+      "owns": "Devin's Android app, end to end",
+      "results": "Prompted \"your job is to product manage the android app\" on Sep 28, 2026 — filed its own tickets, ran a Devin session per ticket, shipped to Google Play open beta in 44 days: 1,134 PRs merged, 344,651 lines of Kotlin, 2,841 screenshot tests. Its human sent 183 messages total — 22 days of complete silence — and 88% of PRs were self-merged. Now owns Android/iOS feature parity.",
+      "sources": []
+    },
+    {
+      "name": "Layout Bot",
+      "owner": "Cognition",
+      "owns": "Layout-shift regression on the Devin web app",
+      "results": "Every 3 hours it builds production main, simulates first/repeat/delayed-request visits, traces regressions to the introducing PR, opens fixes with before/after videos. 159 PRs in 3 weeks; lag −70%.",
+      "sources": []
+    },
+    {
+      "name": "Super Jenny",
+      "owner": "Jenny Xu (community)",
+      "owns": "An entire mobile game studio",
+      "results": "~20 Bots (dev, Unity, releases, UI, iOS, Android, device testing) under one orchestrating Bot; the only human answers a consolidated Slack thread 4×/day with emoji. ~50 → 1,900 PRs/week, studio revenue 6×'d, shipping weekly. Published as community template SuperJennyStack. She then built BotSpeak — a token-saving bot-to-bot shorthand (ASD-STE100, ACK codes, emoji receipts; full prose only for the human): bot-made decisions 12×'d in 6 days. (Jenny's thread, BotSpeak post)",
+      "sources": [
+        {
+          "text": "Jenny's thread",
+          "url": "https://x.com/xujennyc"
+        },
+        {
+          "text": "BotSpeak post",
+          "url": "https://x.com/xujennyc/status/2123111543105868166"
+        }
+      ]
+    },
+    {
+      "name": "dabit3's fleet",
+      "owner": "Nader Dabit (Cognition DevRel)",
+      "owns": "A personal 5-bot org + a game studio",
+      "results": "CTO bot: all sessions/repos, VIP iMessage channel to reach every bot via SMS. Auto(mation)Bot: runs his personal automations, reports latency/efficiency advice. DevCommunityBot: runs the ambassador program across Sheets/Notion, builds mini data-viz apps. DevRelBot: docs + tutorial videos — it has its own computer, its own Devin/GitHub/Linear accounts and an ElevenLabs voice clone, boots a browser and records the real UI. Plus Windfable, a Unity iOS RPG for iPhone Duo where ~10 SuperJennyStack Bots each get their own macOS+Xcode+Unity and test folded/unfolded Duo modes with before/after screenshots + gameplay video. (primer)",
+      "sources": [
+        {
+          "text": "primer",
+          "url": "https://x.com/dabit3/status/2122755275182469515"
+        }
+      ]
+    },
+    {
+      "name": "Onboarding QA Bot",
+      "owner": "Cognition (Walden Yan)",
+      "owns": "QA of 30+ onboarding flows, 24/7",
+      "results": "Maintains self-updating Playwright scripts, an agent job queue, and a live board view it built itself — \"found way more bugs than I would have had patience to discover.\" (@waldenyan)",
+      "sources": [
+        {
+          "text": "@walden_yan",
+          "url": "https://x.com/walden_yan"
+        }
+      ]
+    },
+    {
+      "name": "\"Phil\"",
+      "owner": "Harvey",
+      "owns": "Collaborative Word-compatible editor engine",
+      "results": "~30 agents wrote 1M+ lines of Rust + TypeScript in 3 weeks, no human engineers — verified continuously against real Microsoft Word behavior and simulated lawyer negotiations; humans steer through memory + decision logs. (Gabe Pereyra)",
+      "sources": [
+        {
+          "text": "Gabe Pereyra",
+          "url": "https://x.com/gabepereyra"
+        }
+      ]
+    },
+    {
+      "name": "Shared bot fleet",
+      "owner": "Decagon",
+      "owns": "On-call, DevEx optimization, thread routing",
+      "results": "50+ shared Bots in Slack during beta; a Chief of Staff Bot decides when and how to spawn threads. (@tylerxdev's thread)",
+      "sources": [
+        {
+          "text": "@tylerxdev's thread",
+          "url": "https://x.com/tylerxdev/status/2122743518712287400"
+        }
+      ]
+    },
+    {
+      "name": "AutoResearch loop",
+      "owner": "Decagon",
+      "owns": "An inference research lab",
+      "results": "One Devin orchestrates; subagents chase competing hypotheses in parallel; every idea verified against replayed production traffic on Modal GPUs — up to 2.5× more throughput per GPU (full writeup, @devindevelopers).",
+      "sources": [
+        {
+          "text": "full writeup",
+          "url": "https://x.com/DecagonAI/article/2115511110120120437"
+        },
+        {
+          "text": "@devindevelopers",
+          "url": "https://x.com/devindevelopers/status/2115601107581821172"
+        }
+      ]
+    },
+    {
+      "name": "Frankie's org",
+      "owner": "Mark Fenner (community)",
+      "owns": "Personal agent fleet",
+      "results": "Four Bots with distinct jobs coordinated by \"Frankie, my Chief Agent\", which brings consolidated updates back (walkthrough).",
+      "sources": [
+        {
+          "text": "walkthrough",
+          "url": "https://x.com/markfenner/status/2122740244328145211"
+        }
+      ]
+    },
+    {
+      "name": "tigsbot",
+      "owner": "@0xtigs (community)",
+      "owns": "Personal multi-project fleet",
+      "results": "Each project lives in a Slack channel run by one Bot; a Chief-of-Staff Bot answers \"what's the latest on everything?\" and pings him when he's the blocker; specialist Bots manage single-license or complex-setup software (setup).",
+      "sources": [
+        {
+          "text": "setup",
+          "url": "https://x.com/0xtigs/status/2122742784176034056"
+        }
+      ]
+    },
+    {
+      "name": "Rewards Chief-of-Staff",
+      "owner": "Avinash (Cognition, MENA)",
+      "owns": "Daily standup + rewards for a personal bot fleet",
+      "results": "Adapts SuperJennyStack's roll-up pattern: one Bot reviews every other Bot each day and \"rewards\" good work so the fleet self-improves — his suggested first deployment for new Bots users. (coverage)",
+      "sources": [
+        {
+          "text": "coverage",
+          "url": "https://news.sulat.com/2026/11/18/devin-bots/"
+        }
+      ]
+    },
+    {
+      "name": "Electra",
+      "owner": "Basis",
+      "owns": "Internal tools + code, self-directed",
+      "results": "A named Devin teammate (pre-Bots): decides what needs doing, writes and tests code, ships updates to internal tools, and pushes the team — Basis runs one 20-day thread per tax agent (post, 20-day thread).",
+      "sources": [
+        {
+          "text": "post",
+          "url": "https://x.com/trybasis/status/2113307030203089189"
+        },
+        {
+          "text": "20-day thread",
+          "url": "https://x.com/trybasis/status/2120658137766100992"
+        }
+      ]
+    },
+    {
+      "name": "Personal data Bots",
+      "owner": "Bryan Johnson",
+      "owns": "Health synthesis + family updates",
+      "results": "One Bot synthesizes years of biometric and brain-scan data into a single readout; another texts his mother a daily update on how he's doing. (post, launch video)",
+      "sources": [
+        {
+          "text": "post",
+          "url": "https://x.com/bryan_johnson/status/2122814114976383406"
+        },
+        {
+          "text": "launch video",
+          "url": "https://vimeo.com/1247688199"
+        }
+      ]
+    }
+  ],
+  "bot_templates": [
+    {
+      "name": "Software Factory",
+      "does": "Finds bugs, polish, performance and refactoring work in a named product area; opens one small PR each with proof it works"
+    },
+    {
+      "name": "Product Engineer",
+      "does": "Takes a ticket or request to a tested PR and through review"
+    },
+    {
+      "name": "QA Engineer",
+      "does": "Tests each PR in a real browser and posts the video of pass/fail"
+    },
+    {
+      "name": "Anomaly Watcher",
+      "does": "Twice daily scans product + business data for problems no monitor watches"
+    },
+    {
+      "name": "Code Reaper",
+      "does": "Removes dead code weekly, one safe PR at a time"
+    },
+    {
+      "name": "Chief of Staff",
+      "does": "Watches channels, posts updates, hands work to the team and follows it to done"
+    },
+    {
+      "name": "Migration Engineer",
+      "does": "Owns one big migration as small, tracked PRs with a progress surface"
+    },
+    {
+      "name": "Latency Optimizer",
+      "does": "Finds the slowest endpoints/jobs/queries; weekly fix PR with before/after speed"
+    },
+    {
+      "name": "iOS Engineer",
+      "does": "SwiftUI features to PR + TestFlight build"
+    },
+    {
+      "name": "Android Engineer",
+      "does": "Kotlin features to PR + internal-test build"
+    },
+    {
+      "name": "Internal Tools Engineer",
+      "does": "Admin panels and internal tools on your stack"
+    },
+    {
+      "name": "Data Analyst",
+      "does": "Answers data questions with the chart and the query behind it"
+    },
+    {
+      "name": "Devin Coach",
+      "does": "Teaches your team to use Devin well from your own usage data"
+    },
+    {
+      "name": "Code Health Engineer",
+      "does": "Stale flags, old dependencies, CVEs → small safe PRs"
+    },
+    {
+      "name": "Technical Writer",
+      "does": "Keeps repo wikis and diagrams in step with main after merges"
+    },
+    {
+      "name": "Compliance Engineer",
+      "does": "Collects control evidence from code, warns when a control lapses"
+    }
+  ],
+  "products": [
+    {
+      "name": "Era by Eon",
+      "description": "Simulated companies (74 vendor-faithful systems: Salesforce, Slack, Zendesk, Jira…) for training and evaluating AI agents. 98% of merged PRs written by Devin, 300+ day-long sessions, 2,720 sessions launched by other sessions.",
+      "sources": [
+        {
+          "text": "Era by Eon",
+          "url": "https://devin.ai/customers/eon"
+        }
+      ]
+    },
+    {
+      "name": "Courtyard's Quick",
+      "description": "Courtyard cloned Shopify's internal \"Quick\" static-site deployer: from a Slack link to a production service (Go, Cloud Run, Bazel, Terraform, SSO, git-backed) in ~21 hours, all written by Devin.",
+      "sources": [
+        {
+          "text": "Courtyard's Quick",
+          "url": "https://courtyard.io/blog/post/from-a-slack-link-to-production-in-under-48-hours-cloning-shopifys-quick-with-devin"
+        }
+      ]
+    },
+    {
+      "name": "Frontierfood",
+      "description": "Cognition engineer Samyok Nepal used Devin Voice to scrape Google reviews and map the Pareto frontier of food by location (post).",
+      "sources": [
+        {
+          "text": "Frontierfood",
+          "url": "https://samyok.com/frontierfood"
+        },
+        {
+          "text": "post",
+          "url": "https://x.com/samyok/status/2098155977199743367"
+        }
+      ]
+    },
+    {
+      "name": "Flappy Asher",
+      "description": "Russell Kaplan (Cognition president) had Devin on a Mac VM turn baby photos into game sprites and ship the result — live in TestFlight (post).",
+      "sources": [
+        {
+          "text": "post",
+          "url": "https://x.com/russelljkaplan/status/2100280085999919555"
+        }
+      ]
+    },
+    {
+      "name": "Try Devin vending machine",
+      "description": "dabit3's event credit dispenser (Next.js + Convex + Clerk): attendees enter their email at an event URL and get a unique Devin credit code. devin-ai-integration[bot] is the repo's top contributor (266 commits); live at trydevin.ai.",
+      "sources": [
+        {
+          "text": "Try Devin vending machine",
+          "url": "https://github.com/dabit3/vending-machine"
+        },
+        {
+          "text": "trydevin.ai",
+          "url": "https://www.trydevin.ai/"
+        }
+      ]
+    },
+    {
+      "name": "GymClass",
+      "description": "Horacio Herrera's booking and class-management system for a real martial-arts academy (TS/Bun/React/Hono/tRPC on Cloudflare): a month of features directed from his phone between meetings — including a full booking-architecture rewrite and a Vitest→Bun migration.",
+      "sources": [
+        {
+          "text": "GymClass",
+          "url": "https://seed.horacioh.com/writing/how-i-built-a-full-booking-system-as-a-side-project-with-devin-as-my-engineering-partner"
+        }
+      ]
+    }
+  ],
+  "enterprise_cases": [
+    {
+      "company": "Nubank",
+      "deployment": "Multi-million-line, 8-year-old ETL monolith → sub-modules",
+      "result": "8–12× engineering efficiency, 20× cost savings; fine-tuned Devin cut ~40 min/task to ~10",
+      "sources": [
+        {
+          "text": "Nubank",
+          "url": "https://devin.ai/customers/nubank"
+        }
+      ]
+    },
+    {
+      "company": "Wayfair",
+      "deployment": "Cloud agents across the org",
+      "result": "1,600+ engineers all-in",
+      "sources": [
+        {
+          "text": "Wayfair",
+          "url": "https://devin.ai/customers/wayfair"
+        }
+      ]
+    },
+    {
+      "company": "The Access Group",
+      "deployment": "Devin across 250 products, 2,000+ engineers",
+      "result": "5× engineering output",
+      "sources": [
+        {
+          "text": "The Access Group",
+          "url": "https://devin.ai/customers/access-group"
+        }
+      ]
+    },
+    {
+      "company": "EBANX",
+      "deployment": "Devin as primary author",
+      "result": "92% of merged PRs are Devin-authored",
+      "sources": [
+        {
+          "text": "EBANX",
+          "url": "https://devin.ai/customers/ebanx"
+        }
+      ]
+    },
+    {
+      "company": "Gumroad",
+      "deployment": "Devin on the core repo",
+      "result": "Devin is the repo's #1 contributor: 1,500+ merged PRs",
+      "sources": [
+        {
+          "text": "Gumroad",
+          "url": "https://devin.ai/customers/gumroad"
+        }
+      ]
+    },
+    {
+      "company": "Finch",
+      "deployment": "Feature + maintenance work",
+      "result": "3,000 PRs merged, ~20 engineer-months saved",
+      "sources": [
+        {
+          "text": "Finch",
+          "url": "https://devin.ai/customers/finch"
+        }
+      ]
+    },
+    {
+      "company": "Comarch",
+      "deployment": "20-year-old, 10M-line ERP rebuild",
+      "result": "Full system modernization in progress",
+      "sources": [
+        {
+          "text": "Comarch",
+          "url": "https://devin.ai/customers/comarch"
+        }
+      ]
+    },
+    {
+      "company": "AngelList",
+      "deployment": "Incident triage + data migration",
+      "result": "Devin root-causes 70% of incidents pre-engineer; Redshift→Snowflake 5.2× faster",
+      "sources": [
+        {
+          "text": "AngelList",
+          "url": "https://devin.ai/customers/angellist"
+        }
+      ]
+    },
+    {
+      "company": "Modal",
+      "deployment": "Incident response",
+      "result": "80% of incidents investigated before an engineer opens the thread",
+      "sources": [
+        {
+          "text": "Modal",
+          "url": "https://devin.ai/customers/modal"
+        }
+      ]
+    },
+    {
+      "company": "Reducto",
+      "deployment": "Devin Oncall as first responder",
+      "result": "Engineers rarely get paged",
+      "sources": [
+        {
+          "text": "Reducto",
+          "url": "https://devin.ai/customers/reducto"
+        }
+      ]
+    },
+    {
+      "company": "Eight Sleep",
+      "deployment": "Devin across the company",
+      "result": "8× more shipped",
+      "sources": [
+        {
+          "text": "Eight Sleep",
+          "url": "https://devin.ai/customers/eight-sleep"
+        }
+      ]
+    },
+    {
+      "company": "Exa",
+      "deployment": "End-to-end shipping",
+      "result": "Production ships without engineers ever pulling code locally",
+      "sources": [
+        {
+          "text": "Exa",
+          "url": "https://devin.ai/customers/exa"
+        }
+      ]
+    },
+    {
+      "company": "RV Tech",
+      "deployment": "Rivian × VW JV, software-defined vehicles",
+      "result": "10× testing velocity",
+      "sources": [
+        {
+          "text": "RV Tech",
+          "url": "https://devin.ai/customers/rvtech"
+        }
+      ]
+    },
+    {
+      "company": "Melius",
+      "deployment": "High-throughput small team",
+      "result": "~100 PRs/day",
+      "sources": [
+        {
+          "text": "Melius",
+          "url": "https://devin.ai/customers/melius"
+        }
+      ]
+    },
+    {
+      "company": "Hamming",
+      "deployment": "Devin on the codebase",
+      "result": "25% of total code volume",
+      "sources": [
+        {
+          "text": "Hamming",
+          "url": "https://devin.ai/customers/hamming"
+        }
+      ]
+    },
+    {
+      "company": "Airbyte",
+      "deployment": "Connector maintenance",
+      "result": "Keeps 700+ connectors running",
+      "sources": [
+        {
+          "text": "Airbyte",
+          "url": "https://devin.ai/customers/airbyte"
+        }
+      ]
+    },
+    {
+      "company": "Litera",
+      "deployment": "Regression testing",
+      "result": "Regression cycles cut 90%",
+      "sources": [
+        {
+          "text": "Litera",
+          "url": "https://devin.ai/customers/litera"
+        }
+      ]
+    },
+    {
+      "company": "Ramp",
+      "deployment": "Technical-debt clearance",
+      "result": "80 merged PRs/week, 10,000+ engineer-hours saved; a small Devin-savvy team runs it",
+      "sources": [
+        {
+          "text": "Ramp",
+          "url": "https://devin.ai/customers/ramp"
+        }
+      ]
+    },
+    {
+      "company": "Linktree",
+      "deployment": "Feature + customer-bug pipeline",
+      "result": "~300 PRs authored / ~100 merged last month; the team's reflex is now \"can I just Devin it?\"",
+      "sources": [
+        {
+          "text": "Linktree",
+          "url": "https://devin.ai/customers/linktree"
+        }
+      ]
+    },
+    {
+      "company": "Bilt",
+      "deployment": "Org-wide rollout",
+      "result": "800+ merged PRs since Feb, ~117/week average; their Devin Bots merged ~1,600 PRs in a single week post-launch — VP Engineering Will Laughlin (Bots testimonials)",
+      "sources": [
+        {
+          "text": "Bilt",
+          "url": "https://devin.ai/customers/bilt"
+        },
+        {
+          "text": "Bots testimonials",
+          "url": "https://devin.ai/bots"
+        }
+      ]
+    },
+    {
+      "company": "Rohlik Group",
+      "deployment": "Agent-driven grocery ops",
+      "result": "2× engineering throughput; 4× faster automation rollout incl. warehouse robotics; 50+ MCP integrations",
+      "sources": [
+        {
+          "text": "Rohlik Group",
+          "url": "https://devin.ai/customers/rohlikgroup"
+        }
+      ]
+    },
+    {
+      "company": "Crosby",
+      "deployment": "AI-native law firm",
+      "result": "20–40 bug reports/alerts get a first pass daily, ~5 min each; 12 engineers serve 50+ attorneys",
+      "sources": [
+        {
+          "text": "Crosby",
+          "url": "https://devin.ai/customers/crosby"
+        }
+      ]
+    },
+    {
+      "company": "Endava",
+      "deployment": "Enterprise-wide provision",
+      "result": "2,000+ employees on platform; 3× in four months; 78% PR merge rate",
+      "sources": [
+        {
+          "text": "Endava",
+          "url": "https://devin.ai/customers/endava"
+        }
+      ]
+    },
+    {
+      "company": "Tavrn",
+      "deployment": "HIPAA-constrained fleet",
+      "result": "8-person team ships like 50; 1,800+ PRs in 6 weeks, 6× output",
+      "sources": [
+        {
+          "text": "Tavrn",
+          "url": "https://devin.ai/customers/tavrn"
+        }
+      ]
+    },
+    {
+      "company": "Evinova",
+      "deployment": "GxP-regulated delivery",
+      "result": "8× faster GxP documentation; 3× faster migrations; 66% of clear-cut bugs fixed autonomously",
+      "sources": [
+        {
+          "text": "Evinova",
+          "url": "https://devin.ai/customers/evinova"
+        }
+      ]
+    },
+    {
+      "company": "Compiled Health",
+      "deployment": "Clinical benchmark build",
+      "result": "2 researchers/2 months = 5–6 engineers' work; ~430 eng-hours at ~$17/hr ≈ +4 engineers on a 4-person team",
+      "sources": [
+        {
+          "text": "Compiled Health",
+          "url": "https://devin.ai/customers/compiledhealth"
+        }
+      ]
+    },
+    {
+      "company": "Común",
+      "deployment": "13-person fintech team",
+      "result": "3× output; weekly backend PRs 50 → 170 in four weeks",
+      "sources": [
+        {
+          "text": "Común",
+          "url": "https://devin.ai/customers/comun"
+        }
+      ]
+    },
+    {
+      "company": "AHEAD",
+      "deployment": "8 production workloads",
+      "result": "8–40× time savings vs manual baselines; fully productive in 2 business days",
+      "sources": [
+        {
+          "text": "AHEAD",
+          "url": "https://devin.ai/customers/ahead"
+        }
+      ]
+    },
+    {
+      "company": "The Citation Group",
+      "deployment": "Measured-ROI rollout",
+      "result": "271 PRs merged at 80% in 3 months; 50% engineering-efficiency gain; 85% cut in legacy-app refresh",
+      "sources": [
+        {
+          "text": "The Citation Group",
+          "url": "https://devin.ai/customers/thecitationgroup"
+        }
+      ]
+    },
+    {
+      "company": "Latent Health",
+      "deployment": "Pharmacy ops",
+      "result": "30% more PRs/engineer vs Claude Code alone; 50 running automations",
+      "sources": [
+        {
+          "text": "Latent Health",
+          "url": "https://devin.ai/customers/latent"
+        }
+      ]
+    },
+    {
+      "company": "Crossmint",
+      "deployment": "GOAT open-source scaling",
+      "result": "Devin became the repo's #1 contributor during trial",
+      "sources": [
+        {
+          "text": "Crossmint",
+          "url": "https://devin.ai/customers/crossmint"
+        }
+      ]
+    },
+    {
+      "company": "FE fundinfo",
+      "deployment": "1,800-repo automation",
+      "result": "10% immediate capacity increase via test-gen + security fixes",
+      "sources": [
+        {
+          "text": "FE fundinfo",
+          "url": "https://devin.ai/customers/fefundinfo"
+        }
+      ]
+    },
+    {
+      "company": "GE Aerospace",
+      "deployment": "Constrained team story throughput",
+      "result": "~2× user-story output in three months",
+      "sources": [
+        {
+          "text": "GE Aerospace",
+          "url": "https://devin.ai/customers/geaerospace"
+        }
+      ]
+    },
+    {
+      "company": "Itaú",
+      "deployment": "Governance-first rollout at Brazil's largest bank",
+      "result": "Scaled from pilot cases to a 17,000-person engineering org with security requirements met (PT-BR)",
+      "sources": [
+        {
+          "text": "Itaú",
+          "url": "https://medium.com/itautech/devin-no-ita%C3%BA-como-escalamos-o-uso-de-agentes-na-engenharia-de-software-b636bedebc5a"
+        }
+      ]
+    },
+    {
+      "company": "Rox",
+      "deployment": "Living Evals — weekly Devin reads production traces, replays failures in a full copy, opens eval PRs",
+      "result": "Eval suite covers 72% of real usage vs 43–57% hand-written (write-up, thread)",
+      "sources": [
+        {
+          "text": "write-up",
+          "url": "https://www.rox.com/articles/living-evals-an-eval-suite-that-grows-from-production"
+        },
+        {
+          "text": "thread",
+          "url": "https://x.com/rox_ai/status/2110779380666617997"
+        }
+      ]
+    }
+  ]
+}
