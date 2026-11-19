@@ -38,3 +38,15 @@
 .guide pre code{font-size:12px}
 }
 .guide code{overflow-wrap:anywhere}
+
+/* prev/next pager */
+.guide-pager{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:48px;border-top:1px solid var(--line);padding-top:24px}
+.guide-pager a{display:flex;flex-direction:column;gap:4px;padding:14px 16px;border:1px solid var(--line);border-radius:10px;text-decoration:none;transition:border-color .15s}
+.guide-pager a:hover{border-color:var(--mut)}
+.guide-pager .pg-next{text-align:right;grid-column:2}
+.pg-dir{font:500 11px var(--mono);letter-spacing:.05em;text-transform:uppercase;color:var(--mut)}
+.pg-t{font:500 14px/1.35 var(--sans);color:var(--fg)}
+@media(max-width:480px){
+.guide-pager{grid-template-columns:1fr}
+.guide-pager .pg-next{grid-column:1;text-align:left}
+}
