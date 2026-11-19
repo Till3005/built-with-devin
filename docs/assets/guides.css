@@ -50,3 +50,7 @@
 .guide-pager{grid-template-columns:1fr}
 .guide-pager .pg-next{grid-column:1;text-align:left}
 }
+
+/* walkthrough media */
+.guide img{display:block;max-width:100%;height:auto;margin:8px 0 6px;border:1px solid var(--line);border-radius:10px}
+.guide p:has(> img) + p > em:only-child,.guide p:has(> img) em{display:block;font:400 13px/1.5 var(--sans);font-style:normal;color:var(--mut)}

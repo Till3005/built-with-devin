@@ -122,7 +122,7 @@ def main():
         return lt
     index_rows = []
     for en in en_files:
-        mirrors = [(d.name, d / en.name) for d in SRC.iterdir() if d.is_dir() and (d / en.name).exists()]
+        mirrors = [(d.name, d / en.name) for d in sorted(SRC.iterdir(), key=lambda d: list(LANG_LABEL).index(d.name) if d.name in LANG_LABEL else 99) if d.is_dir() and (d / en.name).exists()]
         alts = " · ".join(f'<a href="{lang}/{en.stem}.html">{LANG_LABEL.get(lang, lang)}</a>' for lang, _ in mirrors)
         alt_en = f" · {alts}" if alts else ""
         t = render(en, OUT / f"{en.stem}.html", "../", "en", alt_en, en.name, pager_for(en.stem, order, titles))

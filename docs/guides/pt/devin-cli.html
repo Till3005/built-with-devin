@@ -45,9 +45,9 @@
 <p>O Devin CLI é um agente de código que vive no seu terminal e se conecta ao Devin Cloud. Dois modos de trabalho, e o poder está em mover entre eles:</p>
 <ul>
 <li><strong>Local</strong> — edita seu repo checked-out na sua máquina</li>
-<li><strong>Cloud</strong> — <code>devin --cloud</code> cria/dirige/retoma sessões na nuvem; <code>/handoff</code> manda uma tarefa local para um Devin na nuvem, <code>/open</code> puxa o PR de uma sessão cloud de volta para sua máquina</li>
+<li><strong>Cloud</strong> — <code>devin --cloud</code> cria/dirige/retoma sessões na nuvem; <code>/handoff</code> manda uma tarefa local para um Devin na nuvem, <code>/pickup</code> traz uma sessão cloud de volta para sua máquina (<code>/open</code> abre no web app ou no Devin Desktop)</li>
 </ul>
-<pre><code class="language-text">repo local ──/handoff──► sessão Devin Cloud ──PR──► /open ──► repo local
+<pre><code class="language-text">repo local ──/handoff──► sessão Devin Cloud ──/pickup──► repo local
      ▲                          │
      └──── devin ssh / forward (inspecionar a VM) ────┘
 </code></pre>
@@ -122,13 +122,43 @@
 </table>
 <p><strong>Caminho de importação:</strong> <code>read_config_from</code> importa settings de Cursor, Windsurf, Claude Code, Copilot, Codex, Kiro, OpenCode, Zed — migração é uma flag, não uma reescrita.</p>
 <h2>Três workflows que valem copiar</h2>
-<p><strong>1. Local → fan-out na cloud.</strong> Comece uma tarefa localmente, bata nos limites, <code>/handoff</code> para uma sessão cloud que continua na própria máquina — puxe o PR de volta com <code>/open</code>.</p>
+<p><strong>1. Local → fan-out na cloud.</strong> Comece uma tarefa localmente, bata nos limites, <code>/handoff</code> para uma sessão cloud que continua na própria máquina — traga o trabalho de volta com <code>/pickup</code>.</p>
 <p><strong>2. Skills como memória.</strong> Transforme qualquer procedimento repetido (o skill de migração do Guia 11, um runbook de hotfix, um corte de release) num <code>SKILL.md</code> — os docs do CLI notam alimentar <em>transcrições de sessões bem-sucedidas</em> de volta em skills para fechar lacunas. Plugins empacotam e compartilham para o time todo.</p>
 <p><strong>3. Guardrails via hooks.</strong> Hook <code>PreToolUse</code> que bloqueia padrões <code>rm -rf</code> ou força review em migrações — a fiscalização vive no hook, não no comportamento esperado do modelo.</p>
+<h2>Passo a passo — gravado no Devin CLI v3000.14</h2>
+<p>Execução real, não maquete: Devin CLI <code>3000.14.30821</code> no Linux, plano Pro, um <code>demo-repo</code> descartável com um <code>app.py</code>. Modelos: <code>swe-2-flash-high</code> para a edição, <code>swe-2-high</code> para a skill (os dois tiers SWE-2 aparecem como <strong>Free</strong> em <code>devin models</code>).</p>
+<p><strong>Vídeo (67 s, sem áudio):</strong> a sessão inteira abaixo, do login ao erro do handoff.</p>
+<p><a href="https://till3005.github.io/built-with-devin/assets/guides/devin-cli/walkthrough.mp4"><img alt="2. Prompt: adicionar uma função subtract e um teste. O Devin mostra o diff e pede permissão — Allow, Accept edits mode, Bypass mode ou Deny" src="https://till3005.github.io/built-with-devin/assets/guides/devin-cli/walkthrough-poster.webp" /></a></p>
+<p><img alt="1. devin --model swe-2-flash-high — login confirmado e o prompt de confiança no diretório" src="https://till3005.github.io/built-with-devin/assets/guides/devin-cli/step1-login-trust.webp" />
+<em>1. devin --model swe-2-flash-high — login confirmado e o prompt de confiança no diretório</em></p>
+<p><img alt="2. Prompt: adicionar uma função subtract e um teste. O Devin mostra o diff e pede permissão — Allow, Accept edits mode, Bypass mode ou Deny" src="https://till3005.github.io/built-with-devin/assets/guides/devin-cli/step3-permission-prompt.webp" />
+<em>2. Prompt: adicionar uma função subtract e um teste. O Devin mostra o diff e pede permissão — Allow, Accept edits mode, Bypass mode ou Deny</em></p>
+<p><img alt="3. Resultado: app.py editado, test_app.py criado; sem pytest, o Devin rodou os testes com python -c e avisou" src="https://till3005.github.io/built-with-devin/assets/guides/devin-cli/step4-task-done.webp" />
+<em>3. Resultado: app.py editado, test_app.py criado; sem pytest, o Devin rodou os testes com python -c e avisou</em></p>
+<p><img alt="4. /model — Adaptive, Fusion (lead + sidekick) e famílias de modelos; SWE-2 Flash aparece como FREE, sem consumir cota" src="https://till3005.github.io/built-with-devin/assets/guides/devin-cli/step5-model-picker.webp" />
+<em>4. /model — Adaptive, Fusion (lead + sidekick) e famílias de modelos; SWE-2 Flash aparece como FREE, sem consumir cota</em></p>
+<p><img alt="5. /exit imprime a dica devin -r &lt;slug&gt; para retomar; devin ls é o monitor de sessões locais" src="https://till3005.github.io/built-with-devin/assets/guides/devin-cli/step6-devin-ls.webp" />
+<em>5. /exit imprime a dica devin -r <slug> para retomar; devin ls é o monitor de sessões locais</em></p>
+<p><img alt="6. devin --cloud e depois /list-sessions — as sessões cloud da conta, mais recentes primeiro" src="https://till3005.github.io/built-with-devin/assets/guides/devin-cli/step8-cloud-sessions.webp" />
+<em>6. devin --cloud e depois /list-sessions — as sessões cloud da conta, mais recentes primeiro</em></p>
+<p><img alt="7. .devin/skills/review/SKILL.md roda como /review no swe-2-high e revisa as mudanças não commitadas" src="https://till3005.github.io/built-with-devin/assets/guides/devin-cli/step10-skill-result.webp" />
+<em>7. .devin/skills/review/SKILL.md roda como /review no swe-2-high e revisa as mudanças não commitadas</em></p>
+<p><img alt="8. Armadilha: /handoff falha num repo sem git remote — &quot;Handoff only works from git repos with a remote configured&quot;" src="https://till3005.github.io/built-with-devin/assets/guides/devin-cli/step11-handoff-no-remote.webp" />
+<em>8. Armadilha: /handoff falha num repo sem git remote — "Handoff only works from git repos with a remote configured"</em></p>
+<p>A skill usada no passo 7, na íntegra:</p>
+<pre><code class="language-markdown">---
+name: review
+description: Review recent changes in this repo and report issues
+---
+
+Review the working tree's uncommitted changes. List each changed file,
+summarize what it does, and flag anything that looks wrong or risky.
+Keep it under 10 lines.
+</code></pre>
 <h2>Checklist de verificação</h2>
 <ul>
 <li>[ ] <code>devin</code> roda uma sessão local; <code>devin --cloud</code> lista/cria sessões cloud</li>
-<li>[ ] Uma tarefa enviada por <code>/handoff</code> completou na nuvem e seu PR voltou via <code>/open</code></li>
+<li>[ ] Uma tarefa enviada por <code>/handoff</code> completou na nuvem e voltou para sua máquina via <code>/pickup</code></li>
 <li>[ ] Um <code>SKILL.md</code> invocado por slash command rodou seu procedimento</li>
 <li>[ ] (Enterprise) o team marketplace serve seu plugin a outro membro</li>
 </ul>
@@ -136,6 +166,7 @@
 <ul>
 <li><strong>Local para trabalho paralelo.</strong> O CLI é um agente no seu terminal — para fatias paralelas use sessões cloud ou um Bot; o CLI é a superfície <em>hands-on</em>.</li>
 <li><strong>Dispersão de rules.</strong> <code>AGENTS.md</code> + rules de projeto + rules globais interagem por precedência — mantenha cada regra em exatamente uma camada ou elas brigam.</li>
+<li><strong><code>/handoff</code> precisa de remote.</strong> Num repo sem git remote ele falha na hora — antes, faça push para um lugar que o Devin Cloud consiga clonar.</li>
 </ul>
 <h2>Teste de conhecimento</h2>
 <ol>
