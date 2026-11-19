@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Guide 17 — Devin Desktop — build-with-devin guides</title>
+<meta name="description" content="the agent-native editor — every surface of Devin in one window: cloud sessions, local sessions Devin Local, Bots, and a real IDE around them.">
+<link rel="icon" href="../assets/brand/Devin_Symbol.svg" type="image/svg+xml">
+<link rel="stylesheet" href="../assets/site.css">
+<link rel="stylesheet" href="../assets/guides.css">
+
+<meta property="og:title" content="Guide 17 — Devin Desktop">
+<meta property="og:description" content="the agent-native editor — every surface of Devin in one window: cloud sessions, local sessions Devin Local, Bots, and a real IDE around them.">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://till3005.github.io/built-with-devin/guides/devin-desktop.html">
+<meta property="og:image" content="https://till3005.github.io/built-with-devin/assets/img/og-build.png?v=3">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://till3005.github.io/built-with-devin/assets/img/og-build.png?v=3">
+</head>
+<body>
+<a class="skip" href="#guide">Skip to content</a>
+<nav><div class="wrap nav-inner">
+  <div class="nav-left">
+    <a class="brand" href="../index.html" aria-label="Built with Devin">
+      <span class="brand-text">built<strong>-with-</strong></span><img class="brand-mark" src="../assets/brand/Devin_Primary_Logo.svg" alt="Devin" height="16"><span class="unofficial-chip">unofficial</span>
+    </a>
+  </div>
+  <div class="nav-side">
+    <div class="mode-toggle" role="tablist" aria-label="Site section">
+      <button class="mode-btn" data-mode="built" role="tab" aria-selected="false" onclick="location.href='../index.html'">Built</button>
+      <button class="mode-btn on" data-mode="build" role="tab" aria-selected="true" onclick="location.href='../index.html#build'">Build</button>
+      <span class="mode-pill" aria-hidden="true"></span>
+    </div>
+    <a class="cta" href="https://github.com/Till3005/build-with-devin/blob/main/guides/devin-desktop.md">GitHub</a>
+  </div>
+</div></nav>
+<main>
+<article class="guide wrap" id="guide">
+  <p class="guide-crumb"><a href="../index.html#build">← Guides</a> · <a href="zh/devin-desktop.html">中文</a> · <a href="pt/devin-desktop.html">Português</a> · <a href="ja/devin-desktop.html">日本語</a></p>
+<h1>Guide 17 — Devin Desktop</h1>
+<p><strong>Goal:</strong> the agent-native editor — every surface of Devin in one window: cloud sessions, local sessions (Devin Local), Bots, and a real IDE around them.
+<strong>Level:</strong> start here
+<strong>Sources:</strong> <a href="https://docs.devin.ai/desktop/changelog">Desktop changelog</a> · <a href="https://docs.devin.ai/cli/changelog/stable">CLI changelog</a></p>
+<h2>What it is</h2>
+<p>Devin Desktop is the Windsurf-based editor where all of Devin's surfaces live side by side. Three things to tell apart:</p>
+<table>
+<thead>
+<tr>
+<th>Surface</th>
+<th>Where it runs</th>
+<th>Use it for</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Cloud session</td>
+<td>Devin's machine, in your org</td>
+<td>Unattended tasks, parallel work, PRs for review</td>
+</tr>
+<tr>
+<td>Devin Local</td>
+<td>A background process on your machine</td>
+<td>Hands-on edits in your checked-out repo</td>
+</tr>
+<tr>
+<td>Bot</td>
+<td>Persistent agent (see guides 1–5)</td>
+<td>An outcome to own — available in Desktop since v3.14</td>
+</tr>
+</tbody>
+</table>
+<h2>Agent Command Center</h2>
+<p>The Command Center is the session hub — not an editor:</p>
+<ul>
+<li><strong>Tabs</strong> (v3.13.4): several sessions and pages open in one window, each tab with its own Back/Forward history — treat it like a browser for your fleet.</li>
+<li><strong>Session header "..." menu</strong>: the session's MCP servers — toggle one, or re-authenticate it, per session.</li>
+<li><strong>Devin Review</strong>: the PR walkthrough (diff, bugs, test recording) opens as a page in the same window.</li>
+</ul>
+<h2>Devin Local — the daemon change</h2>
+<p>Since v3.13.4 (Desktop) / v3000.13.4 (CLI), a local session runs in a <strong>background process</strong>, not inside the window that started it:</p>
+<ul>
+<li>Closing or reopening Devin Desktop — or the CLI — does <strong>not</strong> stop a session.</li>
+<li>The same session opens in <strong>several clients at once</strong>: desktop window and terminal both attached, each showing output and questions.</li>
+<li><code>devin daemon</code> starts/stops/checks the process; it exits ~10 min after its last session and client leave.</li>
+<li><code>--process-model</code> chooses <code>daemon</code> vs <code>in-process</code>; <code>process_model</code> in <code>config.json</code> or <code>/config</code> sets the default.</li>
+<li><code>devin ls</code>, <code>devin -r</code> and <code>/resume</code> open a <strong>session monitor</strong> — sessions by last update, with status, directory and message count.</li>
+</ul>
+<p>The practical consequence: local work is now durable. Start a long task, close the laptop, reattach from another client — the session kept going.</p>
+<h2>IDE mode</h2>
+<ul>
+<li>The embedded IDE saves on <strong>Cmd/Ctrl+S</strong> (no auto-save); unsaved tabs show a dot.</li>
+<li>In a Devin Local browser preview, <strong>picking a page element or console output adds it to the composer</strong> — point at the bug instead of describing it.</li>
+<li>The Files tab previews PDFs, renders CSV/TSV as tables, and plays media.</li>
+</ul>
+<h2>Two workflows worth copying</h2>
+<p><strong>1. Local → cloud → local.</strong> Work in Devin Local, hit the wall (needs org tools, more parallelism, longer than your laptop stays open), <code>/handoff</code> to cloud, review the PR back home. The daemon makes both halves resumable.</p>
+<p><strong>2. One window, many surfaces.</strong> Command Center for the fleet view, Local for the repo you're in, a Bot for the outcome you don't want to babysit — Desktop is the only place all three share a window.</p>
+<h2>Verify it</h2>
+<ul>
+<li>[ ] A Devin Local session survives closing and reopening Desktop</li>
+<li>[ ] The same local session attached from Desktop and from <code>devin</code> CLI at once</li>
+<li>[ ] <code>devin ls</code> opened the session monitor and joined a running session</li>
+<li>[ ] A Bot created from its Desktop chat answered in that chat</li>
+</ul>
+<h2>Pitfalls</h2>
+<ul>
+<li><strong>"Not authorized to use the CLI"</strong> — accounts with Desktop access but no CLI access hit this on Devin Local sign-in (fixed in v3.14.30825; update if you see it).</li>
+<li><strong>Tabs are per-window state.</strong> An action in a session page only acts on its tab — but the <em>session</em> is shared, so a second client attaching sees the same live session, not a copy.</li>
+<li><strong>Managed machines:</strong> enterprise admins control Desktop settings via device policies (e.g. <code>DetectProxy</code> for the language server) — check with IT before debugging the network yourself.</li>
+</ul>
+<h2>Knowledge check</h2>
+<ol>
+<li>What changed about local sessions in v3.13.4? <em>(They run in a background process — closing the app no longer stops them, and multiple clients can attach to the same session.)</em></li>
+<li>When do you pick Devin Local over a cloud session? <em>(When you want hands-on edits in your checked-out repo with your local context; hand off to cloud for scale or org integrations.)</em></li>
+<li>What lives in the session header's "..." menu? <em>(The session's MCP servers — toggle or re-authenticate them per session.)</em></li>
+</ol>
+<h2>Sources</h2>
+<ul>
+<li><a href="https://docs.devin.ai/desktop/changelog">Devin Desktop changelog</a> — v3.13.4 (tabs, background local sessions), v3.14 (Bots in Desktop)</li>
+<li><a href="https://docs.devin.ai/cli/changelog/stable">Devin CLI changelog</a> — v3000.13.4: <code>devin daemon</code>, <code>--process-model</code>, session monitor</li>
+<li>Related: <a href="devin-cli.html">Guide 12 — Devin CLI &amp; extensibility</a> · <a href="bots-101-first-bot.html">Guide 1 — Your first Bot</a></li>
+</ul>
+<nav class="guide-pager"><a class="pg-prev" href="skills-and-plugins.html"><span class="pg-dir">← Previous</span><span class="pg-t">Guide 17 — Skills &amp; plugins: the post-playbook packaging layer</span></a></nav>
+</article>
+<footer><div class="wrap foot-base"><span data-i18n="foot.note">Unofficial community project — not affiliated with Cognition AI.</span><span><a href="../index.html">built-with-devin</a> · <a href="https://github.com/Till3005/build-with-devin">build-with-devin</a></span></div></footer>
+</main>
+<script src="../assets/theme.js"></script>
+<script src="../assets/i18n.js"></script>
+<script src="../assets/i18n-runtime.js"></script>
+</body>
+</html>

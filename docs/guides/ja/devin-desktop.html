@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ガイド 17 — Devin Desktop — build-with-devin guides</title>
+<meta name="description" content="ガイド 17 — Devin Desktop">
+<link rel="icon" href="../../assets/brand/Devin_Symbol.svg" type="image/svg+xml">
+<link rel="stylesheet" href="../../assets/site.css">
+<link rel="stylesheet" href="../../assets/guides.css">
+
+<meta property="og:title" content="ガイド 17 — Devin Desktop">
+<meta property="og:description" content="ガイド 17 — Devin Desktop">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://till3005.github.io/built-with-devin/guides/ja/devin-desktop.html">
+<meta property="og:image" content="https://till3005.github.io/built-with-devin/assets/img/og-build.png?v=3">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://till3005.github.io/built-with-devin/assets/img/og-build.png?v=3">
+</head>
+<body>
+<a class="skip" href="#guide">Skip to content</a>
+<nav><div class="wrap nav-inner">
+  <div class="nav-left">
+    <a class="brand" href="../../index.html" aria-label="Built with Devin">
+      <span class="brand-text">built<strong>-with-</strong></span><img class="brand-mark" src="../../assets/brand/Devin_Primary_Logo.svg" alt="Devin" height="16"><span class="unofficial-chip">unofficial</span>
+    </a>
+  </div>
+  <div class="nav-side">
+    <div class="mode-toggle" role="tablist" aria-label="Site section">
+      <button class="mode-btn" data-mode="built" role="tab" aria-selected="false" onclick="location.href='../../index.html'">Built</button>
+      <button class="mode-btn on" data-mode="build" role="tab" aria-selected="true" onclick="location.href='../../index.html#build'">Build</button>
+      <span class="mode-pill" aria-hidden="true"></span>
+    </div>
+    <a class="cta" href="https://github.com/Till3005/build-with-devin/blob/main/guides/ja/devin-desktop.md">GitHub</a>
+  </div>
+</div></nav>
+<main>
+<article class="guide wrap" id="guide">
+  <p class="guide-crumb"><a href="../../index.html#build">← Guides</a> · <a href="../devin-desktop.html">English</a> · <a href="../zh/devin-desktop.html">中文</a> · <a href="../pt/devin-desktop.html">Português</a></p>
+<h1>ガイド 17 — Devin Desktop</h1>
+<p><strong>目標：</strong> エージェントネイティブなエディタ——Devin の全サーフェスを1つのウィンドウに：クラウドセッション、ローカルセッション（Devin Local）、Bots、そして本物の IDE。
+<strong>レベル：</strong> 入門
+<strong>ソース：</strong> <a href="https://docs.devin.ai/desktop/changelog">Desktop changelog</a> · <a href="https://docs.devin.ai/cli/changelog/stable">CLI changelog</a></p>
+<h2>これは何か</h2>
+<p>Devin Desktop は Windsurf ベースのエディタで、Devin の各サーフェスが並んで存在する。まず3つを区別する：</p>
+<table>
+<thead>
+<tr>
+<th>サーフェス</th>
+<th>実行場所</th>
+<th>用途</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>クラウドセッション</td>
+<td>Devin のマシン、あなたの組織内</td>
+<td>無人タスク、並列作業、レビュー待ちの PR</td>
+</tr>
+<tr>
+<td>Devin Local</td>
+<td>あなたのマシンのバックグラウンドプロセス</td>
+<td>チェックアウト済み repo を手作業で編集</td>
+</tr>
+<tr>
+<td>Bot</td>
+<td>永続エージェント（ガイド 1–5 参照）</td>
+<td>成果を丸ごと任せる——v3.14 から Desktop に搭載</td>
+</tr>
+</tbody>
+</table>
+<h2>Agent Command Center</h2>
+<p>Command Center はセッションのハブであり、エディタではない：</p>
+<ul>
+<li><strong>タブ</strong>（v3.13.4）：1つのウィンドウで複数セッションとページを開け、各タブに独自の戻る/進む履歴——フリートのブラウザと考える。</li>
+<li><strong>セッションヘッダーの "..." メニュー</strong>：そのセッションの MCP servers——セッションごとに切替え・再認証。</li>
+<li><strong>Devin Review</strong>：PR ウォークスルー（diff、バグ、テスト録画）が同じウィンドウのページとして開く。</li>
+</ul>
+<h2>Devin Local —— daemon 化</h2>
+<p>v3.13.4（Desktop）/ v3000.13.4（CLI）以降、ローカルセッションは起動したウィンドウではなく<strong>バックグラウンドプロセス</strong>で動く：</p>
+<ul>
+<li>Devin Desktop や CLI を閉じて開き直しても、セッションは<strong>止まらない</strong>。</li>
+<li>同一セッションに<strong>複数クライアントが同時接続</strong>できる：Desktop ウィンドウとターミナルの両方で出力と質問が見える。</li>
+<li><code>devin daemon</code> がプロセスの起動/停止/状態確認を行う。最後のセッションとクライアントが離れて約10分で自動終了する。</li>
+<li><code>--process-model</code> が <code>daemon</code> と <code>in-process</code> を切替える。<code>config.json</code> の <code>process_model</code> または <code>/config</code> がデフォルト設定。</li>
+<li><code>devin ls</code>、<code>devin -r</code>、<code>/resume</code> は<strong>セッションモニター</strong>を開く——最終更新順のセッション一覧にステータス・ディレクトリ・メッセージ数付き。</li>
+</ul>
+<p>実務上の帰結：ローカル作業が永続化した。長いタスクを始めてノートPCを閉じ、別クライアントから再接続できる——セッションは動き続けている。</p>
+<h2>IDE モード</h2>
+<ul>
+<li>埋め込み IDE は <strong>Cmd/Ctrl+S</strong> で手動保存（自動保存は廃止）。未保存タブにはドットが付く。</li>
+<li>Devin Local のブラウザプレビューで<strong>ページ要素やコンソール出力を選ぶと composer に追加される</strong>——バグを説明せず、指し示す。</li>
+<li>Files タブは PDF をプレビュー、CSV/TSV を表として描画、メディアを再生する。</li>
+</ul>
+<h2>真似る価値のあるワークフロー2つ</h2>
+<p><strong>1. ローカル → クラウド → ローカル。</strong> Devin Local で作業し、限界に達したら（組織ツールが必要、さらに並列化、ノートPCの稼働時間超過）<code>/handoff</code> でクラウドへ。PR をレビューして手元に戻す。daemon で両側とも再開できる。</p>
+<p><strong>2. 1つのウィンドウ、全サーフェス。</strong> Command Center でフリート全体、Local で手元の repo、Bot で見守りたくない成果——3つが同じウィンドウを共有するのは Desktop だけ。</p>
+<h2>検証</h2>
+<ul>
+<li>[ ] Devin Local セッションが Desktop を閉じて開き直しても動き続ける</li>
+<li>[ ] 同一ローカルセッションに Desktop と <code>devin</code> CLI から同時に接続できる</li>
+<li>[ ] <code>devin ls</code> でセッションモニターが開き、実行中のセッションに join できる</li>
+<li>[ ] Desktop のチャットで作った Bot が同じチャットで返答する</li>
+</ul>
+<h2>落とし穴</h2>
+<ul>
+<li><strong>"Not authorized to use the CLI"</strong> —— Desktop 権限はあるが CLI 権限のないアカウントが Devin Local のサインインで出るエラー（v3.14.30825 で修正済み。見かけたら更新）。</li>
+<li><strong>タブはウィンドウの状態。</strong> セッションページ内の操作は自分のタブだけに作用——ただし<em>セッション</em>は共有なので、別クライアントが接続するとコピーではなく同じ生きたセッションが見える。</li>
+<li><strong>管理対象マシン：</strong> エンタープライズ管理者はデバイスポリシーで Desktop 設定を制御する（例：言語サーバーの <code>DetectProxy</code>）。ネットワークを疑う前に IT に確認。</li>
+</ul>
+<h2>理解度チェック</h2>
+<ol>
+<li>v3.13.4 でローカルセッションは何が変わったか？（バックグラウンドプロセスで動作するようになった——アプリを閉じても止まらず、複数クライアントが同時接続できる。）</li>
+<li>いつクラウドセッションではなく Devin Local を選ぶか？（ローカルコンテキストでチェックアウト済み repo を直接編集したいとき。規模や組織統合が必要ならクラウドへ。）</li>
+<li>セッションヘッダーの "..." メニューには何があるか？（そのセッションの MCP servers——セッションごとの切替え・再認証。）</li>
+</ol>
+<h2>ソース</h2>
+<ul>
+<li><a href="https://docs.devin.ai/desktop/changelog">Devin Desktop changelog</a> —— v3.13.4（タブ、バックグラウンドローカルセッション）、v3.14（Desktop 内 Bots）</li>
+<li><a href="https://docs.devin.ai/cli/changelog/stable">Devin CLI changelog</a> —— v3000.13.4：<code>devin daemon</code>、<code>--process-model</code>、セッションモニター</li>
+<li>関連：<a href="devin-cli.html">ガイド 12 — Devin CLI と拡張性</a> · <a href="bots-101-first-bot.html">ガイド 1 — 初めての Bot</a></li>
+</ul>
+<nav class="guide-pager"><a class="pg-prev" href="skills-and-plugins.html"><span class="pg-dir">← Previous</span><span class="pg-t">ガイド 17 — Skills と plugins：playbook の次のパッケージング層</span></a></nav>
+</article>
+<footer><div class="wrap foot-base"><span data-i18n="foot.note">Unofficial community project — not affiliated with Cognition AI.</span><span><a href="../../index.html">built-with-devin</a> · <a href="https://github.com/Till3005/build-with-devin">build-with-devin</a></span></div></footer>
+</main>
+<script src="../../assets/theme.js"></script>
+<script src="../../assets/i18n.js"></script>
+<script src="../../assets/i18n-runtime.js"></script>
+</body>
+</html>
