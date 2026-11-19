@@ -104,9 +104,32 @@
 <td>单人操作者跑 4 个分工 Bot，由一个协调者 Chief Agent Bot（"Frankie"）统领</td>
 <td>经单一决策面汇总汇报——多 Bot 组织形态不需要团队就能跑（<a href="https://x.com/markfenner/status/2122740244328145211">walkthrough</a>）</td>
 </tr>
+<tr>
+<td>hubble</td>
+<td>两条常驻回路：每个 Dependabot PR 在人看之前先由 Devin 调查——打 GREEN/YELLOW/RED 风险标签<strong>并把依据写进评论</strong>；每周 Datadog CCM 回路挑一个成本候选、深挖、交回可直接决策的报告</td>
+<td>人打开 PR 时评审材料已经备好；交付物是依据而非标签（<a href="https://zenn.dev/hubble/articles/88429bd24db476">Dependabot 回路</a>、<a href="https://zenn.dev/hubble/articles/091e29a0c86ec3">成本回路</a>，JP）</td>
+</tr>
+<tr>
+<td>SMARTCAMP</td>
+<td>常驻安全流水线：定时 GitHub Actions 拉 ECS 镜像 → Trivy 扫（HIGH/CRITICAL）→ 建 issue → Devin 修复；AWS 凭证与扫描任务隔离只让产物跨边界；hash 固定 + 发布后 7 天宽限期防扫描器滞后</td>
+<td>漏洞修复做成流水线，不是一次性会话（<a href="https://zenn.dev/smartcamp/articles/97ac804043530e">report</a>，JP）</td>
+</tr>
+<tr>
+<td>canly</td>
+<td>Devin 当分析师而非码农：把 ~700 条历史工单分类，弄清「原因未特定」到底是什么</td>
+<td>过半根本不是 bug；给 AI 喂什么上下文（DB？文档？）比选哪个模型更关键（<a href="https://zenn.dev/canly/articles/9c19bb123e208c">report</a>，JP）</td>
+</tr>
 </tbody>
 </table>
-<p>其中可复用的思想：<strong>策略表门控</strong>（arufian：只自动 PR 低风险活、复杂的走 plan-first）、<strong>定式输出 prompt</strong>（Skillnote：固定 CSV 格式 + 内联 Python 转换消除输出抖动）、<strong>评审预消化</strong>（rakko：人看之前 Devin 先摘要+标记）、<strong>诚实记账</strong>（levtech 的 ACU-vs-工资 ROI 公式）。</p>
+<p>其中可复用的思想：<strong>策略表门控</strong>（arufian：只自动 PR 低风险活、复杂的走 plan-first）、<strong>定式输出 prompt</strong>（Skillnote：固定 CSV 格式 + 内联 Python 转换消除输出抖动）、<strong>评审预消化</strong>（rakko：人看之前 Devin 先摘要+标记）、<strong>理由先行分诊</strong>（hubble：标签只是指针，带着证据的评论才是交付物）、<strong>流水线化修复</strong>（SMARTCAMP：扫描 → issue → 修复一条 CI 式回路，带凭证与免凭证的段分开）、<strong>诚实记账</strong>（levtech 的 ACU-vs-工资 ROI 公式）。</p>
+<p><strong>组织运营的细账</strong>（来自 Leverages ~30 人的铺开，同一篇报告）：</p>
+<ul>
+<li>一个 Slack workspace 只能绑<strong>一个</strong> Devin 组织——规划 Slack 驱动会话前，先查有没有别的部门已经占了坑。</li>
+<li>没有按团队限 ACU 的配额功能；他们用 API 列会话、再抓网页拿每个会话的 ACU 来汇总——预算靠可视化，不靠硬限制。</li>
+<li>隐形 ACU 消耗：默认 Devin 开的 PR 上每条评论都会唤醒会话。他们打开了 <strong>"Only respond to PR comments that mention Devin"</strong>，让人随便讨论。</li>
+<li>仓库 onboarding 是串行的——一个在 setup 中就卡住下一个，得排期。</li>
+<li>他们的 ROI 分布：高的在 PR 预评审（<code>devin-review</code> 标签 → Actions → API Playbook，每次 ~1–2 ACU）、定期库升级风险评估、以及喂了<em>相似既有 PR</em> 的遗留代码活；低的在大范围重构和小到不值得的任务。</li>
+</ul>
 <h2>蒸馏出的教训</h2>
 <ol>
 <li><strong>切的是片，不是项目。</strong> 成功全是有边界的单元；失败都是"去把这个大致建/修一下"。（官方教条：第 13 篇。）</li>
@@ -114,6 +137,7 @@
 <li><strong>带上下文，不带假设。</strong> 规范、最新文档（经 MCP）、你的技术栈形态——失败都是上下文失败，不是能力失败。</li>
 <li><strong>委派；别盯着。</strong> 每篇正面报告里的 ROI 都来自<em>异步</em>——任务在你干别的时跑。盯着它打字是你觉得它"慢"的原因。</li>
 <li><strong>迭代 prompt，不是迭代工具。</strong> Scott Logic 的修复不是换 agent——是收窄 prompt。把第一次失败当 prompt bug 处理。</li>
+<li><strong>交付证据，不交付判决。</strong> hubble 把 Dependabot skill 的最后一步从「决定是否合并」改成「评估风险」——agent 组装案情，人保留决定权。</li>
 </ol>
 <h2>Scott Wu 的内部 top-5（来自 Lenny's 访谈）</h2>
 <p>Cognition 自己委派最多的任务：<strong>前端修复、版本升级、文档、事故响应、测试</strong>——外加"第一道防线"模式（Devin 在人介入前先分析 crash），以及用 DeepWiki 调研来<em>写出更好的 prompt</em>。</p>
@@ -145,6 +169,11 @@
 <li><a href="https://architecttocto.substack.com/p/the-only-coding-agent-worth-paying">architect to CTO — The only coding agent worth paying for</a></li>
 <li><a href="https://expectedwrong.com/devin-appraised">expectedwrong — Devin, appraised</a> · <a href="https://dev.to/alanwest/i-gave-devin-10-real-tasks-it-completed-3-3063">dev.to — 10 real tasks, 3 completed</a> · <a href="https://www.amillionmonkeys.co.uk/blog/ai-coding-tools-small-studios">amillionmonkeys</a></li>
 <li><a href="https://dev.to/signadot/test-devins-changes-end-to-end-with-signadot-a0">Signadot — Testing Devin's changes end to end</a></li>
+<li><a href="https://zenn.dev/hubble/articles/88429bd24db476">hubble — Dependabot PRs investigated by Devin first</a> · <a href="https://zenn.dev/hubble/articles/091e29a0c86ec3">hubble — Datadog CCM × Devin weekly cost ops</a>（日语）</li>
+<li><a href="https://zenn.dev/smartcamp/articles/97ac804043530e">SMARTCAMP — Trivy scan → Devin remediation pipeline</a>（日语）</li>
+<li><a href="https://zenn.dev/canly/articles/9c19bb123e208c">canly — Classifying ~700 support inquiries with Devin</a>（日语）</li>
+<li><a href="https://zenn.dev/smasato/articles/6aebb0da2f56eb">smasato — Maximizing Devin: tips for success</a>（日语/英译版）</li>
+<li><a href="https://juejin.cn/post/7689030315844026414">掘金 — Devin vs Cursor：个人开发者和中小项目怎么选</a>（中文）</li>
 </ul>
 <nav class="guide-pager"><a class="pg-prev" href="enterprise-playbook.html"><span class="pg-dir">← Previous</span><span class="pg-t">指南 7 — 企业级铺开模式</span></a></nav>
 </article>

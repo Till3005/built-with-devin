@@ -104,9 +104,32 @@
 <td>調整役 Chief Agent Bot（"Frankie"）の下で職務別 4 Bot を運営する一人オペレーター</td>
 <td>1 つの決裁面に集約された更新——チームなしでもマルチ Bot 組織形が機能（<a href="https://x.com/markfenner/status/2122740244328145211">ウォークスルー</a>）</td>
 </tr>
+<tr>
+<td>hubble</td>
+<td>2 つの常設ループ：すべての Dependabot PR を人間が読む前に Devin が調査——GREEN/YELLOW/RED リスクラベル<strong>と根拠をコメントに残す</strong>；週次 Datadog CCM ループがコスト候補を選び、深掘りし、判断可能なレポートを渡す</td>
+<td>人間が PR を開いた時点でレビュー材料が揃っている；届け物はラベルではなく根拠（<a href="https://zenn.dev/hubble/articles/88429bd24db476">Dependabot ループ</a>、<a href="https://zenn.dev/hubble/articles/091e29a0c86ec3">コストループ</a>、日本語）</td>
+</tr>
+<tr>
+<td>SMARTCAMP</td>
+<td>常設セキュリティパイプライン：スケジュール GitHub Actions が ECS イメージを pull → Trivy スキャン（HIGH/CRITICAL）→ issue 起票 → Devin が修復；AWS 認証情報とスキャナージョブを分離し成果物だけが越境；ハッシュ固定 + リリース後 7 日の猶予でスキャナー遅延をガード</td>
+<td>脆弱性対応をセッションではなくパイプラインとして運用（<a href="https://zenn.dev/smartcamp/articles/97ac804043530e">レポート</a>、日本語）</td>
+</tr>
+<tr>
+<td>canly</td>
+<td>コーダーではなくアナリストとしての Devin：過去約 700 件の問い合わせを分類し、「原因未特定」の正体を解明</td>
+<td>半数以上はバグではなかった；AI に何を見せるか（DB？ドキュメント？）の選択がモデルより重要だった（<a href="https://zenn.dev/canly/articles/9c19bb123e208c">レポート</a>、日本語）</td>
+</tr>
 </tbody>
 </table>
-<p>中にある再利用可能なアイデア：<strong>ポリシーテーブルゲーティング</strong>（arufian：低リスク作業だけ自動 PR、複雑なものは計画優先）、<strong>固定出力プロンプト</strong>（Skillnote：固定 CSV 形式 + 変換用インライン Python が出力ばらつきを殺す）、<strong>レビュアー事前消化</strong>（rakko：人間が読む前に Devin が要約 + フラグ）、<strong>正直な会計</strong>（levtech の ACU 対賃金 ROI 式）。</p>
+<p>中にある再利用可能なアイデア：<strong>ポリシーテーブルゲーティング</strong>（arufian：低リスク作業だけ自動 PR、複雑なものは計画優先）、<strong>固定出力プロンプト</strong>（Skillnote：固定 CSV 形式 + 変換用インライン Python が出力ばらつきを殺す）、<strong>レビュアー事前消化</strong>（rakko：人間が読む前に Devin が要約 + フラグ）、<strong>根拠ファーストのトリアージ</strong>（hubble：ラベルはポインタ、証拠を載せたコメントが届け物）、<strong>パイプライン型修復</strong>（SMARTCAMP：スキャン → issue → 修復を 1 本の CI 型ループに、認証あり/なしのステージを分離）、<strong>正直な会計</strong>（levtech の ACU 対賃金 ROI 式）。</p>
+<p><strong>組織運営の細目</strong>（Leverages の約 30 人の展開から、同じレポート）：</p>
+<ul>
+<li>1 つの Slack ワークスペースは<strong>1 つの</strong> Devin 組織にしかバインドできない——Slack 駆動のセッションを計画する前に、他部署が既に紐づけていないか確認する。</li>
+<li>チームごとの ACU クォータ機能はない；API でセッション一覧を取り、Web UI から各セッションの ACU をスクレイピングして集計——強制ではなく可視化で予算管理。</li>
+<li>静かな ACU 燃焼：デフォルトでは Devin 作成 PR へのコメントごとにセッションが起動。<strong>「Only respond to PR comments that mention Devin」</strong>をオンにし、人間は自由に議論できるようにした。</li>
+<li>リポジトリのオンボーディングは直列——セットアップ中の 1 リポジトリが次をブロックする。スケジュールすること。</li>
+<li>ROI 内訳：高かったのは PR 一次レビュー（<code>devin-review</code> ラベル → Actions → API Playbook で 1 回あたり約 1–2 ACU）、定期的なライブラリ更新のリスク評価、<em>類似の既存 PR</em> を与えたレガシー作業；低かったのは広範囲リファクタリングと小さすぎるタスク。</li>
+</ul>
 <h2>抽出された教訓</h2>
 <ol>
 <li><strong>プロジェクトではなくスライスをスコープする。</strong> 成功はすべて境界のある単位；失敗は「広くこれを作って/直して」。（公式ドクトリン：ガイド 13。）</li>
@@ -114,6 +137,7 @@
 <li><strong>仮定ではなくコンテキストを運ぶ。</strong> 規約、（MCP 経由の）最新ドキュメント、スタックの形——失敗は能力の失敗ではなくコンテキストの失敗。</li>
 <li><strong>委任する；見守らない。</strong> すべての好意的レポートの ROI は<em>非同期性</em>——あなたが別のことをしている間にタスクが走る。タイピングを見つめるのが「遅い」と判断する方法。</li>
 <li><strong>ツールではなくプロンプトを反復する。</strong> Scott Logic の修正は別のエージェントではなく、より狭いプロンプトだった。最初の失敗実行はプロンプトのバグとして扱う。</li>
+<li><strong>評決ではなく証拠を届ける。</strong> hubble は Dependabot スキルの最終ステップを「マージ可否を決める」から「リスクを評価する」に書き換えた——エージェントは案件を組み立て、人間が決断を握る。</li>
 </ol>
 <h2>Scott Wu の社内トップ 5（Lenny's インタビューより）</h2>
 <p>Cognition 自身が最も委任するタスク：<strong>フロントエンド修正、バージョンアップグレード、ドキュメント、インシデント対応、テスト</strong>——加えて「第一防御線」パターン（人間が関わる前に Devin がクラッシュを分析）と、<em>より良いプロンプトを書く</em>ための DeepWiki リサーチ。</p>
@@ -145,6 +169,10 @@
 <li><a href="https://architecttocto.substack.com/p/the-only-coding-agent-worth-paying">architect to CTO — The only coding agent worth paying for</a></li>
 <li><a href="https://expectedwrong.com/devin-appraised">expectedwrong — Devin, appraised</a> · <a href="https://dev.to/alanwest/i-gave-devin-10-real-tasks-it-completed-3-3063">dev.to — 10 real tasks, 3 completed</a> · <a href="https://www.amillionmonkeys.co.uk/blog/ai-coding-tools-small-studios">amillionmonkeys</a></li>
 <li><a href="https://dev.to/signadot/test-devins-changes-end-to-end-with-signadot-a0">Signadot — Testing Devin's changes end to end</a></li>
+<li><a href="https://zenn.dev/hubble/articles/88429bd24db476">hubble — Dependabot の PR を人より先に Devin が調査</a> · <a href="https://zenn.dev/hubble/articles/091e29a0c86ec3">hubble — Datadog CCM × Devin の週次コスト運用</a>（日本語）</li>
+<li><a href="https://zenn.dev/smartcamp/articles/97ac804043530e">SMARTCAMP — Trivy スキャン → Devin 修復パイプライン</a>（日本語）</li>
+<li><a href="https://zenn.dev/canly/articles/9c19bb123e208c">canly — 約 700 件の問い合わせを Devin で分類</a>（日本語）</li>
+<li><a href="https://zenn.dev/smasato/articles/6aebb0da2f56eb">smasato — Devin を最大化する：成功のための Tips</a>（日本語）</li>
 </ul>
 <nav class="guide-pager"><a class="pg-prev" href="enterprise-playbook.html"><span class="pg-dir">← Previous</span><span class="pg-t">ガイド 7 — エンタープライズ導入パターン</span></a></nav>
 </article>
