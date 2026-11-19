@@ -13,7 +13,7 @@
 
 <sub>Curado por [@darega0mae](https://x.com/darega0mae) · Tutoriais irmãos: [build-with-devin](https://github.com/Till3005/build-with-devin) · [Adicione seu projeto](CONTRIBUTING.md)</sub>
 
-<sub>**14** implantações de Bot documentadas · **41** casos corporativos · **6** produtos lançados · **32** ferramentas e integrações · **27** relatos de campo</sub>
+<sub>**14** implantações de Bot documentadas · **41** casos corporativos · **6** produtos lançados · **32** ferramentas e integrações · **28** relatos de campo</sub>
 
 <sub>[English](README.md) · [简体中文](README.zh.md) · [日本語](README.ja.md) · Português</sub>
 
@@ -286,6 +286,7 @@ Uso real documentado.
 - **[Migrando uma org de Grok Bots para Devin Bots](https://www.rickblalock.dev/scratch-notes/learnings-from-moving-my-grok-bots-to-devin-bots/)** — o primeiro relato independente da beta: portar uma org existente de Grok-bots custou ~$300 de uso único e uma noite; a orquestração de engenharia foi "encantadora", mas o trabalho de negócios voltou pro Grok, resultando num setup híbrido Grok Bot ↔ Devin Bot. Log de fricção honesto: os bots traziam decisões *demais*, nem sempre as certas — "me trate como um VP, não como um estagiário."
 - **[Orquestração multi-IA no SWE-2 grátis](https://qiita.com/ishizakahiroshi/items/72ab801a5f2a8c941b61)** — Um design para rotear trabalho entre agentes usando o tier permanentemente gratuito SWE-2 do Devin CLI (JP).
 - **[Scan Trivy → remediação Devin na SMARTCAMP](https://zenn.dev/smartcamp/articles/97ac804043530e)** — Pipeline agendado do GitHub Actions baixa imagens do ECS, escaneia com Trivy e abre issues HIGH/CRITICAL que o Devin remedia — jobs com credenciais AWS e do scanner separados, apenas artefatos cruzam (JP).
+- **[Devin como minha equipe de engenharia por um mês](https://ravtheman.medium.com/im-17-and-for-one-month-devin-was-my-entire-engineering-team-here-s-everything-i-learned-183d59099384)** — Um mês de um estudante de Melbourne no giveaway do Max: 67 PRs tocados e 44 mergeados numa noite; uma distro Linux, uma família de modelos locais e um IDE multiagente feitos entre aulas — com um resumo medido do fluxo CLI/cloud (Medium).
 
 <p align="right"><a href="#readme">back to top</a></p>
 
@@ -294,6 +295,7 @@ Uso real documentado.
 ## Mídia da comunidade
 
 - **[Devin Central](https://devincentral.com)** — Site não oficial de notícias e tutoriais do Devin, do Trevor Lowing.
+- **[Devin Central Learn](https://devincentral.com/learn)** — Sua parte estruturada: o curso gratuito "Devin Fundamentals" de 8 lições (vídeo + texto + quiz por lição) e guias práticos de escopo de tarefas, planos/ACUs, superfícies e o caminho de migração do Windsurf.
 - **[Voices — diretório de embaixadores](https://devincentral.com/voices)** — Mapa não oficial de ~190 Devin Ambassadors no mundo.
 - **[devin-cli.github.io](https://devin-cli.github.io)** — Documentação comunitária sobre o que as superfícies de API, Slack e Linear do Devin cobrem e como automatizá-las.
 - **[Agents In Use](https://agentsinuse.com)** — Diretório de casos reais de agentes, incluindo entradas do Devin.
@@ -310,6 +312,7 @@ Uso real documentado.
 
 - [Devin Community](https://devin.ai/community) — eventos, candidaturas de embaixador, apoio a eventos
 - [docs.devin.ai](https://docs.devin.ai) — documentação: [Bots](https://docs.devin.ai/work-with-devin/bots), [Automations](https://docs.devin.ai/product-guides/automations), [Devin CLI](https://docs.devin.ai/cli/index.md)
+- [Release notes](https://docs.devin.ai/release-notes/overview) · [Changelog do Devin Desktop](https://docs.devin.ai/desktop/changelog) · [Changelog do Devin CLI](https://docs.devin.ai/cli/changelog/stable) — o que saiu em cada release estável
 - [Galeria de casos de uso](https://docs.devin.ai/use-cases/gallery/index.md) — 40+ workflows documentados com prompts prontos; [boas práticas para fatiar trabalho](https://docs.devin.ai/use-cases/best-practices.md)
 - [devin.ai/brand](https://devin.ai/brand) — kit oficial de marca
 - [Devin Discord](https://devin.ai/community) e [r/DevinAI](https://www.reddit.com/r/DevinAI/) — espaços oficiais da comunidade

@@ -13,7 +13,7 @@
 
 <sub>维护者 [@darega0mae](https://x.com/darega0mae) · 姊妹教程库：[build-with-devin](https://github.com/Till3005/build-with-devin) · [收录你的项目](CONTRIBUTING.md)</sub>
 
-<sub>**14** 个有据可查的 Bot 部署 · **41** 个企业案例 · **6** 个已发布产品 · **32** 个工具与集成 · **27** 篇实战报告</sub>
+<sub>**14** 个有据可查的 Bot 部署 · **41** 个企业案例 · **6** 个已发布产品 · **32** 个工具与集成 · **28** 篇实战报告</sub>
 
 <sub>[English](README.md) · 简体中文 · [日本語](README.ja.md) · [Português](README.pt.md)</sub>
 
@@ -286,6 +286,7 @@ flowchart LR
 - **[把 Grok Bots 组织移植到 Devin Bots](https://www.rickblalock.dev/scratch-notes/learnings-from-moving-my-grok-bots-to-devin-bots/)** —— 第一份独立的 beta 实测报告：把一个现成的 Grok-bot 组织移植过去花了约 $300 一次性用量和一个晚上；工程编排"令人愉悦"，但业务侧工作又被搬回了 Grok，最终落成 Grok Bot ↔ Devin Bot 混合架构。诚实的摩擦日志：bot 带给他的决策太多且不总是对的——"把我当 VP，别当实习生。"
 - **[免费 SWE-2 上的多 AI 编排](https://qiita.com/ishizakahiroshi/items/72ab801a5f2a8c941b61)** —— 利用 Devin CLI 永久免费的 SWE-2 档在多个 agent 间路由工作的设计（日文）。
 - **[SMARTCAMP 的 Trivy 扫描 → Devin 修复](https://zenn.dev/smartcamp/articles/97ac804043530e)** —— 定时 GitHub Actions 拉取 ECS 镜像跑 Trivy，HIGH/CRITICAL 落成 issue 交给 Devin 修复；AWS 凭证 job 和扫描 job 分离、只靠 artifact 传递（日文）。
+- **[Devin 当我一整个月的工程团队](https://ravtheman.medium.com/im-17-and-for-one-month-devin-was-my-entire-engineering-team-here-s-everything-i-learned-183d59099384)** —— 一个墨尔本高中生的 Max 体验月：一晚 67 个 PR 处理、44 个合入；课间造出一个 Linux 发行版、一套本地模型家族和一个多 agent IDE —— 附实测的 CLI/云端工作流（Medium）。
 
 <p align="right"><a href="#readme">back to top</a></p>
 
@@ -294,6 +295,7 @@ flowchart LR
 ## 社区媒体
 
 - **[Devin Central](https://devincentral.com)** —— Trevor Lowing 的非官方 Devin 新闻与教程站。
+- **[Devin Central Learn](https://devincentral.com/learn)** —— 它的成体系部分：免费的 8 课 "Devin Fundamentals" 课程（每课视频+文字+小测）和实务指南——任务切分、套餐/ACU、各界面、从 Windsurf 迁移的路径。
 - **[Voices —— 大使名录](https://devincentral.com/voices)** —— 全球 ~190 位 Devin 大使的非官方地图。
 - **[devin-cli.github.io](https://devin-cli.github.io)** —— 社区文档：Devin API、Slack、Linear 接入面的覆盖范围与自动化方式。
 - **[Agents In Use](https://agentsinuse.com)** —— 真实 agent 用例目录，含 Devin 条目。
@@ -310,6 +312,7 @@ flowchart LR
 
 - [Devin Community](https://devin.ai/community) —— 活动、大使申请、活动支持
 - [docs.devin.ai](https://docs.devin.ai) —— 文档：[Bots](https://docs.devin.ai/work-with-devin/bots)、[Automations](https://docs.devin.ai/product-guides/automations)、[Devin CLI](https://docs.devin.ai/cli/index.md)
+- [Release notes](https://docs.devin.ai/release-notes/overview) · [Devin Desktop changelog](https://docs.devin.ai/desktop/changelog) · [Devin CLI changelog](https://docs.devin.ai/cli/changelog/stable) —— 每个 stable 版本的新功能与修复
 - [Use-case gallery](https://docs.devin.ai/use-cases/gallery/index.md) —— 40+ 个带可复制 prompt 的文档化工作流；[切片最佳实践](https://docs.devin.ai/use-cases/best-practices.md)
 - [devin.ai/brand](https://devin.ai/brand) —— 官方品牌包
 - [Devin Discord](https://devin.ai/community) 和 [r/DevinAI](https://www.reddit.com/r/DevinAI/) —— 官方社区
