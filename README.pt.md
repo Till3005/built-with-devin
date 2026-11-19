@@ -13,7 +13,7 @@
 
 <sub>Curado por [@darega0mae](https://x.com/darega0mae) · Tutoriais irmãos: [build-with-devin](https://github.com/Till3005/build-with-devin) · [Adicione seu projeto](CONTRIBUTING.md)</sub>
 
-<sub>**13** implantações de Bot documentadas · **35** casos corporativos · **6** produtos lançados · **29** ferramentas e integrações · **26** relatos de campo</sub>
+<sub>**13** implantações de Bot documentadas · **35** casos corporativos · **6** produtos lançados · **31** ferramentas e integrações · **26** relatos de campo</sub>
 
 <sub>[English](README.md) · [简体中文](README.zh.md) · [日本語](README.ja.md) · Português</sub>
 
@@ -232,6 +232,8 @@ O que a comunidade constrói *para* o Devin, em vez de *com* ele.
 - **[Devin Switch](https://github.com/ansuman-shukla/devin-switch)** — App macOS nativo + CLI para vários logins do Devin CLI: perfis de conta isolados, histórico local de conversas compartilhado, exibição de uso/reset e lançamentos concorrentes.
 - **[Devin Token Monitor](https://github.com/TH-Chou/devin-usage-monitor)** — App nativo de menu-bar do macOS (e VSIX) que transforma as métricas SQLite locais do CLI em dashboards de custo ao vivo — tendências de tokens, rosca de modelos, TTFT/tokens-por-segundo por requisição, alertas de orçamento, exportação CSV, seis idiomas.
 - **[devin-desktop-zh](https://github.com/cby122/devin-desktop-zh)** — Localização artesanal do Devin Desktop para chinês simplificado: dicionário de 33.457 strings + pipeline de injeção/re-assinatura que produz um `Devin 中文版.app` separado — distribuído como Agent Skill, com todo o fluxo reproduzível.
+- **[devin-desktop-zh (Till3005)](https://github.com/Till3005/devin-desktop-zh)** — Mesmo nome, outra abordagem: pacotes de idioma simplificado + tradicional (TW/HK) com patcher de um comando para macOS/Windows/Linux — sem rebuild, aplica patch no app já instalado.
+- **[devin-pstack](https://github.com/Till3005/devin-pstack)** — As skills de engenharia pstack da poteto portadas para o Devin Desktop: instale uma vez e todo agente trabalha no estilo dela — modos, princípios, TDD e verificação embutidos.
 - **[devin-tui](https://github.com/fenner888/devin-tui)** — TUI de tela cheia do Mark Fenner para o Devin via `devin acp`: React + Ink, chamadas de ferramenta, diffs inline, visão de plano, gasto por sessão.
 - **[Devin Remote](https://github.com/zouhall/devin-remote)** — Console de navegador para sessões do Devin CLI — dirija o Devin local de qualquer navegador, inclusive do celular: chat em streaming, permissões, modos, modelos, estatísticas de uso.
 - **[Devin Pocket](https://github.com/BOTOOM/devin-pocket)** — Cliente Devin CLI mobile-first via ACP; roda em Android/Termux, Linux e macOS.

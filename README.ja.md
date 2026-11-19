@@ -13,7 +13,7 @@
 
 <sub>Curated by [@darega0mae](https://x.com/darega0mae) · 姉妹チュートリアル：[build-with-devin](https://github.com/Till3005/build-with-devin) · [プロジェクトを追加](CONTRIBUTING.md)</sub>
 
-<sub>**13** 件の実証済み Bot 導入 · **35** 件のエンタープライズ事例 · **6** 件の公開プロダクト · **29** 件のツール・統合 · **26** 件の実践レポート</sub>
+<sub>**13** 件の実証済み Bot 導入 · **35** 件のエンタープライズ事例 · **6** 件の公開プロダクト · **31** 件のツール・統合 · **26** 件の実践レポート</sub>
 
 <sub>[English](README.md) · [简体中文](README.zh.md) · 日本語 · [Português](README.pt.md)</sub>
 
@@ -232,6 +232,8 @@ Devin *で*作られたものではなく、Devin の*ために*コミュニテ�
 - **[Devin Switch](https://github.com/ansuman-shukla/devin-switch)** —— 複数 Devin CLI ログインを管理するネイティブ macOS アプリ + CLI：分離されたアカウントプロファイル、共有ローカル会話履歴、使用量/リセット表示、並行起動。
 - **[Devin Token Monitor](https://github.com/TH-Chou/devin-usage-monitor)** —— ネイティブ macOS メニューバーアプリ（VSIX 付き）。CLI のローカル SQLite メトリクスをライブコストダッシュボードに —— トークン推移、モデルドーナツ、リクエスト別 TTFT/トークン速度、予算アラート、CSV エクスポート、6 言語対応。
 - **[devin-desktop-zh](https://github.com/cby122/devin-desktop-zh)** —— 手作りの Devin Desktop 簡体字中国語ローカライズ：33,457 文字列の辞書 + 注入/再署名パイプラインで独立した `Devin 中文版.app` を生成 —— Agent Skill として公開されワークフロー全体が再現可能。
+- **[devin-desktop-zh (Till3005)](https://github.com/Till3005/devin-desktop-zh)** —— 同名・別アプローチ：簡体字＋繁体字（台湾/香港）言語パックを macOS/Windows/Linux ワンコマンドのパッチャーで適用——再ビルド不要、インストール済みアプリに直接パッチ。
+- **[devin-pstack](https://github.com/Till3005/devin-pstack)** —— poteto の pstack エンジニアリングスキルを Devin Desktop に移植：一度インストールすれば、すべてのエージェントが彼女の流儀で働く——モード・原則・TDD・検証を内蔵。
 - **[devin-tui](https://github.com/fenner888/devin-tui)** —— `devin acp` 駆動の Mark Fenner 製フルスクリーン端末 UI：React + Ink、ツール呼び出し、インライン diff、プランビュー、セッション別コスト。
 - **[Devin Remote](https://github.com/zouhall/devin-remote)** —— Devin CLI セッション用ブラウザコンソール —— スマホを含む任意のブラウザからローカル Devin を操作：ストリーミングチャット、権限、モード、モデル、使用統計。
 - **[Devin Pocket](https://github.com/BOTOOM/devin-pocket)** —— モバイルファーストの Devin CLI クライアント。ACP 経由で Android/Termux、Linux、macOS 上で動作。

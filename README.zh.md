@@ -13,7 +13,7 @@
 
 <sub>维护者 [@darega0mae](https://x.com/darega0mae) · 姊妹教程库：[build-with-devin](https://github.com/Till3005/build-with-devin) · [收录你的项目](CONTRIBUTING.md)</sub>
 
-<sub>**13** 个有据可查的 Bot 部署 · **35** 个企业案例 · **6** 个已发布产品 · **29** 个工具与集成 · **26** 篇实战报告</sub>
+<sub>**13** 个有据可查的 Bot 部署 · **35** 个企业案例 · **6** 个已发布产品 · **31** 个工具与集成 · **26** 篇实战报告</sub>
 
 <sub>[English](README.md) · 简体中文 · [日本語](README.ja.md) · [Português](README.pt.md)</sub>
 
@@ -232,6 +232,8 @@ flowchart LR
 - **[Devin Switch](https://github.com/ansuman-shukla/devin-switch)** —— 原生 macOS 应用 + CLI，管理多个 Devin CLI 登录：隔离的账号配置、共享本地会话历史、用量/重置时间显示、并发启动。
 - **[Devin Token Monitor](https://github.com/TH-Chou/devin-usage-monitor)** —— 原生 macOS 菜单栏应用（附 VSIX），把 CLI 本地 SQLite 指标变成实时成本仪表盘 —— token 趋势、模型占比、逐请求 TTFT/速度、预算告警、CSV 导出、六种语言。
 - **[devin-desktop-zh](https://github.com/cby122/devin-desktop-zh)** —— 手工打造的 Devin Desktop 简体中文本地化：33,457 条字符串字典 + 注入/重签名流水线，产出独立的 `Devin 中文版.app` —— 以 Agent Skill 形式发布，整个流程可复现。
+- **[devin-desktop-zh (Till3005)](https://github.com/Till3005/devin-desktop-zh)** —— 同名不同做法：简中 + 港台繁体语言包，macOS/Windows/Linux 一键补丁器——不重打包，直接给已装的 App 打补丁。
+- **[devin-pstack](https://github.com/Till3005/devin-pstack)** —— 把 poteto 的 pstack 工程技能移植到 Devin Desktop：装一次，每个 agent 都按她的方式工作——内置模式、原则、TDD 与验证。
 - **[devin-tui](https://github.com/fenner888/devin-tui)** —— Mark Fenner 基于 `devin acp` 的全屏终端 UI：React + Ink，工具调用、内联 diff、计划视图、按 session 计费。
 - **[Devin Remote](https://github.com/zouhall/devin-remote)** —— Devin CLI 会话的浏览器控制台 —— 从任何浏览器（包括手机）驱动本地 Devin：流式聊天、权限、模式、模型、用量统计。
 - **[Devin Pocket](https://github.com/BOTOOM/devin-pocket)** —— 移动优先的 ACP Devin CLI 客户端；跑在 Android/Termux、Linux 和 macOS 上。
