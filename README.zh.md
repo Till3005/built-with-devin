@@ -13,7 +13,7 @@
 
 <sub>维护者 [@darega0mae](https://x.com/darega0mae) · 姊妹教程库：[build-with-devin](https://github.com/Till3005/build-with-devin) · [收录你的项目](CONTRIBUTING.md)</sub>
 
-<sub>**14** 个有据可查的 Bot 部署 · **35** 个企业案例 · **6** 个已发布产品 · **31** 个工具与集成 · **26** 篇实战报告</sub>
+<sub>**14** 个有据可查的 Bot 部署 · **41** 个企业案例 · **6** 个已发布产品 · **32** 个工具与集成 · **27** 篇实战报告</sub>
 
 <sub>[English](README.md) · 简体中文 · [日本語](README.ja.md) · [Português](README.pt.md)</sub>
 
@@ -174,7 +174,13 @@ flowchart LR
 | [Crosby](https://devin.ai/customers/crosby) | AI 原生律所 | 每天 20–40 个 bug 报告/告警拿到 first pass，平均 ~5 分钟；12 名工程师服务 50+ 律师 |
 | [Endava](https://devin.ai/customers/endava) | 企业级全员配置 | 2,000+ 员工上平台；四个月 3×；PR 合并率 78% |
 | [Tavrn](https://devin.ai/customers/tavrn) | HIPAA 约束下的舰队 | 8 人队打出 50 人的交付；**6 周 1,800+ PR**，产出 6× |
-| [Itaú](https://medium.com/itautech/devin-no-ita%C3%BA-como-escalamos-o-uso-de-agentes-na-engenharia-de-software-b636bedebc5a) | 巴西最大银行的治理优先落地 | 从试点扩到 17,000 人技术组织，满足安全要求（葡语） |
+| [Itaú](https://devin.ai/customers/itau) | 巴西最大银行全 SDLC 铺开 | 59 个服务 .NET→Java 迁移**提速 6×、成本 1/5**；800 个 SQL Server 对象迁移 **5×**；~70% SonarQube/Fortify/Veracode 漏洞自动修复；**30 万+ 仓库**持续更新的文档；测试覆盖率 ~50%→~90+%；千人候补名单后，**17,000 人技术组织的 75%** 在用 |
+| [Ripple Treasury](https://devin.ai/customers/ripple) | 自动化 bug 分诊（"Guardians 2.0"）+ 非工程人员的代码库问答 | 未分诊积压 **−75%**，每日修 bug 0.5→1.5（**3×**），取消每周两次分诊会；70 名非工程同事在用——4,600+ 次问答 ≈ **省 2,300 工程师小时** |
+| [WPP Enterprise Solutions](https://devin.ai/customers/wpp-enterprise-solutions) | 固定总价客户交付的底座 | 真实项目实测 **SDLC 效率提升 30–40%**；Halfords 重构以**少 25% 时间交付 110% 范围**、99.97% 可用性；测试框架迁移 80 人日→8（**10×**）；九个月周活工程师 **4×** |
+| [Basis](https://devin.ai/customers/basis) | 会计 AI 创业公司的长任务云代理 | Slack 里 @ 的请求 ~15 分钟后交付；工程师睡前挂 ~10 个 Devin 任务——"目前最好的云代理基础设施"（联创） |
+| [Mercor](https://devin.ai/customers/mercor) | 全天候运转的工程组织 | 百亿美金估值的人力智能网络 24/7 跑 Devin（官方案例页） |
+| [Hippo](https://devin.ai/customers/hippo) | 保险工程组织全面铺开 | 与 Cognition 合作：用 agentic 构建/测试覆盖 50 州保险规则的产品（官方案例页） |
+| [Zeb](https://devin.ai/blog/devin-for-databricks-migrations) | NetSuite→Databricks 交付伙伴 | 一家全球投资咨询客户的 4 周迁移 **2.5 周交付**；一家财富 500 能源公司 8 天迁完 142 个对象到 Unity Catalog |
 | **Rox** | Living Evals —— 每周 Devin 读生产 trace，在完整副本中回放失败，开 eval PR | 评测集覆盖**真实用量的 72%**（手写只有 43–57%）（[全文](https://www.rox.com/articles/living-evals-an-eval-suite-that-grows-from-production)、[推文](https://x.com/rox_ai/status/2110779380666617997)） |
 | [Evinova](https://devin.ai/customers/evinova) | GxP 合规交付 | GxP 文档快 8×；迁移快 3×；66% 边界清晰的 bug 被自主修复 |
 | [Compiled Health](https://devin.ai/customers/compiledhealth) | 临床基准构建 | 2 名研究员 2 个月 = 5–6 名工程师的活；~430 工程师小时、~$17/小时 ≈ 给 4 人队添 4 名工程师 |
@@ -186,7 +192,7 @@ flowchart LR
 | [FE fundinfo](https://devin.ai/customers/fefundinfo) | 1,800 仓库自动化 | 靠测试生成 + 安全修复立刻多出 10% 产能 |
 | [GE Aerospace](https://devin.ai/customers/geaerospace) | 受限团队的 story 吞吐 | 三个月内 user-story 产出 ~2× |
 
-其他公开记录的：Citi（40,000 名开发者铺开，技术供应商支出降 30%）、Mercor、Hippo、Mercedes-Benz、Cognizant 和 Infosys 合作 —— 见[客户索引](https://devin.ai/customers)。
+其他公开记录的：Citi（40,000 名开发者铺开，技术供应商支出降 30%）、Mercedes-Benz、Cognizant 和 Infosys 合作 —— 见[客户索引](https://devin.ai/customers)。
 
 <p align="right"><a href="#readme">back to top</a></p>
 
@@ -243,6 +249,7 @@ flowchart LR
 - **[Devin Session Exporter](https://github.com/marktwainme/devin-session-exporter)** —— Devin Desktop 扩展，把本地 ACP 会话库导出为 Markdown/JSON/HTML，带筛选和批量导出。
 - **[devin-acp-shim](https://github.com/wibus-wee/devin-acp-shim)** —— 透明 stdio 代理，修复 Devin CLI 的会话级 MCP 能力协商 —— 虽小，但为所有 ACP host 解锁了 MCP server。
 - **[hindsight-devin-desktop](https://pypi.org/project/hindsight-devin-desktop/)** —— Vectorize 的 MCP 桥：一条命令给 Devin Desktop 接上持久长期记忆 + 常驻 recall/retain 规则。
+- **[devin-memory](https://github.com/Sassine/devin-memory)** —— Devin CLI 的零依赖持久记忆：hook 估算 context 占用、快满时提醒，`/memory-save` + `/memory-resume` 跨 `/clear` 存取会话。
 
 <p align="right"><a href="#readme">back to top</a></p>
 
@@ -278,6 +285,7 @@ flowchart LR
 - **[发布文没说的那些](https://aiholics.com/devin-bots-cognition-persistent-agents-goals/)** —— 最犀利的一篇批判性阅读：没有公开定价/档位细节、数字未经核实，以及两个没人回答的问题——Bot 几周后怎么不偏离目标、两个协调中的 Bot 意见不一致时怎么办。
 - **[把 Grok Bots 组织移植到 Devin Bots](https://www.rickblalock.dev/scratch-notes/learnings-from-moving-my-grok-bots-to-devin-bots/)** —— 第一份独立的 beta 实测报告：把一个现成的 Grok-bot 组织移植过去花了约 $300 一次性用量和一个晚上；工程编排"令人愉悦"，但业务侧工作又被搬回了 Grok，最终落成 Grok Bot ↔ Devin Bot 混合架构。诚实的摩擦日志：bot 带给他的决策太多且不总是对的——"把我当 VP，别当实习生。"
 - **[免费 SWE-2 上的多 AI 编排](https://qiita.com/ishizakahiroshi/items/72ab801a5f2a8c941b61)** —— 利用 Devin CLI 永久免费的 SWE-2 档在多个 agent 间路由工作的设计（日文）。
+- **[SMARTCAMP 的 Trivy 扫描 → Devin 修复](https://zenn.dev/smartcamp/articles/97ac804043530e)** —— 定时 GitHub Actions 拉取 ECS 镜像跑 Trivy，HIGH/CRITICAL 落成 issue 交给 Devin 修复；AWS 凭证 job 和扫描 job 分离、只靠 artifact 传递（日文）。
 
 <p align="right"><a href="#readme">back to top</a></p>
 
@@ -307,6 +315,8 @@ flowchart LR
 - [Devin Discord](https://devin.ai/community) 和 [r/DevinAI](https://www.reddit.com/r/DevinAI/) —— 官方社区
 - [CognitionAI/qa-devin](https://github.com/CognitionAI/qa-devin) —— Cognition 自家的 "Devin 做 QA" 参考仓库
 - [CognitionAI/devin-vuln-fixes](https://github.com/cognitionai/devin-vuln-fixes) —— 官方 agent 技能，修复真实 CVE（GitLab CVSS 10.0、PHP/Node RCE）：只读盘点 → 审批门 → 确认目标 → 前后测试 → 每仓库一个聚焦 PR
+- [CognitionAI/team-marketplace-template](https://github.com/CognitionAI/team-marketplace-template) —— 官方"组织插件生态"模板：一个仓库托管团队共享插件，从 Devin 网页端分发给全员，支持必选/可选插件
+- [Devin for Databricks Migrations](https://devin.ai/blog/devin-for-databricks-migrations) —— 与 Databricks 共建的官方迁移服务（11 月 19 日）：转换遗留数仓代码、在客户工作区测试、割接前逐源对账——已上架 Databricks Marketplace
 - [用 Devin 在 Modal 上训练并部署自定义模型](https://gist.github.com/dabit3/866caaab49a4a5371ae01655fecad34b) —— Cognition 工程师 Nader Dabit 的可运行模板
 - [Devin for Startups](https://devin.ai/startups) —— 合格团队最高 $65k credits；[Devin for Gaming](https://talofagames.com/devin-for-gaming/) —— Talofa × Cognition 三周工作室 cohort，含线下工作坊和 credit 奖励；**[poke.com/bots](https://poke.com/bots)** —— 限时实验（11/18 起）：给 Poke 发短信说出你想建的东西、说明为什么值这些 credits，就能拿一个免费 Devin Bot —— 共 10,000 个账号、每席最高 $10,000（Nader Dabit 称总额 ~$1 亿），绕过 $200/月的 Max 门槛；目前已报出的最高谈判结果是 $1,887（[walden_yan](https://x.com/walden_yan/status/2123326058644828366)、[报道](https://news.sulat.com/2026/11/19/devin-bots-giveaway/)）
 - [Devin Automations QuickStart](https://www.youtube.com/watch?v=6xxKtIpgOyE) —— 官方视频：事件/定时触发 agent 配置，Bots 的底层机制

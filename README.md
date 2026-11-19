@@ -13,7 +13,7 @@
 
 <sub>Curated by [@darega0mae](https://x.com/darega0mae) · Sister tutorials: [build-with-devin](https://github.com/Till3005/build-with-devin) · [Add your project](CONTRIBUTING.md)</sub>
 
-<sub>**14** documented Bot deployments · **35** enterprise case studies · **6** shipped products · **31** tools & integrations · **26** field reports</sub>
+<sub>**14** documented Bot deployments · **41** enterprise case studies · **6** shipped products · **32** tools & integrations · **27** field reports</sub>
 
 <sub>English · [简体中文](README.zh.md) · [日本語](README.ja.md) · [Português](README.pt.md)</sub>
 
@@ -183,10 +183,16 @@ Published customer cases with hard numbers ([full index](https://devin.ai/custom
 | [Crossmint](https://devin.ai/customers/crossmint) | GOAT open-source scaling | Devin became the repo's #1 contributor during trial |
 | [FE fundinfo](https://devin.ai/customers/fefundinfo) | 1,800-repo automation | 10% immediate capacity increase via test-gen + security fixes |
 | [GE Aerospace](https://devin.ai/customers/geaerospace) | Constrained team story throughput | ~2× user-story output in three months |
-| [Itaú](https://medium.com/itautech/devin-no-ita%C3%BA-como-escalamos-o-uso-de-agentes-na-engenharia-de-software-b636bedebc5a) | Governance-first rollout at Brazil's largest bank | Scaled from pilot cases to a 17,000-person engineering org with security requirements met (PT-BR) |
+| [Itaú](https://devin.ai/customers/itau) | Devin across the full SDLC at Brazil's largest bank | .NET→Java migration of 59 services **6× faster at 5× lower cost**; SQL Server migration of 800 objects **5× faster**; ~70% of SonarQube/Fortify/Veracode findings auto-remediated; continuously updated docs across **300,000+ repos**; test coverage ~50%→~90+%; **75% of a 17,000-person tech org** uses it after a ~1,000-developer waitlist formed |
+| [Ripple Treasury](https://devin.ai/customers/ripple) | Automated bug triage ("Guardians 2.0") + codebase Q&A for non-engineers | Untriaged backlog **−75%**, 0.5→1.5 bugs fixed/day (**3×**), twice-weekly triage meetings eliminated; 70 teammates outside engineering use it — 4,600+ questions ≈ **2,300 engineer-hours saved** |
+| [WPP Enterprise Solutions](https://devin.ai/customers/wpp-enterprise-solutions) | Devin as the delivery layer for fixed-price client engagements | **30–40% SDLC efficiency gains** proven on live engagements; Halfords rebuild delivered **110% of scope in 25% less time** at 99.97% uptime; a test-framework migration went 80 person-days → 8 (**10×**); weekly active engineers **4×'d in 9 months** |
+| [Basis](https://devin.ai/customers/basis) | Cloud agents for long-running tasks at an accounting-AI startup | Slack-tagged requests come back shipped ~15 minutes later; engineers queue ~10 Devin jobs before bed — "by far the best infrastructure for cloud agents" (co-founder) |
+| [Mercor](https://devin.ai/customers/mercor) | Engineers building around the clock | The $10B human-intelligence network runs 24/7 Devin workflows (published case page) |
+| [Hippo](https://devin.ai/customers/hippo) | Devin across the insurance engineering org | Cognition partnership: agentic build/test for products that must hold up across 50 states' insurance rules (published case page) |
+| [Zeb](https://devin.ai/blog/devin-for-databricks-migrations) | NetSuite→Databricks delivery partner | A global investment-advisory client's 4-week migration delivered in **2.5 weeks**; a Fortune 500 energy company migrated a 142-object platform to Unity Catalog in **8 days** |
 | **Rox** | Living Evals — weekly Devin reads production traces, replays failures in a full copy, opens eval PRs | Eval suite covers **72% of real usage** vs 43–57% hand-written ([write-up](https://www.rox.com/articles/living-evals-an-eval-suite-that-grows-from-production), [thread](https://x.com/rox_ai/status/2110779380666617997)) |
 
-Also on the record: Citi (40,000-developer rollout, 30% tech-vendor spend cut), Mercor, Hippo, Mercedes-Benz, Cognizant and Infosys partnerships — see the [customer index](https://devin.ai/customers).
+Also on the record: Citi (40,000-developer rollout, 30% tech-vendor spend cut), Mercedes-Benz, Cognizant and Infosys partnerships — see the [customer index](https://devin.ai/customers).
 
 <p align="right"><a href="#readme">back to top</a></p>
 
@@ -243,6 +249,7 @@ Things the community builds *for* Devin rather than *with* it.
 - **[Devin Session Exporter](https://github.com/marktwainme/devin-session-exporter)** — Devin Desktop extension that exports local ACP session databases to Markdown/JSON/HTML with filtering and batch export.
 - **[devin-acp-shim](https://github.com/wibus-wee/devin-acp-shim)** — A transparent stdio proxy that fixes Devin CLI's session-level MCP capability negotiation — small, but it unblocks MCP servers for every ACP host.
 - **[hindsight-devin-desktop](https://pypi.org/project/hindsight-devin-desktop/)** — Vectorize's MCP bridge giving Devin Desktop persistent long-term memory: one command wires the Hindsight server plus always-on recall/retain rules.
+- **[devin-memory](https://github.com/Sassine/devin-memory)** — Zero-dependency persistent memory for Devin CLI: hooks estimate context usage, warn before the window fills, and `/memory-save` + `/memory-resume` snapshot and restore sessions across `/clear`.
 
 <p align="right"><a href="#readme">back to top</a></p>
 
@@ -278,6 +285,7 @@ Documented real-world usage.
 - **[What the launch post leaves unsaid](https://aiholics.com/devin-bots-cognition-persistent-agents-goals/)** — the sharpest critical read: no public pricing/plan detail, unverified figures, and two open questions nobody has answered — how a Bot avoids drifting from its goal over weeks, and what happens when two coordinating Bots disagree.
 - **[Moving a Grok Bots org onto Devin Bots](https://www.rickblalock.dev/scratch-notes/learnings-from-moving-my-grok-bots-to-devin-bots/)** — the first independent beta field report: porting an existing Grok-bot org cost ~$300 of one-time usage and an evening; engineering orchestration "delightful" but business work moved back to Grok, leaving a hybrid Grok Bot ↔ Devin Bot setup. Honest friction log: bots brought him *too many* decisions, not always the right ones — "treat me like a VP, not an intern."
 - **[Multi-AI orchestration on free SWE-2](https://qiita.com/ishizakahiroshi/items/72ab801a5f2a8c941b61)** — A design for routing work between agents using Devin CLI's permanently-free SWE-2 tier (JP).
+- **[Trivy scan → Devin remediation at SMARTCAMP](https://zenn.dev/smartcamp/articles/97ac804043530e)** — Scheduled GitHub Actions pipeline pulls ECS images, scans with Trivy, files HIGH/CRITICAL findings as issues that Devin remediates — with AWS-credentialed and scanner jobs split so only artifacts cross (JP).
 
 <p align="right"><a href="#readme">back to top</a></p>
 
@@ -307,6 +315,8 @@ Documented real-world usage.
 - [Devin Discord](https://devin.ai/community) and [r/DevinAI](https://www.reddit.com/r/DevinAI/) — official community spaces
 - [CognitionAI/qa-devin](https://github.com/CognitionAI/qa-devin) — Cognition's own "Devin doing QA" reference repo
 - [CognitionAI/devin-vuln-fixes](https://github.com/cognitionai/devin-vuln-fixes) — official agent skills that patch real CVEs (GitLab CVSS 10.0, PHP/Node RCEs): read-only inventory → approval gate → confirmed-target patch → before/after tests → one focused PR per repo
+- [CognitionAI/team-marketplace-template](https://github.com/CognitionAI/team-marketplace-template) — official template for a governed org plugin ecosystem: one repo of shared plugins distributed to everyone from the Devin web app, with required/optional plugin patterns
+- [Devin for Databricks Migrations](https://devin.ai/blog/devin-for-databricks-migrations) — official offering built with Databricks (Nov 19): converts legacy warehouse code, tests in the customer workspace, reconciles every source pre-cutover — on the Databricks Marketplace
 - [Train & deploy custom models on Modal with Devin](https://gist.github.com/dabit3/866caaab49a4a5371ae01655fecad34b) — Cognition engineer Nader Dabit's working template
 - [Devin for Startups](https://devin.ai/startups) — up to $65k in credits for eligible teams; [Devin for Gaming](https://talofagames.com/devin-for-gaming/) — Talofa × Cognition 3-week studio cohort with in-person workshops and credit prizes; **[poke.com/bots](https://poke.com/bots)** — limited-time experiment (launched Nov 18): text Poke your idea, pitch how many credits it deserves, get a free Devin Bot — 10,000 accounts at up to $10,000 each (~$100M total per Nader Dabit), bypassing the $200/mo Max requirement; the top negotiated grant reported so far is $1,887 ([walden_yan](https://x.com/walden_yan/status/2123326058644828366), [coverage](https://news.sulat.com/2026/11/19/devin-bots-giveaway/))
 - [Devin Automations QuickStart](https://www.youtube.com/watch?v=6xxKtIpgOyE) — official video walkthrough of event/schedule-triggered agent setups, the substrate Bots build on

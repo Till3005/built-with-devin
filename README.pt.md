@@ -13,7 +13,7 @@
 
 <sub>Curado por [@darega0mae](https://x.com/darega0mae) · Tutoriais irmãos: [build-with-devin](https://github.com/Till3005/build-with-devin) · [Adicione seu projeto](CONTRIBUTING.md)</sub>
 
-<sub>**14** implantações de Bot documentadas · **35** casos corporativos · **6** produtos lançados · **31** ferramentas e integrações · **26** relatos de campo</sub>
+<sub>**14** implantações de Bot documentadas · **41** casos corporativos · **6** produtos lançados · **32** ferramentas e integrações · **27** relatos de campo</sub>
 
 <sub>[English](README.md) · [简体中文](README.zh.md) · [日本語](README.ja.md) · Português</sub>
 
@@ -174,7 +174,13 @@ Casos de clientes publicados com números concretos ([índice completo](https://
 | [Crosby](https://devin.ai/customers/crosby) | Escritório de advocacia AI-nativo | 20–40 relatórios de bugs/alertas recebem primeira análise por dia, ~5 min cada; 12 engenheiros atendem 50+ advogados |
 | [Endava](https://devin.ai/customers/endava) | Provisionamento corporativo | 2.000+ funcionários na plataforma; 3× em quatro meses; taxa de merge de PRs de 78% |
 | [Tavrn](https://devin.ai/customers/tavrn) | Frota sob restrição HIPAA | Time de 8 entrega como 50; **1.800+ PRs em 6 semanas**, produção 6× |
-| [Itaú](https://medium.com/itautech/devin-no-ita%C3%BA-como-escalamos-o-uso-de-agentes-na-engenharia-de-software-b636bedebc5a) | Rollout com governança no maior banco do Brasil | Escalou de casos-piloto para uma organização de engenharia de 17.000 pessoas com requisitos de segurança atendidos |
+| [Itaú](https://devin.ai/customers/itau) | Devin em todo o SDLC no maior banco do Brasil | Migração .NET→Java de 59 serviços **6× mais rápida a 1/5 do custo**; migração SQL Server de 800 objetos **5× mais rápida**; ~70% dos achados SonarQube/Fortify/Veracode remediados automaticamente; docs atualizadas continuamente em **300.000+ repositórios**; cobertura de testes ~50%→~90+%; após fila de ~1.000 devs, **75% da org de tecnologia de 17.000 pessoas** usa |
+| [Ripple Treasury](https://devin.ai/customers/ripple) | Triagem automática de bugs ("Guardians 2.0") + Q&A de codebase para não-engenheiros | Backlog não triado **−75%**, 0,5→1,5 bugs corrigidos/dia (**3×**), reuniões de triagem eliminadas; 70 colegas fora de engenharia usam — 4.600+ perguntas ≈ **2.300 horas de engenharia poupadas** |
+| [WPP Enterprise Solutions](https://devin.ai/customers/wpp-enterprise-solutions) | Devin como camada de entrega de projetos de preço fixo | **Ganhos de 30–40% de eficiência no SDLC** provados em projetos reais; rebuild da Halfords entregou **110% do escopo em 25% menos tempo** com 99,97% de uptime; migração de framework de testes 80 dias-pessoa → 8 (**10×**); engenheiros ativos semanais **4× em 9 meses** |
+| [Basis](https://devin.ai/customers/basis) | Cloud agents para tarefas longas numa startup de IA contábil | Pedidos marcados no Slack voltam entregues ~15 min depois; engenheiros enfileiram ~10 jobs do Devin antes de dormir — "de longe a melhor infraestrutura para cloud agents" (cofundador) |
+| [Mercor](https://devin.ai/customers/mercor) | Engenheiros construindo 24 horas | A rede de inteligência humana de US$10B roda workflows Devin 24/7 (página de caso publicada) |
+| [Hippo](https://devin.ai/customers/hippo) | Devin em toda a org de engenharia de seguros | Parceria com a Cognition: build/test agêntico para produtos que precisam resistir às regras de seguros de 50 estados (página de caso publicada) |
+| [Zeb](https://devin.ai/blog/devin-for-databricks-migrations) | Parceiro de entrega NetSuite→Databricks | Migração de 4 semanas de uma consultoria global de investimentos entregue em **2,5 semanas**; uma energética Fortune 500 migrou uma plataforma de 142 objetos para o Unity Catalog em **8 dias** |
 | **Rox** | Living Evals — Devin semanal lê traces de produção, reproduz falhas numa cópia completa, abre PRs de eval | A suite cobre **72% do uso real** vs 43–57% escrito à mão ([artigo](https://www.rox.com/articles/living-evals-an-eval-suite-that-grows-from-production), [thread](https://x.com/rox_ai/status/2110779380666617997)) |
 | [Evinova](https://devin.ai/customers/evinova) | Entrega regulada por GxP | Documentação GxP 8× mais rápida; migrações 3×; 66% dos bugs claros corrigidos autonomamente |
 | [Compiled Health](https://devin.ai/customers/compiledhealth) | Construção de benchmark clínico | 2 pesquisadores/2 meses = trabalho de 5–6 engenheiros; ~430 horas-engenheiro a ~$17/h ≈ +4 engenheiros num time de 4 |
@@ -186,7 +192,7 @@ Casos de clientes publicados com números concretos ([índice completo](https://
 | [FE fundinfo](https://devin.ai/customers/fefundinfo) | Automação de 1.800 repositórios | Aumento imediato de 10% na capacidade via geração de testes + correções de segurança |
 | [GE Aerospace](https://devin.ai/customers/geaerospace) | Throughput de stories de time limitado | Produção de user stories ~2× em três meses |
 
-Também registrado: Citi (rollout para 40.000 desenvolvedores, corte de 30% no gasto com fornecedores de tecnologia), Mercor, Hippo, Mercedes-Benz, parcerias com Cognizant e Infosys — veja o [índice de clientes](https://devin.ai/customers).
+Também registrado: Citi (rollout para 40.000 desenvolvedores, corte de 30% no gasto com fornecedores de tecnologia), Mercedes-Benz, parcerias com Cognizant e Infosys — veja o [índice de clientes](https://devin.ai/customers).
 
 <p align="right"><a href="#readme">back to top</a></p>
 
@@ -243,6 +249,7 @@ O que a comunidade constrói *para* o Devin, em vez de *com* ele.
 - **[Devin Session Exporter](https://github.com/marktwainme/devin-session-exporter)** — Extensão do Devin Desktop que exporta bancos de sessões ACP locais para Markdown/JSON/HTML com filtros e exportação em lote.
 - **[devin-acp-shim](https://github.com/wibus-wee/devin-acp-shim)** — Proxy stdio transparente que corrige a negociação de capacidades MCP em nível de sessão do Devin CLI — pequeno, mas desbloqueia servidores MCP para todo host ACP.
 - **[hindsight-devin-desktop](https://pypi.org/project/hindsight-devin-desktop/)** — Ponte MCP da Vectorize que dá ao Devin Desktop memória persistente de longo prazo: um comando liga o servidor Hindsight e as regras recall/retain always-on.
+- **[devin-memory](https://github.com/Sassine/devin-memory)** — Memória persistente zero-dependency para o Devin CLI: hooks estimam o uso de contexto, avisam antes da janela encher, e `/memory-save` + `/memory-resume` salvam e restauram sessões através do `/clear`.
 
 <p align="right"><a href="#readme">back to top</a></p>
 
@@ -278,6 +285,7 @@ Uso real documentado.
 - **[O que o post de lançamento não disse](https://aiholics.com/devin-bots-cognition-persistent-agents-goals/)** — a leitura crítica mais afiada: sem detalhes públicos de preço/plano, números não verificados, e duas perguntas que ninguém respondeu — como um Bot evita desviar do objetivo ao longo de semanas, e o que acontece quando dois Bots coordenando discordam.
 - **[Migrando uma org de Grok Bots para Devin Bots](https://www.rickblalock.dev/scratch-notes/learnings-from-moving-my-grok-bots-to-devin-bots/)** — o primeiro relato independente da beta: portar uma org existente de Grok-bots custou ~$300 de uso único e uma noite; a orquestração de engenharia foi "encantadora", mas o trabalho de negócios voltou pro Grok, resultando num setup híbrido Grok Bot ↔ Devin Bot. Log de fricção honesto: os bots traziam decisões *demais*, nem sempre as certas — "me trate como um VP, não como um estagiário."
 - **[Orquestração multi-IA no SWE-2 grátis](https://qiita.com/ishizakahiroshi/items/72ab801a5f2a8c941b61)** — Um design para rotear trabalho entre agentes usando o tier permanentemente gratuito SWE-2 do Devin CLI (JP).
+- **[Scan Trivy → remediação Devin na SMARTCAMP](https://zenn.dev/smartcamp/articles/97ac804043530e)** — Pipeline agendado do GitHub Actions baixa imagens do ECS, escaneia com Trivy e abre issues HIGH/CRITICAL que o Devin remedia — jobs com credenciais AWS e do scanner separados, apenas artefatos cruzam (JP).
 
 <p align="right"><a href="#readme">back to top</a></p>
 
@@ -307,6 +315,8 @@ Uso real documentado.
 - [Devin Discord](https://devin.ai/community) e [r/DevinAI](https://www.reddit.com/r/DevinAI/) — espaços oficiais da comunidade
 - [CognitionAI/qa-devin](https://github.com/CognitionAI/qa-devin) — o repo de referência da própria Cognition de "Devin fazendo QA"
 - [CognitionAI/devin-vuln-fixes](https://github.com/cognitionai/devin-vuln-fixes) — skills de agente oficiais que corrigem CVEs reais (GitLab CVSS 10.0, RCEs de PHP/Node): inventário somente-leitura → portão de aprovação → patch de alvo confirmado → testes antes/depois → um PR focado por repo
+- [CognitionAI/team-marketplace-template](https://github.com/CognitionAI/team-marketplace-template) — template oficial de ecossistema de plugins governado pela org: um repo com os plugins compartilhados dos times, distribuído a todos pelo app web do Devin, com padrões de plugins obrigatórios/opcionais
+- [Devin for Databricks Migrations](https://devin.ai/blog/devin-for-databricks-migrations) — oferta oficial construída com a Databricks (19/11): converte código do warehouse legado, testa no workspace do cliente e reconcilia cada fonte antes do cutover — no Databricks Marketplace
 - [Treine e faça deploy de modelos custom na Modal com Devin](https://gist.github.com/dabit3/866caaab49a4a5371ae01655fecad34b) — template funcional do engenheiro da Cognition Nader Dabit
 - [Devin for Startups](https://devin.ai/startups) — até $65k em créditos para times elegíveis; [Devin for Gaming](https://talofagames.com/devin-for-gaming/) — cohort de estúdio de 3 semanas Talofa × Cognition com workshops presenciais e prêmios em créditos; **[poke.com/bots](https://poke.com/bots)** — experimento por tempo limitado (lançado 18/11): mande texto pro Poke com sua ideia, convença-o de quantos créditos ela merece e ganhe um Devin Bot grátis — 10.000 contas, até $10.000 cada (~$100M no total, segundo Nader Dabit), ignorando o requisito do plano Max de $200/mês; a maior concessão negociada relatada até agora é de $1.887 ([walden_yan](https://x.com/walden_yan/status/2123326058644828366), [cobertura](https://news.sulat.com/2026/11/19/devin-bots-giveaway/))
 - [Devin Automations QuickStart](https://www.youtube.com/watch?v=6xxKtIpgOyE) — vídeo oficial de configurações de agente disparadas por evento/agenda, o substrato sobre o qual os Bots são construídos

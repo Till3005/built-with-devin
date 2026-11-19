@@ -6,7 +6,7 @@
     "bot_deployments": 14,
     "bot_templates": 16,
     "products": 6,
-    "enterprise_cases": 35
+    "enterprise_cases": 41
   },
   "bot_deployments": [
     {
@@ -759,15 +759,87 @@
     },
     {
       "company": "Itaú",
-      "deployment": "Governance-first rollout at Brazil's largest bank",
-      "result": "Scaled from pilot cases to a 17,000-person engineering org with security requirements met (PT-BR)",
+      "deployment": "Devin across the full SDLC at Brazil's largest bank",
+      "result": ".NET→Java migration of 59 services 6× faster at 5× lower cost; SQL Server migration of 800 objects 5× faster; ~70% of SonarQube/Fortify/Veracode findings auto-remediated; continuously updated docs across 300,000+ repos; test coverage ~50%→~90+%; 75% of a 17,000-person tech org uses it after a ~1,000-developer waitlist formed",
       "sources": [
         {
           "text": "Itaú",
-          "url": "https://medium.com/itautech/devin-no-ita%C3%BA-como-escalamos-o-uso-de-agentes-na-engenharia-de-software-b636bedebc5a"
+          "url": "https://devin.ai/customers/itau"
+        }
+      ],
+      "updated_on": "2026-11-19"
+    },
+    {
+      "company": "Ripple Treasury",
+      "deployment": "Automated bug triage (\"Guardians 2.0\") + codebase Q&A for non-engineers",
+      "result": "Untriaged backlog −75%, 0.5→1.5 bugs fixed/day (3×), twice-weekly triage meetings eliminated; 70 teammates outside engineering use it — 4,600+ questions ≈ 2,300 engineer-hours saved",
+      "sources": [
+        {
+          "text": "Ripple Treasury",
+          "url": "https://devin.ai/customers/ripple"
+        }
+      ],
+      "updated_on": "2026-11-19"
+    },
+    {
+      "company": "WPP Enterprise Solutions",
+      "deployment": "Devin as the delivery layer for fixed-price client engagements",
+      "result": "30–40% SDLC efficiency gains proven on live engagements; Halfords rebuild delivered 110% of scope in 25% less time at 99.97% uptime; a test-framework migration went 80 person-days → 8 (10×); weekly active engineers 4×'d in 9 months",
+      "sources": [
+        {
+          "text": "WPP Enterprise Solutions",
+          "url": "https://devin.ai/customers/wpp-enterprise-solutions"
+        }
+      ],
+      "updated_on": "2026-11-19"
+    },
+    {
+      "company": "Basis",
+      "deployment": "Cloud agents for long-running tasks at an accounting-AI startup",
+      "result": "Slack-tagged requests come back shipped ~15 minutes later; engineers queue ~10 Devin jobs before bed — \"by far the best infrastructure for cloud agents\" (co-founder)",
+      "sources": [
+        {
+          "text": "Basis",
+          "url": "https://devin.ai/customers/basis"
         }
       ],
       "updated_on": "2026-11-18"
+    },
+    {
+      "company": "Mercor",
+      "deployment": "Engineers building around the clock",
+      "result": "The $10B human-intelligence network runs 24/7 Devin workflows (published case page)",
+      "sources": [
+        {
+          "text": "Mercor",
+          "url": "https://devin.ai/customers/mercor"
+        }
+      ],
+      "updated_on": "2026-11-19"
+    },
+    {
+      "company": "Hippo",
+      "deployment": "Devin across the insurance engineering org",
+      "result": "Cognition partnership: agentic build/test for products that must hold up across 50 states' insurance rules (published case page)",
+      "sources": [
+        {
+          "text": "Hippo",
+          "url": "https://devin.ai/customers/hippo"
+        }
+      ],
+      "updated_on": "2026-11-19"
+    },
+    {
+      "company": "Zeb",
+      "deployment": "NetSuite→Databricks delivery partner",
+      "result": "A global investment-advisory client's 4-week migration delivered in 2.5 weeks; a Fortune 500 energy company migrated a 142-object platform to Unity Catalog in 8 days",
+      "sources": [
+        {
+          "text": "Zeb",
+          "url": "https://devin.ai/blog/devin-for-databricks-migrations"
+        }
+      ],
+      "updated_on": "2026-11-19"
     },
     {
       "company": "Rox",
@@ -790,302 +862,342 @@
     "https://courtyard.io/blog/post/from-a-slack-link-to-production-in-under-48-hours-cloning-shopifys-quick-with-devin": {
       "ok": true,
       "status": 200,
-      "checked_at": "2026-11-19T12:30:10+00:00"
+      "checked_at": "2026-11-19T19:45:51+00:00"
+    },
+    "https://devin.ai/blog/devin-for-databricks-migrations": {
+      "ok": true,
+      "status": 200,
+      "checked_at": "2026-11-19T19:45:51+00:00"
     },
     "https://devin.ai/bots": {
       "ok": true,
       "status": 200,
-      "checked_at": "2026-11-19T12:30:10+00:00"
+      "checked_at": "2026-11-19T19:45:51+00:00"
     },
     "https://devin.ai/customers/access-group": {
       "ok": true,
       "status": 200,
-      "checked_at": "2026-11-19T12:30:10+00:00"
+      "checked_at": "2026-11-19T19:45:51+00:00"
     },
     "https://devin.ai/customers/ahead": {
       "ok": true,
       "status": 200,
-      "checked_at": "2026-11-19T12:30:10+00:00"
+      "checked_at": "2026-11-19T19:45:51+00:00"
     },
     "https://devin.ai/customers/airbyte": {
       "ok": true,
       "status": 200,
-      "checked_at": "2026-11-19T12:30:10+00:00"
+      "checked_at": "2026-11-19T19:45:51+00:00"
     },
     "https://devin.ai/customers/angellist": {
       "ok": true,
       "status": 200,
-      "checked_at": "2026-11-19T12:30:10+00:00"
+      "checked_at": "2026-11-19T19:45:51+00:00"
+    },
+    "https://devin.ai/customers/basis": {
+      "ok": true,
+      "status": 200,
+      "checked_at": "2026-11-19T19:45:51+00:00"
     },
     "https://devin.ai/customers/bilt": {
       "ok": true,
       "status": 200,
-      "checked_at": "2026-11-19T12:30:10+00:00"
+      "checked_at": "2026-11-19T19:45:51+00:00"
     },
     "https://devin.ai/customers/comarch": {
       "ok": true,
       "status": 200,
-      "checked_at": "2026-11-19T12:30:10+00:00"
+      "checked_at": "2026-11-19T19:45:51+00:00"
     },
     "https://devin.ai/customers/compiledhealth": {
       "ok": true,
       "status": 200,
-      "checked_at": "2026-11-19T12:30:10+00:00"
+      "checked_at": "2026-11-19T19:45:51+00:00"
     },
     "https://devin.ai/customers/comun": {
       "ok": true,
       "status": 200,
-      "checked_at": "2026-11-19T12:30:10+00:00"
+      "checked_at": "2026-11-19T19:45:51+00:00"
     },
     "https://devin.ai/customers/crosby": {
       "ok": true,
       "status": 200,
-      "checked_at": "2026-11-19T12:30:10+00:00"
+      "checked_at": "2026-11-19T19:45:51+00:00"
     },
     "https://devin.ai/customers/crossmint": {
       "ok": true,
       "status": 200,
-      "checked_at": "2026-11-19T12:30:10+00:00"
+      "checked_at": "2026-11-19T19:45:51+00:00"
     },
     "https://devin.ai/customers/ebanx": {
       "ok": true,
       "status": 200,
-      "checked_at": "2026-11-19T12:30:10+00:00"
+      "checked_at": "2026-11-19T19:45:51+00:00"
     },
     "https://devin.ai/customers/eight-sleep": {
       "ok": true,
       "status": 200,
-      "checked_at": "2026-11-19T12:30:10+00:00"
+      "checked_at": "2026-11-19T19:45:51+00:00"
     },
     "https://devin.ai/customers/endava": {
       "ok": true,
       "status": 200,
-      "checked_at": "2026-11-19T12:30:10+00:00"
+      "checked_at": "2026-11-19T19:45:51+00:00"
     },
     "https://devin.ai/customers/eon": {
       "ok": true,
       "status": 200,
-      "checked_at": "2026-11-19T12:30:10+00:00"
+      "checked_at": "2026-11-19T19:45:51+00:00"
     },
     "https://devin.ai/customers/evinova": {
       "ok": true,
       "status": 200,
-      "checked_at": "2026-11-19T12:30:10+00:00"
+      "checked_at": "2026-11-19T19:45:51+00:00"
     },
     "https://devin.ai/customers/exa": {
       "ok": true,
       "status": 200,
-      "checked_at": "2026-11-19T12:30:10+00:00"
+      "checked_at": "2026-11-19T19:45:51+00:00"
     },
     "https://devin.ai/customers/fefundinfo": {
       "ok": true,
       "status": 200,
-      "checked_at": "2026-11-19T12:30:10+00:00"
+      "checked_at": "2026-11-19T19:45:51+00:00"
     },
     "https://devin.ai/customers/finch": {
       "ok": true,
       "status": 200,
-      "checked_at": "2026-11-19T12:30:10+00:00"
+      "checked_at": "2026-11-19T19:45:51+00:00"
     },
     "https://devin.ai/customers/geaerospace": {
       "ok": true,
       "status": 200,
-      "checked_at": "2026-11-19T12:30:10+00:00"
+      "checked_at": "2026-11-19T19:45:51+00:00"
     },
     "https://devin.ai/customers/gumroad": {
       "ok": true,
       "status": 200,
-      "checked_at": "2026-11-19T12:30:10+00:00"
+      "checked_at": "2026-11-19T19:45:51+00:00"
     },
     "https://devin.ai/customers/hamming": {
       "ok": true,
       "status": 200,
-      "checked_at": "2026-11-19T12:30:10+00:00"
+      "checked_at": "2026-11-19T19:45:51+00:00"
+    },
+    "https://devin.ai/customers/hippo": {
+      "ok": true,
+      "status": 200,
+      "checked_at": "2026-11-19T19:45:51+00:00"
+    },
+    "https://devin.ai/customers/itau": {
+      "ok": true,
+      "status": 200,
+      "checked_at": "2026-11-19T19:45:51+00:00"
     },
     "https://devin.ai/customers/latent": {
       "ok": true,
       "status": 200,
-      "checked_at": "2026-11-19T12:30:10+00:00"
+      "checked_at": "2026-11-19T19:45:51+00:00"
     },
     "https://devin.ai/customers/linktree": {
       "ok": true,
       "status": 200,
-      "checked_at": "2026-11-19T12:30:10+00:00"
+      "checked_at": "2026-11-19T19:45:51+00:00"
     },
     "https://devin.ai/customers/litera": {
       "ok": true,
       "status": 200,
-      "checked_at": "2026-11-19T12:30:10+00:00"
+      "checked_at": "2026-11-19T19:45:51+00:00"
     },
     "https://devin.ai/customers/melius": {
       "ok": true,
       "status": 200,
-      "checked_at": "2026-11-19T12:30:10+00:00"
+      "checked_at": "2026-11-19T19:45:51+00:00"
+    },
+    "https://devin.ai/customers/mercor": {
+      "ok": true,
+      "status": 200,
+      "checked_at": "2026-11-19T19:45:51+00:00"
     },
     "https://devin.ai/customers/modal": {
       "ok": true,
       "status": 200,
-      "checked_at": "2026-11-19T12:30:10+00:00"
+      "checked_at": "2026-11-19T19:45:51+00:00"
     },
     "https://devin.ai/customers/nubank": {
       "ok": true,
       "status": 200,
-      "checked_at": "2026-11-19T12:30:10+00:00"
+      "checked_at": "2026-11-19T19:45:51+00:00"
     },
     "https://devin.ai/customers/ramp": {
       "ok": true,
       "status": 200,
-      "checked_at": "2026-11-19T12:30:10+00:00"
+      "checked_at": "2026-11-19T19:45:51+00:00"
     },
     "https://devin.ai/customers/reducto": {
       "ok": true,
       "status": 200,
-      "checked_at": "2026-11-19T12:30:10+00:00"
+      "checked_at": "2026-11-19T19:45:51+00:00"
+    },
+    "https://devin.ai/customers/ripple": {
+      "ok": true,
+      "status": 200,
+      "checked_at": "2026-11-19T19:45:51+00:00"
     },
     "https://devin.ai/customers/rohlikgroup": {
       "ok": true,
       "status": 200,
-      "checked_at": "2026-11-19T12:30:10+00:00"
+      "checked_at": "2026-11-19T19:45:51+00:00"
     },
     "https://devin.ai/customers/rvtech": {
       "ok": true,
       "status": 200,
-      "checked_at": "2026-11-19T12:30:10+00:00"
+      "checked_at": "2026-11-19T19:45:51+00:00"
     },
     "https://devin.ai/customers/tavrn": {
       "ok": true,
       "status": 200,
-      "checked_at": "2026-11-19T12:30:10+00:00"
+      "checked_at": "2026-11-19T19:45:51+00:00"
     },
     "https://devin.ai/customers/thecitationgroup": {
       "ok": true,
       "status": 200,
-      "checked_at": "2026-11-19T12:30:10+00:00"
+      "checked_at": "2026-11-19T19:45:51+00:00"
     },
     "https://devin.ai/customers/wayfair": {
       "ok": true,
       "status": 200,
-      "checked_at": "2026-11-19T12:30:10+00:00"
+      "checked_at": "2026-11-19T19:45:51+00:00"
+    },
+    "https://devin.ai/customers/wpp-enterprise-solutions": {
+      "ok": true,
+      "status": 200,
+      "checked_at": "2026-11-19T19:45:51+00:00"
     },
     "https://github.com/dabit3/vending-machine": {
       "ok": true,
       "status": 200,
-      "checked_at": "2026-11-19T12:30:10+00:00"
-    },
-    "https://medium.com/itautech/devin-no-ita%C3%BA-como-escalamos-o-uso-de-agentes-na-engenharia-de-software-b636bedebc5a": {
-      "ok": false,
-      "status": 403,
-      "checked_at": "2026-11-19T12:30:10+00:00"
+      "checked_at": "2026-11-19T19:45:51+00:00"
     },
     "https://news.sulat.com/2026/11/18/devin-bots/": {
       "ok": true,
       "status": 200,
-      "checked_at": "2026-11-19T12:30:10+00:00"
+      "checked_at": "2026-11-19T19:45:51+00:00"
     },
     "https://samyok.com/frontierfood": {
       "ok": true,
       "status": 200,
-      "checked_at": "2026-11-19T12:30:10+00:00"
+      "checked_at": "2026-11-19T19:45:51+00:00"
     },
     "https://seed.horacioh.com/writing/how-i-built-a-full-booking-system-as-a-side-project-with-devin-as-my-engineering-partner": {
       "ok": true,
       "status": 200,
-      "checked_at": "2026-11-19T12:30:10+00:00"
+      "checked_at": "2026-11-19T19:45:51+00:00"
     },
     "https://www.rox.com/articles/living-evals-an-eval-suite-that-grows-from-production": {
       "ok": true,
       "status": 200,
-      "checked_at": "2026-11-19T12:30:10+00:00"
+      "checked_at": "2026-11-19T19:45:51+00:00"
     },
     "https://www.trydevin.ai/": {
       "ok": true,
       "status": 200,
-      "checked_at": "2026-11-19T12:30:10+00:00"
+      "checked_at": "2026-11-19T19:45:51+00:00"
     },
     "https://x.com/0xtigs/status/2122742784176034056": {
       "ok": true,
       "status": 200,
-      "checked_at": "2026-11-19T12:30:10+00:00"
+      "checked_at": "2026-11-19T19:45:51+00:00"
     },
     "https://x.com/DecagonAI/article/2115511110120120437": {
       "ok": true,
       "status": 200,
-      "checked_at": "2026-11-19T12:30:10+00:00"
+      "checked_at": "2026-11-19T19:45:51+00:00"
     },
     "https://x.com/bryan_johnson/status/2122814114976383406": {
       "ok": true,
       "status": 200,
-      "checked_at": "2026-11-19T12:30:10+00:00"
+      "checked_at": "2026-11-19T19:45:51+00:00"
+    },
+    "https://x.com/cognition/status/2123093354196140285": {
+      "ok": true,
+      "status": 200,
+      "checked_at": "2026-11-19T19:45:51+00:00"
     },
     "https://x.com/dabit3/status/2122755275182469515": {
       "ok": true,
       "status": 200,
-      "checked_at": "2026-11-19T12:30:10+00:00"
+      "checked_at": "2026-11-19T19:45:51+00:00"
     },
     "https://x.com/devindevelopers/status/2115601107581821172": {
       "ok": true,
       "status": 200,
-      "checked_at": "2026-11-19T12:30:10+00:00"
+      "checked_at": "2026-11-19T19:45:51+00:00"
     },
     "https://x.com/gabepereyra": {
       "ok": true,
       "status": 200,
-      "checked_at": "2026-11-19T12:30:10+00:00"
+      "checked_at": "2026-11-19T19:45:51+00:00"
     },
     "https://x.com/markfenner/status/2122740244328145211": {
       "ok": true,
       "status": 200,
-      "checked_at": "2026-11-19T12:30:10+00:00"
+      "checked_at": "2026-11-19T19:45:51+00:00"
     },
     "https://x.com/rox_ai/status/2110779380666617997": {
       "ok": true,
       "status": 200,
-      "checked_at": "2026-11-19T12:30:10+00:00"
+      "checked_at": "2026-11-19T19:45:51+00:00"
     },
     "https://x.com/russelljkaplan/status/2100280085999919555": {
       "ok": true,
       "status": 200,
-      "checked_at": "2026-11-19T12:30:10+00:00"
+      "checked_at": "2026-11-19T19:45:51+00:00"
     },
     "https://x.com/samyok/status/2098155977199743367": {
       "ok": true,
       "status": 200,
-      "checked_at": "2026-11-19T12:30:10+00:00"
+      "checked_at": "2026-11-19T19:45:51+00:00"
     },
     "https://x.com/trybasis/status/2113307030203089189": {
       "ok": true,
       "status": 200,
-      "checked_at": "2026-11-19T12:30:10+00:00"
+      "checked_at": "2026-11-19T19:45:51+00:00"
     },
     "https://x.com/trybasis/status/2120658137766100992": {
       "ok": true,
       "status": 200,
-      "checked_at": "2026-11-19T12:30:10+00:00"
+      "checked_at": "2026-11-19T19:45:51+00:00"
     },
     "https://x.com/tylerxdev/status/2122743518712287400": {
       "ok": true,
       "status": 200,
-      "checked_at": "2026-11-19T12:30:10+00:00"
+      "checked_at": "2026-11-19T19:45:51+00:00"
     },
     "https://x.com/walden_yan": {
       "ok": true,
       "status": 200,
-      "checked_at": "2026-11-19T12:30:10+00:00"
+      "checked_at": "2026-11-19T19:45:51+00:00"
+    },
+    "https://x.com/walden_yan/status/2123105884125671605": {
+      "ok": true,
+      "status": 200,
+      "checked_at": "2026-11-19T19:45:51+00:00"
     },
     "https://x.com/xujennyc": {
       "ok": true,
       "status": 200,
-      "checked_at": "2026-11-19T12:30:10+00:00"
+      "checked_at": "2026-11-19T19:45:51+00:00"
     },
     "https://x.com/xujennyc/status/2123111543105868166": {
       "ok": true,
       "status": 200,
-      "checked_at": "2026-11-19T12:30:10+00:00"
+      "checked_at": "2026-11-19T19:45:51+00:00"
     }
   },
   "source_checks_summary": {
-    "checked_at": "2026-11-19T12:30:10+00:00",
-    "total": 59,
-    "broken": 1
+    "checked_at": "2026-11-19T19:45:51+00:00",
+    "total": 67,
+    "broken": 0
   }
 }

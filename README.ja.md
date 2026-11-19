@@ -13,7 +13,7 @@
 
 <sub>Curated by [@darega0mae](https://x.com/darega0mae) · 姉妹チュートリアル：[build-with-devin](https://github.com/Till3005/build-with-devin) · [プロジェクトを追加](CONTRIBUTING.md)</sub>
 
-<sub>**14** 件の実証済み Bot 導入 · **35** 件のエンタープライズ事例 · **6** 件の公開プロダクト · **31** 件のツール・統合 · **26** 件の実践レポート</sub>
+<sub>**14** 件の実証済み Bot 導入 · **41** 件のエンタープライズ事例 · **6** 件の公開プロダクト · **32** 件のツール・統合 · **27** 件の実践レポート</sub>
 
 <sub>[English](README.md) · [简体中文](README.zh.md) · 日本語 · [Português](README.pt.md)</sub>
 
@@ -174,7 +174,13 @@ flowchart LR
 | [Crosby](https://devin.ai/customers/crosby) | AI ネイティブ法律事務所 | 毎日 20–40 件のバグレポート/アラートに初回対応、各 ~5 分。12 人のエンジニアが 50 人以上の弁護士に対応 |
 | [Endava](https://devin.ai/customers/endava) | 企業全体への提供 | 2,000 人以上の従業員がプラットフォーム利用。4 ヶ月で 3 倍。PR マージ率 78% |
 | [Tavrn](https://devin.ai/customers/tavrn) | HIPAA 制約下のフリート | 8 人のチームが 50 人のように出荷。**6 週間で 1,800 以上の PR**、生産量 6 倍 |
-| [Itaú](https://medium.com/itautech/devin-no-ita%C3%BA-como-escalamos-o-uso-de-agentes-na-engenharia-de-software-b636bedebc5a) | ブラジル最大銀行のガバナンス先行展開 | パイロットから 17,000 人のエンジニア組織へ拡大、セキュリティ要件をクリア（PT-BR） |
+| [Itaú](https://devin.ai/customers/itau) | ブラジル最大銀行で SDLC 全体に展開 | 59 サービスの .NET→Java 移行が**6 倍速・1/5 コスト**、800 オブジェクトの SQL Server 移行 **5 倍速**、SonarQube/Fortify/Veracode 指摘の ~70% を自動修正、**30 万以上のリポジトリ**のドキュメントを継続更新、テストカバレッジ ~50%→~90+%、約 1,000 人のウェイトリスト形成後に **17,000 人技術組織の 75%** が利用 |
+| [Ripple Treasury](https://devin.ai/customers/ripple) | 自動バグトリアージ（"Guardians 2.0"）+ 非エンジニア向けコードベース QA | 未トリアージのバックログ **−75%**、修正数 0.5→1.5 件/日（**3 倍**）、週 2 回のトリアージ会議を廃止、エンジニア以外の 70 人が利用 —— 4,600+ 件の質問 ≈ **2,300 エンジニア時間を節約** |
+| [WPP Enterprise Solutions](https://devin.ai/customers/wpp-enterprise-solutions) | 固定価格のクライアント案件のデリバリー基盤 | 実案件で **SDLC 効率 30–40% 向上**を実測、Halfords リビルドは**25% 短縮でスコープ 110%**・稼働率 99.97%、テストフレームワーク移行 80 人日→8（**10 倍**）、週次アクティブエンジニアが 9 ヶ月で **4 倍** |
+| [Basis](https://devin.ai/customers/basis) | 会計 AI スタートアップの長時間タスク向けクラウドエージェント | Slack でメンションした依頼が ~15 分で出荷、エンジニアは寝る前に ~10 件の Devin ジョブを投入 —— 「群を抜いて最高のクラウドエージェント基盤」（共同創業者） |
+| [Mercor](https://devin.ai/customers/mercor) | 24 時間稼働するエンジニア組織 | 評価額 100 億ドルのヒューマンインテリジェンス・ネットワークが Devin を 24/7 運用（公開事例ページ） |
+| [Hippo](https://devin.ai/customers/hippo) | 保険エンジニア組織への全面展開 | Cognition と提携：全米 50 州の保険ルールに耐えるプロダクトをエージェント的に構築・テスト（公開事例ページ） |
+| [Zeb](https://devin.ai/blog/devin-for-databricks-migrations) | NetSuite→Databricks のデリバリーパートナー | 世界的投資アドバイザリー企業の 4 週間案件を **2.5 週間で納品**、Fortune 500 エネルギー企業が 142 オブジェクトのプラットフォームを **8 日**で Unity Catalog へ移行 |
 | **Rox** | Living Evals —— 週次 Devin が本番トレースを読み、完全コピーで障害を再生、eval PR をオープン | eval スイートが**実使用量の 72%**をカバー（手書きは 43–57%）（[記事](https://www.rox.com/articles/living-evals-an-eval-suite-that-grows-from-production)、[スレッド](https://x.com/rox_ai/status/2110779380666617997)） |
 | [Evinova](https://devin.ai/customers/evinova) | GxP 規制下のデリバリー | GxP 文書化 8 倍速。マイグレーション 3 倍速。明確なバグの 66% を自律修正 |
 | [Compiled Health](https://devin.ai/customers/compiledhealth) | 臨床ベンチマーク構築 | 2 人の研究者・2 ヶ月 = 5–6 人のエンジニアの仕事。~430 エンジニア時間・時給 ~$17 ≈ 4 人チームに +4 名分 |
@@ -186,7 +192,7 @@ flowchart LR
 | [FE fundinfo](https://devin.ai/customers/fefundinfo) | 1,800 リポジトリ自動化 | テスト生成 + セキュリティ修正で即座に 10% のキャパシティ増 |
 | [GE Aerospace](https://devin.ai/customers/geaerospace) | 制約チームのストーリー処理量 | 3 ヶ月でユーザーストーリー出力 ~2 倍 |
 
-その他の公開記録：Citi（40,000 人の開発者展開、技術ベンダー支出 30% 削減）、Mercor、Hippo、Mercedes-Benz、Cognizant、Infosys との提携 —— [顧客索引](https://devin.ai/customers)を参照。
+その他の公開記録：Citi（40,000 人の開発者展開、技術ベンダー支出 30% 削減）、Mercedes-Benz、Cognizant、Infosys との提携 —— [顧客索引](https://devin.ai/customers)を参照。
 
 <p align="right"><a href="#readme">back to top</a></p>
 
@@ -243,6 +249,7 @@ Devin *で*作られたものではなく、Devin の*ために*コミュニテ�
 - **[Devin Session Exporter](https://github.com/marktwainme/devin-session-exporter)** —— ローカル ACP セッションデータベースをフィルタ・一括エクスポートできる Devin Desktop 拡張（Markdown/JSON/HTML）。
 - **[devin-acp-shim](https://github.com/wibus-wee/devin-acp-shim)** —— Devin CLI のセッションレベル MCP 能力ネゴシエーションを修正する透過 stdio プロキシ —— 小さいが、すべての ACP ホストで MCP サーバーを解放する。
 - **[hindsight-devin-desktop](https://pypi.org/project/hindsight-devin-desktop/)** —— Vectorize の MCP ブリッジ：1 コマンドで Devin Desktop に永続的な長期記憶と常時 recall/retain ルールを配線。
+- **[devin-memory](https://github.com/Sassine/devin-memory)** —— Devin CLI 用ゼロ依存の永続メモリ：フックがコンテキスト使用量を推定して上限前に警告、`/memory-save` + `/memory-resume` で `/clear` を跨いでセッションを保存・復元。
 
 <p align="right"><a href="#readme">back to top</a></p>
 
@@ -278,6 +285,7 @@ Devin *で*作られたものではなく、Devin の*ために*コミュニテ�
 - **[発表記事が言わなかったこと](https://aiholics.com/devin-bots-cognition-persistent-agents-goals/)** —— 最も鋭い批判的考察：公開された価格/プラン詳細なし、未検証の数字、そして誰も答えていない 2 つの疑問——Bot が数週間で目標からドリフトしない仕組み、調整中の 2 つの Bot が対立したらどうなるか。
 - **[Grok Bots 組織を Devin Bots に移植](https://www.rickblalock.dev/scratch-notes/learnings-from-moving-my-grok-bots-to-devin-bots/)** —— 初の独立系ベータ実測レポート：既存の Grok-bot 組織の移植に約 $300 の一時利用料と一晩。エンジニアリングのオーケストレーションは「痛快」だがビジネス業務は Grok に戻し、Grok Bot ↔ Devin Bot のハイブリッド構成に。正直な摩擦ログ：Bot が持ってくる判断が多すぎ、必ずしも適切ではない——「インターンではなく VP のように扱ってくれ」。
 - **[無料 SWE-2 上のマルチ AI オーケストレーション](https://qiita.com/ishizakahiroshi/items/72ab801a5f2a8c941b61)** —— Devin CLI の永久無料 SWE-2 枠でエージェント間のワークルーティングを設計。
+- **[SMARTCAMP の Trivy スキャン → Devin 修復](https://zenn.dev/smartcamp/articles/97ac804043530e)** —— 定期 GitHub Actions が ECS イメージを pull して Trivy スキャン、HIGH/CRITICAL を issue 化して Devin が対応。AWS 認証ジョブとスキャンジョブを分離し artifact のみで連携。
 
 <p align="right"><a href="#readme">back to top</a></p>
 
@@ -307,6 +315,8 @@ Devin *で*作られたものではなく、Devin の*ために*コミュニテ�
 - [Devin Discord](https://devin.ai/community) と [r/DevinAI](https://www.reddit.com/r/DevinAI/) —— 公式コミュニティスペース
 - [CognitionAI/qa-devin](https://github.com/CognitionAI/qa-devin) —— Cognition 自身の「Devin が QA をする」参照リポジトリ
 - [CognitionAI/devin-vuln-fixes](https://github.com/cognitionai/devin-vuln-fixes) —— 実 CVE を修正する公式エージェントスキル（GitLab CVSS 10.0、PHP/Node RCE）：読み取り専用棚卸 → 承認ゲート → 確認済みターゲットパッチ → before/after テスト → リポジトリごとに 1 つの焦点 PR
+- [CognitionAI/team-marketplace-template](https://github.com/CognitionAI/team-marketplace-template) —— 組織管理型プラグインエコシステムの公式テンプレート：1 つのリポジトリでチーム共有プラグインを管理し、Devin Web アプリから全員に配布。必須/任意プラグインのパターン付き
+- [Devin for Databricks Migrations](https://devin.ai/blog/devin-for-databricks-migrations) —— Databricks と共同構築した公式移行サービス（11 月 19 日）：レガシー DWH コードを変換し、顧客ワークスペースでテスト、カットオーバー前に全ソースを照合 —— Databricks Marketplace 提供
 - [Devin で Modal 上のカスタムモデルを学習・デプロイ](https://gist.github.com/dabit3/866caaab49a4a5371ae01655fecad34b) —— Cognition エンジニア Nader Dabit の実働テンプレート
 - [Devin for Startups](https://devin.ai/startups) —— 適格チーム向け最大 $65k クレジット。[Devin for Gaming](https://talofagames.com/devin-for-gaming/) —— Talofa × Cognition の 3 週間スタジオコホート。対面ワークショップとクレジット賞。**[poke.com/bots](https://poke.com/bots)** —— 期間限定実験（11/18 開始）：Poke にテキストでアイデアを送り、クレジットに値する理由を説得すれば無料の Devin Bot を獲得 —— 10,000 アカウント、各最大 $10,000（Nader Dabit によると総額 ~$1 億）、$200/月の Max 要件を回避可能。これまでに報告された最高の交渉額は $1,887（[walden_yan](https://x.com/walden_yan/status/2123326058644828366)、[報道](https://news.sulat.com/2026/11/19/devin-bots-giveaway/)）
 - [Devin Automations クイックスタート](https://www.youtube.com/watch?v=6xxKtIpgOyE) —— Bots が土台とする、イベント/スケジュールトリガー型エージェント設定の公式ビデオ
