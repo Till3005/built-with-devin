@@ -121,6 +121,20 @@ permissions:
 <li>When you correct Devin mid-session, add the correction to the skill so the next session starts smarter.</li>
 <li>Promote repo-proven skills into an org plugin so every repo gets them without copying.</li>
 </ul>
+<h2>Walkthrough — a repo skill invoked for real, on Devin CLI v3000.14 (swe-2-flash-medium)</h2>
+<p>Step 3's <em>explicit</em> path, end-to-end: a <code>coverage-check</code> skill committed at <code>.devin/skills/coverage-check/SKILL.md</code> in a demo repo, then invoked in a fresh session. Discovery works exactly as documented — typing <code>/</code> surfaced the skill by name, with its <code>description</code> as the autocomplete blurb.</p>
+<p><strong>Video (60 s, silent):</strong> SKILL.md → slash autocomplete → <code>Invoked skill coverage-check</code> → approval → report.</p>
+<p><a href="https://till3005.github.io/built-with-devin/assets/guides/skills-and-plugins/walkthrough.mp4"><img alt="The skill's report — per-function coverage tables for app.py and orders.py" src="https://till3005.github.io/built-with-devin/assets/guides/skills-and-plugins/walkthrough-poster.webp" /></a></p>
+<p><img alt="1. The skill on disk — frontmatter name/description, then a numbered procedure" src="https://till3005.github.io/built-with-devin/assets/guides/skills-and-plugins/step1-skill-file.webp" />
+<em>1. The skill on disk — <code>.devin/skills/coverage-check/SKILL.md</code>: frontmatter <code>name</code>/<code>description</code>, then a numbered procedure</em></p>
+<p><img alt="2. Typing / lists the skill — name + description are the autocomplete entry" src="https://till3005.github.io/built-with-devin/assets/guides/skills-and-plugins/step2-slash-autocomplete.webp" />
+<em>2. Typing <code>/</code> lists the skill — name + <code>description</code> are exactly what discovery loads</em></p>
+<p><img alt="3. Invoked skill coverage-check — the first command already waits on an Allow" src="https://till3005.github.io/built-with-devin/assets/guides/skills-and-plugins/step3-invoked.webp" />
+<em>3. <code>Invoked skill coverage-check</code> — its first command still needs an Allow</em></p>
+<p><img alt="4. The procedure runs verbatim — unittest, then read every source and test file" src="https://till3005.github.io/built-with-devin/assets/guides/skills-and-plugins/step4-coverage-report.webp" />
+<em>4. The procedure runs verbatim — <code>python3 -m unittest -v</code>, then reads app.py, orders.py, both test files</em></p>
+<p><img alt="5. Result: full coverage — per-function tables naming every branch; no files modified, no commits" src="https://till3005.github.io/built-with-devin/assets/guides/skills-and-plugins/step5-full-coverage.webp" />
+<em>5. Result: full coverage — every branch accounted for, exactly the report the SKILL.md asked for</em></p>
 <h2>Verify it</h2>
 <ul>
 <li>[ ] A fresh session lists your skill by name (name + description load at start)</li>

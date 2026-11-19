@@ -121,6 +121,20 @@ permissions:
 <li>セッション中に Devin を訂正したら、その訂正を skill に追記 — 次のセッションはより賢く始まります。</li>
 <li>単一リポジトリで実証された skill は org plugin に昇格 — コピーなしで全リポジトリに届きます。</li>
 </ul>
+<h2>実録ウォークスルー — リポジトリスキルを実際に起動、Devin CLI v3000.14（swe-2-flash-medium）で収録</h2>
+<p>ステップ 3 の <em>明示的</em> な経路を端から端まで：デモリポジトリに <code>.devin/skills/coverage-check/SKILL.md</code> をコミットし、新しいセッションで起動。発見はドキュメント通り——<code>/</code> を打つとスキルが名前で列挙され、<code>description</code> が補完の説明文になる。</p>
+<p><strong>動画（60 秒、無音）：</strong> SKILL.md → スラッシュ補完 → <code>Invoked skill coverage-check</code> → 承認 → レポート。</p>
+<p><a href="https://till3005.github.io/built-with-devin/assets/guides/skills-and-plugins/walkthrough.mp4"><img alt="スキルのレポート — app.py と orders.py の関数別カバレッジ表" src="https://till3005.github.io/built-with-devin/assets/guides/skills-and-plugins/walkthrough-poster.webp" /></a></p>
+<p><img alt="1. ディスク上のスキル — frontmatter の name/description と番号付き手順" src="https://till3005.github.io/built-with-devin/assets/guides/skills-and-plugins/step1-skill-file.webp" />
+<em>1. ディスク上のスキル — <code>.devin/skills/coverage-check/SKILL.md</code>：frontmatter <code>name</code>/<code>description</code> と番号付き手順</em></p>
+<p><img alt="2. / でスキルが列挙される — 名前 + description が補完エントリ" src="https://till3005.github.io/built-with-devin/assets/guides/skills-and-plugins/step2-slash-autocomplete.webp" />
+<em>2. <code>/</code> でスキルが列挙される — 発見で読み込まれるのは名前 + <code>description</code> そのもの</em></p>
+<p><img alt="3. Invoked skill coverage-check — 最初のコマンドも Allow 待ち" src="https://till3005.github.io/built-with-devin/assets/guides/skills-and-plugins/step3-invoked.webp" />
+<em>3. <code>Invoked skill coverage-check</code> — 最初のコマンドにも Allow が必要</em></p>
+<p><img alt="4. 手順がそのまま実行される — unittest を走らせ、全ソース/テストファイルを読む" src="https://till3005.github.io/built-with-devin/assets/guides/skills-and-plugins/step4-coverage-report.webp" />
+<em>4. 手順がそのまま実行される — <code>python3 -m unittest -v</code>、続いて app.py・orders.py・両テストファイルを読む</em></p>
+<p><img alt="5. 結果：フルカバレッジ — 全ブランチを挙げた関数別表；ファイル無変更、コミットなし" src="https://till3005.github.io/built-with-devin/assets/guides/skills-and-plugins/step5-full-coverage.webp" />
+<em>5. 結果：フルカバレッジ — SKILL.md が要求した通りのレポート</em></p>
 <h2>検証チェックリスト</h2>
 <ul>
 <li>[ ] 新しいセッションが skill を名前つきで列挙する（起動時に name + description が読まれる）</li>
