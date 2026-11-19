@@ -191,6 +191,15 @@ def main():
         "products": products,
         "enterprise_cases": enterprise,
     }
+    # Preserve liveness data written by tools/verify_sources.py
+    if OUT.exists():
+        try:
+            prior = json.loads(OUT.read_text())
+            for k in ("source_checks", "source_checks_summary"):
+                if k in prior:
+                    data[k] = prior[k]
+        except Exception:
+            pass
     OUT.write_text(json.dumps(data, indent=2, ensure_ascii=False) + "\n")
     print(f"wrote {OUT} — {data['counts']}")
 

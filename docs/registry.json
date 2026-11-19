@@ -768,5 +768,307 @@
       ],
       "updated_on": "2026-11-18"
     }
-  ]
+  ],
+  "source_checks": {
+    "https://courtyard.io/blog/post/from-a-slack-link-to-production-in-under-48-hours-cloning-shopifys-quick-with-devin": {
+      "ok": true,
+      "status": 200,
+      "checked_at": "2026-11-19T12:30:10+00:00"
+    },
+    "https://devin.ai/bots": {
+      "ok": true,
+      "status": 200,
+      "checked_at": "2026-11-19T12:30:10+00:00"
+    },
+    "https://devin.ai/customers/access-group": {
+      "ok": true,
+      "status": 200,
+      "checked_at": "2026-11-19T12:30:10+00:00"
+    },
+    "https://devin.ai/customers/ahead": {
+      "ok": true,
+      "status": 200,
+      "checked_at": "2026-11-19T12:30:10+00:00"
+    },
+    "https://devin.ai/customers/airbyte": {
+      "ok": true,
+      "status": 200,
+      "checked_at": "2026-11-19T12:30:10+00:00"
+    },
+    "https://devin.ai/customers/angellist": {
+      "ok": true,
+      "status": 200,
+      "checked_at": "2026-11-19T12:30:10+00:00"
+    },
+    "https://devin.ai/customers/bilt": {
+      "ok": true,
+      "status": 200,
+      "checked_at": "2026-11-19T12:30:10+00:00"
+    },
+    "https://devin.ai/customers/comarch": {
+      "ok": true,
+      "status": 200,
+      "checked_at": "2026-11-19T12:30:10+00:00"
+    },
+    "https://devin.ai/customers/compiledhealth": {
+      "ok": true,
+      "status": 200,
+      "checked_at": "2026-11-19T12:30:10+00:00"
+    },
+    "https://devin.ai/customers/comun": {
+      "ok": true,
+      "status": 200,
+      "checked_at": "2026-11-19T12:30:10+00:00"
+    },
+    "https://devin.ai/customers/crosby": {
+      "ok": true,
+      "status": 200,
+      "checked_at": "2026-11-19T12:30:10+00:00"
+    },
+    "https://devin.ai/customers/crossmint": {
+      "ok": true,
+      "status": 200,
+      "checked_at": "2026-11-19T12:30:10+00:00"
+    },
+    "https://devin.ai/customers/ebanx": {
+      "ok": true,
+      "status": 200,
+      "checked_at": "2026-11-19T12:30:10+00:00"
+    },
+    "https://devin.ai/customers/eight-sleep": {
+      "ok": true,
+      "status": 200,
+      "checked_at": "2026-11-19T12:30:10+00:00"
+    },
+    "https://devin.ai/customers/endava": {
+      "ok": true,
+      "status": 200,
+      "checked_at": "2026-11-19T12:30:10+00:00"
+    },
+    "https://devin.ai/customers/eon": {
+      "ok": true,
+      "status": 200,
+      "checked_at": "2026-11-19T12:30:10+00:00"
+    },
+    "https://devin.ai/customers/evinova": {
+      "ok": true,
+      "status": 200,
+      "checked_at": "2026-11-19T12:30:10+00:00"
+    },
+    "https://devin.ai/customers/exa": {
+      "ok": true,
+      "status": 200,
+      "checked_at": "2026-11-19T12:30:10+00:00"
+    },
+    "https://devin.ai/customers/fefundinfo": {
+      "ok": true,
+      "status": 200,
+      "checked_at": "2026-11-19T12:30:10+00:00"
+    },
+    "https://devin.ai/customers/finch": {
+      "ok": true,
+      "status": 200,
+      "checked_at": "2026-11-19T12:30:10+00:00"
+    },
+    "https://devin.ai/customers/geaerospace": {
+      "ok": true,
+      "status": 200,
+      "checked_at": "2026-11-19T12:30:10+00:00"
+    },
+    "https://devin.ai/customers/gumroad": {
+      "ok": true,
+      "status": 200,
+      "checked_at": "2026-11-19T12:30:10+00:00"
+    },
+    "https://devin.ai/customers/hamming": {
+      "ok": true,
+      "status": 200,
+      "checked_at": "2026-11-19T12:30:10+00:00"
+    },
+    "https://devin.ai/customers/latent": {
+      "ok": true,
+      "status": 200,
+      "checked_at": "2026-11-19T12:30:10+00:00"
+    },
+    "https://devin.ai/customers/linktree": {
+      "ok": true,
+      "status": 200,
+      "checked_at": "2026-11-19T12:30:10+00:00"
+    },
+    "https://devin.ai/customers/litera": {
+      "ok": true,
+      "status": 200,
+      "checked_at": "2026-11-19T12:30:10+00:00"
+    },
+    "https://devin.ai/customers/melius": {
+      "ok": true,
+      "status": 200,
+      "checked_at": "2026-11-19T12:30:10+00:00"
+    },
+    "https://devin.ai/customers/modal": {
+      "ok": true,
+      "status": 200,
+      "checked_at": "2026-11-19T12:30:10+00:00"
+    },
+    "https://devin.ai/customers/nubank": {
+      "ok": true,
+      "status": 200,
+      "checked_at": "2026-11-19T12:30:10+00:00"
+    },
+    "https://devin.ai/customers/ramp": {
+      "ok": true,
+      "status": 200,
+      "checked_at": "2026-11-19T12:30:10+00:00"
+    },
+    "https://devin.ai/customers/reducto": {
+      "ok": true,
+      "status": 200,
+      "checked_at": "2026-11-19T12:30:10+00:00"
+    },
+    "https://devin.ai/customers/rohlikgroup": {
+      "ok": true,
+      "status": 200,
+      "checked_at": "2026-11-19T12:30:10+00:00"
+    },
+    "https://devin.ai/customers/rvtech": {
+      "ok": true,
+      "status": 200,
+      "checked_at": "2026-11-19T12:30:10+00:00"
+    },
+    "https://devin.ai/customers/tavrn": {
+      "ok": true,
+      "status": 200,
+      "checked_at": "2026-11-19T12:30:10+00:00"
+    },
+    "https://devin.ai/customers/thecitationgroup": {
+      "ok": true,
+      "status": 200,
+      "checked_at": "2026-11-19T12:30:10+00:00"
+    },
+    "https://devin.ai/customers/wayfair": {
+      "ok": true,
+      "status": 200,
+      "checked_at": "2026-11-19T12:30:10+00:00"
+    },
+    "https://github.com/dabit3/vending-machine": {
+      "ok": true,
+      "status": 200,
+      "checked_at": "2026-11-19T12:30:10+00:00"
+    },
+    "https://medium.com/itautech/devin-no-ita%C3%BA-como-escalamos-o-uso-de-agentes-na-engenharia-de-software-b636bedebc5a": {
+      "ok": false,
+      "status": 403,
+      "checked_at": "2026-11-19T12:30:10+00:00"
+    },
+    "https://news.sulat.com/2026/11/18/devin-bots/": {
+      "ok": true,
+      "status": 200,
+      "checked_at": "2026-11-19T12:30:10+00:00"
+    },
+    "https://samyok.com/frontierfood": {
+      "ok": true,
+      "status": 200,
+      "checked_at": "2026-11-19T12:30:10+00:00"
+    },
+    "https://seed.horacioh.com/writing/how-i-built-a-full-booking-system-as-a-side-project-with-devin-as-my-engineering-partner": {
+      "ok": true,
+      "status": 200,
+      "checked_at": "2026-11-19T12:30:10+00:00"
+    },
+    "https://www.rox.com/articles/living-evals-an-eval-suite-that-grows-from-production": {
+      "ok": true,
+      "status": 200,
+      "checked_at": "2026-11-19T12:30:10+00:00"
+    },
+    "https://www.trydevin.ai/": {
+      "ok": true,
+      "status": 200,
+      "checked_at": "2026-11-19T12:30:10+00:00"
+    },
+    "https://x.com/0xtigs/status/2122742784176034056": {
+      "ok": true,
+      "status": 200,
+      "checked_at": "2026-11-19T12:30:10+00:00"
+    },
+    "https://x.com/DecagonAI/article/2115511110120120437": {
+      "ok": true,
+      "status": 200,
+      "checked_at": "2026-11-19T12:30:10+00:00"
+    },
+    "https://x.com/bryan_johnson/status/2122814114976383406": {
+      "ok": true,
+      "status": 200,
+      "checked_at": "2026-11-19T12:30:10+00:00"
+    },
+    "https://x.com/dabit3/status/2122755275182469515": {
+      "ok": true,
+      "status": 200,
+      "checked_at": "2026-11-19T12:30:10+00:00"
+    },
+    "https://x.com/devindevelopers/status/2115601107581821172": {
+      "ok": true,
+      "status": 200,
+      "checked_at": "2026-11-19T12:30:10+00:00"
+    },
+    "https://x.com/gabepereyra": {
+      "ok": true,
+      "status": 200,
+      "checked_at": "2026-11-19T12:30:10+00:00"
+    },
+    "https://x.com/markfenner/status/2122740244328145211": {
+      "ok": true,
+      "status": 200,
+      "checked_at": "2026-11-19T12:30:10+00:00"
+    },
+    "https://x.com/rox_ai/status/2110779380666617997": {
+      "ok": true,
+      "status": 200,
+      "checked_at": "2026-11-19T12:30:10+00:00"
+    },
+    "https://x.com/russelljkaplan/status/2100280085999919555": {
+      "ok": true,
+      "status": 200,
+      "checked_at": "2026-11-19T12:30:10+00:00"
+    },
+    "https://x.com/samyok/status/2098155977199743367": {
+      "ok": true,
+      "status": 200,
+      "checked_at": "2026-11-19T12:30:10+00:00"
+    },
+    "https://x.com/trybasis/status/2113307030203089189": {
+      "ok": true,
+      "status": 200,
+      "checked_at": "2026-11-19T12:30:10+00:00"
+    },
+    "https://x.com/trybasis/status/2120658137766100992": {
+      "ok": true,
+      "status": 200,
+      "checked_at": "2026-11-19T12:30:10+00:00"
+    },
+    "https://x.com/tylerxdev/status/2122743518712287400": {
+      "ok": true,
+      "status": 200,
+      "checked_at": "2026-11-19T12:30:10+00:00"
+    },
+    "https://x.com/walden_yan": {
+      "ok": true,
+      "status": 200,
+      "checked_at": "2026-11-19T12:30:10+00:00"
+    },
+    "https://x.com/xujennyc": {
+      "ok": true,
+      "status": 200,
+      "checked_at": "2026-11-19T12:30:10+00:00"
+    },
+    "https://x.com/xujennyc/status/2123111543105868166": {
+      "ok": true,
+      "status": 200,
+      "checked_at": "2026-11-19T12:30:10+00:00"
+    }
+  },
+  "source_checks_summary": {
+    "checked_at": "2026-11-19T12:30:10+00:00",
+    "total": 59,
+    "broken": 1
+  }
 }
