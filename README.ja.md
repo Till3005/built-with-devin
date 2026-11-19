@@ -13,7 +13,7 @@
 
 <sub>Curated by [@darega0mae](https://x.com/darega0mae) · 姉妹チュートリアル：[build-with-devin](https://github.com/Till3005/build-with-devin) · [プロジェクトを追加](CONTRIBUTING.md)</sub>
 
-<sub>**13** 件の実証済み Bot 導入 · **35** 件のエンタープライズ事例 · **6** 件の公開プロダクト · **29** 件のツール・統合 · **24** 件の実践レポート</sub>
+<sub>**13** 件の実証済み Bot 導入 · **35** 件のエンタープライズ事例 · **6** 件の公開プロダクト · **29** 件のツール・統合 · **26** 件の実践レポート</sub>
 
 <sub>[English](README.md) · [简体中文](README.zh.md) · 日本語 · [Português](README.pt.md)</sub>
 
@@ -269,6 +269,8 @@ Devin *で*作られたものではなく、Devin の*ために*コミュニテ�
 - **[Devin CLI のコンテキスト上限の実践](https://qiita.com/ishizakahiroshi/items/cee2a8ea2be18f2ccee3)** —— AGENTS.md と承認ルールを 16KB/32KB 上限に収める作業ノート。
 - **[NOT A HOTEL の初めての Devin 導入](https://zenn.dev/notahotel/articles/d401a1046d6076)** —— セットアップから初マージ PR まで 1 時間未満のモブワーク記録——Devin が求めるリポジトリ接続設定の分類項目も紹介。
 - **[Hello World… Meet Devin](https://jamesin.substack.com/p/hello-world-meet-devin)** —— Jamesin Seidel のローンチ期記録：初めて Devin が自分のリポジトリにコードをコミットするのを見た、メール振り分けアシスタント開発（Substack）。
+- **[Devin でウェブサイトをデプロイする方法](https://www.hostinger.com/tutorials/how-to-deploy-a-website-with-devin/)** —— Hostinger のステップバイステップ：3 つのデプロイルート（プレビュー向け App Deploys beta、本番向け GitHub→ホスト、手動アップロード）、加えて MCP Connector で Devin Desktop が 100+ のホスティングツールに直接アクセス。
+- **[Devin Apps チュートリアル：プロンプトでプライベート内部アプリを作る](https://lightmind24.blogspot.com/2026/11/devin-apps-tutorial-build-private.html)** —— ローンチ記事以外で最も完全な Apps 実践ガイド：最初のプロンプトに書くべきこと（ユーザー、データソース、画面、スタック）、Apps がデザインシステムを拾う仕組み、Apps が適さなくなる境界。
 - **[Devin Bots が目指すのは AI 社員ではなくエージェントのマネージャー](https://daily.dev/posts/devin-bots-want-to-be-your-agent-manager-not-your-ai-employee-hhpjo94uh)** —— daily.dev のローンチ分析とリプライ感情内訳（好意的 55% / 中立 30% / 懐疑的 15%）：実質的な批判は 3 点に集中——自己レビューする Bot を誰がレビューするのか、クレデンシャルセキュリティ、フリート管理は本当に人間管理より楽なのか。
 - **[発表記事が言わなかったこと](https://aiholics.com/devin-bots-cognition-persistent-agents-goals/)** —— 最も鋭い批判的考察：公開された価格/プラン詳細なし、未検証の数字、そして誰も答えていない 2 つの疑問——Bot が数週間で目標からドリフトしない仕組み、調整中の 2 つの Bot が対立したらどうなるか。
 - **[Grok Bots 組織を Devin Bots に移植](https://www.rickblalock.dev/scratch-notes/learnings-from-moving-my-grok-bots-to-devin-bots/)** —— 初の独立系ベータ実測レポート：既存の Grok-bot 組織の移植に約 $300 の一時利用料と一晩。エンジニアリングのオーケストレーションは「痛快」だがビジネス業務は Grok に戻し、Grok Bot ↔ Devin Bot のハイブリッド構成に。正直な摩擦ログ：Bot が持ってくる判断が多すぎ、必ずしも適切ではない——「インターンではなく VP のように扱ってくれ」。

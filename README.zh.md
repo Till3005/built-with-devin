@@ -13,7 +13,7 @@
 
 <sub>维护者 [@darega0mae](https://x.com/darega0mae) · 姊妹教程库：[build-with-devin](https://github.com/Till3005/build-with-devin) · [收录你的项目](CONTRIBUTING.md)</sub>
 
-<sub>**13** 个有据可查的 Bot 部署 · **35** 个企业案例 · **6** 个已发布产品 · **29** 个工具与集成 · **24** 篇实战报告</sub>
+<sub>**13** 个有据可查的 Bot 部署 · **35** 个企业案例 · **6** 个已发布产品 · **29** 个工具与集成 · **26** 篇实战报告</sub>
 
 <sub>[English](README.md) · 简体中文 · [日本語](README.ja.md) · [Português](README.pt.md)</sub>
 
@@ -269,6 +269,8 @@ flowchart LR
 - **[Devin CLI 上下文上限实战](https://qiita.com/ishizakahiroshi/items/cee2a8ea2be18f2ccee3)** —— 把 AGENTS.md 和审批规则塞进 16KB/32KB 上限的工作笔记（日文）。
 - **[NOT A HOTEL 的首次 Devin 试用](https://zenn.dev/notahotel/articles/d401a1046d6076)** —— 从配置到首个合并 PR 不到一小时的 mob 实战记录——含 Devin 对仓库接入分类项的要求（日文）。
 - **[Hello World… Meet Devin](https://jamesin.substack.com/p/hello-world-meet-devin)** —— Jamesin Seidel 上线初期实录：第一次看 Devin 把代码提交进自己仓库，做了个邮件分拣助手（Substack）。
+- **[用 Devin 部署一个网站](https://www.hostinger.com/tutorials/how-to-deploy-a-website-with-devin/)** —— Hostinger 的逐步教程：三条部署路线（App Deploys beta 用于预览、GitHub→主机商用于生产、手动上传），外加他们的 MCP Connector 让 Devin Desktop 直连 100+ 个托管工具。
+- **[Devin Apps 教程：用一句 prompt 建私有内部应用](https://lightmind24.blogspot.com/2026/11/devin-apps-tutorial-build-private.html)** —— 官方发布文之外最完整的 Apps 实操：第一条 prompt 该写什么（用户、数据源、页面、技术栈）、Apps 怎么自动套用你的设计系统、以及什么场景下 Apps 就不是对的工具了。
 - **[Devin Bots 想做的是你的 agent 经理，不是你的 AI 员工](https://daily.dev/posts/devin-bots-want-to-be-your-agent-manager-not-your-ai-employee-hhpjo94uh)** —— daily.dev 的发布分析与评论区情绪统计（55% 正面 / 30% 混杂 / 15% 怀疑）：实质质疑集中在三点——谁来审一个负责审查的 Bot、凭证安全、管理一支舰队是否真比管理人省事。
 - **[发布文没说的那些](https://aiholics.com/devin-bots-cognition-persistent-agents-goals/)** —— 最犀利的一篇批判性阅读：没有公开定价/档位细节、数字未经核实，以及两个没人回答的问题——Bot 几周后怎么不偏离目标、两个协调中的 Bot 意见不一致时怎么办。
 - **[把 Grok Bots 组织移植到 Devin Bots](https://www.rickblalock.dev/scratch-notes/learnings-from-moving-my-grok-bots-to-devin-bots/)** —— 第一份独立的 beta 实测报告：把一个现成的 Grok-bot 组织移植过去花了约 $300 一次性用量和一个晚上；工程编排"令人愉悦"，但业务侧工作又被搬回了 Grok，最终落成 Grok Bot ↔ Devin Bot 混合架构。诚实的摩擦日志：bot 带给他的决策太多且不总是对的——"把我当 VP，别当实习生。"

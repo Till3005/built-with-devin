@@ -13,7 +13,7 @@
 
 <sub>Curado por [@darega0mae](https://x.com/darega0mae) · Tutoriais irmãos: [build-with-devin](https://github.com/Till3005/build-with-devin) · [Adicione seu projeto](CONTRIBUTING.md)</sub>
 
-<sub>**13** implantações de Bot documentadas · **35** casos corporativos · **6** produtos lançados · **29** ferramentas e integrações · **24** relatos de campo</sub>
+<sub>**13** implantações de Bot documentadas · **35** casos corporativos · **6** produtos lançados · **29** ferramentas e integrações · **26** relatos de campo</sub>
 
 <sub>[English](README.md) · [简体中文](README.zh.md) · [日本語](README.ja.md) · Português</sub>
 
@@ -269,6 +269,8 @@ Uso real documentado.
 - **[Os limites de contexto do Devin CLI na prática](https://qiita.com/ishizakahiroshi/items/cee2a8ea2be18f2ccee3)** — Notas de trabalho para caber AGENTS.md e regras de aprovação nos limites de 16KB/32KB (JP).
 - **[Primeira sessão Devin da NOT A HOTEL](https://zenn.dev/notahotel/articles/d401a1046d6076)** — Relato de um workshop em mob do setup ao primeiro PR mergeado em menos de uma hora — incluindo as categorias de onboarding que o Devin pede (JP).
 - **[Hello World… Meet Devin](https://jamesin.substack.com/p/hello-world-meet-devin)** — Relato da era de lançamento de Jamesin Seidel: vendo código ser commitado no seu próprio repo pelo Devin pela primeira vez, construindo um assistente de triagem de email (Substack).
+- **[Como fazer deploy de um site com o Devin](https://www.hostinger.com/tutorials/how-to-deploy-a-website-with-devin/)** — passo a passo da Hostinger: as três rotas de deploy (App Deploys beta para previews, GitHub→host para produção, upload manual), mais o MCP Connector que dá ao Devin Desktop acesso direto a 100+ ferramentas de hospedagem.
+- **[Tutorial de Devin Apps: construa um app interno privado por prompt](https://lightmind24.blogspot.com/2026/11/devin-apps-tutorial-build-private.html)** — o guia de Apps mais completo fora do post de lançamento: o que incluir no primeiro prompt (usuários, fonte de dados, telas, stack), como os Apps capturam seu design system, e onde Apps deixa de ser a ferramenta certa.
 - **[Devin Bots quer ser seu gerente de agentes, não seu funcionário de IA](https://daily.dev/posts/devin-bots-want-to-be-your-agent-manager-not-your-ai-employee-hhpjo94uh)** — análise do lançamento pelo daily.dev com quebra de sentimento das respostas (55% positivo / 30% misto / 15% cético): as críticas substantivas se concentram em três pontos — quem revisa um Bot que revisa a si mesmo, segurança de credenciais, e se gerenciar uma frota é mesmo menos trabalho que gerenciar pessoas.
 - **[O que o post de lançamento não disse](https://aiholics.com/devin-bots-cognition-persistent-agents-goals/)** — a leitura crítica mais afiada: sem detalhes públicos de preço/plano, números não verificados, e duas perguntas que ninguém respondeu — como um Bot evita desviar do objetivo ao longo de semanas, e o que acontece quando dois Bots coordenando discordam.
 - **[Migrando uma org de Grok Bots para Devin Bots](https://www.rickblalock.dev/scratch-notes/learnings-from-moving-my-grok-bots-to-devin-bots/)** — o primeiro relato independente da beta: portar uma org existente de Grok-bots custou ~$300 de uso único e uma noite; a orquestração de engenharia foi "encantadora", mas o trabalho de negócios voltou pro Grok, resultando num setup híbrido Grok Bot ↔ Devin Bot. Log de fricção honesto: os bots traziam decisões *demais*, nem sempre as certas — "me trate como um VP, não como um estagiário."

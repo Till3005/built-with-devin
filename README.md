@@ -13,7 +13,7 @@
 
 <sub>Curated by [@darega0mae](https://x.com/darega0mae) · Sister tutorials: [build-with-devin](https://github.com/Till3005/build-with-devin) · [Add your project](CONTRIBUTING.md)</sub>
 
-<sub>**13** documented Bot deployments · **35** enterprise case studies · **6** shipped products · **29** tools & integrations · **24** field reports</sub>
+<sub>**13** documented Bot deployments · **35** enterprise case studies · **6** shipped products · **29** tools & integrations · **26** field reports</sub>
 
 <sub>English · [简体中文](README.zh.md) · [日本語](README.ja.md) · [Português](README.pt.md)</sub>
 
@@ -269,6 +269,8 @@ Documented real-world usage.
 - **[Devin CLI's context limits in practice](https://qiita.com/ishizakahiroshi/items/cee2a8ea2be18f2ccee3)** — Working notes on fitting AGENTS.md and approval rules inside the 16KB/32KB caps (JP).
 - **[NOT A HOTEL's first Devin session](https://zenn.dev/notahotel/articles/d401a1046d6076)** — A mob-workshop report from setup to first merged PR in under an hour — including what repo onboarding categories Devin asks for (JP).
 - **[Hello World… Meet Devin](https://jamesin.substack.com/p/hello-world-meet-devin)** — Jamesin Seidel's launch-era account: watching code get committed into his own repo by Devin for the first time, building an email-triage assistant (Substack).
+- **[How to deploy a website with Devin](https://www.hostinger.com/tutorials/how-to-deploy-a-website-with-devin/)** — Hostinger's step-by-step: the three deployment routes (App Deploys beta for previews, GitHub→host for production, manual upload), plus their MCP Connector giving Devin Desktop direct access to 100+ hosting tools.
+- **[Devin Apps tutorial: build a private internal app by prompt](https://lightmind24.blogspot.com/2026/11/devin-apps-tutorial-build-private.html)** — The most complete Apps walkthrough outside the launch post: what to put in the first prompt (users, data source, screens, stack), how Apps pick up your design system, and where Apps stops being the right tool.
 - **[Devin Bots want to be your agent manager](https://daily.dev/posts/devin-bots-want-to-be-your-agent-manager-not-your-ai-employee-hhpjo94uh)** — daily.dev's launch analysis and reply-sentiment breakdown (55% positive / 30% mixed / 15% skeptical): the substantive criticism cluster is self-review (who checks a Bot that checks itself), credential security, and whether managing a fleet is actually less work than managing people.
 - **[What the launch post leaves unsaid](https://aiholics.com/devin-bots-cognition-persistent-agents-goals/)** — the sharpest critical read: no public pricing/plan detail, unverified figures, and two open questions nobody has answered — how a Bot avoids drifting from its goal over weeks, and what happens when two coordinating Bots disagree.
 - **[Moving a Grok Bots org onto Devin Bots](https://www.rickblalock.dev/scratch-notes/learnings-from-moving-my-grok-bots-to-devin-bots/)** — the first independent beta field report: porting an existing Grok-bot org cost ~$300 of one-time usage and an evening; engineering orchestration "delightful" but business work moved back to Grok, leaving a hybrid Grok Bot ↔ Devin Bot setup. Honest friction log: bots brought him *too many* decisions, not always the right ones — "treat me like a VP, not an intern."
