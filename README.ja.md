@@ -13,7 +13,7 @@
 
 <sub>Curated by [@darega0mae](https://x.com/darega0mae) · 姉妹チュートリアル：[build-with-devin](https://github.com/Till3005/build-with-devin) · [プロジェクトを追加](CONTRIBUTING.md)</sub>
 
-<sub>**12** 件の実証済み Bot 導入 · **35** 件のエンタープライズ事例 · **6** 件の公開プロダクト · **29** 件のツール・統合 · **21** 件の実践レポート</sub>
+<sub>**13** 件の実証済み Bot 導入 · **35** 件のエンタープライズ事例 · **6** 件の公開プロダクト · **29** 件のツール・統合 · **22** 件の実践レポート</sub>
 
 <sub>[English](README.md) · [简体中文](README.zh.md) · 日本語 · [Português](README.pt.md)</sub>
 
@@ -64,6 +64,7 @@ flowchart LR
 | **AutoResearch ループ** | Decagon | 推論研究ラボ | 1 つの Devin がオーケストレート。サブエージェントが競合仮説を並列で追求。すべてのアイデアを Modal GPU 上の再生済み本番トラフィックで検証 —— **GPU あたりスループット最大 2.5 倍**（[詳細](https://x.com/DecagonAI/article/2115511110120120437)、[@devindevelopers](https://x.com/devindevelopers/status/2115601107581821172)）。 |
 | **Frankie の組織** | Mark Fenner（コミュニティ） | 個人エージェントフリート | 異なる役割を持つ 4 つの Bot を "Frankie, my Chief Agent" が調整し、集約レポートを持ち帰る（[解説](https://x.com/markfenner/status/2122740244328145211)）。 |
 | **tigsbot** | @0xtigs（コミュニティ） | 個人マルチプロジェクトフリート | 各プロジェクトは 1 つの Slack チャンネル = 1 Bot。Chief-of-Staff Bot が「全体の最新状況は？」に答え、*彼自身*がブロッカーになった時は本人に ping。専門 Bot が単一ライセンスや複雑なセットアップのソフトウェアを管理（[セットアップ](https://x.com/0xtigs/status/2122742784176034056)）。 |
+| **報酬制 Chief-of-Staff** | Avinash（Cognition、MENA） | 個人 Bot フリートのデイリースタンドアップ + 報酬 | SuperJennyStack のロールアップパターンを応用：1 つの Bot が毎日他の全 Bot をレビューし、良い仕事に「報酬」を与えてフリートを自己改善させる——新規ユーザーへの最初のデプロイとして本人が推奨。（[報道](https://news.sulat.com/2026/11/18/devin-bots/)） |
 | **Electra** | Basis | 内部ツール + コード、自律型 | 名前つきの Devin チームメイト（Bots 以前）：やるべきことを自分で決め、コードを書いてテストし、内部ツールの更新を出荷し、チームを動かす —— Basis は税務エージェントごとに 20 日間のスレッドを運用（[投稿](https://x.com/trybasis/status/2113307030203089189)、[20 日スレッド](https://x.com/trybasis/status/2120658137766100992)）。 |
 | **パーソナルデータ Bot** | Bryan Johnson | 健康データ統合 + 家族への報告 | 1 つの Bot が数年分のバイオメトリクスと脳スキャンデータを 1 つの読み物に統合。もう 1 つが母親に毎日の近況をテキスト送信。（[投稿](https://x.com/bryan_johnson/status/2122814114976383406)、[発表動画](https://vimeo.com/1247688199)） |
 
@@ -76,13 +77,15 @@ flowchart LR
 - **Bots × Apps** —— Bot が Devin Apps を維持：新しいページ/機能を構築し、変化に自動適応。Bots と Apps は同じナビゲーションレールにピン留め（[@dabit3](https://x.com/dabit3)）。
 - **Living evals** —— スケジュールされた Devin が本番トレースを読み、行動ごとにグループ化し、システムの完全なコピー（モック不可）で障害を再生し、各障害を eval PR として凍結 —— 資産は eval ではなく skill ファイル（Rox：カバレッジ 72% vs 手書き 43–57%）。
 - **Devin 自身をチューニングする Bot** —— Walden の bot はユーザーフィードバックを監視し、プロンプトを再生、実験を実行、eval セットを構築し、Devin 自身のプロアクティブ性/自律性パラメータを調整 —— Bots が Bots を作った（[スレッド](https://x.com/walden_yan/status/2122740852091216274)）。
+- **自分のアカウントを持つ Bot** —— DevRelBot が一人でチュートリアル動画を出荷できるのは、従業員同様にプロビジョニングされているから：専用コンピュータ、専用 Devin/GitHub/Linear アカウント、専用 ElevenLabs キー —— Devin にログインして実際の UI を録画する。
+- **Bot 間プロトコル（BotSpeak）** —— 20+ の Bot が 1 日 700+ 件のメッセージを生成。Jenny は bot 間速記（ACK コード、簡易英語、絵文字レシート）で受信トレイ崩壊を解決し、完全な文章は人間のみに —— 6 日間で bot の自律判断が 12 倍に。
 - **参照グラウンデッド・スウォーム** —— Harvey の教訓：信頼できる参照（実際の Word 挙動）で検証できる仕事なら、小さなチームでも大きな swarm を安全に指揮できる。
 
 ### 公開された結果
 
 ローンチ前の数週間で **1,000 人以上のベータテスター**。テスターはメッセージあたり **4.5 倍**多くの PR をマージ。Cognition は週 2,000 以上の PR をマージし、マージ済み PR スループットを 40 倍に拡大、**単一の自律目標から 1,000 以上の PR** を達成。初期アクセス顧客には **Decagon、Fireworks AI、Reducto** が名を連ね、最初の 2 週間で使用量が 10 倍に（[Fortune](https://fortune.com/2026/11/17/exclusive-cognition-bets-on-devin-bots-coding-agents-in-challenge-to-anthropics-duet-and-openais-dots/)）。
 
-その他の実証済み用途：**Manim** の issue 事前トリアージ、ファームウェア作業、Bot 主導チームによる**フロンティア推論エンジン**構築、テニス分析、経理自動化（trybasis：20 時間 → 30 分）、swyx の 1 週間トライアル（AEO、QA、クロスプラットフォーム移植、個人管理、動画編集 —— [彼のまとめ](https://x.com/swyx/status/2122746401482592549)）、Cognition リサーチチームの「数週間を数日に短縮」（[@silasalberti](https://x.com/silasalberti)）。詳細は[再現ガイド](docs/reproducing-devin-bots.md#reported-usage-beyond-cognition)へ。
+その他の実証済み用途：**Manim** の issue 事前トリアージ、ファームウェア作業、Bot 主導チームによる**フロンティア推論エンジン**構築、テニス分析、経理自動化（trybasis：20 時間 → 30 分）、swyx の 1 週間トライアル（AEO、QA、クロスプラットフォーム移植、個人管理、動画編集 —— [彼のまとめ](https://x.com/swyx/status/2122746401482592549)）、アンバサダーの **Chris Wozniczek** が Slack から Web スタジオを運営（コールドアウトリーチ、顧客プレビュー）、**Nick White**（Helionova）の初期 Bots フリート試行、Cognition リサーチチームの「数週間を数日に短縮」（[@silasalberti](https://x.com/silasalberti)）。詳細は[再現ガイド](docs/reproducing-devin-bots.md#reported-usage-beyond-cognition)へ。
 
 ### 公式テンプレートライブラリ
 
@@ -266,6 +269,7 @@ Devin *で*作られたものではなく、Devin の*ために*コミュニテ�
 - **[Devin CLI のコンテキスト上限の実践](https://qiita.com/ishizakahiroshi/items/cee2a8ea2be18f2ccee3)** —— AGENTS.md と承認ルールを 16KB/32KB 上限に収める作業ノート。
 - **[NOT A HOTEL の初めての Devin 導入](https://zenn.dev/notahotel/articles/d401a1046d6076)** —— セットアップから初マージ PR まで 1 時間未満のモブワーク記録——Devin が求めるリポジトリ接続設定の分類項目も紹介。
 - **[Hello World… Meet Devin](https://jamesin.substack.com/p/hello-world-meet-devin)** —— Jamesin Seidel のローンチ期記録：初めて Devin が自分のリポジトリにコードをコミットするのを見た、メール振り分けアシスタント開発（Substack）。
+- **[Grok Bots 組織を Devin Bots に移植](https://www.rickblalock.dev/scratch-notes/learnings-from-moving-my-grok-bots-to-devin-bots/)** —— 初の独立系ベータ実測レポート：既存の Grok-bot 組織の移植に約 $300 の一時利用料と一晩。エンジニアリングのオーケストレーションは「痛快」だがビジネス業務は Grok に戻し、Grok Bot ↔ Devin Bot のハイブリッド構成に。正直な摩擦ログ：Bot が持ってくる判断が多すぎ、必ずしも適切ではない——「インターンではなく VP のように扱ってくれ」。
 - **[無料 SWE-2 上のマルチ AI オーケストレーション](https://qiita.com/ishizakahiroshi/items/72ab801a5f2a8c941b61)** —— Devin CLI の永久無料 SWE-2 枠でエージェント間のワークルーティングを設計。
 
 <p align="right"><a href="#readme">back to top</a></p>

@@ -13,7 +13,7 @@
 
 <sub>Curado por [@darega0mae](https://x.com/darega0mae) · Tutoriais irmãos: [build-with-devin](https://github.com/Till3005/build-with-devin) · [Adicione seu projeto](CONTRIBUTING.md)</sub>
 
-<sub>**12** implantações de Bot documentadas · **35** casos corporativos · **6** produtos lançados · **29** ferramentas e integrações · **21** relatos de campo</sub>
+<sub>**13** implantações de Bot documentadas · **35** casos corporativos · **6** produtos lançados · **29** ferramentas e integrações · **22** relatos de campo</sub>
 
 <sub>[English](README.md) · [简体中文](README.zh.md) · [日本語](README.ja.md) · Português</sub>
 
@@ -64,6 +64,7 @@ flowchart LR
 | **Loop AutoResearch** | Decagon | Um laboratório de pesquisa em inferência | Um Devin orquestra; subagentes perseguem hipóteses concorrentes em paralelo; toda ideia é verificada contra tráfego de produção reproduzido em GPUs Modal — **até 2,5× mais throughput por GPU** ([artigo completo](https://x.com/DecagonAI/article/2115511110120120437), [@devindevelopers](https://x.com/devindevelopers/status/2115601107581821172)). |
 | **Org da Frankie** | Mark Fenner (comunidade) | Frota pessoal de agentes | Quatro Bots com funções distintas coordenados por "Frankie, my Chief Agent", que traz atualizações consolidadas ([walkthrough](https://x.com/markfenner/status/2122740244328145211)). |
 | **tigsbot** | @0xtigs (comunidade) | Frota pessoal multi-projeto | Cada projeto vive num canal do Slack operado por um Bot; um Chief-of-Staff Bot responde "qual é a última novidade de tudo?" e o cutuca quando *ele* é o gargalo; Bots especialistas gerenciam software de licença única ou setup complexo ([setup](https://x.com/0xtigs/status/2122742784176034056)). |
+| **Chief-of-Staff de recompensas** | Avinash (Cognition, MENA) | Standup diário + recompensas para uma frota pessoal de bots | Adapta o padrão roll-up do SuperJennyStack: um Bot revisa todos os outros a cada dia e "recompensa" o bom trabalho, deixando a frota se auto-aperfeiçoar — sua sugestão de primeira implantação para novos usuários de Bots. ([cobertura](https://news.sulat.com/2026/11/18/devin-bots/)) |
 | **Electra** | Basis | Ferramentas internas + código, autodirigida | Uma colega Devin com nome (pré-Bots): decide o que precisa ser feito, escreve e testa código, lança atualizações em ferramentas internas e empurra o time — a Basis roda uma thread de 20 dias por agente fiscal ([post](https://x.com/trybasis/status/2113307030203089189), [thread de 20 dias](https://x.com/trybasis/status/2120658137766100992)). |
 | **Bots de dados pessoais** | Bryan Johnson | Síntese de saúde + atualizações à família | Um Bot sintetiza anos de dados biométricos e de exames cerebrais num único relatório; outro manda à mãe dele um resumo diário de como ele está. ([post](https://x.com/bryan_johnson/status/2122814114976383406), [vídeo de lançamento](https://vimeo.com/1247688199)) |
 
@@ -76,13 +77,15 @@ flowchart LR
 - **Bots × Apps** — Bots mantêm Devin Apps: constroem novas páginas/recursos e se adaptam a mudanças automaticamente; Bots e Apps ficam fixados no mesmo trilho de navegação ([@dabit3](https://x.com/dabit3)).
 - **Living evals** — um Devin agendado lê traces de produção, agrupa em comportamentos, reproduz falhas numa cópia completa do sistema (nunca mocks) e congela cada uma como PR de eval — o arquivo skill é o ativo, não os evals (Rox: 72% de cobertura vs 43–57%).
 - **Bots que afinam o próprio Devin** — o bot do Walden observa feedback de usuários, repete prompts, roda experimentos, monta sets de eval e ajusta os parâmetros de proatividade/autonomia do Devin — Bots construíram Bots ([thread](https://x.com/walden_yan/status/2122740852091216274)).
+- **Bots com contas próprias** — o DevRelBot entrega vídeos tutoriais sozinho porque foi provisionado como um funcionário: computador próprio, contas próprias em Devin/GitHub/Linear, chave própria na ElevenLabs — ele faz login no Devin e grava a UI real.
+- **Protocolo inter-bot (BotSpeak)** — 20+ Bots geram 700+ mensagens/dia; Jenny resolveu o colapso da caixa de entrada com uma taquigrafia bot-a-bot (códigos ACK, inglês simplificado, recibos emoji) e prosa completa só para o humano — decisões autônomas dos bots 12× em 6 dias.
 - **Swarms ancorados em referência** — a lição da Harvey: quando o trabalho pode ser checado contra uma referência confiável (o comportamento real do Word), um time pequeno pode dirigir um swarm grande com segurança.
 
 ### Resultados reportados
 
 **Mais de 1.000 beta testers** nas semanas antes do lançamento. Testadores mergeam **4,5× mais PRs por mensagem**; a Cognition mergeia 2.000+ PRs/semana, multiplicou por 40 o throughput de PRs mergeados e entregou **1.000+ PRs a partir de um único objetivo autônomo**. Clientes de early access incluem **Decagon, Fireworks AI e Reducto**, com uso 10× maior nas duas primeiras semanas ([Fortune](https://fortune.com/2026/11/17/exclusive-cognition-bets-on-devin-bots-coding-agents-in-challenge-to-anthropics-duet-and-openais-dots/)).
 
-Outros usos documentados: triagem preventiva de issues no **Manim**, trabalho em firmware, um time liderado por bots construindo um **motor de inferência de fronteira**, análise de tênis, automação contábil (trybasis: 20h → 30 min), o trial de uma semana do swyx (AEO, QA, portabilidade entre plataformas, administração pessoal, edição de vídeo — [seu resumo](https://x.com/swyx/status/2122746401482592549)) e o time de pesquisa da Cognition comprimindo "semanas em dias" ([@silasalberti](https://x.com/silasalberti)). Relatos completos no [guia de reprodução](docs/reproducing-devin-bots.md#reported-usage-beyond-cognition).
+Outros usos documentados: triagem preventiva de issues no **Manim**, trabalho em firmware, um time liderado por bots construindo um **motor de inferência de fronteira**, análise de tênis, automação contábil (trybasis: 20h → 30 min), o trial de uma semana do swyx (AEO, QA, portabilidade entre plataformas, administração pessoal, edição de vídeo — [seu resumo](https://x.com/swyx/status/2122746401482592549)), o embaixador **Chris Wozniczek** rodando seu estúdio web pelo Slack (cold outreach, previews para clientes), **Nick White** (Helionova) testando frotas iniciais de Bots e o time de pesquisa da Cognition comprimindo "semanas em dias" ([@silasalberti](https://x.com/silasalberti)). Relatos completos no [guia de reprodução](docs/reproducing-devin-bots.md#reported-usage-beyond-cognition).
 
 ### Biblioteca oficial de templates
 
@@ -266,6 +269,7 @@ Uso real documentado.
 - **[Os limites de contexto do Devin CLI na prática](https://qiita.com/ishizakahiroshi/items/cee2a8ea2be18f2ccee3)** — Notas de trabalho para caber AGENTS.md e regras de aprovação nos limites de 16KB/32KB (JP).
 - **[Primeira sessão Devin da NOT A HOTEL](https://zenn.dev/notahotel/articles/d401a1046d6076)** — Relato de um workshop em mob do setup ao primeiro PR mergeado em menos de uma hora — incluindo as categorias de onboarding que o Devin pede (JP).
 - **[Hello World… Meet Devin](https://jamesin.substack.com/p/hello-world-meet-devin)** — Relato da era de lançamento de Jamesin Seidel: vendo código ser commitado no seu próprio repo pelo Devin pela primeira vez, construindo um assistente de triagem de email (Substack).
+- **[Migrando uma org de Grok Bots para Devin Bots](https://www.rickblalock.dev/scratch-notes/learnings-from-moving-my-grok-bots-to-devin-bots/)** — o primeiro relato independente da beta: portar uma org existente de Grok-bots custou ~$300 de uso único e uma noite; a orquestração de engenharia foi "encantadora", mas o trabalho de negócios voltou pro Grok, resultando num setup híbrido Grok Bot ↔ Devin Bot. Log de fricção honesto: os bots traziam decisões *demais*, nem sempre as certas — "me trate como um VP, não como um estagiário."
 - **[Orquestração multi-IA no SWE-2 grátis](https://qiita.com/ishizakahiroshi/items/72ab801a5f2a8c941b61)** — Um design para rotear trabalho entre agentes usando o tier permanentemente gratuito SWE-2 do Devin CLI (JP).
 
 <p align="right"><a href="#readme">back to top</a></p>

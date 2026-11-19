@@ -105,9 +105,9 @@ def main():
     # index.html stat numbers
     idx = (ROOT / 'docs/index.html').read_text()
     for key, label in [('bots', 'Bot deployments'), ('enterprise', 'Enterprise cases'),
-                       ('products', 'Shipped products'), ('tools', 'Tools & integrations'),
+                       ('products', 'Shipped products'), ('tools', 'Tools &amp; integrations'),
                        ('reports', 'Field reports')]:
-        pat = re.compile(r'(<div class="stat"><b>)(\d+)(</b><span>' + re.escape(label) + r'</span>)')
+        pat = re.compile(r'(<div class="stat"><b>)(\d+)(</b><span[^>]*>' + re.escape(label) + r'</span>)')
         m = pat.search(idx)
         if m and int(m.group(2)) != c[key]:
             if '--write' in sys.argv:

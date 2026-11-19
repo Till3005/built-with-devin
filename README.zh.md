@@ -13,7 +13,7 @@
 
 <sub>维护者 [@darega0mae](https://x.com/darega0mae) · 姊妹教程库：[build-with-devin](https://github.com/Till3005/build-with-devin) · [收录你的项目](CONTRIBUTING.md)</sub>
 
-<sub>**12** 个有据可查的 Bot 部署 · **35** 个企业案例 · **6** 个已发布产品 · **29** 个工具与集成 · **21** 篇实战报告</sub>
+<sub>**13** 个有据可查的 Bot 部署 · **35** 个企业案例 · **6** 个已发布产品 · **29** 个工具与集成 · **22** 篇实战报告</sub>
 
 <sub>[English](README.md) · 简体中文 · [日本語](README.ja.md) · [Português](README.pt.md)</sub>
 
@@ -64,6 +64,7 @@ flowchart LR
 | **AutoResearch 回路** | Decagon | 一个推理研究实验室 | 一个 Devin 当编排者；子 agent 并行追逐相互竞争的假设；每个想法都在 Modal GPU 上用回放的生产流量验证 —— **每 GPU 吞吐最高 2.5×**（[完整长文](https://x.com/DecagonAI/article/2115511110120120437)、[@devindevelopers](https://x.com/devindevelopers/status/2115601107581821172)）。 |
 | **Frankie 的组织** | Mark Fenner（社区） | 个人 agent 舰队 | 四个分工各异的 Bot，由 "Frankie, my Chief Agent" 协调并把汇总上报回来（[演示](https://x.com/markfenner/status/2122740244328145211)）。 |
 | **tigsbot** | @0xtigs（社区） | 个人多项目舰队 | 每个项目占一个 Slack 频道、由一个 Bot 运营；一个 Chief-of-Staff Bot 回答 "所有项目最新进展？" 并在*他自己*成为瓶颈时戳他；专职 Bot 管理单许可证或复杂安装的软件（[配置](https://x.com/0xtigs/status/2122742784176034056)）。 |
+| **奖励制 Chief-of-Staff** | Avinash（Cognition，MENA） | 个人 bot 舰队的每日站会 + 奖励 | 借鉴 SuperJennyStack 的汇总模式：一个 Bot 每天评审其他所有 Bot 并"奖励"干得好的，让舰队自我改进——他建议新手把这个作为第一个部署。（[报道](https://news.sulat.com/2026/11/18/devin-bots/)） |
 | **Electra** | Basis | 内部工具 + 代码，自主导向 | 一个有名字的 Devin 队友（Bots 之前）：自己决定该做什么、写码并测试、给内部工具推更新、反过来推动团队 —— Basis 给每个税务 agent 跑一条 20 天的长线程（[帖子](https://x.com/trybasis/status/2113307030203089189)、[20 天线程](https://x.com/trybasis/status/2120658137766100992)）。 |
 | **个人数据 Bot** | Bryan Johnson | 健康数据综合 + 给家人汇报 | 一个 Bot 把多年的生物指标和脑扫描数据综合成单一读数；另一个每天给他母亲发一条他的近况短信。（[帖子](https://x.com/bryan_johnson/status/2122814114976383406)、[发布视频](https://vimeo.com/1247688199)） |
 
@@ -76,13 +77,15 @@ flowchart LR
 - **Bots × Apps** —— Bot 维护 Devin Apps：自动建新页面/功能并适配变化；Bots 和 Apps 钉在同一侧导航栏（[@dabit3](https://x.com/dabit3)）。
 - **Living evals** —— 定时 Devin 读生产 trace，按行为分组，在系统完整副本（绝不 mock）里回放失败，并把每个失败冻结成 eval PR —— 资产是 skill 文件，不是 eval 本身（Rox：覆盖率 72% vs 手写 43–57%）。
 - **Bots 反过来调 Devin** —— Walden 的 bot 盯用户反馈、回放 prompt、跑实验、造 eval 集，并调 Devin 自己的主动性/自主度参数 —— Bots 造 Bots（[推文](https://x.com/walden_yan/status/2122740852091216274)）。
+- **有自己账号的 Bots** —— DevRelBot 能自己录教程视频，是因为它像员工一样被开了全套账号：自己的电脑、自己的 Devin/GitHub/Linear 账号、自己的 ElevenLabs 声纹 —— 它登录 Devin 录的是真实 UI。
+- **Bot 间通信协议（BotSpeak）** —— 20+ 个 Bot 每天产生 700+ 条消息；Jenny 用一套 bot 间简语（ACK 码、简化英语、emoji 回执）解决了收件箱崩溃，只有对人才用完整句子 —— 6 天内 bot 自主决策提升 12 倍。
 - **基准锚定的 swarm** —— Harvey 的教训：当工作能对照可靠基准验证时（真实 Word 行为），小团队可以安全地指挥大规模 swarm。
 
 ### 公开结果
 
 发布前几周有 **1,000+ beta 测试者**。测试者每条消息合并的 PR 数提升 **4.5×**；Cognition 每周合并 2,000+ PR，合并吞吐提升 40 倍，并实现了**单一自主目标产出 1,000+ PR**。早期客户包括 **Decagon、Fireworks AI、Reducto**，上线两周内用量增长 10 倍（[Fortune](https://fortune.com/2026/11/17/exclusive-cognition-bets-on-devin-bots-coding-agents-in-challenge-to-anthropics-duet-and-openais-dots/)）。
 
-其他有据可查的用法：**Manim** 的 issue 预检、固件开发、bot 团队打造的**前沿推理引擎**、网球数据分析、财务自动化（trybasis：20 小时 → 30 分钟）、swyx 的一周试用（AEO、QA、跨平台移植、个人事务、视频剪辑 —— [他的总结](https://x.com/swyx/status/2122746401482592549)），以及 Cognition 研究团队把"数周压成数天"（[@silasalberti](https://x.com/silasalberti)）。完整记述见[复现指南](docs/reproducing-devin-bots.md#reported-usage-beyond-cognition)。
+其他有据可查的用法：**Manim** 的 issue 预检、固件开发、bot 团队打造的**前沿推理引擎**、网球数据分析、财务自动化（trybasis：20 小时 → 30 分钟）、swyx 的一周试用（AEO、QA、跨平台移植、个人事务、视频剪辑 —— [他的总结](https://x.com/swyx/status/2122746401482592549)）、大使 **Chris Wozniczek** 用 Slack 运营自己的建站工作室（冷邮件外联、客户预览）、**Nick White**（Helionova）的早期 Bots 测试，以及 Cognition 研究团队把"数周压成数天"（[@silasalberti](https://x.com/silasalberti)）。完整记述见[复现指南](docs/reproducing-devin-bots.md#reported-usage-beyond-cognition)。
 
 ### 官方模板库
 
@@ -266,6 +269,7 @@ flowchart LR
 - **[Devin CLI 上下文上限实战](https://qiita.com/ishizakahiroshi/items/cee2a8ea2be18f2ccee3)** —— 把 AGENTS.md 和审批规则塞进 16KB/32KB 上限的工作笔记（日文）。
 - **[NOT A HOTEL 的首次 Devin 试用](https://zenn.dev/notahotel/articles/d401a1046d6076)** —— 从配置到首个合并 PR 不到一小时的 mob 实战记录——含 Devin 对仓库接入分类项的要求（日文）。
 - **[Hello World… Meet Devin](https://jamesin.substack.com/p/hello-world-meet-devin)** —— Jamesin Seidel 上线初期实录：第一次看 Devin 把代码提交进自己仓库，做了个邮件分拣助手（Substack）。
+- **[把 Grok Bots 组织移植到 Devin Bots](https://www.rickblalock.dev/scratch-notes/learnings-from-moving-my-grok-bots-to-devin-bots/)** —— 第一份独立的 beta 实测报告：把一个现成的 Grok-bot 组织移植过去花了约 $300 一次性用量和一个晚上；工程编排"令人愉悦"，但业务侧工作又被搬回了 Grok，最终落成 Grok Bot ↔ Devin Bot 混合架构。诚实的摩擦日志：bot 带给他的决策太多且不总是对的——"把我当 VP，别当实习生。"
 - **[免费 SWE-2 上的多 AI 编排](https://qiita.com/ishizakahiroshi/items/72ab801a5f2a8c941b61)** —— 利用 Devin CLI 永久免费的 SWE-2 档在多个 agent 间路由工作的设计（日文）。
 
 <p align="right"><a href="#readme">back to top</a></p>
