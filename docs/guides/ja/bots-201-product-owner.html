@@ -4,13 +4,13 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>ガイド 2 — プロダクトオーナー Bot — build-with-devin guides</title>
-<meta name="description" content="ガイド 2 — プロダクトオーナー Bot">
+<meta name="description" content="アプリの一つの領域（サーフェス）全体をプロダクト管理する Bot——自分でチケットを起票し、実装し、マージし、毎日レポートする。">
 <link rel="icon" href="../../assets/brand/Devin_Symbol.svg" type="image/svg+xml">
 <link rel="stylesheet" href="../../assets/site.css">
 <link rel="stylesheet" href="../../assets/guides.css">
 
 <meta property="og:title" content="ガイド 2 — プロダクトオーナー Bot">
-<meta property="og:description" content="ガイド 2 — プロダクトオーナー Bot">
+<meta property="og:description" content="アプリの一つの領域（サーフェス）全体をプロダクト管理する Bot——自分でチケットを起票し、実装し、マージし、毎日レポートする。">
 <meta property="og:type" content="article">
 <meta property="og:url" content="https://till3005.github.io/built-with-devin/guides/ja/bots-201-product-owner.html">
 <meta property="og:image" content="https://till3005.github.io/built-with-devin/assets/img/og-build.png?v=3">
@@ -36,25 +36,27 @@
 </div></nav>
 <main>
 <article class="guide wrap" id="guide">
-  <p class="guide-crumb"><a href="../../index.html#build">← Guides</a> · <a href="../bots-201-product-owner.html">English</a> · <a href="../zh/bots-201-product-owner.html">中文</a> · <a href="../pt/bots-201-product-owner.html">Português</a></p>
+  <p class="guide-crumb"><a href="index.html">← ガイド</a> · <a href="../bots-201-product-owner.html">English</a> · <a href="../pt/bots-201-product-owner.html">Português</a> · <a href="../zh/bots-201-product-owner.html">中文</a></p>
+<p class="guide-meta">更新 2026-11-19</p>
+<details class="toc" open><summary>このページの目次</summary><ol><li class="d2"><a href="#パターン">パターン</a></li><li class="d2"><a href="#前提条件">前提条件</a></li><li class="d2"><a href="#ステップ-1-成果プロンプト">ステップ 1 — 成果プロンプト</a></li><li class="d2"><a href="#ステップ-2-フェーズ-1-実装ではなく-障害除去">ステップ 2 — フェーズ 1：実装ではなく、障害除去</a></li><li class="d2"><a href="#ステップ-3-稼働ループ">ステップ 3 — 稼働ループ</a></li><li class="d2"><a href="#ステップ-4-役職者としてのあなたの仕事">ステップ 4 — 役職者としてのあなたの仕事</a></li><li class="d2"><a href="#定常状態">定常状態</a></li><li class="d2"><a href="#検証チェックリスト">検証チェックリスト</a></li><li class="d2"><a href="#落とし穴">落とし穴</a></li><li class="d2"><a href="#理解度チェック">理解度チェック</a></li><li class="d2"><a href="#出典">出典</a></li></ol></details>
 <h1>ガイド 2 — プロダクトオーナー Bot</h1>
 <p><strong>目標：</strong> アプリの一つの領域（サーフェス）全体をプロダクト管理する Bot——自分でチケットを起票し、実装し、マージし、毎日レポートする。
 <strong>レベル：</strong> 中級 · <strong>導入後の人間の負荷：</strong> マージ 6 PR あたり約 1 メッセージ
 <strong>出典となる導入事例：</strong> Cognition の <strong>Android Bot</strong>——Devin Android アプリを Google Play オープンベータまで <strong>44 日</strong>で出荷：マージ PR 1,134 件、Kotlin 344,651 行、スクリーンショットテスト 2,841 件、チケット 1,217 件。担当者の送信メッセージは<strong>合計 183 件</strong>（22 日間の無発言期間あり）、<strong>PR の 88% が自己マージ</strong>。現在は Android/iOS の機能パリティを所有している。
 <strong>出典：</strong> <a href="https://devin.ai/blog/introducing-devin-bots">ローンチ記事</a> · <a href="https://fortune.com/2026/11/17/exclusive-cognition-bets-on-devin-bots-coding-agents-in-challenge-to-anthropics-duet-and-openais-dots/">Fortune</a> · Russell Kaplan のドッグフーディング記録</p>
-<h2>パターン</h2>
+<h2 id="パターン">パターン<a class="hlink" href="#パターン" aria-hidden="true">#</a></h2>
 <p>一つの Bot が一つの<em>サーフェス</em>（アプリ、サイト、サービス）を、PM が所有するように所有する：何を作るか決め、チケットに落とし、チケットごとにセッションを回し、サーフェスを無期限に維持し続ける。人間は報告を受ける役職者として振る舞う。</p>
 <pre><code class="language-text">Bot ──► チケット起票 ──► チケットごとのセッション ──► PR ──► CI + Devin Review ──► マージ
  │                                                                                  │
  └──────────── 日次レポート + Needs-you の判断事項 ◄─────────────────────────────────┘
 </code></pre>
-<h2>前提条件</h2>
+<h2 id="前提条件">前提条件<a class="hlink" href="#前提条件" aria-hidden="true">#</a></h2>
 <ul>
 <li>Bot が完全に所有できるリポジトリ（CI、レビュー、マージ経路のあるアプリリポジトリ）</li>
 <li>リポジトリで Devin Review が有効、CI チェックが配線済み</li>
 <li>Bot 用の Slack アプリ（推奨——文書化されたすべての導入が Slack に報告している）</li>
 </ul>
-<h2>ステップ 1 — 成果プロンプト</h2>
+<h2 id="ステップ-1-成果プロンプト">ステップ 1 — 成果プロンプト<a class="hlink" href="#ステップ-1-成果プロンプト" aria-hidden="true">#</a></h2>
 <p>Cognition の実際の原文：</p>
 <pre><code class="language-text">your job is to product manage the android app. Basically, you're going to
 autonomously create the entire thing, but we need to figure out what the
@@ -67,7 +69,7 @@ to you doing that — where the code lives, how to build and test it, and
 how changes merge — then start working through them.
 </code></pre>
 <p>形に注目：<strong>所有 + 自律性 + ブロッカー優先</strong>。バックログを渡すな；委任状を渡し、必要なものを Bot 自身に洗い出させる。</p>
-<h2>ステップ 2 — フェーズ 1：実装ではなく、障害除去</h2>
+<h2 id="ステップ-2-フェーズ-1-実装ではなく-障害除去">ステップ 2 — フェーズ 1：実装ではなく、障害除去<a class="hlink" href="#ステップ-2-フェーズ-1-実装ではなく-障害除去" aria-hidden="true">#</a></h2>
 <p>Android Bot は最初にコードを書かなかった——ブロッカーの列挙から始めた：リポジトリアクセス、ビルドコマンド、実機/エミュレータでのテスト方法、マージ経路。あなた版のリスト：</p>
 <ul>
 <li>自分のマシンでプロジェクトをビルドできるか？（Blueprint/スナップショットの依存関係）</li>
@@ -76,7 +78,7 @@ how changes merge — then start working through them.
 <li>必要なクレデンシャル（ストアキー、署名）を持っているか——あるいは申請手順が文書化されているか？</li>
 </ul>
 <p>この監査を終えてから、プロダクトチケットを起票させる。ここで解決したブロッカー一つ一つが、後で見ずに済む停滞セッションになる。</p>
-<h2>ステップ 3 — 稼働ループ</h2>
+<h2 id="ステップ-3-稼働ループ">ステップ 3 — 稼働ループ<a class="hlink" href="#ステップ-3-稼働ループ" aria-hidden="true">#</a></h2>
 <p>障害が取れた後の定常状態：</p>
 <ol>
 <li>Bot が次に取り組むべき作業単位のチケットを起票</li>
@@ -89,21 +91,21 @@ how changes merge — then start working through them.
 <pre><code class="language-text">Every day, post a report in #&lt;channel&gt;: what shipped, what's in flight,
 what needs a human. Include a screen recording of visible changes.
 </code></pre>
-<h2>ステップ 4 — 役職者としてのあなたの仕事</h2>
+<h2 id="ステップ-4-役職者としてのあなたの仕事">ステップ 4 — 役職者としてのあなたの仕事<a class="hlink" href="#ステップ-4-役職者としてのあなたの仕事" aria-hidden="true">#</a></h2>
 <p>44 日間の 183 メッセージは 2 種類に分かれた：</p>
 <ul>
 <li><strong>判断</strong>——セキュリティレビューの承認、デザインのトレードオフ、承認カード</li>
 <li><strong>方向付け</strong>——実際にあった例は「もっと野心的に」</li>
 </ul>
 <p>それ以外——チケット、実装、修正、自己マージ——はすべて Bot の仕事。実装の質問に答えているなら、あなたは低すぎるレイヤーを管理している。一度修正 → メモリに着地 → 次のセッションが継承。</p>
-<h2>定常状態</h2>
+<h2 id="定常状態">定常状態<a class="hlink" href="#定常状態" aria-hidden="true">#</a></h2>
 <p>初期構築の後、同じ Bot はサーフェスの<em>所有</em>フェーズに移る：</p>
 <ul>
 <li>参照プロジェクトとのパリティ維持（Android Bot は現在 iOS の機能を追跡）</li>
 <li>届いた報告のトリアージ（Google Play ベータのフィードバックを受け付けている）</li>
 <li>サーフェス横断の退行の捕捉——Android Bot は他者の変更による iOS/web 側の破損を自律的に発見・修正した</li>
 </ul>
-<h2>検証チェックリスト</h2>
+<h2 id="検証チェックリスト">検証チェックリスト<a class="hlink" href="#検証チェックリスト" aria-hidden="true">#</a></h2>
 <ul>
 <li>[ ] Bot の最初の行動が PR ではなくブロッカー監査だった</li>
 <li>[ ] 言われなくても自分のチケットキューを起票し消化している</li>
@@ -111,25 +113,25 @@ what needs a human. Include a screen recording of visible changes.
 <li>[ ] 日次レポートが可視の証拠付きで Slack に投稿される</li>
 <li>[ ] 1 日中メッセージを送らなくても PR がマージされた日があった</li>
 </ul>
-<h2>落とし穴</h2>
+<h2 id="落とし穴">落とし穴<a class="hlink" href="#落とし穴" aria-hidden="true">#</a></h2>
 <ul>
 <li><strong>ブロッカーフェーズの省略。</strong> ビルド/テスト/マージができる前にコーディングを始めたプロダクトオーナー Bot は、孤立した PR を量産する。</li>
 <li><strong>巨大 PR。</strong> この導入の安全性は小さく検証可能な単位から来ている。PR が膨らんだら指示する：<em>「1 チケット、1 関心事、1 PR」</em></li>
 <li><strong>方向ではなくコードをレビューする。</strong> 週 30+ PR では全 diff をレビューできない——CI + Devin Review + Bot の証拠でゲートし、メッセージは方向付けに使う。</li>
 </ul>
-<h2>理解度チェック</h2>
+<h2 id="理解度チェック">理解度チェック<a class="hlink" href="#理解度チェック" aria-hidden="true">#</a></h2>
 <ol>
 <li>Android Bot は自分の PR の 88% を自己マージした——自己マージを許せるほど安全にしたものは何か？<em>（検証が存在した：2,841 件のスクリーンショットテストとレビューゲート；「完了」が機械判定可能だから所有が機能した）</em></li>
 <li>セッションを直接プロンプトせず、なぜチケットを起票するのか？<em>（チケットは Bot が優先度でトリアージする監査可能なキューを作る——人間は 50 のセッションではなく 1 つのキューをレビューする）</em></li>
 <li>「22 日間の無発言」は制御モデルについて何を示すか？<em>（例外時のみ報告が機能するのは Bot の「完了」定義が検証可能な場合だけ；沈黙は怠慢ではなく機能そのもの）</em></li>
 </ol>
-<h2>出典</h2>
+<h2 id="出典">出典<a class="hlink" href="#出典" aria-hidden="true">#</a></h2>
 <ul>
 <li><a href="https://devin.ai/blog/introducing-devin-bots">Introducing Devin Bots</a> — Android Bot の数値とプロンプト</li>
 <li><a href="https://fortune.com/2026/11/17/exclusive-cognition-bets-on-devin-bots-coding-agents-in-challenge-to-anthropics-duet-and-openais-dots/">Fortune 独占記事</a> — 183 メッセージ、88% 自己マージ、ドッグフーディング記録</li>
 <li>関連：<a href="bots-203-multi-bot-org.html">ガイド 4 — マルチ Bot 組織</a> 一つのサーフェスが事業になったとき</li>
 </ul>
-<nav class="guide-pager"><a class="pg-prev" href="design-with-devin.html"><span class="pg-dir">← Previous</span><span class="pg-t">ガイド 8 — デザインとビジュアルワーク</span></a><a class="pg-next" href="bots-202-scheduled-sentinel.html"><span class="pg-dir">Next →</span><span class="pg-t">ガイド 3 — 定期監視 Bot</span></a></nav>
+<nav class="guide-pager"><a class="pg-prev" href="design-with-devin.html"><span class="pg-dir">← 前へ</span><span class="pg-t">ガイド 8 — デザインとビジュアルワーク</span></a><a class="pg-next" href="bots-202-scheduled-sentinel.html"><span class="pg-dir">次へ →</span><span class="pg-t">ガイド 3 — 定期監視 Bot</span></a></nav>
 </article>
 <footer><div class="wrap foot-base"><span data-i18n="foot.note">Unofficial community project — not affiliated with Cognition AI.</span><span><a href="../../index.html">built-with-devin</a> · <a href="https://github.com/Till3005/build-with-devin">build-with-devin</a></span></div></footer>
 </main>

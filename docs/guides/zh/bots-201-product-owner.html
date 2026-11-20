@@ -4,13 +4,13 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>指南 2 — 产品所有制 Bot — build-with-devin guides</title>
-<meta name="description" content="指南 2 — 产品所有制 Bot">
+<meta name="description" content="一个像产品经理一样拥有整个 app 面的 Bot——自己建 ticket、实现、合并、每日汇报。">
 <link rel="icon" href="../../assets/brand/Devin_Symbol.svg" type="image/svg+xml">
 <link rel="stylesheet" href="../../assets/site.css">
 <link rel="stylesheet" href="../../assets/guides.css">
 
 <meta property="og:title" content="指南 2 — 产品所有制 Bot">
-<meta property="og:description" content="指南 2 — 产品所有制 Bot">
+<meta property="og:description" content="一个像产品经理一样拥有整个 app 面的 Bot——自己建 ticket、实现、合并、每日汇报。">
 <meta property="og:type" content="article">
 <meta property="og:url" content="https://till3005.github.io/built-with-devin/guides/zh/bots-201-product-owner.html">
 <meta property="og:image" content="https://till3005.github.io/built-with-devin/assets/img/og-build.png?v=3">
@@ -36,25 +36,27 @@
 </div></nav>
 <main>
 <article class="guide wrap" id="guide">
-  <p class="guide-crumb"><a href="../../index.html#build">← Guides</a> · <a href="../bots-201-product-owner.html">English</a> · <a href="../ja/bots-201-product-owner.html">日本語</a> · <a href="../pt/bots-201-product-owner.html">Português</a></p>
+  <p class="guide-crumb"><a href="index.html">← 指南</a> · <a href="../bots-201-product-owner.html">English</a> · <a href="../ja/bots-201-product-owner.html">日本語</a> · <a href="../pt/bots-201-product-owner.html">Português</a></p>
+<p class="guide-meta">更新于 2026-11-19</p>
+<details class="toc" open><summary>本页目录</summary><ol><li class="d2"><a href="#模式">模式</a></li><li class="d2"><a href="#前置条件">前置条件</a></li><li class="d2"><a href="#第-1-步-outcome-prompt">第 1 步 — outcome prompt</a></li><li class="d2"><a href="#第-2-步-第一阶段-先解阻塞-不写码">第 2 步 — 第一阶段：先解阻塞，不写码</a></li><li class="d2"><a href="#第-3-步-工作循环">第 3 步 — 工作循环</a></li><li class="d2"><a href="#第-4-步-你作为它的高管的工作">第 4 步 — 你作为它的高管的工作</a></li><li class="d2"><a href="#稳态">稳态</a></li><li class="d2"><a href="#verify-it">Verify it</a></li><li class="d2"><a href="#坑">坑</a></li><li class="d2"><a href="#自检">自检</a></li><li class="d2"><a href="#sources">Sources</a></li></ol></details>
 <h1>指南 2 — 产品所有制 Bot</h1>
 <p><strong>目标：</strong> 一个像产品经理一样拥有整个 app 面的 Bot——自己建 ticket、实现、合并、每日汇报。
 <strong>级别：</strong> 中级 · <strong>建好后的人类负载：</strong> 约每 6 个已合并 PR 1 条消息
 <strong>出处部署：</strong> Cognition 的 <strong>Android Bot</strong>——<strong>44 天</strong>把 Devin 安卓 app 送上 Google Play 开放 beta：1,134 个已合并 PR、344,651 行 Kotlin、2,841 个截图测试、1,217 张 ticket。人类<strong>总共发了 183 条消息</strong>（其中 22 天零消息），<strong>88% 的 PR 自合并</strong>。它现在负责 Android/iOS 功能对齐。
 <strong>来源：</strong> <a href="https://devin.ai/blog/introducing-devin-bots">launch post</a> · <a href="https://fortune.com/2026/11/17/exclusive-cognition-bets-on-devin-bots-coding-agents-in-challenge-to-anthropics-duet-and-openais-dots/">Fortune</a> · Russell Kaplan 的 dogfooding 笔记</p>
-<h2>模式</h2>
+<h2 id="模式">模式<a class="hlink" href="#模式" aria-hidden="true">#</a></h2>
 <p>一个 Bot 拥有一个<em>面</em>——一个 app、一个站、一个服务——就像 PM 拥有它：它决定建什么、拆成 ticket、每张 ticket 跑一个会话、让这个面无限期活下去。人类扮演它汇报的高管。</p>
 <pre><code class="language-text">Bot ──► files tickets ──► session per ticket ──► PR ──► CI + Devin Review ──► merge
  │                                                                           │
  └──────────── daily report + Needs-you decisions ◄──────────────────────────┘
 </code></pre>
-<h2>前置条件</h2>
+<h2 id="前置条件">前置条件<a class="hlink" href="#前置条件" aria-hidden="true">#</a></h2>
 <ul>
 <li>一个 Bot 能完全拥有的 repo（带 CI、评审、合并路径的 app repo）</li>
 <li>repo 上启用 Devin Review 并接好 CI 检查</li>
 <li>给 Bot 配 Slack app（推荐——所有公开部署都在 Slack 汇报）</li>
 </ul>
-<h2>第 1 步 — outcome prompt</h2>
+<h2 id="第-1-步-outcome-prompt">第 1 步 — outcome prompt<a class="hlink" href="#第-1-步-outcome-prompt" aria-hidden="true">#</a></h2>
 <p>Cognition 原话，一字未改：</p>
 <pre><code class="language-text">your job is to product manage the android app. Basically, you're going to
 autonomously create the entire thing, but we need to figure out what the
@@ -67,7 +69,7 @@ to you doing that — where the code lives, how to build and test it, and
 how changes merge — then start working through them.
 </code></pre>
 <p>注意形态：<strong>所有权 + 自主权 + 先列阻塞</strong>。别递 backlog；给授权，让它自己暴露需要什么。</p>
-<h2>第 2 步 — 第一阶段：先解阻塞，不写码</h2>
+<h2 id="第-2-步-第一阶段-先解阻塞-不写码">第 2 步 — 第一阶段：先解阻塞，不写码<a class="hlink" href="#第-2-步-第一阶段-先解阻塞-不写码" aria-hidden="true">#</a></h2>
 <p>Android Bot 第一件事不是写码——是枚举阻塞：repo 访问、构建命令、怎么在设备/模拟器上测、合并路径。你的版本清单：</p>
 <ul>
 <li>它能在自己机器上构建项目吗？（blueprint/snapshot 依赖）</li>
@@ -76,7 +78,7 @@ how changes merge — then start working through them.
 <li>它有需要的凭证吗（商店密钥、签名）——或有书面的 grant 申请路径？</li>
 </ul>
 <p>让它先做完这份审计再建产品 ticket。这里解掉的每个阻塞都是你以后看不到的卡死会话。</p>
-<h2>第 3 步 — 工作循环</h2>
+<h2 id="第-3-步-工作循环">第 3 步 — 工作循环<a class="hlink" href="#第-3-步-工作循环" aria-hidden="true">#</a></h2>
 <p>解阻塞后的稳态：</p>
 <ol>
 <li>Bot 为它决定的下一单元工作建 ticket</li>
@@ -89,21 +91,21 @@ how changes merge — then start working through them.
 <pre><code class="language-text">Every day, post a report in #&lt;channel&gt;: what shipped, what's in flight,
 what needs a human. Include a screen recording of visible changes.
 </code></pre>
-<h2>第 4 步 — 你作为它的高管的工作</h2>
+<h2 id="第-4-步-你作为它的高管的工作">第 4 步 — 你作为它的高管的工作<a class="hlink" href="#第-4-步-你作为它的高管的工作" aria-hidden="true">#</a></h2>
 <p>44 天 183 条消息就两类：</p>
 <ul>
 <li><strong>判断题</strong> —— 安全评审签字、设计取舍、审批卡</li>
 <li><strong>方向</strong> —— 文档原例是 "be more ambitious"（更有野心一点）</li>
 </ul>
 <p>其它一切——ticket、实现、修复、自合并——都是 Bot 的活。如果你在答实现问题，说明你管得太低。纠正一次 → 落进记忆 → 下个会话继承。</p>
-<h2>稳态</h2>
+<h2 id="稳态">稳态<a class="hlink" href="#稳态" aria-hidden="true">#</a></h2>
 <p>初始构建完成后，同一个 Bot 切换成<em>拥有</em>这个面：</p>
 <ul>
 <li>与参照项目保持对齐（Android Bot 现在追踪 iOS 功能）</li>
 <li>分拣进来的反馈（它处理 Google Play beta 反馈）</li>
 <li>抓跨面回归——Android Bot 自主发现并修复了别人改动造成的 iOS/web 侧破坏</li>
 </ul>
-<h2>Verify it</h2>
+<h2 id="verify-it">Verify it<a class="hlink" href="#verify-it" aria-hidden="true">#</a></h2>
 <ul>
 <li>[ ] Bot 的第一动作是阻塞审计，不是 PR</li>
 <li>[ ] 它不被催也会自己建并消化 ticket 队列</li>
@@ -111,25 +113,25 @@ what needs a human. Include a screen recording of visible changes.
 <li>[ ] 日报带可见证据发到 Slack</li>
 <li>[ ] 你一整天零消息，PR 照样合并</li>
 </ul>
-<h2>坑</h2>
+<h2 id="坑">坑<a class="hlink" href="#坑" aria-hidden="true">#</a></h2>
 <ul>
 <li><strong>跳过阻塞阶段。</strong> 还不会构建/测试/合并就开始写码的产品 Bot 只会产出孤儿 PR。</li>
 <li><strong>大 PR。</strong> 这个部署的安全性来自小而可验证的单元。PR 变大就下指令：<em>"one ticket, one concern, one PR."</em></li>
 <li><strong>审代码而不是审方向。</strong> 每周 30+ PR 时你审不完每个 diff——靠 CI + Devin Review + Bot 的证据把门，把你的消息花在方向上。</li>
 </ul>
-<h2>自检</h2>
+<h2 id="自检">自检<a class="hlink" href="#自检" aria-hidden="true">#</a></h2>
 <ol>
 <li>Android Bot 自合并 88% 的 PR——什么让自合并足够安全？<em>（验证存在：2,841 个截图测试 + review 门；所有权能成立是因为「完成」是机器可检查的。）</em></li>
 <li>为什么让 Bot 自己建 ticket 而不是直接给会话下 prompt？<em>（ticket 形成可审计队列，Bot 按优先级分诊——人审一个队列而不是 50 个会话。）</em></li>
 <li>「22 天零消息」说明了什么控制模型？<em>（例外升级制：只有「完成」可验证时才成立；沉默是特性不是失职。）</em></li>
 </ol>
-<h2>Sources</h2>
+<h2 id="sources">Sources<a class="hlink" href="#sources" aria-hidden="true">#</a></h2>
 <ul>
 <li><a href="https://devin.ai/blog/introducing-devin-bots">Introducing Devin Bots</a> — Android Bot 数字与 prompt</li>
 <li><a href="https://fortune.com/2026/11/17/exclusive-cognition-bets-on-devin-bots-coding-agents-in-challenge-to-anthropics-duet-and-openais-dots/">Fortune exclusive</a> — 183 条消息、88% 自合并、dogfooding 笔记</li>
 <li>相关：<a href="bots-203-multi-bot-org.html">第 4 篇 — 多 Bot 组织</a>（当一个面变成一门生意）</li>
 </ul>
-<nav class="guide-pager"><a class="pg-prev" href="design-with-devin.html"><span class="pg-dir">← Previous</span><span class="pg-t">指南 8 — 设计与视觉工作</span></a><a class="pg-next" href="bots-202-scheduled-sentinel.html"><span class="pg-dir">Next →</span><span class="pg-t">指南 3 — 定时哨兵 Bot</span></a></nav>
+<nav class="guide-pager"><a class="pg-prev" href="design-with-devin.html"><span class="pg-dir">← 上一篇</span><span class="pg-t">指南 8 — 设计与视觉工作</span></a><a class="pg-next" href="bots-202-scheduled-sentinel.html"><span class="pg-dir">下一篇 →</span><span class="pg-t">指南 3 — 定时哨兵 Bot</span></a></nav>
 </article>
 <footer><div class="wrap foot-base"><span data-i18n="foot.note">Unofficial community project — not affiliated with Cognition AI.</span><span><a href="../../index.html">built-with-devin</a> · <a href="https://github.com/Till3005/build-with-devin">build-with-devin</a></span></div></footer>
 </main>

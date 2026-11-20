@@ -36,12 +36,14 @@
 </div></nav>
 <main>
 <article class="guide wrap" id="guide">
-  <p class="guide-crumb"><a href="../index.html#build">← Guides</a> · <a href="zh/devin-desktop.html">中文</a> · <a href="ja/devin-desktop.html">日本語</a> · <a href="pt/devin-desktop.html">Português</a></p>
+  <p class="guide-crumb"><a href="index.html">← Guides</a> · <a href="ja/devin-desktop.html">日本語</a> · <a href="pt/devin-desktop.html">Português</a> · <a href="zh/devin-desktop.html">中文</a></p>
+<p class="guide-meta">Updated 2026-11-20</p>
+<details class="toc" open><summary>On this page</summary><ol><li class="d2"><a href="#what-it-is">What it is</a></li><li class="d2"><a href="#agent-command-center">Agent Command Center</a></li><li class="d2"><a href="#devin-local-the-daemon-change">Devin Local — the daemon change</a></li><li class="d2"><a href="#ide-mode">IDE mode</a></li><li class="d2"><a href="#two-workflows-worth-copying">Two workflows worth copying</a></li><li class="d2"><a href="#walkthrough-recorded-on-devin-desktop-v3-14-30825">Walkthrough — recorded on Devin Desktop v3.14.30825</a></li><li class="d2"><a href="#verify-it">Verify it</a></li><li class="d2"><a href="#pitfalls">Pitfalls</a></li><li class="d2"><a href="#knowledge-check">Knowledge check</a></li><li class="d2"><a href="#sources">Sources</a></li></ol></details>
 <h1>Guide 17 — Devin Desktop</h1>
 <p><strong>Goal:</strong> the agent-native editor — every surface of Devin in one window: cloud sessions, local sessions (Devin Local), Bots, and a real IDE around them.
 <strong>Level:</strong> start here
 <strong>Sources:</strong> <a href="https://docs.devin.ai/desktop/changelog">Desktop changelog</a> · <a href="https://docs.devin.ai/cli/changelog/stable">CLI changelog</a></p>
-<h2>What it is</h2>
+<h2 id="what-it-is">What it is<a class="hlink" href="#what-it-is" aria-hidden="true">#</a></h2>
 <p>Devin Desktop is the Windsurf-based editor where all of Devin's surfaces live side by side. Three things to tell apart:</p>
 <table>
 <thead>
@@ -69,14 +71,14 @@
 </tr>
 </tbody>
 </table>
-<h2>Agent Command Center</h2>
+<h2 id="agent-command-center">Agent Command Center<a class="hlink" href="#agent-command-center" aria-hidden="true">#</a></h2>
 <p>The Command Center is the session hub — not an editor:</p>
 <ul>
 <li><strong>Tabs</strong> (v3.13.4): several sessions and pages open in one window, each tab with its own Back/Forward history — treat it like a browser for your fleet.</li>
 <li><strong>Session header "..." menu</strong>: the session's MCP servers — toggle one, or re-authenticate it, per session.</li>
 <li><strong>Devin Review</strong>: the PR walkthrough (diff, bugs, test recording) opens as a page in the same window.</li>
 </ul>
-<h2>Devin Local — the daemon change</h2>
+<h2 id="devin-local-the-daemon-change">Devin Local — the daemon change<a class="hlink" href="#devin-local-the-daemon-change" aria-hidden="true">#</a></h2>
 <p>Since v3.13.4 (Desktop) / v3000.13.4 (CLI), a local session runs in a <strong>background process</strong>, not inside the window that started it:</p>
 <ul>
 <li>Closing or reopening Devin Desktop — or the CLI — does <strong>not</strong> stop a session.</li>
@@ -86,16 +88,16 @@
 <li><code>devin ls</code>, <code>devin -r</code> and <code>/resume</code> open a <strong>session monitor</strong> — sessions by last update, with status, directory and message count.</li>
 </ul>
 <p>The practical consequence: local work is now durable. Start a long task, close the laptop, reattach from another client — the session kept going.</p>
-<h2>IDE mode</h2>
+<h2 id="ide-mode">IDE mode<a class="hlink" href="#ide-mode" aria-hidden="true">#</a></h2>
 <ul>
 <li>The embedded IDE saves on <strong>Cmd/Ctrl+S</strong> (no auto-save); unsaved tabs show a dot.</li>
 <li>In a Devin Local browser preview, <strong>picking a page element or console output adds it to the composer</strong> — point at the bug instead of describing it.</li>
 <li>The Files tab previews PDFs, renders CSV/TSV as tables, and plays media.</li>
 </ul>
-<h2>Two workflows worth copying</h2>
+<h2 id="two-workflows-worth-copying">Two workflows worth copying<a class="hlink" href="#two-workflows-worth-copying" aria-hidden="true">#</a></h2>
 <p><strong>1. Local → cloud → local.</strong> Work in Devin Local, hit the wall (needs org tools, more parallelism, longer than your laptop stays open), <code>/handoff</code> to cloud, review the PR back home. The daemon makes both halves resumable.</p>
 <p><strong>2. One window, many surfaces.</strong> Command Center for the fleet view, Local for the repo you're in, a Bot for the outcome you don't want to babysit — Desktop is the only place all three share a window.</p>
-<h2>Walkthrough — recorded on Devin Desktop v3.14.30825</h2>
+<h2 id="walkthrough-recorded-on-devin-desktop-v3-14-30825">Walkthrough — recorded on Devin Desktop v3.14.30825<a class="hlink" href="#walkthrough-recorded-on-devin-desktop-v3-14-30825" aria-hidden="true">#</a></h2>
 <p>A real run, not a mock-up: macOS, Pro plan. A Devin Local session edits a throwaway <code>demo-repo</code> on SWE-2 High, then survives the app quitting and gets handed between the CLI and Desktop.</p>
 <p><strong>Video (91 s, no audio):</strong> Command Center → tabs → Bots → Devin Local → daemon proof → IDE view.</p>
 <p><a href="https://till3005.github.io/built-with-devin/assets/guides/devin-desktop/walkthrough.mp4"><img alt="Devin Local session finishing on SWE-2 High — 2 files changed in demo-repo" src="https://till3005.github.io/built-with-devin/assets/guides/devin-desktop/walkthrough-poster.webp" /></a></p>
@@ -119,27 +121,27 @@
 <em>9. Two clients can't co-pilot: the second gets a lock banner, Force open transfers the session, the first client disconnects</em></p>
 <p><img alt="10. IDE view: source control lists the session's edits; unsaved tabs show a dot until Cmd+S" src="https://till3005.github.io/built-with-devin/assets/guides/devin-desktop/step10-ide-view.webp" />
 <em>10. IDE view: a real editor around the same session — source control lists its edits; unsaved tabs show a dot until Cmd+S</em></p>
-<h2>Verify it</h2>
+<h2 id="verify-it">Verify it<a class="hlink" href="#verify-it" aria-hidden="true">#</a></h2>
 <ul>
 <li>[ ] A Devin Local session survives closing and reopening Desktop</li>
 <li>[ ] <code>devin ls</code> saw a Desktop-spawned session and <code>devin -r</code> resumed it with its full transcript</li>
 <li>[ ] <code>devin ls</code> opened the session monitor and joined a running session</li>
 <li>[ ] A Bot created from its Desktop chat answered in that chat</li>
 </ul>
-<h2>Pitfalls</h2>
+<h2 id="pitfalls">Pitfalls<a class="hlink" href="#pitfalls" aria-hidden="true">#</a></h2>
 <ul>
 <li><strong>"Not authorized to use the CLI"</strong> — accounts with Desktop access but no CLI access hit this on Devin Local sign-in (fixed in v3.14.30825; update if you see it).</li>
 <li><strong>Tabs are per-window state.</strong> An action in a session page only acts on its tab — but the <em>session</em> is shared, so a second client attaching sees the same live session, not a copy.</li>
 <li><strong>Managed machines:</strong> enterprise admins control Desktop settings via device policies (e.g. <code>DetectProxy</code> for the language server) — check with IT before debugging the network yourself.</li>
 <li><strong>"Archive" vs "Mark done".</strong> Desktop's "..." menu (frame 4) still says <em>Archive</em>, but the webapp renamed it <em>Mark done</em> (Nov 16): the session moves to your Done folder yet keeps running and stays visible to its other subscribers — the sidebar now lists sessions you're subscribed to, so don't "clean up" a session other people depend on. Related: a new <strong>Phonebook</strong> links each member's identities across Devin/Slack/Teams/git/Jira/Linear.</li>
 </ul>
-<h2>Knowledge check</h2>
+<h2 id="knowledge-check">Knowledge check<a class="hlink" href="#knowledge-check" aria-hidden="true">#</a></h2>
 <ol>
 <li>What changed about local sessions in v3.13.4? <em>(They run in a background process — closing the app no longer stops them, and any client can see and take over the session.)</em></li>
 <li>When do you pick Devin Local over a cloud session? <em>(When you want hands-on edits in your checked-out repo with your local context; hand off to cloud for scale or org integrations.)</em></li>
 <li>What lives in the session header's "..." menu? <em>(The session's MCP servers — toggle or re-authenticate them per session.)</em></li>
 </ol>
-<h2>Sources</h2>
+<h2 id="sources">Sources<a class="hlink" href="#sources" aria-hidden="true">#</a></h2>
 <ul>
 <li><a href="https://docs.devin.ai/desktop/changelog">Devin Desktop changelog</a> — v3.13.4 (tabs, background local sessions), v3.14 (Bots in Desktop, <code>DetectProxy</code> policy)</li>
 <li><a href="https://docs.devin.ai/release-notes/2026">Devin release notes</a> — Nov 16: <em>Mark done</em> replaces Archive, subscribers sidebar, Phonebook</li>

@@ -4,13 +4,13 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>ガイド 1 — 初めての Bot — build-with-devin guides</title>
-<meta name="description" content="ガイド 1 — 初めての Bot">
+<meta name="description" content="成果（アウトカム）を所有する Devin Bot を作成し、以降のすべてのガイドの基礎となる 6 つの機構を学ぶ。">
 <link rel="icon" href="../../assets/brand/Devin_Symbol.svg" type="image/svg+xml">
 <link rel="stylesheet" href="../../assets/site.css">
 <link rel="stylesheet" href="../../assets/guides.css">
 
 <meta property="og:title" content="ガイド 1 — 初めての Bot">
-<meta property="og:description" content="ガイド 1 — 初めての Bot">
+<meta property="og:description" content="成果（アウトカム）を所有する Devin Bot を作成し、以降のすべてのガイドの基礎となる 6 つの機構を学ぶ。">
 <meta property="og:type" content="article">
 <meta property="og:url" content="https://till3005.github.io/built-with-devin/guides/ja/bots-101-first-bot.html">
 <meta property="og:image" content="https://till3005.github.io/built-with-devin/assets/img/og-build.png?v=3">
@@ -36,12 +36,14 @@
 </div></nav>
 <main>
 <article class="guide wrap" id="guide">
-  <p class="guide-crumb"><a href="../../index.html#build">← Guides</a> · <a href="../bots-101-first-bot.html">English</a> · <a href="../zh/bots-101-first-bot.html">中文</a> · <a href="../pt/bots-101-first-bot.html">Português</a></p>
+  <p class="guide-crumb"><a href="index.html">← ガイド</a> · <a href="../bots-101-first-bot.html">English</a> · <a href="../pt/bots-101-first-bot.html">Português</a> · <a href="../zh/bots-101-first-bot.html">中文</a></p>
+<p class="guide-meta">更新 2026-11-20</p>
+<details class="toc" open><summary>このページの目次</summary><ol><li class="d2"><a href="#bot-とは">Bot とは</a></li><li class="d2"><a href="#ステップ-1-作成する">ステップ 1 — 作成する</a></li><li class="d2"><a href="#ステップ-2-成果を割り当てる">ステップ 2 — 成果を割り当てる</a></li><li class="d3"><a href="#限定された最初の任務">限定された最初の任務</a></li><li class="d2"><a href="#ステップ-3-一緒に働く">ステップ 3 — 一緒に働く</a></li><li class="d2"><a href="#ステップ-4-マイクロ管理ではなくメモリで操る">ステップ 4 — マイクロ管理ではなくメモリで操る</a></li><li class="d2"><a href="#共有する前に-アクセスと使用量">共有する前に——アクセスと使用量</a></li><li class="d2"><a href="#ステップ-5-働く場所に置く">ステップ 5 — 働く場所に置く</a></li><li class="d2"><a href="#ステップ-6-スケジュールとモード">ステップ 6 — スケジュールとモード</a></li><li class="d2"><a href="#ライフサイクル">ライフサイクル</a></li><li class="d2"><a href="#検証チェックリスト">検証チェックリスト</a></li><li class="d2"><a href="#落とし穴">落とし穴</a></li><li class="d2"><a href="#理解度チェック">理解度チェック</a></li><li class="d2"><a href="#出典">出典</a></li></ol></details>
 <h1>ガイド 1 — 初めての Bot</h1>
 <p><strong>目標：</strong> 成果（アウトカム）を所有する Devin Bot を作成し、以降のすべてのガイドの基礎となる 6 つの機構を学ぶ。
 <strong>レベル：</strong> ここから始める · <strong>所要時間：</strong> 約15分
 <strong>出典：</strong> <a href="https://docs.devin.ai/work-with-devin/bots">Bots 公式ドキュメント</a>、<a href="https://devin.ai/blog/introducing-devin-bots">ローンチ記事</a></p>
-<h2>Bot とは</h2>
+<h2 id="bot-とは">Bot とは<a class="hlink" href="#bot-とは" aria-hidden="true">#</a></h2>
 <p>セッションは一つのリクエストをこなす。Bot は<em>成果を所有する</em>：チャットで目標を一度伝えれば、Bot が作業を計画し、各部分ごとに子 Devin セッションを立ち上げ、監視し、あなたの判断が必要なものだけを持ち込む。永続する——メモリ、セッション、自動化は数週間をまたいで生き続ける。</p>
 <p>登場順に並べた 6 つの機構：</p>
 <table>
@@ -85,14 +87,14 @@
 </tr>
 </tbody>
 </table>
-<h2>ステップ 1 — 作成する</h2>
+<h2 id="ステップ-1-作成する">ステップ 1 — 作成する<a class="hlink" href="#ステップ-1-作成する" aria-hidden="true">#</a></h2>
 <p>サイドバー → <strong>Bots</strong> → <em>Create new Bot</em> → テンプレートを選ぶか <em>Start from scratch</em> → 名前を付ける。</p>
 <p>新しい Bot は共有するまで自分専用。使用量は通常のセッションと同じくプランにカウントされる。</p>
 <blockquote>
 <p>ヒント：<strong>Template library</strong>（サイドバー → Bots）には Cognition 製テンプレート——QA Engineer、Migration Engineer、Data Analyst など——と組織内で共有されたものが並ぶ。同じセットは公開 <a href="https://devin.ai/bots/templates">Bot marketplace</a> で未ログインでも見られる。このリポジトリのガイドでは引き続き <em>Start from scratch</em> が正解——成果プロンプトは自分で書く。</p>
 </blockquote>
 <p>テンプレートから作った Bot が得るのはプロンプト<strong>だけ</strong>——非公開で、connections・secrets・memory はゼロ。チャットで管轄（リポジトリ、プロジェクト、チャンネル）を伝え、新規 Bot と同様に connections を配線する。トリガー前提のテンプレートなら、最初の会話で Bot 側が設定を提案してくる。プロンプトは独立コピー——後のテンプレート変更は届かない。（<em>Add to a current Bot</em> は新規作成ではなく、既存 Bot にプロンプトを送る。）</p>
-<h2>ステップ 2 — 成果を割り当てる</h2>
+<h2 id="ステップ-2-成果を割り当てる">ステップ 2 — 成果を割り当てる<a class="hlink" href="#ステップ-2-成果を割り当てる" aria-hidden="true">#</a></h2>
 <p>最初のメッセージが Bot が受け取る最も重要な入力である。<em>タスク</em>ではなく<em>目標</em>を与える：</p>
 <pre><code class="language-text">You own the Android app now. Keep it at feature parity with iOS.
 </code></pre>
@@ -120,7 +122,7 @@
 </tbody>
 </table>
 <p>タスクは終われば完了するが、成果は Bot に永遠の再計画を促す。</p>
-<h3>限定された最初の任務</h3>
+<h3 id="限定された最初の任務">限定された最初の任務<a class="hlink" href="#限定された最初の任務" aria-hidden="true">#</a></h3>
 <p>「所有権」は正しい<em>形</em>だが、最初の実行では<em>範範囲</em>を絞る：1つのフロー、1つの環境、1人のレビュアー——あなた。ANO フィールドガイドのパターンが最も確実な出発点：</p>
 <pre><code class="language-text">Own the newsletter signup check for [project] on staging.
 Use [repository], [staging URL] and the test mailbox I provide.
@@ -139,7 +141,7 @@ the PR if a fix was needed, anything you could not verify,
 and any decision you need from me.
 </code></pre>
 <p>重要な行：ジャーニーの定義（フォーム→メール→リンク。「フォームが動く」だけではない）、<em>スケジュールの前に1回実行</em>、明示的な merge・deploy 禁止、期待する証拠の指定。Bot が信頼できる証拠を2回返してから、任務を広げる。</p>
-<h2>ステップ 3 — 一緒に働く</h2>
+<h2 id="ステップ-3-一緒に働く">ステップ 3 — 一緒に働く<a class="hlink" href="#ステップ-3-一緒に働く" aria-hidden="true">#</a></h2>
 <p>成果が設定された後、あなたのメッセージの大半はチェックインになる：</p>
 <pre><code class="language-text">anything waiting on me?
 </code></pre>
@@ -171,30 +173,30 @@ and any decision you need from me.
 </tbody>
 </table>
 <p>どの項目にも、自分の言葉で返信するか、スヌーズするか、無視するかを選べる。</p>
-<h2>ステップ 4 — マイクロ管理ではなくメモリで操る</h2>
+<h2 id="ステップ-4-マイクロ管理ではなくメモリで操る">ステップ 4 — マイクロ管理ではなくメモリで操る<a class="hlink" href="#ステップ-4-マイクロ管理ではなくメモリで操る" aria-hidden="true">#</a></h2>
 <ul>
 <li><strong>Instructions</strong>（Settings → General）：あなたの恒常ルール——Bot が起動する全セッションの開始時に読まれる。恒久的な方針はチャットではなくここに。</li>
 <li><strong>Memory</strong>（Settings → Memory）：Bot が自分で書くファイル——好み、修正、プロジェクトの事実。記憶を変えたければチャットで伝えるだけ（「覚えておいて：デプロイは Cloud Run。ベア VM は絶対ダメ」）。Bot を使える全員がメモリを読める——共有 Bot のメモリは共有情報として扱う。</li>
 </ul>
 <p>スケールするパターン：Bot を一度修正し、それをメモリに書かせる。以後の全セッションがそれを継承する。Cognition はこのループで週 2,000 件以上の PR をマージしている。</p>
-<h2>共有する前に——アクセスと使用量</h2>
+<h2 id="共有する前に-アクセスと使用量">共有する前に——アクセスと使用量<a class="hlink" href="#共有する前に-アクセスと使用量" aria-hidden="true">#</a></h2>
 <p>ローンチ記事が省略してドキュメントが明記していることが2つある：</p>
 <ul>
 <li><strong>プライベート Bot はあなたのリソースを黙って引き継ぐ。</strong> あなたが既に持つアクセスは、新しい確認プロンプトなしに grant として記録されうる——プライベート Bot はサンドボックスではない。共有前に Settings → Access を開き、任務に不要な grant を外す。会話や認証情報を見せずに方法だけ真似させたいなら、Bot ではなく<em>テンプレート</em>を共有する：Bot のサイドバーメニュー → <em>Share as template</em>。名前・一文の説明・秘匿情報を除いたプロンプトを下書きしてくれる——組織の Template library（Teams/Enterprise）か公開リンク（Pro+）で公開。リンクは署名済みテンプレート全体を URL に埋め込む——編集も取り消しもできず誰でもプロンプト全文を読めるので、コピー前に内部名は外すこと。</li>
 <li><strong>Bot の使用量 = チャット + 起動した全セッション。</strong> Max：同梱クォータの後オンデマンド——Bot 専用の上限なし。Teams：自分のクォータの後チームクレジット。管理者が Bot 専用のオンデマンド上限を設定可能。Enterprise：別途割当がない限り作成者の上限に計上。チャット内の支出指示は設定済み上限ではない——Settings で設定し、文章で書かない。</li>
 </ul>
-<h2>ステップ 5 — 働く場所に置く</h2>
+<h2 id="ステップ-5-働く場所に置く">ステップ 5 — 働く場所に置く<a class="hlink" href="#ステップ-5-働く場所に置く" aria-hidden="true">#</a></h2>
 <ul>
 <li><strong>Slack：</strong> Bot 専用の Slack アプリを与えれば、チームが @メンションや DM を送れる（Settings → Slack）。報告されているすべてのチーム導入がこの形——Bot がチャンネル内の名前付きのチームメイトになる。</li>
 <li><strong>iMessage：</strong> スマホから Bot にテキストを送る。</li>
 <li><strong>Web：</strong> サイドバーの Bots セクションに、自分の Bot と共有された Bot が並ぶ。</li>
 </ul>
-<h2>ステップ 6 — スケジュールとモード</h2>
+<h2 id="ステップ-6-スケジュールとモード">ステップ 6 — スケジュールとモード<a class="hlink" href="#ステップ-6-スケジュールとモード" aria-hidden="true">#</a></h2>
 <ul>
 <li><strong>Automations：</strong> チャットで頼む——「開いている PR のサマリーを平日毎朝実行して」——Bot が自動化案を作成し、あなたの一度きりの承認を求める。Settings → Automations で管理（一時停止/再開/削除）。</li>
 <li><strong>Modes：</strong> Bot には自身のモードに加え、生成するセッション向けの <strong>Child Capability</strong> デフォルトがある（チャットのモード選択で <code>Normal / Ultra</code> など）。個別のセッションで別モードを指定することも可能。</li>
 </ul>
-<h2>ライフサイクル</h2>
+<h2 id="ライフサイクル">ライフサイクル<a class="hlink" href="#ライフサイクル" aria-hidden="true">#</a></h2>
 <table>
 <thead>
 <tr>
@@ -218,7 +220,7 @@ and any decision you need from me.
 </tbody>
 </table>
 <p>Archive/Delete を見られるのは作成者と Manage Bots 権限を持つロールのみ。Enterprise プランでは <code>Use Bots</code> / <code>Manage Bots</code> / <code>Manage Bots across the enterprise</code> がカスタムロール内の独立した権限。</p>
-<h2>検証チェックリスト</h2>
+<h2 id="検証チェックリスト">検証チェックリスト<a class="hlink" href="#検証チェックリスト" aria-hidden="true">#</a></h2>
 <ul>
 <li>[ ] Bot を作成・命名し、チャットで成果プロンプトを送信した</li>
 <li>[ ] Bot が二度言われなくても少なくとも一つの子セッションを開始した</li>
@@ -226,19 +228,19 @@ and any decision you need from me.
 <li>[ ] チャットで与えた修正が Settings → Memory にメモリファイルとして現れた</li>
 <li>[ ] （任意）Slack で @メンションにより Bot と連絡できた</li>
 </ul>
-<h2>落とし穴</h2>
+<h2 id="落とし穴">落とし穴<a class="hlink" href="#落とし穴" aria-hidden="true">#</a></h2>
 <ul>
 <li><strong>タスク型プロンプト。</strong> 「X を直せ」は Bot ではなくセッションを生む。Bot が終わって静かになったら、それはタスクだった——所有の形で言い直す。</li>
 <li><strong>チャットで方針を書く。</strong> チャットに書いたルールは流れて消える；Instructions のルールは毎セッション読まれる。チャット = 指示と回答、Instructions = 法律。</li>
 <li><strong>Needs you の放置。</strong> Bot は判断をまとめて持ってくる設計——常時監視ではなく、1 日 1〜2 回確認する。</li>
 </ul>
-<h2>理解度チェック</h2>
+<h2 id="理解度チェック">理解度チェック<a class="hlink" href="#理解度チェック" aria-hidden="true">#</a></h2>
 <ol>
 <li>単発セッションにないもので、Bot のセッション間で生き残るものは？<em>（メモリ——加えて恒常の成果、スケジュール、接続面）</em></li>
 <li>Bot がセッション途中で聞かず "needs-you" に回すのはなぜ？<em>（判断は一つのスレッドに非同期で集約される；人間はループ内のブロッキング呼び出しではない）</em></li>
 <li>「賢いセッション」を「従業員」に変える機構は？<em>（成果の所有——個々のセッションが終わっても目標が残る）</em></li>
 </ol>
-<h2>出典</h2>
+<h2 id="出典">出典<a class="hlink" href="#出典" aria-hidden="true">#</a></h2>
 <ul>
 <li><a href="https://ainativeoperators.ai/blog/devin-bots-guide">AI Native Operators — Devin Bots: give an agent a job to own</a> —— コミュニティフィールドガイド；上の限定任務パターンとアクセス/使用量の注意はここから</li>
 <li>
@@ -250,7 +252,7 @@ and any decision you need from me.
 <li><a href="https://devin.ai/blog/introducing-devin-bots">Introducing Devin Bots</a></li>
 <li>次：<a href="bots-201-product-owner.html">ガイド 2 — プロダクトオーナー Bot</a></li>
 </ul>
-<nav class="guide-pager"><a class="pg-prev" href="devin-cli.html"><span class="pg-dir">← Previous</span><span class="pg-t">ガイド 12 — Devin CLI と拡張性</span></a><a class="pg-next" href="official-cookbook.html"><span class="pg-dir">Next →</span><span class="pg-t">ガイド 13 — 公式ユースケース・クックブック</span></a></nav>
+<nav class="guide-pager"><a class="pg-prev" href="devin-cli.html"><span class="pg-dir">← 前へ</span><span class="pg-t">ガイド 12 — Devin CLI と拡張性</span></a><a class="pg-next" href="official-cookbook.html"><span class="pg-dir">次へ →</span><span class="pg-t">ガイド 13 — 公式ユースケース・クックブック</span></a></nav>
 </article>
 <footer><div class="wrap foot-base"><span data-i18n="foot.note">Unofficial community project — not affiliated with Cognition AI.</span><span><a href="../../index.html">built-with-devin</a> · <a href="https://github.com/Till3005/build-with-devin">build-with-devin</a></span></div></footer>
 </main>

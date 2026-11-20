@@ -4,13 +4,13 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>指南 15 — 生产 trace 驱动的&quot;活&quot;评测集 — build-with-devin guides</title>
-<meta name="description" content="指南 15 — 生产 trace 驱动的&quot;活&quot;评测集">
+<meta name="description" content="一套自己会长大的 agent 评测集——一个定时 Devin 每周读生产环境的真实对话，在你系统的完整副本里复现每个失败，然后开 PR 把失败固化成回归测试。">
 <link rel="icon" href="../../assets/brand/Devin_Symbol.svg" type="image/svg+xml">
 <link rel="stylesheet" href="../../assets/site.css">
 <link rel="stylesheet" href="../../assets/guides.css">
 
 <meta property="og:title" content="指南 15 — 生产 trace 驱动的&quot;活&quot;评测集">
-<meta property="og:description" content="指南 15 — 生产 trace 驱动的&quot;活&quot;评测集">
+<meta property="og:description" content="一套自己会长大的 agent 评测集——一个定时 Devin 每周读生产环境的真实对话，在你系统的完整副本里复现每个失败，然后开 PR 把失败固化成回归测试。">
 <meta property="og:type" content="article">
 <meta property="og:url" content="https://till3005.github.io/built-with-devin/guides/zh/living-evals.html">
 <meta property="og:image" content="https://till3005.github.io/built-with-devin/assets/img/og-build.png?v=3">
@@ -36,13 +36,15 @@
 </div></nav>
 <main>
 <article class="guide wrap" id="guide">
-  <p class="guide-crumb"><a href="../../index.html#build">← Guides</a> · <a href="../living-evals.html">English</a> · <a href="../ja/living-evals.html">日本語</a> · <a href="../pt/living-evals.html">Português</a></p>
+  <p class="guide-crumb"><a href="index.html">← 指南</a> · <a href="../living-evals.html">English</a> · <a href="../ja/living-evals.html">日本語</a> · <a href="../pt/living-evals.html">Português</a></p>
+<p class="guide-meta">更新于 2026-11-19</p>
+<details class="toc" open><summary>本页目录</summary><ol><li class="d2"><a href="#模式">模式</a></li><li class="d2"><a href="#前置条件">前置条件</a></li><li class="d2"><a href="#第-1-步-先手动让一条-trace-可回放">第 1 步 — 先手动让一条 trace 可回放</a></li><li class="d2"><a href="#第-2-步-冻结成-eval-而不是-bug-报告">第 2 步 — 冻结成 eval，而不是 bug 报告</a></li><li class="d2"><a href="#第-3-步-先按行为分组再上量">第 3 步 — 先按行为分组再上量</a></li><li class="d2"><a href="#第-4-步-把整个规程固化成一个-skill">第 4 步 — 把整个规程固化成一个 skill</a></li><li class="d2"><a href="#第-5-步-每周定时跑">第 5 步 — 每周定时跑</a></li><li class="d2"><a href="#verify-it">Verify it</a></li><li class="d2"><a href="#常见陷阱">常见陷阱</a></li><li class="d2"><a href="#自检">自检</a></li><li class="d2"><a href="#来源">来源</a></li></ol></details>
 <h1>指南 15 — 生产 trace 驱动的"活"评测集</h1>
 <p><strong>目标：</strong> 一套自己会长大的 agent 评测集——一个定时 Devin 每周读生产环境的真实对话，在你系统的完整副本里复现每个失败，然后开 PR 把失败固化成回归测试。
 <strong>难度：</strong> 进阶
 <strong>来源部署：</strong> <strong>Rox 的 Living Evals</strong>——Rox 已经没人手写 eval。每周一个 Devin 读 Braintrust 里的生产 trace，在注入合成数据的 Rox 完整副本里复现每个失败、回放到 agent 犯同一个错，然后开 PR。评测集覆盖<strong>真实使用量的 72%</strong>（手写只有 43–57%），且逐周增长。
 <strong>来源：</strong> <a href="https://www.rox.com/articles/living-evals-an-eval-suite-that-grows-from-production">Living Evals 全文</a>（Brian Xu，2026 年 10 月）· <a href="https://x.com/rox_ai/status/2110779380666617997">发布串</a></p>
-<h2>模式</h2>
+<h2 id="模式">模式<a class="hlink" href="#模式" aria-hidden="true">#</a></h2>
 <pre><code class="language-text">生产 traces（可观测平台）
         │  每周抽样（~350 条对话）
         ▼
@@ -55,48 +57,48 @@
         ▼
 人只 review PR，不写 eval
 </code></pre>
-<h2>前置条件</h2>
+<h2 id="前置条件">前置条件<a class="hlink" href="#前置条件" aria-hidden="true">#</a></h2>
 <ul>
 <li>生产环境有一个 agent 或 AI 功能，且具备<strong>对话级 tracing</strong>（Rox 用 Braintrust；LangSmith 或自建日志也行——需要请求 + 触碰过的记录 + 工具调用）</li>
 <li>一个可部署的系统副本（preview env、staging 或 VM 里 <code>docker compose up</code>）——<strong>不是 mock</strong></li>
 <li>仓库里评测即代码，一条 eval 只是一个可提交的文件</li>
 </ul>
-<h2>第 1 步 — 先手动让一条 trace 可回放</h2>
+<h2 id="第-1-步-先手动让一条-trace-可回放">第 1 步 — 先手动让一条 trace 可回放<a class="hlink" href="#第-1-步-先手动让一条-trace-可回放" aria-hidden="true">#</a></h2>
 <p>上调度之前：挑一条你的 agent 失败过的真实对话。让 Devin 拉 trace、写出恰好覆盖请求所触数据的合成数据、拉起系统副本、回放请求直到同一个失败出现。手动都复现不了一个失败，周循环只会产出零。</p>
-<h2>第 2 步 — 冻结成 eval，而不是 bug 报告</h2>
+<h2 id="第-2-步-冻结成-eval-而不是-bug-报告">第 2 步 — 冻结成 eval，而不是 bug 报告<a class="hlink" href="#第-2-步-冻结成-eval-而不是-bug-报告" aria-hidden="true">#</a></h2>
 <p>产物是一条提交的 eval，不是一条 Slack 消息。Rox 的约定：请求<strong>逐字</strong>复制自生产；注入的数据复现精确条件（如"最新的会议没有 transcript"）。改数据的请求用代码断言；只回复的请求用 LLM judge 评分标准。</p>
-<h2>第 3 步 — 先按行为分组再上量</h2>
+<h2 id="第-3-步-先按行为分组再上量">第 3 步 — 先按行为分组再上量<a class="hlink" href="#第-3-步-先按行为分组再上量" aria-hidden="true">#</a></h2>
 <p>每条对话都跑循环是浪费——多数请求形状重复。Rox 用四个标签定义<em>行为</em>：<strong>goal</strong>（用户要什么）· <strong>output</strong>（返回什么）· <strong>mutation</strong>（不动/创建/编辑/发送）· <strong>target</strong>（指名 vs 推断对象）。每周 ~350 条对话收敛到 ~130 个行为；只为覆盖不足的行为造 eval。</p>
-<h2>第 4 步 — 把整个规程固化成一个 skill</h2>
+<h2 id="第-4-步-把整个规程固化成一个-skill">第 4 步 — 把整个规程固化成一个 skill<a class="hlink" href="#第-4-步-把整个规程固化成一个-skill" aria-hidden="true">#</a></h2>
 <p>trace→eval 循环活在 Devin 遵循的<strong>一个 skill 文件</strong>里：拉 trace → 合成 → preview env → 回放 → 对比 → 冻结 → PR。循环产出坏 eval 时，<strong>改 skill</strong>，绝不手改 eval——这才是复利动作。</p>
-<h2>第 5 步 — 每周定时跑</h2>
+<h2 id="第-5-步-每周定时跑">第 5 步 — 每周定时跑<a class="hlink" href="#第-5-步-每周定时跑" aria-hidden="true">#</a></h2>
 <p>cron automation（指南 6）：拉本周 traces → 分组 → 对每个覆盖不足的行为跑循环 → 开一个 PR 装新 eval。人 review PR；Devin 拥有整个评测集。</p>
-<h2>Verify it</h2>
+<h2 id="verify-it">Verify it<a class="hlink" href="#verify-it" aria-hidden="true">#</a></h2>
 <ul>
 <li>[ ] 一个真实生产失败在 preview env 里可确定性回放——同一用户请求，同一坏结果</li>
 <li>[ ] eval 文件在仓库里、跑在 CI 上、旧行为红新行为绿</li>
 <li>[ ] 覆盖率按<em>生产流量结构</em>测，而不是按你的猜测——像 Rox 的 72% 那样报出来</li>
 <li>[ ] 一条坏 eval 是通过改 skill 修好的，不是改 eval</li>
 </ul>
-<h2>常见陷阱</h2>
+<h2 id="常见陷阱">常见陷阱<a class="hlink" href="#常见陷阱" aria-hidden="true">#</a></h2>
 <ul>
 <li><strong>mock 回放。</strong> Rox 早期用 mock 数据层回放——mock 会把它替换掉的代码里的 bug 藏起来。用完整副本；preview env 的意义就是保真度。</li>
 <li><strong>judge 抖动。</strong> 即使不改代码，约每 8 条 eval 有 1 条时过时不过——agent 不是确定性的。失败要读过再信，单点抖动别报警。</li>
 <li><strong>评测口味。</strong> 这套抓的是行为回归（工具路径死了、支持的请求不接了），不是风格——每个失败都该指向可修的缺陷。</li>
 </ul>
-<h2>自检</h2>
+<h2 id="自检">自检<a class="hlink" href="#自检" aria-hidden="true">#</a></h2>
 <ol>
 <li>为什么要在完整副本里回放而不是 mock 数据层？<em>（mock 会把它替换掉的代码里的 bug 藏住——agent 改的状态越多，mock 本身就成了你实际在测的东西。）</em></li>
 <li>为什么先把对话按行为分组再写 eval？<em>（多数请求形状重复——goal/output/mutation/target 四个标签让一条 eval 覆盖多条对话，覆盖率才映射到真实用量。）</em></li>
 <li>复利动作是改 eval 还是改 skill？<em>（skill——手改 eval 教不了 Devin 任何东西；改好的 skill 永远产出更好的 eval。）</em></li>
 </ol>
-<h2>来源</h2>
+<h2 id="来源">来源<a class="hlink" href="#来源" aria-hidden="true">#</a></h2>
 <ul>
 <li><a href="https://www.rox.com/articles/living-evals-an-eval-suite-that-grows-from-production">Living Evals: an eval suite that grows from production</a>——完整方法论</li>
 <li><a href="https://x.com/rox_ai/status/2110779380666617997">Rox 发布串</a></li>
 <li>相关：<a href="official-cookbook.html">指南 13 — 官方 cookbook</a> · <a href="automations-101-event-driven.html">指南 6 — Automations</a></li>
 </ul>
-<nav class="guide-pager"><a class="pg-prev" href="migrations-at-scale.html"><span class="pg-dir">← Previous</span><span class="pg-t">指南 11 — 规模化迁移</span></a><a class="pg-next" href="enterprise-playbook.html"><span class="pg-dir">Next →</span><span class="pg-t">指南 7 — 企业级铺开模式</span></a></nav>
+<nav class="guide-pager"><a class="pg-prev" href="migrations-at-scale.html"><span class="pg-dir">← 上一篇</span><span class="pg-t">指南 11 — 规模化迁移</span></a><a class="pg-next" href="enterprise-playbook.html"><span class="pg-dir">下一篇 →</span><span class="pg-t">指南 7 — 企业级铺开模式</span></a></nav>
 </article>
 <footer><div class="wrap foot-base"><span data-i18n="foot.note">Unofficial community project — not affiliated with Cognition AI.</span><span><a href="../../index.html">built-with-devin</a> · <a href="https://github.com/Till3005/build-with-devin">build-with-devin</a></span></div></footer>
 </main>

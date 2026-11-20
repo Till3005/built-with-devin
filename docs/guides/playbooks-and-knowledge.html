@@ -36,12 +36,14 @@
 </div></nav>
 <main>
 <article class="guide wrap" id="guide">
-  <p class="guide-crumb"><a href="../index.html#build">← Guides</a> · <a href="zh/playbooks-and-knowledge.html">中文</a> · <a href="ja/playbooks-and-knowledge.html">日本語</a> · <a href="pt/playbooks-and-knowledge.html">Português</a></p>
+  <p class="guide-crumb"><a href="index.html">← Guides</a> · <a href="ja/playbooks-and-knowledge.html">日本語</a> · <a href="pt/playbooks-and-knowledge.html">Português</a> · <a href="zh/playbooks-and-knowledge.html">中文</a></p>
+<p class="guide-meta">Updated 2026-11-19</p>
+<details class="toc" open><summary>On this page</summary><ol><li class="d2"><a href="#why-this-layer-decides-everything">Why this layer decides everything</a></li><li class="d2"><a href="#step-1-mine-your-own-corrections">Step 1 — Mine your own corrections</a></li><li class="d2"><a href="#step-2-write-knowledge-entries-that-stick">Step 2 — Write knowledge entries that stick</a></li><li class="d2"><a href="#step-3-playbooks-for-repeatable-work">Step 3 — Playbooks for repeatable work</a></li><li class="d2"><a href="#step-4-feeding-bots">Step 4 — Feeding Bots</a></li><li class="d2"><a href="#step-5-the-correction-loop">Step 5 — The correction loop</a></li><li class="d2"><a href="#verify-it">Verify it</a></li><li class="d2"><a href="#pitfalls">Pitfalls</a></li><li class="d2"><a href="#knowledge-check">Knowledge check</a></li><li class="d2"><a href="#sources">Sources</a></li></ol></details>
 <h1>Guide 9 — Playbooks &amp; knowledge: encoding your org's conventions</h1>
 <p><strong>Goal:</strong> make Devin sessions and Bots reliable at org scale by writing down what your best engineers assume — as playbooks (repeatable procedures) and knowledge (standing context).
 <strong>Level:</strong> intermediate · the layer every big published deployment shares
 <strong>Sources:</strong> <a href="https://docs.devin.ai">docs.devin.ai</a> · deployment lessons from <a href="enterprise-playbook.html">Guide 7</a></p>
-<h2>Why this layer decides everything</h2>
+<h2 id="why-this-layer-decides-everything">Why this layer decides everything<a class="hlink" href="#why-this-layer-decides-everything" aria-hidden="true">#</a></h2>
 <p>Every published enterprise result — Nubank's 8–12×, EBANX's 92% authored-PRs, Wayfair's 1,600 seats — rests on encoded conventions. Without them, Devin's output varies by session: each one rediscovers your stack, your merge rules, your test habits. With them, session #500 behaves like your best engineer on their best day.</p>
 <p>Two complementary artifacts:</p>
 <table>
@@ -65,20 +67,20 @@
 </tr>
 </tbody>
 </table>
-<h2>Step 1 — Mine your own corrections</h2>
+<h2 id="step-1-mine-your-own-corrections">Step 1 — Mine your own corrections<a class="hlink" href="#step-1-mine-your-own-corrections" aria-hidden="true">#</a></h2>
 <p>The cheapest knowledge already exists: scroll your last 20 Devin sessions and collect every time you typed a correction — <em>"we deploy via Cloud Run,"</em> <em>"never <code>git push --force</code>,"</em> <em>"tests need <code>npm run db:seed</code> first."</em> Each correction is a knowledge entry with proof it mattered.</p>
 <p>Also mine:
 - Code review comments humans keep repeating on Devin PRs
 - PR descriptions that explain <em>why</em> a change was shaped a certain way
 - Onboarding docs — anything you'd tell a new hire</p>
-<h2>Step 2 — Write knowledge entries that stick</h2>
+<h2 id="step-2-write-knowledge-entries-that-stick">Step 2 — Write knowledge entries that stick<a class="hlink" href="#step-2-write-knowledge-entries-that-stick" aria-hidden="true">#</a></h2>
 <p>Good entries are one line, imperative, and scoped:</p>
 <pre><code class="language-text">- Deploy only via `make deploy-cloudrun` — never run gcloud directly.
 - Migrations require a matching rollback file in prisma/rollbacks/.
 - The staging seed user is qa+admin@corp.io; never create real-looking users.
 </code></pre>
 <p>Bad entries are essays, wishes ("write good tests"), or secrets (never put credentials in knowledge — use the secrets store).</p>
-<h2>Step 3 — Playbooks for repeatable work</h2>
+<h2 id="step-3-playbooks-for-repeatable-work">Step 3 — Playbooks for repeatable work<a class="hlink" href="#step-3-playbooks-for-repeatable-work" aria-hidden="true">#</a></h2>
 <blockquote>
 <p><strong>Platform note (Nov 2026):</strong> Playbooks are moving to <strong>Skills</strong> — accounts are migrating one at a time and new accounts get Skills only (each playbook becomes a skill with the same org/enterprise scope). Everything in this step applies verbatim to skills: a skill is the same named, invocable procedure.</p>
 </blockquote>
@@ -95,9 +97,9 @@
 - &lt;known break → what to do&gt;
 </code></pre>
 <p>Publish it org-wide so sessions, automations, and Bots can all invoke it — this is what turns a one-off successful session into an org capability.</p>
-<h2>Step 4 — Feeding Bots</h2>
+<h2 id="step-4-feeding-bots">Step 4 — Feeding Bots<a class="hlink" href="#step-4-feeding-bots" aria-hidden="true">#</a></h2>
 <p>Bot <strong>Instructions</strong> (Guide 1) are the Bot-scoped version of knowledge — the rules read at every session start. Put job-law there; put org-law in knowledge; put procedures in playbooks. The layering keeps each artifact small and current.</p>
-<h2>Step 5 — The correction loop</h2>
+<h2 id="step-5-the-correction-loop">Step 5 — The correction loop<a class="hlink" href="#step-5-the-correction-loop" aria-hidden="true">#</a></h2>
 <p>Knowledge rots. The loop that keeps it true:</p>
 <ol>
 <li>A session/Bot makes a mistake → you correct it in chat</li>
@@ -105,25 +107,25 @@
 <li>Weekly review: promote repeated Bot-memory items into org knowledge; delete entries nobody's triggered in a month</li>
 </ol>
 <p>Devin Coach (an official Bot template) exists for exactly this — it reports weekly where Devin got stuck and proposes one fix each time: a note, a skill, or a setup change.</p>
-<h2>Verify it</h2>
+<h2 id="verify-it">Verify it<a class="hlink" href="#verify-it" aria-hidden="true">#</a></h2>
 <ul>
 <li>[ ] A fresh session on your repo asks zero questions your knowledge already answers</li>
 <li>[ ] The last correction you gave a Bot appears in its memory files</li>
 <li>[ ] Two different sessions run the same playbook and produce the same-shaped result</li>
 </ul>
-<h2>Pitfalls</h2>
+<h2 id="pitfalls">Pitfalls<a class="hlink" href="#pitfalls" aria-hidden="true">#</a></h2>
 <ul>
 <li><strong>Writing wishes.</strong> "Follow best practices" changes nothing; "run <code>npm run db:seed</code> before tests" changes everything.</li>
 <li><strong>Set-and-forget.</strong> Stale knowledge is worse than none — Devin follows it confidently. Review monthly.</li>
 <li><strong>Duplicating docs.</strong> Knowledge should hold what Devin <em>gets wrong</em> or <em>can't know</em>, not a copy of your wiki.</li>
 </ul>
-<h2>Knowledge check</h2>
+<h2 id="knowledge-check">Knowledge check<a class="hlink" href="#knowledge-check" aria-hidden="true">#</a></h2>
 <ol>
 <li>What's the difference between a playbook and knowledge? <em>(A playbook is a repeatable procedure for a named task; knowledge is standing context every session should assume.)</em></li>
 <li>Why is 'write down what your best engineers assume' the actual enterprise bottleneck? <em>(Agent quality was never the limiter — missing context is; the knowledge layer is where org conventions live.)</em></li>
 <li>When does a convention become a playbook vs. staying tribal knowledge? <em>(The first time a session gets it wrong in a way a written step would have prevented.)</em></li>
 </ol>
-<h2>Sources</h2>
+<h2 id="sources">Sources<a class="hlink" href="#sources" aria-hidden="true">#</a></h2>
 <ul>
 <li><a href="https://docs.devin.ai">docs.devin.ai</a> — knowledge, playbooks, Bot instructions/memory</li>
 <li>Related: <a href="enterprise-playbook.html">Guide 7 — Enterprise rollout patterns</a> (this layer is the step most rollouts skip)</li>

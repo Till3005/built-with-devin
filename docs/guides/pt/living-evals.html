@@ -4,13 +4,13 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Guia 15 — Living evals a partir de traces de produção — build-with-devin guides</title>
-<meta name="description" content="Guia 15 — Living evals a partir de traces de produção">
+<meta name="description" content="uma suíte de evals para seu agente que se escreve sozinha — um Devin agendado que lê conversas reais de produção, reconstrói cada falha numa cópia completa do s">
 <link rel="icon" href="../../assets/brand/Devin_Symbol.svg" type="image/svg+xml">
 <link rel="stylesheet" href="../../assets/site.css">
 <link rel="stylesheet" href="../../assets/guides.css">
 
 <meta property="og:title" content="Guia 15 — Living evals a partir de traces de produção">
-<meta property="og:description" content="Guia 15 — Living evals a partir de traces de produção">
+<meta property="og:description" content="uma suíte de evals para seu agente que se escreve sozinha — um Devin agendado que lê conversas reais de produção, reconstrói cada falha numa cópia completa do s">
 <meta property="og:type" content="article">
 <meta property="og:url" content="https://till3005.github.io/built-with-devin/guides/pt/living-evals.html">
 <meta property="og:image" content="https://till3005.github.io/built-with-devin/assets/img/og-build.png?v=3">
@@ -36,13 +36,15 @@
 </div></nav>
 <main>
 <article class="guide wrap" id="guide">
-  <p class="guide-crumb"><a href="../../index.html#build">← Guides</a> · <a href="../living-evals.html">English</a> · <a href="../zh/living-evals.html">中文</a> · <a href="../ja/living-evals.html">日本語</a></p>
+  <p class="guide-crumb"><a href="index.html">← Guias</a> · <a href="../living-evals.html">English</a> · <a href="../ja/living-evals.html">日本語</a> · <a href="../zh/living-evals.html">中文</a></p>
+<p class="guide-meta">Atualizado 2026-11-19</p>
+<details class="toc" open><summary>Nesta página</summary><ol><li class="d2"><a href="#o-padrão">O padrão</a></li><li class="d2"><a href="#pré-requisitos">Pré-requisitos</a></li><li class="d2"><a href="#passo-1-torne-um-trace-replayable-à-mão">Passo 1 — Torne um trace replayable à mão</a></li><li class="d2"><a href="#passo-2-congele-como-eval-não-como-bug-report">Passo 2 — Congele como eval, não como bug report</a></li><li class="d2"><a href="#passo-3-agrupe-por-comportamento-antes-de-escalar">Passo 3 — Agrupe por comportamento antes de escalar</a></li><li class="d2"><a href="#passo-4-encode-o-procedimento-inteiro-como-um-skill">Passo 4 — Encode o procedimento inteiro como um skill</a></li><li class="d2"><a href="#passo-5-agende-semanalmente">Passo 5 — Agende semanalmente</a></li><li class="d2"><a href="#checklist-de-verificação">Checklist de verificação</a></li><li class="d2"><a href="#armadilhas">Armadilhas</a></li><li class="d2"><a href="#teste-de-conhecimento">Teste de conhecimento</a></li><li class="d2"><a href="#fontes">Fontes</a></li></ol></details>
 <h1>Guia 15 — Living evals a partir de traces de produção</h1>
 <p><strong>Objetivo:</strong> uma suíte de evals para <em>seu</em> agente que se escreve sozinha — um Devin agendado que lê conversas reais de produção, reconstrói cada falha numa cópia completa do seu sistema e abre PRs que adicionam a falha como teste de regressão.
 <strong>Nível:</strong> avançado
 <strong>Implantação de origem:</strong> <strong>Living Evals da Rox</strong> — ninguém na Rox escreve evals à mão mais. Um Devin semanal lê traces de produção no Braintrust, reconstrói cada falha numa cópia completa da Rox semeada com dados sintéticos, repete o request até o agente cometer o mesmo erro e abre um PR. A suíte cobre <strong>72% do uso real vs. 43–57%</strong> dos seus evals escritos à mão, e continua crescendo semana a semana.
 <strong>Fontes:</strong> <a href="https://www.rox.com/articles/living-evals-an-eval-suite-that-grows-from-production">write-up Living Evals</a> (Brian Xu, out 2026) · <a href="https://x.com/rox_ai/status/2110779380666617997">thread de lançamento</a></p>
-<h2>O padrão</h2>
+<h2 id="o-padrão">O padrão<a class="hlink" href="#o-padrão" aria-hidden="true">#</a></h2>
 <pre><code class="language-text">traces de produção (plataforma de observabilidade)
         │  amostra semanal (~350 conversas)
         ▼
@@ -55,48 +57,48 @@ para cada comportamento sub-coberto:
         ▼
 humano revisa o PR, não a escrita do eval
 </code></pre>
-<h2>Pré-requisitos</h2>
+<h2 id="pré-requisitos">Pré-requisitos<a class="hlink" href="#pré-requisitos" aria-hidden="true">#</a></h2>
 <ul>
 <li>Um agente ou feature de IA em produção, com <strong>tracing em nível de conversa</strong> (a Rox usou Braintrust; LangSmith/logging self-hosted funcionam — você precisa do request + os registros + as tool calls tocadas)</li>
 <li>Uma cópia deployável do seu sistema (preview env, staging ou <code>docker compose up</code> numa VM) — <strong>não mocks</strong></li>
 <li>Testes-como-código no seu repo para que um eval seja só um arquivo commitado</li>
 </ul>
-<h2>Passo 1 — Torne um trace replayable à mão</h2>
+<h2 id="passo-1-torne-um-trace-replayable-à-mão">Passo 1 — Torne um trace replayable à mão<a class="hlink" href="#passo-1-torne-um-trace-replayable-à-mão" aria-hidden="true">#</a></h2>
 <p>Antes de agendar qualquer coisa: escolha uma conversa real onde seu agente falhou. Peça ao Devin para puxar o trace, escrever dados sintéticos cobrindo exatamente o que o request tocou, subir sua cópia do sistema e replayar o request até a mesma falha ocorrer. Se você não conseguir reproduzir uma falha manualmente, o loop semanal não produzirá nada.</p>
-<h2>Passo 2 — Congele como eval, não como bug report</h2>
+<h2 id="passo-2-congele-como-eval-não-como-bug-report">Passo 2 — Congele como eval, não como bug report<a class="hlink" href="#passo-2-congele-como-eval-não-como-bug-report" aria-hidden="true">#</a></h2>
 <p>O artefato é um eval commitado, não uma mensagem no Slack. Convenção da Rox: o request é copiado <strong>palavra por palavra</strong> da produção; os dados semeados reproduzem as condições exatas (ex.: "a reunião mais nova não tem transcrição"). Requests que mudam dados ganham uma asserção de código; requests só de resposta ganham uma rubrica de LLM-judge.</p>
-<h2>Passo 3 — Agrupe por comportamento antes de escalar</h2>
+<h2 id="passo-3-agrupe-por-comportamento-antes-de-escalar">Passo 3 — Agrupe por comportamento antes de escalar<a class="hlink" href="#passo-3-agrupe-por-comportamento-antes-de-escalar" aria-hidden="true">#</a></h2>
 <p>Rodar o loop em toda conversa é desperdício — a maioria dos requests repete as mesmas formas. Os quatro rótulos da Rox definem um <em>comportamento</em>: <strong>goal</strong> (o que o usuário quer) · <strong>output</strong> (o que volta) · <strong>mutation</strong> (nada/criar/editar/enviar) · <strong>target</strong> (objeto nomeado vs. inferido). ~350 conversas por semana colapsam para ~130 comportamentos; construa evals só para comportamentos sub-cobertos.</p>
-<h2>Passo 4 — Encode o procedimento inteiro como um skill</h2>
+<h2 id="passo-4-encode-o-procedimento-inteiro-como-um-skill">Passo 4 — Encode o procedimento inteiro como um skill<a class="hlink" href="#passo-4-encode-o-procedimento-inteiro-como-um-skill" aria-hidden="true">#</a></h2>
 <p>O loop trace→eval vive em <strong>um arquivo de skill</strong> que o Devin segue: puxar trace → sintetizar → preview env → replay → comparar → congelar → PR. Quando o loop produz um eval ruim, <strong>corrija o skill</strong>, nunca patcheie o eval à mão — essa é a jogada que compõe.</p>
-<h2>Passo 5 — Agende semanalmente</h2>
+<h2 id="passo-5-agende-semanalmente">Passo 5 — Agende semanalmente<a class="hlink" href="#passo-5-agende-semanalmente" aria-hidden="true">#</a></h2>
 <p>Automação cron (Guia 6): puxar os traces da semana → agrupar → para cada comportamento sub-coberto rodar o loop → abrir um PR com os novos evals. Humanos revisam o PR; o Devin é dono da suíte.</p>
-<h2>Checklist de verificação</h2>
+<h2 id="checklist-de-verificação">Checklist de verificação<a class="hlink" href="#checklist-de-verificação" aria-hidden="true">#</a></h2>
 <ul>
 <li>[ ] Uma falha real de produção replaya deterministicamente no seu preview env — mesmo request do usuário, mesmo resultado ruim</li>
 <li>[ ] O arquivo de eval está no seu repo, roda na CI e falha no comportamento antigo / passa na correção</li>
 <li>[ ] A cobertura é medida contra o <em>mix de tráfego de produção</em>, não seus palpites — reporte como os 72% da Rox</li>
 <li>[ ] Um eval ruim foi corrigido editando o skill, não o eval</li>
 </ul>
-<h2>Armadilhas</h2>
+<h2 id="armadilhas">Armadilhas<a class="hlink" href="#armadilhas" aria-hidden="true">#</a></h2>
 <ul>
 <li><strong>Replay mockado.</strong> A abordagem anterior da Rox replayava através de uma camada de dados mockada — mocks podem esconder bugs justamente no código que substituem. Use uma cópia completa; o ponto de um preview env é fidelidade.</li>
 <li><strong>Julgamento flakey.</strong> Mesmo sem mudança de código, ~1 em 8 evals passa em algumas execuções e falha em outras — agentes não são determinísticos. Leia uma falha antes de confiar nela; não alerte em flakes isolados.</li>
 <li><strong>Evals medindo gosto.</strong> A suíte pega regressões comportamentais (um caminho de tool morto, um request suportado não tratado), não estilo — toda falha deve apontar para um defeito corrigível.</li>
 </ul>
-<h2>Teste de conhecimento</h2>
+<h2 id="teste-de-conhecimento">Teste de conhecimento<a class="hlink" href="#teste-de-conhecimento" aria-hidden="true">#</a></h2>
 <ol>
 <li>Por que replayar numa cópia completa em vez de uma camada de dados mockada? <em>(Mocks podem esconder bugs no código que substituem — conforme o agente edita mais estado, o mock se torna a coisa que você está realmente testando.)</em></li>
 <li>Por que agrupar conversas em comportamentos antes de escrever evals? <em>(A maioria dos requests repete formas — rotular goal/output/mutation/target permite que um eval cubra muitas conversas, então a cobertura mapeia para uso real.)</em></li>
 <li>Qual é a jogada que compõe: corrigir evals ou corrigir o skill? <em>(O skill — um eval patcheado à mão não ensina nada ao Devin; um skill corrigido produz evals melhores para sempre.)</em></li>
 </ol>
-<h2>Fontes</h2>
+<h2 id="fontes">Fontes<a class="hlink" href="#fontes" aria-hidden="true">#</a></h2>
 <ul>
 <li><a href="https://www.rox.com/articles/living-evals-an-eval-suite-that-grows-from-production">Living Evals: an eval suite that grows from production</a> — a metodologia completa</li>
 <li><a href="https://x.com/rox_ai/status/2110779380666617997">Thread de lançamento da Rox</a></li>
 <li>Relacionado: <a href="official-cookbook.html">Guia 13 — Cookbook oficial</a> · <a href="automations-101-event-driven.html">Guia 6 — Automações</a></li>
 </ul>
-<nav class="guide-pager"><a class="pg-prev" href="migrations-at-scale.html"><span class="pg-dir">← Previous</span><span class="pg-t">Guia 11 — Migrações em escala</span></a><a class="pg-next" href="enterprise-playbook.html"><span class="pg-dir">Next →</span><span class="pg-t">Guia 7 — Padrões de rollout enterprise</span></a></nav>
+<nav class="guide-pager"><a class="pg-prev" href="migrations-at-scale.html"><span class="pg-dir">← Anterior</span><span class="pg-t">Guia 11 — Migrações em escala</span></a><a class="pg-next" href="enterprise-playbook.html"><span class="pg-dir">Próximo →</span><span class="pg-t">Guia 7 — Padrões de rollout enterprise</span></a></nav>
 </article>
 <footer><div class="wrap foot-base"><span data-i18n="foot.note">Unofficial community project — not affiliated with Cognition AI.</span><span><a href="../../index.html">built-with-devin</a> · <a href="https://github.com/Till3005/build-with-devin">build-with-devin</a></span></div></footer>
 </main>

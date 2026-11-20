@@ -51,6 +51,21 @@
 .guide-pager .pg-next{grid-column:1;text-align:left}
 }
 
+/* index filter + freshness stamp + on-this-page toc + heading anchors */
+.gfilter{display:block;width:100%;box-sizing:border-box;padding:11px 14px;margin:18px 0 26px;border:1px solid var(--line);border-radius:10px;background:transparent;color:var(--fg);font:400 14px var(--sans)}
+.gfilter:focus{outline:none;border-color:var(--mut)}
+.guide-meta{font:400 12px var(--mono);color:var(--mut);margin:-18px 0 22px}
+.toc{border:1px solid var(--line);border-radius:10px;padding:14px 18px;margin:0 0 30px}
+.toc summary{cursor:pointer;font:600 12px var(--sans);letter-spacing:.06em;text-transform:uppercase;color:var(--mut)}
+.toc ol{margin:10px 0 2px;padding-left:20px}
+.toc li{margin:3px 0;font-size:14px}
+.toc li.d3{margin-left:16px;font-size:13px}
+.toc a{color:var(--mut);text-decoration:none}
+.toc a:hover{color:var(--fg)}
+.hlink{opacity:0;margin-left:8px;font-weight:400;color:var(--mut);text-decoration:none;transition:opacity .15s}
+.guide h2:hover .hlink,.guide h3:hover .hlink,.guide h4:hover .hlink{opacity:1}
+.hlink:hover{color:var(--fg)}
+
 /* walkthrough media */
 .guide img{display:block;max-width:100%;height:auto;margin:8px 0 6px;border:1px solid var(--line);border-radius:10px}
 .guide p:has(> img) + p > em:only-child,.guide p:has(> img) em{display:block;font:400 13px/1.5 var(--sans);font-style:normal;color:var(--mut)}

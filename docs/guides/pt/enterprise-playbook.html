@@ -4,13 +4,13 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Guia 7 — Padrões de rollout enterprise — build-with-devin guides</title>
-<meta name="description" content="Guia 7 — Padrões de rollout enterprise">
+<meta name="description" content="implantar Devin em escala organizacional usando as formas que já produziram números publicados — não experimentação, as manobras comprovadas.">
 <link rel="icon" href="../../assets/brand/Devin_Symbol.svg" type="image/svg+xml">
 <link rel="stylesheet" href="../../assets/site.css">
 <link rel="stylesheet" href="../../assets/guides.css">
 
 <meta property="og:title" content="Guia 7 — Padrões de rollout enterprise">
-<meta property="og:description" content="Guia 7 — Padrões de rollout enterprise">
+<meta property="og:description" content="implantar Devin em escala organizacional usando as formas que já produziram números publicados — não experimentação, as manobras comprovadas.">
 <meta property="og:type" content="article">
 <meta property="og:url" content="https://till3005.github.io/built-with-devin/guides/pt/enterprise-playbook.html">
 <meta property="og:image" content="https://till3005.github.io/built-with-devin/assets/img/og-build.png?v=3">
@@ -36,13 +36,15 @@
 </div></nav>
 <main>
 <article class="guide wrap" id="guide">
-  <p class="guide-crumb"><a href="../../index.html#build">← Guides</a> · <a href="../enterprise-playbook.html">English</a> · <a href="../zh/enterprise-playbook.html">中文</a> · <a href="../ja/enterprise-playbook.html">日本語</a></p>
+  <p class="guide-crumb"><a href="index.html">← Guias</a> · <a href="../enterprise-playbook.html">English</a> · <a href="../ja/enterprise-playbook.html">日本語</a> · <a href="../zh/enterprise-playbook.html">中文</a></p>
+<p class="guide-meta">Atualizado 2026-11-19</p>
+<details class="toc" open><summary>Nesta página</summary><ol><li class="d2"><a href="#forma-1-o-motor-de-migração-de-legado-nubank-comarch">Forma 1 — O motor de migração de legado (Nubank, Comarch)</a></li><li class="d2"><a href="#forma-2-o-repo-de-autor-primário-ebanx-gumroad-finch">Forma 2 — O repo de autor primário (EBANX, Gumroad, Finch)</a></li><li class="d2"><a href="#forma-3-o-primeiro-respondedor-sempre-ativo-modal-reducto-angellist">Forma 3 — O primeiro respondedor sempre ativo (Modal, Reducto, AngelList)</a></li><li class="d2"><a href="#forma-4-a-frota-de-manutenção-airbyte-melius">Forma 4 — A frota de manutenção (Airbyte, Melius)</a></li><li class="d2"><a href="#forma-5-o-seat-org-wide-wayfair-the-access-group-citi">Forma 5 — O seat org-wide (Wayfair, The Access Group, Citi)</a></li><li class="d2"><a href="#forma-6-o-gate-de-processo-hamming-litera-eight-sleep">Forma 6 — O gate de processo (Hamming, Litera, Eight Sleep)</a></li><li class="d2"><a href="#anti-padrões-que-os-casos-implicam">Anti-padrões que os casos implicam</a></li><li class="d2"><a href="#checklist-de-verificação">Checklist de verificação</a></li><li class="d2"><a href="#armadilhas">Armadilhas</a></li><li class="d2"><a href="#teste-de-conhecimento">Teste de conhecimento</a></li><li class="d2"><a href="#fontes">Fontes</a></li></ol></details>
 <h1>Guia 7 — Padrões de rollout enterprise</h1>
 <p><strong>Objetivo:</strong> implantar Devin em escala organizacional usando as formas que já produziram números publicados — não experimentação, as manobras comprovadas.
 <strong>Nível:</strong> intermediário (escrito para líderes de engenharia)
 <strong>Fonte:</strong> casos de clientes publicados, <a href="https://devin.ai/customers">devin.ai/customers</a></p>
 <p>Seis formas de implantação, destiladas das empresas que publicaram resultados. A maioria dos rollouts bem-sucedidos usa duas ou três delas, não todas as seis.</p>
-<h2>Forma 1 — O motor de migração de legado (Nubank, Comarch)</h2>
+<h2 id="forma-1-o-motor-de-migração-de-legado-nubank-comarch">Forma 1 — O motor de migração de legado (Nubank, Comarch)<a class="hlink" href="#forma-1-o-motor-de-migração-de-legado-nubank-comarch" aria-hidden="true">#</a></h2>
 <table>
 <thead>
 <tr>
@@ -66,7 +68,7 @@
 </tbody>
 </table>
 <p><strong>Como copiar:</strong> escolha um sistema legado delimitado; faça fine-tune ou ensine via playbook; rode o loop estilo Migration Engineer — uma grande migração como PRs pequenos rastreados com superfície de progresso. O ganho compõe: cada módulo migrado torna a próxima sessão mais esperta.</p>
-<h2>Forma 2 — O repo de autor primário (EBANX, Gumroad, Finch)</h2>
+<h2 id="forma-2-o-repo-de-autor-primário-ebanx-gumroad-finch">Forma 2 — O repo de autor primário (EBANX, Gumroad, Finch)<a class="hlink" href="#forma-2-o-repo-de-autor-primário-ebanx-gumroad-finch" aria-hidden="true">#</a></h2>
 <table>
 <thead>
 <tr>
@@ -86,7 +88,7 @@
 </tbody>
 </table>
 <p><strong>Como copiar:</strong> escolha um repo de alta velocidade; roteie tickets para sessões Devin por padrão; humanos revisam. A métrica a vigiar é a fatia de PRs autorais — acima de ~50%, você está nesta forma; abaixo, ainda em modo piloto.</p>
-<h2>Forma 3 — O primeiro respondedor sempre ativo (Modal, Reducto, AngelList)</h2>
+<h2 id="forma-3-o-primeiro-respondedor-sempre-ativo-modal-reducto-angellist">Forma 3 — O primeiro respondedor sempre ativo (Modal, Reducto, AngelList)<a class="hlink" href="#forma-3-o-primeiro-respondedor-sempre-ativo-modal-reducto-angellist" aria-hidden="true">#</a></h2>
 <table>
 <thead>
 <tr>
@@ -106,7 +108,7 @@
 </tbody>
 </table>
 <p><strong>Como copiar:</strong> <a href="https://docs.devin.ai">Devin Oncall</a> ou uma automação disparada por PagerDuty (Guia 6, receita: incidente → investigar). Meça o % de incidentes pré-investigados — cada ponto dele é sono humano recuperado.</p>
-<h2>Forma 4 — A frota de manutenção (Airbyte, Melius)</h2>
+<h2 id="forma-4-a-frota-de-manutenção-airbyte-melius">Forma 4 — A frota de manutenção (Airbyte, Melius)<a class="hlink" href="#forma-4-a-frota-de-manutenção-airbyte-melius" aria-hidden="true">#</a></h2>
 <table>
 <thead>
 <tr>
@@ -126,7 +128,7 @@
 </tbody>
 </table>
 <p><strong>Como copiar:</strong> enumere seu backlog de manutenção (o trabalho que engenheiros evitam); embrulhe em Bots estilo Code Health Engineer / Code Reaper (templates oficiais) com cadência semanal.</p>
-<h2>Forma 5 — O seat org-wide (Wayfair, The Access Group, Citi)</h2>
+<h2 id="forma-5-o-seat-org-wide-wayfair-the-access-group-citi">Forma 5 — O seat org-wide (Wayfair, The Access Group, Citi)<a class="hlink" href="#forma-5-o-seat-org-wide-wayfair-the-access-group-citi" aria-hidden="true">#</a></h2>
 <table>
 <thead>
 <tr>
@@ -146,7 +148,7 @@
 </tbody>
 </table>
 <p><strong>Como copiar:</strong> a ordem de rollout nos casos publicados é consistente — time piloto → resultados medidos → padronização de playbook/knowledge → expansão de seats. Pular a etapa de knowledge é por que rollouts de seat travam: veja o <a href="playbooks-and-knowledge.html">guia de playbooks</a>.</p>
-<h2>Forma 6 — O gate de processo (Hamming, Litera, Eight Sleep)</h2>
+<h2 id="forma-6-o-gate-de-processo-hamming-litera-eight-sleep">Forma 6 — O gate de processo (Hamming, Litera, Eight Sleep)<a class="hlink" href="#forma-6-o-gate-de-processo-hamming-litera-eight-sleep" aria-hidden="true">#</a></h2>
 <table>
 <thead>
 <tr>
@@ -166,34 +168,34 @@
 </tbody>
 </table>
 <p><strong>Como copiar:</strong> ache o estágio do pipeline com o pior custo humano (ciclos de regressão, QA); atribua a um Bot ou automação; meça o tempo de ciclo do estágio antes/depois.</p>
-<h2>Anti-padrões que os casos implicam</h2>
+<h2 id="anti-padrões-que-os-casos-implicam">Anti-padrões que os casos implicam<a class="hlink" href="#anti-padrões-que-os-casos-implicam" aria-hidden="true">#</a></h2>
 <ul>
 <li><strong>Ferramenta, não colega.</strong> As implantações de números altos dão ao Devin propriedade (repos, superfícies, estágios), não atribuições — mesma lição dos Guias 1–5.</li>
 <li><strong>Piloto eterno.</strong> Todo resultado publicado compartilha um traço: um piloto medido que <em>se formou</em>. Defina o critério de formatura antes (fatia de PRs, incidentes cobertos, horas poupadas).</li>
 <li><strong>Sem camada de knowledge.</strong> Toda implantação grande codifica convenções em algum lugar — fine-tunes, playbooks, instructions de Bot. Sem isso, a qualidade varia por sessão.</li>
 </ul>
-<h2>Checklist de verificação</h2>
+<h2 id="checklist-de-verificação">Checklist de verificação<a class="hlink" href="#checklist-de-verificação" aria-hidden="true">#</a></h2>
 <ul>
 <li>[ ] Seu doc de rollout nomeia um estágio de pipeline, uma métrica e um critério de formatura — antes da primeira sessão</li>
 <li>[ ] Checkpoint da semana 2: consegue dizer a fatia de PRs mergeados do Devin nesse estágio sem perguntar a ninguém?</li>
 </ul>
-<h2>Armadilhas</h2>
+<h2 id="armadilhas">Armadilhas<a class="hlink" href="#armadilhas" aria-hidden="true">#</a></h2>
 <ul>
 <li><strong>Escalar o piloto que nunca se formou.</strong> Todo número grande aqui veio depois de um piloto medido com critério de saída.</li>
 <li><strong>Pensar em licença primeiro.</strong> Comprar seats antes de nomear o estágio possuído produz shelfware — o padrão é estágio → piloto → métrica → então seats.</li>
 </ul>
-<h2>Teste de conhecimento</h2>
+<h2 id="teste-de-conhecimento">Teste de conhecimento<a class="hlink" href="#teste-de-conhecimento" aria-hidden="true">#</a></h2>
 <ol>
 <li>Por que todas as seis formas compartilham "um estágio possuído" como átomo? <em>(Todo número publicado veio de uma superfície delimitada e mensurável — orgs que implantaram "em todo lugar" não publicaram nada.)</em></li>
 <li>O que é o critério de formatura e por que defini-lo antes do piloto? <em>(Uma métrica + limiar que vira piloto → produção; sem ele, pilotos derivam para sempre ou são mortos por impressões.)</em></li>
 <li>Por que a camada de knowledge aparece em toda implantação grande? <em>(Consistência em escala exige contexto compartilhado — a alternativa é N sessões de qualidade diferente.)</em></li>
 </ol>
-<h2>Fontes</h2>
+<h2 id="fontes">Fontes<a class="hlink" href="#fontes" aria-hidden="true">#</a></h2>
 <ul>
 <li><a href="https://devin.ai/customers">devin.ai/customers</a> — todos os casos e números citados</li>
 <li><a href="https://github.com/Till3005/built-with-devin#enterprise-deployments">built-with-devin — índice enterprise</a> — a tabela de casos verificada do registry</li>
 </ul>
-<nav class="guide-pager"><a class="pg-prev" href="living-evals.html"><span class="pg-dir">← Previous</span><span class="pg-t">Guia 15 — Living evals a partir de traces de produção</span></a><a class="pg-next" href="community-field-reports.html"><span class="pg-dir">Next →</span><span class="pg-t">Guia 14 — Relatos de campo da comunidade</span></a></nav>
+<nav class="guide-pager"><a class="pg-prev" href="living-evals.html"><span class="pg-dir">← Anterior</span><span class="pg-t">Guia 15 — Living evals a partir de traces de produção</span></a><a class="pg-next" href="community-field-reports.html"><span class="pg-dir">Próximo →</span><span class="pg-t">Guia 14 — Relatos de campo da comunidade</span></a></nav>
 </article>
 <footer><div class="wrap foot-base"><span data-i18n="foot.note">Unofficial community project — not affiliated with Cognition AI.</span><span><a href="../../index.html">built-with-devin</a> · <a href="https://github.com/Till3005/build-with-devin">build-with-devin</a></span></div></footer>
 </main>

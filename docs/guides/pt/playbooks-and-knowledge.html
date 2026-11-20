@@ -4,13 +4,13 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Guia 9 — Playbooks &amp; knowledge: codificando as convenções da sua org — build-with-devin guides</title>
-<meta name="description" content="Guia 9 — Playbooks &amp; knowledge: codificando as convenções da sua org">
+<meta name="description" content="tornar sessões e Bots Devin confiáveis em escala de organização, escrevendo o que seus melhores engenheiros presumem — como playbooks procedimentos repetíveis e">
 <link rel="icon" href="../../assets/brand/Devin_Symbol.svg" type="image/svg+xml">
 <link rel="stylesheet" href="../../assets/site.css">
 <link rel="stylesheet" href="../../assets/guides.css">
 
 <meta property="og:title" content="Guia 9 — Playbooks &amp; knowledge: codificando as convenções da sua org">
-<meta property="og:description" content="Guia 9 — Playbooks &amp; knowledge: codificando as convenções da sua org">
+<meta property="og:description" content="tornar sessões e Bots Devin confiáveis em escala de organização, escrevendo o que seus melhores engenheiros presumem — como playbooks procedimentos repetíveis e">
 <meta property="og:type" content="article">
 <meta property="og:url" content="https://till3005.github.io/built-with-devin/guides/pt/playbooks-and-knowledge.html">
 <meta property="og:image" content="https://till3005.github.io/built-with-devin/assets/img/og-build.png?v=3">
@@ -36,12 +36,14 @@
 </div></nav>
 <main>
 <article class="guide wrap" id="guide">
-  <p class="guide-crumb"><a href="../../index.html#build">← Guides</a> · <a href="../playbooks-and-knowledge.html">English</a> · <a href="../zh/playbooks-and-knowledge.html">中文</a> · <a href="../ja/playbooks-and-knowledge.html">日本語</a></p>
+  <p class="guide-crumb"><a href="index.html">← Guias</a> · <a href="../playbooks-and-knowledge.html">English</a> · <a href="../ja/playbooks-and-knowledge.html">日本語</a> · <a href="../zh/playbooks-and-knowledge.html">中文</a></p>
+<p class="guide-meta">Atualizado 2026-11-19</p>
+<details class="toc" open><summary>Nesta página</summary><ol><li class="d2"><a href="#por-que-esta-camada-decide-tudo">Por que esta camada decide tudo</a></li><li class="d2"><a href="#passo-1-minere-suas-próprias-correções">Passo 1 — Minere suas próprias correções</a></li><li class="d2"><a href="#passo-2-escreva-entradas-de-knowledge-que-pegam">Passo 2 — Escreva entradas de knowledge que pegam</a></li><li class="d2"><a href="#passo-3-playbooks-para-trabalho-repetível">Passo 3 — Playbooks para trabalho repetível</a></li><li class="d2"><a href="#passo-4-alimentando-bots">Passo 4 — Alimentando Bots</a></li><li class="d2"><a href="#passo-5-o-loop-de-correção">Passo 5 — O loop de correção</a></li><li class="d2"><a href="#checklist-de-verificação">Checklist de verificação</a></li><li class="d2"><a href="#armadilhas">Armadilhas</a></li><li class="d2"><a href="#teste-de-conhecimento">Teste de conhecimento</a></li><li class="d2"><a href="#fontes">Fontes</a></li></ol></details>
 <h1>Guia 9 — Playbooks &amp; knowledge: codificando as convenções da sua org</h1>
 <p><strong>Objetivo:</strong> tornar sessões e Bots Devin confiáveis em escala de organização, escrevendo o que seus melhores engenheiros presumem — como playbooks (procedimentos repetíveis) e knowledge (contexto permanente).
 <strong>Nível:</strong> intermediário · a camada que toda implantação grande publicada compartilha
 <strong>Fontes:</strong> <a href="https://docs.devin.ai">docs.devin.ai</a> · lições de implantação do <a href="enterprise-playbook.html">Guia 7</a></p>
-<h2>Por que esta camada decide tudo</h2>
+<h2 id="por-que-esta-camada-decide-tudo">Por que esta camada decide tudo<a class="hlink" href="#por-que-esta-camada-decide-tudo" aria-hidden="true">#</a></h2>
 <p>Todo resultado enterprise publicado — o 8–12× da Nubank, os 92% de PRs autorais da EBANX, os 1.600 seats da Wayfair — repousa sobre convenções codificadas. Sem elas, a saída do Devin varia por sessão: cada uma redescobre seu stack, suas regras de merge, seus hábitos de teste. Com elas, a sessão nº 500 se comporta como seu melhor engenheiro no melhor dia.</p>
 <p>Dois artefatos complementares:</p>
 <table>
@@ -65,20 +67,20 @@
 </tr>
 </tbody>
 </table>
-<h2>Passo 1 — Minere suas próprias correções</h2>
+<h2 id="passo-1-minere-suas-próprias-correções">Passo 1 — Minere suas próprias correções<a class="hlink" href="#passo-1-minere-suas-próprias-correções" aria-hidden="true">#</a></h2>
 <p>O conhecimento mais barato já existe: percorra suas últimas 20 sessões Devin e colete cada vez que você digitou uma correção — <em>"we deploy via Cloud Run,"</em> <em>"never <code>git push --force</code>,"</em> <em>"tests need <code>npm run db:seed</code> first."</em> Cada correção é uma entrada de knowledge com prova de que importou.</p>
 <p>Minere também:
 - Comentários de code review que humanos repetem em PRs do Devin
 - Descrições de PR que explicam <em>por que</em> uma mudança foi moldada de certa forma
 - Docs de onboarding — tudo que você contaria a um novo contratado</p>
-<h2>Passo 2 — Escreva entradas de knowledge que pegam</h2>
+<h2 id="passo-2-escreva-entradas-de-knowledge-que-pegam">Passo 2 — Escreva entradas de knowledge que pegam<a class="hlink" href="#passo-2-escreva-entradas-de-knowledge-que-pegam" aria-hidden="true">#</a></h2>
 <p>Boas entradas são uma linha, imperativas e escopadas:</p>
 <pre><code class="language-text">- Deploy only via `make deploy-cloudrun` — never run gcloud directly.
 - Migrations require a matching rollback file in prisma/rollbacks/.
 - The staging seed user is qa+admin@corp.io; never create real-looking users.
 </code></pre>
 <p>Más entradas são ensaios, votos ("write good tests") ou segredos (nunca coloque credenciais no knowledge — use o secrets store).</p>
-<h2>Passo 3 — Playbooks para trabalho repetível</h2>
+<h2 id="passo-3-playbooks-para-trabalho-repetível">Passo 3 — Playbooks para trabalho repetível<a class="hlink" href="#passo-3-playbooks-para-trabalho-repetível" aria-hidden="true">#</a></h2>
 <blockquote>
 <p><strong>Nota de plataforma (nov 2026):</strong> Playbooks estão migrando para <strong>Skills</strong> — as contas migram uma a uma e contas novas só têm Skills (cada playbook vira um skill com o mesmo escopo org/enterprise). Tudo neste passo se aplica igualmente a skills: um skill é o mesmo procedimento nomeado e invocável.</p>
 </blockquote>
@@ -95,9 +97,9 @@
 - &lt;quebra conhecida → o que fazer&gt;
 </code></pre>
 <p>Publique org-wide para que sessões, automações e Bots possam invocá-lo — é isso que transforma uma sessão bem-sucedida isolada em capacidade da organização.</p>
-<h2>Passo 4 — Alimentando Bots</h2>
+<h2 id="passo-4-alimentando-bots">Passo 4 — Alimentando Bots<a class="hlink" href="#passo-4-alimentando-bots" aria-hidden="true">#</a></h2>
 <p>As <strong>Instructions</strong> do Bot (Guia 1) são a versão escopada ao Bot do knowledge — as regras lidas no início de cada sessão. Coloque lei-do-cargo ali; lei-da-org no knowledge; procedimentos em playbooks. O empilhamento mantém cada artefato pequeno e atual.</p>
-<h2>Passo 5 — O loop de correção</h2>
+<h2 id="passo-5-o-loop-de-correção">Passo 5 — O loop de correção<a class="hlink" href="#passo-5-o-loop-de-correção" aria-hidden="true">#</a></h2>
 <p>Knowledge apodrece. O loop que o mantém verdadeiro:</p>
 <ol>
 <li>Uma sessão/Bot erra → você corrige no chat</li>
@@ -105,30 +107,30 @@
 <li>Revisão semanal: promova itens repetidos da memória do Bot para o knowledge da org; delete entradas que ninguém disparou em um mês</li>
 </ol>
 <p>O Devin Coach (um template oficial de Bot) existe exatamente para isso — reporta semanalmente onde o Devin travou e propõe uma correção por vez: uma nota, um skill ou uma mudança de setup.</p>
-<h2>Checklist de verificação</h2>
+<h2 id="checklist-de-verificação">Checklist de verificação<a class="hlink" href="#checklist-de-verificação" aria-hidden="true">#</a></h2>
 <ul>
 <li>[ ] Uma sessão nova no seu repo faz zero perguntas que seu knowledge já responde</li>
 <li>[ ] A última correção que você deu a um Bot aparece nos arquivos de memória dele</li>
 <li>[ ] Duas sessões diferentes rodam o mesmo playbook e produzem resultado da mesma forma</li>
 </ul>
-<h2>Armadilhas</h2>
+<h2 id="armadilhas">Armadilhas<a class="hlink" href="#armadilhas" aria-hidden="true">#</a></h2>
 <ul>
 <li><strong>Escrever votos.</strong> "Follow best practices" não muda nada; "run <code>npm run db:seed</code> before tests" muda tudo.</li>
 <li><strong>Set-and-forget.</strong> Knowledge velho é pior que nenhum — o Devin o segue confiante. Revise mensalmente.</li>
 <li><strong>Duplicar docs.</strong> Knowledge deve guardar o que o Devin <em>erra</em> ou <em>não pode saber</em>, não uma cópia da sua wiki.</li>
 </ul>
-<h2>Teste de conhecimento</h2>
+<h2 id="teste-de-conhecimento">Teste de conhecimento<a class="hlink" href="#teste-de-conhecimento" aria-hidden="true">#</a></h2>
 <ol>
 <li>Qual a diferença entre playbook e knowledge? <em>(Playbook é procedimento repetível para uma tarefa nomeada; knowledge é contexto permanente que toda sessão deve presumir.)</em></li>
 <li>Por que "escrever o que seus melhores engenheiros presumem" é o gargalo enterprise de verdade? <em>(Qualidade do agente nunca foi o limitante — contexto faltante é; a camada de knowledge é onde vivem as convenções da org.)</em></li>
 <li>Quando uma convenção vira playbook vs. permanece conhecimento tribal? <em>(Na primeira vez que uma sessão erra de um jeito que um passo escrito teria prevenido.)</em></li>
 </ol>
-<h2>Fontes</h2>
+<h2 id="fontes">Fontes<a class="hlink" href="#fontes" aria-hidden="true">#</a></h2>
 <ul>
 <li><a href="https://docs.devin.ai">docs.devin.ai</a> — knowledge, playbooks, instructions/memória de Bot</li>
 <li>Relacionado: <a href="enterprise-playbook.html">Guia 7 — Padrões de rollout enterprise</a> (esta camada é o passo que a maioria dos rollouts pula)</li>
 </ul>
-<nav class="guide-pager"><a class="pg-prev" href="automations-101-event-driven.html"><span class="pg-dir">← Previous</span><span class="pg-t">Guia 6 — Automações orientadas a eventos</span></a><a class="pg-next" href="skills-and-plugins.html"><span class="pg-dir">Next →</span><span class="pg-t">Guia 17 — Skills e plugins: a camada de empacotamento pós-playbook</span></a></nav>
+<nav class="guide-pager"><a class="pg-prev" href="automations-101-event-driven.html"><span class="pg-dir">← Anterior</span><span class="pg-t">Guia 6 — Automações orientadas a eventos</span></a><a class="pg-next" href="skills-and-plugins.html"><span class="pg-dir">Próximo →</span><span class="pg-t">Guia 17 — Skills e plugins: a camada de empacotamento pós-playbook</span></a></nav>
 </article>
 <footer><div class="wrap foot-base"><span data-i18n="foot.note">Unofficial community project — not affiliated with Cognition AI.</span><span><a href="../../index.html">built-with-devin</a> · <a href="https://github.com/Till3005/build-with-devin">build-with-devin</a></span></div></footer>
 </main>

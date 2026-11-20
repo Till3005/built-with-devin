@@ -36,12 +36,14 @@
 </div></nav>
 <main>
 <article class="guide wrap" id="guide">
-  <p class="guide-crumb"><a href="../index.html#build">← Guides</a> · <a href="zh/automations-101-event-driven.html">中文</a> · <a href="ja/automations-101-event-driven.html">日本語</a> · <a href="pt/automations-101-event-driven.html">Português</a></p>
+  <p class="guide-crumb"><a href="index.html">← Guides</a> · <a href="ja/automations-101-event-driven.html">日本語</a> · <a href="pt/automations-101-event-driven.html">Português</a> · <a href="zh/automations-101-event-driven.html">中文</a></p>
+<p class="guide-meta">Updated 2026-11-20</p>
+<details class="toc" open><summary>On this page</summary><ol><li class="d2"><a href="#the-anatomy">The anatomy</a></li><li class="d2"><a href="#trigger-catalog">Trigger catalog</a></li><li class="d2"><a href="#recipe-1-devin-on-any-issue">Recipe 1 — /devin on any issue</a></li><li class="d2"><a href="#recipe-2-ci-failure-self-repair">Recipe 2 — CI failure self-repair</a></li><li class="d2"><a href="#recipe-3-scheduled-sweep">Recipe 3 — Scheduled sweep</a></li><li class="d2"><a href="#action-types-choosing-between-them">Action types, choosing between them</a></li><li class="d2"><a href="#build-it">Build it</a></li><li class="d2"><a href="#walkthrough-an-automation-built-fired-and-verified-on-devin-desktop-v3-14-pro-plan">Walkthrough — an automation built, fired and verified on Devin Desktop v3.14 (Pro plan)</a></li><li class="d2"><a href="#verify-it">Verify it</a></li><li class="d2"><a href="#pitfalls">Pitfalls</a></li><li class="d2"><a href="#knowledge-check">Knowledge check</a></li><li class="d2"><a href="#sources">Sources</a></li></ol></details>
 <h1>Guide 6 — Event-driven automations</h1>
 <p><strong>Goal:</strong> wire external events — Slack, Teams, GitHub, Linear, Jira, PagerDuty, cron, webhooks — to Devin sessions that start themselves.
 <strong>Level:</strong> start here (platform guide) · <strong>Time:</strong> ~20 minutes
 <strong>Source:</strong> <a href="https://docs.devin.ai/product-guides/automations">Automations docs</a> · <a href="https://www.youtube.com/watch?v=6xxKtIpgOyE">official video walkthrough</a></p>
-<h2>The anatomy</h2>
+<h2 id="the-anatomy">The anatomy<a class="hlink" href="#the-anatomy" aria-hidden="true">#</a></h2>
 <p>Every automation is four parts:</p>
 <table>
 <thead>
@@ -69,7 +71,7 @@
 </tr>
 </tbody>
 </table>
-<h2>Trigger catalog</h2>
+<h2 id="trigger-catalog">Trigger catalog<a class="hlink" href="#trigger-catalog" aria-hidden="true">#</a></h2>
 <table>
 <thead>
 <tr>
@@ -132,14 +134,14 @@
 </tbody>
 </table>
 <p>Multiple triggers on one automation act as OR — e.g. fire on <em>either</em> a GitHub CI failure <em>or</em> a Slack reaction.</p>
-<h2>Recipe 1 — <code>/devin</code> on any issue</h2>
+<h2 id="recipe-1-devin-on-any-issue">Recipe 1 — <code>/devin</code> on any issue<a class="hlink" href="#recipe-1-devin-on-any-issue" aria-hidden="true">#</a></h2>
 <p>The most-deployed trigger in the wild:</p>
 <pre><code class="language-text">Trigger:   GitHub → issue comment, repo = your/repo
 Condition: comment body starts with &quot;/devin&quot;
 Action:    Start session — prompt includes the event payload
 </code></pre>
 <p>Result: anyone on the team comments <code>/devin investigate this</code> on an issue, and a session picks it up with the full thread as context.</p>
-<h2>Recipe 2 — CI failure self-repair</h2>
+<h2 id="recipe-2-ci-failure-self-repair">Recipe 2 — CI failure self-repair<a class="hlink" href="#recipe-2-ci-failure-self-repair" aria-hidden="true">#</a></h2>
 <pre><code class="language-text">Trigger:   GitHub → check run, repo = your/repo
 Condition: conclusion = failure
 Action:    Start session: &quot;CI check &lt;name&gt; failed on this commit.
@@ -147,14 +149,14 @@ Action:    Start session: &quot;CI check &lt;name&gt; failed on this commit.
             the same branch.&quot;
 </code></pre>
 <p>The event payload carries the failing check + commit into the session — no human copy-paste.</p>
-<h2>Recipe 3 — Scheduled sweep</h2>
+<h2 id="recipe-3-scheduled-sweep">Recipe 3 — Scheduled sweep<a class="hlink" href="#recipe-3-scheduled-sweep" aria-hidden="true">#</a></h2>
 <pre><code class="language-text">Trigger:   Schedule → daily 09:00
 Action:    Start session: &quot;Sweep yesterday's Sentry issues in
             &lt;project&gt;. File the top 3 by impact as tickets and
             start the most actionable one.&quot;
 </code></pre>
 <p>Daily hygiene loops (Sentry sweeps, dependency updates, smoke tests) are the highest-ROI automations — they turn "someone should check" into "it's checked."</p>
-<h2>Action types, choosing between them</h2>
+<h2 id="action-types-choosing-between-them">Action types, choosing between them<a class="hlink" href="#action-types-choosing-between-them" aria-hidden="true">#</a></h2>
 <table>
 <thead>
 <tr>
@@ -182,7 +184,7 @@ Action:    Start session: &quot;Sweep yesterday's Sentry issues in
 </tbody>
 </table>
 <p><strong>Automation vs. Bot:</strong> automations are dumb pipes — event in, session out. A Bot adds memory, judgment, and multi-session planning around the same triggers. Start with automations; graduate to a Bot when the work needs follow-through (Guides 2–5).</p>
-<h2>Build it</h2>
+<h2 id="build-it">Build it<a class="hlink" href="#build-it" aria-hidden="true">#</a></h2>
 <p>Four creation paths on the Automations page, under the <strong>Create automation</strong> dropdown:</p>
 <ol>
 <li><strong>Create manually</strong> — the blank editor: pick trigger → conditions → action</li>
@@ -198,7 +200,7 @@ Action:    Start session: &quot;Sweep yesterday's Sentry issues in
 <li>Manage automations declaratively with the <strong>Terraform provider</strong> if you're running many</li>
 <li>The v3 session-create API accepts <code>memory_enabled: false</code> — the spawned session (and its child sessions) runs with memory off, for automations that shouldn't carry learned context between runs</li>
 </ul>
-<h2>Walkthrough — an automation built, fired and verified on Devin Desktop v3.14 (Pro plan)</h2>
+<h2 id="walkthrough-an-automation-built-fired-and-verified-on-devin-desktop-v3-14-pro-plan">Walkthrough — an automation built, fired and verified on Devin Desktop v3.14 (Pro plan)<a class="hlink" href="#walkthrough-an-automation-built-fired-and-verified-on-devin-desktop-v3-14-pro-plan" aria-hidden="true">#</a></h2>
 <p>The <em>Create with Devin</em> path end-to-end: describe a weekly changelog sweep in plain language, answer its config questions, approve the generated automation, fire it manually — and watch a real report land.</p>
 <p><strong>Video (5 min, silent, 4× speed):</strong> Automations page → generate session → approval cards → manual run → report.</p>
 <p><a href="https://till3005.github.io/built-with-devin/assets/guides/automations-101-event-driven/walkthrough.mp4"><img alt="The generate session's option card — it already knows the account's existing automations" src="https://till3005.github.io/built-with-devin/assets/guides/automations-101-event-driven/walkthrough-poster.webp" /></a></p>
@@ -218,25 +220,25 @@ Action:    Start session: &quot;Sweep yesterday's Sentry issues in
 <em>7. An honest hiccup — the spawned session's git-proxy clone returned 403 (twice); the fix was adding github.com to its network policy plus an anonymous-clone fallback — automation sessions don't automatically share your shell's git access</em></p>
 <p><img alt="8. The verified output — a real categorized changelog of the week's 103 commits, delivered as a file" src="https://till3005.github.io/built-with-devin/assets/guides/automations-101-event-driven/step8-report.webp" />
 <em>8. The verified output — a real categorized changelog of the week's 103 commits, delivered as an artifact</em></p>
-<h2>Verify it</h2>
+<h2 id="verify-it">Verify it<a class="hlink" href="#verify-it" aria-hidden="true">#</a></h2>
 <ul>
 <li>[ ] Fire the trigger manually once (comment <code>/devin test</code>, or push a failing commit) and watch a session start with the event payload</li>
 <li>[ ] A non-matching event (wrong label, wrong channel) does nothing</li>
 <li>[ ] The action's output lands where you expected (PR, Slack thread, ticket)</li>
 </ul>
-<h2>Pitfalls</h2>
+<h2 id="pitfalls">Pitfalls<a class="hlink" href="#pitfalls" aria-hidden="true">#</a></h2>
 <ul>
 <li><strong>Loops.</strong> An automation whose output can re-trigger itself (Devin comments on a PR, the trigger watches "new comment") will burn sessions forever. Gate on author, label, or event subtype.</li>
 <li><strong>Trigger storms.</strong> A webhook that fires per-commit instead of per-PR can spawn 50 sessions on a busy day. Throttle: one automation per <em>claimable unit</em> of work, not per raw event.</li>
 <li><strong>No approval gate.</strong> Auto-merging or auto-deploying on a trigger skips the human control point — keep the "session opens a PR, a person merges" pattern unless you have a measured reason not to.</li>
 </ul>
-<h2>Knowledge check</h2>
+<h2 id="knowledge-check">Knowledge check<a class="hlink" href="#knowledge-check" aria-hidden="true">#</a></h2>
 <ol>
 <li>A teammate wants Devin to "watch every GitHub notification" — what do you ask them to narrow first? <em>(Which event subtype actually implies actionable work — a label applied, a review requested — not every notification.)</em></li>
 <li>Why must a non-matching event produce <em>no</em> session rather than a session that decides to no-op? <em>(Sessions cost ACUs; gating upstream is free, gating inside a session is not.)</em></li>
 <li>When does an automation need a Bot instead? <em>(When the triggered work needs judgment accumulated over time — memory, priorities, a standing outcome.)</em></li>
 </ol>
-<h2>Sources</h2>
+<h2 id="sources">Sources<a class="hlink" href="#sources" aria-hidden="true">#</a></h2>
 <ul>
 <li><a href="https://docs.devin.ai/product-guides/automations">Automations — docs</a></li>
 <li><a href="https://www.youtube.com/watch?v=6xxKtIpgOyE">Devin Automations QuickStart (video)</a></li>

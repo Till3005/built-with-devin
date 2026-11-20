@@ -13,7 +13,7 @@
 
 <sub>维护者 [@darega0mae](https://x.com/darega0mae) · 姊妹教程库：[build-with-devin](https://github.com/Till3005/build-with-devin) · [收录你的项目](CONTRIBUTING.md)</sub>
 
-<sub>**14** 个有据可查的 Bot 部署 · **41** 个企业案例 · **6** 个已发布产品 · **32** 个工具与集成 · **28** 篇实战报告</sub>
+<sub>**14** 个有据可查的 Bot 部署 · **42** 个企业案例 · **6** 个已发布产品 · **32** 个工具与集成 · **29** 篇实战报告</sub>
 
 <sub>[English](README.md) · 简体中文 · [日本語](README.ja.md) · [Português](README.pt.md)</sub>
 
@@ -90,7 +90,7 @@ flowchart LR
 
 ### 官方模板库
 
-[公开模板市场](https://devin.ai/bots/templates)上 16 个现成 Bot，外加 **SuperJennyStack** 等社区模板：
+[公开模板市场](https://devin.ai/bots/templates)上 16 个现成 Bot（[模板文档](https://docs.devin.ai/work-with-devin/bots/templates)——模板建的 Bot 不带任何连接、密钥或记忆；「Share as template」可发布你自己的），外加 **SuperJennyStack** 等社区模板：
 
 | 模板 | 职责 |
 | --- | --- |
@@ -182,6 +182,7 @@ flowchart LR
 | [Hippo](https://devin.ai/customers/hippo) | 保险工程组织全面铺开 | 与 Cognition 合作：用 agentic 构建/测试覆盖 50 州保险规则的产品（官方案例页） |
 | [Zeb](https://devin.ai/blog/devin-for-databricks-migrations) | NetSuite→Databricks 交付伙伴 | 一家全球投资咨询客户的 4 周迁移 **2.5 周交付**；一家财富 500 能源公司 8 天迁完 142 个对象到 Unity Catalog |
 | **Rox** | Living Evals —— 每周 Devin 读生产 trace，在完整副本中回放失败，开 eval PR | 评测集覆盖**真实用量的 72%**（手写只有 43–57%）（[全文](https://www.rox.com/articles/living-evals-an-eval-suite-that-grows-from-production)、[推文](https://x.com/rox_ai/status/2110779380666617997)） |
+| [Philips](https://devin.ai/blog/introducing-code-scans) | Code Scans 早期测试方——数字计算病理学，Enterprise Informatics | 多个仓库 **~96% PR 合并率**；测试期内估算节省 **700+ 工程师小时**（launch 帖中客户原话） |
 | [Evinova](https://devin.ai/customers/evinova) | GxP 合规交付 | GxP 文档快 8×；迁移快 3×；66% 边界清晰的 bug 被自主修复 |
 | [Compiled Health](https://devin.ai/customers/compiledhealth) | 临床基准构建 | 2 名研究员 2 个月 = 5–6 名工程师的活；~430 工程师小时、~$17/小时 ≈ 给 4 人队添 4 名工程师 |
 | [Común](https://devin.ai/customers/comun) | 13 人金融科技团队 | 产出 3×；后端周 PR 50 → 170（四周） |
@@ -192,7 +193,7 @@ flowchart LR
 | [FE fundinfo](https://devin.ai/customers/fefundinfo) | 1,800 仓库自动化 | 靠测试生成 + 安全修复立刻多出 10% 产能 |
 | [GE Aerospace](https://devin.ai/customers/geaerospace) | 受限团队的 story 吞吐 | 三个月内 user-story 产出 ~2× |
 
-其他公开记录的：Citi（40,000 名开发者铺开，技术供应商支出降 30%）、Mercedes-Benz、Cognizant 和 Infosys 合作 —— 见[客户索引](https://devin.ai/customers)。
+其他公开记录的：Citi（40,000 名开发者铺开，技术供应商支出降 30%）、Mercedes-Benz、Cognizant 和 Infosys 合作、以及 **McKinsey × Cognition 联盟**（11/16——McKinsey 提供项目筛选与基线咨询，Devin 干活；Cognition 称 8 家美国 G-SIB 中 6 家、前 6 大医保商中 3 家是客户，[公告](https://devin.ai/blog/cognition-mckinsey-alliance)）—— 见[客户索引](https://devin.ai/customers)。
 
 <p align="right"><a href="#readme">back to top</a></p>
 
@@ -287,6 +288,7 @@ flowchart LR
 - **[免费 SWE-2 上的多 AI 编排](https://qiita.com/ishizakahiroshi/items/72ab801a5f2a8c941b61)** —— 利用 Devin CLI 永久免费的 SWE-2 档在多个 agent 间路由工作的设计（日文）。
 - **[SMARTCAMP 的 Trivy 扫描 → Devin 修复](https://zenn.dev/smartcamp/articles/97ac804043530e)** —— 定时 GitHub Actions 拉取 ECS 镜像跑 Trivy，HIGH/CRITICAL 落成 issue 交给 Devin 修复；AWS 凭证 job 和扫描 job 分离、只靠 artifact 传递（日文）。
 - **[Devin 当我一整个月的工程团队](https://ravtheman.medium.com/im-17-and-for-one-month-devin-was-my-entire-engineering-team-here-s-everything-i-learned-183d59099384)** —— 一个墨尔本高中生的 Max 体验月：一晚 67 个 PR 处理、44 个合入；课间造出一个 Linux 发行版、一套本地模型家族和一个多 agent IDE —— 附实测的 CLI/云端工作流（Medium）。
+- **[独立创始人月烧 $20k 的 Devin 运营](https://www.lennysnewsletter.com/p/i-spent-20000-on-devin-in-a-month)** —— Ryan Carson（Untangle）同时跑 ~15 个 Devin agent：不用仪表盘，靠文件夹系统 + 纸上 P0 清单调度；「Watchdog」playbook 顶替整个客户成功团队盯每个律所账号，「LAN PR」skill 每天合 ~40 个 PR、无 QA 审阅人（Lenny's 播客）。
 
 <p align="right"><a href="#readme">back to top</a></p>
 
@@ -299,7 +301,15 @@ flowchart LR
 - **[Voices —— 大使名录](https://devincentral.com/voices)** —— 全球 ~190 位 Devin 大使的非官方地图。
 - **[devin-cli.github.io](https://devin-cli.github.io)** —— 社区文档：Devin API、Slack、Linear 接入面的覆盖范围与自动化方式。
 - **[Agents In Use](https://agentsinuse.com)** —— 真实 agent 用例目录，含 Devin 条目。
-- **[BitsExplorer —— Built with Devin](https://bitsexplorer.com/built-with/devin)** —— 340+ 个由 Devin commit trailer 实证的公开项目（证据，而非自述）。
+- **[BitsExplorer —— Built with Devin](https://bitsexplorer.com/built-with/devin)** —— 480+ 个由 Devin commit trailer 实证的公开项目（证据，而非自述）。
+- **[The New Stack](https://thenewstack.io/cognition-devin-bots-management/)** ——「一位工程师 44 天里有 22 天没跟他的 AI 说话，它照样把 Android 应用造了出来。」Android Bot 部署的媒体报道（11/19）。
+- **[Dataconomy 中文](https://cn.dataconomy.com/2026/11/18/cognition-%e6%8e%a8%e5%87%ba-devin-bots-%e6%9d%a5%e7%ae%a1%e7%90%86-ai-%e7%bc%96%e7%a8%8b%e5%9b%a2%e9%98%9f/)** —— Devin Bots 发布的中文报道（11/18）。
+- **[Fortune —— Devin Bots 发布独家](https://fortune.com/2026/11/17/exclusive-cognition-bets-on-devin-bots-coding-agents-in-challenge-to-anthropics-duet-and-openais-dots/)** —— Scott Wu 专访：Bots 对标 OpenAI Dots 与 Anthropic Duet；内含 Poke 收购的技术（11/17）。
+- **[AlphaSignal —— Bots 的数字](https://alphasignal.ai/news/cognition-s-devin-bots-now-run-parallel-coding-sessions-hitting-2-000-pull)** —— 每条消息 4.5× 合并 PR、峰值 50→~2,000 PR/周，附冷静的「beta 数字需要分母」提醒。
+- **[Digg —— 4.5× 说法到底量了什么](https://digg.com/ai/l3h088z7)** —— PR/消息 ≠ 开发速度；无基线、无样本量、无方法论披露；外加 SuperJenny 运营细节（~20 个 AI 队友、每天 4 次手机 check-in）。
+- **[Snowman Labs —— Devin 值不值](https://snowmanlabs.com/insights/is-devin-worth-it)** —— 读完整个已发表案例库后给出诚实框架：每个赢都是范围明确、重复、可验证的大批量活——没有一条是「Devin 架构了我们的系统」。
+- **[HN —— agent 把瓶颈挪到了 code review](https://news.ycombinator.com/item?id=50538303)** —— 哈佛研究，459 条评论（11/17）：生成已解决，评审容量成了新约束。
+- **[Metarix —— 对 Code Scans 的怀疑式解读](https://metarix.io/devin-scans-the-whole-repo)** —— 把厂商公布数字（Dioxus 编译降 64%、Philips 96%）与可复现数字分开：「引用之前先在自己的仓库上复现。」
 - **[Vibe Coded Projects](https://vibedprojects.com/ai-tools/devin)** —— 373 个用 Devin vibe-code 出的应用、工具和站点。
 - **[Devin 日本 2 周年 meetup](https://aid.connpass.com/event/412875/)** —— 大使主办的社区活动，纪念 Devin 公开两周年（[公告](https://x.com/kinopee_ai/status/2123019189325848847)）。
 - **[Devin's Dinner](https://x.com/MattSchrage/status/2121016484155548124)** —— Matt Schrage 在纽约的邀请制晚宴系列，面向用 Devin 的创始人和工程师。

@@ -4,13 +4,13 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Guia 13 — O cookbook oficial de casos de uso — build-with-devin guides</title>
-<meta name="description" content="Guia 13 — O cookbook oficial de casos de uso">
+<meta name="description" content="os padrões de uso comprovados dos próprios docs da Cognition, organizados como um cookbook — o que fatiar para o Devin, e mais de 40 receitas documentadas com p">
 <link rel="icon" href="../../assets/brand/Devin_Symbol.svg" type="image/svg+xml">
 <link rel="stylesheet" href="../../assets/site.css">
 <link rel="stylesheet" href="../../assets/guides.css">
 
 <meta property="og:title" content="Guia 13 — O cookbook oficial de casos de uso">
-<meta property="og:description" content="Guia 13 — O cookbook oficial de casos de uso">
+<meta property="og:description" content="os padrões de uso comprovados dos próprios docs da Cognition, organizados como um cookbook — o que fatiar para o Devin, e mais de 40 receitas documentadas com p">
 <meta property="og:type" content="article">
 <meta property="og:url" content="https://till3005.github.io/built-with-devin/guides/pt/official-cookbook.html">
 <meta property="og:image" content="https://till3005.github.io/built-with-devin/assets/img/og-build.png?v=3">
@@ -36,12 +36,14 @@
 </div></nav>
 <main>
 <article class="guide wrap" id="guide">
-  <p class="guide-crumb"><a href="../../index.html#build">← Guides</a> · <a href="../official-cookbook.html">English</a> · <a href="../zh/official-cookbook.html">中文</a> · <a href="../ja/official-cookbook.html">日本語</a></p>
+  <p class="guide-crumb"><a href="index.html">← Guias</a> · <a href="../official-cookbook.html">English</a> · <a href="../ja/official-cookbook.html">日本語</a> · <a href="../zh/official-cookbook.html">中文</a></p>
+<p class="guide-meta">Atualizado 2026-11-19</p>
+<details class="toc" open><summary>Nesta página</summary><ol><li class="d2"><a href="#a-única-regra-por-trás-de-tudo">A única regra por trás de tudo</a></li><li class="d2"><a href="#o-catálogo-de-receitas">O catálogo de receitas</a></li><li class="d3"><a href="#incidentes-saúde-de-produção">Incidentes &amp;amp; saúde de produção</a></li><li class="d3"><a href="#higiene-agendada-a-página-de-maior-roi-dos-docs">Higiene agendada (a página de maior ROI dos docs)</a></li><li class="d3"><a href="#qualidade-de-código">Qualidade de código</a></li><li class="d3"><a href="#migrações-feature-work">Migrações &amp;amp; feature work</a></li><li class="d3"><a href="#gestão-de-projeto-dados">Gestão de projeto &amp;amp; dados</a></li><li class="d3"><a href="#ficando-melhor-no-próprio-devin-devin-optimization">Ficando melhor no próprio Devin (&quot;Devin Optimization&quot;)</a></li><li class="d2"><a href="#como-usar-este-cookbook">Como usar este cookbook</a></li><li class="d2"><a href="#passo-a-passo-real-uma-receita-executada-de-verdade-no-devin-cli-v3000-14-swe-2-flash-medium">Passo a passo real — uma receita executada de verdade, no Devin CLI v3000.14 (swe-2-flash-medium)</a></li><li class="d2"><a href="#checklist-de-verificação">Checklist de verificação</a></li><li class="d2"><a href="#armadilhas">Armadilhas</a></li><li class="d2"><a href="#teste-de-conhecimento">Teste de conhecimento</a></li><li class="d2"><a href="#fontes">Fontes</a></li></ol></details>
 <h1>Guia 13 — O cookbook oficial de casos de uso</h1>
 <p><strong>Objetivo:</strong> os padrões de uso comprovados dos próprios docs da Cognition, organizados como um cookbook — o que fatiar para o Devin, e mais de 40 receitas documentadas com prompts para copiar.
 <strong>Nível:</strong> comece aqui para amplitude
 <strong>Fontes:</strong> <a href="https://docs.devin.ai/use-cases/best-practices.html">Best Practices</a> · <a href="https://docs.devin.ai/use-cases/gallery/index.html">Use-case gallery</a> · <a href="https://docs.devin.ai/use-cases/index.html">use-case tutorials</a></p>
-<h2>A única regra por trás de tudo</h2>
+<h2 id="a-única-regra-por-trás-de-tudo">A única regra por trás de tudo<a class="hlink" href="#a-única-regra-por-trás-de-tudo" aria-hidden="true">#</a></h2>
 <p>Orientação oficial, lógica literal: escolha trabalho <strong>wide &amp; shallow</strong> — um backlog grande de tarefas simples e horizontalmente escaláveis vence builds complexos do zero, sempre.</p>
 <table>
 <thead>
@@ -70,9 +72,9 @@
 </tbody>
 </table>
 <p>Quatro ótimas formas de fatia dos docs: <strong>migrações, refactors, modernizações, backlogs de tech debt.</strong></p>
-<h2>O catálogo de receitas</h2>
+<h2 id="o-catálogo-de-receitas">O catálogo de receitas<a class="hlink" href="#o-catálogo-de-receitas" aria-hidden="true">#</a></h2>
 <p>Tudo abaixo é um caso de uso documentado na galeria oficial — cada um vem com um prompt pronto para copiar. Organizado pelo trabalho que tira da semana de um humano.</p>
-<h3>Incidentes &amp; saúde de produção</h3>
+<h3 id="incidentes-saúde-de-produção">Incidentes &amp; saúde de produção<a class="hlink" href="#incidentes-saúde-de-produção" aria-hidden="true">#</a></h3>
 <table>
 <thead>
 <tr>
@@ -99,7 +101,7 @@
 </tr>
 </tbody>
 </table>
-<h3>Higiene agendada (a página de maior ROI dos docs)</h3>
+<h3 id="higiene-agendada-a-página-de-maior-roi-dos-docs">Higiene agendada (a página de maior ROI dos docs)<a class="hlink" href="#higiene-agendada-a-página-de-maior-roi-dos-docs" aria-hidden="true">#</a></h3>
 <table>
 <thead>
 <tr>
@@ -142,7 +144,7 @@
 </tr>
 </tbody>
 </table>
-<h3>Qualidade de código</h3>
+<h3 id="qualidade-de-código">Qualidade de código<a class="hlink" href="#qualidade-de-código" aria-hidden="true">#</a></h3>
 <table>
 <thead>
 <tr>
@@ -181,7 +183,7 @@
 </tr>
 </tbody>
 </table>
-<h3>Migrações &amp; feature work</h3>
+<h3 id="migrações-feature-work">Migrações &amp; feature work<a class="hlink" href="#migrações-feature-work" aria-hidden="true">#</a></h3>
 <table>
 <thead>
 <tr>
@@ -220,7 +222,7 @@
 </tr>
 </tbody>
 </table>
-<h3>Gestão de projeto &amp; dados</h3>
+<h3 id="gestão-de-projeto-dados">Gestão de projeto &amp; dados<a class="hlink" href="#gestão-de-projeto-dados" aria-hidden="true">#</a></h3>
 <table>
 <thead>
 <tr>
@@ -251,7 +253,7 @@
 </tr>
 </tbody>
 </table>
-<h3>Ficando melhor no próprio Devin ("Devin Optimization")</h3>
+<h3 id="ficando-melhor-no-próprio-devin-devin-optimization">Ficando melhor no próprio Devin ("Devin Optimization")<a class="hlink" href="#ficando-melhor-no-próprio-devin-devin-optimization" aria-hidden="true">#</a></h3>
 <table>
 <thead>
 <tr>
@@ -290,13 +292,13 @@
 </tr>
 </tbody>
 </table>
-<h2>Como usar este cookbook</h2>
+<h2 id="como-usar-este-cookbook">Como usar este cookbook<a class="hlink" href="#como-usar-este-cookbook" aria-hidden="true">#</a></h2>
 <ol>
 <li>Escolha uma receita de <strong>Higiene agendada</strong> — é a primeira vitória mais barata (um loop noturno/semanal sobre o qual você para de pensar)</li>
 <li>Adicione uma de <strong>Incidentes</strong> se você tem PagerDuty/Datadog/Sentry</li>
 <li>Quando uma receita funciona, congele-a como um <strong>skill</strong> (Guia 12) ou um <strong>Bot</strong> (Guias 1–5) — cada linha acima sobrevive como um dos dois</li>
 </ol>
-<h2>Passo a passo real — uma receita executada de verdade, no Devin CLI v3000.14 (swe-2-flash-medium)</h2>
+<h2 id="passo-a-passo-real-uma-receita-executada-de-verdade-no-devin-cli-v3000-14-swe-2-flash-medium">Passo a passo real — uma receita executada de verdade, no Devin CLI v3000.14 (swe-2-flash-medium)<a class="hlink" href="#passo-a-passo-real-uma-receita-executada-de-verdade-no-devin-cli-v3000-14-swe-2-flash-medium" aria-hidden="true">#</a></h2>
 <p>A receita <strong>Raise code coverage</strong> da prateleira <em>Code quality</em>, executada de ponta a ponta num repositório pequeno com um <code>orders.py</code> propositalmente sub-testado (códigos de desconto, faixas de frete, casos de borda). Um prompt de uma linha; o Devin fez o resto.</p>
 <p><strong>Vídeo (74 s, sem áudio):</strong> prompt da receita → leitura → edição dos testes → aprovação de comando → tudo verde.</p>
 <p><a href="https://till3005.github.io/built-with-devin/assets/guides/official-cookbook/walkthrough.mp4"><img alt="Devin escrevendo os casos de teste que faltavam — diff de test_orders.py com o menu de permissão aberto" src="https://till3005.github.io/built-with-devin/assets/guides/official-cookbook/walkthrough-poster.webp" /></a></p>
@@ -312,30 +314,30 @@
 <em>5. 11 testes passando — cada branch antes sem teste citada; orders.py intacto, sem commits</em></p>
 <p><img alt="6. Verificado após /exit — 16 testes verdes, mudanças continuam não commitadas" src="https://till3005.github.io/built-with-devin/assets/guides/official-cookbook/step5-verify-exit.webp" />
 <em>6. Verificado após /exit — <code>Ran 16 tests ... OK</code>, mudanças não commitadas como instruído</em></p>
-<h2>Checklist de verificação</h2>
+<h2 id="checklist-de-verificação">Checklist de verificação<a class="hlink" href="#checklist-de-verificação" aria-hidden="true">#</a></h2>
 <ul>
 <li>[ ] Uma receita de higiene está rodando em agenda e produziu seu primeiro PR/relatório</li>
 <li>[ ] Sua saída está congelada como skill, playbook ou Bot — não morando na cabeça de alguém</li>
 </ul>
-<h2>Armadilhas</h2>
+<h2 id="armadilhas">Armadilhas<a class="hlink" href="#armadilhas" aria-hidden="true">#</a></h2>
 <ul>
 <li><strong>Dez receitas, zero congeladas.</strong> Uma receita que continua prompt manual é esquecida até sexta — operacionalize ou descarte.</li>
 <li><strong>Prompts copiados sem a verificação do seu repo.</strong> Os prompts da galeria assumem que uma suíte de testes existe; adapte a <em>checagem</em>, não só a tarefa.</li>
 </ul>
-<h2>Teste de conhecimento</h2>
+<h2 id="teste-de-conhecimento">Teste de conhecimento<a class="hlink" href="#teste-de-conhecimento" aria-hidden="true">#</a></h2>
 <ol>
 <li>Por que começar com uma receita de higiene agendada em vez de resposta a incidentes? <em>(A vitória mais barata possível — roda enquanto você dorme, e uma correção de lint noturna errada é recuperável; uma ação de incidente errada não é.)</em></li>
 <li>O que "congelar uma receita como skill ou Bot" realmente previne? <em>(Drift de prompt e dependência de pessoa única — a receita sobrevive a quem a escreveu.)</em></li>
 <li>Por que adaptar a parte de verificação de um prompt da galeria antes da parte da tarefa? <em>(A tarefa descreve intenção; a checagem é o que seu repo consegue provar — checagens erradas produzem lixo confiante.)</em></li>
 </ol>
-<h2>Fontes</h2>
+<h2 id="fontes">Fontes<a class="hlink" href="#fontes" aria-hidden="true">#</a></h2>
 <ul>
 <li><a href="https://docs.devin.ai/use-cases/gallery/index.html">Use-case gallery</a> — todas as receitas acima, cada uma com prompts prontos</li>
 <li><a href="https://docs.devin.ai/use-cases/best-practices.html">Best Practices</a> — a doutrina de fatiamento</li>
 <li><a href="https://docs.devin.ai/use-cases/index.html">Use-case tutorials</a> — integração de API, cobertura de código, containerização, componentes frontend, MCP</li>
 <li>Relacionado: <a href="migrations-at-scale.html">Guia 11 — Migrações em escala</a> · <a href="automations-101-event-driven.html">Guia 6 — Automações</a></li>
 </ul>
-<nav class="guide-pager"><a class="pg-prev" href="bots-101-first-bot.html"><span class="pg-dir">← Previous</span><span class="pg-t">Guia 1 — Seu primeiro Bot</span></a><a class="pg-next" href="bot-outcome-prompts.html"><span class="pg-dir">Next →</span><span class="pg-t">Prompts de resultado para Bots, dissecados</span></a></nav>
+<nav class="guide-pager"><a class="pg-prev" href="bots-101-first-bot.html"><span class="pg-dir">← Anterior</span><span class="pg-t">Guia 1 — Seu primeiro Bot</span></a><a class="pg-next" href="bot-outcome-prompts.html"><span class="pg-dir">Próximo →</span><span class="pg-t">Prompts de resultado para Bots, dissecados</span></a></nav>
 </article>
 <footer><div class="wrap foot-base"><span data-i18n="foot.note">Unofficial community project — not affiliated with Cognition AI.</span><span><a href="../../index.html">built-with-devin</a> · <a href="https://github.com/Till3005/build-with-devin">build-with-devin</a></span></div></footer>
 </main>

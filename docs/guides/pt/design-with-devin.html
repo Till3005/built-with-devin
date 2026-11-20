@@ -4,13 +4,13 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Guia 8 — Design &amp; trabalho visual — build-with-devin guides</title>
-<meta name="description" content="Guia 8 — Design &amp; trabalho visual">
+<meta name="description" content="usar o Devin como seu diretor de arte e implementador para design visual de produção — imagens geradas, sistemas de animação, tipografia — só por conversa.">
 <link rel="icon" href="../../assets/brand/Devin_Symbol.svg" type="image/svg+xml">
 <link rel="stylesheet" href="../../assets/site.css">
 <link rel="stylesheet" href="../../assets/guides.css">
 
 <meta property="og:title" content="Guia 8 — Design &amp; trabalho visual">
-<meta property="og:description" content="Guia 8 — Design &amp; trabalho visual">
+<meta property="og:description" content="usar o Devin como seu diretor de arte e implementador para design visual de produção — imagens geradas, sistemas de animação, tipografia — só por conversa.">
 <meta property="og:type" content="article">
 <meta property="og:url" content="https://till3005.github.io/built-with-devin/guides/pt/design-with-devin.html">
 <meta property="og:image" content="https://till3005.github.io/built-with-devin/assets/img/og-build.png?v=3">
@@ -36,20 +36,22 @@
 </div></nav>
 <main>
 <article class="guide wrap" id="guide">
-  <p class="guide-crumb"><a href="../../index.html#build">← Guides</a> · <a href="../design-with-devin.html">English</a> · <a href="../zh/design-with-devin.html">中文</a> · <a href="../ja/design-with-devin.html">日本語</a></p>
+  <p class="guide-crumb"><a href="index.html">← Guias</a> · <a href="../design-with-devin.html">English</a> · <a href="../ja/design-with-devin.html">日本語</a> · <a href="../zh/design-with-devin.html">中文</a></p>
+<p class="guide-meta">Atualizado 2026-11-19</p>
+<details class="toc" open><summary>Nesta página</summary><ol><li class="d2"><a href="#o-padrão">O padrão</a></li><li class="d2"><a href="#passo-1-brief-como-um-diretor-criativo">Passo 1 — Brief como um diretor criativo</a></li><li class="d2"><a href="#passo-2-tranque-o-sistema-tipográfico-antes-dos-pixels">Passo 2 — Tranque o sistema tipográfico antes dos pixels</a></li><li class="d2"><a href="#passo-3-gere-imagens-dentro-da-sessão">Passo 3 — Gere imagens dentro da sessão</a></li><li class="d2"><a href="#passo-4-anime-com-mecanismos-não-adjetivos">Passo 4 — Anime com mecanismos, não adjetivos</a></li><li class="d2"><a href="#passo-5-o-loop-de-crítica-é-o-ofício">Passo 5 — O loop de crítica é o ofício</a></li><li class="d2"><a href="#checklist-de-verificação">Checklist de verificação</a></li><li class="d2"><a href="#armadilhas">Armadilhas</a></li><li class="d2"><a href="#teste-de-conhecimento">Teste de conhecimento</a></li><li class="d2"><a href="#fontes">Fontes</a></li></ol></details>
 <h1>Guia 8 — Design &amp; trabalho visual</h1>
 <p><strong>Objetivo:</strong> usar o Devin como seu diretor de arte e implementador para design visual de produção — imagens geradas, sistemas de animação, tipografia — só por conversa.
 <strong>Nível:</strong> intermediário
 <strong>Implantação de origem:</strong> a landing page do <strong>Spraycash</strong> — todo o sistema visual de um site fintech desenhado dentro do chat do Devin com Kimi K3, todos os prompts publicados: hero imagery, animações de nuvens em camadas, anel SVG draw-on, sistema tipográfico de três fontes.
 <strong>Fontes:</strong> <a href="https://dev.to/ibrahimpima/designing-the-spraycash-ui-with-kimi-k3-in-devin-4l2f">relato completo com prompts</a></p>
-<h2>O padrão</h2>
+<h2 id="o-padrão">O padrão<a class="hlink" href="#o-padrão" aria-hidden="true">#</a></h2>
 <p>Design-via-agente falha quando prompts descrevem <em>vibes</em> ("faça premium"). Funciona quando você dirige arte como um diretor criativo: <strong>referências, restrições e um loop de crítica</strong>. A vantagem do Devin sobre uma ferramenta de design é que ele produz a <em>implementação</em> — a animação é código, as imagens são geradas e posicionadas, o sistema tipográfico é CSS entregue.</p>
 <pre><code class="language-text">brief + referências ──► Devin produz assets visuais + código
         ▲                        │
         └──── loop de crítica: &quot;a animação do anel desenha rápido demais,
               desacelere o easing do stroke-dashoffset para 1.4s&quot; ─────┘
 </code></pre>
-<h2>Passo 1 — Brief como um diretor criativo</h2>
+<h2 id="passo-1-brief-como-um-diretor-criativo">Passo 1 — Brief como um diretor criativo<a class="hlink" href="#passo-1-brief-como-um-diretor-criativo" aria-hidden="true">#</a></h2>
 <p>Os prompts do relato do Spraycash compartilham uma forma — substantivos concretos, sem adjetivos-de-gosto:</p>
 <pre><code class="language-text">Hero section: dark navy (#0A1628) background, a circular progress ring
 as the visual anchor — SVG stroke-dashoffset draw-on animation over
@@ -57,15 +59,15 @@ as the visual anchor — SVG stroke-dashoffset draw-on animation over
 translateX loops at 40s/60s/90s periods so the parallax never repeats.
 </code></pre>
 <p>Dê a ele: hexes da paleta, o mecanismo da animação (não "faça animar"), valores de timing, ordem de camadas.</p>
-<h2>Passo 2 — Tranque o sistema tipográfico antes dos pixels</h2>
+<h2 id="passo-2-tranque-o-sistema-tipográfico-antes-dos-pixels">Passo 2 — Tranque o sistema tipográfico antes dos pixels<a class="hlink" href="#passo-2-tranque-o-sistema-tipográfico-antes-dos-pixels" aria-hidden="true">#</a></h2>
 <p>O Spraycash travou um <strong>sistema de três fontes</strong> cedo — display, corpo, mono — antes de tocar em componentes. Faça o mesmo; é a decisão visual de maior alavancagem:</p>
 <pre><code class="language-text">Type system: &lt;display font&gt; for hero + section heads, &lt;body font&gt; for
 prose, &lt;mono&gt; for numbers/labels. Set the scale: 64/40/28/18/14.
 Nothing else uses another size.
 </code></pre>
-<h2>Passo 3 — Gere imagens dentro da sessão</h2>
+<h2 id="passo-3-gere-imagens-dentro-da-sessão">Passo 3 — Gere imagens dentro da sessão<a class="hlink" href="#passo-3-gere-imagens-dentro-da-sessão" aria-hidden="true">#</a></h2>
 <p>O Devin gera e posiciona assets — não use foto de stock numa página desenhada. O relato mostra hero imagery gerada casando com a paleta do brief. Mantenha assets gerados consistentes fixando a diretiva de estilo uma vez (paleta, iluminação, material) e reusando-a em cada pedido de asset.</p>
-<h2>Passo 4 — Anime com mecanismos, não adjetivos</h2>
+<h2 id="passo-4-anime-com-mecanismos-não-adjetivos">Passo 4 — Anime com mecanismos, não adjetivos<a class="hlink" href="#passo-4-anime-com-mecanismos-não-adjetivos" aria-hidden="true">#</a></h2>
 <table>
 <thead>
 <tr>
@@ -89,33 +91,33 @@ Nothing else uses another size.
 </tbody>
 </table>
 <p>O anel, as nuvens e os reveals escalonados do Spraycash foram todos especificados nesse nível — e entregues como CSS/SVG real, não mockups.</p>
-<h2>Passo 5 — O loop de crítica é o ofício</h2>
+<h2 id="passo-5-o-loop-de-crítica-é-o-ofício">Passo 5 — O loop de crítica é o ofício<a class="hlink" href="#passo-5-o-loop-de-crítica-é-o-ofício" aria-hidden="true">#</a></h2>
 <p>A lição real do relato: a qualidade veio de <em>iterações</em> — "o anel desenha rápido demais", "as nuvens leem como ruído, baixe a opacidade 30%", "fonte mono nos números". Orce 3–5 rodadas de crítica por âncora visual. O Devin segura a página inteira em contexto; cada rodada é uma mensagem, não um ticket.</p>
-<h2>Checklist de verificação</h2>
+<h2 id="checklist-de-verificação">Checklist de verificação<a class="hlink" href="#checklist-de-verificação" aria-hidden="true">#</a></h2>
 <ul>
 <li>[ ] A página renderiza com <em>zero</em> imagens de stock — todos os assets gerados ou codificados</li>
 <li>[ ] Toda animação é um mecanismo nomeado com valores de timing no CSS</li>
 <li>[ ] Um sistema tipográfico, uma escala — sem tamanhos perdidos</li>
 <li>[ ] Vista em 3+ larguras, nada quebra ou corta</li>
 </ul>
-<h2>Armadilhas</h2>
+<h2 id="armadilhas">Armadilhas<a class="hlink" href="#armadilhas" aria-hidden="true">#</a></h2>
 <ul>
 <li><strong>Prompts adjetivados.</strong> "Premium", "sleek", "modern" geram slop. Mecanismos e valores geram ofício.</li>
 <li><strong>One-shot.</strong> Aceitar a primeira renderização é por que páginas feitas por agente parecem feitas por agente. A qualidade vive no loop de crítica.</li>
 <li><strong>Perder o lock-down.</strong> Defina paleta + sistema tipográfico como restrições <em>primeiro</em>; assets gerados antes das restrições nunca combinam depois.</li>
 </ul>
-<h2>Teste de conhecimento</h2>
+<h2 id="teste-de-conhecimento">Teste de conhecimento<a class="hlink" href="#teste-de-conhecimento" aria-hidden="true">#</a></h2>
 <ol>
 <li>Por que o autor do Spraycash publicou cada prompt verbatim? <em>(A sequência de prompts </em>é<em> o artefato de design — direção de arte por conversa só é reproduzível se a conversa for.)</em></li>
 <li>O que "imagem gerada + animação em camadas" exige que um mock de screenshot não exige? <em>(Assets entregáveis e um sistema de animação funcionando — a verificação é uma página renderizada, não a foto de uma.)</em></li>
 <li>Quando direção por chat é melhor que uma ferramenta de design para landing pages? <em>(Quando a saída precisa ser código de produção de qualquer forma — a sessão de design </em>é<em> a implementação.)</em></li>
 </ol>
-<h2>Fontes</h2>
+<h2 id="fontes">Fontes<a class="hlink" href="#fontes" aria-hidden="true">#</a></h2>
 <ul>
 <li><a href="https://dev.to/ibrahimpima/designing-the-spraycash-ui-with-kimi-k3-in-devin-4l2f">Designing the Spraycash UI with Kimi K3 in Devin</a> — prompts completos e histórico de iteração</li>
 <li>Relacionado: <a href="https://github.com/Till3005/built-with-devin#patterns--write-ups">built-with-devin — patterns</a></li>
 </ul>
-<nav class="guide-pager"><a class="pg-prev" href="devin-apps.html"><span class="pg-dir">← Previous</span><span class="pg-t">Guia 10 — Devin Apps: ferramentas ao vivo a partir de um chat</span></a><a class="pg-next" href="bots-201-product-owner.html"><span class="pg-dir">Next →</span><span class="pg-t">Guia 2 — Bot product-owner</span></a></nav>
+<nav class="guide-pager"><a class="pg-prev" href="devin-apps.html"><span class="pg-dir">← Anterior</span><span class="pg-t">Guia 10 — Devin Apps: ferramentas ao vivo a partir de um chat</span></a><a class="pg-next" href="bots-201-product-owner.html"><span class="pg-dir">Próximo →</span><span class="pg-t">Guia 2 — Bot product-owner</span></a></nav>
 </article>
 <footer><div class="wrap foot-base"><span data-i18n="foot.note">Unofficial community project — not affiliated with Cognition AI.</span><span><a href="../../index.html">built-with-devin</a> · <a href="https://github.com/Till3005/build-with-devin">build-with-devin</a></span></div></footer>
 </main>

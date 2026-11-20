@@ -4,13 +4,13 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>指南 17 — Devin Desktop — build-with-devin guides</title>
-<meta name="description" content="指南 17 — Devin Desktop">
+<meta name="description" content="面向 agent 的原生编辑器——Devin 的所有面集中在一个窗口：云会话、本地会话（Devin Local）、Bots，外加一个完整的 IDE。">
 <link rel="icon" href="../../assets/brand/Devin_Symbol.svg" type="image/svg+xml">
 <link rel="stylesheet" href="../../assets/site.css">
 <link rel="stylesheet" href="../../assets/guides.css">
 
 <meta property="og:title" content="指南 17 — Devin Desktop">
-<meta property="og:description" content="指南 17 — Devin Desktop">
+<meta property="og:description" content="面向 agent 的原生编辑器——Devin 的所有面集中在一个窗口：云会话、本地会话（Devin Local）、Bots，外加一个完整的 IDE。">
 <meta property="og:type" content="article">
 <meta property="og:url" content="https://till3005.github.io/built-with-devin/guides/zh/devin-desktop.html">
 <meta property="og:image" content="https://till3005.github.io/built-with-devin/assets/img/og-build.png?v=3">
@@ -36,12 +36,14 @@
 </div></nav>
 <main>
 <article class="guide wrap" id="guide">
-  <p class="guide-crumb"><a href="../../index.html#build">← Guides</a> · <a href="../devin-desktop.html">English</a> · <a href="../ja/devin-desktop.html">日本語</a> · <a href="../pt/devin-desktop.html">Português</a></p>
+  <p class="guide-crumb"><a href="index.html">← 指南</a> · <a href="../devin-desktop.html">English</a> · <a href="../ja/devin-desktop.html">日本語</a> · <a href="../pt/devin-desktop.html">Português</a></p>
+<p class="guide-meta">更新于 2026-11-20</p>
+<details class="toc" open><summary>本页目录</summary><ol><li class="d2"><a href="#它是什么">它是什么</a></li><li class="d2"><a href="#agent-command-center">Agent Command Center</a></li><li class="d2"><a href="#devin-local-daemon-变化">Devin Local —— daemon 变化</a></li><li class="d2"><a href="#ide-模式">IDE 模式</a></li><li class="d2"><a href="#两个值得抄的工作流">两个值得抄的工作流</a></li><li class="d2"><a href="#实录演示-录于-devin-desktop-v3-14-30825">实录演示 —— 录于 Devin Desktop v3.14.30825</a></li><li class="d2"><a href="#验证它">验证它</a></li><li class="d2"><a href="#坑">坑</a></li><li class="d2"><a href="#自测">自测</a></li><li class="d2"><a href="#来源">来源</a></li></ol></details>
 <h1>指南 17 — Devin Desktop</h1>
 <p><strong>目标：</strong> 面向 agent 的原生编辑器——Devin 的所有面集中在一个窗口：云会话、本地会话（Devin Local）、Bots，外加一个完整的 IDE。
 <strong>级别：</strong> 入门
 <strong>来源：</strong> <a href="https://docs.devin.ai/desktop/changelog">Desktop changelog</a> · <a href="https://docs.devin.ai/cli/changelog/stable">CLI changelog</a></p>
-<h2>它是什么</h2>
+<h2 id="它是什么">它是什么<a class="hlink" href="#它是什么" aria-hidden="true">#</a></h2>
 <p>Devin Desktop 是基于 Windsurf 的编辑器，Devin 的各个面并排住在里面。先分清三样东西：</p>
 <table>
 <thead>
@@ -69,14 +71,14 @@
 </tr>
 </tbody>
 </table>
-<h2>Agent Command Center</h2>
+<h2 id="agent-command-center">Agent Command Center<a class="hlink" href="#agent-command-center" aria-hidden="true">#</a></h2>
 <p>Command Center 是会话中枢，不是编辑器：</p>
 <ul>
 <li><strong>标签页</strong>（v3.13.4）：一个窗口里开多个会话和页面，每个标签有自己的前进/后退历史——当成你舰队的浏览器用。</li>
 <li><strong>会话头部 "..." 菜单</strong>：该会话的 MCP servers——按会话开关某一个、或重新授权。</li>
 <li><strong>Devin Review</strong>：PR 走查（diff、bug、测试录像）以页面形式开在同一个窗口。</li>
 </ul>
-<h2>Devin Local —— daemon 变化</h2>
+<h2 id="devin-local-daemon-变化">Devin Local —— daemon 变化<a class="hlink" href="#devin-local-daemon-变化" aria-hidden="true">#</a></h2>
 <p>自 v3.13.4（Desktop）/ v3000.13.4（CLI）起，本地会话跑在<strong>后台进程</strong>里，而不是开在启动它的窗口里：</p>
 <ul>
 <li>关掉或重开 Devin Desktop——或 CLI——<strong>不会</strong>停掉会话。</li>
@@ -86,16 +88,16 @@
 <li><code>devin ls</code>、<code>devin -r</code>、<code>/resume</code> 打开<strong>会话监视器</strong>——按最近更新排序的会话列表，带状态、目录和消息数。</li>
 </ul>
 <p>实际后果：本地工作变成持久的了。开个长任务，合上电脑，从另一个客户端接回来——会话一直在跑。</p>
-<h2>IDE 模式</h2>
+<h2 id="ide-模式">IDE 模式<a class="hlink" href="#ide-模式" aria-hidden="true">#</a></h2>
 <ul>
 <li>内嵌 IDE 用 <strong>Cmd/Ctrl+S</strong> 手动保存（不再自动保存）；未保存标签带个点。</li>
 <li>在 Devin Local 的浏览器预览里，<strong>点选一个页面元素或 console 输出会直接放进 composer</strong>——指着 bug 而不是描述 bug。</li>
 <li>Files 标签能预览 PDF、把 CSV/TSV 渲染成表格、播放媒体。</li>
 </ul>
-<h2>两个值得抄的工作流</h2>
+<h2 id="两个值得抄的工作流">两个值得抄的工作流<a class="hlink" href="#两个值得抄的工作流" aria-hidden="true">#</a></h2>
 <p><strong>1. 本地 → 云端 → 本地。</strong> 在 Devin Local 干活，碰到瓶颈（需要组织工具、更大并行、比笔记本开着的时间还长），<code>/handoff</code> 到云端，review 完把 PR 拉回来。daemon 让两段都能断点续接。</p>
 <p><strong>2. 一个窗口，所有面。</strong> Command Center 看舰队全局，Local 处理手头这个 repo，Bot 负责你不想盯的产出——Desktop 是唯一让三者共享一个窗口的地方。</p>
-<h2>实录演示 —— 录于 Devin Desktop v3.14.30825</h2>
+<h2 id="实录演示-录于-devin-desktop-v3-14-30825">实录演示 —— 录于 Devin Desktop v3.14.30825<a class="hlink" href="#实录演示-录于-devin-desktop-v3-14-30825" aria-hidden="true">#</a></h2>
 <p>真跑了一遍，不是拼出来的图：macOS、Pro 方案。一次 Devin Local 会话在一个丢弃用的 <code>demo-repo</code> 里用 SWE-2 High 改代码，Desktop 退出后它还在跑，还在 CLI 和 Desktop 之间换手。</p>
 <p><strong>视频（91 秒，无声）：</strong> Command Center → 标签页 → Bots → Devin Local → daemon 实证 → IDE 视图。</p>
 <p><a href="https://till3005.github.io/built-with-devin/assets/guides/devin-desktop/walkthrough.mp4"><img alt="Devin Local 会话在 SWE-2 High 上收尾——demo-repo 里改了 2 个文件" src="https://till3005.github.io/built-with-devin/assets/guides/devin-desktop/walkthrough-poster.webp" /></a></p>
@@ -119,34 +121,34 @@
 <em>9. 双客户端不能共驾：第二个看到锁定横幅，Force open 抢过会话，第一个断开</em></p>
 <p><img alt="10. IDE 视图：Source Control 列出会话的改动；未保存标签页有圆点，Cmd+S 保存" src="https://till3005.github.io/built-with-devin/assets/guides/devin-desktop/step10-ide-view.webp" />
 <em>10. IDE 视图：同一会话外裹着一个真编辑器——Source Control 列出它的改动；未保存标签页显示圆点，Cmd+S 保存</em></p>
-<h2>验证它</h2>
+<h2 id="验证它">验证它<a class="hlink" href="#验证它" aria-hidden="true">#</a></h2>
 <ul>
 <li>[ ] 一个 Devin Local 会话在关掉再打开 Desktop 后仍在跑</li>
 <li>[ ] <code>devin ls</code> 看到了 Desktop 开的会话，<code>devin -r</code> 带完整记录把它接了回来</li>
 <li>[ ] <code>devin ls</code> 打开了会话监视器并接进一个正在跑的会话</li>
 <li>[ ] 从 Desktop 聊天里建的 Bot 在同一个聊天里回话</li>
 </ul>
-<h2>坑</h2>
+<h2 id="坑">坑<a class="hlink" href="#坑" aria-hidden="true">#</a></h2>
 <ul>
 <li><strong>"Not authorized to use the CLI"</strong> —— 有 Desktop 权限但没 CLI 权限的账号在 Devin Local 登录会撞这个错（v3.14.30825 已修；见到就升级）。</li>
 <li><strong>标签页是窗口级状态。</strong> 会话页面里的操作只作用于自己的标签——但<em>会话</em>是共享的，第二个客户端连上看到的是同一个活会话，不是副本。</li>
 <li><strong>受管机器：</strong> 企业管理员通过设备策略控制 Desktop 设置（如语言服务器的 <code>DetectProxy</code>）——网络出问题先问 IT，别自己瞎调。</li>
 <li><strong>"Archive" 与 "Mark done" 之别。</strong> Desktop 的 "..." 菜单（第 4 帧）仍写 <em>Archive</em>，但 webapp 已改名 <em>Mark done</em>（11 月 16 日）：会话进你的 Done 文件夹但继续运行，对其他订阅者仍可见——侧栏现在列出你订阅的会话，别把别人还依赖的会话「清理」掉。相关新增：<strong>Phonebook</strong> 把每位成员在 Devin/Slack/Teams/git/Jira/Linear 上的身份关联起来。</li>
 </ul>
-<h2>自测</h2>
+<h2 id="自测">自测<a class="hlink" href="#自测" aria-hidden="true">#</a></h2>
 <ol>
 <li>v3.13.4 里本地会话变了什么？（改跑在后台进程里——关应用不再停会话，任何客户端都能看到并接管同一会话。）</li>
 <li>什么时候选 Devin Local 而不是云会话？（想在你的检出 repo 里带本地上下文亲手改时；要规模或组织集成时交给云端。）</li>
 <li>会话头部 "..." 菜单里有什么？（该会话的 MCP servers——按会话开关或重新授权。）</li>
 </ol>
-<h2>来源</h2>
+<h2 id="来源">来源<a class="hlink" href="#来源" aria-hidden="true">#</a></h2>
 <ul>
 <li><a href="https://docs.devin.ai/desktop/changelog">Devin Desktop changelog</a> —— v3.13.4（标签页、后台本地会话）、v3.14（Bots 进 Desktop、<code>DetectProxy</code> 策略）</li>
 <li><a href="https://docs.devin.ai/release-notes/2026">Devin release notes</a> —— 11 月 16 日：<em>Mark done</em> 取代 Archive、订阅侧栏、Phonebook</li>
 <li><a href="https://docs.devin.ai/cli/changelog/stable">Devin CLI changelog</a> —— v3000.13.4：<code>devin daemon</code>、<code>--process-model</code>、会话监视器</li>
 <li>相关：<a href="devin-cli.html">指南 12 — Devin CLI 与可扩展性</a> · <a href="bots-101-first-bot.html">指南 1 — 你的第一个 Bot</a></li>
 </ul>
-<nav class="guide-pager"><a class="pg-prev" href="talking-to-devin.html"><span class="pg-dir">← Previous</span><span class="pg-t">指南 18 — 跟 Devin 说话：提示词基本法</span></a><a class="pg-next" href="devin-cli.html"><span class="pg-dir">Next →</span><span class="pg-t">指南 12 — Devin CLI 与可扩展性</span></a></nav>
+<nav class="guide-pager"><a class="pg-prev" href="talking-to-devin.html"><span class="pg-dir">← 上一篇</span><span class="pg-t">指南 18 — 跟 Devin 说话：提示词基本法</span></a><a class="pg-next" href="devin-cli.html"><span class="pg-dir">下一篇 →</span><span class="pg-t">指南 12 — Devin CLI 与可扩展性</span></a></nav>
 </article>
 <footer><div class="wrap foot-base"><span data-i18n="foot.note">Unofficial community project — not affiliated with Cognition AI.</span><span><a href="../../index.html">built-with-devin</a> · <a href="https://github.com/Till3005/build-with-devin">build-with-devin</a></span></div></footer>
 </main>

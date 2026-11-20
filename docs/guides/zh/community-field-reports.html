@@ -4,13 +4,13 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>指南 14 — 社区实战报告 — build-with-devin guides</title>
-<meta name="description" content="指南 14 — 社区实战报告">
+<meta name="description" content="工程师把 Devin 用在真实工作上后实际学到了什么——包括失败。蒸馏自已发表的 hands-on 记录，好评和恶评都有。">
 <link rel="icon" href="../../assets/brand/Devin_Symbol.svg" type="image/svg+xml">
 <link rel="stylesheet" href="../../assets/site.css">
 <link rel="stylesheet" href="../../assets/guides.css">
 
 <meta property="og:title" content="指南 14 — 社区实战报告">
-<meta property="og:description" content="指南 14 — 社区实战报告">
+<meta property="og:description" content="工程师把 Devin 用在真实工作上后实际学到了什么——包括失败。蒸馏自已发表的 hands-on 记录，好评和恶评都有。">
 <meta property="og:type" content="article">
 <meta property="og:url" content="https://till3005.github.io/built-with-devin/guides/zh/community-field-reports.html">
 <meta property="og:image" content="https://till3005.github.io/built-with-devin/assets/img/og-build.png?v=3">
@@ -36,15 +36,17 @@
 </div></nav>
 <main>
 <article class="guide wrap" id="guide">
-  <p class="guide-crumb"><a href="../../index.html#build">← Guides</a> · <a href="../community-field-reports.html">English</a> · <a href="../ja/community-field-reports.html">日本語</a> · <a href="../pt/community-field-reports.html">Português</a></p>
+  <p class="guide-crumb"><a href="index.html">← 指南</a> · <a href="../community-field-reports.html">English</a> · <a href="../ja/community-field-reports.html">日本語</a> · <a href="../pt/community-field-reports.html">Português</a></p>
+<p class="guide-meta">更新于 2026-11-20</p>
+<details class="toc" open><summary>本页目录</summary><ol><li class="d2"><a href="#每篇报告都在重复的模式">每篇报告都在重复的模式</a></li><li class="d2"><a href="#有据可查的成功场景">有据可查的成功场景</a></li><li class="d2"><a href="#有据可查的失败场景">有据可查的失败场景</a></li><li class="d2"><a href="#实名团队部署-社区-带数字">实名团队部署（社区、带数字）</a></li><li class="d2"><a href="#蒸馏出的教训">蒸馏出的教训</a></li><li class="d2"><a href="#scott-wu-的内部-top-5-来自-lenny-s-访谈">Scott Wu 的内部 top-5（来自 Lenny&#x27;s 访谈）</a></li><li class="d2"><a href="#深读-抄什么-防什么">深读——抄什么、防什么</a></li><li class="d2"><a href="#验证">验证</a></li><li class="d2"><a href="#常见陷阱">常见陷阱</a></li><li class="d2"><a href="#自检">自检</a></li><li class="d2"><a href="#sources">Sources</a></li></ol></details>
 <h1>指南 14 — 社区实战报告</h1>
 <p><strong>目标：</strong> 工程师把 Devin 用在真实工作上后实际学到了什么——包括失败。蒸馏自已发表的 hands-on 记录，好评和恶评都有。
 <strong>级别：</strong> 入门（判断力篇）
 <strong>来源：</strong> 各条报告下方逐一标注</p>
 <p>本篇刻意保持平衡：Devin 在哪里稳赢、在哪里烧钱、以及区分两种结果的工作方式。</p>
-<h2>每篇报告都在重复的模式</h2>
+<h2 id="每篇报告都在重复的模式">每篇报告都在重复的模式<a class="hlink" href="#每篇报告都在重复的模式" aria-hidden="true">#</a></h2>
 <p>拿到结果的人把 Devin 当作<strong>异步初级工程师</strong>，而不是代码生成器。Scott Wu（Cognition CEO）在 <a href="https://www.lennysnewsletter.com/p/how-devin-replaces-your-junior-engineers">Lenny's Newsletter</a> 里描述了内部工作流：委派边界清晰的任务、让它在你开会时跑、审 PR。<a href="https://every.to/chain-of-thought/coding-with-devin-my-new-ai-programming-agent">Every 的记录</a>落到了同一个框架——它需要一套<em>技能</em>：学会它擅长什么、写它懂的任务、知道何时介入、学会信任以不同于你的方式完成的活。</p>
-<h2>有据可查的成功场景</h2>
+<h2 id="有据可查的成功场景">有据可查的成功场景<a class="hlink" href="#有据可查的成功场景" aria-hidden="true">#</a></h2>
 <p><strong>端到端原型。</strong> 从空 repo 起步，Devin 搭了一个 FastAPI + React 的 "City Explorer"（图片/天气/新闻集成）、本地跑起来、开 PR、部署公开 URL——~90 分钟，~2 次人工介入（<a href="https://medium.com/@sambhavgaur_70582/copilot-cursor-or-devin-my-hands-on-weekend-with-ai-that-codes-and-deploys-acc708e802b3">Medium hands-on</a>）。<a href="https://blog.scottlogic.com/2025/10/20/rapid-development-with-devin.html">Scott Logic</a> 在真实客户原型上报告了同样的弧线——外加下方一条关键迭代教训。</p>
 <p><strong>需要运行时的活。</strong> 在<a href="https://web.archive.org/web/20260718112612/https://mohitkhare.me/blog/devin-vs-claude-code/">与 Claude Code 的对决</a>中，Devin 在贴合既有规范的任务上输了，但在有机器加成的地方赢得很清楚：内存泄漏排查——它做 profile、在负载下抓堆快照、产出报告。agent 自带 VM 就是卖点。</p>
 <p><strong>现场排障。</strong> <a href="https://www.faros.ai/blog/how-to-use-devin-ai-troubleshooting">Faros</a> 在<em>客户电话上</em>用 Devin：它读了 introspection API 代码、几秒内生成可用 <code>curl</code>——把 1-2 天的跟进循环压缩进电话本身。</p>
@@ -53,7 +55,7 @@
 <p><strong>代码之外。</strong> 一位 Cognition 研究员报告 Devin 重建——并完成——了他九年前花了一整个学期没做完的 Lean 形式化证明，用时<strong>不到 15 分钟</strong>（<a href="https://x.com/penlume/status/2115806616796921885">post</a>）。数学形式化和迁移奖励同一种特质：机器可检验的完成定义。</p>
 <p><strong>枯燥但必要的清理。</strong> 一个月实测报告：陈旧仓库清理 + 一句「modernize this」把 gulp/webpack 时代的构建环境翻新成现代配置，约一小时——脏活队列才是托管价值最高的地方（<a href="https://zenn.dev/mei999/articles/7d6132f1ca36b6">report</a>，JP）。</p>
 <p><strong>接入可观测性。</strong> <a href="https://medium.com/lets-code-future/how-i-turned-devin-into-a-performance-analysis-agent-with-dynatrace-mcp-753d3f4790a2">Dynatrace MCP + Devin</a> 把 Devin 变成性能分析 agent：它查询实时指标和 trace 然后诊断——MCP server 带来了 repo 里没有的生产上下文（Medium）。另见 <a href="https://medium.com/@winter.inc/devin-from-bug-report-to-pull-request-25-days-of-ai-day-18-b158daa20f23">Devin: from bug report to pull request</a> 的完整 ticket→PR 循环。</p>
-<h2>有据可查的失败场景</h2>
+<h2 id="有据可查的失败场景">有据可查的失败场景<a class="hlink" href="#有据可查的失败场景" aria-hidden="true">#</a></h2>
 <ul>
 <li><strong>模糊或过宽的 prompt。</strong> Scott Logic 的第一条 prompt 产出了不可用的脚手架；收窄技术栈和诉求（"just the models"）后解决。Devin 会过度构建——告诉它<em>不要</em>建什么。</li>
 <li><strong>贴合既有规范的任务。</strong> "Add pagination to this endpoint" 在两份独立报告里都返回了不符合代码库惯例的实现（<a href="https://www.amillionmonkeys.co.uk/blog/ai-coding-tools-small-studios">amillionmonkeys</a>、<a href="https://web.archive.org/web/20260718112612/https://mohitkhare.me/blog/devin-vs-claude-code/">mohitkhare</a>）——除非你把规范带给它，Devin 是在真空中构建（→ 第 9 篇）。</li>
@@ -61,7 +63,7 @@
 <li><strong>整个品类不合适的情况。</strong> <a href="https://zenn.dev/vesslabs/articles/da9593d77369ee">vesslabs</a> 用 Pro 做了一周、10 个会话、3 个仓库的严谨评估，最终主动决定<em>不采用</em>——不是 Devin 不行，而是云端 agent 的优势和他们不匹配：提需求的全是工程师（Slack/Jira 入口反而成了会话跟踪负担）、6 人团队会话共享多余、iOS 模拟器跑不了 Linux 沙箱、成本拆不到会话粒度。正确的拒绝和采用同样有信息量。</li>
 <li><strong>不可检验的活。</strong> <a href="https://expectedwrong.com/devin-appraised">expectedwrong</a> 和 <a href="https://dev.to/alanwest/i-gave-devin-10-real-tasks-it-completed-3-3063">alanwest 的 10 任务测试</a>记录了失败模式：自信但坏掉或缺失的输出、credit 在循环中烧掉。他们的任务偏向没有明确验证的活——正是官方 playbook 强制要求的那道闸（第 11 篇）。</li>
 </ul>
-<h2>实名团队部署（社区、带数字）</h2>
+<h2 id="实名团队部署-社区-带数字">实名团队部署（社区、带数字）<a class="hlink" href="#实名团队部署-社区-带数字" aria-hidden="true">#</a></h2>
 <p>公开运营数据的真实组织——大多来自日本工程社区，那里的记录异常详尽：</p>
 <table>
 <thead>
@@ -138,7 +140,7 @@
 <li>仓库 onboarding 是串行的——一个在 setup 中就卡住下一个，得排期。</li>
 <li>他们的 ROI 分布：高的在 PR 预评审（<code>devin-review</code> 标签 → Actions → API Playbook，每次 ~1–2 ACU）、定期库升级风险评估、以及喂了<em>相似既有 PR</em> 的遗留代码活；低的在大范围重构和小到不值得的任务。</li>
 </ul>
-<h2>蒸馏出的教训</h2>
+<h2 id="蒸馏出的教训">蒸馏出的教训<a class="hlink" href="#蒸馏出的教训" aria-hidden="true">#</a></h2>
 <ol>
 <li><strong>切的是片，不是项目。</strong> 成功全是有边界的单元；失败都是"去把这个大致建/修一下"。（官方教条：第 13 篇。）社区给出的甜区：约 ±150–250 行改动、3–5 个文件、~30 分钟 agent 工时（<a href="https://qiita.com/FAL-coffee/items/be4d59093dd2bb06fb69">FAL-coffee</a>，JP）。</li>
 <li><strong>能验证才委派。</strong> 给 Devin 机器能判定"完成"的活——测试、构建、能跑的 <code>curl</code>、渲染出来的页面。</li>
@@ -148,31 +150,31 @@
 <li><strong>交付证据，不交付判决。</strong> hubble 把 Dependabot skill 的最后一步从「决定是否合并」改成「评估风险」——agent 组装案情，人保留决定权。</li>
 </ol>
 <p>这六条背后的约束现在是被测量过的，不是民间智慧：<a href="https://news.ycombinator.com/item?id=50538303">哈佛一项研究</a>（11 月 16 日，HN 459 条评论）发现 AI 编码 agent 把工程瓶颈挪到了 <em>code review</em>——所以本指南里每个立得住的模式都以一道 review 关（人或脚本）收尾，而不是静默合并。</p>
-<h2>Scott Wu 的内部 top-5（来自 Lenny's 访谈）</h2>
+<h2 id="scott-wu-的内部-top-5-来自-lenny-s-访谈">Scott Wu 的内部 top-5（来自 Lenny's 访谈）<a class="hlink" href="#scott-wu-的内部-top-5-来自-lenny-s-访谈" aria-hidden="true">#</a></h2>
 <p>Cognition 自己委派最多的任务：<strong>前端修复、版本升级、文档、事故响应、测试</strong>——外加"第一道防线"模式（Devin 在人介入前先分析 crash），以及用 DeepWiki 调研来<em>写出更好的 prompt</em>。</p>
-<h2>深读——抄什么、防什么</h2>
+<h2 id="深读-抄什么-防什么">深读——抄什么、防什么<a class="hlink" href="#深读-抄什么-防什么" aria-hidden="true">#</a></h2>
 <p><strong>hubble 的 Dependabot 回路。</strong> 每个 Dependabot PR 触发一个由 Skill 文件驱动的 Devin 会话：读 diff、lockfile 变化、release notes 和 CI 状态，然后评论打出 GREEN/YELLOW/RED 风险标签<em>并附上全部依据</em>——更新的库和更新类型、风险分级加理由、兼容性核查、CI 状态、以及哪些点还得人工确认。为什么成立：Skill 把「这里什么叫风险」写成了文件（哪些 gem 是关键依赖、CI 绿了也要查什么）——本来只在评审人脑子里的知识，现在全团队可读可养。他们特意把最后一步从「决定要不要合」改成了「评估风险」。抄法：先把你的评审流程写成 Skill——流程写不出来，自动化也跑不了。防什么：光有标签会退化；没有依据评论的系统什么也教不会你。</p>
 <p><strong>hubble 的每周成本回路。</strong> 每周一次 Datadog CCM 巡检：Devin 挑一个降本候选，深挖配置和用量，交回一份可直接决策的报告。这个回路的产出是<em>带建议的候选</em>，不是账单。抄法：「挑一个、深挖、交出去」这个形状适用于任何常驻卫生队列。防什么：官方工具（AWS 成本工具）有重叠——只有当你的成本数据在 Datadog 里、且修复要动代码库时它才赢。</p>
 <p><strong>SMARTCAMP 的扫描→修复流水线。</strong> 定时 GitHub Actions：拉 ECS 镜像 → Trivy 扫（HIGH/CRITICAL、OS 包）→ 建 issue → Devin 修复。值得抄的是加固细节而不是那个箭头：带 AWS 凭证的拉取任务和免凭证的扫描任务分开，只有产物跨边界；发布后等 ~7 天才信扫描结果（扫描器数据库滞后于新包）；镜像 digest 用 hash 固定，并有 PR 检查标记过期 hash。防什么：这是把扫描器本身当供应链攻击面做的纵深防御——只抄「扫描 → Devin」这一截就没抄到点子上。</p>
 <p><strong>canly 的分析师部署。</strong> 让 Devin 把 ~700 条积压的「原因未特定」工单做了分类：过半根本不是 bug——而这件事真正的产出是一张「AI 还缺什么上下文」的地图（文档、DB 可见性、工单元数据），标签本身是次要的。抄法：Devin 当分析师是一等用法——买工具之前，先让它把没人分类过的那堆数据分类一遍。防什么：瓶颈是上下文的选择，不是模型质量。</p>
 <p><strong>Ryan Carson 的一人舰队。</strong> Untangle 的独立创始人以 ~$20k/月同时跑 ~15 个 Devin agent——调度不用仪表盘，用文件夹系统加一张写着 P0 的纸，因为那个规模下真正的瓶颈是<em>他的</em>注意力，不是 agent 吞吐。两个 playbook 撑起整个运营：「Watchdog」盯每个律所账号，一个人顶替整个客户成功团队；「LAN PR」每天合 ~40 个 PR——review 回路 + 视频走查 + auto-merge，没有 QA 审阅人。抄法：扩展的单位是「每个面一份命名 playbook」，不是更多 agent。防什么：他几乎全面弃用本地 agent——长回路归云 agent；唯一保留的例外是用 Codex 跑范围卡死的设计稿实现。</p>
-<h2>验证</h2>
+<h2 id="验证">验证<a class="hlink" href="#验证" aria-hidden="true">#</a></h2>
 <ul>
 <li>[ ] 挑一篇和你技术栈最接近的报告，去读原文而不是这份蒸馏——那个数字放回上下文里还成立吗？</li>
 <li>[ ] 写下你敢赌钱复现到自己团队的一条教训；说不出来就换一篇</li>
 </ul>
-<h2>常见陷阱</h2>
+<h2 id="常见陷阱">常见陷阱<a class="hlink" href="#常见陷阱" aria-hidden="true">#</a></h2>
 <ul>
 <li><strong>幸存者偏差。</strong> 叫好的报告发数字，无声的失败什么都不发。把本合集里的失败当作中位体验，把胜利当作天花板。</li>
 <li><strong>东施效颦。</strong> Scott Logic 的 prompt 迭代有效是因为<em>他们迭代了</em>——只抄最终 prompt 不抄循环，你得到的是他们的起点而不是结果。</li>
 </ul>
-<h2>自检</h2>
+<h2 id="自检">自检<a class="hlink" href="#自检" aria-hidden="true">#</a></h2>
 <ol>
 <li>失败报告有什么共性是成功报告没有的？<em>（不可验证的委托——失败案例把工作交给 Devin 却没人能检查「完成」；每个成功都定义了检查。）</em></li>
 <li>为什么 Faros「在客户电话上排障」是部署经验而不是轶事？<em>（它展示了实时分诊范式：agent 做第一响应，人守住客户关系。）</em></li>
 <li>为什么这篇把敌对报告和正面报告等量收录？<em>（对抗性报告暴露边界条件——地图的边缘是从走出去的人那里学来的。）</em></li>
 </ol>
-<h2>Sources</h2>
+<h2 id="sources">Sources<a class="hlink" href="#sources" aria-hidden="true">#</a></h2>
 <ul>
 <li><a href="https://blog.scottlogic.com/2025/10/20/rapid-development-with-devin.html">Scott Logic — Rapid development with Devin</a></li>
 <li><a href="https://www.lennysnewsletter.com/p/how-devin-replaces-your-junior-engineers">Lenny's Newsletter — Scott Wu on Cognition's internal Devin usage</a></li>
@@ -198,7 +200,7 @@
 <li><a href="https://zhuanlan.zhihu.com/p/2025994849590026406">知乎 — AI software engineer 如何接管工作区：Devin、SWE-agent 与 OpenHands</a>（中文）—— 最清晰的中文架构分析：ACI 设计、受控沙箱 vs 开发者同域两条路线、三大真实瓶颈（全局导航失真、失败恢复链、隐式上下文）</li>
 <li><a href="https://juejin.cn/post/7671231304077361203">掘金 — AI 编码 Agent 90 天落地清单</a>（中文）—— 做对了的 CI gate 模式：AI 代码走独立安全扫描、检测与扫描分两步、混合工具栈运营模型</li>
 </ul>
-<nav class="guide-pager"><a class="pg-prev" href="enterprise-playbook.html"><span class="pg-dir">← Previous</span><span class="pg-t">指南 7 — 企业级铺开模式</span></a></nav>
+<nav class="guide-pager"><a class="pg-prev" href="enterprise-playbook.html"><span class="pg-dir">← 上一篇</span><span class="pg-t">指南 7 — 企业级铺开模式</span></a></nav>
 </article>
 <footer><div class="wrap foot-base"><span data-i18n="foot.note">Unofficial community project — not affiliated with Cognition AI.</span><span><a href="../../index.html">built-with-devin</a> · <a href="https://github.com/Till3005/build-with-devin">build-with-devin</a></span></div></footer>
 </main>

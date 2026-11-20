@@ -36,13 +36,15 @@
 </div></nav>
 <main>
 <article class="guide wrap" id="guide">
-  <p class="guide-crumb"><a href="../index.html#build">← Guides</a> · <a href="zh/living-evals.html">中文</a> · <a href="ja/living-evals.html">日本語</a> · <a href="pt/living-evals.html">Português</a></p>
+  <p class="guide-crumb"><a href="index.html">← Guides</a> · <a href="ja/living-evals.html">日本語</a> · <a href="pt/living-evals.html">Português</a> · <a href="zh/living-evals.html">中文</a></p>
+<p class="guide-meta">Updated 2026-11-19</p>
+<details class="toc" open><summary>On this page</summary><ol><li class="d2"><a href="#the-pattern">The pattern</a></li><li class="d2"><a href="#prerequisites">Prerequisites</a></li><li class="d2"><a href="#step-1-make-one-trace-replayable-by-hand">Step 1 — Make one trace replayable by hand</a></li><li class="d2"><a href="#step-2-freeze-it-as-an-eval-not-a-bug-report">Step 2 — Freeze it as an eval, not a bug report</a></li><li class="d2"><a href="#step-3-group-by-behavior-before-scaling">Step 3 — Group by behavior before scaling</a></li><li class="d2"><a href="#step-4-encode-the-whole-procedure-as-a-skill">Step 4 — Encode the whole procedure as a skill</a></li><li class="d2"><a href="#step-5-schedule-it-weekly">Step 5 — Schedule it weekly</a></li><li class="d2"><a href="#verify-it">Verify it</a></li><li class="d2"><a href="#pitfalls">Pitfalls</a></li><li class="d2"><a href="#knowledge-check">Knowledge check</a></li><li class="d2"><a href="#sources">Sources</a></li></ol></details>
 <h1>Guide 15 — Living evals from production traces</h1>
 <p><strong>Goal:</strong> an eval suite for <em>your</em> agent that writes itself — a scheduled Devin that reads real production conversations, rebuilds each failure in a full copy of your system, and opens PRs that add the failure as a regression test.
 <strong>Level:</strong> advanced
 <strong>Source deployment:</strong> <strong>Rox's Living Evals</strong> — nobody at Rox hand-writes evals anymore. A weekly Devin reads production traces in Braintrust, rebuilds each failure in a full copy of Rox seeded with synthetic data, replays until the agent makes the same mistake, and opens a PR. The suite covers <strong>72% of real usage vs. 43–57%</strong> for their hand-written evals, and keeps growing week over week.
 <strong>Sources:</strong> <a href="https://www.rox.com/articles/living-evals-an-eval-suite-that-grows-from-production">Living Evals write-up</a> (Brian Xu, Oct 2026) · <a href="https://x.com/rox_ai/status/2110779380666617997">launch thread</a></p>
-<h2>The pattern</h2>
+<h2 id="the-pattern">The pattern<a class="hlink" href="#the-pattern" aria-hidden="true">#</a></h2>
 <pre><code class="language-text">production traces (observability platform)
         │  weekly sample (~350 conversations)
         ▼
@@ -55,42 +57,42 @@ for each under-covered behavior:
         ▼
 human reviews the PR, not the eval-writing
 </code></pre>
-<h2>Prerequisites</h2>
+<h2 id="prerequisites">Prerequisites<a class="hlink" href="#prerequisites" aria-hidden="true">#</a></h2>
 <ul>
 <li>An agent or AI feature in production, with <strong>conversation-level tracing</strong> (Rox used Braintrust; LangSmith/self-hosted logging works — you need the request + the records + tool calls touched)</li>
 <li>A deployable copy of your system (preview env, staging, or <code>docker compose up</code> in a VM) — <strong>not mocks</strong></li>
 <li>Tests-as-code in your repo so an eval is just a committed file</li>
 </ul>
-<h2>Step 1 — Make one trace replayable by hand</h2>
+<h2 id="step-1-make-one-trace-replayable-by-hand">Step 1 — Make one trace replayable by hand<a class="hlink" href="#step-1-make-one-trace-replayable-by-hand" aria-hidden="true">#</a></h2>
 <p>Before scheduling anything: pick one real conversation where your agent failed. Have Devin pull the trace, write synthetic data covering exactly what the request touched, bring up your system copy, and replay the request until the same failure occurs. If you can't reproduce one failure manually, the weekly loop will produce nothing.</p>
-<h2>Step 2 — Freeze it as an eval, not a bug report</h2>
+<h2 id="step-2-freeze-it-as-an-eval-not-a-bug-report">Step 2 — Freeze it as an eval, not a bug report<a class="hlink" href="#step-2-freeze-it-as-an-eval-not-a-bug-report" aria-hidden="true">#</a></h2>
 <p>The artifact is a committed eval, not a Slack message. Rox's convention: the request is copied <strong>word for word</strong> from production; seeded data reproduces the exact conditions (e.g. "the newest meeting has no transcript"). Data-changing requests get a code assertion; reply-only requests get an LLM-judge rubric.</p>
-<h2>Step 3 — Group by behavior before scaling</h2>
+<h2 id="step-3-group-by-behavior-before-scaling">Step 3 — Group by behavior before scaling<a class="hlink" href="#step-3-group-by-behavior-before-scaling" aria-hidden="true">#</a></h2>
 <p>Running the loop on every conversation is wasteful — most requests repeat the same shapes. Rox's four labels define a <em>behavior</em>: <strong>goal</strong> (what the user wants) · <strong>output</strong> (what comes back) · <strong>mutation</strong> (nothing/create/edit/send) · <strong>target</strong> (named vs. inferred object). ~350 conversations a week collapse to ~130 behaviors; build evals for under-covered behaviors only.</p>
-<h2>Step 4 — Encode the whole procedure as a skill</h2>
+<h2 id="step-4-encode-the-whole-procedure-as-a-skill">Step 4 — Encode the whole procedure as a skill<a class="hlink" href="#step-4-encode-the-whole-procedure-as-a-skill" aria-hidden="true">#</a></h2>
 <p>The trace→eval loop lives in <strong>one skill file</strong> Devin follows: pull trace → synthesize → preview env → replay → compare → freeze → PR. When the loop produces a bad eval, <strong>fix the skill</strong>, never hand-patch the eval — that's the compounding move.</p>
-<h2>Step 5 — Schedule it weekly</h2>
+<h2 id="step-5-schedule-it-weekly">Step 5 — Schedule it weekly<a class="hlink" href="#step-5-schedule-it-weekly" aria-hidden="true">#</a></h2>
 <p>Cron automation (Guide 6): pull the week's traces → group → for each under-covered behavior run the loop → open one PR with the new evals. Humans review the PR; Devin owns the suite.</p>
-<h2>Verify it</h2>
+<h2 id="verify-it">Verify it<a class="hlink" href="#verify-it" aria-hidden="true">#</a></h2>
 <ul>
 <li>[ ] A real production failure replays deterministically in your preview env — same user request, same bad outcome</li>
 <li>[ ] The eval file is in your repo, runs in CI, and fails on the old behavior / passes on the fix</li>
 <li>[ ] Coverage is measured against <em>production traffic mix</em>, not your guesses — report it like Rox's 72%</li>
 <li>[ ] A bad eval got fixed by editing the skill, not the eval</li>
 </ul>
-<h2>Pitfalls</h2>
+<h2 id="pitfalls">Pitfalls<a class="hlink" href="#pitfalls" aria-hidden="true">#</a></h2>
 <ul>
 <li><strong>Mocked replay.</strong> Rox's earlier approach replayed through a mocked data layer — mocks can hide bugs in the very code they replace. Use a full copy; the point of a preview env is fidelity.</li>
 <li><strong>Flaky judging.</strong> Even with no code change, ~1 in 8 evals passes some runs and fails others — agents aren't deterministic. Read a failure before trusting it; don't alert on single flakes.</li>
 <li><strong>Evals measuring taste.</strong> The suite catches behavioral regressions (a tool path dead, a supported request unhandled), not style — every failure should point at a fixable defect.</li>
 </ul>
-<h2>Knowledge check</h2>
+<h2 id="knowledge-check">Knowledge check<a class="hlink" href="#knowledge-check" aria-hidden="true">#</a></h2>
 <ol>
 <li>Why replay in a full copy instead of a mocked data layer? <em>(Mocks can hide bugs in the code they replace — as the agent edits more state, the mock becomes the thing you're actually testing.)</em></li>
 <li>Why group conversations into behaviors before writing evals? <em>(Most requests repeat shapes — labeling goal/output/mutation/target lets one eval cover many conversations, so coverage maps to real usage.)</em></li>
 <li>What's the compounding move: fixing evals, or fixing the skill? <em>(The skill — a hand-patched eval teaches Devin nothing; a fixed skill produces better evals forever.)</em></li>
 </ol>
-<h2>Sources</h2>
+<h2 id="sources">Sources<a class="hlink" href="#sources" aria-hidden="true">#</a></h2>
 <ul>
 <li><a href="https://www.rox.com/articles/living-evals-an-eval-suite-that-grows-from-production">Living Evals: an eval suite that grows from production</a> — the full methodology</li>
 <li><a href="https://x.com/rox_ai/status/2110779380666617997">Rox launch thread</a></li>

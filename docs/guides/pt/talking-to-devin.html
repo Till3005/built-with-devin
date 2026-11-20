@@ -4,13 +4,13 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Guia 18 — Falando com Devin: a doutrina do prompt — build-with-devin guides</title>
-<meta name="description" content="Guia 18 — Falando com Devin: a doutrina do prompt">
+<meta name="description" content="Escrever instruções que Devin não pode interpretar errado — a linha entre uma sessão que entrega e uma que vagueia.">
 <link rel="icon" href="../../assets/brand/Devin_Symbol.svg" type="image/svg+xml">
 <link rel="stylesheet" href="../../assets/site.css">
 <link rel="stylesheet" href="../../assets/guides.css">
 
 <meta property="og:title" content="Guia 18 — Falando com Devin: a doutrina do prompt">
-<meta property="og:description" content="Guia 18 — Falando com Devin: a doutrina do prompt">
+<meta property="og:description" content="Escrever instruções que Devin não pode interpretar errado — a linha entre uma sessão que entrega e uma que vagueia.">
 <meta property="og:type" content="article">
 <meta property="og:url" content="https://till3005.github.io/built-with-devin/guides/pt/talking-to-devin.html">
 <meta property="og:image" content="https://till3005.github.io/built-with-devin/assets/img/og-build.png?v=3">
@@ -36,19 +36,21 @@
 </div></nav>
 <main>
 <article class="guide wrap" id="guide">
-  <p class="guide-crumb"><a href="../../index.html#build">← Guides</a> · <a href="../talking-to-devin.html">English</a> · <a href="../zh/talking-to-devin.html">中文</a> · <a href="../ja/talking-to-devin.html">日本語</a></p>
+  <p class="guide-crumb"><a href="index.html">← Guias</a> · <a href="../talking-to-devin.html">English</a> · <a href="../ja/talking-to-devin.html">日本語</a> · <a href="../zh/talking-to-devin.html">中文</a></p>
+<p class="guide-meta">Atualizado 2026-11-19</p>
+<details class="toc" open><summary>Nesta página</summary><ol><li class="d2"><a href="#por-que-este-guia-vem-primeiro">Por que este guia vem primeiro</a></li><li class="d2"><a href="#as-quatro-regras-que-sustentam-tudo">As quatro regras que sustentam tudo</a></li><li class="d2"><a href="#o-brief-de-referência">O brief de referência</a></li><li class="d2"><a href="#defesa-o-que-fica-com-você">Defesa: o que fica com você</a></li><li class="d2"><a href="#de-instruir-para-delegar-posse">De instruir para delegar posse</a></li><li class="d2"><a href="#passo-a-passo-real-gravado-no-devin-cli-v3000-14-swe-2-flash-medium">Passo a passo real — gravado no Devin CLI v3000.14 (swe-2-flash-medium)</a></li><li class="d2"><a href="#verifique">Verifique</a></li><li class="d2"><a href="#armadilhas">Armadilhas</a></li><li class="d2"><a href="#cheque-de-conhecimento">Cheque de conhecimento</a></li><li class="d2"><a href="#fontes">Fontes</a></li></ol></details>
 <h1>Guia 18 — Falando com Devin: a doutrina do prompt</h1>
 <p><strong>Objetivo:</strong> Escrever instruções que Devin não pode interpretar errado — a linha entre uma sessão que entrega e uma que vagueia.
 <strong>Nível:</strong> Comece aqui
 <strong>Fontes:</strong> <a href="https://devin.ai/agents101">Coding Agents 101</a> (Cognition, junho de 2025) · <a href="https://docs.devin.ai/essential-guidelines/instructing-devin-effectively">Instructing Devin Effectively</a> — ambas oficiais, destiladas abaixo com notas de campo</p>
-<h2>Por que este guia vem primeiro</h2>
+<h2 id="por-que-este-guia-vem-primeiro">Por que este guia vem primeiro<a class="hlink" href="#por-que-este-guia-vem-primeiro" aria-hidden="true">#</a></h2>
 <p>Todo guia deste repositório presume uma habilidade: você consegue dizer a Devin o que quer de um jeito que ela não pode entender errado. As duas orientações da própria Cognition — <em>Coding Agents 101</em> e <em>Instructing Devin Effectively</em> — dizem a mesma coisa por ângulos diferentes: <strong>os engenheiros que mais aproveitam os agentes escrevem como quem briefa um colega júnior, não como quem faz um pedido.</strong> Este guia é essa doutrina condensada, ligada ao resto do currículo.</p>
-<h2>As quatro regras que sustentam tudo</h2>
+<h2 id="as-quatro-regras-que-sustentam-tudo">As quatro regras que sustentam tudo<a class="hlink" href="#as-quatro-regras-que-sustentam-tudo" aria-hidden="true">#</a></h2>
 <p><strong>1. Diga como, não só o quê.</strong> "Corrige os bindings C++ do nosso módulo de busca para passar nos novos testes — atenção, vai precisar recompilar os bindings a cada mudança antes de testar." Você conhece as armadilhas do seu codebase; nomeie-as. Briefs abertos ("deixe o app mais bonito", "melhore a performance do banco") devolvem resultados abertos.</p>
 <p><strong>2. Diga por onde começar.</strong> Repositório, diretório, arquivo, implementação de referência, URL de docs — tudo que você quereria se a tarefa caísse na <em>sua</em> mesa. "Use <code>authTemplate.rs</code> como referência para manter consistência no tratamento de erros" vence um parágrafo de estilo sempre.</p>
 <p><strong>3. Defina sucesso como algo verificável.</strong> Não "garanta que funciona" — um check que Devin pode rodar: <em>endpoint retorna 200 com campos X/Y/Z</em>, <em>componente renderiza sem erros de console em 1440px e 375px</em>, <code>npm test</code> verde. Devin tem uma máquina completa — browser, shell, IDE. Mande-o verificar o próprio trabalho ("rode <code>npm run dev</code> e confirme que <code>/settings</code> renderiza") e ele faz QA antes de você ver o PR.</p>
 <p><strong>4. Dê loops de feedback, não vibrações de feedback.</strong> Type checkers, linters, testes, CI — o superpoder do agente é iterar contra mensagens de erro. Se seu repo não consegue dizer quando ele erra, você é o loop de feedback — a configuração mais cara que existe.</p>
-<h2>O brief de referência</h2>
+<h2 id="o-brief-de-referência">O brief de referência<a class="hlink" href="#o-brief-de-referência" aria-hidden="true">#</a></h2>
 <p>O prompt-modelo da própria Cognition, anotado:</p>
 <blockquote>
 <p>In the Devin repo, build a tool that monitors RAM and CPU usage of the remote machines Devin runs on. — <em>escopo e propósito em uma linha</em></p>
@@ -60,7 +62,7 @@
 </ul>
 </blockquote>
 <p>Repare no que falta: opiniões estéticas, hedging, "talvez", "se achar bom". Cada linha é uma decisão já tomada por alguém que conhece o sistema.</p>
-<h2>Defesa: o que fica com você</h2>
+<h2 id="defesa-o-que-fica-com-você">Defesa: o que fica com você<a class="hlink" href="#defesa-o-que-fica-com-você" aria-hidden="true">#</a></h2>
 <p>O guia 101 é direto sobre o limite: <strong>espere ~80% de economia de tempo em tickets grandes, não automação total.</strong> Além de alguns arquivos, planeje vários ciclos de feedback. A postura vencedora é <em>arquiteto revisando o PR de rascunho de um júnior</em> — você fica com a correção, Devin fica com as teclas.</p>
 <p>Consequências práticas:</p>
 <ul>
@@ -68,9 +70,9 @@
 <li><strong>Divida trabalho grande em sub-tarefas verificáveis</strong> — uma sessão por sub-tarefa, cada uma com seu check de sucesso (é também por isso que o padrão de migração do Guia 11 funciona: centenas de PRs pequenos, todos verificáveis).</li>
 <li><strong>Skills para o repetitivo</strong> — qualquer coisa que você vai pedir mais de duas vezes vira <code>SKILL.md</code>; Devin invoca automaticamente (Guia 16).</li>
 </ul>
-<h2>De instruir para delegar posse</h2>
+<h2 id="de-instruir-para-delegar-posse">De instruir para delegar posse<a class="hlink" href="#de-instruir-para-delegar-posse" aria-hidden="true">#</a></h2>
 <p>Uma instrução de sessão responde <em>"faça esta tarefa bem"</em>. Um outcome prompt de Bot responde <em>"assuma esta área"</em>. A doutrina é a mesma — especificidade, limites, sucesso verificável — mas o objeto muda de tarefa para responsabilidade. Fluente aqui, a <a href="bot-outcome-prompts.html">referência de outcome-prompts</a> mostra como os mesmos músculos produzem os 1.134 PRs do Android Bot.</p>
-<h2>Passo a passo real — gravado no Devin CLI v3000.14 (swe-2-flash-medium)</h2>
+<h2 id="passo-a-passo-real-gravado-no-devin-cli-v3000-14-swe-2-flash-medium">Passo a passo real — gravado no Devin CLI v3000.14 (swe-2-flash-medium)<a class="hlink" href="#passo-a-passo-real-gravado-no-devin-cli-v3000-14-swe-2-flash-medium" aria-hidden="true">#</a></h2>
 <p>A doutrina executada num <code>demo-repo</code> descartável: um brief de quatro linhas — escopo + mecanismo, arquivos nomeados, linha de sucesso verificável, fronteira explícita. Uma sessão, zero esclarecimentos no meio, auto-verificado.</p>
 <p><strong>Vídeo (90 s, sem áudio):</strong> brief → edições → prompts de permissão → auto-checagem → fronteira honrada.</p>
 <p><a href="https://till3005.github.io/built-with-devin/assets/guides/talking-to-devin/walkthrough.mp4"><img alt="SWE-2 Flash Medium concluindo a tarefa — 5 testes unittest verdes, nenhum commit" src="https://till3005.github.io/built-with-devin/assets/guides/talking-to-devin/walkthrough-poster.webp" /></a></p>
@@ -86,25 +88,25 @@
 <em>5. Feito — 5 testes OK; o próprio relatório confirma a fronteira: "No commit made."</em></p>
 <p><img alt="6. Depois de /exit — a dica devin -r e o git status provando a cerca: dois arquivos modificados, nenhum commit novo" src="https://till3005.github.io/built-with-devin/assets/guides/talking-to-devin/step6-no-commit.webp" />
 <em>6. Depois de /exit — a dica <code>devin -r</code> e o <code>git status</code> provando que a cerca segurou: dois arquivos modificados, nenhum commit novo</em></p>
-<h2>Verifique</h2>
+<h2 id="verifique">Verifique<a class="hlink" href="#verifique" aria-hidden="true">#</a></h2>
 <ul>
 <li>[ ] Dada uma tarefa real do seu backlog, você escreve em menos de 10 minutos um brief com: repo/arquivos nomeados, padrão de referência, check de sucesso explícito e limite declarado.</li>
 <li>[ ] A sessão resultante termina sem uma pergunta no meio do caminho que você chamaria de óbvia.</li>
 <li>[ ] Devin verificou o próprio trabalho antes do PR — porque você pediu no brief.</li>
 </ul>
-<h2>Armadilhas</h2>
+<h2 id="armadilhas">Armadilhas<a class="hlink" href="#armadilhas" aria-hidden="true">#</a></h2>
 <ul>
 <li><strong>Prompts que codificam sua própria confusão.</strong> Se você não consegue enunciar o check de sucesso, a tarefa ainda não está pronta — co-desenvolva um PRD com Devin primeiro (o 101 endossa) em vez de esperar que ela intua o objetivo.</li>
 <li><strong>Ambição sem permissão.</strong> "Conserte o CI" de uma conta que não vê o CI produz erro confiante. O brief deve corresponder ao acesso que você realmente concedeu.</li>
 <li><strong>Revisar output, não correção.</strong> Teste verde e diff plausível são evidência de progresso, não prova de que o comportamento está certo. A camada final de verificação continua sua.</li>
 </ul>
-<h2>Cheque de conhecimento</h2>
+<h2 id="cheque-de-conhecimento">Cheque de conhecimento<a class="hlink" href="#cheque-de-conhecimento" aria-hidden="true">#</a></h2>
 <ol>
 <li><em>Por que "adicione testes unitários" perde para "adicione testes para o retry path em <code>poller.ts</code>, mockando <code>fetch</code>, cobrindo timeout e 5xx"?</em> Porque o segundo brief elimina a necessidade de o agente fazer julgamentos que você queria fazer: o que testar, quais bordas importam, o que mockar. Toda decisão não especificada é um cara-ou-coroa fora do seu controle.</li>
 <li><em>Devin abriu um PR com diff limpo e CI verde. Acabou?</em> Ainda não — CI verde significa que os checks passaram, não que a intenção foi atendida. A última camada de verificação ainda é sua; essa assimetria é o acordo (~80% de economia, correção com o humano).</li>
 <li><em>Quando instruções viram Skills?</em> Quando você se pega redigitando. A terceira ocorrência é um SKILL.md — o Guia 16 cobre formato e caminhos de descoberta.</li>
 </ol>
-<h2>Fontes</h2>
+<h2 id="fontes">Fontes<a class="hlink" href="#fontes" aria-hidden="true">#</a></h2>
 <ul>
 <li><a href="https://devin.ai/agents101">Coding Agents 101</a> — a doutrina de prompting da Cognition: say-how, ponto de partida, prompting defensivo, feedback loops, a regra dos 80%</li>
 <li><a href="https://docs.devin.ai/essential-guidelines/instructing-devin-effectively">Instructing Devin Effectively</a> — a lista oficial de do/don't e o brief de referência dissecado acima</li>
@@ -112,7 +114,7 @@
 <li>Nota de campo: todos os relatos em <a href="community-field-reports.html">community field reports</a> convergem para a mesma conclusão — briefs, não desejos</li>
 <li>Próximo: <a href="bots-101-first-bot.html">Guia 1 — Seu primeiro Bot</a> (mesma doutrina, objeto maior) · <a href="bot-outcome-prompts.html">referência de outcome prompts</a></li>
 </ul>
-<nav class="guide-pager"><a class="pg-next" href="devin-desktop.html"><span class="pg-dir">Next →</span><span class="pg-t">Guia 17 — Devin Desktop</span></a></nav>
+<nav class="guide-pager"><a class="pg-next" href="devin-desktop.html"><span class="pg-dir">Próximo →</span><span class="pg-t">Guia 17 — Devin Desktop</span></a></nav>
 </article>
 <footer><div class="wrap foot-base"><span data-i18n="foot.note">Unofficial community project — not affiliated with Cognition AI.</span><span><a href="../../index.html">built-with-devin</a> · <a href="https://github.com/Till3005/build-with-devin">build-with-devin</a></span></div></footer>
 </main>

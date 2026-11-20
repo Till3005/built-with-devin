@@ -36,13 +36,15 @@
 </div></nav>
 <main>
 <article class="guide wrap" id="guide">
-  <p class="guide-crumb"><a href="../index.html#build">← Guides</a> · <a href="zh/bots-204-reference-grounded-swarm.html">中文</a> · <a href="ja/bots-204-reference-grounded-swarm.html">日本語</a> · <a href="pt/bots-204-reference-grounded-swarm.html">Português</a></p>
+  <p class="guide-crumb"><a href="index.html">← Guides</a> · <a href="ja/bots-204-reference-grounded-swarm.html">日本語</a> · <a href="pt/bots-204-reference-grounded-swarm.html">Português</a> · <a href="zh/bots-204-reference-grounded-swarm.html">中文</a></p>
+<p class="guide-meta">Updated 2026-11-19</p>
+<details class="toc" open><summary>On this page</summary><ol><li class="d2"><a href="#the-pattern">The pattern</a></li><li class="d2"><a href="#when-to-use-it">When to use it</a></li><li class="d2"><a href="#step-1-secure-the-reference-first">Step 1 — Secure the reference first</a></li><li class="d2"><a href="#step-2-decompose-into-owned-slices">Step 2 — Decompose into owned slices</a></li><li class="d2"><a href="#step-3-humans-steer-above-the-code">Step 3 — Humans steer above the code</a></li><li class="d2"><a href="#step-4-adversarial-validation-on-top">Step 4 — Adversarial validation on top</a></li><li class="d2"><a href="#verify-it">Verify it</a></li><li class="d2"><a href="#pitfalls">Pitfalls</a></li><li class="d2"><a href="#knowledge-check">Knowledge check</a></li><li class="d2"><a href="#sources">Sources</a></li></ol></details>
 <h1>Guide 5 — Reference-grounded swarm</h1>
 <p><strong>Goal:</strong> direct a swarm of agents to write a large, <em>verifiable</em> system — where correctness is checked continuously against a trusted reference, not against vibes.
 <strong>Level:</strong> advanced
 <strong>Source deployment:</strong> Harvey's <strong>"Phil"</strong> — ~30 agents wrote a collaborative, Word-compatible editor engine in Rust + TypeScript: <strong>1M+ lines in 3 weeks, zero human engineers</strong>. Verified continuously against real Microsoft Word behavior and simulated lawyer negotiations. Humans steered through memory + decision logs, never by reading code.
 <strong>Sources:</strong> Gabe Pereyra's launch write-up (<a href="https://x.com/gabepereyra">via @gabepereyra</a>) · <a href="https://devin.ai/blog/introducing-devin-bots">launch post</a></p>
-<h2>The pattern</h2>
+<h2 id="the-pattern">The pattern<a class="hlink" href="#the-pattern" aria-hidden="true">#</a></h2>
 <p>A swarm fails when nobody can tell whether the output is right. Phil worked because every line could be checked against a <strong>reference of truth</strong>: real Microsoft Word. The agent team's job was <em>matching</em> — an objective, continuously checkable target — not <em>inventing</em>.</p>
 <pre><code class="language-text">   reference system (truth)
             ▲ compare
@@ -55,7 +57,7 @@
    humans: memory + decision logs
    (never reading the code)
 </code></pre>
-<h2>When to use it</h2>
+<h2 id="when-to-use-it">When to use it<a class="hlink" href="#when-to-use-it" aria-hidden="true">#</a></h2>
 <table>
 <thead>
 <tr>
@@ -79,20 +81,20 @@
 </tbody>
 </table>
 <p>The litmus test: <strong>can a machine decide "correct" without you?</strong> If yes, a swarm can scale; if no, use a product-owner Bot (Guide 2) instead.</p>
-<h2>Step 1 — Secure the reference first</h2>
+<h2 id="step-1-secure-the-reference-first">Step 1 — Secure the reference first<a class="hlink" href="#step-1-secure-the-reference-first" aria-hidden="true">#</a></h2>
 <p>Before any agent writes code, the check must exist:</p>
 <ul>
 <li>Harvey's reference: <strong>real Microsoft Word behavior</strong> — documents rendered in the swarm's editor had to match Word</li>
 <li>Yours might be: the legacy system still running, a conformance suite, golden files, a spec test corpus, an API contract</li>
 </ul>
 <p>Put the comparison in CI or a script the swarm runs constantly — "does output match reference" must be cheap and automatic, or agents drift between checks.</p>
-<h2>Step 2 — Decompose into owned slices</h2>
+<h2 id="step-2-decompose-into-owned-slices">Step 2 — Decompose into owned slices<a class="hlink" href="#step-2-decompose-into-owned-slices" aria-hidden="true">#</a></h2>
 <p>~30 agents didn't share one backlog — the work was sliced so each agent owned a subsystem (document model, layout engine, collab protocol, …). Structure it like Guide 4's org chart, except every "employee" is a coding session pointed at a module boundary:</p>
 <pre><code class="language-text">You own the &lt;module&gt;. Its contract is &lt;interface/reference behavior&gt;.
 Your PRs are accepted when the reference checks pass — not when the
 code looks done.
 </code></pre>
-<h2>Step 3 — Humans steer above the code</h2>
+<h2 id="step-3-humans-steer-above-the-code">Step 3 — Humans steer above the code<a class="hlink" href="#step-3-humans-steer-above-the-code" aria-hidden="true">#</a></h2>
 <p>Nobody at Harvey read the million lines. Steering happened through:</p>
 <ul>
 <li><strong>Memory</strong> — the Bot's accumulated facts about decisions made and why</li>
@@ -100,28 +102,28 @@ code looks done.
 <li><strong>Direction messages</strong> — "prioritize track-changes fidelity over performance this week"</li>
 </ul>
 <p>Your review surface is the <em>decision trail</em>, not the diff. If you find yourself reading generated code to know what's happening, ask the orchestrator for the decision log instead.</p>
-<h2>Step 4 — Adversarial validation on top</h2>
+<h2 id="step-4-adversarial-validation-on-top">Step 4 — Adversarial validation on top<a class="hlink" href="#step-4-adversarial-validation-on-top" aria-hidden="true">#</a></h2>
 <p>Harvey layered a second check: <strong>simulated lawyer negotiations</strong> — realistic use that surfaces what a conformance suite misses. Your equivalent: a scenario layer above the reference diff — real workflows, adversarial inputs, fuzzing. Reference checks catch <em>wrong</em>; scenario checks catch <em>brittle</em>.</p>
-<h2>Verify it</h2>
+<h2 id="verify-it">Verify it<a class="hlink" href="#verify-it" aria-hidden="true">#</a></h2>
 <ul>
 <li>[ ] An automated reference check exists and runs against every change</li>
 <li>[ ] Each agent's acceptance criterion is "reference passes," never "code written"</li>
 <li>[ ] You can answer "what did the swarm decide and why" from logs/memory without reading code</li>
 <li>[ ] A deliberately broken module is caught by the reference check, not by you</li>
 </ul>
-<h2>Pitfalls</h2>
+<h2 id="pitfalls">Pitfalls<a class="hlink" href="#pitfalls" aria-hidden="true">#</a></h2>
 <ul>
 <li><strong>Scaling before the oracle.</strong> A swarm without a check just produces volume — Phil worked because Word was always the judge.</li>
 <li><strong>Reviewing diffs.</strong> It doesn't scale past ~2 agents; you'll become the bottleneck and lose the swarm's speed advantage.</li>
 <li><strong>Ambiguous ownership.</strong> Two agents editing one module produce merge hell — ownership boundaries are the architecture.</li>
 </ul>
-<h2>Knowledge check</h2>
+<h2 id="knowledge-check">Knowledge check<a class="hlink" href="#knowledge-check" aria-hidden="true">#</a></h2>
 <ol>
 <li>Why did Harvey's swarm work where most multi-agent attempts collapse? <em>(A trusted external reference — real Word behavior — made correctness machine-checkable at swarm speed.)</em></li>
 <li>Why did humans steer through memory and decision logs instead of code review? <em>(1M+ LOC in 3 weeks exceeds any human read capacity; steering happens at the intent layer.)</em></li>
 <li>What's the prerequisite you'd check before attempting this pattern? <em>(Whether your domain has a reference the swarm can check itself against — if not, build the oracle first.)</em></li>
 </ol>
-<h2>Sources</h2>
+<h2 id="sources">Sources<a class="hlink" href="#sources" aria-hidden="true">#</a></h2>
 <ul>
 <li><a href="https://x.com/gabepereyra">@gabepereyra</a> — Harvey's Phil write-up: ~30 agents, 1M+ LOC, Word-reference verification, lawyer simulations</li>
 <li><a href="https://devin.ai/blog/introducing-devin-bots">Introducing Devin Bots</a></li>

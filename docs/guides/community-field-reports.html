@@ -36,15 +36,17 @@
 </div></nav>
 <main>
 <article class="guide wrap" id="guide">
-  <p class="guide-crumb"><a href="../index.html#build">← Guides</a> · <a href="zh/community-field-reports.html">中文</a> · <a href="ja/community-field-reports.html">日本語</a> · <a href="pt/community-field-reports.html">Português</a></p>
+  <p class="guide-crumb"><a href="index.html">← Guides</a> · <a href="ja/community-field-reports.html">日本語</a> · <a href="pt/community-field-reports.html">Português</a> · <a href="zh/community-field-reports.html">中文</a></p>
+<p class="guide-meta">Updated 2026-11-20</p>
+<details class="toc" open><summary>On this page</summary><ol><li class="d2"><a href="#the-pattern-that-repeats-across-every-report">The pattern that repeats across every report</a></li><li class="d2"><a href="#where-devin-won-documented">Where Devin won, documented</a></li><li class="d2"><a href="#where-it-failed-documented">Where it failed, documented</a></li><li class="d2"><a href="#named-team-deployments-community-with-numbers">Named team deployments (community, with numbers)</a></li><li class="d2"><a href="#the-distilled-lessons">The distilled lessons</a></li><li class="d2"><a href="#scott-wu-s-internal-top-5-from-the-lenny-s-interview">Scott Wu&#x27;s internal top-5 (from the Lenny&#x27;s interview)</a></li><li class="d2"><a href="#deep-dives-what-to-copy-what-to-watch">Deep dives — what to copy, what to watch</a></li><li class="d2"><a href="#verify-it">Verify it</a></li><li class="d2"><a href="#pitfalls">Pitfalls</a></li><li class="d2"><a href="#knowledge-check">Knowledge check</a></li><li class="d2"><a href="#sources">Sources</a></li></ol></details>
 <h1>Guide 14 — Community field reports</h1>
 <p><strong>Goal:</strong> what engineers who ran Devin on real work actually learned — including the failures. Distilled from published hands-on accounts, both glowing and hostile.
 <strong>Level:</strong> start here for judgment
 <strong>Sources:</strong> linked per report below</p>
 <p>This guide is deliberately balanced: where Devin reliably wins, where it burns money, and the working style that separates the two outcomes.</p>
-<h2>The pattern that repeats across every report</h2>
+<h2 id="the-pattern-that-repeats-across-every-report">The pattern that repeats across every report<a class="hlink" href="#the-pattern-that-repeats-across-every-report" aria-hidden="true">#</a></h2>
 <p>Users who get results treat Devin as an <strong>asynchronous junior engineer</strong>, not a code generator. Scott Wu (Cognition CEO) describes the internal workflow in <a href="https://www.lennysnewsletter.com/p/how-devin-replaces-your-junior-engineers">Lenny's Newsletter</a>: delegate well-scoped tasks, let them run while you do meetings, review PRs. <a href="https://every.to/chain-of-thought/coding-with-devin-my-new-ai-programming-agent">Every's account</a> lands on the same frame — it requires a <em>skill set</em>: learning what it's good at, writing tasks it understands, knowing when to step in, and learning to trust work done differently than you'd do it.</p>
-<h2>Where Devin won, documented</h2>
+<h2 id="where-devin-won-documented">Where Devin won, documented<a class="hlink" href="#where-devin-won-documented" aria-hidden="true">#</a></h2>
 <p><strong>End-to-end prototyping.</strong> From a blank repo, Devin scaffolded a FastAPI + React "City Explorer" (images/weather/news integrations), ran it locally, opened a PR, and deployed a public URL — ~90 minutes, ~2 human interventions (<a href="https://medium.com/@sambhavgaur_70582/copilot-cursor-or-devin-my-hands-on-weekend-with-ai-that-codes-and-deploys-acc708e802b3">Medium hands-on</a>). <a href="https://blog.scottlogic.com/2025/10/20/rapid-development-with-devin.html">Scott Logic</a> reports the same arc on a real client prototype — with a crucial iteration lesson below.</p>
 <p><strong>Work that needs a runtime.</strong> In a <a href="https://web.archive.org/web/20260718112612/https://mohitkhare.me/blog/devin-vs-claude-code/">head-to-head with Claude Code</a>, Devin lost on fitting-into-your-conventions tasks but won clearly where a machine helps: memory-leak hunting where it profiled, took heap snapshots under load, and produced a report — the agent's own VM is the feature.</p>
 <p><strong>Live troubleshooting.</strong> <a href="https://www.faros.ai/blog/how-to-use-devin-ai-troubleshooting">Faros</a> used Devin <em>during a customer call</em>: it read the introspection API code and generated a working <code>curl</code> in seconds — collapsing a 1–2 day follow-up loop into the call itself.</p>
@@ -53,7 +55,7 @@
 <p><strong>Beyond code.</strong> A Cognition researcher reports Devin rebuilt — and finished — a Lean formalization that had taken him much of a semester nine years earlier, in <strong>under 15 minutes</strong> (<a href="https://x.com/penlume/status/2115806616796921885">post</a>). Math formalization rewards the same trait as migrations: a machine-checkable definition of done.</p>
 <p><strong>Tedious-but-necessary cleanup.</strong> A month of hands-on use reports stale-repository cleanup and a "modernize this" legacy build environment (gulp/webpack-era → current tooling) done in about an hour — the mundane queue is where offloading pays most (<a href="https://zenn.dev/mei999/articles/7d6132f1ca36b6">report</a>, JP).</p>
 <p><strong>Wired into observability.</strong> <a href="https://medium.com/lets-code-future/how-i-turned-devin-into-a-performance-analysis-agent-with-dynatrace-mcp-753d3f4790a2">Dynatrace MCP + Devin</a> turns Devin into a performance-analysis agent: it queries live metrics and traces, then diagnoses — the MCP server carries production context the repo can't (Medium). See also <a href="https://medium.com/@winter.inc/devin-from-bug-report-to-pull-request-25-days-of-ai-day-18-b158daa20f23">Devin: from bug report to pull request</a> for the plain ticket→PR loop end-to-end.</p>
-<h2>Where it failed, documented</h2>
+<h2 id="where-it-failed-documented">Where it failed, documented<a class="hlink" href="#where-it-failed-documented" aria-hidden="true">#</a></h2>
 <ul>
 <li><strong>Vague or over-broad prompts.</strong> Scott Logic's first prompt produced an unusable scaffold; narrowing the stack and the ask ("just the models") fixed it. Devin over-builds — tell it what <em>not</em> to build.</li>
 <li><strong>Convention-fitting tasks.</strong> "Add pagination to this endpoint" came back misaligned with codebase conventions in two independent reports (<a href="https://www.amillionmonkeys.co.uk/blog/ai-coding-tools-small-studios">amillionmonkeys</a>, <a href="https://web.archive.org/web/20260718112612/https://mohitkhare.me/blog/devin-vs-claude-code/">mohitkhare</a>) — Devin builds in isolation unless you carry the conventions to it (→ Guide 9).</li>
@@ -61,7 +63,7 @@
 <li><strong>When the whole category doesn't fit.</strong> <a href="https://zenn.dev/vesslabs/articles/da9593d77369ee">vesslabs</a> ran a disciplined one-week, 10-session Pro evaluation across 3 repos and deliberately <em>didn't</em> adopt — not because Devin failed, but because the cloud-agent strengths didn't match their shape: requesters were all engineers (Slack/Jira entry points became session-tracking overhead), session sharing was redundant at 6 people, the iOS simulator can't run on a Linux sandbox, and per-part cost breakdown was missing. The right rejection is as instructive as an adoption.</li>
 <li><strong>Uncheckable work.</strong> <a href="https://expectedwrong.com/devin-appraised">expectedwrong</a> and <a href="https://dev.to/alanwest/i-gave-devin-10-real-tasks-it-completed-3-3063">alanwest's 10-task test</a> document the failure mode: confident output that's broken or absent, credit burned in loops. Their tasks skewed to work with no clear verification — the same gate the official playbook makes mandatory (Guide 11).</li>
 </ul>
-<h2>Named team deployments (community, with numbers)</h2>
+<h2 id="named-team-deployments-community-with-numbers">Named team deployments (community, with numbers)<a class="hlink" href="#named-team-deployments-community-with-numbers" aria-hidden="true">#</a></h2>
 <p>Real orgs publishing their Devin operating data — mostly from Japan's engineering community, which documents unusually well:</p>
 <table>
 <thead>
@@ -138,7 +140,7 @@
 <li>Repo onboarding is serial — one repository mid-setup blocks the next; schedule it.</li>
 <li>Their ROI split: high on PR pre-review (~1–2 ACU each via a <code>devin-review</code> label → Actions → API Playbook), scheduled library-upgrade risk assessments, and legacy work fed a <em>similar existing PR</em>; low on wide refactors and tasks too small to matter.</li>
 </ul>
-<h2>The distilled lessons</h2>
+<h2 id="the-distilled-lessons">The distilled lessons<a class="hlink" href="#the-distilled-lessons" aria-hidden="true">#</a></h2>
 <ol>
 <li><strong>Scope the slice, not the project.</strong> The successes are all bounded units; the failures are "go build/fix this broadly." (Official doctrine: Guide 13.) A community-reported sweet spot: roughly ±150–250 lines changed, 3–5 files, ~30 minutes of agent work (<a href="https://qiita.com/FAL-coffee/items/be4d59093dd2bb06fb69">FAL-coffee</a>, JP).</li>
 <li><strong>Verify or don't delegate.</strong> Give Devin work where a machine can check "done" — tests, builds, a working <code>curl</code>, a rendered page.</li>
@@ -148,31 +150,31 @@
 <li><strong>Ship evidence, not verdicts.</strong> hubble rewrote their Dependabot skill's last step from "decide whether to merge" to "assess the risk" — the agent assembles the case, the human keeps the decision.</li>
 </ol>
 <p>The constraint behind all six lessons is now measured, not folk wisdom: a <a href="https://news.ycombinator.com/item?id=50538303">Harvard study</a> (Nov 16, 459-comment HN thread) finds AI coding agents moved the engineering bottleneck to <em>code review</em> — which is why every durable pattern in this guide ends at a review gate, human or scripted, not a silent merge.</p>
-<h2>Scott Wu's internal top-5 (from the Lenny's interview)</h2>
+<h2 id="scott-wu-s-internal-top-5-from-the-lenny-s-interview">Scott Wu's internal top-5 (from the Lenny's interview)<a class="hlink" href="#scott-wu-s-internal-top-5-from-the-lenny-s-interview" aria-hidden="true">#</a></h2>
 <p>The tasks Cognition itself delegates most: <strong>frontend fixes, version upgrades, documentation, incident response, testing</strong> — plus a "first line of defense" pattern where Devin analyzes crashes before humans engage, and DeepWiki research to <em>write better prompts</em>.</p>
-<h2>Deep dives — what to copy, what to watch</h2>
+<h2 id="deep-dives-what-to-copy-what-to-watch">Deep dives — what to copy, what to watch<a class="hlink" href="#deep-dives-what-to-copy-what-to-watch" aria-hidden="true">#</a></h2>
 <p><strong>hubble's Dependabot loop.</strong> Every Dependabot PR triggers a Devin session driven by a Skill file: it reads the diff, lockfile changes, release notes and CI state, then comments a GREEN/YELLOW/RED risk label <em>plus the evidence</em> — updated libs and update type, risk class with rationale, compat findings, CI status, and what a human should still check by hand. Why it works: the Skill encodes "what risk means here" (which gems are critical, what to verify even on green CI) — tacit reviewer knowledge, now in a file the whole team can read and grow. They deliberately deleted the "decide whether to merge" step in favor of "assess the risk." Copy: write your review procedure as a Skill first — if you can't write the procedure, the automation can't run it. Watch: labels alone decay; without the reasoning comment the system teaches nothing.</p>
 <p><strong>hubble's weekly cost loop.</strong> A weekly Datadog CCM pass: Devin picks one cost-reduction candidate, digs into config and usage, and hands back a decision-ready report. The loop's product is a <em>candidate with a recommendation</em>, not a bill. Copy: "pick one candidate, dig, hand over" generalizes to any standing hygiene queue. Watch: first-party tools (AWS cost tooling) overlap — this wins when your cost data lives in Datadog and the fix needs repo context.</p>
 <p><strong>SMARTCAMP's scan→fix pipeline.</strong> Scheduled GitHub Actions pull ECS images → Trivy scan (HIGH/CRITICAL, OS packages) → file issues → Devin remediates. The details worth stealing are the hardening, not the arrow: the AWS-credentialed pull job and the unprivileged scanner job are split so only artifacts cross; they wait ~7 days after a release before trusting results (scanner databases lag fresh packages); image digests are hash-pinned with a PR check that flags stale hashes. Watch: this is defense-in-depth against the scanner itself as supply-chain surface — copying only "scan → Devin" misses the point.</p>
 <p><strong>canly's analyst deployment.</strong> Devin classified ~700 historical support tickets stuck in the "cause unidentified" bucket. Over half weren't bugs at all — and the exercise's real output was a map of what context the AI still needs (docs, DB visibility, ticket metadata), not the labels. Copy: Devin-as-analyst is a first-class use — point it at the pile nobody ever classified before buying tooling. Watch: the bottleneck is context selection, not model quality.</p>
 <p><strong>Ryan Carson's one-person fleet.</strong> Untangle's solo founder runs ~15 concurrent Devin agents on ~$20k/month — coordinated not by a dashboard but a folder system plus a paper list of P0 threads, because <em>his</em> attention, not agent throughput, is the binding constraint at that scale. Two playbooks carry the operation: "Watchdog" monitors every law-firm account so one person covers customer success, and "LAN PR" closes ~40 PRs/day — review loop, video walkthrough, auto-merge — with no QA reviewer. Copy: the scaling unit is a named playbook per surface, not more agents. Watch: he moved off local agents almost entirely — cloud agents own the long loop; the exception he keeps is Codex on tightly-scoped design-spec builds.</p>
-<h2>Verify it</h2>
+<h2 id="verify-it">Verify it<a class="hlink" href="#verify-it" aria-hidden="true">#</a></h2>
 <ul>
 <li>[ ] Pick one report closest to your own stack and re-read the original, not the distillation — does the number still hold in context?</li>
 <li>[ ] Write down the one lesson you'd bet money on reproducing in your org; if you can't name it, pick another report</li>
 </ul>
-<h2>Pitfalls</h2>
+<h2 id="pitfalls">Pitfalls<a class="hlink" href="#pitfalls" aria-hidden="true">#</a></h2>
 <ul>
 <li><strong>Survivorship bias.</strong> The glowing reports publish numbers; the quiet failures publish nothing. Read the failures in this collection as the median experience, the wins as the ceiling.</li>
 <li><strong>Cargo-culting.</strong> Scott Logic's prompt iteration worked <em>because</em> they iterated — copying their final prompt without their loop gets you their start, not their result.</li>
 </ul>
-<h2>Knowledge check</h2>
+<h2 id="knowledge-check">Knowledge check<a class="hlink" href="#knowledge-check" aria-hidden="true">#</a></h2>
 <ol>
 <li>What do the failure reports have in common that the success reports lack? <em>(Unverifiable delegation — the failures gave Devin work where nobody could check 'done'; every success defined a check.)</em></li>
 <li>Why is Faros's 'debugging on a customer call' a deployment lesson, not an anecdote? <em>(It shows the live-triage motion: the agent as first responder while the human keeps the customer relationship.)</em></li>
 <li>Why does this guide count a hostile report as a source on equal footing? <em>(Adversarial reports surface the boundary conditions — you learn the map's edges from people who walked off them.)</em></li>
 </ol>
-<h2>Sources</h2>
+<h2 id="sources">Sources<a class="hlink" href="#sources" aria-hidden="true">#</a></h2>
 <ul>
 <li><a href="https://blog.scottlogic.com/2025/10/20/rapid-development-with-devin.html">Scott Logic — Rapid development with Devin</a></li>
 <li><a href="https://www.lennysnewsletter.com/p/how-devin-replaces-your-junior-engineers">Lenny's Newsletter — Scott Wu on Cognition's internal Devin usage</a></li>

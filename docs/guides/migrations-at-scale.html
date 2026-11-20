@@ -36,12 +36,14 @@
 </div></nav>
 <main>
 <article class="guide wrap" id="guide">
-  <p class="guide-crumb"><a href="../index.html#build">← Guides</a> · <a href="zh/migrations-at-scale.html">中文</a> · <a href="ja/migrations-at-scale.html">日本語</a> · <a href="pt/migrations-at-scale.html">Português</a></p>
+  <p class="guide-crumb"><a href="index.html">← Guides</a> · <a href="ja/migrations-at-scale.html">日本語</a> · <a href="pt/migrations-at-scale.html">Português</a> · <a href="zh/migrations-at-scale.html">中文</a></p>
+<p class="guide-meta">Updated 2026-11-19</p>
+<details class="toc" open><summary>On this page</summary><ol><li class="d2"><a href="#the-official-playbook">The official playbook</a></li><li class="d2"><a href="#step-1-check-your-migration-qualifies">Step 1 — Check your migration qualifies</a></li><li class="d2"><a href="#step-2-slice">Step 2 — Slice</a></li><li class="d2"><a href="#step-3-write-the-transformation-as-a-skill">Step 3 — Write the transformation as a skill</a></li><li class="d2"><a href="#step-4-run-parallel-sessions">Step 4 — Run parallel sessions</a></li><li class="d2"><a href="#step-5-watch-the-error-rate-not-the-progress-bar">Step 5 — Watch the error rate, not the progress bar</a></li><li class="d2"><a href="#verify-it">Verify it</a></li><li class="d2"><a href="#pitfalls">Pitfalls</a></li><li class="d2"><a href="#knowledge-check">Knowledge check</a></li><li class="d2"><a href="#sources">Sources</a></li></ol></details>
 <h1>Guide 11 — Migrations at scale</h1>
 <p><strong>Goal:</strong> run a large migration (language, framework, database, dependency, architecture) as hundreds of small verified PRs instead of one heroic rewrite.
 <strong>Level:</strong> intermediate → advanced
 <strong>Sources:</strong> <a href="https://docs.devin.ai/use-cases/best-practices.html">Best Practices</a> · <a href="https://docs.devin.ai/use-cases/migration-modernization.html">Migration &amp; Modernization</a> · migration examples: <a href="https://docs.devin.ai/use-cases/examples/java-upgrades.html">Java upgrades</a>, <a href="https://docs.devin.ai/use-cases/examples/cobol-modernization.html">COBOL</a>, <a href="https://docs.devin.ai/use-cases/examples/sas-to-pyspark.html">SAS→PySpark</a>, <a href="https://docs.devin.ai/use-cases/examples/javascript-to-typescript.html">JS→TS</a>, <a href="https://docs.devin.ai/use-cases/examples/nosql-to-sql.html">NoSQL→SQL</a> · Nubank case study</p>
-<h2>The official playbook</h2>
+<h2 id="the-official-playbook">The official playbook<a class="hlink" href="#the-official-playbook" aria-hidden="true">#</a></h2>
 <p>Devin's own docs are blunt about what scales: <strong>wide &amp; shallow</strong> beats <strong>tall &amp; deep</strong>. A migration is the canonical wide-and-shallow job — the same small transformation applied to hundreds of independent units.</p>
 <pre><code class="language-text">migration ──► slice into isolated units (&lt;90 min each)
                  │
@@ -54,7 +56,7 @@
                         │
               human review → merge → repeat
 </code></pre>
-<h2>Step 1 — Check your migration qualifies</h2>
+<h2 id="step-1-check-your-migration-qualifies">Step 1 — Check your migration qualifies<a class="hlink" href="#step-1-check-your-migration-qualifies" aria-hidden="true">#</a></h2>
 <p>From the official criteria — most should hold:</p>
 <ul>
 <li>High volume of repetitive subtasks</li>
@@ -64,7 +66,7 @@
 <li>Minimal cross-slice dependencies</li>
 </ul>
 <p>Not qualifying: a full-repo rewrite where everything must land at once.</p>
-<h2>Step 2 — Slice</h2>
+<h2 id="step-2-slice">Step 2 — Slice<a class="hlink" href="#step-2-slice" aria-hidden="true">#</a></h2>
 <p>The slice is the smallest atomic unit — a file, a notebook, a module:</p>
 <table>
 <thead>
@@ -89,7 +91,7 @@
 </tbody>
 </table>
 <p>Example (official): a 50-file REST→GraphQL migration → scope it, split into conflict-free work packages, run in parallel.</p>
-<h2>Step 3 — Write the transformation as a skill</h2>
+<h2 id="step-3-write-the-transformation-as-a-skill">Step 3 — Write the transformation as a skill<a class="hlink" href="#step-3-write-the-transformation-as-a-skill" aria-hidden="true">#</a></h2>
 <p>One skill = the repeatable recipe every session runs. Official example (Java 7→8, abridged):</p>
 <pre><code class="language-text">## Procedure
 1. Verify the project is on Java 7
@@ -103,36 +105,36 @@
 9. Build and verify
 </code></pre>
 <p>Write yours with: explicit steps, an end-to-end reference (a guide or video), and <strong>multiple before/after code examples</strong> — input/output pairs are the highest-quality signal you can give.</p>
-<h2>Step 4 — Run parallel sessions</h2>
+<h2 id="step-4-run-parallel-sessions">Step 4 — Run parallel sessions<a class="hlink" href="#step-4-run-parallel-sessions" aria-hidden="true">#</a></h2>
 <p>With the skill fixed, fan slices out across sessions — the <a href="https://docs.devin.ai">API</a> or a Bot's child sessions (Guide 4). Every slice → one session → one PR. Human review gates the merge into <code>main</code>.</p>
 <p>At scale the numbers compound: Nubank's multi-million-line ETL migration ran this loop to 8–12× efficiency — and a fine-tuned Devin cut per-task time ~40 → ~10 minutes.</p>
-<h2>Step 5 — Watch the error rate, not the progress bar</h2>
+<h2 id="step-5-watch-the-error-rate-not-the-progress-bar">Step 5 — Watch the error rate, not the progress bar<a class="hlink" href="#step-5-watch-the-error-rate-not-the-progress-bar" aria-hidden="true">#</a></h2>
 <p>Small error rates compound across thousands of slices. Operate on a dashboard, not vibes:</p>
 <ul>
 <li>Track slice pass rate on first try — the skill is your fix point, not the sessions</li>
 <li>Failed slices feed back into the skill (the docs' own loop: <em>"feed session links into Devin to patch the gaps"</em>)</li>
 <li>Merge order is free because slices are isolated — exploit it</li>
 </ul>
-<h2>Verify it</h2>
+<h2 id="verify-it">Verify it<a class="hlink" href="#verify-it" aria-hidden="true">#</a></h2>
 <ul>
 <li>[ ] Every slice finishes under ~90 min and merges independently</li>
 <li>[ ] A slice failing verification produces a fix or a flagged ticket — never a silent merge</li>
 <li>[ ] The skill improved measurably over the first 20 slices (fewer human corrections per slice)</li>
 <li>[ ] Progress is countable: N/M slices migrated, pass rate visible</li>
 </ul>
-<h2>Pitfalls</h2>
+<h2 id="pitfalls">Pitfalls<a class="hlink" href="#pitfalls" aria-hidden="true">#</a></h2>
 <ul>
 <li><strong>Unsliced migrations.</strong> "Migrate the whole repo" is the official anti-pattern — no isolation, no parallelism, no per-unit verification.</li>
 <li><strong>No before/after examples.</strong> The skill without examples produces a different style per session.</li>
 <li><strong>Skipping human review.</strong> Parallel ≠ unattended — each slice still gets reviewed before <code>main</code>.</li>
 </ul>
-<h2>Knowledge check</h2>
+<h2 id="knowledge-check">Knowledge check<a class="hlink" href="#knowledge-check" aria-hidden="true">#</a></h2>
 <ol>
 <li>Why 'wide and shallow' slices instead of 'deep and complete' ones? <em>(Each slice must land green — a 90-minute verified PR compounds; a 3-day mega-branch rots against main.)</em></li>
 <li>Why does every slice need its own verification? <em>(Without per-slice proof, a 500-PR migration is 500 unverified diffs — the failure surface multiplies instead of dividing.)</em></li>
 <li>Nubank reported 8–12× efficiency — what made that figure credible rather than marketing? <em>(Published methodology: measured stage times before/after on real ETL pipelines, not a projection.)</em></li>
 </ol>
-<h2>Sources</h2>
+<h2 id="sources">Sources<a class="hlink" href="#sources" aria-hidden="true">#</a></h2>
 <ul>
 <li><a href="https://docs.devin.ai/use-cases/best-practices.html">Best Practices — docs.devin.ai</a></li>
 <li><a href="https://docs.devin.ai/use-cases/migration-modernization.html">Migration &amp; Modernization + 5 example playbooks</a></li>

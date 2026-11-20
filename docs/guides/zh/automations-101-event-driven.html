@@ -4,13 +4,13 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>指南 6 — 事件驱动的 Automations — build-with-devin guides</title>
-<meta name="description" content="指南 6 — 事件驱动的 Automations">
+<meta name="description" content="把外部事件——Slack、Teams、GitHub、Linear、Jira、PagerDuty、cron、webhook——接到会自己启动的 Devin 会话上。">
 <link rel="icon" href="../../assets/brand/Devin_Symbol.svg" type="image/svg+xml">
 <link rel="stylesheet" href="../../assets/site.css">
 <link rel="stylesheet" href="../../assets/guides.css">
 
 <meta property="og:title" content="指南 6 — 事件驱动的 Automations">
-<meta property="og:description" content="指南 6 — 事件驱动的 Automations">
+<meta property="og:description" content="把外部事件——Slack、Teams、GitHub、Linear、Jira、PagerDuty、cron、webhook——接到会自己启动的 Devin 会话上。">
 <meta property="og:type" content="article">
 <meta property="og:url" content="https://till3005.github.io/built-with-devin/guides/zh/automations-101-event-driven.html">
 <meta property="og:image" content="https://till3005.github.io/built-with-devin/assets/img/og-build.png?v=3">
@@ -36,12 +36,14 @@
 </div></nav>
 <main>
 <article class="guide wrap" id="guide">
-  <p class="guide-crumb"><a href="../../index.html#build">← Guides</a> · <a href="../automations-101-event-driven.html">English</a> · <a href="../ja/automations-101-event-driven.html">日本語</a> · <a href="../pt/automations-101-event-driven.html">Português</a></p>
+  <p class="guide-crumb"><a href="index.html">← 指南</a> · <a href="../automations-101-event-driven.html">English</a> · <a href="../ja/automations-101-event-driven.html">日本語</a> · <a href="../pt/automations-101-event-driven.html">Português</a></p>
+<p class="guide-meta">更新于 2026-11-20</p>
+<details class="toc" open><summary>本页目录</summary><ol><li class="d2"><a href="#解剖">解剖</a></li><li class="d2"><a href="#触发器目录">触发器目录</a></li><li class="d2"><a href="#配方-1-任意-issue-上-devin">配方 1 — 任意 issue 上 /devin</a></li><li class="d2"><a href="#配方-2-ci-失败自修复">配方 2 — CI 失败自修复</a></li><li class="d2"><a href="#配方-3-定时清扫">配方 3 — 定时清扫</a></li><li class="d2"><a href="#动作类型怎么选">动作类型怎么选</a></li><li class="d2"><a href="#动手建">动手建</a></li><li class="d2"><a href="#实录演示-真建-真触发-真验证一个-automation-录于-devin-desktop-v3-14-pro-方案">实录演示 —— 真建、真触发、真验证一个 automation，录于 Devin Desktop v3.14（Pro 方案）</a></li><li class="d2"><a href="#verify-it">Verify it</a></li><li class="d2"><a href="#自检">自检</a></li><li class="d2"><a href="#常见陷阱">常见陷阱</a></li><li class="d2"><a href="#sources">Sources</a></li></ol></details>
 <h1>指南 6 — 事件驱动的 Automations</h1>
 <p><strong>目标：</strong> 把外部事件——Slack、Teams、GitHub、Linear、Jira、PagerDuty、cron、webhook——接到会自己启动的 Devin 会话上。
 <strong>级别：</strong> 入门（平台篇）· <strong>用时：</strong> ~20 分钟
 <strong>来源：</strong> <a href="https://docs.devin.ai/product-guides/automations">Automations docs</a> · <a href="https://www.youtube.com/watch?v=6xxKtIpgOyE">官方视频演示</a></p>
-<h2>解剖</h2>
+<h2 id="解剖">解剖<a class="hlink" href="#解剖" aria-hidden="true">#</a></h2>
 <p>每个 automation 都是四个部分：</p>
 <table>
 <thead>
@@ -69,7 +71,7 @@
 </tr>
 </tbody>
 </table>
-<h2>触发器目录</h2>
+<h2 id="触发器目录">触发器目录<a class="hlink" href="#触发器目录" aria-hidden="true">#</a></h2>
 <table>
 <thead>
 <tr>
@@ -132,14 +134,14 @@
 </tbody>
 </table>
 <p>一个 automation 上的多个触发器按 OR 生效——例如 GitHub CI 失败<em>或</em> Slack reaction 任一即触发。</p>
-<h2>配方 1 — 任意 issue 上 <code>/devin</code></h2>
+<h2 id="配方-1-任意-issue-上-devin">配方 1 — 任意 issue 上 <code>/devin</code><a class="hlink" href="#配方-1-任意-issue-上-devin" aria-hidden="true">#</a></h2>
 <p>野外部署最多的触发器：</p>
 <pre><code class="language-text">Trigger:   GitHub → issue comment, repo = your/repo
 Condition: comment body starts with &quot;/devin&quot;
 Action:    Start session — prompt includes the event payload
 </code></pre>
 <p>效果：团队任何人在 issue 评论 <code>/devin investigate this</code>，会话就带着完整 thread 上下文接单。</p>
-<h2>配方 2 — CI 失败自修复</h2>
+<h2 id="配方-2-ci-失败自修复">配方 2 — CI 失败自修复<a class="hlink" href="#配方-2-ci-失败自修复" aria-hidden="true">#</a></h2>
 <pre><code class="language-text">Trigger:   GitHub → check run, repo = your/repo
 Condition: conclusion = failure
 Action:    Start session: &quot;CI check &lt;name&gt; failed on this commit.
@@ -147,14 +149,14 @@ Action:    Start session: &quot;CI check &lt;name&gt; failed on this commit.
             the same branch.&quot;
 </code></pre>
 <p>事件载荷把失败的 check + commit 带进会话——零人工复制粘贴。</p>
-<h2>配方 3 — 定时清扫</h2>
+<h2 id="配方-3-定时清扫">配方 3 — 定时清扫<a class="hlink" href="#配方-3-定时清扫" aria-hidden="true">#</a></h2>
 <pre><code class="language-text">Trigger:   Schedule → daily 09:00
 Action:    Start session: &quot;Sweep yesterday's Sentry issues in
             &lt;project&gt;. File the top 3 by impact as tickets and
             start the most actionable one.&quot;
 </code></pre>
 <p>每日卫生循环（Sentry 清扫、依赖更新、冒烟测试）是 ROI 最高的 automation——它们把"该有人看看"变成"已经看了"。</p>
-<h2>动作类型怎么选</h2>
+<h2 id="动作类型怎么选">动作类型怎么选<a class="hlink" href="#动作类型怎么选" aria-hidden="true">#</a></h2>
 <table>
 <thead>
 <tr>
@@ -182,7 +184,7 @@ Action:    Start session: &quot;Sweep yesterday's Sentry issues in
 </tbody>
 </table>
 <p><strong>Automation vs Bot：</strong> automation 是哑管道——事件进、会话出。Bot 在同一批触发器外加记忆、判断和跨会话规划。先用 automation；当工作需要跟进到底时再升级成 Bot（第 2–5 篇）。</p>
-<h2>动手建</h2>
+<h2 id="动手建">动手建<a class="hlink" href="#动手建" aria-hidden="true">#</a></h2>
 <p>Automations 页面右上 <strong>Create automation</strong> 下拉里有四条创建路径：</p>
 <ol>
 <li><strong>Create manually</strong> —— 空白编辑器：选 trigger → conditions → action</li>
@@ -198,7 +200,7 @@ Action:    Start session: &quot;Sweep yesterday's Sentry issues in
 <li>automation 多了用 <strong>Terraform provider</strong> 声明式管理</li>
 <li>v3 的会话创建 API 接受 <code>memory_enabled: false</code>——派生会话（及其子会话）全程不开记忆，适合不希望跨运行携带学习上下文的 automation</li>
 </ul>
-<h2>实录演示 —— 真建、真触发、真验证一个 automation，录于 Devin Desktop v3.14（Pro 方案）</h2>
+<h2 id="实录演示-真建-真触发-真验证一个-automation-录于-devin-desktop-v3-14-pro-方案">实录演示 —— 真建、真触发、真验证一个 automation，录于 Devin Desktop v3.14（Pro 方案）<a class="hlink" href="#实录演示-真建-真触发-真验证一个-automation-录于-devin-desktop-v3-14-pro-方案" aria-hidden="true">#</a></h2>
 <p>走 <em>Create with Devin</em> 路径端到端：用大白话描述一个每周 changelog 清扫 → 回答它的配置问题 → 批准生成的 automation → 手动触发 → 看着一份真报告落地。</p>
 <p><strong>视频（5 分钟，无声，4 倍速）：</strong> Automations 页 → 生成会话 → 批准卡片 → 手动触发 → 报告。</p>
 <p><a href="https://till3005.github.io/built-with-devin/assets/guides/automations-101-event-driven/walkthrough.mp4"><img alt="生成会话的选项卡——它已经知道你账号里现有的 automation" src="https://till3005.github.io/built-with-devin/assets/guides/automations-101-event-driven/walkthrough-poster.webp" /></a></p>
@@ -218,31 +220,31 @@ Action:    Start session: &quot;Sweep yesterday's Sentry issues in
 <em>7. 一次如实的磕绊——子会话走 git 代理 clone 两次 403；修法是把 github.com 加进网络白名单 + 匿名 clone 兑底——automation 拉起的会话不会自动继承你本机 shell 的 git 权限</em></p>
 <p><img alt="8. 验证过的产出——一份真把本周 103 个 commit 分类的 changelog，以附件交付" src="https://till3005.github.io/built-with-devin/assets/guides/automations-101-event-driven/step8-report.webp" />
 <em>8. 验证过的产出——一份真把本周 103 个 commit 分类的 changelog，以 artifact 交付</em></p>
-<h2>Verify it</h2>
+<h2 id="verify-it">Verify it<a class="hlink" href="#verify-it" aria-hidden="true">#</a></h2>
 <ul>
 <li>[ ] 手动触发一次（评论 <code>/devin test</code> 或推一个失败 commit），看到会话带着事件载荷启动</li>
 <li>[ ] 不匹配的事件（错 label、错频道）什么都不发生</li>
 <li>[ ] 动作产出落在你预期的位置（PR、Slack thread、工单）</li>
 </ul>
-<h2>自检</h2>
+<h2 id="自检">自检<a class="hlink" href="#自检" aria-hidden="true">#</a></h2>
 <ol>
 <li>同事想让 Devin「盯所有 GitHub 通知」——你先让他收窄什么？<em>（哪种事件子类型才代表可操作的工作——打了某个 label、被请求 review——而不是所有通知。）</em></li>
 <li>为什么不匹配的事件应该直接不产出会话，而不是让会话自己判断后跳过？<em>（会话要烧 ACU；上游拦截免费，会话内拦截不免费。）</em></li>
 <li>什么情况下 automation 应该升级成 Bot？<em>（触发的工作需要随时间积累的判断力——记忆、优先级、一个持续的目标。）</em></li>
 </ol>
-<h2>常见陷阱</h2>
+<h2 id="常见陷阱">常见陷阱<a class="hlink" href="#常见陷阱" aria-hidden="true">#</a></h2>
 <ul>
 <li><strong>死循环。</strong> 产出物会再次触发自身的 automation（Devin 在 PR 上评论、触发器监听「新评论」）会无限烧会话。按作者、label 或事件子类型拦截。</li>
 <li><strong>触发风暴。</strong> 按 commit 触发而非按 PR 触发的 webhook，在繁忙日可能一次性拉起 50 个会话。节流：一个 automation 对应一个<em>可认领的工作单元</em>，而不是每个原始事件。</li>
 <li><strong>没有审批门。</strong> 触发即自动合并/自动部署等于跳过人工控制点——除非你测量过理由充分，否则保持「会话开 PR、人来合并」。</li>
 </ul>
-<h2>Sources</h2>
+<h2 id="sources">Sources<a class="hlink" href="#sources" aria-hidden="true">#</a></h2>
 <ul>
 <li><a href="https://docs.devin.ai/product-guides/automations">Automations — docs</a></li>
 <li><a href="https://www.youtube.com/watch?v=6xxKtIpgOyE">Devin Automations QuickStart (video)</a></li>
 <li>相关：<a href="bots-202-scheduled-sentinel.html">第 3 篇 — 定时哨兵 Bot</a>（在 cron 之上加 Bot 判断）</li>
 </ul>
-<nav class="guide-pager"><a class="pg-prev" href="bot-outcome-prompts.html"><span class="pg-dir">← Previous</span><span class="pg-t">Bot outcome prompts，逐句拆解</span></a><a class="pg-next" href="playbooks-and-knowledge.html"><span class="pg-dir">Next →</span><span class="pg-t">指南 9 — Playbooks 与知识层：把组织约定写成代码</span></a></nav>
+<nav class="guide-pager"><a class="pg-prev" href="bot-outcome-prompts.html"><span class="pg-dir">← 上一篇</span><span class="pg-t">Bot outcome prompts，逐句拆解</span></a><a class="pg-next" href="playbooks-and-knowledge.html"><span class="pg-dir">下一篇 →</span><span class="pg-t">指南 9 — Playbooks 与知识层：把组织约定写成代码</span></a></nav>
 </article>
 <footer><div class="wrap foot-base"><span data-i18n="foot.note">Unofficial community project — not affiliated with Cognition AI.</span><span><a href="../../index.html">built-with-devin</a> · <a href="https://github.com/Till3005/build-with-devin">build-with-devin</a></span></div></footer>
 </main>

@@ -4,13 +4,13 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>指南 13 — 官方用例食谱 — build-with-devin guides</title>
-<meta name="description" content="指南 13 — 官方用例食谱">
+<meta name="description" content="Cognition 官方文档里已验证的用法模式，整理成食谱——什么活该切给 Devin，以及 40+ 个带可复制 prompt 的文档化配方。">
 <link rel="icon" href="../../assets/brand/Devin_Symbol.svg" type="image/svg+xml">
 <link rel="stylesheet" href="../../assets/site.css">
 <link rel="stylesheet" href="../../assets/guides.css">
 
 <meta property="og:title" content="指南 13 — 官方用例食谱">
-<meta property="og:description" content="指南 13 — 官方用例食谱">
+<meta property="og:description" content="Cognition 官方文档里已验证的用法模式，整理成食谱——什么活该切给 Devin，以及 40+ 个带可复制 prompt 的文档化配方。">
 <meta property="og:type" content="article">
 <meta property="og:url" content="https://till3005.github.io/built-with-devin/guides/zh/official-cookbook.html">
 <meta property="og:image" content="https://till3005.github.io/built-with-devin/assets/img/og-build.png?v=3">
@@ -36,12 +36,14 @@
 </div></nav>
 <main>
 <article class="guide wrap" id="guide">
-  <p class="guide-crumb"><a href="../../index.html#build">← Guides</a> · <a href="../official-cookbook.html">English</a> · <a href="../ja/official-cookbook.html">日本語</a> · <a href="../pt/official-cookbook.html">Português</a></p>
+  <p class="guide-crumb"><a href="index.html">← 指南</a> · <a href="../official-cookbook.html">English</a> · <a href="../ja/official-cookbook.html">日本語</a> · <a href="../pt/official-cookbook.html">Português</a></p>
+<p class="guide-meta">更新于 2026-11-19</p>
+<details class="toc" open><summary>本页目录</summary><ol><li class="d2"><a href="#统领一切的那条规则">统领一切的那条规则</a></li><li class="d2"><a href="#食谱目录">食谱目录</a></li><li class="d3"><a href="#事故与生产健康">事故与生产健康</a></li><li class="d3"><a href="#定时卫生-文档里-roi-最高的一页">定时卫生（文档里 ROI 最高的一页）</a></li><li class="d3"><a href="#代码质量">代码质量</a></li><li class="d3"><a href="#迁移与功能开发">迁移与功能开发</a></li><li class="d3"><a href="#项目管理与数据">项目管理与数据</a></li><li class="d3"><a href="#让-devin-自己变更好-devin-optimization">让 Devin 自己变更好（&quot;Devin Optimization&quot;）</a></li><li class="d2"><a href="#怎么用这本食谱">怎么用这本食谱</a></li><li class="d2"><a href="#实录演示-一条食谱真跑一遍-录于-devin-cli-v3000-14-swe-2-flash-medium">实录演示 —— 一条食谱真跑一遍，录于 Devin CLI v3000.14（swe-2-flash-medium）</a></li><li class="d2"><a href="#验证">验证</a></li><li class="d2"><a href="#常见陷阱">常见陷阱</a></li><li class="d2"><a href="#自检">自检</a></li><li class="d2"><a href="#sources">Sources</a></li></ol></details>
 <h1>指南 13 — 官方用例食谱</h1>
 <p><strong>目标：</strong> Cognition 官方文档里已验证的用法模式，整理成食谱——什么活该切给 Devin，以及 40+ 个带可复制 prompt 的文档化配方。
 <strong>级别：</strong> 入门（广度篇）
 <strong>来源：</strong> <a href="https://docs.devin.ai/use-cases/best-practices.html">Best Practices</a> · <a href="https://docs.devin.ai/use-cases/gallery/index.html">Use-case gallery</a> · <a href="https://docs.devin.ai/use-cases/index.html">use-case tutorials</a></p>
-<h2>统领一切的那条规则</h2>
+<h2 id="统领一切的那条规则">统领一切的那条规则<a class="hlink" href="#统领一切的那条规则" aria-hidden="true">#</a></h2>
 <p>官方指导，原话逻辑：挑 <strong>wide &amp; shallow</strong>（宽而浅）的活——一大池简单、可水平扩展的任务永远胜过复杂的全新构建。</p>
 <table>
 <thead>
@@ -70,9 +72,9 @@
 </tbody>
 </table>
 <p>文档点名的四种最佳切片形态：<strong>迁移、重构、现代化、技术债积压。</strong></p>
-<h2>食谱目录</h2>
+<h2 id="食谱目录">食谱目录<a class="hlink" href="#食谱目录" aria-hidden="true">#</a></h2>
 <p>以下全部是官方 gallery 里的文档化用例——每个都带可复制 prompt。按"它从人一周里拿走什么活"组织。</p>
-<h3>事故与生产健康</h3>
+<h3 id="事故与生产健康">事故与生产健康<a class="hlink" href="#事故与生产健康" aria-hidden="true">#</a></h3>
 <table>
 <thead>
 <tr>
@@ -99,7 +101,7 @@
 </tr>
 </tbody>
 </table>
-<h3>定时卫生（文档里 ROI 最高的一页）</h3>
+<h3 id="定时卫生-文档里-roi-最高的一页">定时卫生（文档里 ROI 最高的一页）<a class="hlink" href="#定时卫生-文档里-roi-最高的一页" aria-hidden="true">#</a></h3>
 <table>
 <thead>
 <tr>
@@ -142,7 +144,7 @@
 </tr>
 </tbody>
 </table>
-<h3>代码质量</h3>
+<h3 id="代码质量">代码质量<a class="hlink" href="#代码质量" aria-hidden="true">#</a></h3>
 <table>
 <thead>
 <tr>
@@ -181,7 +183,7 @@
 </tr>
 </tbody>
 </table>
-<h3>迁移与功能开发</h3>
+<h3 id="迁移与功能开发">迁移与功能开发<a class="hlink" href="#迁移与功能开发" aria-hidden="true">#</a></h3>
 <table>
 <thead>
 <tr>
@@ -220,7 +222,7 @@
 </tr>
 </tbody>
 </table>
-<h3>项目管理与数据</h3>
+<h3 id="项目管理与数据">项目管理与数据<a class="hlink" href="#项目管理与数据" aria-hidden="true">#</a></h3>
 <table>
 <thead>
 <tr>
@@ -251,7 +253,7 @@
 </tr>
 </tbody>
 </table>
-<h3>让 Devin 自己变更好（"Devin Optimization"）</h3>
+<h3 id="让-devin-自己变更好-devin-optimization">让 Devin 自己变更好（"Devin Optimization"）<a class="hlink" href="#让-devin-自己变更好-devin-optimization" aria-hidden="true">#</a></h3>
 <table>
 <thead>
 <tr>
@@ -290,13 +292,13 @@
 </tr>
 </tbody>
 </table>
-<h2>怎么用这本食谱</h2>
+<h2 id="怎么用这本食谱">怎么用这本食谱<a class="hlink" href="#怎么用这本食谱" aria-hidden="true">#</a></h2>
 <ol>
 <li>从<strong>定时卫生</strong>挑一个——最便宜的首胜（一个你不用再过脑的每晚/每周循环）</li>
 <li>有 PagerDuty/Datadog/Sentry 就加一个<strong>事故</strong>配方</li>
 <li>某个配方起效后，冻结成 <strong>skill</strong>（第 12 篇）或 <strong>Bot</strong>（第 1–5 篇）——上表每一行都能以这两种形态存续</li>
 </ol>
-<h2>实录演示 —— 一条食谱真跑一遍，录于 Devin CLI v3000.14（swe-2-flash-medium）</h2>
+<h2 id="实录演示-一条食谱真跑一遍-录于-devin-cli-v3000-14-swe-2-flash-medium">实录演示 —— 一条食谱真跑一遍，录于 Devin CLI v3000.14（swe-2-flash-medium）<a class="hlink" href="#实录演示-一条食谱真跑一遍-录于-devin-cli-v3000-14-swe-2-flash-medium" aria-hidden="true">#</a></h2>
 <p>拿「代码质量」栏里的 <strong>Raise code coverage</strong> 食谱端到端跑了一遍：一个小仓库里放着故意少测的 <code>orders.py</code>（折扣码、运费档位、边界条件）。prompt 只有一行，剩下的全交给 Devin。</p>
 <p><strong>视频（74 秒，无声）：</strong> 食谱 prompt → 读文件 → 写测试 → 命令审批 → 全绿。</p>
 <p><a href="https://till3005.github.io/built-with-devin/assets/guides/official-cookbook/walkthrough.mp4"><img alt="Devin 在写缺失的测试用例——test_orders.py 的 diff，下方是权限菜单" src="https://till3005.github.io/built-with-devin/assets/guides/official-cookbook/walkthrough-poster.webp" /></a></p>
@@ -312,30 +314,30 @@
 <em>5. 11 个测试全过——每个原先未测的分支都被点名；orders.py 未动、零提交</em></p>
 <p><img alt="6. /exit 后验证——16 个测试全绿，改动停在工作区未提交" src="https://till3005.github.io/built-with-devin/assets/guides/official-cookbook/step5-verify-exit.webp" />
 <em>6. /exit 后验证——<code>Ran 16 tests ... OK</code>，改动按指令未提交</em></p>
-<h2>验证</h2>
+<h2 id="验证">验证<a class="hlink" href="#验证" aria-hidden="true">#</a></h2>
 <ul>
 <li>[ ] 有一个卫生循环 recipe 在按计划运行，并产出了第一个 PR/报告</li>
 <li>[ ] 它的产出物已固化成 skill、playbook 或 Bot——不活在某个人的脑子里</li>
 </ul>
-<h2>常见陷阱</h2>
+<h2 id="常见陷阱">常见陷阱<a class="hlink" href="#常见陷阱" aria-hidden="true">#</a></h2>
 <ul>
 <li><strong>十个 recipe，零个固化。</strong> 停留为手动 prompt 的 recipe 到周五就被遗忘——要么固化要么扔掉。</li>
 <li><strong>复制 prompt 却没换验证。</strong> gallery 的 prompt 默认你有测试套件；要改的是<em>检查</em>，不只是任务。</li>
 </ul>
-<h2>自检</h2>
+<h2 id="自检">自检<a class="hlink" href="#自检" aria-hidden="true">#</a></h2>
 <ol>
 <li>为什么先从定时卫生循环入手而不是事故响应？<em>（最便宜的胜利——睡觉时也在跑，错误的深夜 lint 修复可恢复，错误的事故操作不可恢复。）</em></li>
 <li>「把 recipe 固化成 skill 或 Bot」实际防止了什么？<em>（prompt 漂移和单人依赖——写出它的人走了，recipe 还活着。）</em></li>
 <li>为什么先改 gallery prompt 的验证部分再改任务部分？<em>（任务描述意图；检查才是你的仓库真正能证明的东西——错检查产出自信的垃圾。）</em></li>
 </ol>
-<h2>Sources</h2>
+<h2 id="sources">Sources<a class="hlink" href="#sources" aria-hidden="true">#</a></h2>
 <ul>
 <li><a href="https://docs.devin.ai/use-cases/gallery/index.html">Use-case gallery</a> — 以上全部配方，每个带可复制 prompt</li>
 <li><a href="https://docs.devin.ai/use-cases/best-practices.html">Best Practices</a> — 切片教条</li>
 <li><a href="https://docs.devin.ai/use-cases/index.html">Use-case tutorials</a> — API 集成、覆盖率、容器化、前端组件、MCP</li>
 <li>相关：<a href="migrations-at-scale.html">第 11 篇 — 规模化迁移</a> · <a href="automations-101-event-driven.html">第 6 篇 — Automations</a></li>
 </ul>
-<nav class="guide-pager"><a class="pg-prev" href="bots-101-first-bot.html"><span class="pg-dir">← Previous</span><span class="pg-t">指南 1 — 你的第一个 Bot</span></a><a class="pg-next" href="bot-outcome-prompts.html"><span class="pg-dir">Next →</span><span class="pg-t">Bot outcome prompts，逐句拆解</span></a></nav>
+<nav class="guide-pager"><a class="pg-prev" href="bots-101-first-bot.html"><span class="pg-dir">← 上一篇</span><span class="pg-t">指南 1 — 你的第一个 Bot</span></a><a class="pg-next" href="bot-outcome-prompts.html"><span class="pg-dir">下一篇 →</span><span class="pg-t">Bot outcome prompts，逐句拆解</span></a></nav>
 </article>
 <footer><div class="wrap foot-base"><span data-i18n="foot.note">Unofficial community project — not affiliated with Cognition AI.</span><span><a href="../../index.html">built-with-devin</a> · <a href="https://github.com/Till3005/build-with-devin">build-with-devin</a></span></div></footer>
 </main>

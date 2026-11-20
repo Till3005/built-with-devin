@@ -4,13 +4,13 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Guia 11 — Migrações em escala — build-with-devin guides</title>
-<meta name="description" content="Guia 11 — Migrações em escala">
+<meta name="description" content="rodar uma migração grande linguagem, framework, banco de dados, dependência, arquitetura como centenas de PRs pequenos verificados em vez de uma reescrita heroi">
 <link rel="icon" href="../../assets/brand/Devin_Symbol.svg" type="image/svg+xml">
 <link rel="stylesheet" href="../../assets/site.css">
 <link rel="stylesheet" href="../../assets/guides.css">
 
 <meta property="og:title" content="Guia 11 — Migrações em escala">
-<meta property="og:description" content="Guia 11 — Migrações em escala">
+<meta property="og:description" content="rodar uma migração grande linguagem, framework, banco de dados, dependência, arquitetura como centenas de PRs pequenos verificados em vez de uma reescrita heroi">
 <meta property="og:type" content="article">
 <meta property="og:url" content="https://till3005.github.io/built-with-devin/guides/pt/migrations-at-scale.html">
 <meta property="og:image" content="https://till3005.github.io/built-with-devin/assets/img/og-build.png?v=3">
@@ -36,12 +36,14 @@
 </div></nav>
 <main>
 <article class="guide wrap" id="guide">
-  <p class="guide-crumb"><a href="../../index.html#build">← Guides</a> · <a href="../migrations-at-scale.html">English</a> · <a href="../zh/migrations-at-scale.html">中文</a> · <a href="../ja/migrations-at-scale.html">日本語</a></p>
+  <p class="guide-crumb"><a href="index.html">← Guias</a> · <a href="../migrations-at-scale.html">English</a> · <a href="../ja/migrations-at-scale.html">日本語</a> · <a href="../zh/migrations-at-scale.html">中文</a></p>
+<p class="guide-meta">Atualizado 2026-11-19</p>
+<details class="toc" open><summary>Nesta página</summary><ol><li class="d2"><a href="#o-playbook-oficial">O playbook oficial</a></li><li class="d2"><a href="#passo-1-verifique-se-sua-migração-se-qualifica">Passo 1 — Verifique se sua migração se qualifica</a></li><li class="d2"><a href="#passo-2-fatie">Passo 2 — Fatie</a></li><li class="d2"><a href="#passo-3-escreva-a-transformação-como-um-skill">Passo 3 — Escreva a transformação como um skill</a></li><li class="d2"><a href="#passo-4-rode-sessões-paralelas">Passo 4 — Rode sessões paralelas</a></li><li class="d2"><a href="#passo-5-vigie-a-taxa-de-erro-não-a-barra-de-progresso">Passo 5 — Vigie a taxa de erro, não a barra de progresso</a></li><li class="d2"><a href="#checklist-de-verificação">Checklist de verificação</a></li><li class="d2"><a href="#armadilhas">Armadilhas</a></li><li class="d2"><a href="#teste-de-conhecimento">Teste de conhecimento</a></li><li class="d2"><a href="#fontes">Fontes</a></li></ol></details>
 <h1>Guia 11 — Migrações em escala</h1>
 <p><strong>Objetivo:</strong> rodar uma migração grande (linguagem, framework, banco de dados, dependência, arquitetura) como centenas de PRs pequenos verificados em vez de uma reescrita heroica.
 <strong>Nível:</strong> intermediário → avançado
 <strong>Fontes:</strong> <a href="https://docs.devin.ai/use-cases/best-practices.html">Best Practices</a> · <a href="https://docs.devin.ai/use-cases/migration-modernization.html">Migration &amp; Modernization</a> · exemplos de migração: <a href="https://docs.devin.ai/use-cases/examples/java-upgrades.html">Java upgrades</a>, <a href="https://docs.devin.ai/use-cases/examples/cobol-modernization.html">COBOL</a>, <a href="https://docs.devin.ai/use-cases/examples/sas-to-pyspark.html">SAS→PySpark</a>, <a href="https://docs.devin.ai/use-cases/examples/javascript-to-typescript.html">JS→TS</a>, <a href="https://docs.devin.ai/use-cases/examples/nosql-to-sql.html">NoSQL→SQL</a> · caso Nubank</p>
-<h2>O playbook oficial</h2>
+<h2 id="o-playbook-oficial">O playbook oficial<a class="hlink" href="#o-playbook-oficial" aria-hidden="true">#</a></h2>
 <p>Os docs do próprio Devin são diretos sobre o que escala: <strong>wide &amp; shallow</strong> vence <strong>tall &amp; deep</strong>. Uma migração é o trabalho wide-and-shallow canônico — a mesma pequena transformação aplicada a centenas de unidades independentes.</p>
 <pre><code class="language-text">migração ──► fatiar em unidades isoladas (&lt;90 min cada)
                     │
@@ -54,7 +56,7 @@
                            │
                  revisão humana → merge → repete
 </code></pre>
-<h2>Passo 1 — Verifique se sua migração se qualifica</h2>
+<h2 id="passo-1-verifique-se-sua-migração-se-qualifica">Passo 1 — Verifique se sua migração se qualifica<a class="hlink" href="#passo-1-verifique-se-sua-migração-se-qualifica" aria-hidden="true">#</a></h2>
 <p>Dos critérios oficiais — a maioria deve valer:</p>
 <ul>
 <li>Alto volume de subtarefas repetitivas</li>
@@ -64,7 +66,7 @@
 <li>Dependências mínimas entre fatias</li>
 </ul>
 <p>Não se qualifica: uma reescrita de repo inteiro onde tudo precisa aterrissar de uma vez.</p>
-<h2>Passo 2 — Fatie</h2>
+<h2 id="passo-2-fatie">Passo 2 — Fatie<a class="hlink" href="#passo-2-fatie" aria-hidden="true">#</a></h2>
 <p>A fatia é a menor unidade atômica — um arquivo, um notebook, um módulo:</p>
 <table>
 <thead>
@@ -89,7 +91,7 @@
 </tbody>
 </table>
 <p>Exemplo (oficial): uma migração REST→GraphQL de 50 arquivos → escopar, dividir em pacotes de trabalho sem conflitos, rodar em paralelo.</p>
-<h2>Passo 3 — Escreva a transformação como um skill</h2>
+<h2 id="passo-3-escreva-a-transformação-como-um-skill">Passo 3 — Escreva a transformação como um skill<a class="hlink" href="#passo-3-escreva-a-transformação-como-um-skill" aria-hidden="true">#</a></h2>
 <p>Um skill = a receita repetível que toda sessão roda. Exemplo oficial (Java 7→8, abreviado):</p>
 <pre><code class="language-text">## Procedure
 1. Verify the project is on Java 7
@@ -103,43 +105,43 @@
 9. Build and verify
 </code></pre>
 <p>Escreva o seu com: passos explícitos, uma referência ponta a ponta (um guia ou vídeo) e <strong>múltiplos exemplos de código antes/depois</strong> — pares entrada/saída são o sinal de maior qualidade que você pode dar.</p>
-<h2>Passo 4 — Rode sessões paralelas</h2>
+<h2 id="passo-4-rode-sessões-paralelas">Passo 4 — Rode sessões paralelas<a class="hlink" href="#passo-4-rode-sessões-paralelas" aria-hidden="true">#</a></h2>
 <p>Com o skill fixado, distribua fatias entre sessões — a <a href="https://docs.devin.ai">API</a> ou as sessões filhas de um Bot (Guia 4). Cada fatia → uma sessão → um PR. A revisão humana faz o gate do merge em <code>main</code>.</p>
 <p>Em escala os números compõem: a migração ETL de milhões de linhas da Nubank rodou esse loop até 8–12× de eficiência — e um Devin fine-tuned cortou o tempo por tarefa de ~40 → ~10 minutos.</p>
-<h2>Passo 5 — Vigie a taxa de erro, não a barra de progresso</h2>
+<h2 id="passo-5-vigie-a-taxa-de-erro-não-a-barra-de-progresso">Passo 5 — Vigie a taxa de erro, não a barra de progresso<a class="hlink" href="#passo-5-vigie-a-taxa-de-erro-não-a-barra-de-progresso" aria-hidden="true">#</a></h2>
 <p>Taxas de erro pequenas compõem através de milhares de fatias. Opere num dashboard, não em vibes:</p>
 <ul>
 <li>Acompanhe a taxa de aprovação de fatia na primeira tentativa — o skill é seu ponto de correção, não as sessões</li>
 <li>Fatias falhas alimentam de volta o skill (o loop dos próprios docs: <em>"feed session links into Devin to patch the gaps"</em>)</li>
 <li>A ordem de merge é livre porque as fatias são isoladas — explore isso</li>
 </ul>
-<h2>Checklist de verificação</h2>
+<h2 id="checklist-de-verificação">Checklist de verificação<a class="hlink" href="#checklist-de-verificação" aria-hidden="true">#</a></h2>
 <ul>
 <li>[ ] Toda fatia termina em ~90 min e mergeia independentemente</li>
 <li>[ ] Uma fatia que falha a verificação produz uma correção ou um ticket sinalizado — nunca um merge silencioso</li>
 <li>[ ] O skill melhorou mensuravelmente nas primeiras 20 fatias (menos correções humanas por fatia)</li>
 <li>[ ] O progresso é contável: N/M fatias migradas, taxa de aprovação visível</li>
 </ul>
-<h2>Armadilhas</h2>
+<h2 id="armadilhas">Armadilhas<a class="hlink" href="#armadilhas" aria-hidden="true">#</a></h2>
 <ul>
 <li><strong>Migrações sem fatiar.</strong> "Migrar o repo inteiro" é o anti-padrão oficial — sem isolamento, sem paralelismo, sem verificação por unidade.</li>
 <li><strong>Sem exemplos antes/depois.</strong> O skill sem exemplos produz um estilo diferente por sessão.</li>
 <li><strong>Pular a revisão humana.</strong> Paralelo ≠ sem supervisão — cada fatia ainda é revisada antes do <code>main</code>.</li>
 </ul>
-<h2>Teste de conhecimento</h2>
+<h2 id="teste-de-conhecimento">Teste de conhecimento<a class="hlink" href="#teste-de-conhecimento" aria-hidden="true">#</a></h2>
 <ol>
 <li>Por que fatias "wide and shallow" em vez de "deep and complete"? <em>(Cada fatia precisa aterrissar verde — um PR verificado de 90 minutos compõe; um mega-branch de 3 dias apodrece contra o main.)</em></li>
 <li>Por que toda fatia precisa de sua própria verificação? <em>(Sem prova por fatia, uma migração de 500 PRs é 500 diffs não verificados — a superfície de falha multiplica em vez de dividir.)</em></li>
 <li>A Nubank reportou 8–12× de eficiência — o que tornou esse número crível e não marketing? <em>(Metodologia publicada: tempos de estágio medidos antes/depois em pipelines ETL reais, não uma projeção.)</em></li>
 </ol>
-<h2>Fontes</h2>
+<h2 id="fontes">Fontes<a class="hlink" href="#fontes" aria-hidden="true">#</a></h2>
 <ul>
 <li><a href="https://docs.devin.ai/use-cases/best-practices.html">Best Practices — docs.devin.ai</a></li>
 <li><a href="https://docs.devin.ai/use-cases/migration-modernization.html">Migration &amp; Modernization + 5 playbooks de exemplo</a></li>
 <li><a href="https://docs.devin.ai/use-cases/gallery/index.html">Use-case gallery — Migrations</a></li>
 <li>Relacionado: <a href="enterprise-playbook.html">Guia 7 — Rollout enterprise</a> (a Forma 1 é este guia em escala de org)</li>
 </ul>
-<nav class="guide-pager"><a class="pg-prev" href="bots-204-reference-grounded-swarm.html"><span class="pg-dir">← Previous</span><span class="pg-t">Guia 5 — Enxame ancorado em referência</span></a><a class="pg-next" href="living-evals.html"><span class="pg-dir">Next →</span><span class="pg-t">Guia 15 — Living evals a partir de traces de produção</span></a></nav>
+<nav class="guide-pager"><a class="pg-prev" href="bots-204-reference-grounded-swarm.html"><span class="pg-dir">← Anterior</span><span class="pg-t">Guia 5 — Enxame ancorado em referência</span></a><a class="pg-next" href="living-evals.html"><span class="pg-dir">Próximo →</span><span class="pg-t">Guia 15 — Living evals a partir de traces de produção</span></a></nav>
 </article>
 <footer><div class="wrap foot-base"><span data-i18n="foot.note">Unofficial community project — not affiliated with Cognition AI.</span><span><a href="../../index.html">built-with-devin</a> · <a href="https://github.com/Till3005/build-with-devin">build-with-devin</a></span></div></footer>
 </main>

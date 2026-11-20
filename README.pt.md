@@ -13,7 +13,7 @@
 
 <sub>Curado por [@darega0mae](https://x.com/darega0mae) · Tutoriais irmãos: [build-with-devin](https://github.com/Till3005/build-with-devin) · [Adicione seu projeto](CONTRIBUTING.md)</sub>
 
-<sub>**14** implantações de Bot documentadas · **41** casos corporativos · **6** produtos lançados · **32** ferramentas e integrações · **28** relatos de campo</sub>
+<sub>**14** implantações de Bot documentadas · **42** casos corporativos · **6** produtos lançados · **32** ferramentas e integrações · **29** relatos de campo</sub>
 
 <sub>[English](README.md) · [简体中文](README.zh.md) · [日本語](README.ja.md) · Português</sub>
 
@@ -90,7 +90,7 @@ Outros usos documentados: triagem preventiva de issues no **Manim**, trabalho em
 
 ### Biblioteca oficial de templates
 
-Dezesseis Bots prontos no [marketplace público](https://devin.ai/bots/templates), além de templates comunitários como **SuperJennyStack**:
+Dezesseis Bots prontos no [marketplace público](https://devin.ai/bots/templates) ([docs de templates](https://docs.devin.ai/work-with-devin/bots/templates) — um Bot criado por template começa sem conexões, segredos ou memória; "Share as template" publica o seu), além de templates comunitários como **SuperJennyStack**:
 
 | Template | O que faz |
 | --- | --- |
@@ -182,6 +182,7 @@ Casos de clientes publicados com números concretos ([índice completo](https://
 | [Hippo](https://devin.ai/customers/hippo) | Devin em toda a org de engenharia de seguros | Parceria com a Cognition: build/test agêntico para produtos que precisam resistir às regras de seguros de 50 estados (página de caso publicada) |
 | [Zeb](https://devin.ai/blog/devin-for-databricks-migrations) | Parceiro de entrega NetSuite→Databricks | Migração de 4 semanas de uma consultoria global de investimentos entregue em **2,5 semanas**; uma energética Fortune 500 migrou uma plataforma de 142 objetos para o Unity Catalog em **8 dias** |
 | **Rox** | Living Evals — Devin semanal lê traces de produção, reproduz falhas numa cópia completa, abre PRs de eval | A suite cobre **72% do uso real** vs 43–57% escrito à mão ([artigo](https://www.rox.com/articles/living-evals-an-eval-suite-that-grows-from-production), [thread](https://x.com/rox_ai/status/2110779380666617997)) |
+| [Philips](https://devin.ai/blog/introducing-code-scans) | Testador inicial do Code Scans — Patologia Computacional Digital, Enterprise Informatics | **~96% de merge rate de PRs** em vários repos; **700+ horas-engenheiro** estimadas poupadas na janela de teste (citação do cliente no post de lançamento) |
 | [Evinova](https://devin.ai/customers/evinova) | Entrega regulada por GxP | Documentação GxP 8× mais rápida; migrações 3×; 66% dos bugs claros corrigidos autonomamente |
 | [Compiled Health](https://devin.ai/customers/compiledhealth) | Construção de benchmark clínico | 2 pesquisadores/2 meses = trabalho de 5–6 engenheiros; ~430 horas-engenheiro a ~$17/h ≈ +4 engenheiros num time de 4 |
 | [Común](https://devin.ai/customers/comun) | Time fintech de 13 pessoas | Produção 3×; PRs backend semanais 50 → 170 em quatro semanas |
@@ -192,7 +193,7 @@ Casos de clientes publicados com números concretos ([índice completo](https://
 | [FE fundinfo](https://devin.ai/customers/fefundinfo) | Automação de 1.800 repositórios | Aumento imediato de 10% na capacidade via geração de testes + correções de segurança |
 | [GE Aerospace](https://devin.ai/customers/geaerospace) | Throughput de stories de time limitado | Produção de user stories ~2× em três meses |
 
-Também registrado: Citi (rollout para 40.000 desenvolvedores, corte de 30% no gasto com fornecedores de tecnologia), Mercedes-Benz, parcerias com Cognizant e Infosys — veja o [índice de clientes](https://devin.ai/customers).
+Também registrado: Citi (rollout para 40.000 desenvolvedores, corte de 30% no gasto com fornecedores de tecnologia), Mercedes-Benz, parcerias com Cognizant e Infosys, e a **aliança McKinsey × Cognition** (16/11 — a McKinsey assessora seleção de projetos e baselines, o Devin executa; a Cognition afirma ter 6 dos 8 G-SIBs dos EUA e 3 das 6 maiores seguradoras de saúde dos EUA como clientes, [anúncio](https://devin.ai/blog/cognition-mckinsey-alliance)) — veja o [índice de clientes](https://devin.ai/customers).
 
 <p align="right"><a href="#readme">back to top</a></p>
 
@@ -287,6 +288,7 @@ Uso real documentado.
 - **[Orquestração multi-IA no SWE-2 grátis](https://qiita.com/ishizakahiroshi/items/72ab801a5f2a8c941b61)** — Um design para rotear trabalho entre agentes usando o tier permanentemente gratuito SWE-2 do Devin CLI (JP).
 - **[Scan Trivy → remediação Devin na SMARTCAMP](https://zenn.dev/smartcamp/articles/97ac804043530e)** — Pipeline agendado do GitHub Actions baixa imagens do ECS, escaneia com Trivy e abre issues HIGH/CRITICAL que o Devin remedia — jobs com credenciais AWS e do scanner separados, apenas artefatos cruzam (JP).
 - **[Devin como minha equipe de engenharia por um mês](https://ravtheman.medium.com/im-17-and-for-one-month-devin-was-my-entire-engineering-team-here-s-everything-i-learned-183d59099384)** — Um mês de um estudante de Melbourne no giveaway do Max: 67 PRs tocados e 44 mergeados numa noite; uma distro Linux, uma família de modelos locais e um IDE multiagente feitos entre aulas — com um resumo medido do fluxo CLI/cloud (Medium).
+- **[A operação Devin de $20k/mês de um fundador solo](https://www.lennysnewsletter.com/p/i-spent-20000-on-devin-in-a-month)** — Ryan Carson (Untangle) roda ~15 agentes Devin simultâneos coordenados por sistema de pastas + lista P0 de papel, sem dashboard; um playbook "Watchdog" cobre o customer success de toda conta de escritório de advocacia, e a skill "LAN PR" fecha ~40 PRs/dia sem revisor de QA (Lenny's podcast).
 
 <p align="right"><a href="#readme">back to top</a></p>
 
@@ -299,7 +301,15 @@ Uso real documentado.
 - **[Voices — diretório de embaixadores](https://devincentral.com/voices)** — Mapa não oficial de ~190 Devin Ambassadors no mundo.
 - **[devin-cli.github.io](https://devin-cli.github.io)** — Documentação comunitária sobre o que as superfícies de API, Slack e Linear do Devin cobrem e como automatizá-las.
 - **[Agents In Use](https://agentsinuse.com)** — Diretório de casos reais de agentes, incluindo entradas do Devin.
-- **[BitsExplorer — Built with Devin](https://bitsexplorer.com/built-with/devin)** — 340+ projetos públicos verificados pelo commit trailer do Devin (evidência, não auto-relato).
+- **[BitsExplorer — Built with Devin](https://bitsexplorer.com/built-with/devin)** — 480+ projetos públicos verificados pelo commit trailer do Devin (evidência, não auto-relato).
+- **[The New Stack](https://thenewstack.io/cognition-devin-bots-management/)** — "Um engenheiro não mandou mensagem para sua IA por 22 de 44 dias. Ela construiu um app Android mesmo assim." Cobertura jornalística do deployment do Android Bot (19/11).
+- **[Dataconomy 中文](https://cn.dataconomy.com/2026/11/18/cognition-%e6%8e%a8%e5%87%ba-devin-bots-%e6%9d%a5%e7%ae%a1%e7%90%86-ai-%e7%bc%96%e7%a8%8b%e5%9b%a2%e9%98%9f/)** — Cobertura em chinês do lançamento dos Devin Bots (18/11).
+- **[Fortune — exclusivo do lançamento dos Devin Bots](https://fortune.com/2026/11/17/exclusive-cognition-bets-on-devin-bots-coding-agents-in-challenge-to-anthropics-duet-and-openais-dots/)** — Entrevista com Scott Wu colocando Bots contra Dots da OpenAI e Duet da Anthropic; a tecnologia da aquisição da Poke por dentro (17/11).
+- **[AlphaSignal — os números dos Bots](https://alphasignal.ai/news/cognition-s-devin-bots-now-run-parallel-coding-sessions-hitting-2-000-pull)** — 4,5× PRs mergeados por mensagem e pico de 50→~2.000 PRs/semana, com o caveat sóbrio "números beta precisam de denominadores".
+- **[Digg — o que a alegação de 4,5× mede](https://digg.com/ai/l3h088z7)** — PRs-por-mensagem ≠ desenvolvimento mais rápido; sem baseline, amostra ou metodologia divulgados; mais detalhes operacionais da SuperJenny (~20 colegas de IA, check-ins no celular 4×/dia).
+- **[Snowman Labs — vale a pena o Devin?](https://snowmanlabs.com/insights/is-devin-worth-it)** — lê toda a biblioteca de casos publicados e aterrissa no enquadramento honesto: toda vitória é trabalho escopado, repetitivo e verificável em volume — nenhum diz "o Devin arquitetou nosso sistema".
+- **[HN — agentes mudaram o gargalo para code review](https://news.ycombinator.com/item?id=50538303)** — estudo de Harvard, 459 comentários (17/11): geração está resolvida, capacidade de revisão é a nova restrição.
+- **[Metarix — uma leitura cética do Code Scans](https://metarix.io/devin-scans-the-whole-repo)** — separa números publicados pelo fornecedor (queda de 64% no compile do Dioxus, Philips 96%) dos reproduzíveis: "reproduza no seu repo antes de citar".
 - **[Vibe Coded Projects](https://vibedprojects.com/ai-tools/devin)** — 373 apps, ferramentas e sites vibe-codados com Devin.
 - **[Meetup de 2º aniversário do Devin no Japão](https://aid.connpass.com/event/412875/)** — Evento comunitário organizado por embaixador marcando dois anos de Devin público ([anúncio](https://x.com/kinopee_ai/status/2123019189325848847)).
 - **[Devin's Dinner](https://x.com/MattSchrage/status/2121016484155548124)** — Série de jantares em NYC do Matt Schrage, só com convite, para founders e engenheiros que trabalham com Devin.

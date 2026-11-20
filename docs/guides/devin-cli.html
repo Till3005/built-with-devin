@@ -36,12 +36,14 @@
 </div></nav>
 <main>
 <article class="guide wrap" id="guide">
-  <p class="guide-crumb"><a href="../index.html#build">← Guides</a> · <a href="zh/devin-cli.html">中文</a> · <a href="ja/devin-cli.html">日本語</a> · <a href="pt/devin-cli.html">Português</a></p>
+  <p class="guide-crumb"><a href="index.html">← Guides</a> · <a href="ja/devin-cli.html">日本語</a> · <a href="pt/devin-cli.html">Português</a> · <a href="zh/devin-cli.html">中文</a></p>
+<p class="guide-meta">Updated 2026-11-20</p>
+<details class="toc" open><summary>On this page</summary><ol><li class="d2"><a href="#what-it-is">What it is</a></li><li class="d2"><a href="#the-pieces-that-matter">The pieces that matter</a></li><li class="d2"><a href="#the-extensibility-stack">The extensibility stack</a></li><li class="d2"><a href="#three-workflows-worth-copying">Three workflows worth copying</a></li><li class="d2"><a href="#walkthrough-recorded-on-devin-cli-v3000-14">Walkthrough — recorded on Devin CLI v3000.14</a></li><li class="d2"><a href="#verify-it">Verify it</a></li><li class="d2"><a href="#pitfalls">Pitfalls</a></li><li class="d2"><a href="#knowledge-check">Knowledge check</a></li><li class="d2"><a href="#sources">Sources</a></li></ol></details>
 <h1>Guide 12 — Devin CLI &amp; extensibility</h1>
 <p><strong>Goal:</strong> the local-terminal Devin — run the agent on your machine, hand work to Devin Cloud, and extend it with skills, rules, plugins, hooks, and subagents.
 <strong>Level:</strong> intermediate
 <strong>Sources:</strong> <a href="https://docs.devin.ai/cli/index.html">Devin CLI docs</a> — <a href="https://docs.devin.ai/cli/introducing-devin-cli.html">introducing</a>, <a href="https://docs.devin.ai/cli/essential-commands.html">essential commands</a>, <a href="https://docs.devin.ai/cli/extensibility/index.html">extensibility</a></p>
-<h2>What it is</h2>
+<h2 id="what-it-is">What it is<a class="hlink" href="#what-it-is" aria-hidden="true">#</a></h2>
 <p>Devin CLI is a coding agent that lives in your terminal and connects to Devin Cloud. Two working modes, and the power is in moving between them:</p>
 <ul>
 <li><strong>Local</strong> — it edits your checked-out repo on your machine</li>
@@ -51,7 +53,7 @@
      ▲                        │
      └──── devin ssh / forward (inspect its VM) ────┘
 </code></pre>
-<h2>The pieces that matter</h2>
+<h2 id="the-pieces-that-matter">The pieces that matter<a class="hlink" href="#the-pieces-that-matter" aria-hidden="true">#</a></h2>
 <table>
 <thead>
 <tr>
@@ -83,7 +85,7 @@
 </tbody>
 </table>
 <p>The daemon also rewrote multi-client semantics: a session open in another terminal or editor is no longer locked — a second client <em>joins</em> it, and every client sees its output and questions. <code>devin daemon start|stop|status</code> manages the process (it exits ~10 min after the last session and client leave); <code>--process-model daemon|in-process</code> picks per launch, <code>process_model</code> in <code>config.json</code> or <code>/config</code> sets the default. One recorded exception: in our Desktop v3.14.30825 run a second Desktop window still got a lock banner with <em>Force open</em> — join held CLI-side (Guide 17, frame 9).</p>
-<h2>The extensibility stack</h2>
+<h2 id="the-extensibility-stack">The extensibility stack<a class="hlink" href="#the-extensibility-stack" aria-hidden="true">#</a></h2>
 <p>This is where teams make the CLI <em>theirs</em> — same layering as Guide 9, applied locally:</p>
 <table>
 <thead>
@@ -122,11 +124,11 @@
 </tbody>
 </table>
 <p><strong>Import path:</strong> <code>read_config_from</code> imports settings from Cursor, Windsurf, Claude Code, Copilot, Codex, Kiro, OpenCode, Zed — migration is one flag, not a rewrite.</p>
-<h2>Three workflows worth copying</h2>
+<h2 id="three-workflows-worth-copying">Three workflows worth copying<a class="hlink" href="#three-workflows-worth-copying" aria-hidden="true">#</a></h2>
 <p><strong>1. Local → cloud fan-out.</strong> Start a task locally, hit its limits, <code>/handoff</code> to a cloud session that keeps going on its own machine — pull the work back to your machine with <code>/pickup</code>.</p>
 <p><strong>2. Skills as memory.</strong> Turn any repeated procedure (Guide 11's migration skill, a hotfix runbook, a release cut) into a <code>SKILL.md</code> — the CLI docs note feeding <em>successful session transcripts</em> back into skills to close gaps. Plugins package and share them to the whole team.</p>
 <p><strong>3. Guardrails via hooks.</strong> <code>PreToolUse</code> hook that blocks <code>rm -rf</code> patterns or forces review on migrations — enforcement lives in the hook, not in hoped-for model behavior.</p>
-<h2>Walkthrough — recorded on Devin CLI v3000.14</h2>
+<h2 id="walkthrough-recorded-on-devin-cli-v3000-14">Walkthrough — recorded on Devin CLI v3000.14<a class="hlink" href="#walkthrough-recorded-on-devin-cli-v3000-14" aria-hidden="true">#</a></h2>
 <p>A real run, not a mock-up: Devin CLI <code>3000.14.30821</code> on Linux, Pro plan, a throwaway <code>demo-repo</code> with an <code>app.py</code>. Models: <code>swe-2-flash-high</code> for the edit task, <code>swe-2-high</code> for the skill run (both SWE-2 tiers are listed as <strong>Free</strong> in <code>devin models</code>).</p>
 <p><strong>Video (67 s, no audio):</strong> the whole session below, from login to the handoff error.</p>
 <p><a href="https://till3005.github.io/built-with-devin/assets/guides/devin-cli/walkthrough.mp4"><img alt="2. Prompt: add a subtract function and a test. Devin shows the diff and asks — Allow, Accept edits mode, Bypass mode or Deny" src="https://till3005.github.io/built-with-devin/assets/guides/devin-cli/walkthrough-poster.webp" /></a></p>
@@ -156,26 +158,26 @@ Review the working tree's uncommitted changes. List each changed file,
 summarize what it does, and flag anything that looks wrong or risky.
 Keep it under 10 lines.
 </code></pre>
-<h2>Verify it</h2>
+<h2 id="verify-it">Verify it<a class="hlink" href="#verify-it" aria-hidden="true">#</a></h2>
 <ul>
 <li>[ ] <code>devin</code> runs a local session; <code>devin --cloud</code> lists/creates cloud sessions</li>
 <li>[ ] A <code>/handoff</code>'d task completed in the cloud and the session came back to your machine via <code>/pickup</code></li>
 <li>[ ] A <code>SKILL.md</code> invoked by slash command ran your procedure</li>
 <li>[ ] (Enterprise) team marketplace serves your plugin to another member</li>
 </ul>
-<h2>Pitfalls</h2>
+<h2 id="pitfalls">Pitfalls<a class="hlink" href="#pitfalls" aria-hidden="true">#</a></h2>
 <ul>
 <li><strong>Local for parallel work.</strong> The CLI is one agent in your terminal — for parallel slices use cloud sessions or a Bot; the CLI is the <em>hands-on</em> surface.</li>
 <li><strong>Rules sprawl.</strong> <code>AGENTS.md</code> + project rules + global rules interact by precedence — keep each rule in exactly one layer or they fight.</li>
 <li><strong><code>/handoff</code> needs a remote.</strong> In a repo with no git remote it fails immediately — push the repo somewhere Devin Cloud can clone first.</li>
 </ul>
-<h2>Knowledge check</h2>
+<h2 id="knowledge-check">Knowledge check<a class="hlink" href="#knowledge-check" aria-hidden="true">#</a></h2>
 <ol>
 <li>When do you use <code>/handoff</code> to Devin Cloud instead of finishing locally? <em>(When the work needs cloud-scale parallelism, org tools, or runs longer than your laptop stays open.)</em></li>
 <li>What's the difference between a skill, a rule, and a plugin? <em>(A skill is a task procedure, a rule is standing context, a plugin is the package that ships both plus hooks.)</em></li>
 <li>Why does hooks + subagents matter for team adoption? <em>(Hooks enforce org policy at every CLI session; subagents let one operator run a fleet — the two scale in opposite directions.)</em></li>
 </ol>
-<h2>Sources</h2>
+<h2 id="sources">Sources<a class="hlink" href="#sources" aria-hidden="true">#</a></h2>
 <ul>
 <li><a href="https://docs.devin.ai/cli/index.html">Devin CLI docs</a> — quickstart, commands, cloud integration, extensibility, ACP, models</li>
 <li>Related: <a href="playbooks-and-knowledge.html">Guide 9 — Playbooks &amp; knowledge</a> (same conventions layer, org-wide)</li>

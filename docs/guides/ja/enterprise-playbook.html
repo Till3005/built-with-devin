@@ -4,13 +4,13 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>ガイド 7 — エンタープライズ導入パターン — build-with-devin guides</title>
-<meta name="description" content="ガイド 7 — エンタープライズ導入パターン">
+<meta name="description" content="公開済みの数値を実際に生んだ形を使って Devin を組織スケールで導入する——実験ではなく、実証済みの動作。">
 <link rel="icon" href="../../assets/brand/Devin_Symbol.svg" type="image/svg+xml">
 <link rel="stylesheet" href="../../assets/site.css">
 <link rel="stylesheet" href="../../assets/guides.css">
 
 <meta property="og:title" content="ガイド 7 — エンタープライズ導入パターン">
-<meta property="og:description" content="ガイド 7 — エンタープライズ導入パターン">
+<meta property="og:description" content="公開済みの数値を実際に生んだ形を使って Devin を組織スケールで導入する——実験ではなく、実証済みの動作。">
 <meta property="og:type" content="article">
 <meta property="og:url" content="https://till3005.github.io/built-with-devin/guides/ja/enterprise-playbook.html">
 <meta property="og:image" content="https://till3005.github.io/built-with-devin/assets/img/og-build.png?v=3">
@@ -36,13 +36,15 @@
 </div></nav>
 <main>
 <article class="guide wrap" id="guide">
-  <p class="guide-crumb"><a href="../../index.html#build">← Guides</a> · <a href="../enterprise-playbook.html">English</a> · <a href="../zh/enterprise-playbook.html">中文</a> · <a href="../pt/enterprise-playbook.html">Português</a></p>
+  <p class="guide-crumb"><a href="index.html">← ガイド</a> · <a href="../enterprise-playbook.html">English</a> · <a href="../pt/enterprise-playbook.html">Português</a> · <a href="../zh/enterprise-playbook.html">中文</a></p>
+<p class="guide-meta">更新 2026-11-19</p>
+<details class="toc" open><summary>このページの目次</summary><ol><li class="d2"><a href="#形-1-レガシー移行エンジン-nubank-comarch">形 1 — レガシー移行エンジン（Nubank、Comarch）</a></li><li class="d2"><a href="#形-2-第一作者リポジトリ-ebanx-gumroad-finch">形 2 — 第一作者リポジトリ（EBANX、Gumroad、Finch）</a></li><li class="d2"><a href="#形-3-常駐ファーストレスポンダー-modal-reducto-angellist">形 3 — 常駐ファーストレスポンダー（Modal、Reducto、AngelList）</a></li><li class="d2"><a href="#形-4-メンテナンス艦隊-airbyte-melius">形 4 — メンテナンス艦隊（Airbyte、Melius）</a></li><li class="d2"><a href="#形-5-組織全体のシート-wayfair-the-access-group-citi">形 5 — 組織全体のシート（Wayfair、The Access Group、Citi）</a></li><li class="d2"><a href="#形-6-プロセスゲート-hamming-litera-eight-sleep">形 6 — プロセスゲート（Hamming、Litera、Eight Sleep）</a></li><li class="d2"><a href="#事例が示唆するアンチパターン">事例が示唆するアンチパターン</a></li><li class="d2"><a href="#検証チェックリスト">検証チェックリスト</a></li><li class="d2"><a href="#落とし穴">落とし穴</a></li><li class="d2"><a href="#理解度チェック">理解度チェック</a></li><li class="d2"><a href="#出典">出典</a></li></ol></details>
 <h1>ガイド 7 — エンタープライズ導入パターン</h1>
 <p><strong>目標：</strong> 公開済みの数値を実際に生んだ形を使って Devin を組織スケールで導入する——実験ではなく、実証済みの動作。
 <strong>レベル：</strong> 中級（エンジニアリングリード向け）
 <strong>出典：</strong> 公開された顧客事例、<a href="https://devin.ai/customers">devin.ai/customers</a></p>
 <p>結果を公開した企業から抽出した 6 つの導入形。成功した導入のほとんどは 6 つ全部ではなく 2〜3 を使っている。</p>
-<h2>形 1 — レガシー移行エンジン（Nubank、Comarch）</h2>
+<h2 id="形-1-レガシー移行エンジン-nubank-comarch">形 1 — レガシー移行エンジン（Nubank、Comarch）<a class="hlink" href="#形-1-レガシー移行エンジン-nubank-comarch" aria-hidden="true">#</a></h2>
 <table>
 <thead>
 <tr>
@@ -66,7 +68,7 @@
 </tbody>
 </table>
 <p><strong>真似る方法：</strong> 境界のあるレガシーシステムを 1 つ選ぶ；ファインチューンまたはプレイブックで教育；Migration Engineer 型ループを回す——大きな移行を、進捗の見える小さな追跡 PR 群として。勝利は複利で効く：移行済みモジュール一つごとが次のセッションを賢くする。</p>
-<h2>形 2 — 第一作者リポジトリ（EBANX、Gumroad、Finch）</h2>
+<h2 id="形-2-第一作者リポジトリ-ebanx-gumroad-finch">形 2 — 第一作者リポジトリ（EBANX、Gumroad、Finch）<a class="hlink" href="#形-2-第一作者リポジトリ-ebanx-gumroad-finch" aria-hidden="true">#</a></h2>
 <table>
 <thead>
 <tr>
@@ -86,7 +88,7 @@
 </tbody>
 </table>
 <p><strong>真似る方法：</strong> 高速なリポジトリを 1 つ選ぶ；チケットをデフォルトで Devin セッションに回す；人間はレビュー。見るべき指標は自作成 PR 比率——約 50% 超ならこの形；未満ならまだパイロット段階。</p>
-<h2>形 3 — 常駐ファーストレスポンダー（Modal、Reducto、AngelList）</h2>
+<h2 id="形-3-常駐ファーストレスポンダー-modal-reducto-angellist">形 3 — 常駐ファーストレスポンダー（Modal、Reducto、AngelList）<a class="hlink" href="#形-3-常駐ファーストレスポンダー-modal-reducto-angellist" aria-hidden="true">#</a></h2>
 <table>
 <thead>
 <tr>
@@ -106,7 +108,7 @@
 </tbody>
 </table>
 <p><strong>真似る方法：</strong> <a href="https://docs.devin.ai">Devin Oncall</a> か PagerDuty トリガーの自動化（ガイド 6、レシピ：インシデント → 調査）。事前調査済みインシデントの % を測る——1 ポイントごとが人間の回復された睡眠。</p>
-<h2>形 4 — メンテナンス艦隊（Airbyte、Melius）</h2>
+<h2 id="形-4-メンテナンス艦隊-airbyte-melius">形 4 — メンテナンス艦隊（Airbyte、Melius）<a class="hlink" href="#形-4-メンテナンス艦隊-airbyte-melius" aria-hidden="true">#</a></h2>
 <table>
 <thead>
 <tr>
@@ -126,7 +128,7 @@
 </tbody>
 </table>
 <p><strong>真似る方法：</strong> メンテナンスバックログ（エンジニアが避ける作業）を列挙；Code Health Engineer / Code Reaper 型 Bot（公式テンプレート）で包み、週次ケイデンスを設定。</p>
-<h2>形 5 — 組織全体のシート（Wayfair、The Access Group、Citi）</h2>
+<h2 id="形-5-組織全体のシート-wayfair-the-access-group-citi">形 5 — 組織全体のシート（Wayfair、The Access Group、Citi）<a class="hlink" href="#形-5-組織全体のシート-wayfair-the-access-group-citi" aria-hidden="true">#</a></h2>
 <table>
 <thead>
 <tr>
@@ -146,7 +148,7 @@
 </tbody>
 </table>
 <p><strong>真似る方法：</strong> 公開事例での展開順は一貫している——パイロットチーム → 計測された結果 → プレイブック/ナレッジの標準化 → シート拡大。ナレッジのステップを飛ばすのがシート展開が停滞する理由：<a href="playbooks-and-knowledge.html">プレイブックガイド</a>参照。</p>
-<h2>形 6 — プロセスゲート（Hamming、Litera、Eight Sleep）</h2>
+<h2 id="形-6-プロセスゲート-hamming-litera-eight-sleep">形 6 — プロセスゲート（Hamming、Litera、Eight Sleep）<a class="hlink" href="#形-6-プロセスゲート-hamming-litera-eight-sleep" aria-hidden="true">#</a></h2>
 <table>
 <thead>
 <tr>
@@ -166,34 +168,34 @@
 </tbody>
 </table>
 <p><strong>真似る方法：</strong> 人間コストが最悪のパイプライン段階（回帰サイクル、QA）を見つける；Bot か自動化に割り当てる；その段階のサイクルタイムを前後で測る。</p>
-<h2>事例が示唆するアンチパターン</h2>
+<h2 id="事例が示唆するアンチパターン">事例が示唆するアンチパターン<a class="hlink" href="#事例が示唆するアンチパターン" aria-hidden="true">#</a></h2>
 <ul>
 <li><strong>同僚ではなくツール。</strong> 高い数値の導入は Devin にタスクではなく所有（リポジトリ、サーフェス、段階）を与えている——ガイド 1–5 と同じ教訓。</li>
 <li><strong>永遠のパイロット。</strong> 公開された結果の共通点：<em>卒業した</em>計測付きパイロット。卒業基準（PR 比率、カバーしたインシデント、節約時間）を事前に決める。</li>
 <li><strong>ナレッジ層なし。</strong> すべての大規模導入がどこかに規約をエンコードしている——ファインチューン、プレイブック、Bot instructions。それがなければ品質はセッションごとにばらつく。</li>
 </ul>
-<h2>検証チェックリスト</h2>
+<h2 id="検証チェックリスト">検証チェックリスト<a class="hlink" href="#検証チェックリスト" aria-hidden="true">#</a></h2>
 <ul>
 <li>[ ] 導入文書が最初のセッションより前に、パイプライン段階 1 つ・指標 1 つ・卒業基準を指名している</li>
 <li>[ ] 2 週目のチェックポイント：誰にも聞かずに、その段階での Devin のマージ PR 比率を即答できるか？</li>
 </ul>
-<h2>落とし穴</h2>
+<h2 id="落とし穴">落とし穴<a class="hlink" href="#落とし穴" aria-hidden="true">#</a></h2>
 <ul>
 <li><strong>卒業しなかったパイロットのスケーリング。</strong> ここにある大きな数値はすべて、出口基準のある計測付きパイロットの後に来た。</li>
 <li><strong>ライセンス先行の思考。</strong> 所有する段階を指名する前にシートを買うと棚に飾られる——パターンは段階 → パイロット → 指標 → それからシート。</li>
 </ul>
-<h2>理解度チェック</h2>
+<h2 id="理解度チェック">理解度チェック<a class="hlink" href="#理解度チェック" aria-hidden="true">#</a></h2>
 <ol>
 <li>なぜ 6 つの導入形すべてが「所有する段階」を原子にしているのか？<em>（公開された数値はすべて境界のある計測可能な領域から来た——「至る所」に導入した組織は何も公開していない）</em></li>
 <li>卒業基準とは何か、なぜパイロット前に決めるのか？<em>（パイロット→本番を切り替える指標 + 閾値；それがなければパイロットは永遠に漂流するか雰囲気で殺される）</em></li>
 <li>なぜすべての大規模導入にナレッジ層が現れるのか？<em>（スケールでの一貫性には共有コンテキストが必要——代替案は品質の異なる N 個のセッション）</em></li>
 </ol>
-<h2>出典</h2>
+<h2 id="出典">出典<a class="hlink" href="#出典" aria-hidden="true">#</a></h2>
 <ul>
 <li><a href="https://devin.ai/customers">devin.ai/customers</a> — 引用したすべての事例と数値</li>
 <li><a href="https://github.com/Till3005/built-with-devin#enterprise-deployments">built-with-devin — エンタープライズ索引</a> — レジストリの検証済み事例表</li>
 </ul>
-<nav class="guide-pager"><a class="pg-prev" href="living-evals.html"><span class="pg-dir">← Previous</span><span class="pg-t">ガイド 15 — 本番トレースから育つリビング eval</span></a><a class="pg-next" href="community-field-reports.html"><span class="pg-dir">Next →</span><span class="pg-t">ガイド 14 — コミュニティ実践レポート</span></a></nav>
+<nav class="guide-pager"><a class="pg-prev" href="living-evals.html"><span class="pg-dir">← 前へ</span><span class="pg-t">ガイド 15 — 本番トレースから育つリビング eval</span></a><a class="pg-next" href="community-field-reports.html"><span class="pg-dir">次へ →</span><span class="pg-t">ガイド 14 — コミュニティ実践レポート</span></a></nav>
 </article>
 <footer><div class="wrap foot-base"><span data-i18n="foot.note">Unofficial community project — not affiliated with Cognition AI.</span><span><a href="../../index.html">built-with-devin</a> · <a href="https://github.com/Till3005/build-with-devin">build-with-devin</a></span></div></footer>
 </main>

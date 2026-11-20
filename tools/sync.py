@@ -114,7 +114,41 @@ def main():
                 idx = pat.sub(r'\g<1>' + str(c[key]) + r'\g<3>', idx)
             else:
                 drift.append(f'index.html: {label} = {m.group(2)}, want {c[key]}')
+    # section "All N →" links + "N published case studies" sub in index.html
+    for key, ikey in [('bots', 's.dep.more'), ('enterprise', 's.ent.more'), ('tools', 's.tools.more')]:
+        pat = re.compile(r'(data-i18n="' + ikey + r'"[^>]*>All )(\d+)( →<)')
+        m = pat.search(idx)
+        if m and int(m.group(2)) != c[key]:
+            if '--write' in sys.argv:
+                idx = pat.sub(lambda m: m.group(1) + str(c[key]) + m.group(3), idx)
+            else:
+                drift.append(f'index.html: {ikey} = {m.group(2)}, want {c[key]}')
+    pat = re.compile(r'(data-i18n="s\.ent\.sub"[^>]*>)(\d+)( published case studies)')
+    m = pat.search(idx)
+    if m and int(m.group(2)) != c['enterprise']:
+        if '--write' in sys.argv:
+            idx = pat.sub(lambda m: m.group(1) + str(c['enterprise']) + m.group(3), idx)
+        else:
+            drift.append(f"index.html: s.ent.sub = {m.group(2)}, want {c['enterprise']}")
     (ROOT / 'docs/index.html').write_text(idx) if '--write' in sys.argv else None
+
+    # same counts inside i18n.js (first digit in each count-bearing key)
+    KEY_COUNTS = {'s.dep.more': 'bots', 's.ent.more': 'enterprise', 's.ent.sub': 'enterprise',
+                  's.tools.more': 'tools', 's.prod.more': 'products'}
+    i18n_path = ROOT / 'docs/assets/i18n.js'
+    i18n = i18n_path.read_text()
+    for key, ck in KEY_COUNTS.items():
+        want = c[ck]
+        pat = re.compile(r"('" + re.escape(key) + r"':'[^'0-9]*?)(\d+)")
+        def repl(mo):
+            if int(mo.group(2)) != want:
+                if '--write' not in sys.argv:
+                    drift.append(f'i18n.js: {key} = {mo.group(2)}, want {want}')
+                return mo.group(1) + str(want)
+            return mo.group(0)
+        i18n = pat.sub(repl, i18n)
+    if '--write' in sys.argv:
+        i18n_path.write_text(i18n)
 
     # machine-readable export: regenerate docs/registry.json whenever README truth moved
     if '--write' in sys.argv:

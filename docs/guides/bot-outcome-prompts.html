@@ -36,17 +36,19 @@
 </div></nav>
 <main>
 <article class="guide wrap" id="guide">
-  <p class="guide-crumb"><a href="../index.html#build">← Guides</a> · <a href="zh/bot-outcome-prompts.html">中文</a> · <a href="ja/bot-outcome-prompts.html">日本語</a> · <a href="pt/bot-outcome-prompts.html">Português</a></p>
+  <p class="guide-crumb"><a href="index.html">← Guides</a> · <a href="ja/bot-outcome-prompts.html">日本語</a> · <a href="pt/bot-outcome-prompts.html">Português</a> · <a href="zh/bot-outcome-prompts.html">中文</a></p>
+<p class="guide-meta">Updated 2026-11-19</p>
+<details class="toc" open><summary>On this page</summary><ol><li class="d2"><a href="#the-exemplar">The exemplar</a></li><li class="d2"><a href="#the-anatomy-of-a-working-outcome-prompt">The anatomy of a working outcome prompt</a></li><li class="d2"><a href="#patterns-from-the-official-template-marketplace">Patterns from the official template marketplace</a></li><li class="d2"><a href="#multi-bot-orgs-prompts-that-grant-authority">Multi-bot orgs: prompts that grant authority</a></li><li class="d2"><a href="#anti-patterns">Anti-patterns</a></li><li class="d2"><a href="#drafting-yours-the-three-line-test">Drafting yours — the three-line test</a></li><li class="d2"><a href="#verify-it">Verify it</a></li><li class="d2"><a href="#pitfalls">Pitfalls</a></li><li class="d2"><a href="#knowledge-check">Knowledge check</a></li><li class="d2"><a href="#sources">Sources</a></li></ol></details>
 <h1>Bot outcome prompts, dissected</h1>
 <p><strong>Goal:</strong> write outcome prompts the way the documented deployments actually did — ownership of an area, not a task list.
 <strong>Level:</strong> intermediate · <strong>Time:</strong> 20 min to draft, a week to calibrate</p>
 <p>Every public bot deployment that produced big numbers started with a short prompt assigning an <em>outcome</em>. This guide collects the real ones and reverse-engineers why they work.</p>
-<h2>The exemplar</h2>
+<h2 id="the-exemplar">The exemplar<a class="hlink" href="#the-exemplar" aria-hidden="true">#</a></h2>
 <blockquote>
 <p><em>"your job is to product manage the android app"</em></p>
 </blockquote>
 <p>The Android Bot's entire assignment. One sentence produced 44 days of self-directed work: the bot decomposed the outcome into tickets it wrote itself, ran a Devin session per ticket, and shipped 1,134 merged PRs (<a href="https://devin.ai/blog/introducing-devin-bots">launch post</a>). Note what the prompt does <strong>not</strong> contain: no ticket list, no acceptance criteria, no schedule. The outcome itself implies all of them.</p>
-<h2>The anatomy of a working outcome prompt</h2>
+<h2 id="the-anatomy-of-a-working-outcome-prompt">The anatomy of a working outcome prompt<a class="hlink" href="#the-anatomy-of-a-working-outcome-prompt" aria-hidden="true">#</a></h2>
 <table>
 <thead>
 <tr>
@@ -78,7 +80,7 @@
 </tr>
 </tbody>
 </table>
-<h2>Patterns from the official template marketplace</h2>
+<h2 id="patterns-from-the-official-template-marketplace">Patterns from the official template marketplace<a class="hlink" href="#patterns-from-the-official-template-marketplace" aria-hidden="true">#</a></h2>
 <p>The 16 <a href="https://devin.ai/bots/templates">marketplace templates</a> all follow the same grammar. Reusable formulations, generalized:</p>
 <p><strong>Ownership of a domain</strong> — "Find bugs, improvements, performance and refactoring work in a named product area; open one small PR at a time with proof it works." (Software Factory)</p>
 <p><strong>Ownership of a check</strong> — "Every 3 hours, build production main, simulate first/repeat/deferred visits, and file fixes with before/after videos for any regression you introduce—or find." (Layout Bot pattern)</p>
@@ -86,16 +88,16 @@
 <p><strong>Ownership of a cadence</strong> — "Weekly: remove dead code, one safe PR per round." (Code Reaper) — scheduled outcomes are stated as a rhythm, not a trigger.</p>
 <p><strong>Ownership of team metabolism</strong> — "Watch the channels, post updates, hand work to the right teammate, follow up until done." (Chief of Staff)</p>
 <p><strong>Ownership of hygiene</strong> — "Old flags, stale deps, CVEs — turned into small safe PRs." (Code Health Engineer)</p>
-<h2>Multi-bot orgs: prompts that grant authority</h2>
+<h2 id="multi-bot-orgs-prompts-that-grant-authority">Multi-bot orgs: prompts that grant authority<a class="hlink" href="#multi-bot-orgs-prompts-that-grant-authority" aria-hidden="true">#</a></h2>
 <p>In fleets (SuperJennyStack, Frankie, tigsbot) the chief bot's prompt contains the <em>routing contract</em>: which bot owns which surface, and when to escalate upward instead of sideways. The human's real prompt is the roll-up spec: "bring me every open decision in one thread." See <a href="bots-203-multi-bot-org.html">Guide 4</a> for the full org chart.</p>
-<h2>Anti-patterns</h2>
+<h2 id="anti-patterns">Anti-patterns<a class="hlink" href="#anti-patterns" aria-hidden="true">#</a></h2>
 <ul>
 <li><strong>Task-shaped prompts.</strong> "Fix these 12 issues" — the bot finishes and idles; you get a session, not a bot.</li>
 <li><strong>Unverifiable outcomes.</strong> "Make the app better" — no self-check means the bot's only exit is Needs-you spam.</li>
 <li><strong>Hidden scope.</strong> If the outcome requires systems the bot can't see (a staging env it can't reach, a dashboard it can't read), it will either stall or hallucinate progress. Give it the surface or shrink the outcome.</li>
 <li><strong>No merge authority story.</strong> The 88% self-merge rate exists because CI and review gates were pre-configured for autonomous merges. State it: "merge when CI is green and diff &lt; N lines" or "always open as draft for human review."</li>
 </ul>
-<h2>Drafting yours — the three-line test</h2>
+<h2 id="drafting-yours-the-three-line-test">Drafting yours — the three-line test<a class="hlink" href="#drafting-yours-the-three-line-test" aria-hidden="true">#</a></h2>
 <p>A good outcome prompt answers, in order:</p>
 <ol>
 <li><strong>What is yours?</strong> — the surface</li>
@@ -103,25 +105,25 @@
 <li><strong>What do you do about it?</strong> — the standing behavior</li>
 </ol>
 <p>If a stranger couldn't check line 2's truth from outside, tighten it.</p>
-<h2>Verify it</h2>
+<h2 id="verify-it">Verify it<a class="hlink" href="#verify-it" aria-hidden="true">#</a></h2>
 <ul>
 <li>[ ] Take a real backlog item from your repo and rewrite it as an outcome prompt — surface, verifiable state, standing behavior</li>
 <li>[ ] Show it to someone who doesn't know the codebase: could they tell from outside when the Bot is "winning"?</li>
 <li>[ ] The Bot's first reply should be a plan or clarifying questions about scope — if it asks "what do you want me to do first," the prompt didn't assign ownership</li>
 </ul>
-<h2>Pitfalls</h2>
+<h2 id="pitfalls">Pitfalls<a class="hlink" href="#pitfalls" aria-hidden="true">#</a></h2>
 <ul>
 <li><strong>A task list wearing an outcome costume.</strong> "Do X, then Y, then Z" is still a checklist — the Bot can't re-prioritize when the world changes.</li>
 <li><strong>"Keep the app good" with no definition of good.</strong> Without a verifiable state, the Bot picks one — and it won't be yours.</li>
 <li><strong>Scope wider than one surface.</strong> "Own engineering" fails; "own the iOS app" ships. Split by what a single outsider could fully observe.</li>
 </ul>
-<h2>Knowledge check</h2>
+<h2 id="knowledge-check">Knowledge check<a class="hlink" href="#knowledge-check" aria-hidden="true">#</a></h2>
 <ol>
 <li>Why does "own the Android app" work better than "fix Android bugs"? <em>(Ownership implies standing judgment — the Bot decides which bugs matter, not just whether to fix.)</em></li>
 <li>What's wrong with "make the CI fast"? <em>(Not verifiable from outside — no threshold. "CI under 8 minutes" is.)</em></li>
 <li>Which of the three questions does "text me if tests fail" answer? <em>(Standing behavior — it says what the Bot does about the state, nothing about the surface or the goal.)</em></li>
 </ol>
-<h2>Sources</h2>
+<h2 id="sources">Sources<a class="hlink" href="#sources" aria-hidden="true">#</a></h2>
 <ul>
 <li><a href="https://devin.ai/blog/introducing-devin-bots">Introducing Devin Bots</a> · <a href="https://docs.devin.ai/work-with-devin/bots">Bots docs</a> · <a href="https://devin.ai/bots/templates">Template marketplace</a></li>
 <li>Deployment reports linked in <a href="https://github.com/Till3005/built-with-devin#documented-deployments">built-with-devin</a></li>

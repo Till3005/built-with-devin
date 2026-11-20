@@ -4,13 +4,13 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>指南 10 — Devin Apps：从聊天里交付一个活工具 — build-with-devin guides</title>
-<meta name="description" content="指南 10 — Devin Apps：从聊天里交付一个活工具">
+<meta name="description" content="描述一个内部工具、仪表盘或 staging 副本——Devin 把它建出来并托管在一个稳定 URL 上，团队成员登录即可打开。">
 <link rel="icon" href="../../assets/brand/Devin_Symbol.svg" type="image/svg+xml">
 <link rel="stylesheet" href="../../assets/site.css">
 <link rel="stylesheet" href="../../assets/guides.css">
 
 <meta property="og:title" content="指南 10 — Devin Apps：从聊天里交付一个活工具">
-<meta property="og:description" content="指南 10 — Devin Apps：从聊天里交付一个活工具">
+<meta property="og:description" content="描述一个内部工具、仪表盘或 staging 副本——Devin 把它建出来并托管在一个稳定 URL 上，团队成员登录即可打开。">
 <meta property="og:type" content="article">
 <meta property="og:url" content="https://till3005.github.io/built-with-devin/guides/zh/devin-apps.html">
 <meta property="og:image" content="https://till3005.github.io/built-with-devin/assets/img/og-build.png?v=3">
@@ -36,32 +36,34 @@
 </div></nav>
 <main>
 <article class="guide wrap" id="guide">
-  <p class="guide-crumb"><a href="../../index.html#build">← Guides</a> · <a href="../devin-apps.html">English</a> · <a href="../ja/devin-apps.html">日本語</a> · <a href="../pt/devin-apps.html">Português</a></p>
+  <p class="guide-crumb"><a href="index.html">← 指南</a> · <a href="../devin-apps.html">English</a> · <a href="../ja/devin-apps.html">日本語</a> · <a href="../pt/devin-apps.html">Português</a></p>
+<p class="guide-meta">更新于 2026-11-19</p>
+<details class="toc" open><summary>本页目录</summary><ol><li class="d2"><a href="#它是什么">它是什么</a></li><li class="d2"><a href="#建一个">建一个</a></li><li class="d2"><a href="#更新循环">更新循环</a></li><li class="d2"><a href="#运行机制-要点">运行机制（要点）</a></li><li class="d2"><a href="#三种已验证用法">三种已验证用法</a></li><li class="d2"><a href="#verify-it">Verify it</a></li><li class="d2"><a href="#坑">坑</a></li><li class="d2"><a href="#自检">自检</a></li><li class="d2"><a href="#sources">Sources</a></li></ol></details>
 <h1>指南 10 — Devin Apps：从聊天里交付一个活工具</h1>
 <p><strong>目标：</strong> 描述一个内部工具、仪表盘或 staging 副本——Devin 把它建出来并托管在一个稳定 URL 上，团队成员登录即可打开。
 <strong>级别：</strong> 入门（平台篇）· <strong>用时：</strong> ~10 分钟出第一个 App
 <strong>来源：</strong> <a href="https://devin.ai/blog/devin-apps">Introducing Devin Apps</a>（2026-11-13）</p>
-<h2>它是什么</h2>
+<h2 id="它是什么">它是什么<a class="hlink" href="#它是什么" aria-hidden="true">#</a></h2>
 <p>Devin App 是一个直接托管在 Devin 云机器上的私密 web 应用。你描述工具，Devin 建出来，团队从链接打开——没有部署管线、没有运维。因为它跑在 Devin 的机器上，所以能直连你的 MCP、集成、代码库和它自己的数据库（同机的 SQLite/Postgres），还能回调 Devin API 自身。</p>
-<h2>建一个</h2>
+<h2 id="建一个">建一个<a class="hlink" href="#建一个" aria-hidden="true">#</a></h2>
 <ol>
 <li>侧栏 → <strong>Apps</strong> → 描述这个 App 要做什么（或选模板：指标仪表盘、项目状态、评审队列）→ <strong>Build with Devin</strong></li>
 <li>Devin 会在会话里问澄清问题、构建并上线——Apps 页显示其 URL，v1 上线前状态为 <code>Building</code></li>
 <li><strong>Share</strong> — 复制链接；范围可限定到指定人员、你的组织或整个企业。App 永不公开；打开需要 Devin 登录</li>
 </ol>
 <p>也可以在任何一个产出了浏览器预览的会话里说 "publish this as an App"。</p>
-<h2>更新循环</h2>
+<h2 id="更新循环">更新循环<a class="hlink" href="#更新循环" aria-hidden="true">#</a></h2>
 <ul>
 <li>App 页面上 <strong>Edit in session</strong> → 描述改动 → Devin 在同一个 URL 构建新版本。每次更新都是一次带版本的部署；新版本启动失败时旧版本继续服务。</li>
 <li><strong>Automation 保鲜：</strong> 接一个 automation（第 6 篇）按定时或分支变更重新部署——"每天早上拉新数据的仪表盘"是最典型的用法。</li>
 </ul>
-<h2>运行机制（要点）</h2>
+<h2 id="运行机制-要点">运行机制（要点）<a class="hlink" href="#运行机制-要点" aria-hidden="true">#</a></h2>
 <ul>
 <li><strong>休眠：</strong> App 构建在内存快照上——机器闲置时休眠、打开时唤醒（首次加载可能有几秒）。计费按唤醒时间。</li>
 <li><strong>技术栈：</strong> 任何能在端口上提供 HTTP 的东西；数据库同机部署。</li>
 <li><strong>规模边界：</strong> 一台机器——非常适合内部工具和仪表盘，<strong>不适合</strong>高并发生产服务。</li>
 </ul>
-<h2>三种已验证用法</h2>
+<h2 id="三种已验证用法">三种已验证用法<a class="hlink" href="#三种已验证用法" aria-hidden="true">#</a></h2>
 <table>
 <thead>
 <tr>
@@ -84,29 +86,29 @@
 </tr>
 </tbody>
 </table>
-<h2>Verify it</h2>
+<h2 id="verify-it">Verify it<a class="hlink" href="#verify-it" aria-hidden="true">#</a></h2>
 <ul>
 <li>[ ] 机器休眠后 App 仍能在稳定 URL 加载（预期几秒冷启动）</li>
 <li>[ ] 一次 edit-in-session 改动在同一 URL 产出了新版本</li>
 <li>[ ] 分享范围正确：无权限的队友被拦在登录页</li>
 </ul>
-<h2>坑</h2>
+<h2 id="坑">坑<a class="hlink" href="#坑" aria-hidden="true">#</a></h2>
 <ul>
 <li><strong>生产流量。</strong> 一台机器、闲时休眠——别把用户导给它，把团队导给它。</li>
 <li><strong>静态思维。</strong> App 的威力在于它<em>活在 Devin 的环境里</em>——接上你的数据/MCP，否则你只是造了个低配 Vercel。</li>
 </ul>
-<h2>自检</h2>
+<h2 id="自检">自检<a class="hlink" href="#自检" aria-hidden="true">#</a></h2>
 <ol>
 <li>Devin App 和 PR preview 的区别是什么？<em>（App 从 Devin 的机器上常驻服务于稳定 URL——有状态、持久、登录门控——不是构建产物。）</em></li>
 <li>「团队登录后打开」对内部工具意味着什么？<em>（鉴权继承自组织——不用再自建登录体系。）</em></li>
 <li>哪类内部工具最适合 Apps？<em>（dashboard 和 staging 类——「现在够用」胜过「以后完美」——维护成本近零。）</em></li>
 </ol>
-<h2>Sources</h2>
+<h2 id="sources">Sources<a class="hlink" href="#sources" aria-hidden="true">#</a></h2>
 <ul>
 <li><a href="https://devin.ai/blog/devin-apps">Introducing Devin Apps</a></li>
 <li>相关：<a href="automations-101-event-driven.html">第 6 篇 — 事件驱动的 Automations</a>（定时刷新）</li>
 </ul>
-<nav class="guide-pager"><a class="pg-prev" href="skills-and-plugins.html"><span class="pg-dir">← Previous</span><span class="pg-t">指南 17 — Skills 与 plugins：playbook 之后的封装层</span></a><a class="pg-next" href="design-with-devin.html"><span class="pg-dir">Next →</span><span class="pg-t">指南 8 — 设计与视觉工作</span></a></nav>
+<nav class="guide-pager"><a class="pg-prev" href="skills-and-plugins.html"><span class="pg-dir">← 上一篇</span><span class="pg-t">指南 17 — Skills 与 plugins：playbook 之后的封装层</span></a><a class="pg-next" href="design-with-devin.html"><span class="pg-dir">下一篇 →</span><span class="pg-t">指南 8 — 设计与视觉工作</span></a></nav>
 </article>
 <footer><div class="wrap foot-base"><span data-i18n="foot.note">Unofficial community project — not affiliated with Cognition AI.</span><span><a href="../../index.html">built-with-devin</a> · <a href="https://github.com/Till3005/build-with-devin">build-with-devin</a></span></div></footer>
 </main>

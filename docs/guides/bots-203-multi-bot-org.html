@@ -36,13 +36,15 @@
 </div></nav>
 <main>
 <article class="guide wrap" id="guide">
-  <p class="guide-crumb"><a href="../index.html#build">← Guides</a> · <a href="zh/bots-203-multi-bot-org.html">中文</a> · <a href="ja/bots-203-multi-bot-org.html">日本語</a> · <a href="pt/bots-203-multi-bot-org.html">Português</a></p>
+  <p class="guide-crumb"><a href="index.html">← Guides</a> · <a href="ja/bots-203-multi-bot-org.html">日本語</a> · <a href="pt/bots-203-multi-bot-org.html">Português</a> · <a href="zh/bots-203-multi-bot-org.html">中文</a></p>
+<p class="guide-meta">Updated 2026-11-19</p>
+<details class="toc" open><summary>On this page</summary><ol><li class="d2"><a href="#the-pattern">The pattern</a></li><li class="d2"><a href="#prerequisites">Prerequisites</a></li><li class="d2"><a href="#step-1-design-the-org-chart-first">Step 1 — Design the org chart first</a></li><li class="d2"><a href="#step-2-create-the-specialists">Step 2 — Create the specialists</a></li><li class="d2"><a href="#step-3-wire-grants">Step 3 — Wire grants</a></li><li class="d2"><a href="#step-4-the-roll-up-thread">Step 4 — The roll-up thread</a></li><li class="d2"><a href="#step-5-cadence-the-org-s-heartbeat">Step 5 — Cadence = the org&#x27;s heartbeat</a></li><li class="d2"><a href="#step-6-inter-bot-protocol-botspeak">Step 6 — Inter-bot protocol (BotSpeak)</a></li><li class="d2"><a href="#verify-it">Verify it</a></li><li class="d2"><a href="#pitfalls">Pitfalls</a></li><li class="d2"><a href="#knowledge-check">Knowledge check</a></li><li class="d2"><a href="#sources">Sources</a></li></ol></details>
 <h1>Guide 4 — Multi-Bot organization</h1>
 <p><strong>Goal:</strong> a hierarchy of Bots that runs an entire business unit — one orchestrator delegating to specialist Bots, one human deciding through a single daily thread.
 <strong>Level:</strong> advanced
 <strong>Source deployment:</strong> Jenny Xu's <strong>SuperJennyStack</strong> — ~20 Bots running a mobile game studio. ~50 → <strong>1,900 PRs/week</strong>, weekly releases, studio revenue 6×'d. Published as a community template in the <a href="https://devin.ai/bots/templates">Bot marketplace</a>. The official <strong>bot-to-bot grant handoff</strong> (QA → Developer → retest → PM report) uses the same mechanics at smaller scale.
 <strong>Sources:</strong> Jenny Xu's published stack (<a href="https://x.com/cognition/status/2122737511684587551">via launch coverage</a>) · <a href="https://docs.devin.ai/work-with-devin/bots">Bots docs</a> · <a href="https://x.com/xujennyc/status/2123111543105868166">BotSpeak post</a></p>
-<h2>The pattern</h2>
+<h2 id="the-pattern">The pattern<a class="hlink" href="#the-pattern" aria-hidden="true">#</a></h2>
 <p>Don't build one Bot that does everything — build a small company:</p>
 <pre><code class="language-text">                    ┌─────────────┐
               ┌────►│ Orchestrator │◄──── one roll-up thread
@@ -54,13 +56,13 @@
   (what)   (build)   (verify) (ship)        (users)
 </code></pre>
 <p>The human is the CEO: the orchestrator collects every subordinate Bot's pending decisions into <strong>one Slack thread, 4×/day</strong>, answered with emoji.</p>
-<h2>Prerequisites</h2>
+<h2 id="prerequisites">Prerequisites<a class="hlink" href="#prerequisites" aria-hidden="true">#</a></h2>
 <ul>
 <li>Guide 1 done — you can create and instruct a Bot</li>
 <li>Slack connected — this pattern lives in Slack; the orchestrator's roll-up thread is the whole UX</li>
 <li>A bounded domain with separable jobs (a product, a studio, a service area)</li>
 </ul>
-<h2>Step 1 — Design the org chart first</h2>
+<h2 id="step-1-design-the-org-chart-first">Step 1 — Design the org chart first<a class="hlink" href="#step-1-design-the-org-chart-first" aria-hidden="true">#</a></h2>
 <p>Jenny's published stack — copy the <em>shape</em>, not the names:</p>
 <table>
 <thead>
@@ -93,21 +95,21 @@
 </tbody>
 </table>
 <p>Remaining ~15 Bots cover development, Unity, UI, iOS, Android, analytics. Rule of thumb from the deployment: <strong>one Bot per job you could name on an org chart</strong> — not per task, per <em>responsibility</em>.</p>
-<h2>Step 2 — Create the specialists</h2>
+<h2 id="step-2-create-the-specialists">Step 2 — Create the specialists<a class="hlink" href="#step-2-create-the-specialists" aria-hidden="true">#</a></h2>
 <p>For each job, a Bot with a scoped outcome prompt:</p>
 <pre><code class="language-text">You own QA for &lt;product&gt;. Test every release candidate on real devices,
 post video proof, and block release on failures. Report what needs a
 decision to the orchestrator.
 </code></pre>
 <p>Keep each Bot's Instructions focused on its job's rules; shared knowledge (brand, deploy process, who approves what) goes in each Bot's instructions or a shared resource — there is no global memory across Bots, so the orchestrator's prompts carry the connective tissue.</p>
-<h2>Step 3 — Wire grants</h2>
+<h2 id="step-3-wire-grants">Step 3 — Wire grants<a class="hlink" href="#step-3-wire-grants" aria-hidden="true">#</a></h2>
 <p>A grant gives Bot A read/message access to Bot B — this is how Bots hand work to each other (the Bots ask for the grant; you approve the card once). The orchestrator needs access to every specialist.</p>
 <p>The documented official variant — smaller, same mechanics:</p>
 <pre><code class="language-text">QA Bot finds a bug ──grant──► Developer Bot fixes ──► QA retests on
 staging ──► PM Bot reports status in channel
 </code></pre>
 <p>Approve grants narrowly: the orchestrator reads and messages specialists; specialists don't all need to reach each other.</p>
-<h2>Step 4 — The roll-up thread</h2>
+<h2 id="step-4-the-roll-up-thread">Step 4 — The roll-up thread<a class="hlink" href="#step-4-the-roll-up-thread" aria-hidden="true">#</a></h2>
 <p>This is the single most important instruction — it converts 20 Bots' worth of interruptions into one habit:</p>
 <pre><code class="language-text">Collect every pending decision from the Bots you work with into one
 Slack thread, posted at &lt;times&gt; daily. For each item: what's blocked,
@@ -115,7 +117,7 @@ the options, your recommendation. I answer in replies/emoji; treat my
 replies as decisions and relay them.
 </code></pre>
 <p>Jenny runs this <strong>4×/day</strong> and answers <strong>with emoji</strong>. The discipline: you never talk to the specialists — the orchestrator relays your decision and follows it to done.</p>
-<h2>Step 5 — Cadence = the org's heartbeat</h2>
+<h2 id="step-5-cadence-the-org-s-heartbeat">Step 5 — Cadence = the org's heartbeat<a class="hlink" href="#step-5-cadence-the-org-s-heartbeat" aria-hidden="true">#</a></h2>
 <table>
 <thead>
 <tr>
@@ -143,7 +145,7 @@ replies as decisions and relay them.
 </tbody>
 </table>
 <p>Each Bot owns its loop; the orchestrator owns the schedule of loops.</p>
-<h2>Step 6 — Inter-bot protocol (BotSpeak)</h2>
+<h2 id="step-6-inter-bot-protocol-botspeak">Step 6 — Inter-bot protocol (BotSpeak)<a class="hlink" href="#step-6-inter-bot-protocol-botspeak" aria-hidden="true">#</a></h2>
 <p>The scale problem nobody warns you about: Jenny's 20+ Bots were sending <strong>700+ messages/day</strong> — she couldn't keep up. Her fix was <strong>BotSpeak</strong>, a token-saving shorthand Bots use <em>with each other</em> (<a href="https://x.com/xujennyc/status/2123111543105868166">her writeup</a>):</p>
 <table>
 <thead>
@@ -176,7 +178,7 @@ replies as decisions and relay them.
 </tbody>
 </table>
 <p>Six days after switching: decisions made by Bots without her <strong>12×'d</strong>, repeated asks −50%, inter-bot clarifying posts −12%. The protocol exists because token waste isn't the real cost — <em>attention</em> waste is: shorter bot-to-bot messages mean the human's one thread stays readable.</p>
-<h2>Verify it</h2>
+<h2 id="verify-it">Verify it<a class="hlink" href="#verify-it" aria-hidden="true">#</a></h2>
 <ul>
 <li>[ ] Every specialist Bot has a scoped outcome prompt and active grants</li>
 <li>[ ] The orchestrator posts the consolidated decision thread on schedule</li>
@@ -184,20 +186,20 @@ replies as decisions and relay them.
 <li>[ ] A cross-Bot handoff completed end-to-end (find → fix → verify → report)</li>
 <li>[ ] Total human messages today &lt; number of merged PRs</li>
 </ul>
-<h2>Pitfalls</h2>
+<h2 id="pitfalls">Pitfalls<a class="hlink" href="#pitfalls" aria-hidden="true">#</a></h2>
 <ul>
 <li><strong>Skipping the orchestrator.</strong> N Bots each DMing you is N× noise. The org only works if judgment funnels through one thread.</li>
 <li><strong>Vague job boundaries.</strong> "Dev Bot" and "Fix Bot" will collide. Boundaries follow the org chart — QA <em>verifies</em>, Release <em>ships</em>, PM <em>prioritizes</em>.</li>
 <li><strong>Over-granting.</strong> Mesh grants (everyone can reach everyone) recreate chaos. Hub-and-spoke through the orchestrator.</li>
 <li><strong>Prose between Bots.</strong> Bots writing paragraphs to each other is how you get 700 messages/day — adopt a BotSpeak-style protocol: shorthand + emoji receipts + no niceties; full sentences only for the human.</li>
 </ul>
-<h2>Knowledge check</h2>
+<h2 id="knowledge-check">Knowledge check<a class="hlink" href="#knowledge-check" aria-hidden="true">#</a></h2>
 <ol>
 <li>Why does SuperJennyStack route all human contact through <em>one</em> consolidated thread? <em>(Attention is the bottleneck, not compute — 20 Bots generating 20 threads is just 20 jobs again.)</em></li>
 <li>When does a grant beat 'ask the orchestrator'? <em>(When the needed capability is already owned by another Bot — grants borrow ownership instead of duplicating it.)</em></li>
 <li>What does the human's '4×/day with emoji' cadence imply about delegation depth? <em>(Decision bandwidth, not headcount, is what Bots replace — the human kept the judgment layer and lost the typing layer.)</em></li>
 </ol>
-<h2>Sources</h2>
+<h2 id="sources">Sources<a class="hlink" href="#sources" aria-hidden="true">#</a></h2>
 <ul>
 <li><a href="https://devin.ai/blog/introducing-devin-bots">Introducing Devin Bots</a> — SuperJennyStack numbers, grant-handoff variant</li>
 <li><a href="https://devin.ai/bots/templates">Bot marketplace</a> — SuperJennyStack community template + 16 official templates</li>

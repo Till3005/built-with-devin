@@ -4,13 +4,13 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Guia 5 — Enxame ancorado em referência — build-with-devin guides</title>
-<meta name="description" content="Guia 5 — Enxame ancorado em referência">
+<meta name="description" content="dirigir um enxame de agentes para escrever um sistema grande e verificável — onde a correção é checada continuamente contra uma referência confiável, não contra">
 <link rel="icon" href="../../assets/brand/Devin_Symbol.svg" type="image/svg+xml">
 <link rel="stylesheet" href="../../assets/site.css">
 <link rel="stylesheet" href="../../assets/guides.css">
 
 <meta property="og:title" content="Guia 5 — Enxame ancorado em referência">
-<meta property="og:description" content="Guia 5 — Enxame ancorado em referência">
+<meta property="og:description" content="dirigir um enxame de agentes para escrever um sistema grande e verificável — onde a correção é checada continuamente contra uma referência confiável, não contra">
 <meta property="og:type" content="article">
 <meta property="og:url" content="https://till3005.github.io/built-with-devin/guides/pt/bots-204-reference-grounded-swarm.html">
 <meta property="og:image" content="https://till3005.github.io/built-with-devin/assets/img/og-build.png?v=3">
@@ -36,13 +36,15 @@
 </div></nav>
 <main>
 <article class="guide wrap" id="guide">
-  <p class="guide-crumb"><a href="../../index.html#build">← Guides</a> · <a href="../bots-204-reference-grounded-swarm.html">English</a> · <a href="../zh/bots-204-reference-grounded-swarm.html">中文</a> · <a href="../ja/bots-204-reference-grounded-swarm.html">日本語</a></p>
+  <p class="guide-crumb"><a href="index.html">← Guias</a> · <a href="../bots-204-reference-grounded-swarm.html">English</a> · <a href="../ja/bots-204-reference-grounded-swarm.html">日本語</a> · <a href="../zh/bots-204-reference-grounded-swarm.html">中文</a></p>
+<p class="guide-meta">Atualizado 2026-11-19</p>
+<details class="toc" open><summary>Nesta página</summary><ol><li class="d2"><a href="#o-padrão">O padrão</a></li><li class="d2"><a href="#quando-usar">Quando usar</a></li><li class="d2"><a href="#passo-1-garanta-a-referência-primeiro">Passo 1 — Garanta a referência primeiro</a></li><li class="d2"><a href="#passo-2-decomponha-em-fatias-possuídas">Passo 2 — Decomponha em fatias possuídas</a></li><li class="d2"><a href="#passo-3-humanos-direcionam-acima-do-código">Passo 3 — Humanos direcionam acima do código</a></li><li class="d2"><a href="#passo-4-validação-adversarial-por-cima">Passo 4 — Validação adversarial por cima</a></li><li class="d2"><a href="#checklist-de-verificação">Checklist de verificação</a></li><li class="d2"><a href="#armadilhas">Armadilhas</a></li><li class="d2"><a href="#teste-de-conhecimento">Teste de conhecimento</a></li><li class="d2"><a href="#fontes">Fontes</a></li></ol></details>
 <h1>Guia 5 — Enxame ancorado em referência</h1>
 <p><strong>Objetivo:</strong> dirigir um enxame de agentes para escrever um sistema grande e <em>verificável</em> — onde a correção é checada continuamente contra uma referência confiável, não contra impressões.
 <strong>Nível:</strong> avançado
 <strong>Implantação de origem:</strong> o <strong>"Phil"</strong> da Harvey — ~30 agentes escreveram um motor de editor colaborativo compatível com Word em Rust + TypeScript: <strong>1M+ linhas em 3 semanas, zero engenheiros humanos</strong>. Verificado continuamente contra o comportamento real do Microsoft Word e negociações de advogados simuladas. Humanos direcionaram via memória + logs de decisão, nunca lendo código.
 <strong>Fontes:</strong> relato de lançamento de Gabe Pereyra (<a href="https://x.com/gabepereyra">via @gabepereyra</a>) · <a href="https://devin.ai/blog/introducing-devin-bots">post de lançamento</a></p>
-<h2>O padrão</h2>
+<h2 id="o-padrão">O padrão<a class="hlink" href="#o-padrão" aria-hidden="true">#</a></h2>
 <p>Um enxame falha quando ninguém consegue dizer se a saída está certa. O Phil funcionou porque cada linha podia ser checada contra uma <strong>referência de verdade</strong>: o Microsoft Word real. O trabalho do time de agentes era <em>igualar</em> — um alvo objetivo e continuamente verificável — não <em>inventar</em>.</p>
 <pre><code class="language-text">   sistema de referência (verdade)
             ▲ compara
@@ -55,7 +57,7 @@
    humanos: memória + logs de decisão
    (nunca lendo o código)
 </code></pre>
-<h2>Quando usar</h2>
+<h2 id="quando-usar">Quando usar<a class="hlink" href="#quando-usar" aria-hidden="true">#</a></h2>
 <table>
 <thead>
 <tr>
@@ -79,20 +81,20 @@
 </tbody>
 </table>
 <p>O teste de tornassol: <strong>uma máquina consegue decidir "correto" sem você?</strong> Se sim, um enxame escala; se não, use um Bot product-owner (Guia 2).</p>
-<h2>Passo 1 — Garanta a referência primeiro</h2>
+<h2 id="passo-1-garanta-a-referência-primeiro">Passo 1 — Garanta a referência primeiro<a class="hlink" href="#passo-1-garanta-a-referência-primeiro" aria-hidden="true">#</a></h2>
 <p>Antes de qualquer agente escrever código, a checagem deve existir:</p>
 <ul>
 <li>A referência da Harvey: <strong>comportamento real do Microsoft Word</strong> — documentos renderizados no editor do enxame tinham que igualar o Word</li>
 <li>A sua pode ser: o sistema legado ainda rodando, uma suíte de conformidade, golden files, um corpus de testes da spec, um contrato de API</li>
 </ul>
 <p>Coloque a comparação no CI ou num script que o enxame roda constantemente — "a saída bate com a referência?" precisa ser barato e automático, ou os agentes desviam entre checagens.</p>
-<h2>Passo 2 — Decomponha em fatias possuídas</h2>
+<h2 id="passo-2-decomponha-em-fatias-possuídas">Passo 2 — Decomponha em fatias possuídas<a class="hlink" href="#passo-2-decomponha-em-fatias-possuídas" aria-hidden="true">#</a></h2>
 <p>~30 agentes não compartilhavam um backlog — o trabalho foi fatiado para que cada agente fosse dono de um subsistema (modelo de documento, motor de layout, protocolo de colaboração, …). Estruture como o organograma do Guia 4, exceto que cada "funcionário" é uma sessão de código apontada para uma fronteira de módulo:</p>
 <pre><code class="language-text">You own the &lt;module&gt;. Its contract is &lt;interface/reference behavior&gt;.
 Your PRs are accepted when the reference checks pass — not when the
 code looks done.
 </code></pre>
-<h2>Passo 3 — Humanos direcionam acima do código</h2>
+<h2 id="passo-3-humanos-direcionam-acima-do-código">Passo 3 — Humanos direcionam acima do código<a class="hlink" href="#passo-3-humanos-direcionam-acima-do-código" aria-hidden="true">#</a></h2>
 <p>Ninguém na Harvey leu o milhão de linhas. A direção aconteceu via:</p>
 <ul>
 <li><strong>Memória</strong> — os fatos acumulados do Bot sobre decisões tomadas e por quê</li>
@@ -100,34 +102,34 @@ code looks done.
 <li><strong>Mensagens de direção</strong> — "priorize fidelidade de track-changes sobre performance esta semana"</li>
 </ul>
 <p>Sua superfície de revisão é a <em>trilha de decisões</em>, não o diff. Se você se pega lendo código gerado para saber o que está acontecendo, peça o log de decisões ao orquestrador.</p>
-<h2>Passo 4 — Validação adversarial por cima</h2>
+<h2 id="passo-4-validação-adversarial-por-cima">Passo 4 — Validação adversarial por cima<a class="hlink" href="#passo-4-validação-adversarial-por-cima" aria-hidden="true">#</a></h2>
 <p>A Harvey adicionou uma segunda camada: <strong>negociações de advogados simuladas</strong> — uso realista que expõe o que uma suíte de conformidade perde. Seu equivalente: uma camada de cenários sobre o diff de referência — workflows reais, inputs adversariais, fuzzing. Checagens de referência pegam o <em>errado</em>; checagens de cenário pegam o <em>frágil</em>.</p>
-<h2>Checklist de verificação</h2>
+<h2 id="checklist-de-verificação">Checklist de verificação<a class="hlink" href="#checklist-de-verificação" aria-hidden="true">#</a></h2>
 <ul>
 <li>[ ] Uma checagem de referência automatizada existe e roda contra cada mudança</li>
 <li>[ ] O critério de aceitação de cada agente é "a referência passa", nunca "código escrito"</li>
 <li>[ ] Você consegue responder "o que o enxame decidiu e por quê" a partir de logs/memória sem ler código</li>
 <li>[ ] Um módulo deliberadamente quebrado é pego pela checagem de referência, não por você</li>
 </ul>
-<h2>Armadilhas</h2>
+<h2 id="armadilhas">Armadilhas<a class="hlink" href="#armadilhas" aria-hidden="true">#</a></h2>
 <ul>
 <li><strong>Escalar antes do oráculo.</strong> Um enxame sem checagem só produz volume — o Phil funcionou porque o Word sempre foi o juiz.</li>
 <li><strong>Revisar diffs.</strong> Não escala além de ~2 agentes; você vira o gargalo e perde a vantagem de velocidade do enxame.</li>
 <li><strong>Propriedade ambígua.</strong> Dois agentes editando um módulo produzem inferno de merge — as fronteiras de propriedade são a arquitetura.</li>
 </ul>
-<h2>Teste de conhecimento</h2>
+<h2 id="teste-de-conhecimento">Teste de conhecimento<a class="hlink" href="#teste-de-conhecimento" aria-hidden="true">#</a></h2>
 <ol>
 <li>Por que o enxame da Harvey funcionou onde a maioria das tentativas multi-agente colapsa? <em>(Uma referência externa confiável — o comportamento real do Word — tornou a correção verificável por máquina na velocidade do enxame.)</em></li>
 <li>Por que humanos direcionaram via memória e logs de decisão em vez de revisar código? <em>(1M+ LOC em 3 semanas excede qualquer capacidade humana de leitura; a direção acontece na camada de intenção.)</em></li>
 <li>Qual pré-requisito você checaria antes de tentar esse padrão? <em>(Se seu domínio tem uma referência contra a qual o enxame possa se checar — se não, construa o oráculo primeiro.)</em></li>
 </ol>
-<h2>Fontes</h2>
+<h2 id="fontes">Fontes<a class="hlink" href="#fontes" aria-hidden="true">#</a></h2>
 <ul>
 <li><a href="https://x.com/gabepereyra">@gabepereyra</a> — relato do Phil da Harvey: ~30 agentes, 1M+ LOC, verificação por referência ao Word, simulações de advogados</li>
 <li><a href="https://devin.ai/blog/introducing-devin-bots">Introducing Devin Bots</a></li>
 <li>Relacionado: <a href="bots-203-multi-bot-org.html">Guia 4 — Organização multi-Bot</a> (mesma hierarquia, propósito diferente: operação vs. construção)</li>
 </ul>
-<nav class="guide-pager"><a class="pg-prev" href="bots-203-multi-bot-org.html"><span class="pg-dir">← Previous</span><span class="pg-t">Guia 4 — Organização multi-Bot</span></a><a class="pg-next" href="migrations-at-scale.html"><span class="pg-dir">Next →</span><span class="pg-t">Guia 11 — Migrações em escala</span></a></nav>
+<nav class="guide-pager"><a class="pg-prev" href="bots-203-multi-bot-org.html"><span class="pg-dir">← Anterior</span><span class="pg-t">Guia 4 — Organização multi-Bot</span></a><a class="pg-next" href="migrations-at-scale.html"><span class="pg-dir">Próximo →</span><span class="pg-t">Guia 11 — Migrações em escala</span></a></nav>
 </article>
 <footer><div class="wrap foot-base"><span data-i18n="foot.note">Unofficial community project — not affiliated with Cognition AI.</span><span><a href="../../index.html">built-with-devin</a> · <a href="https://github.com/Till3005/build-with-devin">build-with-devin</a></span></div></footer>
 </main>

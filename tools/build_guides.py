@@ -1,13 +1,19 @@
 #!/usr/bin/env python3
 """Render build-with-devin guides into static HTML pages for the Pages site.
 
-Source of truth stays the markdown in ../build-with-devin/guides/{,zh}/.
-Output: docs/guides/<name>.html and docs/guides/zh/<name>.html — same site chrome,
+Source of truth stays the markdown in ../build-with-devin/guides/{,zh,ja,pt}/.
+Output: docs/guides/<name>.html and docs/guides/<lang>/<name>.html — same site chrome,
 same i18n runtime, plus a prose stylesheet (assets/guides.css).
+
+Per-guide chrome: language switcher, per-section anchor links, a collapsible
+"on this page" TOC, an "Updated <date>" stamp (last git commit on the source),
+and a localized prev/next curriculum pager. Per-language index pages are built
+from each language's README guide table (number, title, pitch, level) with a
+client-side filter box.
 
 Run:  python3 tools/build_guides.py   (from the repo root)
 """
-import re, sys, html as html_
+import re, sys, html as html_, subprocess
 from pathlib import Path
 import markdown
 
@@ -53,7 +59,9 @@ PAGE = """<!DOCTYPE html>
 </div></nav>
 <main>
 <article class="guide wrap" id="guide">
-  <p class="guide-crumb"><a href="{rel}index.html#build">← Guides</a>{alt}</p>
+  <p class="guide-crumb"><a href="{crumb}">← {guides_label}</a>{alt}</p>
+{meta}
+{toc}
 {body}
 {pager}
 </article>
@@ -66,53 +74,160 @@ PAGE = """<!DOCTYPE html>
 </html>
 """
 
-def render(md_path: Path, out_path: Path, rel: str, lang: str, alt: str, mdsrc: str, pager: str = ""):
+LANG_LABEL = {"en": "English", "zh": "中文", "ja": "日本語", "pt": "Português"}
+GUIDES_LABEL = {"en": "Guides", "zh": "指南", "ja": "ガイド", "pt": "Guias"}
+UPDATED_LABEL = {"en": "Updated", "zh": "更新于", "ja": "更新", "pt": "Atualizado"}
+TOC_LABEL = {"en": "On this page", "zh": "本页目录", "ja": "このページの目次", "pt": "Nesta página"}
+PAGER_LABEL = {"en": ("← Previous", "Next →"), "zh": ("← 上一篇", "下一篇 →"),
+               "ja": ("← 前へ", "次へ →"), "pt": ("← Anterior", "Próximo →")}
+FILTER_PH = {"en": "Filter guides…", "zh": "筛选指南…", "ja": "ガイドを絞り込む…", "pt": "Filtrar guias…"}
+IDX_DESC = {
+    "en": "{n} field-tested Devin guides — English, 中文, 日本語 and Português editions.",
+    "zh": "{n} 篇实战验证的 Devin 教程——中、英、日、葡四语同步。",
+    "ja": "実戦検証済み Devin ガイド {n} 本——日本語・英語・中国語・ポルトガル語の4言語版。",
+    "pt": "{n} guias Devin testados em campo — edições em Português, English, 中文 e 日本語.",
+}
+IDX_TITLE = {"en": "build-with-devin — guides", "zh": "build-with-devin — 指南",
+             "ja": "build-with-devin — ガイド", "pt": "build-with-devin — guias"}
+
+
+def slugify(inner_html: str) -> str:
+    s = re.sub(r'<[^>]+>', '', inner_html)
+    s = html_.unescape(s).lower()
+    s = re.sub(r'[^\w぀-ヿ一-鿿가-힯]+', '-', s, flags=re.UNICODE)
+    return s.strip('-') or 'sec'
+
+
+def anchorize(body: str):
+    """Give every h2–h4 an id + hover anchor; return (body, [(depth, slug, text)])."""
+    items, used = [], set()
+
+    def repl(m):
+        tag, inner = m.group(1), m.group(3)
+        base = slugify(inner)
+        slug, i = base, 2
+        while slug in used:
+            slug = f"{base}-{i}"
+            i += 1
+        used.add(slug)
+        items.append((int(tag[1]), slug, re.sub(r'<[^>]+>', '', inner)))
+        return f'<{tag} id="{slug}">{inner}<a class="hlink" href="#{slug}" aria-hidden="true">#</a></{tag}>'
+
+    body = re.sub(r'<(h[234])([^>]*)>(.*?)</\1>', repl, body, flags=re.S)
+    return body, items
+
+
+def toc_html(items, lang: str) -> str:
+    lis = "".join(
+        f'<li class="d{d}"><a href="#{s}">{html_.escape(t)}</a></li>'
+        for d, s, t in items if d <= 3)
+    if not lis:
+        return ""
+    return f'<details class="toc" open><summary>{TOC_LABEL[lang]}</summary><ol>{lis}</ol></details>'
+
+
+def last_updated(md_path: Path) -> str:
+    try:
+        rel = md_path.relative_to(SRC.parent)
+        out = subprocess.run(
+            ["git", "-C", str(SRC.parent), "log", "-1", "--format=%cs", "--", str(rel)],
+            capture_output=True, text=True, timeout=10)
+        return out.stdout.strip()
+    except Exception:
+        return ""
+
+
+def render(md_path: Path, out_path: Path, rel: str, lang: str, alt: str, mdsrc: str,
+           crumb: str, pager: str = ""):
     text = md_path.read_text(encoding="utf-8")
     # rewrite inter-guide .md links to local .html pages (zh links stay in zh/)
     def fix(m):
         target = m.group(2)
-        if lang == "zh" and not target.startswith("zh/"):
-            target = target  # stay inside zh/
-        elif lang == "en" and target.startswith("zh/"):
+        if lang == "en" and target.startswith(("zh/", "ja/", "pt/")):
             target = target[3:]
         target = re.sub(r"\.md$", ".html", target)
         return m.group(1) + target + m.group(3)
     text = re.sub(r"(\]\()([^)]+)(\))", fix, text)
     title = re.search(r"^# (.+)$", text, re.M).group(1)
     body = markdown.markdown(text, extensions=["tables", "fenced_code", "attr_list"])
-    desc = re.sub(r"[*_`\[\]()#]", "", re.search(r"^\*\*Goal:\*\*\s*(.+)$", text, re.M).group(1))[:160] if re.search(r"^\*\*Goal:", text, re.M) else title
+    body, items = anchorize(body)
+    toc = toc_html(items, lang)
+    upd = last_updated(md_path)
+    meta = f'<p class="guide-meta">{UPDATED_LABEL[lang]} {upd}</p>' if upd else ""
+    desc = re.sub(r"[*_`\[\]()#]", "", re.search(r"^\*\*(Goal|目标|目標|Objetivo)[:：]\*\*\s*(.+)$", text, re.M).group(2))[:160] if re.search(r"^\*\*(Goal|目标|目標|Objetivo)[:：]", text, re.M) else title
     out_path.parent.mkdir(parents=True, exist_ok=True)
     page = out_path.relative_to(OUT).as_posix()
-    out_path.write_text(PAGE.format(lang=lang, etitle=html_.escape(title, quote=True), edesc=html_.escape(desc, quote=True), rel=rel, body=body, alt=alt, mdsrc=mdsrc, page=page, pager=pager), encoding="utf-8")
+    out_path.write_text(PAGE.format(
+        lang=lang, etitle=html_.escape(title, quote=True), edesc=html_.escape(desc, quote=True),
+        rel=rel, body=body, alt=alt, mdsrc=mdsrc, page=page, pager=pager,
+        crumb=crumb, meta=meta, toc=toc, guides_label=GUIDES_LABEL[lang]), encoding="utf-8")
     return title
 
-LANG_LABEL = {"zh": "中文", "ja": "日本語", "pt": "Português"}
 
-def pager_for(stem: str, order: list, titles: dict) -> str:
-    """Prev/next nav following the README table order (the curriculum order)."""
+def readme_table(lang: str) -> dict:
+    """Parse a language's README guide table → {stem: {num,title,pitch,level}}."""
+    name = "README.md" if lang == "en" else f"README.{lang}.md"
+    p = SRC.parent / name
+    if not p.exists():
+        return {}
+    rows = {}
+    for m in re.finditer(
+            r'^\|\s*([^|]*?)\s*\|\s*\[([^\]]+)\]\(guides/(?:[a-z]{2}/)?([a-z0-9-]+)\.md\)\s*\|\s*([^|]*?)\s*\|[^|]*\|\s*([^|]*?)\s*\|',
+            p.read_text(encoding="utf-8"), re.M):
+        num, title, stem, pitch, level = (s.strip() for s in m.groups())
+        rows[stem] = {"num": num, "title": title, "pitch": pitch, "level": level}
+    return rows
+
+
+def pager_for(stem: str, order: list, titles: dict, lang: str) -> str:
     if stem not in order:
         return ""
     i = order.index(stem)
+    prev_l, next_l = PAGER_LABEL[lang]
     parts = []
     if i > 0:
         p = order[i - 1]
-        parts.append(f'<a class="pg-prev" href="{p}.html"><span class="pg-dir">← Previous</span><span class="pg-t">{html_.escape(titles[p], quote=True)}</span></a>')
+        parts.append(f'<a class="pg-prev" href="{p}.html"><span class="pg-dir">{prev_l}</span><span class="pg-t">{html_.escape(titles[p], quote=True)}</span></a>')
     if i < len(order) - 1:
         n = order[i + 1]
-        parts.append(f'<a class="pg-next" href="{n}.html"><span class="pg-dir">Next →</span><span class="pg-t">{html_.escape(titles[n], quote=True)}</span></a>')
+        parts.append(f'<a class="pg-next" href="{n}.html"><span class="pg-dir">{next_l}</span><span class="pg-t">{html_.escape(titles[n], quote=True)}</span></a>')
     return f'<nav class="guide-pager">{"".join(parts)}</nav>' if parts else ""
 
 
+def index_body(lang: str, order: list, tables: dict, titles: dict) -> str:
+    rows = []
+    for stem in order:
+        if stem not in titles:
+            continue
+        t = titles[stem]
+        info = tables.get(lang, {}).get(stem, {})
+        num = info.get("num", "—") or "—"
+        pitch = info.get("pitch", "")
+        level = info.get("level", "")
+        search = html_.escape(f"{num} {t} {pitch} {level}".lower(), quote=True)
+        rows.append(
+            f'    <a class="row" href="{stem}.html" data-search="{search}">'
+            f'<span class="row-tag">{html_.escape(num)}</span><span>'
+            f'<span class="row-title">{html_.escape(t)}</span>'
+            f'<span class="row-desc">{html_.escape(pitch)}</span></span>'
+            f'<span class="row-num">{html_.escape(level)}</span></a>')
+    ph = FILTER_PH[lang]
+    return (f'<h1>{IDX_TITLE[lang]}</h1>\n'
+            f'<input id="gfilter" class="gfilter" type="search" placeholder="{ph}" '
+            f'oninput="document.querySelectorAll(\'.row[data-search]\').forEach(r=>r.style.display=r.dataset.search.includes(this.value.toLowerCase())?\'\':\'none\')">\n'
+            f'<div class="rows">{"".join(rows)}\n</div>')
+
+
 def main():
-    en_files = sorted(p for p in SRC.glob("*.md"))
+    en_files = sorted(SRC.glob("*.md"))
     stems = {p.stem for p in en_files}
-    # curriculum order = order of guide links in the English README; unlisted files sort last
     readme = (SRC.parent / "README.md").read_text(encoding="utf-8")
     order = [s for s in re.findall(r'guides/(?:[a-z]{2}/)?([a-z0-9-]+)\.md', readme) if s in stems]
     order += sorted(stems - set(order))
-    titles = {}
-    for en in en_files:
-        titles[en.stem] = re.search(r"^# (.+)$", en.read_text(encoding="utf-8"), re.M).group(1)
+    tables = {l: readme_table(l) for l in ("en", "zh", "ja", "pt")}
+
+    en_titles = {p.stem: re.search(r"^# (.+)$", p.read_text(encoding="utf-8"), re.M).group(1) for p in en_files}
+
     def lang_titles(lang: str) -> dict:
         lt = {}
         for s in stems:
@@ -120,28 +235,40 @@ def main():
             if p.exists():
                 lt[s] = re.search(r"^# (.+)$", p.read_text(encoding="utf-8"), re.M).group(1)
         return lt
-    index_rows = []
+
+    lang_dirs = [d.name for d in sorted(SRC.iterdir()) if d.is_dir() and d.name in ("zh", "ja", "pt")]
     for en in en_files:
-        mirrors = [(d.name, d / en.name) for d in sorted(SRC.iterdir(), key=lambda d: list(LANG_LABEL).index(d.name) if d.name in LANG_LABEL else 99) if d.is_dir() and (d / en.name).exists()]
-        alts = " · ".join(f'<a href="{lang}/{en.stem}.html">{LANG_LABEL.get(lang, lang)}</a>' for lang, _ in mirrors)
+        mirrors = [l for l in lang_dirs if (SRC / l / en.name).exists()]
+        alts = " · ".join(f'<a href="{l}/{en.stem}.html">{LANG_LABEL[l]}</a>' for l in mirrors)
         alt_en = f" · {alts}" if alts else ""
-        t = render(en, OUT / f"{en.stem}.html", "../", "en", alt_en, en.name, pager_for(en.stem, order, titles))
-        for lang, m in mirrors:
-            alt_lang = f' · <a href="../{en.stem}.html">English</a>' + "".join(
-                f' · <a href="../{other}/{en.stem}.html">{LANG_LABEL.get(other, other)}</a>'
-                for other, _ in mirrors if other != lang)
-            render(m, OUT / lang / f"{en.stem}.html", "../../", lang, alt_lang, f"{lang}/{en.name}", pager_for(en.stem, order, lang_titles(lang) or titles))
-        index_rows.append((en.stem, t, " · ".join(["EN"] + [LANG_LABEL.get(l, l) for l, _ in mirrors])))
-    # index page listing all guides
-    lis = "\n".join(
-        f'    <a class="row" href="{s}.html"><span class="row-tag">{i+1:02d}</span><span class="row-title">{t}</span><span class="row-num">{langs}</span></a>'
-        for i, (s, t, langs) in enumerate(index_rows))
-    body = f'<h1>build-with-devin — guides</h1>\n<div class="rows">{lis}\n</div>'
-    title = "Guides"
-    (OUT / "index.html").write_text(PAGE.format(
-        lang="en", etitle="Guides", edesc=f"{len(index_rows)} field-tested Devin guides — English, 中文, 日本語 and Português editions.",
-        rel="../", body=body, alt="", mdsrc="../", page="index.html", pager=""), encoding="utf-8")
-    print(f"rendered {len(en_files)} guides + mirrors → docs/guides/")
+        render(en, OUT / f"{en.stem}.html", "../", "en", alt_en, en.name, "index.html",
+               pager_for(en.stem, order, en_titles, "en"))
+        for l in mirrors:
+            alt_l = f' · <a href="../{en.stem}.html">English</a>' + "".join(
+                f' · <a href="../{o}/{en.stem}.html">{LANG_LABEL[o]}</a>' for o in mirrors if o != l)
+            render(SRC / l / en.name, OUT / l / f"{en.stem}.html", "../../", l, alt_l,
+                   f"{l}/{en.name}", "index.html",
+                   pager_for(en.stem, order, lang_titles(l) or en_titles, l))
+
+    # one index per language, localized titles/pitches in curriculum order
+    for l in ("en",) + tuple(lang_dirs):
+        lt = lang_titles(l) or en_titles if l != "en" else en_titles
+        body = index_body(l, order, tables, lt)
+        rel = "../" if l == "en" else "../../"
+        langs = ["en"] + lang_dirs
+        alt = " · ".join(
+            f'<a href="{"" if l == "en" else "../"}{"" if o == "en" else o + "/"}index.html">{LANG_LABEL[o]}</a>'
+            for o in langs if o != l)
+        alt = f" · {alt}" if alt else ""
+        out = OUT / "index.html" if l == "en" else OUT / l / "index.html"
+        out.write_text(PAGE.format(
+            lang=l, etitle=GUIDES_LABEL[l], edesc=IDX_DESC[l].format(n=len(order)),
+            rel=rel, body=body, alt=alt, mdsrc="../", page=("index.html" if l == "en" else f"{l}/index.html"),
+            pager="", crumb=f"{rel}index.html",
+            meta="", toc="", guides_label="built-with-devin"), encoding="utf-8")
+
+    print(f"rendered {len(en_files)} guides × {1 + len(lang_dirs)} languages + {1 + len(lang_dirs)} indexes → docs/guides/")
+
 
 if __name__ == "__main__":
     main()

@@ -4,13 +4,13 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>指南 1 — 你的第一个 Bot — build-with-devin guides</title>
-<meta name="description" content="指南 1 — 你的第一个 Bot">
+<meta name="description" content="创建一个拥有结果的 Devin Bot，并学会后面每篇指南都要用的六个机制。">
 <link rel="icon" href="../../assets/brand/Devin_Symbol.svg" type="image/svg+xml">
 <link rel="stylesheet" href="../../assets/site.css">
 <link rel="stylesheet" href="../../assets/guides.css">
 
 <meta property="og:title" content="指南 1 — 你的第一个 Bot">
-<meta property="og:description" content="指南 1 — 你的第一个 Bot">
+<meta property="og:description" content="创建一个拥有结果的 Devin Bot，并学会后面每篇指南都要用的六个机制。">
 <meta property="og:type" content="article">
 <meta property="og:url" content="https://till3005.github.io/built-with-devin/guides/zh/bots-101-first-bot.html">
 <meta property="og:image" content="https://till3005.github.io/built-with-devin/assets/img/og-build.png?v=3">
@@ -36,12 +36,14 @@
 </div></nav>
 <main>
 <article class="guide wrap" id="guide">
-  <p class="guide-crumb"><a href="../../index.html#build">← Guides</a> · <a href="../bots-101-first-bot.html">English</a> · <a href="../ja/bots-101-first-bot.html">日本語</a> · <a href="../pt/bots-101-first-bot.html">Português</a></p>
+  <p class="guide-crumb"><a href="index.html">← 指南</a> · <a href="../bots-101-first-bot.html">English</a> · <a href="../ja/bots-101-first-bot.html">日本語</a> · <a href="../pt/bots-101-first-bot.html">Português</a></p>
+<p class="guide-meta">更新于 2026-11-20</p>
+<details class="toc" open><summary>本页目录</summary><ol><li class="d2"><a href="#bot-是什么">Bot 是什么</a></li><li class="d2"><a href="#第-1-步-创建">第 1 步 — 创建</a></li><li class="d2"><a href="#第-2-步-指派结果">第 2 步 — 指派结果</a></li><li class="d3"><a href="#有界的第一个任务">有界的第一个任务</a></li><li class="d2"><a href="#第-3-步-与它协作">第 3 步 — 与它协作</a></li><li class="d2"><a href="#第-4-步-用记忆掌舵-别微操">第 4 步 — 用记忆掌舵，别微操</a></li><li class="d2"><a href="#共享之前-权限与用量">共享之前——权限与用量</a></li><li class="d2"><a href="#第-5-步-放到你工作的地方">第 5 步 — 放到你工作的地方</a></li><li class="d2"><a href="#第-6-步-排程与模式">第 6 步 — 排程与模式</a></li><li class="d2"><a href="#生命周期">生命周期</a></li><li class="d2"><a href="#verify-it">Verify it</a></li><li class="d2"><a href="#坑">坑</a></li><li class="d2"><a href="#自检">自检</a></li><li class="d2"><a href="#sources">Sources</a></li></ol></details>
 <h1>指南 1 — 你的第一个 Bot</h1>
 <p><strong>目标：</strong> 创建一个拥有结果的 Devin Bot，并学会后面每篇指南都要用的六个机制。
 <strong>级别：</strong> 从这里开始 · <strong>用时：</strong> ~15 分钟
 <strong>来源：</strong> <a href="https://docs.devin.ai/work-with-devin/bots">官方 Bots docs</a>、<a href="https://devin.ai/blog/introducing-devin-bots">launch post</a></p>
-<h2>Bot 是什么</h2>
+<h2 id="bot-是什么">Bot 是什么<a class="hlink" href="#bot-是什么" aria-hidden="true">#</a></h2>
 <p>一个 session 完成一个请求。一个 Bot <em>拥有一个结果</em>：你在它的聊天里说一次目标，它规划工作、为每一块启动子 Devin 会话、盯着它们，只把需要你判断的东西带给你。它是持久的——记忆、会话、automation 跨周存续。</p>
 <p>六个机制，按你会遇到它们的顺序：</p>
 <table>
@@ -85,14 +87,14 @@
 </tr>
 </tbody>
 </table>
-<h2>第 1 步 — 创建</h2>
+<h2 id="第-1-步-创建">第 1 步 — 创建<a class="hlink" href="#第-1-步-创建" aria-hidden="true">#</a></h2>
 <p>侧栏 → <strong>Bots</strong> → <em>Create new Bot</em> → 选模板或 <em>Start from scratch</em> → 命名。</p>
 <p>新 Bot 默认私密，分享前只有你能用。它的用量像普通会话一样计入你的方案。</p>
 <blockquote>
 <p>提示：<strong>Template library</strong>（侧栏 → Bots）列出 Cognition 官方模板——QA Engineer、Migration Engineer、Data Analyst 等——加上你组织内共享的；同一套在公开的 <a href="https://devin.ai/bots/templates">Bot marketplace</a> 上不登录也能逛。本仓库的指南仍适合 <em>Start from scratch</em>——outcome prompt 你自己写。</p>
 </blockquote>
 <p>用模板建出来的 Bot 只拿到 prompt，<strong>其它什么都没有</strong>——私有、无 connections、无 secrets、无 memory。要在聊天里告诉它它负责什么（仓库、项目、频道），像新 Bot 一样配好 connections；如果模板本身要跑触发器，第一次对话时 Bot 会主动提出帮你配。它持有 prompt 的独立副本——之后改模板不会同步给它。（<em>Add to a current Bot</em> 是把模板 prompt 送进你已有的 Bot，而不是新建一个。）</p>
-<h2>第 2 步 — 指派结果</h2>
+<h2 id="第-2-步-指派结果">第 2 步 — 指派结果<a class="hlink" href="#第-2-步-指派结果" aria-hidden="true">#</a></h2>
 <p>第一条消息是 Bot 收到的最重要的输入。给<em>目标</em>，不是任务：</p>
 <pre><code class="language-text">You own the Android app now. Keep it at feature parity with iOS.
 </code></pre>
@@ -120,7 +122,7 @@
 </tbody>
 </table>
 <p>任务做完就结束；结果让 Bot 永远重新规划。</p>
-<h3>有界的第一个任务</h3>
+<h3 id="有界的第一个任务">有界的第一个任务<a class="hlink" href="#有界的第一个任务" aria-hidden="true">#</a></h3>
 <p>"所有权"是对的<em>形状</em>，但第一次跑要把<em>面</em>收窄：一条流程、一个环境、一个审阅人——你。ANO 实战指南的模式是最稳的起点：</p>
 <pre><code class="language-text">Own the newsletter signup check for [project] on staging.
 Use [repository], [staging URL] and the test mailbox I provide.
@@ -139,7 +141,7 @@ the PR if a fix was needed, anything you could not verify,
 and any decision you need from me.
 </code></pre>
 <p>承重的那几行：旅程的定义（表单 → 邮件 → 链接，不只是"表单能用"）、<em>先跑一次再谈排程</em>、明写的禁 merge/禁部署边界、以及点名要的证据。Bot 连续两次交回可信证据之后，再扩大任务面。</p>
-<h2>第 3 步 — 与它协作</h2>
+<h2 id="第-3-步-与它协作">第 3 步 — 与它协作<a class="hlink" href="#第-3-步-与它协作" aria-hidden="true">#</a></h2>
 <p>结果设定后，你的消息大多是查岗：</p>
 <pre><code class="language-text">anything waiting on me?
 </code></pre>
@@ -171,30 +173,30 @@ and any decision you need from me.
 </tbody>
 </table>
 <p>每条都可以用自己的话回复、稍后处理或忽略。</p>
-<h2>第 4 步 — 用记忆掌舵，别微操</h2>
+<h2 id="第-4-步-用记忆掌舵-别微操">第 4 步 — 用记忆掌舵，别微操<a class="hlink" href="#第-4-步-用记忆掌舵-别微操" aria-hidden="true">#</a></h2>
 <ul>
 <li><strong>Instructions</strong>（Settings → General）：你的常驻规则——Bot 跑的每个会话启动时都会读。持久策略放这里，不放聊天。</li>
 <li><strong>Memory</strong>（Settings → Memory）：Bot 自己写的文件——偏好、纠正、项目事实。要改它的记忆，直接在聊天里说（"remember: we deploy via Cloud Run, never bare VMs"）。能用这个 Bot 的人都能读它的记忆——共享 Bot 的记忆按共享对待。</li>
 </ul>
 <p>可扩展的模式：纠正 Bot 一次，让它把纠正写进记忆，之后每个会话都继承。Cognition 就靠这个循环每周合并 2,000+ PR。</p>
-<h2>共享之前——权限与用量</h2>
+<h2 id="共享之前-权限与用量">共享之前——权限与用量<a class="hlink" href="#共享之前-权限与用量" aria-hidden="true">#</a></h2>
 <p>发布帖不会讲但文档写明了两件事：</p>
 <ul>
 <li><strong>私有 Bot 会不打招呼继承你的资源。</strong> 你已有的权限可以不经新的确认就被记录成 grants——私有 Bot 不是沙箱。共享之前打开 Settings → Access，摘掉任务不需要的 grants。如果想让队友抄方法但看不到你的对话和凭证，共享<em>模板</em>，不是 Bot 本体：Bot 侧栏菜单 → <em>Share as template</em>，它会拟好名称、一句话描述和清洗过的 prompt——发到组织 Template library（Teams/Enterprise）或生成公开链接（Pro+）。链接把整个签名后的模板压进 URL——不能编辑、不能撤销、任何人都能读到 prompt 全文，复制之前先把内部名字摘掉。</li>
 <li><strong>Bot 的用量 = 它的聊天 + 它起的全部会话。</strong> Max：先用你的包含额度再用按需付费——没有单独的 Bot 上限。Teams：你的额度然后团队点数，管理员可以设 Bot 专属按需上限。Enterprise：默认计入创建者上限，除非单独分配。聊天里写的花费指令不是配置好的上限——上限在 Settings 里设，别用自然语言描述。</li>
 </ul>
-<h2>第 5 步 — 放到你工作的地方</h2>
+<h2 id="第-5-步-放到你工作的地方">第 5 步 — 放到你工作的地方<a class="hlink" href="#第-5-步-放到你工作的地方" aria-hidden="true">#</a></h2>
 <ul>
 <li><strong>Slack：</strong> 给 Bot 配自己的 Slack app，团队就能 @ 或私信它（Settings → Slack）。所有公开的团队部署都这么跑——Bot 变成频道里一个有名有姓的队友。</li>
 <li><strong>iMessage：</strong> 手机上直接给 Bot 发短信。</li>
 <li><strong>Web：</strong> 侧栏 Bots 区列出你的和共享给你的。</li>
 </ul>
-<h2>第 6 步 — 排程与模式</h2>
+<h2 id="第-6-步-排程与模式">第 6 步 — 排程与模式<a class="hlink" href="#第-6-步-排程与模式" aria-hidden="true">#</a></h2>
 <ul>
 <li><strong>Automations：</strong> 在聊天里说——<em>"run a summary of open PRs every weekday morning"</em>——Bot 会提议一个 automation 等你一次性批准。之后在 Settings → Automations 管理（暂停/恢复/删除）。</li>
 <li><strong>Modes：</strong> Bot 有自己的模式，外加它派生会话用的 <strong>Child Capability</strong> 默认值（聊天里模式选择器的 <code>Normal / Ultra</code> 等）。也可以对任何单个会话临时换模式。</li>
 </ul>
-<h2>生命周期</h2>
+<h2 id="生命周期">生命周期<a class="hlink" href="#生命周期" aria-hidden="true">#</a></h2>
 <table>
 <thead>
 <tr>
@@ -218,7 +220,7 @@ and any decision you need from me.
 </tbody>
 </table>
 <p>只有创建者和带 Manage Bots 权限的角色能看到 Archive/Delete。企业版里 <code>Use Bots</code> / <code>Manage Bots</code> / <code>Manage Bots across the enterprise</code> 是自定义角色里的独立权限。</p>
-<h2>Verify it</h2>
+<h2 id="verify-it">Verify it<a class="hlink" href="#verify-it" aria-hidden="true">#</a></h2>
 <ul>
 <li>[ ] Bot 已创建并命名；outcome prompt 已在聊天里发出</li>
 <li>[ ] Bot 没有被催第二次就启动了至少一个子会话</li>
@@ -226,26 +228,26 @@ and any decision you need from me.
 <li>[ ] 你在聊天里给的一条纠正出现在 Settings → Memory 的记忆文件里</li>
 <li>[ ]（可选）Slack 里 @ 它能够得到响应</li>
 </ul>
-<h2>坑</h2>
+<h2 id="坑">坑<a class="hlink" href="#坑" aria-hidden="true">#</a></h2>
 <ul>
 <li><strong>任务形 prompt。</strong> "Fix X" 产出的是会话，不是 Bot。如果 Bot 干完就安静了，说明 prompt 是任务——改成所有权表述。</li>
 <li><strong>把策略写进聊天。</strong> 聊天里的规则会滚走；Instructions 里的规则每个会话都读。聊天 = 方向与答复；Instructions = 法。</li>
 <li><strong>不看 Needs you。</strong> Bot 的设计就是攒判断题——每天看一两次就行，不用盯。</li>
 </ul>
-<h2>自检</h2>
+<h2 id="自检">自检<a class="hlink" href="#自检" aria-hidden="true">#</a></h2>
 <ol>
 <li>一次性会话结束之后，Bot 还保留了什么？<em>（记忆——加上常驻的目标、计划和各个 surface。）</em></li>
 <li>为什么 Bot 是「needs-you」而不是会话中途问你？<em>（判断进入一条异步线程；人不是循环里的阻塞调用。）</em></li>
 <li>哪个机制把「聪明的会话」变成了「员工」？<em>（对结果的所有权——任何单个会话结束后目标仍在。）</em></li>
 </ol>
-<h2>Sources</h2>
+<h2 id="sources">Sources<a class="hlink" href="#sources" aria-hidden="true">#</a></h2>
 <ul>
 <li><a href="https://docs.devin.ai/work-with-devin/bots">Devin Bots — docs</a> —— 机制、权限、用量上限</li>
 <li><a href="https://devin.ai/blog/introducing-devin-bots">Introducing Devin Bots</a> —— 发布帖，Android Bot 的原话 prompt</li>
 <li><a href="https://ainativeoperators.ai/blog/devin-bots-guide">AI Native Operators — Devin Bots: give an agent a job to own</a> —— 社区实战指南；上面的有界首个任务和权限/用量提醒出自此</li>
 <li>上一篇：<a href="talking-to-devin.html">指南 18 — 跟 Devin 说话</a>（outcome prompt 底下的基本法）· 下一篇：<a href="bots-201-product-owner.html">第 2 篇 — 产品所有制 Bot</a></li>
 </ul>
-<nav class="guide-pager"><a class="pg-prev" href="devin-cli.html"><span class="pg-dir">← Previous</span><span class="pg-t">指南 12 — Devin CLI 与可扩展性</span></a><a class="pg-next" href="official-cookbook.html"><span class="pg-dir">Next →</span><span class="pg-t">指南 13 — 官方用例食谱</span></a></nav>
+<nav class="guide-pager"><a class="pg-prev" href="devin-cli.html"><span class="pg-dir">← 上一篇</span><span class="pg-t">指南 12 — Devin CLI 与可扩展性</span></a><a class="pg-next" href="official-cookbook.html"><span class="pg-dir">下一篇 →</span><span class="pg-t">指南 13 — 官方用例食谱</span></a></nav>
 </article>
 <footer><div class="wrap foot-base"><span data-i18n="foot.note">Unofficial community project — not affiliated with Cognition AI.</span><span><a href="../../index.html">built-with-devin</a> · <a href="https://github.com/Till3005/build-with-devin">build-with-devin</a></span></div></footer>
 </main>

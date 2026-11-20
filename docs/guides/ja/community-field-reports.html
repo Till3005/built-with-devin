@@ -4,13 +4,13 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>ガイド 14 — コミュニティ実践レポート — build-with-devin guides</title>
-<meta name="description" content="ガイド 14 — コミュニティ実践レポート">
+<meta name="description" content="実際の業務で Devin を運用したエンジニアたちが学んだこと——失敗も含めて。称賛的・批判的双方の公開体験記から抽出。">
 <link rel="icon" href="../../assets/brand/Devin_Symbol.svg" type="image/svg+xml">
 <link rel="stylesheet" href="../../assets/site.css">
 <link rel="stylesheet" href="../../assets/guides.css">
 
 <meta property="og:title" content="ガイド 14 — コミュニティ実践レポート">
-<meta property="og:description" content="ガイド 14 — コミュニティ実践レポート">
+<meta property="og:description" content="実際の業務で Devin を運用したエンジニアたちが学んだこと——失敗も含めて。称賛的・批判的双方の公開体験記から抽出。">
 <meta property="og:type" content="article">
 <meta property="og:url" content="https://till3005.github.io/built-with-devin/guides/ja/community-field-reports.html">
 <meta property="og:image" content="https://till3005.github.io/built-with-devin/assets/img/og-build.png?v=3">
@@ -36,15 +36,17 @@
 </div></nav>
 <main>
 <article class="guide wrap" id="guide">
-  <p class="guide-crumb"><a href="../../index.html#build">← Guides</a> · <a href="../community-field-reports.html">English</a> · <a href="../zh/community-field-reports.html">中文</a> · <a href="../pt/community-field-reports.html">Português</a></p>
+  <p class="guide-crumb"><a href="index.html">← ガイド</a> · <a href="../community-field-reports.html">English</a> · <a href="../pt/community-field-reports.html">Português</a> · <a href="../zh/community-field-reports.html">中文</a></p>
+<p class="guide-meta">更新 2026-11-20</p>
+<details class="toc" open><summary>このページの目次</summary><ol><li class="d2"><a href="#すべてのレポートに繰り返されるパターン">すべてのレポートに繰り返されるパターン</a></li><li class="d2"><a href="#devin-が勝った-記録された事例">Devin が勝った、記録された事例</a></li><li class="d2"><a href="#失敗した-記録された事例">失敗した、記録された事例</a></li><li class="d2"><a href="#名付けられたチーム導入-コミュニティ-数値つき">名付けられたチーム導入（コミュニティ、数値つき）</a></li><li class="d2"><a href="#抽出された教訓">抽出された教訓</a></li><li class="d2"><a href="#scott-wu-の社内トップ-5-lenny-s-インタビューより">Scott Wu の社内トップ 5（Lenny&#x27;s インタビューより）</a></li><li class="d2"><a href="#深読み-何を真似るか-何に気をつけるか">深読み — 何を真似るか、何に気をつけるか</a></li><li class="d2"><a href="#検証チェックリスト">検証チェックリスト</a></li><li class="d2"><a href="#落とし穴">落とし穴</a></li><li class="d2"><a href="#理解度チェック">理解度チェック</a></li><li class="d2"><a href="#出典">出典</a></li></ol></details>
 <h1>ガイド 14 — コミュニティ実践レポート</h1>
 <p><strong>目標：</strong> 実際の業務で Devin を運用したエンジニアたちが学んだこと——失敗も含めて。称賛的・批判的双方の公開体験記から抽出。
 <strong>レベル：</strong> 判断力を得るならここから
 <strong>出典：</strong> 各レポートごとにリンク</p>
 <p>このガイドは意図的にバランスを取っている：Devin が確実に勝つ領域、金を燃やす領域、そして二つの結果を分ける働き方。</p>
-<h2>すべてのレポートに繰り返されるパターン</h2>
+<h2 id="すべてのレポートに繰り返されるパターン">すべてのレポートに繰り返されるパターン<a class="hlink" href="#すべてのレポートに繰り返されるパターン" aria-hidden="true">#</a></h2>
 <p>成果を出すユーザーは Devin をコード生成器ではなく<strong>非同期のジュニアエンジニア</strong>として扱う。Scott Wu（Cognition CEO）は <a href="https://www.lennysnewsletter.com/p/how-devin-replaces-your-junior-engineers">Lenny's Newsletter</a> で内部ワークフローを説明している：範囲を絞ったタスクを委任し、会議中に走らせ、PR をレビューする。<a href="https://every.to/chain-of-thought/coding-with-devin-my-new-ai-programming-agent">Every の記事</a>も同じ枠組みに落ちる——これは<em>スキルセット</em>を要する：何が得意かを学び、理解できるタスクを書き、介入すべきときを知り、自分とは違うやり方でされた仕事を信頼することを学ぶ。</p>
-<h2>Devin が勝った、記録された事例</h2>
+<h2 id="devin-が勝った-記録された事例">Devin が勝った、記録された事例<a class="hlink" href="#devin-が勝った-記録された事例" aria-hidden="true">#</a></h2>
 <p><strong>エンドツーエンドのプロトタイピング。</strong> 空のリポジトリから、Devin が FastAPI + React の「City Explorer」（画像/天気/ニュース連携）をスキャフォールドし、ローカルで実行し、PR を開き、公開 URL にデプロイ——約 90 分、人間の介入約 2 回（<a href="https://medium.com/@sambhavgaur_70582/copilot-cursor-or-devin-my-hands-on-weekend-with-ai-that-codes-and-deploys-acc708e802b3">Medium 体験記</a>）。<a href="https://blog.scottlogic.com/2025/10/20/rapid-development-with-devin.html">Scott Logic</a> は実際のクライアントプロトタイプで同じ弧を報告——下記に重要な反復の教訓。</p>
 <p><strong>ランタイムが要る仕事。</strong> <a href="https://web.archive.org/web/20260718112612/https://mohitkhare.me/blog/devin-vs-claude-code/">Claude Code との直接対決</a>で、Devin は規約に合わせるタスクでは負けたが、マシンが活きる領域では明確に勝った：メモリリーク狩りでプロファイリング、負荷下でのヒープスナップショット、レポート生成——エージェント自身の VM が機能。</p>
 <p><strong>ライブトラブルシューティング。</strong> <a href="https://www.faros.ai/blog/how-to-use-devin-ai-troubleshooting">Faros</a> は<em>顧客電話中に</em> Devin を使用：イントロスペクション API のコードを読み、動作する <code>curl</code> を数秒で生成——1〜2 日のフォローアップループを通話内に圧縮。</p>
@@ -53,7 +55,7 @@
 <p><strong>コードを超えて。</strong> Cognition の研究者は、9 年前に学期の大半を費やした Lean 形式化を Devin が再構築し——完成させたと報告。<strong>15 分以内</strong>で（<a href="https://x.com/penlume/status/2115806616796921885">投稿</a>）。数学の形式化は移行と同じ特性を報酬とする：機械チェック可能な完了定義。</p>
 <p><strong>退屈だが必要なクリーンアップ。</strong> 1 か月の実践レポート：放置リポジトリの整理と、「modernize this」の一言で gulp/webpack 時代のビルド環境を現代構成に刷新（約 1 時間）——地味なキューこそオフロードの価値が最大（<a href="https://zenn.dev/mei999/articles/7d6132f1ca36b6">レポート</a>）。</p>
 <p><strong>オブザーバビリティへの配線。</strong> <a href="https://medium.com/lets-code-future/how-i-turned-devin-into-a-performance-analysis-agent-with-dynatrace-mcp-753d3f4790a2">Dynatrace MCP + Devin</a>は Devin をパフォーマンス分析エージェントに変える：ライブ指標とトレースを問い合わせて診断——MCP サーバーがリポジトリにない本番コンテキストを運ぶ（Medium）。素直なチケット→PR ループの全行程は <a href="https://medium.com/@winter.inc/devin-from-bug-report-to-pull-request-25-days-of-ai-day-18-b158daa20f23">Devin: バグレポートから PR へ</a>も参照。</p>
-<h2>失敗した、記録された事例</h2>
+<h2 id="失敗した-記録された事例">失敗した、記録された事例<a class="hlink" href="#失敗した-記録された事例" aria-hidden="true">#</a></h2>
 <ul>
 <li><strong>曖昧または広すぎるプロンプト。</strong> Scott Logic の最初のプロンプトは使えないスキャフォールドを産んだ；スタックと依頼を絞る（「モデルだけ」）ことで修正。Devin は作りすぎる——何を作る<em>な</em>かを伝える。</li>
 <li><strong>規約適合タスク。</strong> 「このエンドポイントにページネーションを追加」がコードベースの規約と不整合で返ってきた事例が独立した 2 レポートにある（<a href="https://www.amillionmonkeys.co.uk/blog/ai-coding-tools-small-studios">amillionmonkeys</a>、<a href="https://web.archive.org/web/20260718112612/https://mohitkhare.me/blog/devin-vs-claude-code/">mohitkhare</a>）——規約を運ばない限り Devin は孤立して作る（→ ガイド 9）。</li>
@@ -61,7 +63,7 @@
 <li><strong>カテゴリごと合わないケース。</strong> <a href="https://zenn.dev/vesslabs/articles/da9593d77369ee">vesslabs</a> は Pro で 1 週間・10 セッション・3 リポジトリの厳密な評価を行い、意図的に<em>不採用</em>を選んだ——Devin が失敗したのではなく、クラウドエージェントの強みが自社と合わなかった：依頼者が全員エンジニア（Slack/Jira の入口がセッション追跡の負担化）、6 人ではセッション共有が不要、iOS シミュレータが Linux サンドボックスで動かない、部位ごとのコスト内訳が取れない。正しい不採用は採用と同じくらい学びがある。</li>
 <li><strong>検査不能な仕事。</strong> <a href="https://expectedwrong.com/devin-appraised">expectedwrong</a>と <a href="https://dev.to/alanwest/i-gave-devin-10-real-tasks-it-completed-3-3063">alanwest の 10 タスク検査</a>が失敗モードを記録：壊れているか存在しない自信満々の出力、ループで燃えるクレジット。彼らのタスクは明確な検証のない仕事に偏っていた——公式プレイブックが必須とするのと同じゲート（ガイド 11）。</li>
 </ul>
-<h2>名付けられたチーム導入（コミュニティ、数値つき）</h2>
+<h2 id="名付けられたチーム導入-コミュニティ-数値つき">名付けられたチーム導入（コミュニティ、数値つき）<a class="hlink" href="#名付けられたチーム導入-コミュニティ-数値つき" aria-hidden="true">#</a></h2>
 <p>Devin の運用データを公開している実組織——異常に記録の良い日本のエンジニアリングコミュニティからが多い：</p>
 <table>
 <thead>
@@ -138,7 +140,7 @@
 <li>リポジトリのオンボーディングは直列——セットアップ中の 1 リポジトリが次をブロックする。スケジュールすること。</li>
 <li>ROI 内訳：高かったのは PR 一次レビュー（<code>devin-review</code> ラベル → Actions → API Playbook で 1 回あたり約 1–2 ACU）、定期的なライブラリ更新のリスク評価、<em>類似の既存 PR</em> を与えたレガシー作業；低かったのは広範囲リファクタリングと小さすぎるタスク。</li>
 </ul>
-<h2>抽出された教訓</h2>
+<h2 id="抽出された教訓">抽出された教訓<a class="hlink" href="#抽出された教訓" aria-hidden="true">#</a></h2>
 <ol>
 <li><strong>プロジェクトではなくスライスをスコープする。</strong> 成功はすべて境界のある単位；失敗は「広くこれを作って/直して」。（公式ドクトリン：ガイド 13。）コミュニティ報告のスイートスポット：変更約 ±150–250 行、3–5 ファイル、エージェント作業 ~30 分（<a href="https://qiita.com/FAL-coffee/items/be4d59093dd2bb06fb69">FAL-coffee</a>）。</li>
 <li><strong>検証するか委任しないか。</strong> 機械が「完了」をチェックできる仕事を Devin に——テスト、ビルド、動く <code>curl</code>、レンダリングされたページ。</li>
@@ -148,31 +150,31 @@
 <li><strong>評決ではなく証拠を届ける。</strong> hubble は Dependabot スキルの最終ステップを「マージ可否を決める」から「リスクを評価する」に書き換えた——エージェントは案件を組み立て、人間が決断を握る。</li>
 </ol>
 <p>この 6 つの教訓の背後にある制約は、今や俗説ではなく計測された事実だ：<a href="https://news.ycombinator.com/item?id=50538303">ハーバードの研究</a>（11/16、HN 459 コメント）は、AI コーディングエージェントが工学のボトルネックを<em>コードレビュー</em>へ移したことを示した——このガイドの持続するパターンがすべて、サイレントマージではなくレビューゲート（人間またはスクリプト）で終わる理由である。</p>
-<h2>Scott Wu の社内トップ 5（Lenny's インタビューより）</h2>
+<h2 id="scott-wu-の社内トップ-5-lenny-s-インタビューより">Scott Wu の社内トップ 5（Lenny's インタビューより）<a class="hlink" href="#scott-wu-の社内トップ-5-lenny-s-インタビューより" aria-hidden="true">#</a></h2>
 <p>Cognition 自身が最も委任するタスク：<strong>フロントエンド修正、バージョンアップグレード、ドキュメント、インシデント対応、テスト</strong>——加えて「第一防御線」パターン（人間が関わる前に Devin がクラッシュを分析）と、<em>より良いプロンプトを書く</em>ための DeepWiki リサーチ。</p>
-<h2>深読み — 何を真似るか、何に気をつけるか</h2>
+<h2 id="深読み-何を真似るか-何に気をつけるか">深読み — 何を真似るか、何に気をつけるか<a class="hlink" href="#深読み-何を真似るか-何に気をつけるか" aria-hidden="true">#</a></h2>
 <p><strong>hubble の Dependabot ループ。</strong> すべての Dependabot PR が Skill ファイルに駆動される Devin セッションを起動：diff、lockfile の差分、リリースノート、CI 状態を読み、GREEN/YELLOW/RED リスクラベル<em>と証拠一式</em>をコメント——更新ライブラリと更新タイプ、根拠つきリスク分類、互換性の確認結果、CI 状態、人間が手で確認すべき項目。効く理由：Skill が「ここでリスクとは何か」をファイル化している（どの gem がクリティカルか、CI が緑でも何を確認するか）——レビュアーの頭にだけあった暗黙知が、チーム全員が読んで育てられるファイルになった。最終ステップを「マージ可否を決める」から「リスクを評価する」に意図的に書き換えている。真似る点：まず自分のレビュー手順を Skill として書く——手順が書けないなら自動化も回せない。注意点：ラベルだけでは劣化する；根拠コメントがなければ何も教えてくれない。</p>
 <p><strong>hubble の週次コストループ。</strong> 週 1 回の Datadog CCM パス：Devin がコスト削減候補を 1 つ選び、設定と利用状況を深掘りし、判断可能なレポートを渡す。このループの産物は請求額ではなく<em>推奨つきの候補</em>。真似る点：「1 つ選び、掘り、渡す」は常設の衛生キューすべてに一般化できる。注意点：純正ツール（AWS のコスト系）と役割が重なる——コストデータが Datadog にあり、修正にリポジトリの文脈が要るときにだけ勝る。</p>
 <p><strong>SMARTCAMP のスキャン→修復パイプライン。</strong> スケジュール GitHub Actions が ECS イメージを pull → Trivy スキャン（HIGH/CRITICAL、OS パッケージ）→ issue 起票 → Devin が修復。真似る価値があるのは矢印ではなく堅牢化：AWS 認証情報を持つ pull ジョブと無権限のスキャナージョブを分離し成果物だけが越境；リリース後約 7 日待ってから結果を信頼（スキャナーの DB は新パッケージに遅れる）；イメージダイジェストをハッシュ固定し、古いハッシュを検知する PR チェック。注意点：これはスキャナー自体をサプライチェーン攻撃面とみなす多層防御——「スキャン → Devin」だけを真似ると要点を取りこぼす。</p>
 <p><strong>canly のアナリスト導入。</strong> Devin に「原因未特定」で滞留した約 700 件の問い合わせ履歴を分類させた。半数以上はバグではなかった——そしてこの取り組みの真の産物はラベルではなく、AI にまだ足りないコンテキストの地図（ドキュメント、DB 可視性、チケットのメタデータ）だった。真似る点：アナリストとしての Devin は第一級の使い道——ツールを買う前に「誰も分類したことがない山」に向けてみる。注意点：ボトルネックはモデルの質ではなくコンテキストの選び方。</p>
 <p><strong>Ryan Carson のワンマン艦隊。</strong> Untangle のソロファウンダーは月 ~$20k で ~15 台の Devin エージェントを同時稼働——統制はダッシュボードではなくフォルダシステム + 紙の P0 リスト。その規模で本当のボトルネックはエージェントのスループットではなく<em>彼の</em>注意力だから。運用を支える 2 つの playbook：「Watchdog」が全法律事務所アカウントを監視し一人でカスタマーサクセスを担い、「LAN PR」が ~40 PR/日を締める——レビューループ + ビデオウォークスルー + 自動マージ、QA レビュアーなし。真似る点：スケールの単位は「面ごとの命名済み playbook」であってエージェント数ではない。注意点：ローカルエージェントはほぼ卒業——長いループはクラウド担当。残した例外は Codex での厳密スコープの設計書ビルドだけ。</p>
-<h2>検証チェックリスト</h2>
+<h2 id="検証チェックリスト">検証チェックリスト<a class="hlink" href="#検証チェックリスト" aria-hidden="true">#</a></h2>
 <ul>
 <li>[ ] 自スタックに最も近いレポートを 1 つ選び、蒸留版ではなく原文を読み直した——数値は文脈の中でも成立するか？</li>
 <li>[ ] 自組織で再現できると金を賭けられる教訓を 1 つ書き下した；名付けられなければ別のレポートを選ぶ</li>
 </ul>
-<h2>落とし穴</h2>
+<h2 id="落とし穴">落とし穴<a class="hlink" href="#落とし穴" aria-hidden="true">#</a></h2>
 <ul>
 <li><strong>生存者バイアス。</strong> 称賛レポートは数値を公開し；静かな失敗は何も公開しない。このコレクションの失敗を中央値の体験、勝利を天井として読む。</li>
 <li><strong>カーゴカルト。</strong> Scott Logic のプロンプト反復が機能したのは<em>反復したから</em>——ループなしで最終プロンプトを真似ても、彼らの結果ではなく開始点が手に入る。</li>
 </ul>
-<h2>理解度チェック</h2>
+<h2 id="理解度チェック">理解度チェック<a class="hlink" href="#理解度チェック" aria-hidden="true">#</a></h2>
 <ol>
 <li>失敗レポートに共通し成功レポートに欠けているものは？<em>（検証不能な委任——失敗は「完了」を誰もチェックできない仕事を Devin に与えた；すべての成功がチェックを定義していた）</em></li>
 <li>Faros の「顧客電話中のデバッグ」が逸話でなく導入の教訓なのはなぜ？<em>（ライブトリアージの動作を示す：人間が顧客関係を保つ間にエージェントが第一応答者になる）</em></li>
 <li>なぜこのガイドは敵対的レポートを同等の出典として数えるのか？<em>（敵対的レポートは境界条件を明らかにする——地図の端は、その外に歩み出た人から学ぶ）</em></li>
 </ol>
-<h2>出典</h2>
+<h2 id="出典">出典<a class="hlink" href="#出典" aria-hidden="true">#</a></h2>
 <ul>
 <li><a href="https://blog.scottlogic.com/2025/10/20/rapid-development-with-devin.html">Scott Logic — Rapid development with Devin</a></li>
 <li><a href="https://www.lennysnewsletter.com/p/how-devin-replaces-your-junior-engineers">Lenny's Newsletter — Scott Wu on Cognition's internal Devin usage</a></li>
@@ -197,7 +199,7 @@
 <li><a href="https://zhuanlan.zhihu.com/p/2025994849590026406">知乎 — AI software engineer 如何接管工作区：Devin、SWE-agent 与 OpenHands</a>（中国語）—— 最も明晰な中国語のアーキテクチャ分析：ACI 設計、サンドボックス vs 開発者同域の 2 路線、3 つの真のボトルネック</li>
 <li><a href="https://juejin.cn/post/7671231304077361203">掘金 — AI 编码 Agent 90 天落地清单</a>（中国語）—— 正しい CI ゲート：AI 生成コードに独立したセキュリティスキャン、検出とスキャンを 2 段階に分離、混成スタック運用</li>
 </ul>
-<nav class="guide-pager"><a class="pg-prev" href="enterprise-playbook.html"><span class="pg-dir">← Previous</span><span class="pg-t">ガイド 7 — エンタープライズ導入パターン</span></a></nav>
+<nav class="guide-pager"><a class="pg-prev" href="enterprise-playbook.html"><span class="pg-dir">← 前へ</span><span class="pg-t">ガイド 7 — エンタープライズ導入パターン</span></a></nav>
 </article>
 <footer><div class="wrap foot-base"><span data-i18n="foot.note">Unofficial community project — not affiliated with Cognition AI.</span><span><a href="../../index.html">built-with-devin</a> · <a href="https://github.com/Till3005/build-with-devin">build-with-devin</a></span></div></footer>
 </main>

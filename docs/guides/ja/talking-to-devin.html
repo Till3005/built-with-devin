@@ -36,19 +36,21 @@
 </div></nav>
 <main>
 <article class="guide wrap" id="guide">
-  <p class="guide-crumb"><a href="../../index.html#build">← Guides</a> · <a href="../talking-to-devin.html">English</a> · <a href="../zh/talking-to-devin.html">中文</a> · <a href="../pt/talking-to-devin.html">Português</a></p>
+  <p class="guide-crumb"><a href="index.html">← ガイド</a> · <a href="../talking-to-devin.html">English</a> · <a href="../pt/talking-to-devin.html">Português</a> · <a href="../zh/talking-to-devin.html">中文</a></p>
+<p class="guide-meta">更新 2026-11-19</p>
+<details class="toc" open><summary>このページの目次</summary><ol><li class="d2"><a href="#このガイドが最初にある理由">このガイドが最初にある理由</a></li><li class="d2"><a href="#他のすべてを支える4つのルール">他のすべてを支える4つのルール</a></li><li class="d2"><a href="#公式の見本ブリーフの解剖">公式の見本ブリーフの解剖</a></li><li class="d2"><a href="#防衛線の向こう-自分に残すもの">防衛線の向こう：自分に残すもの</a></li><li class="d2"><a href="#指示-から-所有-へ">「指示」から「所有」へ</a></li><li class="d2"><a href="#実録ウォークスルー-devin-cli-v3000-14-swe-2-flash-medium-で収録">実録ウォークスルー — Devin CLI v3000.14（swe-2-flash-medium）で収録</a></li><li class="d2"><a href="#確認">確認</a></li><li class="d2"><a href="#落とし穴">落とし穴</a></li><li class="d2"><a href="#理解度チェック">理解度チェック</a></li><li class="d2"><a href="#ソース">ソース</a></li></ol></details>
 <h1>ガイド 18 — Devin への伝え方：プロンプトの教義</h1>
 <p><strong>ゴール:</strong> Devin が読み違えようのない指示を書く——仕上がるセッションと迷走するセッションの分かれ目。
 <strong>レベル:</strong> ここから始める
 <strong>ソース:</strong> <a href="https://devin.ai/agents101">Coding Agents 101</a>（Cognition、2025年6月）· <a href="https://docs.devin.ai/essential-guidelines/instructing-devin-effectively">Instructing Devin Effectively</a>——どちらも公式。以下は要点＋現場注釈</p>
-<h2>このガイドが最初にある理由</h2>
+<h2 id="このガイドが最初にある理由">このガイドが最初にある理由<a class="hlink" href="#このガイドが最初にある理由" aria-hidden="true">#</a></h2>
 <p>このリポジトリのすべてのガイドが前提にするスキルがひとつある：欲しいものを Devin が誤解しようのない形で伝えられること。Cognition 自身の2つのガイダンス——<em>Coding Agents 101</em> と docs の <em>Instructing Devin Effectively</em>——は異なる角度から同じことを言っている：<strong>エージェントを最も活用しているエンジニアは、願い事を書くのではなく、ジュニアな同僚にブリーフするように書く。</strong> このガイドはその教義の凝縮版であり、カリキュラムの残りに繋がっている。</p>
-<h2>他のすべてを支える4つのルール</h2>
+<h2 id="他のすべてを支える4つのルール">他のすべてを支える4つのルール<a class="hlink" href="#他のすべてを支える4つのルール" aria-hidden="true">#</a></h2>
 <p><strong>1. 「何を」だけでなく「どう」を言う。</strong> 「search モジュールの C++ バインディングを直して新しいユニットテストを通して——注意、変更のたびにバインディングを再コンパイルしてからテストして」。自分のコードベースの罠は自分が一番知っている。書き出せ。オープンエンドな指示（「アプリを良くして」「DB のパフォーマンスを改善して」）はオープンエンドな結果を返す。</p>
 <p><strong>2. どこから始めるかを教える。</strong> リポジトリ、ディレクトリ、ファイル、参照実装、ドキュメント URL——そのタスクが<em>あなたの</em>机に来たら欲しいものすべて。「<code>authTemplate.rs</code> を参考にエラーハンドリングの一貫性を保って」は、スタイルの長文に毎回勝つ。</p>
 <p><strong>3. 成功をチェック可能な形で定義する。</strong> 「ちゃんと動くこと」ではなく——Devin が実行できるチェック：<em>エンドポイントが X/Y/Z フィールド付きで 200 を返す</em>、<em>1440px と 375px で console エラーなしにレンダリングされる</em>、<code>npm test</code> がグリーン。Devin は完全なマシンを持っている——ブラウザ、シェル、IDE。自分で検証させよ（「<code>npm run dev</code> を実行して <code>/settings</code> が描画されることを確認」）。PR を見る前に QA が終わっている。</p>
 <p><strong>4. フィードバックの雰囲気ではなくループを与える。</strong> 型チェッカー、リンター、テスト、CI——エージェントの超能力はエラーメッセージに対して反復すること。リポジトリが間違いを教えられないなら、あなたがフィードバックループになる。それは一番高い構成だ。</p>
-<h2>公式の見本ブリーフの解剖</h2>
+<h2 id="公式の見本ブリーフの解剖">公式の見本ブリーフの解剖<a class="hlink" href="#公式の見本ブリーフの解剖" aria-hidden="true">#</a></h2>
 <p>Cognition 自身のモデルプロンプトに注釈：</p>
 <blockquote>
 <p>In the Devin repo, build a tool that monitors RAM and CPU usage of the remote machines Devin runs on.——<em>スコープと目的を1行で</em></p>
@@ -60,7 +62,7 @@
 </ul>
 </blockquote>
 <p>ないものに注目：美的意見、留保、「たぶん」「良いと思えば」。すべての行がシステムを知る人間の下した決定だ。</p>
-<h2>防衛線の向こう：自分に残すもの</h2>
+<h2 id="防衛線の向こう-自分に残すもの">防衛線の向こう：自分に残すもの<a class="hlink" href="#防衛線の向こう-自分に残すもの" aria-hidden="true">#</a></h2>
 <p>101 ガイドは限界について率直だ：<strong>大きなチケットでは ~80% の時間削減を期待し、完全自動化ではない。</strong> 数ファイルを超えるものは複数回のフィードバックを見込め。勝つ姿勢は<em>ジュニアのドラフト PR をレビューするアーキテクト</em>——正しさはあなた、キーストロークは Devin。</p>
 <p>実際の帰結：</p>
 <ul>
@@ -68,9 +70,9 @@
 <li><strong>大きな仕事は検証可能なサブタスクに分割</strong>——サブタスクごとに1セッション、それぞれ成功チェック付き（ガイド 11 の移行パターンが効く理由でもある：小さな PR を何百も、すべて検証可能）。</li>
 <li><strong>繰り返すものは Skill に。</strong> <code>SKILL.md</code> を一度書けば、Devin が自動で呼ぶ（ガイド 16）。</li>
 </ul>
-<h2>「指示」から「所有」へ</h2>
+<h2 id="指示-から-所有-へ">「指示」から「所有」へ<a class="hlink" href="#指示-から-所有-へ" aria-hidden="true">#</a></h2>
 <p>セッション指示は<em>「このタスクをうまくやれ」</em>に答える。Bot の outcome prompt は<em>「この領域を持て」</em>に答える。教義は同じ——具体性、境界、チェック可能な成功——だが対象がタスクから責任に変わる。ここが流暢になったら、<a href="bot-outcome-prompts.html">outcome-prompts リファレンス</a>が同じ筋肉で Android Bot の 1,134 PR を生む様子を見せてくれる。</p>
-<h2>実録ウォークスルー — Devin CLI v3000.14（swe-2-flash-medium）で収録</h2>
+<h2 id="実録ウォークスルー-devin-cli-v3000-14-swe-2-flash-medium-で収録">実録ウォークスルー — Devin CLI v3000.14（swe-2-flash-medium）で収録<a class="hlink" href="#実録ウォークスルー-devin-cli-v3000-14-swe-2-flash-medium-で収録" aria-hidden="true">#</a></h2>
 <p>使い捨ての <code>demo-repo</code> でドクトリンを実演：4 行のブリーフ——方法＋機構、ファイル名指名、検証可能な成功条件、明示の境界。1 セッション、途中確認ゼロ、自己検証済み。</p>
 <p><strong>動画（90 秒、無音）：</strong> ブリーフ → 編集 → 権限プロンプト → セルフチェック → 境界遵守。</p>
 <p><a href="https://till3005.github.io/built-with-devin/assets/guides/talking-to-devin/walkthrough.mp4"><img alt="SWE-2 Flash Medium がタスク完了 — 5 件の unittest 全パス、コミットなし" src="https://till3005.github.io/built-with-devin/assets/guides/talking-to-devin/walkthrough-poster.webp" /></a></p>
@@ -86,25 +88,25 @@
 <em>5. 完了 — 5 テスト全パス；報告自体が境界を確認：「No commit made.」</em></p>
 <p><img alt="6. /exit 後 — devin -r 再開ヒントと、境界が守られた git status：2 ファイル変更、新規コミットなし" src="https://till3005.github.io/built-with-devin/assets/guides/talking-to-devin/step6-no-commit.webp" />
 <em>6. /exit 後 — <code>devin -r</code> の再開ヒント、境界が守られた <code>git status</code>：2 ファイル変更、新規コミットなし</em></p>
-<h2>確認</h2>
+<h2 id="確認">確認<a class="hlink" href="#確認" aria-hidden="true">#</a></h2>
 <ul>
 <li>[ ] バックログの実タスクに対し、10 分以内に「名前付きリポ/ファイル、参照パターン、明示的な成功チェック、宣言された境界」を含むブリーフが書ける。</li>
 <li>[ ] セッションが「当然でしょ」と思う確認を途中でしてこない。</li>
 <li>[ ] Devin が PR の前に自分で検証した——ブリーフで要求したから。</li>
 </ul>
-<h2>落とし穴</h2>
+<h2 id="落とし穴">落とし穴<a class="hlink" href="#落とし穴" aria-hidden="true">#</a></h2>
 <ul>
 <li><strong>自分の混乱をそのまま書く。</strong> 成功チェックが言えないならタスクはまだ早い。直感に頼るより、先に Devin と PRD を共同作成せよ（101 ガイドも推奨）。</li>
 <li><strong>権限に見合わない野心。</strong> CI を見られないアカウントに「CI を直せ」は自信満々の間違いを生む。指示は実際に与えたアクセスに合わせる。</li>
 <li><strong>出力ではなく正しさをレビュー。</strong> グリーンなテストと妥当な diff は進捗の証拠であって、正しさの証明ではない。最終検証は常にあなた。</li>
 </ul>
-<h2>理解度チェック</h2>
+<h2 id="理解度チェック">理解度チェック<a class="hlink" href="#理解度チェック" aria-hidden="true">#</a></h2>
 <ol>
 <li><em>「ユニットテストを追加」が「<code>poller.ts</code> のリトライパスにユニットテストを追加、<code>fetch</code> をモック、タイムアウトと 5xx をカバー」に負ける理由は？</em> 後者はエージェントが判断を下す必要をなくす：何をテストし、どのエッジが重要で、何をモックするか。明記されない決定はすべて、あなたが制御しないコイントス。</li>
 <li><em>Devin がきれいな diff とグリーン CI の PR を出した。完了？</em> まだ——CI グリーンはチェックが通ったという意味で、意図が満たされた証拠ではない。最終検証レイヤーはあなた。その非対称が取引の本質（~80% 削減、正しさは人間）。</li>
 <li><em>指示はいつ Skill に昇格する？</em> 同じものをまた打っていると気づいた時。3 度目は SKILL.md——フォーマットと発見パスはガイド 16。</li>
 </ol>
-<h2>ソース</h2>
+<h2 id="ソース">ソース<a class="hlink" href="#ソース" aria-hidden="true">#</a></h2>
 <ul>
 <li><a href="https://devin.ai/agents101">Coding Agents 101</a> — Cognition のプロンプト教義：say-how、起点指示、防御的プロンプト、フィードバックループ、80% ルール</li>
 <li><a href="https://docs.devin.ai/essential-guidelines/instructing-devin-effectively">Instructing Devin Effectively</a> — 公式 do/don't と上で解剖した見本ブリーフ</li>
@@ -112,7 +114,7 @@
 <li>現場メモ：<a href="community-field-reports.html">コミュニティ実践レポート</a>のすべてが同じ結論に収束する——願いではなくブリーフを</li>
 <li>次：<a href="bots-101-first-bot.html">ガイド 1 — 初めての Bot</a>（同じ教義、より大きな対象）· <a href="bot-outcome-prompts.html">outcome prompts リファレンス</a></li>
 </ul>
-<nav class="guide-pager"><a class="pg-next" href="devin-desktop.html"><span class="pg-dir">Next →</span><span class="pg-t">ガイド 17 — Devin Desktop</span></a></nav>
+<nav class="guide-pager"><a class="pg-next" href="devin-desktop.html"><span class="pg-dir">次へ →</span><span class="pg-t">ガイド 17 — Devin Desktop</span></a></nav>
 </article>
 <footer><div class="wrap foot-base"><span data-i18n="foot.note">Unofficial community project — not affiliated with Cognition AI.</span><span><a href="../../index.html">built-with-devin</a> · <a href="https://github.com/Till3005/build-with-devin">build-with-devin</a></span></div></footer>
 </main>

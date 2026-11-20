@@ -4,13 +4,13 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Guia 3 — Bot sentinela agendado — build-with-devin guides</title>
-<meta name="description" content="Guia 3 — Bot sentinela agendado">
+<meta name="description" content="um Bot dono de uma checagem de qualidade recorrente — roda no horário, tria falhas, rastreia até a causa e envia correções.">
 <link rel="icon" href="../../assets/brand/Devin_Symbol.svg" type="image/svg+xml">
 <link rel="stylesheet" href="../../assets/site.css">
 <link rel="stylesheet" href="../../assets/guides.css">
 
 <meta property="og:title" content="Guia 3 — Bot sentinela agendado">
-<meta property="og:description" content="Guia 3 — Bot sentinela agendado">
+<meta property="og:description" content="um Bot dono de uma checagem de qualidade recorrente — roda no horário, tria falhas, rastreia até a causa e envia correções.">
 <meta property="og:type" content="article">
 <meta property="og:url" content="https://till3005.github.io/built-with-devin/guides/pt/bots-202-scheduled-sentinel.html">
 <meta property="og:image" content="https://till3005.github.io/built-with-devin/assets/img/og-build.png?v=3">
@@ -36,13 +36,15 @@
 </div></nav>
 <main>
 <article class="guide wrap" id="guide">
-  <p class="guide-crumb"><a href="../../index.html#build">← Guides</a> · <a href="../bots-202-scheduled-sentinel.html">English</a> · <a href="../zh/bots-202-scheduled-sentinel.html">中文</a> · <a href="../ja/bots-202-scheduled-sentinel.html">日本語</a></p>
+  <p class="guide-crumb"><a href="index.html">← Guias</a> · <a href="../bots-202-scheduled-sentinel.html">English</a> · <a href="../ja/bots-202-scheduled-sentinel.html">日本語</a> · <a href="../zh/bots-202-scheduled-sentinel.html">中文</a></p>
+<p class="guide-meta">Atualizado 2026-11-19</p>
+<details class="toc" open><summary>Nesta página</summary><ol><li class="d2"><a href="#o-padrão">O padrão</a></li><li class="d2"><a href="#pré-requisitos">Pré-requisitos</a></li><li class="d2"><a href="#passo-1-o-prompt-de-resultado">Passo 1 — O prompt de resultado</a></li><li class="d2"><a href="#passo-2-agendar">Passo 2 — Agendar</a></li><li class="d2"><a href="#passo-3-condições-realistas-importam">Passo 3 — Condições realistas importam</a></li><li class="d2"><a href="#passo-4-disciplina-de-ruído">Passo 4 — Disciplina de ruído</a></li><li class="d2"><a href="#passo-5-evidência-em-cada-correção">Passo 5 — Evidência em cada correção</a></li><li class="d2"><a href="#checklist-de-verificação">Checklist de verificação</a></li><li class="d2"><a href="#armadilhas">Armadilhas</a></li><li class="d2"><a href="#teste-de-conhecimento">Teste de conhecimento</a></li><li class="d2"><a href="#fontes">Fontes</a></li></ol></details>
 <h1>Guia 3 — Bot sentinela agendado</h1>
 <p><strong>Objetivo:</strong> um Bot dono de uma checagem de qualidade recorrente — roda no horário, tria falhas, rastreia até a causa e envia correções.
 <strong>Nível:</strong> intermediário
 <strong>Implantação de origem:</strong> o <strong>Layout Bot</strong> da Cognition — vigia regressões de layout-shift no app web do Devin. A cada 3 horas builda o <code>main</code> de produção, simula visitas de primeira/repetida/requisições atrasadas, e envia correções. <strong>159 PRs em 3 semanas; lag −70%.</strong>
 <strong>Fontes:</strong> <a href="https://devin.ai/blog/introducing-devin-bots">post de lançamento</a> · <a href="https://docs.devin.ai/product-guides/automations">docs de Automations</a></p>
-<h2>O padrão</h2>
+<h2 id="o-padrão">O padrão<a class="hlink" href="#o-padrão" aria-hidden="true">#</a></h2>
 <p>Algum trabalho nunca termina — recorre no relógio: orçamentos de performance, regressão visual, frescor de dependências, scans de segredos, uptime. Um Bot sentinela é dono <em>da própria checagem</em>, não só das correções: mantém a checagem funcionando conforme o código muda, filtra ruído e só abre correção quando a regressão é real.</p>
 <pre><code class="language-text">cron ──► Bot acorda ──► roda a checagem sob condições realistas
                               │
@@ -54,12 +56,12 @@
                                           │
                              PR de correção + evidência antes/depois
 </code></pre>
-<h2>Pré-requisitos</h2>
+<h2 id="pré-requisitos">Pré-requisitos<a class="hlink" href="#pré-requisitos" aria-hidden="true">#</a></h2>
 <ul>
 <li>Uma checagem que rode na máquina do Bot (build, suite de testes, Lighthouse, script custom)</li>
 <li>Devin Bot criado (Guia 1) ou uma Automation (Guia 6) — ambos funcionam; um Bot adiciona julgamento entre execuções</li>
 </ul>
-<h2>Passo 1 — O prompt de resultado</h2>
+<h2 id="passo-1-o-prompt-de-resultado">Passo 1 — O prompt de resultado<a class="hlink" href="#passo-1-o-prompt-de-resultado" aria-hidden="true">#</a></h2>
 <p>Reconstruído do comportamento documentado do Layout Bot:</p>
 <pre><code class="language-text">Your job is to keep &lt;surface&gt; from &lt;regressing&gt;.
 
@@ -75,25 +77,25 @@ that introduced it, and open a fix PR with before/after evidence.
 <li>varredura <code>npm audit</code>/CVE (template Code Health Engineer)</li>
 <li>detecção de código morto (template Code Reaper)</li>
 </ul>
-<h2>Passo 2 — Agendar</h2>
+<h2 id="passo-2-agendar">Passo 2 — Agendar<a class="hlink" href="#passo-2-agendar" aria-hidden="true">#</a></h2>
 <p>Peça ao Bot no chat:</p>
 <pre><code class="language-text">Run this check every 3 hours on a schedule.
 </code></pre>
 <p>O Bot propõe uma automação; você aprova uma vez. (O Guia 6 cobre automações feitas à mão, se preferir ligar o cron você mesmo.) Gerencie depois em Settings → Automations do Bot.</p>
-<h2>Passo 3 — Condições realistas importam</h2>
+<h2 id="passo-3-condições-realistas-importam">Passo 3 — Condições realistas importam<a class="hlink" href="#passo-3-condições-realistas-importam" aria-hidden="true">#</a></h2>
 <p>A checagem do Layout Bot não é uma execução — simula <strong>primeira visita, visita repetida e requisições individualmente atrasadas</strong>, porque a regressão que ele caça só aparece sob formas de carga específicas. Codifique seu equivalente:</p>
 <ul>
 <li>Qual ambiente — o Bot builda o <code>main</code> de produção na própria VM, não num dev server</li>
 <li>Quais inputs — cache frio vs. quente, dados semeados, ordenação realista de requisições</li>
 <li>Qual limiar — um número, não "parece mais lento"</li>
 </ul>
-<h2>Passo 4 — Disciplina de ruído</h2>
+<h2 id="passo-4-disciplina-de-ruído">Passo 4 — Disciplina de ruído<a class="hlink" href="#passo-4-disciplina-de-ruído" aria-hidden="true">#</a></h2>
 <p>Duas regras impedem um sentinela de gritar lobo:</p>
 <ol>
 <li><strong>Reexecutar antes de agir</strong> — o Layout Bot reexecuta resultados que parecem flaky antes de tratá-los como reais. Escreva no prompt: <em>"rerun any failed check once before acting on it."</em></li>
 <li><strong>Rastrear antes de corrigir</strong> — cada regressão é rastreada até o PR que a introduziu. Uma correção sem causa é um palpite.</li>
 </ol>
-<h2>Passo 5 — Evidência em cada correção</h2>
+<h2 id="passo-5-evidência-em-cada-correção">Passo 5 — Evidência em cada correção<a class="hlink" href="#passo-5-evidência-em-cada-correção" aria-hidden="true">#</a></h2>
 <p>Cada um dos 159 PRs carrega <strong>vídeo antes/depois</strong>. Evidência equivalente para sua checagem:</p>
 <table>
 <thead>
@@ -121,32 +123,32 @@ that introduced it, and open a fix PR with before/after evidence.
 </tr>
 </tbody>
 </table>
-<h2>Checklist de verificação</h2>
+<h2 id="checklist-de-verificação">Checklist de verificação<a class="hlink" href="#checklist-de-verificação" aria-hidden="true">#</a></h2>
 <ul>
 <li>[ ] Automação existe e dispara no cron definido (Settings → Automations mostra execuções)</li>
 <li>[ ] Uma regressão semeada produz um PR de correção com evidência antes/depois</li>
 <li>[ ] Uma execução flaky produz uma reexecução, não uma correção</li>
 <li>[ ] A própria checagem é mantida — quando o app mudou embaixo dela, o Bot atualizou a checagem</li>
 </ul>
-<h2>Armadilhas</h2>
+<h2 id="armadilhas">Armadilhas<a class="hlink" href="#armadilhas" aria-hidden="true">#</a></h2>
 <ul>
 <li><strong>Ser dono das correções mas não da checagem.</strong> Se sua checagem quebra e ninguém nota por uma semana, o Bot era dono da coisa errada — o prompt deve atribuir a própria checagem.</li>
 <li><strong>Cron sem julgamento.</strong> Uma automação agendada simples consegue rodar a checagem; um Bot decide se a falha é real. Use automação simples só para checagens sem triagem (Guia 6).</li>
 <li><strong>Saída só de alerta.</strong> Um sentinela que reporta "regressão encontrada" num canal cria trabalho para humanos. O valor da implantação é que ela <em>corrige</em> — cobre isso dela.</li>
 </ul>
-<h2>Teste de conhecimento</h2>
+<h2 id="teste-de-conhecimento">Teste de conhecimento<a class="hlink" href="#teste-de-conhecimento" aria-hidden="true">#</a></h2>
 <ol>
 <li>Por que o sentinela builda o <code>main</code> de produção em cron em vez de esperar falhas serem reportadas? <em>(O resultado é "sem regressões", não "consertar bugs reportados" — propriedade significa achar problemas antes dos humanos.)</em></li>
 <li>O Layout Bot envia correções com vídeos antes/depois — que decisão isso habilita para o revisor? <em>(Confiança para mergear sem reproduzir localmente; a prova viaja com o PR.)</em></li>
 <li>Por que rastrear uma regressão até o PR que a introduziu em vez de corrigir o sintoma? <em>(Ser dono de uma checagem é ser dono do seu histórico — a correção cai na causa e o conhecimento persiste.)</em></li>
 </ol>
-<h2>Fontes</h2>
+<h2 id="fontes">Fontes<a class="hlink" href="#fontes" aria-hidden="true">#</a></h2>
 <ul>
 <li><a href="https://devin.ai/blog/introducing-devin-bots">Introducing Devin Bots</a> — mecânica e números do Layout Bot</li>
 <li><a href="https://docs.devin.ai/product-guides/automations">Automations — docs</a> — agendamentos, triggers, condições</li>
 <li>Relacionado: <a href="automations-101-event-driven.html">Guia 6 — Automações orientadas a eventos</a> para a versão sem Bot desse loop</li>
 </ul>
-<nav class="guide-pager"><a class="pg-prev" href="bots-201-product-owner.html"><span class="pg-dir">← Previous</span><span class="pg-t">Guia 2 — Bot product-owner</span></a><a class="pg-next" href="bots-203-multi-bot-org.html"><span class="pg-dir">Next →</span><span class="pg-t">Guia 4 — Organização multi-Bot</span></a></nav>
+<nav class="guide-pager"><a class="pg-prev" href="bots-201-product-owner.html"><span class="pg-dir">← Anterior</span><span class="pg-t">Guia 2 — Bot product-owner</span></a><a class="pg-next" href="bots-203-multi-bot-org.html"><span class="pg-dir">Próximo →</span><span class="pg-t">Guia 4 — Organização multi-Bot</span></a></nav>
 </article>
 <footer><div class="wrap foot-base"><span data-i18n="foot.note">Unofficial community project — not affiliated with Cognition AI.</span><span><a href="../../index.html">built-with-devin</a> · <a href="https://github.com/Till3005/build-with-devin">build-with-devin</a></span></div></footer>
 </main>

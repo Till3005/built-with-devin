@@ -4,13 +4,13 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Bot 成果プロンプト、解剖 — build-with-devin guides</title>
-<meta name="description" content="Bot 成果プロンプト、解剖">
+<meta name="description" content="文書化された導入が実際にやったように成果プロンプトを書く——タスクリストではなく領域の所有。">
 <link rel="icon" href="../../assets/brand/Devin_Symbol.svg" type="image/svg+xml">
 <link rel="stylesheet" href="../../assets/site.css">
 <link rel="stylesheet" href="../../assets/guides.css">
 
 <meta property="og:title" content="Bot 成果プロンプト、解剖">
-<meta property="og:description" content="Bot 成果プロンプト、解剖">
+<meta property="og:description" content="文書化された導入が実際にやったように成果プロンプトを書く——タスクリストではなく領域の所有。">
 <meta property="og:type" content="article">
 <meta property="og:url" content="https://till3005.github.io/built-with-devin/guides/ja/bot-outcome-prompts.html">
 <meta property="og:image" content="https://till3005.github.io/built-with-devin/assets/img/og-build.png?v=3">
@@ -36,17 +36,19 @@
 </div></nav>
 <main>
 <article class="guide wrap" id="guide">
-  <p class="guide-crumb"><a href="../../index.html#build">← Guides</a> · <a href="../bot-outcome-prompts.html">English</a> · <a href="../zh/bot-outcome-prompts.html">中文</a> · <a href="../pt/bot-outcome-prompts.html">Português</a></p>
+  <p class="guide-crumb"><a href="index.html">← ガイド</a> · <a href="../bot-outcome-prompts.html">English</a> · <a href="../pt/bot-outcome-prompts.html">Português</a> · <a href="../zh/bot-outcome-prompts.html">中文</a></p>
+<p class="guide-meta">更新 2026-11-19</p>
+<details class="toc" open><summary>このページの目次</summary><ol><li class="d2"><a href="#模範例">模範例</a></li><li class="d2"><a href="#機能する成果プロンプトの構造">機能する成果プロンプトの構造</a></li><li class="d2"><a href="#公式テンプレートマーケットプレイスのパターン">公式テンプレートマーケットプレイスのパターン</a></li><li class="d2"><a href="#マルチ-bot-組織-権限を与えるプロンプト">マルチ Bot 組織：権限を与えるプロンプト</a></li><li class="d2"><a href="#アンチパターン">アンチパターン</a></li><li class="d2"><a href="#あなたのものを起草-3-行テスト">あなたのものを起草——3 行テスト</a></li><li class="d2"><a href="#検証チェックリスト">検証チェックリスト</a></li><li class="d2"><a href="#落とし穴">落とし穴</a></li><li class="d2"><a href="#理解度チェック">理解度チェック</a></li><li class="d2"><a href="#出典">出典</a></li></ol></details>
 <h1>Bot 成果プロンプト、解剖</h1>
 <p><strong>目標：</strong> 文書化された導入が実際にやったように成果プロンプトを書く——タスクリストではなく領域の所有。
 <strong>レベル：</strong> 中級 · <strong>所要時間：</strong> 草案 20 分、調整に 1 週間</p>
 <p>大きな数値を出した公開 Bot 導入はすべて、<em>成果</em>を割り当てる短いプロンプトから始まった。このガイドは実物を集め、なぜ機能するのかを逆工学する。</p>
-<h2>模範例</h2>
+<h2 id="模範例">模範例<a class="hlink" href="#模範例" aria-hidden="true">#</a></h2>
 <blockquote>
 <p><em>"your job is to product manage the android app"</em></p>
 </blockquote>
 <p>Android Bot の割り当てのすべて。一文が 44 日間の自走的作業を生んだ：Bot は成果を自分で書いたチケットに分解し、チケットごとに Devin セッションを回し、1,134 のマージ PR を出荷した（<a href="https://devin.ai/blog/introducing-devin-bots">ローンチ記事</a>）。プロンプトに<strong>含まれない</strong>ものに注目：チケットリストなし、受入基準なし、スケジュールなし。成果そのものがそれらすべてを含意する。</p>
-<h2>機能する成果プロンプトの構造</h2>
+<h2 id="機能する成果プロンプトの構造">機能する成果プロンプトの構造<a class="hlink" href="#機能する成果プロンプトの構造" aria-hidden="true">#</a></h2>
 <table>
 <thead>
 <tr>
@@ -78,7 +80,7 @@
 </tr>
 </tbody>
 </table>
-<h2>公式テンプレートマーケットプレイスのパターン</h2>
+<h2 id="公式テンプレートマーケットプレイスのパターン">公式テンプレートマーケットプレイスのパターン<a class="hlink" href="#公式テンプレートマーケットプレイスのパターン" aria-hidden="true">#</a></h2>
 <p>16 の<a href="https://devin.ai/bots/templates">マーケットプレイステンプレート</a>はすべて同じ文法に従う。汎化した再利用可能な定式：</p>
 <p><strong>領域の所有</strong> —— "Find bugs, improvements, performance and refactoring work in a named product area; open one small PR at a time with proof it works."（Software Factory）</p>
 <p><strong>チェックの所有</strong> —— "Every 3 hours, build production main, simulate first/repeat/deferred visits, and file fixes with before/after videos for any regression you introduce—or find."（Layout Bot パターン）</p>
@@ -86,16 +88,16 @@
 <p><strong>ケイデンスの所有</strong> —— "Weekly: remove dead code, one safe PR per round."（Code Reaper）——定期成果はトリガーではなくリズムとして述べる。</p>
 <p><strong>チーム代謝の所有</strong> —— "Watch the channels, post updates, hand work to the right teammate, follow up until done."（Chief of Staff）</p>
 <p><strong>衛生の所有</strong> —— "Old flags, stale deps, CVEs — turned into small safe PRs."（Code Health Engineer）</p>
-<h2>マルチ Bot 組織：権限を与えるプロンプト</h2>
+<h2 id="マルチ-bot-組織-権限を与えるプロンプト">マルチ Bot 組織：権限を与えるプロンプト<a class="hlink" href="#マルチ-bot-組織-権限を与えるプロンプト" aria-hidden="true">#</a></h2>
 <p>艦隊（SuperJennyStack、Frankie、tigsbot）では、チーフ Bot のプロンプトに<em>ルーティング契約</em>が含まれる：どの Bot がどの領域を所有するか、横ではなく上にエスカレートするのはいつか。人間の真のプロンプトは集約仕様：「すべての未決事項を 1 スレッドに持ってこい」。完全な組織図は<a href="bots-203-multi-bot-org.html">ガイド 4</a>を参照。</p>
-<h2>アンチパターン</h2>
+<h2 id="アンチパターン">アンチパターン<a class="hlink" href="#アンチパターン" aria-hidden="true">#</a></h2>
 <ul>
 <li><strong>タスク型プロンプト。</strong> 「この 12 issue を直せ」——Bot は終わってアイドルになる；Bot ではなくセッションを得る。</li>
 <li><strong>検証不能な成果。</strong> 「アプリを良くして」——自己チェックがないと、Bot の唯一の出口は Needs-you スパム。</li>
 <li><strong>隠れたスコープ。</strong> 成果が Bot に見えないシステム（届かないステージング環境、読めないダッシュボード）を必要とするなら、停滞するか進捗を幻覚する。領域を与えるか成果を縮める。</li>
 <li><strong>マージ権限の物語なし。</strong> 88% の自己マージ率が存在するのは CI とレビューゲートが自律マージ用に事前設定されていたから。明記する："merge when CI is green and diff &lt; N lines" または "always open as draft for human review"。</li>
 </ul>
-<h2>あなたのものを起草——3 行テスト</h2>
+<h2 id="あなたのものを起草-3-行テスト">あなたのものを起草——3 行テスト<a class="hlink" href="#あなたのものを起草-3-行テスト" aria-hidden="true">#</a></h2>
 <p>良い成果プロンプトは順に答える：</p>
 <ol>
 <li><strong>あなたのものは何か？</strong> —— 領域</li>
@@ -103,30 +105,30 @@
 <li><strong>それに対し何をするか？</strong> —— 恒常の振る舞い</li>
 </ol>
 <p>部外者が 2 行目の真偽を外部から判定できないなら、絞り直す。</p>
-<h2>検証チェックリスト</h2>
+<h2 id="検証チェックリスト">検証チェックリスト<a class="hlink" href="#検証チェックリスト" aria-hidden="true">#</a></h2>
 <ul>
 <li>[ ] リポジトリの実バックログ項目を取り、成果プロンプトに書き直した——領域、検証可能な状態、恒常の振る舞い</li>
 <li>[ ] コードベースを知らない人に見せた：Bot が「勝っている」か外部から判定できるか？</li>
 <li>[ ] Bot の最初の返信が計画かスコープの確認質問であるべき——「最初に何をすればいい？」と聞いたら、プロンプトは所有を割り当てていない</li>
 </ul>
-<h2>落とし穴</h2>
+<h2 id="落とし穴">落とし穴<a class="hlink" href="#落とし穴" aria-hidden="true">#</a></h2>
 <ul>
 <li><strong>成果の衣を着たタスクリスト。</strong> 「X、Y、Z を順にやれ」はチェックリストのまま——世界が変わっても Bot は優先順位を付け直せない。</li>
 <li><strong>「良い」の定義なき「アプリを良く保て」。</strong> 検証可能な状態がなければ Bot が勝手に定義を選ぶ——あなたのものではない。</li>
 <li><strong>1 領域を超えるスコープ。</strong> 「エンジニアリングを所有せよ」は失敗する；「iOS アプリを所有せよ」は出荷する。外部の一人が完全に観測できる単位で分割する。</li>
 </ul>
-<h2>理解度チェック</h2>
+<h2 id="理解度チェック">理解度チェック<a class="hlink" href="#理解度チェック" aria-hidden="true">#</a></h2>
 <ol>
 <li>なぜ "fix Android bugs" より "own the Android app" が良いか？<em>（所有は恒常の判断を含意する——Bot は直すかどうかだけでなく、どのバグが重要かを決める）</em></li>
 <li>"make the CI fast" の何が悪いか？<em>（外部から検証不能——閾値がない。"CI under 8 minutes" は検証可能）</em></li>
 <li>"text me if tests fail" は 3 問のどれに答えているか？<em>（恒常の振る舞い——状態に対し Bot が何をするかは言うが、領域も目標も言わない）</em></li>
 </ol>
-<h2>出典</h2>
+<h2 id="出典">出典<a class="hlink" href="#出典" aria-hidden="true">#</a></h2>
 <ul>
 <li><a href="https://devin.ai/blog/introducing-devin-bots">Introducing Devin Bots</a> · <a href="https://docs.devin.ai/work-with-devin/bots">Bots ドキュメント</a> · <a href="https://devin.ai/bots/templates">テンプレートマーケットプレイス</a></li>
 <li><a href="https://github.com/Till3005/built-with-devin#documented-deployments">built-with-devin</a> にリンクされた導入レポート</li>
 </ul>
-<nav class="guide-pager"><a class="pg-prev" href="official-cookbook.html"><span class="pg-dir">← Previous</span><span class="pg-t">ガイド 13 — 公式ユースケース・クックブック</span></a><a class="pg-next" href="automations-101-event-driven.html"><span class="pg-dir">Next →</span><span class="pg-t">ガイド 6 — イベント駆動の自動化</span></a></nav>
+<nav class="guide-pager"><a class="pg-prev" href="official-cookbook.html"><span class="pg-dir">← 前へ</span><span class="pg-t">ガイド 13 — 公式ユースケース・クックブック</span></a><a class="pg-next" href="automations-101-event-driven.html"><span class="pg-dir">次へ →</span><span class="pg-t">ガイド 6 — イベント駆動の自動化</span></a></nav>
 </article>
 <footer><div class="wrap foot-base"><span data-i18n="foot.note">Unofficial community project — not affiliated with Cognition AI.</span><span><a href="../../index.html">built-with-devin</a> · <a href="https://github.com/Till3005/build-with-devin">build-with-devin</a></span></div></footer>
 </main>

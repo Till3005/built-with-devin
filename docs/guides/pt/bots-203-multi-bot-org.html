@@ -4,13 +4,13 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Guia 4 — Organização multi-Bot — build-with-devin guides</title>
-<meta name="description" content="Guia 4 — Organização multi-Bot">
+<meta name="description" content="uma hierarquia de Bots que roda uma unidade de negócio inteira — um orquestrador delegando para Bots especialistas, um humano decidindo por uma única thread diá">
 <link rel="icon" href="../../assets/brand/Devin_Symbol.svg" type="image/svg+xml">
 <link rel="stylesheet" href="../../assets/site.css">
 <link rel="stylesheet" href="../../assets/guides.css">
 
 <meta property="og:title" content="Guia 4 — Organização multi-Bot">
-<meta property="og:description" content="Guia 4 — Organização multi-Bot">
+<meta property="og:description" content="uma hierarquia de Bots que roda uma unidade de negócio inteira — um orquestrador delegando para Bots especialistas, um humano decidindo por uma única thread diá">
 <meta property="og:type" content="article">
 <meta property="og:url" content="https://till3005.github.io/built-with-devin/guides/pt/bots-203-multi-bot-org.html">
 <meta property="og:image" content="https://till3005.github.io/built-with-devin/assets/img/og-build.png?v=3">
@@ -36,13 +36,15 @@
 </div></nav>
 <main>
 <article class="guide wrap" id="guide">
-  <p class="guide-crumb"><a href="../../index.html#build">← Guides</a> · <a href="../bots-203-multi-bot-org.html">English</a> · <a href="../zh/bots-203-multi-bot-org.html">中文</a> · <a href="../ja/bots-203-multi-bot-org.html">日本語</a></p>
+  <p class="guide-crumb"><a href="index.html">← Guias</a> · <a href="../bots-203-multi-bot-org.html">English</a> · <a href="../ja/bots-203-multi-bot-org.html">日本語</a> · <a href="../zh/bots-203-multi-bot-org.html">中文</a></p>
+<p class="guide-meta">Atualizado 2026-11-19</p>
+<details class="toc" open><summary>Nesta página</summary><ol><li class="d2"><a href="#o-padrão">O padrão</a></li><li class="d2"><a href="#pré-requisitos">Pré-requisitos</a></li><li class="d2"><a href="#passo-1-desenhe-o-organograma-primeiro">Passo 1 — Desenhe o organograma primeiro</a></li><li class="d2"><a href="#passo-2-crie-os-especialistas">Passo 2 — Crie os especialistas</a></li><li class="d2"><a href="#passo-3-ligue-os-grants">Passo 3 — Ligue os grants</a></li><li class="d2"><a href="#passo-4-a-thread-consolidada">Passo 4 — A thread consolidada</a></li><li class="d2"><a href="#passo-5-cadência-o-batimento-da-org">Passo 5 — Cadência = o batimento da org</a></li><li class="d2"><a href="#passo-6-protocolo-inter-bot-botspeak">Passo 6 — Protocolo inter-bot (BotSpeak)</a></li><li class="d2"><a href="#checklist-de-verificação">Checklist de verificação</a></li><li class="d2"><a href="#armadilhas">Armadilhas</a></li><li class="d2"><a href="#teste-de-conhecimento">Teste de conhecimento</a></li><li class="d2"><a href="#fontes">Fontes</a></li></ol></details>
 <h1>Guia 4 — Organização multi-Bot</h1>
 <p><strong>Objetivo:</strong> uma hierarquia de Bots que roda uma unidade de negócio inteira — um orquestrador delegando para Bots especialistas, um humano decidindo por uma única thread diária.
 <strong>Nível:</strong> avançado
 <strong>Implantação de origem:</strong> o <strong>SuperJennyStack</strong> de Jenny Xu — ~20 Bots rodando um estúdio de jogos mobile. ~50 → <strong>1.900 PRs/semana</strong>, releases semanais, receita do estúdio 6×. Publicado como template comunitário no <a href="https://devin.ai/bots/templates">Bot marketplace</a>. O <strong>handoff por grant bot-para-bot</strong> oficial (QA → Developer → reteste → relatório do PM) usa a mesma mecânica em escala menor.
 <strong>Fontes:</strong> stack publicado de Jenny Xu (<a href="https://x.com/cognition/status/2122737511684587551">via cobertura do lançamento</a>) · <a href="https://docs.devin.ai/work-with-devin/bots">docs de Bots</a> · <a href="https://x.com/xujennyc/status/2123111543105868166">post do BotSpeak</a></p>
-<h2>O padrão</h2>
+<h2 id="o-padrão">O padrão<a class="hlink" href="#o-padrão" aria-hidden="true">#</a></h2>
 <p>Não construa um Bot que faz tudo — construa uma pequena empresa:</p>
 <pre><code class="language-text">                    ┌─────────────┐
               ┌────►│ Orquestrador │◄──── uma thread consolidada
@@ -54,13 +56,13 @@
   (o quê)  (constrói)(verifica)(envia)      (usuários)
 </code></pre>
 <p>O humano é o CEO: o orquestrador coleta todas as decisões pendentes dos Bots subordinados em <strong>uma thread de Slack, 4×/dia</strong>, respondida com emoji.</p>
-<h2>Pré-requisitos</h2>
+<h2 id="pré-requisitos">Pré-requisitos<a class="hlink" href="#pré-requisitos" aria-hidden="true">#</a></h2>
 <ul>
 <li>Guia 1 feito — você sabe criar e instruir um Bot</li>
 <li>Slack conectado — esse padrão vive no Slack; a thread consolidada do orquestrador é toda a UX</li>
 <li>Um domínio delimitado com trabalhos separáveis (um produto, um estúdio, uma área de serviço)</li>
 </ul>
-<h2>Passo 1 — Desenhe o organograma primeiro</h2>
+<h2 id="passo-1-desenhe-o-organograma-primeiro">Passo 1 — Desenhe o organograma primeiro<a class="hlink" href="#passo-1-desenhe-o-organograma-primeiro" aria-hidden="true">#</a></h2>
 <p>O stack publicado da Jenny — copie a <em>forma</em>, não os nomes:</p>
 <table>
 <thead>
@@ -93,21 +95,21 @@
 </tbody>
 </table>
 <p>Os ~15 Bots restantes cobrem desenvolvimento, Unity, UI, iOS, Android, analytics. Regra prática da implantação: <strong>um Bot por cargo que você nomearia num organograma</strong> — não por tarefa, por <em>responsabilidade</em>.</p>
-<h2>Passo 2 — Crie os especialistas</h2>
+<h2 id="passo-2-crie-os-especialistas">Passo 2 — Crie os especialistas<a class="hlink" href="#passo-2-crie-os-especialistas" aria-hidden="true">#</a></h2>
 <p>Para cada cargo, um Bot com prompt de resultado escopado:</p>
 <pre><code class="language-text">You own QA for &lt;product&gt;. Test every release candidate on real devices,
 post video proof, and block release on failures. Report what needs a
 decision to the orchestrator.
 </code></pre>
 <p>Mantenha as Instructions de cada Bot focadas nas regras do seu cargo; conhecimento compartilhado (marca, processo de deploy, quem aprova o quê) vai nas instructions de cada Bot ou num recurso compartilhado — não há memória global entre Bots, então os prompts do orquestrador carregam o tecido conectivo.</p>
-<h2>Passo 3 — Ligue os grants</h2>
+<h2 id="passo-3-ligue-os-grants">Passo 3 — Ligue os grants<a class="hlink" href="#passo-3-ligue-os-grants" aria-hidden="true">#</a></h2>
 <p>Um grant dá ao Bot A acesso de leitura/mensagem ao Bot B — é assim que Bots passam trabalho entre si (os Bots pedem o grant; você aprova o cartão uma vez). O orquestrador precisa de acesso a todos os especialistas.</p>
 <p>A variante oficial documentada — menor, mesma mecânica:</p>
 <pre><code class="language-text">QA Bot acha um bug ──grant──► Developer Bot corrige ──► QA retesta no
 staging ──► PM Bot reporta status no canal
 </code></pre>
 <p>Aprove grants de forma estreita: o orquestrador lê e manda mensagem aos especialistas; especialistas não precisam todos se alcançar.</p>
-<h2>Passo 4 — A thread consolidada</h2>
+<h2 id="passo-4-a-thread-consolidada">Passo 4 — A thread consolidada<a class="hlink" href="#passo-4-a-thread-consolidada" aria-hidden="true">#</a></h2>
 <p>Esta é a instrução mais importante — converte interrupções de 20 Bots num hábito só:</p>
 <pre><code class="language-text">Collect every pending decision from the Bots you work with into one
 Slack thread, posted at &lt;times&gt; daily. For each item: what's blocked,
@@ -115,7 +117,7 @@ the options, your recommendation. I answer in replies/emoji; treat my
 replies as decisions and relay them.
 </code></pre>
 <p>Jenny roda isso <strong>4×/dia</strong> e responde <strong>com emoji</strong>. A disciplina: você nunca fala com os especialistas — o orquestrador retransmite sua decisão e a leva até o fim.</p>
-<h2>Passo 5 — Cadência = o batimento da org</h2>
+<h2 id="passo-5-cadência-o-batimento-da-org">Passo 5 — Cadência = o batimento da org<a class="hlink" href="#passo-5-cadência-o-batimento-da-org" aria-hidden="true">#</a></h2>
 <table>
 <thead>
 <tr>
@@ -143,7 +145,7 @@ replies as decisions and relay them.
 </tbody>
 </table>
 <p>Cada Bot é dono do seu loop; o orquestrador é dono da agenda dos loops.</p>
-<h2>Passo 6 — Protocolo inter-bot (BotSpeak)</h2>
+<h2 id="passo-6-protocolo-inter-bot-botspeak">Passo 6 — Protocolo inter-bot (BotSpeak)<a class="hlink" href="#passo-6-protocolo-inter-bot-botspeak" aria-hidden="true">#</a></h2>
 <p>O problema de escala que ninguém te avisa: os 20+ Bots da Jenny mandavam <strong>700+ mensagens/dia</strong> — ela não dava conta. A correção foi o <strong>BotSpeak</strong>, uma linguagem abreviada que economiza tokens e que os Bots usam <em>entre si</em> (<a href="https://x.com/xujennyc/status/2123111543105868166">o relato dela</a>):</p>
 <table>
 <thead>
@@ -176,7 +178,7 @@ replies as decisions and relay them.
 </tbody>
 </table>
 <p>Seis dias após a troca: decisões tomadas por Bots sem ela <strong>12×</strong>, pedidos repetidos −50%, posts de esclarecimento entre bots −12%. O protocolo existe porque desperdício de tokens não é o custo real — desperdício de <em>atenção</em> é: mensagens bot-para-bot mais curtas mantêm a única thread do humano legível.</p>
-<h2>Checklist de verificação</h2>
+<h2 id="checklist-de-verificação">Checklist de verificação<a class="hlink" href="#checklist-de-verificação" aria-hidden="true">#</a></h2>
 <ul>
 <li>[ ] Todo Bot especialista tem prompt de resultado escopado e grants ativos</li>
 <li>[ ] O orquestrador posta a thread de decisões consolidada no horário</li>
@@ -184,27 +186,27 @@ replies as decisions and relay them.
 <li>[ ] Um handoff entre Bots completou ponta a ponta (achar → corrigir → verificar → reportar)</li>
 <li>[ ] Mensagens humanas de hoje &lt; número de PRs mergeados</li>
 </ul>
-<h2>Armadilhas</h2>
+<h2 id="armadilhas">Armadilhas<a class="hlink" href="#armadilhas" aria-hidden="true">#</a></h2>
 <ul>
 <li><strong>Pular o orquestrador.</strong> N Bots cada um te mandando DM é N× ruído. A org só funciona se o julgamento passa por uma thread.</li>
 <li><strong>Fronteiras de cargo vagas.</strong> "Dev Bot" e "Fix Bot" vão colidir. Fronteiras seguem o organograma — QA <em>verifica</em>, Release <em>envia</em>, PM <em>prioriza</em>.</li>
 <li><strong>Over-granting.</strong> Grants em malha (todos alcançam todos) recriam o caos. Hub-and-spoke pelo orquestrador.</li>
 <li><strong>Prosa entre Bots.</strong> Bots escrevendo parágrafos entre si é como se chega a 700 mensagens/dia — adote um protocolo estilo BotSpeak: abreviações + confirmações emoji + sem cerimônias; frases completas só para o humano.</li>
 </ul>
-<h2>Teste de conhecimento</h2>
+<h2 id="teste-de-conhecimento">Teste de conhecimento<a class="hlink" href="#teste-de-conhecimento" aria-hidden="true">#</a></h2>
 <ol>
 <li>Por que o SuperJennyStack roteia todo contato humano por <em>uma</em> thread consolidada? <em>(Atenção é o gargalo, não computação — 20 Bots gerando 20 threads são 20 empregos de novo.)</em></li>
 <li>Quando um grant vence "perguntar ao orquestrador"? <em>(Quando a capacidade necessária já é possuída por outro Bot — grants emprestam propriedade em vez de duplicá-la.)</em></li>
 <li>O que a cadência "4×/dia com emoji" do humano implica sobre a profundidade da delegação? <em>(Banda de decisão, não headcount, é o que Bots substituem — o humano manteve a camada de julgamento e perdeu a camada de digitação.)</em></li>
 </ol>
-<h2>Fontes</h2>
+<h2 id="fontes">Fontes<a class="hlink" href="#fontes" aria-hidden="true">#</a></h2>
 <ul>
 <li><a href="https://devin.ai/blog/introducing-devin-bots">Introducing Devin Bots</a> — números do SuperJennyStack, variante grant-handoff</li>
 <li><a href="https://devin.ai/bots/templates">Bot marketplace</a> — template comunitário SuperJennyStack + 16 templates oficiais</li>
 <li><a href="https://docs.devin.ai/work-with-devin/bots">Docs de Bots</a> — grants, memória, acesso</li>
 <li>Relacionado: <a href="bots-204-reference-grounded-swarm.html">Guia 5 — Enxame ancorado em referência</a> para enxames que <em>escrevem</em> em vez de <em>operar</em></li>
 </ul>
-<nav class="guide-pager"><a class="pg-prev" href="bots-202-scheduled-sentinel.html"><span class="pg-dir">← Previous</span><span class="pg-t">Guia 3 — Bot sentinela agendado</span></a><a class="pg-next" href="bots-204-reference-grounded-swarm.html"><span class="pg-dir">Next →</span><span class="pg-t">Guia 5 — Enxame ancorado em referência</span></a></nav>
+<nav class="guide-pager"><a class="pg-prev" href="bots-202-scheduled-sentinel.html"><span class="pg-dir">← Anterior</span><span class="pg-t">Guia 3 — Bot sentinela agendado</span></a><a class="pg-next" href="bots-204-reference-grounded-swarm.html"><span class="pg-dir">Próximo →</span><span class="pg-t">Guia 5 — Enxame ancorado em referência</span></a></nav>
 </article>
 <footer><div class="wrap foot-base"><span data-i18n="foot.note">Unofficial community project — not affiliated with Cognition AI.</span><span><a href="../../index.html">built-with-devin</a> · <a href="https://github.com/Till3005/build-with-devin">build-with-devin</a></span></div></footer>
 </main>

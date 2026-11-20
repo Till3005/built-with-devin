@@ -4,13 +4,13 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>指南 9 — Playbooks 与知识层：把组织约定写成代码 — build-with-devin guides</title>
-<meta name="description" content="指南 9 — Playbooks 与知识层：把组织约定写成代码">
+<meta name="description" content="把你最强工程师脑子里默认的东西写下来，让 Devin 会话和 Bot 在组织规模上可靠——写成 playbooks（可重复流程）和 knowledge（常驻上下文）。">
 <link rel="icon" href="../../assets/brand/Devin_Symbol.svg" type="image/svg+xml">
 <link rel="stylesheet" href="../../assets/site.css">
 <link rel="stylesheet" href="../../assets/guides.css">
 
 <meta property="og:title" content="指南 9 — Playbooks 与知识层：把组织约定写成代码">
-<meta property="og:description" content="指南 9 — Playbooks 与知识层：把组织约定写成代码">
+<meta property="og:description" content="把你最强工程师脑子里默认的东西写下来，让 Devin 会话和 Bot 在组织规模上可靠——写成 playbooks（可重复流程）和 knowledge（常驻上下文）。">
 <meta property="og:type" content="article">
 <meta property="og:url" content="https://till3005.github.io/built-with-devin/guides/zh/playbooks-and-knowledge.html">
 <meta property="og:image" content="https://till3005.github.io/built-with-devin/assets/img/og-build.png?v=3">
@@ -36,12 +36,14 @@
 </div></nav>
 <main>
 <article class="guide wrap" id="guide">
-  <p class="guide-crumb"><a href="../../index.html#build">← Guides</a> · <a href="../playbooks-and-knowledge.html">English</a> · <a href="../ja/playbooks-and-knowledge.html">日本語</a> · <a href="../pt/playbooks-and-knowledge.html">Português</a></p>
+  <p class="guide-crumb"><a href="index.html">← 指南</a> · <a href="../playbooks-and-knowledge.html">English</a> · <a href="../ja/playbooks-and-knowledge.html">日本語</a> · <a href="../pt/playbooks-and-knowledge.html">Português</a></p>
+<p class="guide-meta">更新于 2026-11-19</p>
+<details class="toc" open><summary>本页目录</summary><ol><li class="d2"><a href="#为什么这一层决定一切">为什么这一层决定一切</a></li><li class="d2"><a href="#第-1-步-从你自己的纠正里挖">第 1 步 — 从你自己的纠正里挖</a></li><li class="d2"><a href="#第-2-步-写钉得住的知识条目">第 2 步 — 写钉得住的知识条目</a></li><li class="d2"><a href="#第-3-步-给可重复工作写-playbook">第 3 步 — 给可重复工作写 playbook</a></li><li class="d2"><a href="#第-4-步-喂给-bot">第 4 步 — 喂给 Bot</a></li><li class="d2"><a href="#第-5-步-纠正回路">第 5 步 — 纠正回路</a></li><li class="d2"><a href="#verify-it">Verify it</a></li><li class="d2"><a href="#坑">坑</a></li><li class="d2"><a href="#自检">自检</a></li><li class="d2"><a href="#sources">Sources</a></li></ol></details>
 <h1>指南 9 — Playbooks 与知识层：把组织约定写成代码</h1>
 <p><strong>目标：</strong> 把你最强工程师脑子里默认的东西写下来，让 Devin 会话和 Bot 在组织规模上可靠——写成 playbooks（可重复流程）和 knowledge（常驻上下文）。
 <strong>级别：</strong> 中级 · 每个大型公开部署共享的那一层
 <strong>来源：</strong> <a href="https://docs.devin.ai">docs.devin.ai</a> · <a href="enterprise-playbook.html">第 7 篇</a>的部署教训</p>
-<h2>为什么这一层决定一切</h2>
+<h2 id="为什么这一层决定一切">为什么这一层决定一切<a class="hlink" href="#为什么这一层决定一切" aria-hidden="true">#</a></h2>
 <p>每个公开的企业结果——Nubank 的 8–12×、EBANX 的 92% 署名 PR、Wayfair 的 1,600 席位——都建立在被编码的约定上。没有它，Devin 的产出随会话漂移：每个 session 重新发现你的技术栈、合并规则、测试习惯。有了它，第 500 个会话表现得像你最强工程师状态最好的那天。</p>
 <p>两个互补的产物：</p>
 <table>
@@ -65,20 +67,20 @@
 </tr>
 </tbody>
 </table>
-<h2>第 1 步 — 从你自己的纠正里挖</h2>
+<h2 id="第-1-步-从你自己的纠正里挖">第 1 步 — 从你自己的纠正里挖<a class="hlink" href="#第-1-步-从你自己的纠正里挖" aria-hidden="true">#</a></h2>
 <p>最便宜的知识已经存在：翻最近 20 个 Devin 会话，收集你每次打出的纠正——<em>"we deploy via Cloud Run"</em>、<em>"never <code>git push --force</code>"</em>、<em>"tests need <code>npm run db:seed</code> first."</em> 每条纠正都是一条已被证明重要的知识条目。</p>
 <p>还可以挖：
 - 人类在 Devin PR 上反复写的评审意见
 - 解释<em>为什么</em>改动做成那样的 PR 描述
 - 入职文档——任何你会讲给新员工的东西</p>
-<h2>第 2 步 — 写钉得住的知识条目</h2>
+<h2 id="第-2-步-写钉得住的知识条目">第 2 步 — 写钉得住的知识条目<a class="hlink" href="#第-2-步-写钉得住的知识条目" aria-hidden="true">#</a></h2>
 <p>好条目是一行、祈使句、有作用域：</p>
 <pre><code class="language-text">- Deploy only via `make deploy-cloudrun` — never run gcloud directly.
 - Migrations require a matching rollback file in prisma/rollbacks/.
 - The staging seed user is qa+admin@corp.io; never create real-looking users.
 </code></pre>
 <p>坏条目是散文、愿望（"write good tests"）、或秘密（凭证永远不进 knowledge——用 secrets store）。</p>
-<h2>第 3 步 — 给可重复工作写 playbook</h2>
+<h2 id="第-3-步-给可重复工作写-playbook">第 3 步 — 给可重复工作写 playbook<a class="hlink" href="#第-3-步-给可重复工作写-playbook" aria-hidden="true">#</a></h2>
 <blockquote>
 <p><strong>平台更新（2026 年 11 月）：</strong> Playbook 正在迁移到 <strong>Skills</strong>——各账号分批迁移，新账号只有 Skills（每个 playbook 会变成一个相同 org/enterprise 作用域的 skill）。本步所有内容对 skills 完全适用：skill 就是同样的、可调用的具名流程。</p>
 </blockquote>
@@ -95,9 +97,9 @@
 - &lt;已知故障 → 怎么处理&gt;
 </code></pre>
 <p>发布到全组织，让会话、automation、Bot 都能调用——这就是把一次性成功的会话变成组织能力的那一步。</p>
-<h2>第 4 步 — 喂给 Bot</h2>
+<h2 id="第-4-步-喂给-bot">第 4 步 — 喂给 Bot<a class="hlink" href="#第-4-步-喂给-bot" aria-hidden="true">#</a></h2>
 <p>Bot 的 <strong>Instructions</strong>（第 1 篇）是 Bot 作用域的知识——每个会话启动时读的规则。岗位法放那里；组织法放 knowledge；流程放 playbook。分层让每个产物小而常新。</p>
-<h2>第 5 步 — 纠正回路</h2>
+<h2 id="第-5-步-纠正回路">第 5 步 — 纠正回路<a class="hlink" href="#第-5-步-纠正回路" aria-hidden="true">#</a></h2>
 <p>知识会腐烂。让它保鲜的回路：</p>
 <ol>
 <li>会话/Bot 犯错 → 你在聊天里纠正</li>
@@ -105,30 +107,30 @@
 <li>每周复核：把 Bot 记忆里反复出现的条目晋升为组织知识；删掉一个月没人触发的条目</li>
 </ol>
 <p>Devin Coach（官方 Bot 模板）就是为这个生的——每周汇报 Devin 在哪里卡住，并每次提一个修复：一条 note、一个 skill、或一项配置改动。</p>
-<h2>Verify it</h2>
+<h2 id="verify-it">Verify it<a class="hlink" href="#verify-it" aria-hidden="true">#</a></h2>
 <ul>
 <li>[ ] 一个新会话在你的 repo 上零提问知识层已覆盖的问题</li>
 <li>[ ] 你给 Bot 的上一条纠正出现在它的记忆文件里</li>
 <li>[ ] 两个不同会话跑同一个 playbook 产出同样形态的结果</li>
 </ul>
-<h2>坑</h2>
+<h2 id="坑">坑<a class="hlink" href="#坑" aria-hidden="true">#</a></h2>
 <ul>
 <li><strong>写愿望。</strong> "Follow best practices" 什么都改变不了；"run <code>npm run db:seed</code> before tests" 改变一切。</li>
 <li><strong>设了就忘。</strong> 过期知识比没有更糟——Devin 会自信地照办。每月复核。</li>
 <li><strong>复制文档。</strong> Knowledge 装的是 Devin <em>会错</em>或<em>不可能知道</em>的东西，不是你 wiki 的副本。</li>
 </ul>
-<h2>自检</h2>
+<h2 id="自检">自检<a class="hlink" href="#自检" aria-hidden="true">#</a></h2>
 <ol>
 <li>playbook 和 knowledge 的区别？<em>（playbook 是具名任务的可重复规程；knowledge 是每个会话都该默认的常驻上下文。）</em></li>
 <li>为什么「把最强工程师的默认假设写下来」才是真正的企业瓶颈？<em>（agent 质量从来不是上限——缺失的上下文才是；knowledge layer 是组织惯例的存放地。）</em></li>
 <li>一条惯例什么时候该落成 playbook 而不是继续口口相传？<em>（第一次某个会话因为缺这一步而做错的时候。）</em></li>
 </ol>
-<h2>Sources</h2>
+<h2 id="sources">Sources<a class="hlink" href="#sources" aria-hidden="true">#</a></h2>
 <ul>
 <li><a href="https://docs.devin.ai">docs.devin.ai</a> — knowledge、playbooks、Bot instructions/memory</li>
 <li>相关：<a href="enterprise-playbook.html">第 7 篇 — 企业级铺开模式</a>（这一层是大多数铺开跳过的一步）</li>
 </ul>
-<nav class="guide-pager"><a class="pg-prev" href="automations-101-event-driven.html"><span class="pg-dir">← Previous</span><span class="pg-t">指南 6 — 事件驱动的 Automations</span></a><a class="pg-next" href="skills-and-plugins.html"><span class="pg-dir">Next →</span><span class="pg-t">指南 17 — Skills 与 plugins：playbook 之后的封装层</span></a></nav>
+<nav class="guide-pager"><a class="pg-prev" href="automations-101-event-driven.html"><span class="pg-dir">← 上一篇</span><span class="pg-t">指南 6 — 事件驱动的 Automations</span></a><a class="pg-next" href="skills-and-plugins.html"><span class="pg-dir">下一篇 →</span><span class="pg-t">指南 17 — Skills 与 plugins：playbook 之后的封装层</span></a></nav>
 </article>
 <footer><div class="wrap foot-base"><span data-i18n="foot.note">Unofficial community project — not affiliated with Cognition AI.</span><span><a href="../../index.html">built-with-devin</a> · <a href="https://github.com/Till3005/build-with-devin">build-with-devin</a></span></div></footer>
 </main>

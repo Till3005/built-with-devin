@@ -4,13 +4,13 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>ガイド 11 — スケールする移行 — build-with-devin guides</title>
-<meta name="description" content="ガイド 11 — スケールする移行">
+<meta name="description" content="大規模移行（言語、フレームワーク、データベース、依存関係、アーキテクチャ）を 1 回の英雄的リライトではなく、数百の小さな検証済み PR として実行する。">
 <link rel="icon" href="../../assets/brand/Devin_Symbol.svg" type="image/svg+xml">
 <link rel="stylesheet" href="../../assets/site.css">
 <link rel="stylesheet" href="../../assets/guides.css">
 
 <meta property="og:title" content="ガイド 11 — スケールする移行">
-<meta property="og:description" content="ガイド 11 — スケールする移行">
+<meta property="og:description" content="大規模移行（言語、フレームワーク、データベース、依存関係、アーキテクチャ）を 1 回の英雄的リライトではなく、数百の小さな検証済み PR として実行する。">
 <meta property="og:type" content="article">
 <meta property="og:url" content="https://till3005.github.io/built-with-devin/guides/ja/migrations-at-scale.html">
 <meta property="og:image" content="https://till3005.github.io/built-with-devin/assets/img/og-build.png?v=3">
@@ -36,12 +36,14 @@
 </div></nav>
 <main>
 <article class="guide wrap" id="guide">
-  <p class="guide-crumb"><a href="../../index.html#build">← Guides</a> · <a href="../migrations-at-scale.html">English</a> · <a href="../zh/migrations-at-scale.html">中文</a> · <a href="../pt/migrations-at-scale.html">Português</a></p>
+  <p class="guide-crumb"><a href="index.html">← ガイド</a> · <a href="../migrations-at-scale.html">English</a> · <a href="../pt/migrations-at-scale.html">Português</a> · <a href="../zh/migrations-at-scale.html">中文</a></p>
+<p class="guide-meta">更新 2026-11-19</p>
+<details class="toc" open><summary>このページの目次</summary><ol><li class="d2"><a href="#公式プレイブック">公式プレイブック</a></li><li class="d2"><a href="#ステップ-1-移行が適格か確認する">ステップ 1 — 移行が適格か確認する</a></li><li class="d2"><a href="#ステップ-2-スライスする">ステップ 2 — スライスする</a></li><li class="d2"><a href="#ステップ-3-変換をスキルとして書く">ステップ 3 — 変換をスキルとして書く</a></li><li class="d2"><a href="#ステップ-4-並列セッションを回す">ステップ 4 — 並列セッションを回す</a></li><li class="d2"><a href="#ステップ-5-進捗バーではなくエラー率を見る">ステップ 5 — 進捗バーではなくエラー率を見る</a></li><li class="d2"><a href="#検証チェックリスト">検証チェックリスト</a></li><li class="d2"><a href="#落とし穴">落とし穴</a></li><li class="d2"><a href="#理解度チェック">理解度チェック</a></li><li class="d2"><a href="#出典">出典</a></li></ol></details>
 <h1>ガイド 11 — スケールする移行</h1>
 <p><strong>目標：</strong> 大規模移行（言語、フレームワーク、データベース、依存関係、アーキテクチャ）を 1 回の英雄的リライトではなく、数百の小さな検証済み PR として実行する。
 <strong>レベル：</strong> 中級 → 上級
 <strong>出典：</strong> <a href="https://docs.devin.ai/use-cases/best-practices.html">ベストプラクティス</a> · <a href="https://docs.devin.ai/use-cases/migration-modernization.html">移行とモダナイゼーション</a> · 移行例：<a href="https://docs.devin.ai/use-cases/examples/java-upgrades.html">Java アップグレード</a>、<a href="https://docs.devin.ai/use-cases/examples/cobol-modernization.html">COBOL</a>、<a href="https://docs.devin.ai/use-cases/examples/sas-to-pyspark.html">SAS→PySpark</a>、<a href="https://docs.devin.ai/use-cases/examples/javascript-to-typescript.html">JS→TS</a>、<a href="https://docs.devin.ai/use-cases/examples/nosql-to-sql.html">NoSQL→SQL</a> · Nubank ケーススタディ</p>
-<h2>公式プレイブック</h2>
+<h2 id="公式プレイブック">公式プレイブック<a class="hlink" href="#公式プレイブック" aria-hidden="true">#</a></h2>
 <p>Devin 自身のドキュメントはスケールするものを率直に述べている：<strong>広く浅く</strong>が<strong>高く深く</strong>に勝る。移行は典型的な広く浅い仕事——同じ小さな変換を数百の独立単位に適用する。</p>
 <pre><code class="language-text">移行 ──► 孤立した単位にスライス（各 90 分以内）
                  │
@@ -54,7 +56,7 @@
                         │
               人間レビュー → マージ → 繰り返し
 </code></pre>
-<h2>ステップ 1 — 移行が適格か確認する</h2>
+<h2 id="ステップ-1-移行が適格か確認する">ステップ 1 — 移行が適格か確認する<a class="hlink" href="#ステップ-1-移行が適格か確認する" aria-hidden="true">#</a></h2>
 <p>公式基準から——ほとんどが成立すべき：</p>
 <ul>
 <li>反復的なサブタスクの大量性</li>
@@ -64,7 +66,7 @@
 <li>最小限のスライス間依存</li>
 </ul>
 <p>不適格：すべてが一度に着地しなければならない全リポジトリのリライト。</p>
-<h2>ステップ 2 — スライスする</h2>
+<h2 id="ステップ-2-スライスする">ステップ 2 — スライスする<a class="hlink" href="#ステップ-2-スライスする" aria-hidden="true">#</a></h2>
 <p>スライスは最小の原子単位——ファイル、ノートブック、モジュール：</p>
 <table>
 <thead>
@@ -89,7 +91,7 @@
 </tbody>
 </table>
 <p>公式の例：50 ファイルの REST→GraphQL 移行 → スコープを定め、競合しない作業パッケージに分割し、並列で実行。</p>
-<h2>ステップ 3 — 変換をスキルとして書く</h2>
+<h2 id="ステップ-3-変換をスキルとして書く">ステップ 3 — 変換をスキルとして書く<a class="hlink" href="#ステップ-3-変換をスキルとして書く" aria-hidden="true">#</a></h2>
 <p>1 スキル = 全セッションが実行する再現可能なレシピ。公式例（Java 7→8、抜粋）：</p>
 <pre><code class="language-text">## Procedure
 1. Verify the project is on Java 7
@@ -103,43 +105,43 @@
 9. Build and verify
 </code></pre>
 <p>あなた版に含めるもの：明示的な手順、エンドツーエンドの参照（ガイドまたは動画）、<strong>複数の前後コード例</strong>——入出力ペアは与えられる最高品質のシグナル。</p>
-<h2>ステップ 4 — 並列セッションを回す</h2>
+<h2 id="ステップ-4-並列セッションを回す">ステップ 4 — 並列セッションを回す<a class="hlink" href="#ステップ-4-並列セッションを回す" aria-hidden="true">#</a></h2>
 <p>スキルが固まったら、スライスをセッション群に展開——<a href="https://docs.devin.ai">API</a> または Bot の子セッション（ガイド 4）。スライスごとに → 1 セッション → 1 PR。<code>main</code> へのマージは人間レビューがゲート。</p>
 <p>スケールでは数値が複利になる：Nubank の数百万行 ETL 移行はこのループで効率 8–12 倍——ファインチューンされた Devin がタスクあたり時間を約40分→約10分に削った。</p>
-<h2>ステップ 5 — 進捗バーではなくエラー率を見る</h2>
+<h2 id="ステップ-5-進捗バーではなくエラー率を見る">ステップ 5 — 進捗バーではなくエラー率を見る<a class="hlink" href="#ステップ-5-進捗バーではなくエラー率を見る" aria-hidden="true">#</a></h2>
 <p>小さなエラー率は数千スライスで複利になる。雰囲気ではなくダッシュボードで運用する：</p>
 <ul>
 <li>初回試行のスライス合格率を追跡——修正点はセッションではなくスキル</li>
 <li>失敗したスライスはスキルにフィードバック（ドキュメント自身のループ：<em>「セッションリンクを Devin に投入してギャップをパッチ」</em>）</li>
 <li>スライスが孤立しているためマージ順は自由——それを活用する</li>
 </ul>
-<h2>検証チェックリスト</h2>
+<h2 id="検証チェックリスト">検証チェックリスト<a class="hlink" href="#検証チェックリスト" aria-hidden="true">#</a></h2>
 <ul>
 <li>[ ] すべてのスライスが約 90 分以内に終わり独立してマージできる</li>
 <li>[ ] 検証に失敗したスライスが修正またはフラグ付きチケットを生む——静かなマージはない</li>
 <li>[ ] 最初の 20 スライスでスキルが測定可能に改善した（スライスあたりの人間修正が減少）</li>
 <li>[ ] 進捗が数えられる：N/M スライス移行済み、合格率が可視</li>
 </ul>
-<h2>落とし穴</h2>
+<h2 id="落とし穴">落とし穴<a class="hlink" href="#落とし穴" aria-hidden="true">#</a></h2>
 <ul>
 <li><strong>スライスされていない移行。</strong> 「リポジトリ全体を移行せよ」は公式アンチパターン——孤立なし、並列性なし、単位ごとの検証なし。</li>
 <li><strong>前後例なし。</strong> 例のないスキルはセッションごとに異なるスタイルを産む。</li>
 <li><strong>人間レビューの省略。</strong> 並列 ≠ 無人——各スライスは <code>main</code> 前にレビューされる。</li>
 </ul>
-<h2>理解度チェック</h2>
+<h2 id="理解度チェック">理解度チェック<a class="hlink" href="#理解度チェック" aria-hidden="true">#</a></h2>
 <ol>
 <li>なぜ「深く完全な」スライスでなく「広く浅い」スライスか？<em>（各スライスがグリーンで着地しなければならない——90 分の検証済み PR は複利になる；3 日のメガブランチは main に対して腐る）</em></li>
 <li>なぜすべてのスライスが独自の検証を要るのか？<em>（スライスごとの証明がなければ、500 PR の移行は 500 の未検証 diff——失敗面は分割されるのでなく増殖する）</em></li>
 <li>Nubank が 8–12 倍の効率を報告——それをマーケティングでなく信頼できる数値にしたものは？<em>（公開された方法論：実際の ETL パイプラインで前後の段階時間を計測、予測ではなく）</em></li>
 </ol>
-<h2>出典</h2>
+<h2 id="出典">出典<a class="hlink" href="#出典" aria-hidden="true">#</a></h2>
 <ul>
 <li><a href="https://docs.devin.ai/use-cases/best-practices.html">ベストプラクティス — docs.devin.ai</a></li>
 <li><a href="https://docs.devin.ai/use-cases/migration-modernization.html">移行とモダナイゼーション + 5 つのプレイブック例</a></li>
 <li><a href="https://docs.devin.ai/use-cases/gallery/index.html">ユースケースギャラリー — 移行</a></li>
 <li>関連：<a href="enterprise-playbook.html">ガイド 7 — エンタープライズ導入</a>（形 1 はこのガイドの組織スケール版）</li>
 </ul>
-<nav class="guide-pager"><a class="pg-prev" href="bots-204-reference-grounded-swarm.html"><span class="pg-dir">← Previous</span><span class="pg-t">ガイド 5 — 参照基盤スウォーム</span></a><a class="pg-next" href="living-evals.html"><span class="pg-dir">Next →</span><span class="pg-t">ガイド 15 — 本番トレースから育つリビング eval</span></a></nav>
+<nav class="guide-pager"><a class="pg-prev" href="bots-204-reference-grounded-swarm.html"><span class="pg-dir">← 前へ</span><span class="pg-t">ガイド 5 — 参照基盤スウォーム</span></a><a class="pg-next" href="living-evals.html"><span class="pg-dir">次へ →</span><span class="pg-t">ガイド 15 — 本番トレースから育つリビング eval</span></a></nav>
 </article>
 <footer><div class="wrap foot-base"><span data-i18n="foot.note">Unofficial community project — not affiliated with Cognition AI.</span><span><a href="../../index.html">built-with-devin</a> · <a href="https://github.com/Till3005/build-with-devin">build-with-devin</a></span></div></footer>
 </main>

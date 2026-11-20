@@ -4,13 +4,13 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Guia 1 — Seu primeiro Bot — build-with-devin guides</title>
-<meta name="description" content="Guia 1 — Seu primeiro Bot">
+<meta name="description" content="criar um Devin Bot que assume um resultado e aprender as seis mecânicas nas quais todos os guias seguintes se apoiam.">
 <link rel="icon" href="../../assets/brand/Devin_Symbol.svg" type="image/svg+xml">
 <link rel="stylesheet" href="../../assets/site.css">
 <link rel="stylesheet" href="../../assets/guides.css">
 
 <meta property="og:title" content="Guia 1 — Seu primeiro Bot">
-<meta property="og:description" content="Guia 1 — Seu primeiro Bot">
+<meta property="og:description" content="criar um Devin Bot que assume um resultado e aprender as seis mecânicas nas quais todos os guias seguintes se apoiam.">
 <meta property="og:type" content="article">
 <meta property="og:url" content="https://till3005.github.io/built-with-devin/guides/pt/bots-101-first-bot.html">
 <meta property="og:image" content="https://till3005.github.io/built-with-devin/assets/img/og-build.png?v=3">
@@ -36,12 +36,14 @@
 </div></nav>
 <main>
 <article class="guide wrap" id="guide">
-  <p class="guide-crumb"><a href="../../index.html#build">← Guides</a> · <a href="../bots-101-first-bot.html">English</a> · <a href="../zh/bots-101-first-bot.html">中文</a> · <a href="../ja/bots-101-first-bot.html">日本語</a></p>
+  <p class="guide-crumb"><a href="index.html">← Guias</a> · <a href="../bots-101-first-bot.html">English</a> · <a href="../ja/bots-101-first-bot.html">日本語</a> · <a href="../zh/bots-101-first-bot.html">中文</a></p>
+<p class="guide-meta">Atualizado 2026-11-20</p>
+<details class="toc" open><summary>Nesta página</summary><ol><li class="d2"><a href="#o-que-é-um-bot">O que é um Bot</a></li><li class="d2"><a href="#passo-1-criar">Passo 1 — Criar</a></li><li class="d2"><a href="#passo-2-atribuir-o-resultado">Passo 2 — Atribuir o resultado</a></li><li class="d3"><a href="#uma-primeira-atribuição-limitada">Uma primeira atribuição limitada</a></li><li class="d2"><a href="#passo-3-trabalhar-com-ele">Passo 3 — Trabalhar com ele</a></li><li class="d2"><a href="#passo-4-direcionar-pela-memória-não-por-microgestão">Passo 4 — Direcionar pela memória, não por microgestão</a></li><li class="d2"><a href="#antes-de-compartilhar-acesso-e-uso">Antes de compartilhar — acesso e uso</a></li><li class="d2"><a href="#passo-5-colocar-onde-você-trabalha">Passo 5 — Colocar onde você trabalha</a></li><li class="d2"><a href="#passo-6-agendamentos-e-modos">Passo 6 — Agendamentos e modos</a></li><li class="d2"><a href="#ciclo-de-vida">Ciclo de vida</a></li><li class="d2"><a href="#checklist-de-verificação">Checklist de verificação</a></li><li class="d2"><a href="#armadilhas">Armadilhas</a></li><li class="d2"><a href="#teste-de-conhecimento">Teste de conhecimento</a></li><li class="d2"><a href="#fontes">Fontes</a></li></ol></details>
 <h1>Guia 1 — Seu primeiro Bot</h1>
 <p><strong>Objetivo:</strong> criar um Devin Bot que assume um resultado e aprender as seis mecânicas nas quais todos os guias seguintes se apoiam.
 <strong>Nível:</strong> comece aqui · <strong>Tempo:</strong> ~15 minutos
 <strong>Fonte:</strong> <a href="https://docs.devin.ai/work-with-devin/bots">documentação oficial de Bots</a>, <a href="https://devin.ai/blog/introducing-devin-bots">post de lançamento</a></p>
-<h2>O que é um Bot</h2>
+<h2 id="o-que-é-um-bot">O que é um Bot<a class="hlink" href="#o-que-é-um-bot" aria-hidden="true">#</a></h2>
 <p>Uma sessão atende a um pedido. Um Bot <em>é dono de um resultado</em>: você declara a meta uma vez no chat dele, ele planeja o trabalho, inicia uma sessão Devin filha para cada parte, monitora todas e só traz até você o que exige seu julgamento. Ele persiste — memória, sessões e automações sobrevivem por semanas.</p>
 <p>As seis mecânicas, na ordem em que você vai encontrá-las:</p>
 <table>
@@ -85,14 +87,14 @@
 </tr>
 </tbody>
 </table>
-<h2>Passo 1 — Criar</h2>
+<h2 id="passo-1-criar">Passo 1 — Criar<a class="hlink" href="#passo-1-criar" aria-hidden="true">#</a></h2>
 <p>Sidebar → <strong>Bots</strong> → <em>Create new Bot</em> → escolha um template ou <em>Start from scratch</em> → dê um nome.</p>
 <p>Um Bot novo é privado para você até ser compartilhado. Seu uso conta no seu plano como qualquer sessão.</p>
 <blockquote>
 <p>Dica: a <strong>Template library</strong> (barra lateral → Bots) lista os templates da Cognition — QA Engineer, Migration Engineer, Data Analyst, … — além dos compartilhados na sua org; o mesmo conjunto dá para explorar sem login no <a href="https://devin.ai/bots/templates">Bot marketplace</a> público. <em>Start from scratch</em> continua sendo a escolha certa para os guias deste repositório — você vai escrever o prompt de resultado você mesmo.</p>
 </blockquote>
 <p>Um Bot criado de template recebe o prompt e <strong>mais nada</strong> — é privado, sem connections, secrets ou memory. Diga no chat do que ele é dono (repositório, projeto, canal), configure as connections como em qualquer Bot novo e, se o template roda num gatilho, o Bot se oferece para configurá-lo no primeiro contato. Ele guarda a própria cópia do prompt — edições posteriores no template não chegam até ele. (<em>Add to a current Bot</em> manda o prompt do template para um Bot que você já tem, em vez de criar um novo.)</p>
-<h2>Passo 2 — Atribuir o resultado</h2>
+<h2 id="passo-2-atribuir-o-resultado">Passo 2 — Atribuir o resultado<a class="hlink" href="#passo-2-atribuir-o-resultado" aria-hidden="true">#</a></h2>
 <p>A primeira mensagem é o input mais importante que um Bot já recebeu. Dê a ele uma <em>meta</em>, não uma tarefa:</p>
 <pre><code class="language-text">You own the Android app now. Keep it at feature parity with iOS.
 </code></pre>
@@ -120,7 +122,7 @@
 </tbody>
 </table>
 <p>Uma tarefa acaba quando termina; um resultado faz o Bot re-planejar para sempre.</p>
-<h3>Uma primeira atribuição limitada</h3>
+<h3 id="uma-primeira-atribuição-limitada">Uma primeira atribuição limitada<a class="hlink" href="#uma-primeira-atribuição-limitada" aria-hidden="true">#</a></h3>
 <p>"Propriedade" é a <em>forma</em> certa, mas delimite a <em>superfície</em> na primeira rodada: um fluxo, um ambiente, um revisor — você. O padrão do guia de campo ANO é o ponto de partida confiável:</p>
 <pre><code class="language-text">Own the newsletter signup check for [project] on staging.
 Use [repository], [staging URL] and the test mailbox I provide.
@@ -139,7 +141,7 @@ the PR if a fix was needed, anything you could not verify,
 and any decision you need from me.
 </code></pre>
 <p>As linhas estruturais: a definição da jornada (formulário → email → link, não só "o form funciona"), <em>uma execução antes do agendamento</em>, a cerca explícita de não-merge/não-deploy, e a evidência nomeada que você espera. Amplie a atribuição só depois que o Bot devolver evidência confiável duas vezes.</p>
-<h2>Passo 3 — Trabalhar com ele</h2>
+<h2 id="passo-3-trabalhar-com-ele">Passo 3 — Trabalhar com ele<a class="hlink" href="#passo-3-trabalhar-com-ele" aria-hidden="true">#</a></h2>
 <p>Depois que o resultado está definido, a maioria das suas mensagens são check-ins:</p>
 <pre><code class="language-text">anything waiting on me?
 </code></pre>
@@ -171,30 +173,30 @@ and any decision you need from me.
 </tbody>
 </table>
 <p>Você pode responder com suas próprias palavras, adiar ou descartar qualquer item.</p>
-<h2>Passo 4 — Direcionar pela memória, não por microgestão</h2>
+<h2 id="passo-4-direcionar-pela-memória-não-por-microgestão">Passo 4 — Direcionar pela memória, não por microgestão<a class="hlink" href="#passo-4-direcionar-pela-memória-não-por-microgestão" aria-hidden="true">#</a></h2>
 <ul>
 <li><strong>Instructions</strong> (Settings → General): suas regras permanentes — lidas no início de cada sessão que o Bot roda. Coloque política duradoura aqui, não no chat.</li>
 <li><strong>Memory</strong> (Settings → Memory): arquivos que o próprio Bot escreve — preferências, correções, fatos do projeto. Para mudar o que ele lembra, basta dizer no chat ("remember: we deploy via Cloud Run, never bare VMs"). Todo mundo que pode usar o Bot pode ler sua memória — trate a memória de um Bot compartilhado como compartilhada.</li>
 </ul>
 <p>O padrão que escala: corrija o Bot uma vez, deixe-o gravar a correção na memória, e toda sessão futura a herda. A Cognition mergeia mais de 2.000 PRs/semana nesse loop.</p>
-<h2>Antes de compartilhar — acesso e uso</h2>
+<h2 id="antes-de-compartilhar-acesso-e-uso">Antes de compartilhar — acesso e uso<a class="hlink" href="#antes-de-compartilhar-acesso-e-uso" aria-hidden="true">#</a></h2>
 <p>Duas coisas que os posts de lançamento pulam e a documentação explicita:</p>
 <ul>
 <li><strong>Um Bot privado herda seus recursos sem perguntar.</strong> O acesso que você já tem pode ser registrado como grants sem novo prompt de permissão — um Bot privado não é uma sandbox. Antes de compartilhar, abra Settings → Access e remova grants que a tarefa não precisa. Se colegas devem copiar o método sem ver sua conversa ou credenciais, compartilhe um <em>template</em>, não o Bot: menu do Bot na barra lateral → <em>Share as template</em> — ele rascunha nome, descrição de uma linha e um prompt limpo, publicando na Template library da org (Teams/Enterprise) ou como link público (Pro+). O link embute o template inteiro assinado na URL — não dá para editar nem revogar e qualquer um lê o prompt completo, então remova nomes internos antes de copiar.</li>
 <li><strong>O uso de um Bot cobre o chat dele mais toda sessão que ele dispara.</strong> Max: consome sua cota incluída e depois on-demand — sem cap separado de Bot. Teams: sua cota e depois créditos do time; um admin pode definir cap on-demand específico do Bot. Enterprise: conta no limite do criador, a menos que receba um próprio. Uma instrução de gasto no chat não é um cap configurado — defina o limite em Settings, não o descreva em prosa.</li>
 </ul>
-<h2>Passo 5 — Colocar onde você trabalha</h2>
+<h2 id="passo-5-colocar-onde-você-trabalha">Passo 5 — Colocar onde você trabalha<a class="hlink" href="#passo-5-colocar-onde-você-trabalha" aria-hidden="true">#</a></h2>
 <ul>
 <li><strong>Slack:</strong> dê ao Bot seu próprio app Slack para que sua equipe possa @-mencionar ou mandar DM (Settings → Slack). Toda implantação de equipe reportada roda assim — o Bot vira um colega nomeado num canal.</li>
 <li><strong>iMessage:</strong> mande mensagem ao Bot do seu celular.</li>
 <li><strong>Web:</strong> a seção Bots da sidebar lista os seus e os compartilhados com você.</li>
 </ul>
-<h2>Passo 6 — Agendamentos e modos</h2>
+<h2 id="passo-6-agendamentos-e-modos">Passo 6 — Agendamentos e modos<a class="hlink" href="#passo-6-agendamentos-e-modos" aria-hidden="true">#</a></h2>
 <ul>
 <li><strong>Automations:</strong> peça no chat — <em>"run a summary of open PRs every weekday morning"</em> — e o Bot propõe a automação para sua aprovação única. Gerencie em Settings → Automations (pausar/retomar/remover).</li>
 <li><strong>Modes:</strong> o Bot tem seu próprio modo mais um padrão de <strong>Child Capability</strong> para as sessões que ele cria (ex.: <code>Normal / Ultra</code> no seletor de modo do chat). Você também pode pedir um modo diferente em qualquer sessão individual.</li>
 </ul>
-<h2>Ciclo de vida</h2>
+<h2 id="ciclo-de-vida">Ciclo de vida<a class="hlink" href="#ciclo-de-vida" aria-hidden="true">#</a></h2>
 <table>
 <thead>
 <tr>
@@ -218,7 +220,7 @@ and any decision you need from me.
 </tbody>
 </table>
 <p>Apenas o criador e papéis com Manage Bots veem Archive/Delete. Em planos Enterprise, <code>Use Bots</code> / <code>Manage Bots</code> / <code>Manage Bots across the enterprise</code> são permissões separadas em papéis personalizados.</p>
-<h2>Checklist de verificação</h2>
+<h2 id="checklist-de-verificação">Checklist de verificação<a class="hlink" href="#checklist-de-verificação" aria-hidden="true">#</a></h2>
 <ul>
 <li>[ ] Bot criado e nomeado; prompt de resultado enviado no chat</li>
 <li>[ ] Bot iniciou pelo menos uma sessão filha sem ser pedido duas vezes</li>
@@ -226,19 +228,19 @@ and any decision you need from me.
 <li>[ ] Uma correção que você deu no chat aparece como arquivo de memória em Settings → Memory</li>
 <li>[ ] (Opcional) Bot alcançável via @-menção no Slack</li>
 </ul>
-<h2>Armadilhas</h2>
+<h2 id="armadilhas">Armadilhas<a class="hlink" href="#armadilhas" aria-hidden="true">#</a></h2>
 <ul>
 <li><strong>Prompts em formato de tarefa.</strong> "Fix X" produz uma sessão, não um Bot. Se o Bot termina e fica quieto, o prompt era uma tarefa — reformule como propriedade de resultado.</li>
 <li><strong>Chat para política.</strong> Regras digitadas no chat somem no scroll; regras em Instructions são lidas em toda sessão. Chat = direção e respostas; Instructions = lei.</li>
 <li><strong>Ignorar Needs you.</strong> Bots são desenhados para agrupar chamadas de julgamento — cheque uma ou duas vezes ao dia, não continuamente.</li>
 </ul>
-<h2>Teste de conhecimento</h2>
+<h2 id="teste-de-conhecimento">Teste de conhecimento<a class="hlink" href="#teste-de-conhecimento" aria-hidden="true">#</a></h2>
 <ol>
 <li>O que sobrevive entre as sessões de um Bot que uma sessão avulsa não tem? <em>(Memória — mais o resultado permanente, agendamentos e superfícies.)</em></li>
 <li>Por que um Bot usa "needs-you" em vez de perguntar no meio da sessão? <em>(O julgamento vai para uma thread assíncrona; o humano não é uma chamada bloqueante no loop.)</em></li>
 <li>Qual mecânica transforma "uma sessão esperta" em "um funcionário"? <em>(A propriedade de um resultado — a meta persiste depois que qualquer sessão termina.)</em></li>
 </ol>
-<h2>Fontes</h2>
+<h2 id="fontes">Fontes<a class="hlink" href="#fontes" aria-hidden="true">#</a></h2>
 <ul>
 <li><a href="https://ainativeoperators.ai/blog/devin-bots-guide">AI Native Operators — Devin Bots: give an agent a job to own</a> —— guia de campo da comunidade; o padrão de primeira atribuição limitada e os avisos de acesso/uso acima vêm daqui</li>
 <li>
@@ -250,7 +252,7 @@ and any decision you need from me.
 <li><a href="https://devin.ai/blog/introducing-devin-bots">Introducing Devin Bots</a></li>
 <li>Próximo: <a href="bots-201-product-owner.html">Guia 2 — Bot product-owner</a></li>
 </ul>
-<nav class="guide-pager"><a class="pg-prev" href="devin-cli.html"><span class="pg-dir">← Previous</span><span class="pg-t">Guia 12 — Devin CLI &amp; extensibilidade</span></a><a class="pg-next" href="official-cookbook.html"><span class="pg-dir">Next →</span><span class="pg-t">Guia 13 — O cookbook oficial de casos de uso</span></a></nav>
+<nav class="guide-pager"><a class="pg-prev" href="devin-cli.html"><span class="pg-dir">← Anterior</span><span class="pg-t">Guia 12 — Devin CLI &amp; extensibilidade</span></a><a class="pg-next" href="official-cookbook.html"><span class="pg-dir">Próximo →</span><span class="pg-t">Guia 13 — O cookbook oficial de casos de uso</span></a></nav>
 </article>
 <footer><div class="wrap foot-base"><span data-i18n="foot.note">Unofficial community project — not affiliated with Cognition AI.</span><span><a href="../../index.html">built-with-devin</a> · <a href="https://github.com/Till3005/build-with-devin">build-with-devin</a></span></div></footer>
 </main>

@@ -13,7 +13,7 @@
 
 <sub>Curated by [@darega0mae](https://x.com/darega0mae) · 姉妹チュートリアル：[build-with-devin](https://github.com/Till3005/build-with-devin) · [プロジェクトを追加](CONTRIBUTING.md)</sub>
 
-<sub>**14** 件の実証済み Bot 導入 · **41** 件のエンタープライズ事例 · **6** 件の公開プロダクト · **32** 件のツール・統合 · **28** 件の実践レポート</sub>
+<sub>**14** 件の実証済み Bot 導入 · **42** 件のエンタープライズ事例 · **6** 件の公開プロダクト · **32** 件のツール・統合 · **29** 件の実践レポート</sub>
 
 <sub>[English](README.md) · [简体中文](README.zh.md) · 日本語 · [Português](README.pt.md)</sub>
 
@@ -90,7 +90,7 @@ flowchart LR
 
 ### 公式テンプレートライブラリ
 
-[公開マーケットプレイス](https://devin.ai/bots/templates)にある 16 の既製 Bot に加え、**SuperJennyStack** などのコミュニティテンプレート：
+[公開マーケットプレイス](https://devin.ai/bots/templates)にある 16 の既製 Bot（[テンプレートドキュメント](https://docs.devin.ai/work-with-devin/bots/templates)——テンプレートから作った Bot は接続・シークレット・メモリを一切持たない；「Share as template」で自分のものを公開できる）に加え、**SuperJennyStack** などのコミュニティテンプレート：
 
 | テンプレート | 役割 |
 | --- | --- |
@@ -182,6 +182,7 @@ flowchart LR
 | [Hippo](https://devin.ai/customers/hippo) | 保険エンジニア組織への全面展開 | Cognition と提携：全米 50 州の保険ルールに耐えるプロダクトをエージェント的に構築・テスト（公開事例ページ） |
 | [Zeb](https://devin.ai/blog/devin-for-databricks-migrations) | NetSuite→Databricks のデリバリーパートナー | 世界的投資アドバイザリー企業の 4 週間案件を **2.5 週間で納品**、Fortune 500 エネルギー企業が 142 オブジェクトのプラットフォームを **8 日**で Unity Catalog へ移行 |
 | **Rox** | Living Evals —— 週次 Devin が本番トレースを読み、完全コピーで障害を再生、eval PR をオープン | eval スイートが**実使用量の 72%**をカバー（手書きは 43–57%）（[記事](https://www.rox.com/articles/living-evals-an-eval-suite-that-grows-from-production)、[スレッド](https://x.com/rox_ai/status/2110779380666617997)） |
+| [Philips](https://devin.ai/blog/introducing-code-scans) | Code Scans 早期テスター——デジタル計算病理学、Enterprise Informatics | 複数リポジトリで **~96% の PR マージ率**；テスト期間中に **700+ エンジニア時間**削減と推計（launch 記事中の顧客証言） |
 | [Evinova](https://devin.ai/customers/evinova) | GxP 規制下のデリバリー | GxP 文書化 8 倍速。マイグレーション 3 倍速。明確なバグの 66% を自律修正 |
 | [Compiled Health](https://devin.ai/customers/compiledhealth) | 臨床ベンチマーク構築 | 2 人の研究者・2 ヶ月 = 5–6 人のエンジニアの仕事。~430 エンジニア時間・時給 ~$17 ≈ 4 人チームに +4 名分 |
 | [Común](https://devin.ai/customers/comun) | 13 人のフィンテックチーム | 生産量 3 倍。週間バックエンド PR が 4 週間で 50 → 170 |
@@ -192,7 +193,7 @@ flowchart LR
 | [FE fundinfo](https://devin.ai/customers/fefundinfo) | 1,800 リポジトリ自動化 | テスト生成 + セキュリティ修正で即座に 10% のキャパシティ増 |
 | [GE Aerospace](https://devin.ai/customers/geaerospace) | 制約チームのストーリー処理量 | 3 ヶ月でユーザーストーリー出力 ~2 倍 |
 
-その他の公開記録：Citi（40,000 人の開発者展開、技術ベンダー支出 30% 削減）、Mercedes-Benz、Cognizant、Infosys との提携 —— [顧客索引](https://devin.ai/customers)を参照。
+その他の公開記録：Citi（40,000 人の開発者展開、技術ベンダー支出 30% 削減）、Mercedes-Benz、Cognizant、Infosys との提携、そして **McKinsey × Cognition アライアンス**（11/16——McKinsey がプロジェクト選定とベースラインを助言、Devin が実装。Cognition は米 G-SIB 8 行中 6 行、米大手医療保険 6 社中 3 社が顧客と主張、[発表](https://devin.ai/blog/cognition-mckinsey-alliance)）—— [顧客索引](https://devin.ai/customers)を参照。
 
 <p align="right"><a href="#readme">back to top</a></p>
 
@@ -287,6 +288,7 @@ Devin *で*作られたものではなく、Devin の*ために*コミュニテ�
 - **[無料 SWE-2 上のマルチ AI オーケストレーション](https://qiita.com/ishizakahiroshi/items/72ab801a5f2a8c941b61)** —— Devin CLI の永久無料 SWE-2 枠でエージェント間のワークルーティングを設計。
 - **[SMARTCAMP の Trivy スキャン → Devin 修復](https://zenn.dev/smartcamp/articles/97ac804043530e)** —— 定期 GitHub Actions が ECS イメージを pull して Trivy スキャン、HIGH/CRITICAL を issue 化して Devin が対応。AWS 認証ジョブとスキャンジョブを分離し artifact のみで連携。
 - **[Devin が1か月間、私のエンジニアチームだった記録](https://ravtheman.medium.com/im-17-and-for-one-month-devin-was-my-entire-engineering-team-here-s-everything-i-learned-183d59099384)** —— メルボルンの高校生による Max 枠1か月の実測：一晩で 67 PR 処理・44 マージ。授業の合間に Linux ディストロ、ローカルモデル群、マルチエージェント IDE を構築 — 実測の CLI/クラウド運用解説つき（Medium）。
+- **[月 $20k を Devin に使うソロファウンダーのオペレーション](https://www.lennysnewsletter.com/p/i-spent-20000-on-devin-in-a-month)** —— Ryan Carson（Untangle）は ~15 台の Devin エージェントを同時稼働。ダッシュボードではなくフォルダシステム + 紙の P0 リストで統制；「Watchdog」playbook が全法律事務所アカウントの CS を一手に担い、「LAN PR」スキルが QA レビュアーなしで ~40 PR/日を締める（Lenny's ポッドキャスト）。
 
 <p align="right"><a href="#readme">back to top</a></p>
 
@@ -299,7 +301,15 @@ Devin *で*作られたものではなく、Devin の*ために*コミュニテ�
 - **[Voices —— アンバサダー名簿](https://devincentral.com/voices)** —— 世界 ~190 人の Devin アンバサダーの非公式マップ。
 - **[devin-cli.github.io](https://devin-cli.github.io)** —— Devin API・Slack・Linear 接続面のカバー範囲と自動化方法に関するコミュニティドキュメント。
 - **[Agents In Use](https://agentsinuse.com)** —— Devin エントリを含む実際のエージェント使用例ディレクトリ。
-- **[BitsExplorer —— Built with Devin](https://bitsexplorer.com/built-with/devin)** —— Devin の commit trailer で検証された 340 以上の公開プロジェクト（自己申告ではなく証拠）。
+- **[BitsExplorer —— Built with Devin](https://bitsexplorer.com/built-with/devin)** —— Devin の commit trailer で検証された 480 以上の公開プロジェクト（自己申告ではなく証拠）。
+- **[The New Stack](https://thenewstack.io/cognition-devin-bots-management/)** ——「エンジニアは 44 日中 22 日、自分の AI にメッセージを送らなかった。それでも Android アプリは作られた。」Android Bot デプロイの報道（11/19）。
+- **[Dataconomy 中文](https://cn.dataconomy.com/2026/11/18/cognition-%e6%8e%a8%e5%87%ba-devin-bots-%e6%9d%a5%e7%ae%a1%e7%90%86-ai-%e7%bc%96%e7%a8%8b%e5%9b%a2%e9%98%9f/)** —— Devin Bots ローンチの中国語報道（11/18）。
+- **[Fortune —— Devin Bots ローンチ独占](https://fortune.com/2026/11/17/exclusive-cognition-bets-on-devin-bots-coding-agents-in-challenge-to-anthropics-duet-and-openais-dots/)** —— Scott Wu インタビュー：OpenAI Dots・Anthropic Duet と対抗する Bots；Poke 買収技術を内包（11/17）。
+- **[AlphaSignal —— Bots の数値](https://alphasignal.ai/news/cognition-s-devin-bots-now-run-parallel-coding-sessions-hitting-2-000-pull)** —— メッセージあたり 4.5 倍のマージ PR、ピーク 50→~2,000 PR/週。「ベータの数字には分母が必要」と冷静な注意書きつき。
+- **[Digg —— 4.5 倍の主張が測るもの](https://digg.com/ai/l3h088z7)** —— PR/メッセージ ≠ 開発速度。ベースライン・サンプル数・手法は未公開。SuperJenny の運用詳細も（~20 の AI チームメイト、1 日 4 回のスマホ確認）。
+- **[Snowman Labs —— Devin は価値があるか](https://snowmanlabs.com/insights/is-devin-worth-it)** —— 公開事例全体を読み抜いた正直な枠組み：勝ちはすべて範囲限定・反復・検証可能な大量の仕事——「Devin がシステムを設計した」と言うものは一つもない。
+- **[HN —— エージェントはボトルネックをコードレビューへ移した](https://news.ycombinator.com/item?id=50538303)** —— ハーバード研究、459 コメント（11/17）：生成は解決済み、レビュー容量が新しい制約。
+- **[Metarix —— Code Scans への懐疑的な読み](https://metarix.io/devin-scans-the-whole-repo)** —— ベンダー公表値（Dioxus コンパイル 64% 短縮、Philips 96%）と再現可能な数字を分ける：「引用する前に自分のリポジトリで再現せよ」。
 - **[Vibe Coded Projects](https://vibedprojects.com/ai-tools/devin)** —— Devin で vibe-code された 373 のアプリ・ツール・サイト。
 - **[Devin 日本 2 周年ミートアップ](https://aid.connpass.com/event/412875/)** —— アンバサダー主催のコミュニティイベント（[発表](https://x.com/kinopee_ai/status/2123019189325848847)）。
 - **[Devin's Dinner](https://x.com/MattSchrage/status/2121016484155548124)** —— Matt Schrage の招待制ニューヨークディナーシリーズ。Devin を使うファウンダーとエンジニア向け。
