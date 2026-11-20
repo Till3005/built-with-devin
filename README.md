@@ -13,7 +13,7 @@
 
 <sub>Curated by [@darega0mae](https://x.com/darega0mae) · Sister tutorials: [build-with-devin](https://github.com/Till3005/build-with-devin) · [Add your project](CONTRIBUTING.md)</sub>
 
-<sub>**14** documented Bot deployments · **43** enterprise case studies · **6** shipped products · **47** tools & integrations · **30** field reports</sub>
+<sub>**14** documented Bot deployments · **43** enterprise case studies · **8** shipped products · **47** tools & integrations · **30** field reports</sub>
 
 <sub>English · [简体中文](README.zh.md) · [日本語](README.ja.md) · [Português](README.pt.md)</sub>
 
@@ -129,6 +129,9 @@ Real software where Devin wrote the code — not demos, shipped work.
 - **Flappy Asher** — Russell Kaplan (Cognition president) had Devin on a Mac VM turn baby photos into game sprites and ship the result — live in TestFlight ([post](https://x.com/russelljkaplan/status/2100280085999919555)).
 - **[Try Devin vending machine](https://github.com/dabit3/vending-machine)** — dabit3's event credit dispenser (Next.js + Convex + Clerk): attendees enter their email at an event URL and get a unique Devin credit code. `devin-ai-integration[bot]` is the repo's top contributor (266 commits); live at [trydevin.ai](https://www.trydevin.ai/).
 - **[GymClass](https://seed.horacioh.com/writing/how-i-built-a-full-booking-system-as-a-side-project-with-devin-as-my-engineering-partner)** — Horacio Herrera's booking and class-management system for a real martial-arts academy (TS/Bun/React/Hono/tRPC on Cloudflare): a month of features directed from his phone between meetings — including a full booking-architecture rewrite and a Vitest→Bun migration.
+
+- **[Spraycash](https://spraycash.onrender.com)** — A live payments-explorer site whose entire UI was art-directed inside Devin chat (Kimi K3): every prompt published in the [build log](https://dev.to/ibrahimpima/designing-the-spraycash-ui-with-kimi-k3-in-devin-4l2f), code at [fozagtx/spraycash](https://github.com/fozagtx/spraycash).
+- **CosmosOS + NEXI** — A year-11 student's shipped trio from a month on Max: CosmosOS, his own Linux distribution built by Devin between classes; NEXI, a family of local models; and a multi-agent IDE ([full account](https://ravtheman.medium.com/im-17-and-for-one-month-devin-was-my-entire-engineering-team-here-s-everything-i-learned-183d59099384)).
 
 *Know a shipped product built with Devin? [Add it](CONTRIBUTING.md).*
 

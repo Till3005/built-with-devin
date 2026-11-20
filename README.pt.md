@@ -13,7 +13,7 @@
 
 <sub>Curado por [@darega0mae](https://x.com/darega0mae) · Tutoriais irmãos: [build-with-devin](https://github.com/Till3005/build-with-devin) · [Adicione seu projeto](CONTRIBUTING.md)</sub>
 
-<sub>**14** implantações de Bot documentadas · **43** casos corporativos · **6** produtos lançados · **47** ferramentas e integrações · **30** relatos de campo</sub>
+<sub>**14** implantações de Bot documentadas · **43** casos corporativos · **8** produtos lançados · **47** ferramentas e integrações · **30** relatos de campo</sub>
 
 <sub>[English](README.md) · [简体中文](README.zh.md) · [日本語](README.ja.md) · Português</sub>
 
@@ -130,7 +130,10 @@ Software real em que o Devin escreveu o código — não demos, trabalho lançad
 - **[Try Devin vending machine](https://github.com/dabit3/vending-machine)** — Distribuidor de créditos de evento do dabit3 (Next.js + Convex + Clerk): participantes digitam o email na URL do evento e recebem um código único de crédito Devin. `devin-ai-integration[bot]` é o maior contribuidor do repo (266 commits); no ar em [trydevin.ai](https://www.trydevin.ai/).
 - **[GymClass](https://seed.horacioh.com/writing/how-i-built-a-full-booking-system-as-a-side-project-with-devin-as-my-engineering-partner)** — Sistema de reservas e gestão de turmas do Horacio Herrera para uma academia de artes marciais real (TS/Bun/React/Hono/tRPC, Cloudflare): um mês de features dirigidas do celular entre reuniões — incluindo reescrita da arquitetura de booking e migração Vitest→Bun.
 
-*Conhece um produto lançado feito com Devin? [Adicione-o](CONTRIBUTING.md).*
+- **[Spraycash](https://spraycash.onrender.com)** — Site de explorer de pagamentos no ar cuja UI inteira foi art-directionada dentro do chat do Devin (Kimi K3): todos os prompts publicados no [build log](https://dev.to/ibrahimpima/designing-the-spraycash-ui-with-kimi-k3-in-devin-4l2f), código em [fozagtx/spraycash](https://github.com/fozagtx/spraycash).
+- **CosmosOS + NEXI** — O trio lançado por um estudante do 11º ano num mês de Max: CosmosOS, sua própria distro Linux construída pelo Devin entre aulas; NEXI, uma família de modelos locais; e uma IDE multi-agente ([relato completo](https://ravtheman.medium.com/im-17-and-for-one-month-devin-was-my-entire-engineering-team-here-s-everything-i-learned-183d59099384)).
+
+*Conhece um produto lançado feito com Devin? [Adicione-o](CONTRIBUTING.md).**
 
 ### Side quests
 

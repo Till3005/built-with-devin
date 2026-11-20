@@ -5,7 +5,7 @@
   "counts": {
     "bot_deployments": 14,
     "bot_templates": 16,
-    "products": 6,
+    "products": 8,
     "enterprise_cases": 43
   },
   "bot_deployments": [
@@ -354,6 +354,36 @@
         }
       ],
       "updated_on": "2026-11-19"
+    },
+    {
+      "name": "Spraycash",
+      "description": "A live payments-explorer site whose entire UI was art-directed inside Devin chat (Kimi K3): every prompt published in the build log, code at fozagtx/spraycash.",
+      "sources": [
+        {
+          "text": "Spraycash",
+          "url": "https://spraycash.onrender.com"
+        },
+        {
+          "text": "build log",
+          "url": "https://dev.to/ibrahimpima/designing-the-spraycash-ui-with-kimi-k3-in-devin-4l2f"
+        },
+        {
+          "text": "fozagtx/spraycash",
+          "url": "https://github.com/fozagtx/spraycash"
+        }
+      ],
+      "updated_on": "2026-11-20"
+    },
+    {
+      "name": "CosmosOS + NEXI",
+      "description": "A year-11 student's shipped trio from a month on Max: CosmosOS, his own Linux distribution built by Devin between classes; NEXI, a family of local models; and a multi-agent IDE (full account).",
+      "sources": [
+        {
+          "text": "full account",
+          "url": "https://ravtheman.medium.com/im-17-and-for-one-month-devin-was-my-entire-engineering-team-here-s-everything-i-learned-183d59099384"
+        }
+      ],
+      "updated_on": "2026-11-20"
     }
   ],
   "enterprise_cases": [

@@ -4,7 +4,21 @@
   <title>Built with Devin — registry updates</title>
   <link>https://till3005.github.io/built-with-devin/</link>
   <description>New entries indexed in the built-with-devin registry.</description>
-  <lastBuildDate>Fri, 20 Nov 2026 12:17:48 +0000</lastBuildDate>
+  <lastBuildDate>Fri, 20 Nov 2026 12:18:44 +0000</lastBuildDate>
+  <item>
+    <title>Indexed: Spraycash</title>
+    <link>https://till3005.github.io/built-with-devin/#products</link>
+    <guid isPermaLink="false">product:Spraycash</guid>
+    <pubDate>Fri, 20 Nov 2026 00:00:00 +0000</pubDate>
+    <description>A live payments-explorer site whose entire UI was art-directed inside Devin chat (Kimi K3): every prompt published in the build log, code at fozagtx/spraycash.</description>
+  </item>
+  <item>
+    <title>Indexed: CosmosOS + NEXI</title>
+    <link>https://till3005.github.io/built-with-devin/#products</link>
+    <guid isPermaLink="false">product:CosmosOS + NEXI</guid>
+    <pubDate>Fri, 20 Nov 2026 00:00:00 +0000</pubDate>
+    <description>A year-11 student's shipped trio from a month on Max: CosmosOS, his own Linux distribution built by Devin between classes; NEXI, a family of local models; and a multi-agent IDE (full account).</description>
+  </item>
   <item>
     <title>Indexed: Finch</title>
     <link>https://till3005.github.io/built-with-devin/#enterprise</link>
@@ -165,20 +179,6 @@
     <guid isPermaLink="false">bot:Tennis data Bots</guid>
     <pubDate>Thu, 19 Nov 2026 00:00:00 +0000</pubDate>
     <description>Venus Williams — Pro-tennis preparation and match data</description>
-  </item>
-  <item>
-    <title>Indexed: Era by Eon</title>
-    <link>https://till3005.github.io/built-with-devin/#products</link>
-    <guid isPermaLink="false">product:Era by Eon</guid>
-    <pubDate>Thu, 19 Nov 2026 00:00:00 +0000</pubDate>
-    <description>Simulated companies (74 vendor-faithful systems: Salesforce, Slack, Zendesk, Jira…) for training and evaluating AI agents. 98% of merged PRs written by Devin, 300+ day-long sessions, 2,720 sessions launched by other sessions.</description>
-  </item>
-  <item>
-    <title>Indexed: Courtyard's Quick</title>
-    <link>https://till3005.github.io/built-with-devin/#products</link>
-    <guid isPermaLink="false">product:Courtyard's Quick</guid>
-    <pubDate>Thu, 19 Nov 2026 00:00:00 +0000</pubDate>
-    <description>Courtyard cloned Shopify's internal "Quick" static-site deployer: from a Slack link to a production service (Go, Cloud Run, Bazel, Terraform, SSO, git-backed) in ~21 hours, all written by Devin.</description>
   </item>
 </channel>
 </rss>

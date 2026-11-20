@@ -13,7 +13,7 @@
 
 <sub>Curated by [@darega0mae](https://x.com/darega0mae) · 姉妹チュートリアル：[build-with-devin](https://github.com/Till3005/build-with-devin) · [プロジェクトを追加](CONTRIBUTING.md)</sub>
 
-<sub>**14** 件の実証済み Bot 導入 · **43** 件のエンタープライズ事例 · **6** 件の公開プロダクト · **47** 件のツール・統合 · **30** 件の実践レポート</sub>
+<sub>**14** 件の実証済み Bot 導入 · **43** 件のエンタープライズ事例 · **8** 件の公開プロダクト · **47** 件のツール・統合 · **30** 件の実践レポート</sub>
 
 <sub>[English](README.md) · [简体中文](README.zh.md) · 日本語 · [Português](README.pt.md)</sub>
 
@@ -130,7 +130,10 @@ flowchart LR
 - **[Try Devin vending machine](https://github.com/dabit3/vending-machine)** —— dabit3 のイベント用クレジット配布機（Next.js + Convex + Clerk）：参加者がイベント URL でメールを入力すると Devin クレジットコードを受け取る。`devin-ai-integration[bot]` がリポジトリのトップ貢献者（266 commits）。本番: [trydevin.ai](https://www.trydevin.ai/)。
 - **[GymClass](https://seed.horacioh.com/writing/how-i-built-a-full-booking-system-as-a-side-project-with-devin-as-my-engineering-partner)** —— Horacio Herrera が実在の武術アカデミー向けに作った予約・クラス管理システム（TS/Bun/React/Hono/tRPC、Cloudflare）：会議の合間にスマホから Devin を指揮して 1 ヶ月分の機能を出荷——予約アーキテクチャの全面書き換えと Vitest→Bun 移行を含む。
 
-*Devin で作った出荷済みプロダクトを知っていますか？[追加してください](CONTRIBUTING.md)。*
+- **[Spraycash](https://spraycash.onrender.com)** —— ライブ中の決済エクスプローラーサイト。UI 全体が Devin チャット内でアートディレクト（Kimi K3）：全プロンプトは[ビルドログ](https://dev.to/ibrahimpima/designing-the-spraycash-ui-with-kimi-k3-in-devin-4l2f)に公開、コードは [fozagtx/spraycash](https://github.com/fozagtx/spraycash)。
+- **CosmosOS + NEXI** —— 高2の学生が Max で1ヶ月間に出した3点セット：CosmosOS——授業の合間に Devin が組み上げた自作 Linux ディストロ；NEXI——ローカルモデル群；そしてマルチエージェント IDE（[全記録](https://ravtheman.medium.com/im-17-and-for-one-month-devin-was-my-entire-engineering-team-here-s-everything-i-learned-183d59099384)）。
+
+*Devin で作った出荷済みプロダクトを知っていますか？[追加してください](CONTRIBUTING.md)。**
 
 ### サイドクエスト
 

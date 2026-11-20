@@ -13,7 +13,7 @@
 
 <sub>维护者 [@darega0mae](https://x.com/darega0mae) · 姊妹教程库：[build-with-devin](https://github.com/Till3005/build-with-devin) · [收录你的项目](CONTRIBUTING.md)</sub>
 
-<sub>**14** 个有据可查的 Bot 部署 · **43** 个企业案例 · **6** 个已发布产品 · **47** 个工具与集成 · **30** 篇实战报告</sub>
+<sub>**14** 个有据可查的 Bot 部署 · **43** 个企业案例 · **8** 个已发布产品 · **47** 个工具与集成 · **30** 篇实战报告</sub>
 
 <sub>[English](README.md) · 简体中文 · [日本語](README.ja.md) · [Português](README.pt.md)</sub>
 
@@ -130,7 +130,10 @@ flowchart LR
 - **[Try Devin vending machine](https://github.com/dabit3/vending-machine)** —— dabit3 的活动发码机（Next.js + Convex + Clerk）：参会者在活动页输邮箱领 Devin 额度码。`devin-ai-integration[bot]` 是仓库头号贡献者（266 commits）；线上 [trydevin.ai](https://www.trydevin.ai/)。
 - **[GymClass](https://seed.horacioh.com/writing/how-i-built-a-full-booking-system-as-a-side-project-with-devin-as-my-engineering-partner)** —— Horacio Herrera 给真实武术馆做的订课与学员管理系统（TS/Bun/React/Hono/tRPC，Cloudflare）：一个月功能量，全部在手机上会议间隙指挥 Devin 完成——含订课架构重写和 Vitest→Bun 迁移。
 
-*知道有 Devin 做出的已发布产品？[收录它](CONTRIBUTING.md)。*
+- **[Spraycash](https://spraycash.onrender.com)** —— 一个在线收付款浏览器站点，整套 UI 在 Devin 聊天里逐条 art-direct 出来（Kimi K3）：每句 prompt 都公开在[构建记录](https://dev.to/ibrahimpima/designing-the-spraycash-ui-with-kimi-k3-in-devin-4l2f)，代码在 [fozagtx/spraycash](https://github.com/fozagtx/spraycash)。
+- **CosmosOS + NEXI** —— 一位高二学生在 Max 上一个月的出货三件套：CosmosOS——他自己命名的 Linux 发行版，上课期间由 Devin 构建；NEXI——一组本地模型；外加一个多 agent IDE（[完整自述](https://ravtheman.medium.com/im-17-and-for-one-month-devin-was-my-entire-engineering-team-here-s-everything-i-learned-183d59099384)）。
+
+*知道有 Devin 做出的已发布产品？[收录它](CONTRIBUTING.md)。**
 
 ### 有趣的小作品
 
