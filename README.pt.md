@@ -13,7 +13,7 @@
 
 <sub>Curado por [@darega0mae](https://x.com/darega0mae) · Tutoriais irmãos: [build-with-devin](https://github.com/Till3005/build-with-devin) · [Adicione seu projeto](CONTRIBUTING.md)</sub>
 
-<sub>**14** implantações de Bot documentadas · **43** casos corporativos · **6** produtos lançados · **42** ferramentas e integrações · **30** relatos de campo</sub>
+<sub>**14** implantações de Bot documentadas · **43** casos corporativos · **6** produtos lançados · **45** ferramentas e integrações · **30** relatos de campo</sub>
 
 <sub>[English](README.md) · [简体中文](README.zh.md) · [日本語](README.ja.md) · Português</sub>
 
@@ -224,6 +224,9 @@ Colocando o Devin dentro de outros produtos e canais.
 - **[@cognition-ai/sdk](https://docs.devin.ai/sdk)** — O SDK oficial TypeScript (beta): uma API de sessão `createDevin` dirige sessões cloud *e* CLI local, mais o cliente REST tipado `devin.api`; pacotes irmãos `@cognition-ai/ai-sdk`, `@cognition-ai/cloudflare-agents`, `@cognition-ai/harness-devin`. [Repo de exemplos](https://github.com/COG-GTM/devin-sdk-examples).
 - **[devinai](https://pypi.org/project/devinai/)** — O SDK oficial em Python (`usacognition/devin-sdk-python`).
 - **[devin-api-mcp](https://github.com/jsklan/devin-api-mcp)** — Servidor MCP com cobertura total da API do Devin: sessões, knowledge, playbooks, secrets, schedules, attachments — via v1 + sua chave pessoal para as sessões aparecerem no *seu* dashboard, mais ferramentas DeepWiki somente-leitura.
+- **[terraform-provider-devin](https://github.com/CognitionAI/terraform-provider-devin)** — Provider Terraform oficial: gerencia orgs, permissões git, playbooks, notas de knowledge, secrets, schedules, IP allowlists e mapeamentos IdP pela API v3.
+- **[devin_api (Ruby)](https://github.com/smasato/devin_api_client_rb)** — Cliente Ruby não-oficial da API do Devin, publicado como gem.
+- **[widevin](https://docs.rs/crate/widevin)** — Biblioteca Rust leve para internals do Devin (constantes de auth/sessão, plumbing da extensão).
 
 <p align="right"><a href="#readme">back to top</a></p>
 

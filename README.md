@@ -13,7 +13,7 @@
 
 <sub>Curated by [@darega0mae](https://x.com/darega0mae) · Sister tutorials: [build-with-devin](https://github.com/Till3005/build-with-devin) · [Add your project](CONTRIBUTING.md)</sub>
 
-<sub>**14** documented Bot deployments · **43** enterprise case studies · **6** shipped products · **42** tools & integrations · **30** field reports</sub>
+<sub>**14** documented Bot deployments · **43** enterprise case studies · **6** shipped products · **45** tools & integrations · **30** field reports</sub>
 
 <sub>English · [简体中文](README.zh.md) · [日本語](README.ja.md) · [Português](README.pt.md)</sub>
 
@@ -224,6 +224,9 @@ Putting Devin inside other products and channels.
 - **[@cognition-ai/sdk](https://docs.devin.ai/sdk)** — The official TypeScript SDK (beta): one `createDevin` session API drives cloud *and* local CLI sessions, plus `devin.api` typed REST client; companion packages `@cognition-ai/ai-sdk`, `@cognition-ai/cloudflare-agents`, `@cognition-ai/harness-devin`. [Examples repo](https://github.com/COG-GTM/devin-sdk-examples).
 - **[devinai](https://pypi.org/project/devinai/)** — The official Python SDK (`usacognition/devin-sdk-python`).
 - **[devin-api-mcp](https://github.com/jsklan/devin-api-mcp)** — Full-coverage Devin API MCP server: sessions, knowledge, playbooks, secrets, schedules, attachments — backed by v1 + your personal key so sessions show up under *you*, plus read-only DeepWiki tools.
+- **[terraform-provider-devin](https://github.com/CognitionAI/terraform-provider-devin)** — Official Terraform provider: manage orgs, git permissions, playbooks, knowledge notes, secrets, schedules, IP access lists and IdP group-role mappings over the v3 API.
+- **[devin_api (Ruby)](https://github.com/smasato/devin_api_client_rb)** — Unofficial Ruby client for the Devin API, published as a gem.
+- **[widevin](https://docs.rs/crate/widevin)** — Lightweight Rust provider library for Devin internals (auth/session constants, extension plumbing).
 
 <p align="right"><a href="#readme">back to top</a></p>
 

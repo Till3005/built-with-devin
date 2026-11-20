@@ -13,7 +13,7 @@
 
 <sub>Curated by [@darega0mae](https://x.com/darega0mae) · 姉妹チュートリアル：[build-with-devin](https://github.com/Till3005/build-with-devin) · [プロジェクトを追加](CONTRIBUTING.md)</sub>
 
-<sub>**14** 件の実証済み Bot 導入 · **43** 件のエンタープライズ事例 · **6** 件の公開プロダクト · **42** 件のツール・統合 · **30** 件の実践レポート</sub>
+<sub>**14** 件の実証済み Bot 導入 · **43** 件のエンタープライズ事例 · **6** 件の公開プロダクト · **45** 件のツール・統合 · **30** 件の実践レポート</sub>
 
 <sub>[English](README.md) · [简体中文](README.zh.md) · 日本語 · [Português](README.pt.md)</sub>
 
@@ -224,6 +224,9 @@ flowchart LR
 - **[@cognition-ai/sdk](https://docs.devin.ai/sdk)** —— 公式 TypeScript SDK（beta）：1 つの `createDevin` セッション API がクラウドとローカル CLI の両方を駆動、`devin.api` 型付き REST クライアント付き；関連パッケージ `@cognition-ai/ai-sdk`、`@cognition-ai/cloudflare-agents`、`@cognition-ai/harness-devin`。[サンプルリポジトリ](https://github.com/COG-GTM/devin-sdk-examples)。
 - **[devinai](https://pypi.org/project/devinai/)** —— 公式 Python SDK（`usacognition/devin-sdk-python`）。
 - **[devin-api-mcp](https://github.com/jsklan/devin-api-mcp)** —— Devin API フルカバーの MCP サーバー：sessions、knowledge、playbooks、secrets、schedules、attachments——v1 API+個人キーでセッションが*自分*のダッシュボードに出る、読み取り専用 DeepWiki ツール付き。
+- **[terraform-provider-devin](https://github.com/CognitionAI/terraform-provider-devin)** —— 公式 Terraform provider：v3 API で org、git 権限、playbook、knowledge ノート、secrets、schedules、IP アクセスリスト、IdP グループロールマッピングを管理。
+- **[devin_api（Ruby）](https://github.com/smasato/devin_api_client_rb)** —— 非公式 Ruby クライアント。gem として公開済み。
+- **[widevin](https://docs.rs/crate/widevin)** —— 軽量 Rust provider ライブラリ。Devin 内部（認証/セッション定数、拡張の配管）を扱う。
 
 <p align="right"><a href="#readme">back to top</a></p>
 

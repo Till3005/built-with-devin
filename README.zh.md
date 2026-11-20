@@ -13,7 +13,7 @@
 
 <sub>维护者 [@darega0mae](https://x.com/darega0mae) · 姊妹教程库：[build-with-devin](https://github.com/Till3005/build-with-devin) · [收录你的项目](CONTRIBUTING.md)</sub>
 
-<sub>**14** 个有据可查的 Bot 部署 · **43** 个企业案例 · **6** 个已发布产品 · **42** 个工具与集成 · **30** 篇实战报告</sub>
+<sub>**14** 个有据可查的 Bot 部署 · **43** 个企业案例 · **6** 个已发布产品 · **45** 个工具与集成 · **30** 篇实战报告</sub>
 
 <sub>[English](README.md) · 简体中文 · [日本語](README.ja.md) · [Português](README.pt.md)</sub>
 
@@ -224,6 +224,9 @@ flowchart LR
 - **[@cognition-ai/sdk](https://docs.devin.ai/sdk)** —— 官方 TypeScript SDK（beta）：一个 `createDevin` 会话 API 同时驱动云端和本地 CLI 会话，附 `devin.api` 类型化 REST 客户端；配套包 `@cognition-ai/ai-sdk`、`@cognition-ai/cloudflare-agents`、`@cognition-ai/harness-devin`。[示例仓库](https://github.com/COG-GTM/devin-sdk-examples)。
 - **[devinai](https://pypi.org/project/devinai/)** —— 官方 Python SDK（`usacognition/devin-sdk-python`）。
 - **[devin-api-mcp](https://github.com/jsklan/devin-api-mcp)** —— 全覆盖的 Devin API MCP server：sessions、knowledge、playbooks、secrets、schedules、attachments——走 v1 API+个人 key，会话归在*你*名下，另附只读 DeepWiki 工具。
+- **[terraform-provider-devin](https://github.com/CognitionAI/terraform-provider-devin)** —— 官方 Terraform provider：经 v3 API 管理 org、git 权限、playbook、knowledge 条目、secrets、schedules、IP 白名单和 IdP 组角色映射。
+- **[devin_api（Ruby）](https://github.com/smasato/devin_api_client_rb)** —— 非官方 Ruby 客户端，已发成 gem。
+- **[widevin](https://docs.rs/crate/widevin)** —— 轻量 Rust provider 库，封装 Devin 内部机制（鉴权/会话常量、扩展管道）。
 
 <p align="right"><a href="#readme">back to top</a></p>
 
