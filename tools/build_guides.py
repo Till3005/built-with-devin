@@ -13,13 +13,14 @@ client-side filter box.
 
 Run:  python3 tools/build_guides.py   (from the repo root)
 """
-import re, sys, html as html_, subprocess
+import re, sys, json, html as html_, subprocess
 from pathlib import Path
 import markdown
 
 ROOT = Path(__file__).resolve().parent.parent
 SRC = ROOT.parent / "build-with-devin" / "guides"
 OUT = ROOT / "docs" / "guides"
+SITE = "https://till3005.github.io/built-with-devin"
 
 PAGE = """<!DOCTYPE html>
 <html lang="{lang}">
@@ -28,6 +29,10 @@ PAGE = """<!DOCTYPE html>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>{etitle} — build-with-devin guides</title>
 <meta name="description" content="{edesc}">
+<link rel="canonical" href="{canonical}">
+{hreflang}
+<link rel="alternate" type="application/rss+xml" title="built-with-devin feed" href="{rel}feed.xml">
+{jsonld}
 <link rel="icon" href="{rel}assets/brand/Devin_Symbol.svg" type="image/svg+xml">
 <link rel="stylesheet" href="{rel}assets/site.css">
 <link rel="stylesheet" href="{rel}assets/guides.css">
@@ -63,6 +68,7 @@ PAGE = """<!DOCTYPE html>
 {meta}
 {toc}
 {body}
+{related}
 {pager}
 </article>
 <footer><div class="wrap foot-base"><span data-i18n="foot.note">Unofficial community project — not affiliated with Cognition AI.</span><span><a href="{rel}index.html">built-with-devin</a> · <a href="https://github.com/Till3005/build-with-devin">build-with-devin</a></span></div></footer>
@@ -80,6 +86,7 @@ UPDATED_LABEL = {"en": "Updated", "zh": "更新于", "ja": "更新", "pt": "Atua
 TOC_LABEL = {"en": "On this page", "zh": "本页目录", "ja": "このページの目次", "pt": "Nesta página"}
 PAGER_LABEL = {"en": ("← Previous", "Next →"), "zh": ("← 上一篇", "下一篇 →"),
                "ja": ("← 前へ", "次へ →"), "pt": ("← Anterior", "Próximo →")}
+RELATED_LABEL = {"en": "Same stage", "zh": "同阶段", "ja": "同じステージ", "pt": "Mesmo estágio"}
 FILTER_PH = {"en": "Filter guides…", "zh": "筛选指南…", "ja": "ガイドを絞り込む…", "pt": "Filtrar guias…"}
 IDX_DESC = {
     "en": "{n} field-tested Devin guides — English, 中文, 日本語 and Português editions.",
@@ -137,8 +144,69 @@ def last_updated(md_path: Path) -> str:
         return ""
 
 
+def hreflang_block(page_rel: str, langs: list) -> str:
+    lines = []
+    for l in langs:
+        href = f"{SITE}/guides/{'' if l == 'en' else l + '/'}{page_rel}"
+        lines.append(f'<link rel="alternate" hreflang="{l}" href="{href}">')
+    lines.append(f'<link rel="alternate" hreflang="x-default" href="{SITE}/guides/{page_rel}">')
+    return "\n".join(lines)
+
+
+def jsonld_guide(title: str, desc: str, lang: str, upd: str, canonical: str) -> str:
+    data = {"@context": "https://schema.org", "@type": "TechArticle",
+            "headline": title, "description": desc, "inLanguage": lang,
+            "url": canonical,
+            "isPartOf": {"@type": "Course", "name": "build-with-devin",
+                         "url": f"{SITE}/guides/"}}
+    if upd:
+        data["dateModified"] = upd
+    return f'<script type="application/ld+json">{json.dumps(data, ensure_ascii=False)}</script>'
+
+
+def jsonld_index(lang: str, canonical: str, order: list, titles: dict) -> str:
+    items = [{"@type": "ListItem", "position": i + 1, "name": titles[s],
+              "url": f"{SITE}/guides/{'' if lang == 'en' else lang + '/'}{s}.html"}
+             for i, s in enumerate(order) if s in titles]
+    data = {"@context": "https://schema.org", "@type": "ItemList",
+            "name": "build-with-devin guides", "url": canonical,
+            "itemListElement": items}
+    return f'<script type="application/ld+json">{json.dumps(data, ensure_ascii=False)}</script>'
+
+
+def stages_for(lang: str):
+    """Parse '### <stage>' sections in a language's README → [(title, blurb, [stems])]."""
+    name = "README.md" if lang == "en" else f"README.{lang}.md"
+    p = SRC.parent / name
+    if not p.exists():
+        return []
+    text = p.read_text(encoding="utf-8")
+    out = []
+    for m in re.finditer(r'^### (.+?)\n(.*?)(?=^#{2,3} |\Z)', text, re.M | re.S):
+        title = m.group(1).strip()
+        sec = m.group(2)
+        stems = re.findall(r'guides/(?:[a-z]{2}/)?([a-z0-9-]+)\.md', sec)
+        if not stems:
+            continue
+        blurb_m = re.search(r'^\*([^*]+)\*', sec, re.M)
+        out.append((title, blurb_m.group(1).strip() if blurb_m else "", stems))
+    return out
+
+
+def related_html(stem: str, lang: str, stages: list, titles: dict) -> str:
+    for stitle, _blurb, stems in stages:
+        if stem in stems:
+            sib = [s for s in stems if s != stem and s in titles]
+            if not sib:
+                return ""
+            links = " · ".join(f'<a href="{s}.html">{html_.escape(titles[s])}</a>' for s in sib)
+            return (f'<section class="related"><h3>{RELATED_LABEL[lang]} — '
+                    f'{html_.escape(stitle)}</h3><p>{links}</p></section>')
+    return ""
+
+
 def render(md_path: Path, out_path: Path, rel: str, lang: str, alt: str, mdsrc: str,
-           crumb: str, pager: str = ""):
+           crumb: str, pager: str = "", related: str = "", mirrors: list = None):
     text = md_path.read_text(encoding="utf-8")
     # rewrite inter-guide .md links to local .html pages (zh links stay in zh/)
     def fix(m):
@@ -157,10 +225,14 @@ def render(md_path: Path, out_path: Path, rel: str, lang: str, alt: str, mdsrc: 
     desc = re.sub(r"[*_`\[\]()#]", "", re.search(r"^\*\*(Goal|目标|目標|Objetivo)[:：]\*\*\s*(.+)$", text, re.M).group(2))[:160] if re.search(r"^\*\*(Goal|目标|目標|Objetivo)[:：]", text, re.M) else title
     out_path.parent.mkdir(parents=True, exist_ok=True)
     page = out_path.relative_to(OUT).as_posix()
+    langs = ["en"] + (mirrors or [])
+    canonical = f"{SITE}/guides/{page}"
     out_path.write_text(PAGE.format(
         lang=lang, etitle=html_.escape(title, quote=True), edesc=html_.escape(desc, quote=True),
         rel=rel, body=body, alt=alt, mdsrc=mdsrc, page=page, pager=pager,
-        crumb=crumb, meta=meta, toc=toc, guides_label=GUIDES_LABEL[lang]), encoding="utf-8")
+        crumb=crumb, meta=meta, toc=toc, guides_label=GUIDES_LABEL[lang],
+        canonical=canonical, hreflang=hreflang_block(page, langs),
+        jsonld=jsonld_guide(title, desc, lang, upd, canonical), related=related), encoding="utf-8")
     return title
 
 
@@ -194,28 +266,39 @@ def pager_for(stem: str, order: list, titles: dict, lang: str) -> str:
     return f'<nav class="guide-pager">{"".join(parts)}</nav>' if parts else ""
 
 
-def index_body(lang: str, order: list, tables: dict, titles: dict) -> str:
-    rows = []
-    for stem in order:
-        if stem not in titles:
-            continue
+def index_body(lang: str, order: list, tables: dict, titles: dict, stages: list) -> str:
+    def row(stem: str) -> str:
         t = titles[stem]
         info = tables.get(lang, {}).get(stem, {})
         num = info.get("num", "—") or "—"
         pitch = info.get("pitch", "")
         level = info.get("level", "")
         search = html_.escape(f"{num} {t} {pitch} {level}".lower(), quote=True)
-        rows.append(
+        return (
             f'    <a class="row" href="{stem}.html" data-search="{search}">'
             f'<span class="row-tag">{html_.escape(num)}</span><span>'
             f'<span class="row-title">{html_.escape(t)}</span>'
             f'<span class="row-desc">{html_.escape(pitch)}</span></span>'
             f'<span class="row-num">{html_.escape(level)}</span></a>')
+
     ph = FILTER_PH[lang]
-    return (f'<h1>{IDX_TITLE[lang]}</h1>\n'
-            f'<input id="gfilter" class="gfilter" type="search" placeholder="{ph}" '
-            f'oninput="document.querySelectorAll(\'.row[data-search]\').forEach(r=>r.style.display=r.dataset.search.includes(this.value.toLowerCase())?\'\':\'none\')">\n'
-            f'<div class="rows">{"".join(rows)}\n</div>')
+    parts = [f'<h1>{IDX_TITLE[lang]}</h1>',
+             f'<input id="gfilter" class="gfilter" type="search" placeholder="{ph}" '
+             f'oninput="document.querySelectorAll(\'.row[data-search]\').forEach(r=>r.style.display=r.dataset.search.includes(this.value.toLowerCase())?\'\':\'none\')">']
+    grouped = set()
+    for stitle, blurb, stems in stages:
+        srows = [row(s) for s in stems if s in titles]
+        if not srows:
+            continue
+        grouped.update(stems)
+        parts.append(f'<h2 class="stage-h">{html_.escape(stitle)}</h2>')
+        if blurb:
+            parts.append(f'<p class="stage-blurb">{html_.escape(blurb)}</p>')
+        parts.append(f'<div class="rows">{"".join(srows)}\n</div>')
+    rest = [row(s) for s in order if s in titles and s not in grouped]
+    if rest:
+        parts.append(f'<div class="rows">{"".join(rest)}\n</div>')
+    return "\n".join(parts)
 
 
 def main():
@@ -225,6 +308,7 @@ def main():
     order = [s for s in re.findall(r'guides/(?:[a-z]{2}/)?([a-z0-9-]+)\.md', readme) if s in stems]
     order += sorted(stems - set(order))
     tables = {l: readme_table(l) for l in ("en", "zh", "ja", "pt")}
+    stages = {l: stages_for(l) for l in ("en", "zh", "ja", "pt")}
 
     en_titles = {p.stem: re.search(r"^# (.+)$", p.read_text(encoding="utf-8"), re.M).group(1) for p in en_files}
 
@@ -242,29 +326,35 @@ def main():
         alts = " · ".join(f'<a href="{l}/{en.stem}.html">{LANG_LABEL[l]}</a>' for l in mirrors)
         alt_en = f" · {alts}" if alts else ""
         render(en, OUT / f"{en.stem}.html", "../", "en", alt_en, en.name, "index.html",
-               pager_for(en.stem, order, en_titles, "en"))
+               pager_for(en.stem, order, en_titles, "en"),
+               related_html(en.stem, "en", stages["en"], en_titles), mirrors=mirrors)
         for l in mirrors:
+            lt = lang_titles(l) or en_titles
             alt_l = f' · <a href="../{en.stem}.html">English</a>' + "".join(
                 f' · <a href="../{o}/{en.stem}.html">{LANG_LABEL[o]}</a>' for o in mirrors if o != l)
             render(SRC / l / en.name, OUT / l / f"{en.stem}.html", "../../", l, alt_l,
                    f"{l}/{en.name}", "index.html",
-                   pager_for(en.stem, order, lang_titles(l) or en_titles, l))
+                   pager_for(en.stem, order, lt, l),
+                   related_html(en.stem, l, stages[l] or stages["en"], lt), mirrors=mirrors)
 
     # one index per language, localized titles/pitches in curriculum order
     for l in ("en",) + tuple(lang_dirs):
         lt = lang_titles(l) or en_titles if l != "en" else en_titles
-        body = index_body(l, order, tables, lt)
+        body = index_body(l, order, tables, lt, stages[l] or stages["en"])
         rel = "../" if l == "en" else "../../"
         langs = ["en"] + lang_dirs
         alt = " · ".join(
             f'<a href="{"" if l == "en" else "../"}{"" if o == "en" else o + "/"}index.html">{LANG_LABEL[o]}</a>'
             for o in langs if o != l)
         alt = f" · {alt}" if alt else ""
+        canonical = f"{SITE}/guides/{'' if l == 'en' else l + '/'}"
         out = OUT / "index.html" if l == "en" else OUT / l / "index.html"
         out.write_text(PAGE.format(
             lang=l, etitle=GUIDES_LABEL[l], edesc=IDX_DESC[l].format(n=len(order)),
             rel=rel, body=body, alt=alt, mdsrc="../", page=("index.html" if l == "en" else f"{l}/index.html"),
-            pager="", crumb=f"{rel}index.html",
+            pager="", crumb=f"{rel}index.html", related="",
+            canonical=canonical, hreflang=hreflang_block("index.html", langs),
+            jsonld=jsonld_index(l, canonical, order, lt),
             meta="", toc="", guides_label="built-with-devin"), encoding="utf-8")
 
     print(f"rendered {len(en_files)} guides × {1 + len(lang_dirs)} languages + {1 + len(lang_dirs)} indexes → docs/guides/")

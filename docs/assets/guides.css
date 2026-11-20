@@ -69,3 +69,10 @@
 /* walkthrough media */
 .guide img{display:block;max-width:100%;height:auto;margin:8px 0 6px;border:1px solid var(--line);border-radius:10px}
 .guide p:has(> img) + p > em:only-child,.guide p:has(> img) em{display:block;font:400 13px/1.5 var(--sans);font-style:normal;color:var(--mut)}
+
+/* stage-grouped index + related guides */
+.stage-h{font-size:15px;margin:22px 0 4px;letter-spacing:.02em;color:var(--tx,#1a1f2e)}
+.stage-blurb{font-size:13px;opacity:.72;margin:0 0 8px;font-style:italic}
+.related{margin-top:36px;padding-top:14px;border-top:1px solid rgba(128,128,128,.25)}
+.related h3{font-size:13px;text-transform:none;letter-spacing:.02em;opacity:.7;margin:0 0 6px;font-weight:600}
+.related p{font-size:14px;line-height:1.8;margin:0}
