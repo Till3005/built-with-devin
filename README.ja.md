@@ -13,7 +13,7 @@
 
 <sub>Curated by [@darega0mae](https://x.com/darega0mae) · 姉妹チュートリアル：[build-with-devin](https://github.com/Till3005/build-with-devin) · [プロジェクトを追加](CONTRIBUTING.md)</sub>
 
-<sub>**14** 件の実証済み Bot 導入 · **43** 件のエンタープライズ事例 · **8** 件の公開プロダクト · **47** 件のツール・統合 · **30** 件の実践レポート</sub>
+<sub>**14** 件の実証済み Bot 導入 · **43** 件のエンタープライズ事例 · **8** 件の公開プロダクト · **47** 件のツール・統合 · **32** 件の実践レポート</sub>
 
 <sub>[English](README.md) · [简体中文](README.zh.md) · 日本語 · [Português](README.pt.md)</sub>
 
@@ -308,6 +308,8 @@ Devin *で*作られたものではなく、Devin の*ために*コミュニテ�
 - **[SMARTCAMP の Trivy スキャン → Devin 修復](https://zenn.dev/smartcamp/articles/97ac804043530e)** —— 定期 GitHub Actions が ECS イメージを pull して Trivy スキャン、HIGH/CRITICAL を issue 化して Devin が対応。AWS 認証ジョブとスキャンジョブを分離し artifact のみで連携。
 - **[Devin が1か月間、私のエンジニアチームだった記録](https://ravtheman.medium.com/im-17-and-for-one-month-devin-was-my-entire-engineering-team-here-s-everything-i-learned-183d59099384)** —— メルボルンの高校生による Max 枠1か月の実測：一晩で 67 PR 処理・44 マージ。授業の合間に Linux ディストロ、ローカルモデル群、マルチエージェント IDE を構築 — 実測の CLI/クラウド運用解説つき（Medium）。
 - **[Devin 2025 年次パフォーマンスレビュー](https://cognition.com/blog/devin-annual-performance-review-2025)** —— Cognition 自身の 18 ヶ月通信簿、ベンダーとして異例の正直さ：強み（PR マージ率 34%→67%、問題解決 4 倍速、脆弱性修正 20 倍、ETL 移行 10 倍、カバレッジ 50–60%→80–90%、自社 webapp コミットの約 1/3）と名指しの弱点（曖昧な要件、途中スコープ変更、ソフトスキル）。
+- **[100 Days of Devin——エージェント工場主の移行ログ](https://www.raijuna.com/blog/devin-100-day-challenge-day-1)** —— 自前のエージェント工場で日産数百 PR を出す著者が、Devin Bots に載せ替えて 100 日間検証。Day 1：~15 Bot、正直な摩擦記録（セッション追跡が艦隊規模に耐えない——「どれが PR を出した？どれが私を待ってる？」）、スクリーンショットを上回る動画 QA、セットアップで週クォータの 18% 消費。連載中。
+- **[掘金——Devin 時価 470 億、でも私の失敗談](https://juejin.cn/post/7680768670986092544)**（zh）—— 懐疑的な実ユーザーの記録：手で 30 分の「Go マイクロサービス + Redis キャッシュ」タスクを Devin に渡し、自律性がどこで漏れるかを追う。ケーススタディの数字へのバラスト。
 - **[月 $20k を Devin に使うソロファウンダーのオペレーション](https://www.lennysnewsletter.com/p/i-spent-20000-on-devin-in-a-month)** —— Ryan Carson（Untangle）は ~15 台の Devin エージェントを同時稼働。ダッシュボードではなくフォルダシステム + 紙の P0 リストで統制；「Watchdog」playbook が全法律事務所アカウントの CS を一手に担い、「LAN PR」スキルが QA レビュアーなしで ~40 PR/日を締める（Lenny's ポッドキャスト）。
 
 <p align="right"><a href="#readme">back to top</a></p>

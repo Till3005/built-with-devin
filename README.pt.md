@@ -13,7 +13,7 @@
 
 <sub>Curado por [@darega0mae](https://x.com/darega0mae) · Tutoriais irmãos: [build-with-devin](https://github.com/Till3005/build-with-devin) · [Adicione seu projeto](CONTRIBUTING.md)</sub>
 
-<sub>**14** implantações de Bot documentadas · **43** casos corporativos · **8** produtos lançados · **47** ferramentas e integrações · **30** relatos de campo</sub>
+<sub>**14** implantações de Bot documentadas · **43** casos corporativos · **8** produtos lançados · **47** ferramentas e integrações · **32** relatos de campo</sub>
 
 <sub>[English](README.md) · [简体中文](README.zh.md) · [日本語](README.ja.md) · Português</sub>
 
@@ -308,6 +308,8 @@ Uso real documentado.
 - **[Scan Trivy → remediação Devin na SMARTCAMP](https://zenn.dev/smartcamp/articles/97ac804043530e)** — Pipeline agendado do GitHub Actions baixa imagens do ECS, escaneia com Trivy e abre issues HIGH/CRITICAL que o Devin remedia — jobs com credenciais AWS e do scanner separados, apenas artefatos cruzam (JP).
 - **[Devin como minha equipe de engenharia por um mês](https://ravtheman.medium.com/im-17-and-for-one-month-devin-was-my-entire-engineering-team-here-s-everything-i-learned-183d59099384)** — Um mês de um estudante de Melbourne no giveaway do Max: 67 PRs tocados e 44 mergeados numa noite; uma distro Linux, uma família de modelos locais e um IDE multiagente feitos entre aulas — com um resumo medido do fluxo CLI/cloud (Medium).
 - **[Revisão de Performance 2025 do Devin](https://cognition.com/blog/devin-annual-performance-review-2025)** — o boletim de 18 meses da própria Cognition, raro na honestidade: forças (merge rate 34%→67%, resolução 4× mais rápida, fixes de vuln 20×, migrações ETL 10×, cobertura 50–60%→80–90%, ~⅓ dos commits do webapp) e fraquezas nomeadas (requisitos ambíguos, mudanças de escopo no meio, soft skills).
+- **[100 Dias de Devin — build-log de um dono de fábrica de agentes](https://www.raijuna.com/blog/devin-100-day-challenge-day-1)** — Quem já shipa centenas de PRs/dia da própria fábrica de agentes migra tudo para Devin Bots por 100 dias. Dia 1: ~15 bots, fricção honesta (rastrear sessões não escala para uma frota — "qual produziu PR? qual me espera?"), QA em vídeo que supera screenshots, 18% da quota semanal só em setup. Em andamento — vale acompanhar.
+- **[掘金 — Devin vale $47B, mas minha história de erros](https://juejin.cn/post/7680768670986092544)** (zh) — Relato cético de usuário real: entregar a tarefa "microsserviço Go + cache Redis" (30 min à mão) ao Devin e ver onde a autonomia vaza. Contrapeso aos números dos case studies.
 - **[A operação Devin de $20k/mês de um fundador solo](https://www.lennysnewsletter.com/p/i-spent-20000-on-devin-in-a-month)** — Ryan Carson (Untangle) roda ~15 agentes Devin simultâneos coordenados por sistema de pastas + lista P0 de papel, sem dashboard; um playbook "Watchdog" cobre o customer success de toda conta de escritório de advocacia, e a skill "LAN PR" fecha ~40 PRs/dia sem revisor de QA (Lenny's podcast).
 
 <p align="right"><a href="#readme">back to top</a></p>

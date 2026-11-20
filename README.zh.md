@@ -13,7 +13,7 @@
 
 <sub>维护者 [@darega0mae](https://x.com/darega0mae) · 姊妹教程库：[build-with-devin](https://github.com/Till3005/build-with-devin) · [收录你的项目](CONTRIBUTING.md)</sub>
 
-<sub>**14** 个有据可查的 Bot 部署 · **43** 个企业案例 · **8** 个已发布产品 · **47** 个工具与集成 · **30** 篇实战报告</sub>
+<sub>**14** 个有据可查的 Bot 部署 · **43** 个企业案例 · **8** 个已发布产品 · **47** 个工具与集成 · **32** 篇实战报告</sub>
 
 <sub>[English](README.md) · 简体中文 · [日本語](README.ja.md) · [Português](README.pt.md)</sub>
 
@@ -308,6 +308,8 @@ flowchart LR
 - **[SMARTCAMP 的 Trivy 扫描 → Devin 修复](https://zenn.dev/smartcamp/articles/97ac804043530e)** —— 定时 GitHub Actions 拉取 ECS 镜像跑 Trivy，HIGH/CRITICAL 落成 issue 交给 Devin 修复；AWS 凭证 job 和扫描 job 分离、只靠 artifact 传递（日文）。
 - **[Devin 当我一整个月的工程团队](https://ravtheman.medium.com/im-17-and-for-one-month-devin-was-my-entire-engineering-team-here-s-everything-i-learned-183d59099384)** —— 一个墨尔本高中生的 Max 体验月：一晚 67 个 PR 处理、44 个合入；课间造出一个 Linux 发行版、一套本地模型家族和一个多 agent IDE —— 附实测的 CLI/云端工作流（Medium）。
 - **[Devin 2025 年度表现复核](https://cognition.com/blog/devin-annual-performance-review-2025)** —— Cognition 自己 18 个月的成绩单，少见地诚实：强项（PR 合并率 34%→67%、解题快 4×、漏洞修复比人快 20×、ETL 迁移 10×、覆盖率通常 50–60%→80–90%、自家 webapp 约三分之一 commit 出自 Devin）和点名弱点（需求模糊、中途改范围、软技能）。
+- **[Devin 百日挑战——一个「agent 工厂主」的迁移日志](https://www.raijuna.com/blog/devin-100-day-challenge-day-1)** —— 作者本来用自己的 agent 工厂日产数百个 PR，现在把整套搬到 Devin Bots 跑 100 天。Day 1：~15 个 bot，诚实记了摩擦（会话追踪撑不起舰队——「哪个出了 PR？哪个在等我？」）、视频 QA 胜过截图、装完生态先烧掉 18% 周额度。连载中，值得盯。
+- **[掘金——Devin 估值 470 亿，但我的踩坑史](https://juejin.cn/post/7680768670986092544)** —— 一篇怀疑论实测：把「Go 微服务加 Redis 缓存」这种手写 30 分钟的活交给 Devin，看自主能力在哪里漏。给企业案例数字当配重。
 - **[独立创始人月烧 $20k 的 Devin 运营](https://www.lennysnewsletter.com/p/i-spent-20000-on-devin-in-a-month)** —— Ryan Carson（Untangle）同时跑 ~15 个 Devin agent：不用仪表盘，靠文件夹系统 + 纸上 P0 清单调度；「Watchdog」playbook 顶替整个客户成功团队盯每个律所账号，「LAN PR」skill 每天合 ~40 个 PR、无 QA 审阅人（Lenny's 播客）。
 
 <p align="right"><a href="#readme">back to top</a></p>
