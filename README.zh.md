@@ -13,7 +13,7 @@
 
 <sub>维护者 [@darega0mae](https://x.com/darega0mae) · 姊妹教程库：[build-with-devin](https://github.com/Till3005/build-with-devin) · [收录你的项目](CONTRIBUTING.md)</sub>
 
-<sub>**14** 个有据可查的 Bot 部署 · **43** 个企业案例 · **6** 个已发布产品 · **32** 个工具与集成 · **30** 篇实战报告</sub>
+<sub>**14** 个有据可查的 Bot 部署 · **43** 个企业案例 · **6** 个已发布产品 · **39** 个工具与集成 · **30** 篇实战报告</sub>
 
 <sub>[English](README.md) · 简体中文 · [日本語](README.ja.md) · [Português](README.pt.md)</sub>
 
@@ -218,6 +218,9 @@ flowchart LR
 
 - **[go-devin](https://github.com/gassara-kys/go-devin)** —— Devin API 的 Go SDK。
 - **[llm-devin](https://github.com/ftnext/llm-devin)** —— Simon Willison 的 `llm` CLI 插件，用来调 Devin API。
+- **[@cognition-ai/sdk](https://docs.devin.ai/sdk)** —— 官方 TypeScript SDK（beta）：一个 `createDevin` 会话 API 同时驱动云端和本地 CLI 会话，附 `devin.api` 类型化 REST 客户端；配套包 `@cognition-ai/ai-sdk`、`@cognition-ai/cloudflare-agents`、`@cognition-ai/harness-devin`。[示例仓库](https://github.com/COG-GTM/devin-sdk-examples)。
+- **[devinai](https://pypi.org/project/devinai/)** —— 官方 Python SDK（`usacognition/devin-sdk-python`）。
+- **[devin-api-mcp](https://github.com/jsklan/devin-api-mcp)** —— 全覆盖的 Devin API MCP server：sessions、knowledge、playbooks、secrets、schedules、attachments——走 v1 API+个人 key，会话归在*你*名下，另附只读 DeepWiki 工具。
 
 <p align="right"><a href="#readme">back to top</a></p>
 
@@ -252,6 +255,10 @@ flowchart LR
 - **[devin-acp-shim](https://github.com/wibus-wee/devin-acp-shim)** —— 透明 stdio 代理，修复 Devin CLI 的会话级 MCP 能力协商 —— 虽小，但为所有 ACP host 解锁了 MCP server。
 - **[hindsight-devin-desktop](https://pypi.org/project/hindsight-devin-desktop/)** —— Vectorize 的 MCP 桥：一条命令给 Devin Desktop 接上持久长期记忆 + 常驻 recall/retain 规则。
 - **[devin-memory](https://github.com/Sassine/devin-memory)** —— Devin CLI 的零依赖持久记忆：hook 估算 context 占用、快满时提醒，`/memory-save` + `/memory-resume` 跨 `/clear` 存取会话。
+- **[devin-explore](https://github.com/Icaro0310/devin-explore)** —— `devin-*` 舰队的旗舰：诊断本地安装（store/schema/lock/config，附修复建议）、导出会话历史、FTS5 全文搜、会话/项目/文件知识图谱，并把会话卷成按仓库的状态报告。全本地、零遥测。
+- **[devin-assure](https://github.com/Icaro0310/devin-assure)** —— 验证单仓：`devin-qa-pack` 审计会话声明，`devin-evals` 拿评分细则回放已录会话（`dream` 子组合成已知结论的假会话），`devin-metrics` 本地追 context/token 峰值。
+- **[hermes-devin-acp](https://github.com/raffr85/hermes-devin-acp)** —— 把 Devin 订阅当 Hermes Agent 的模型供应商：在 Hermes 下驱动 `devin acp`，认证仍在官方 CLI 里。
+- **[@yuiseki/devin-gyazo](https://github.com/yuiseki/devin-gyazo)** —— 截图→Gyazo 自动化脚本：让 Devin 会话在任务中途抓浏览器/终端画面并发图留证（日）。
 
 <p align="right"><a href="#readme">back to top</a></p>
 

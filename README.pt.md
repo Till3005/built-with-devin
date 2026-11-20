@@ -13,7 +13,7 @@
 
 <sub>Curado por [@darega0mae](https://x.com/darega0mae) · Tutoriais irmãos: [build-with-devin](https://github.com/Till3005/build-with-devin) · [Adicione seu projeto](CONTRIBUTING.md)</sub>
 
-<sub>**14** implantações de Bot documentadas · **43** casos corporativos · **6** produtos lançados · **32** ferramentas e integrações · **30** relatos de campo</sub>
+<sub>**14** implantações de Bot documentadas · **43** casos corporativos · **6** produtos lançados · **39** ferramentas e integrações · **30** relatos de campo</sub>
 
 <sub>[English](README.md) · [简体中文](README.zh.md) · [日本語](README.ja.md) · Português</sub>
 
@@ -218,6 +218,9 @@ Colocando o Devin dentro de outros produtos e canais.
 
 - **[go-devin](https://github.com/gassara-kys/go-devin)** — SDK Go para a API do Devin.
 - **[llm-devin](https://github.com/ftnext/llm-devin)** — Plugin para o `llm` CLI do Simon Willison chamar a API do Devin.
+- **[@cognition-ai/sdk](https://docs.devin.ai/sdk)** — O SDK oficial TypeScript (beta): uma API de sessão `createDevin` dirige sessões cloud *e* CLI local, mais o cliente REST tipado `devin.api`; pacotes irmãos `@cognition-ai/ai-sdk`, `@cognition-ai/cloudflare-agents`, `@cognition-ai/harness-devin`. [Repo de exemplos](https://github.com/COG-GTM/devin-sdk-examples).
+- **[devinai](https://pypi.org/project/devinai/)** — O SDK oficial em Python (`usacognition/devin-sdk-python`).
+- **[devin-api-mcp](https://github.com/jsklan/devin-api-mcp)** — Servidor MCP com cobertura total da API do Devin: sessões, knowledge, playbooks, secrets, schedules, attachments — via v1 + sua chave pessoal para as sessões aparecerem no *seu* dashboard, mais ferramentas DeepWiki somente-leitura.
 
 <p align="right"><a href="#readme">back to top</a></p>
 
@@ -252,6 +255,10 @@ O que a comunidade constrói *para* o Devin, em vez de *com* ele.
 - **[devin-acp-shim](https://github.com/wibus-wee/devin-acp-shim)** — Proxy stdio transparente que corrige a negociação de capacidades MCP em nível de sessão do Devin CLI — pequeno, mas desbloqueia servidores MCP para todo host ACP.
 - **[hindsight-devin-desktop](https://pypi.org/project/hindsight-devin-desktop/)** — Ponte MCP da Vectorize que dá ao Devin Desktop memória persistente de longo prazo: um comando liga o servidor Hindsight e as regras recall/retain always-on.
 - **[devin-memory](https://github.com/Sassine/devin-memory)** — Memória persistente zero-dependency para o Devin CLI: hooks estimam o uso de contexto, avisam antes da janela encher, e `/memory-save` + `/memory-resume` salvam e restauram sessões através do `/clear`.
+- **[devin-explore](https://github.com/Icaro0310/devin-explore)** — O carro-chefe da frota `devin-*`: diagnostica a instalação local (stores, schema, locks, config — com sugestões de correção), exporta histórico de sessões, roda busca FTS5 e um grafo de conhecimento de sessões/projetos/arquivos, e agrega sessões em relatórios por repo. Tudo local, zero telemetria.
+- **[devin-assure](https://github.com/Icaro0310/devin-assure)** — Monorepo de verificação: `devin-qa-pack` audita afirmações de sessão, `devin-evals` reexecuta sessões gravadas contra rubricas (o subgrupo `dream` gera sessões sintéticas com vereditos conhecidos), `devin-metrics` acompanha picos de contexto/tokens localmente.
+- **[hermes-devin-acp](https://github.com/raffr85/hermes-devin-acp)** — Use sua assinatura Devin como provedor de modelo do Hermes Agent: dirige `devin acp` sob o Hermes mantendo a autenticação no CLI oficial.
+- **[@yuiseki/devin-gyazo](https://github.com/yuiseki/devin-gyazo)** — Scripts de screenshot→Gyazo para a sessão do Devin capturar browser/terminal e postar prova visual no meio da tarefa (JP).
 
 <p align="right"><a href="#readme">back to top</a></p>
 

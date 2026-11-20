@@ -13,7 +13,7 @@
 
 <sub>Curated by [@darega0mae](https://x.com/darega0mae) · 姉妹チュートリアル：[build-with-devin](https://github.com/Till3005/build-with-devin) · [プロジェクトを追加](CONTRIBUTING.md)</sub>
 
-<sub>**14** 件の実証済み Bot 導入 · **43** 件のエンタープライズ事例 · **6** 件の公開プロダクト · **32** 件のツール・統合 · **30** 件の実践レポート</sub>
+<sub>**14** 件の実証済み Bot 導入 · **43** 件のエンタープライズ事例 · **6** 件の公開プロダクト · **39** 件のツール・統合 · **30** 件の実践レポート</sub>
 
 <sub>[English](README.md) · [简体中文](README.zh.md) · 日本語 · [Português](README.pt.md)</sub>
 
@@ -218,6 +218,9 @@ flowchart LR
 
 - **[go-devin](https://github.com/gassara-kys/go-devin)** —— Devin API の Go SDK。
 - **[llm-devin](https://github.com/ftnext/llm-devin)** —— Simon Willison の `llm` CLI から Devin API を呼ぶプラグイン。
+- **[@cognition-ai/sdk](https://docs.devin.ai/sdk)** —— 公式 TypeScript SDK（beta）：1 つの `createDevin` セッション API がクラウドとローカル CLI の両方を駆動、`devin.api` 型付き REST クライアント付き；関連パッケージ `@cognition-ai/ai-sdk`、`@cognition-ai/cloudflare-agents`、`@cognition-ai/harness-devin`。[サンプルリポジトリ](https://github.com/COG-GTM/devin-sdk-examples)。
+- **[devinai](https://pypi.org/project/devinai/)** —— 公式 Python SDK（`usacognition/devin-sdk-python`）。
+- **[devin-api-mcp](https://github.com/jsklan/devin-api-mcp)** —— Devin API フルカバーの MCP サーバー：sessions、knowledge、playbooks、secrets、schedules、attachments——v1 API+個人キーでセッションが*自分*のダッシュボードに出る、読み取り専用 DeepWiki ツール付き。
 
 <p align="right"><a href="#readme">back to top</a></p>
 
@@ -252,6 +255,10 @@ Devin *で*作られたものではなく、Devin の*ために*コミュニテ�
 - **[devin-acp-shim](https://github.com/wibus-wee/devin-acp-shim)** —— Devin CLI のセッションレベル MCP 能力ネゴシエーションを修正する透過 stdio プロキシ —— 小さいが、すべての ACP ホストで MCP サーバーを解放する。
 - **[hindsight-devin-desktop](https://pypi.org/project/hindsight-devin-desktop/)** —— Vectorize の MCP ブリッジ：1 コマンドで Devin Desktop に永続的な長期記憶と常時 recall/retain ルールを配線。
 - **[devin-memory](https://github.com/Sassine/devin-memory)** —— Devin CLI 用ゼロ依存の永続メモリ：フックがコンテキスト使用量を推定して上限前に警告、`/memory-save` + `/memory-resume` で `/clear` を跨いでセッションを保存・復元。
+- **[devin-explore](https://github.com/Icaro0310/devin-explore)** —— `devin-*` 艦隊の旗艦：ローカルインストールを診断（store/schema/lock/config、修正提案つき）、セッション履歴のエクスポート、FTS5 全文検索とセッション/プロジェクト/ファイルのナレッジグラフ、リポジトリ別ステータスレポートに集約。完全ローカル、テレメトリなし。
+- **[devin-assure](https://github.com/Icaro0310/devin-assure)** —— 検証モノレポ：`devin-qa-pack` がセッションの主張を監査、`devin-evals` が記録済みセッションをルーブリックで再生採点（`dream` サブグループは判定既知の合成セッションを生成）、`devin-metrics` がコンテキスト/トークン山をローカル追跡。
+- **[hermes-devin-acp](https://github.com/raffr85/hermes-devin-acp)** —— Devin サブスクを Hermes Agent のモデルプロバイダーに：Hermes 配下で `devin acp` を駆動、認証は公式 CLI のまま。
+- **[@yuiseki/devin-gyazo](https://github.com/yuiseki/devin-gyazo)** —— スクリーンショット→Gyazo 自動化スクリプト：Devin セッションがタスク途中でブラウザ/ターミナルの画面を撮って視覚的証拠を投稿（JP）。
 
 <p align="right"><a href="#readme">back to top</a></p>
 
