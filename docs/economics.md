@@ -28,9 +28,15 @@ A running ledger of the *published, auditable* cost/return numbers — the thing
 | 30% more PRs per engineer vs. Claude Code alone | [Latent Health](https://devin.ai/customers/latent) |
 | ~2× user-story output in three months | [GE Aerospace](https://devin.ai/customers/geaerospace) |
 | 2× engineering throughput; 4× faster automation rollout | [Rohlik Group](https://devin.ai/customers/rohlikgroup) |
-| 3× deployment growth in four months; 78% PR merge rate | [Endava](https://devin.ai/customers/endava) (2,000+ employees) |
+| 3× deployment growth in four months; 78% PR merge rate | [Endava](https://devin.ai/customers/endava) (2,000+ employees) | |
+| **93% of merged code Devin-originated**; alert→investigation 35s | [Tavrn](https://devin.ai/customers/tavrn) |
+| 20–40 bugs/alerts first-passed daily in ~5 min; Sentry noise −50% | [Crosby](https://devin.ai/customers/crosby) |
+| 25% of total code volume — tied top contributor | [Hamming](https://devin.ai/customers/hamming) |
+| **40× merged-PR throughput on 2.7× headcount** (>10×/engineer) | [Cognition internal](https://aietalks.com/talks/40x-more-merged-prs-with-2-7x-the-engineers) |
 
 ## The honest-ledger rule
+
+Cognition's own [18-month performance review](https://cognition.com/blog/devin-annual-performance-review-2025) supplies the rarest numbers — a vendor publishing its own yardstick: PR merge rate 34%→67%, vulnerability fixes 20× faster than humans (30 min→1.5 min each), ETL migrations 10×, typical coverage 50–60%→80–90%, ~⅓ of its own webapp commits Devin-authored. Vendor-published, but unusually falsifiable.
 
 The most useful economics report is also the least flattering: **Leverages (JP)** published its rollout with a literal ACU-spend-vs-salary comparison across 14 teams and 177 merged PRs — including the conclusion that returns depend on task mix, not on "agent hours" as a fungible unit ([report](https://zenn.dev/levtech/articles/9c869303820844)).
 
