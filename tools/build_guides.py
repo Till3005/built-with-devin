@@ -41,9 +41,9 @@ PAGE = """<!DOCTYPE html>
 <meta property="og:description" content="{edesc}">
 <meta property="og:type" content="article">
 <meta property="og:url" content="https://till3005.github.io/built-with-devin/guides/{page}">
-<meta property="og:image" content="https://till3005.github.io/built-with-devin/assets/img/og-build.png?v=3">
+<meta property="og:image" content="{ogimage}">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="https://till3005.github.io/built-with-devin/assets/img/og-build.png?v=3">
+<meta name="twitter:image" content="{ogimage}">
 </head>
 <body>
 <a class="skip" href="#guide">Skip to content</a>
@@ -225,13 +225,16 @@ def render(md_path: Path, out_path: Path, rel: str, lang: str, alt: str, mdsrc: 
     desc = re.sub(r"[*_`\[\]()#]", "", re.search(r"^\*\*(Goal|目标|目標|Objetivo)[:：]\*\*\s*(.+)$", text, re.M).group(2))[:160] if re.search(r"^\*\*(Goal|目标|目標|Objetivo)[:：]", text, re.M) else title
     out_path.parent.mkdir(parents=True, exist_ok=True)
     page = out_path.relative_to(OUT).as_posix()
+    poster = OUT.parent / "assets" / "guides" / md_path.stem / "walkthrough-poster.webp"
+    ogimage = (f"{SITE}/assets/guides/{md_path.stem}/walkthrough-poster.webp" if poster.exists()
+               else f"{SITE}/assets/img/og-build.png?v=3")
     langs = ["en"] + (mirrors or [])
     canonical = f"{SITE}/guides/{page}"
     out_path.write_text(PAGE.format(
         lang=lang, etitle=html_.escape(title, quote=True), edesc=html_.escape(desc, quote=True),
         rel=rel, body=body, alt=alt, mdsrc=mdsrc, page=page, pager=pager,
         crumb=crumb, meta=meta, toc=toc, guides_label=GUIDES_LABEL[lang],
-        canonical=canonical, hreflang=hreflang_block(page, langs),
+        ogimage=ogimage, canonical=canonical, hreflang=hreflang_block(page, langs),
         jsonld=jsonld_guide(title, desc, lang, upd, canonical), related=related), encoding="utf-8")
     return title
 
@@ -266,7 +269,10 @@ def pager_for(stem: str, order: list, titles: dict, lang: str) -> str:
     return f'<nav class="guide-pager">{"".join(parts)}</nav>' if parts else ""
 
 
-def index_body(lang: str, order: list, tables: dict, titles: dict, stages: list) -> str:
+MEDIA_LABEL = {"en": "video", "zh": "实录", "ja": "録画", "pt": "vídeo"}
+
+
+def index_body(lang: str, order: list, tables: dict, titles: dict, stages: list, media: set) -> str:
     def row(stem: str) -> str:
         t = titles[stem]
         info = tables.get(lang, {}).get(stem, {})
@@ -274,10 +280,12 @@ def index_body(lang: str, order: list, tables: dict, titles: dict, stages: list)
         pitch = info.get("pitch", "")
         level = info.get("level", "")
         search = html_.escape(f"{num} {t} {pitch} {level}".lower(), quote=True)
+        media_badge = (f'<span class="row-media" title="{MEDIA_LABEL[lang]}">▶ {MEDIA_LABEL[lang]}</span>'
+                       if stem in media else '')
         return (
             f'    <a class="row" href="{stem}.html" data-search="{search}">'
             f'<span class="row-tag">{html_.escape(num)}</span><span>'
-            f'<span class="row-title">{html_.escape(t)}</span>'
+            f'<span class="row-title">{html_.escape(t)}</span>{media_badge}'
             f'<span class="row-desc">{html_.escape(pitch)}</span></span>'
             f'<span class="row-num">{html_.escape(level)}</span></a>')
 
@@ -307,6 +315,7 @@ def main():
     readme = (SRC.parent / "README.md").read_text(encoding="utf-8")
     order = [s for s in re.findall(r'guides/(?:[a-z]{2}/)?([a-z0-9-]+)\.md', readme) if s in stems]
     order += sorted(stems - set(order))
+    media = {d.parent.name for d in (OUT.parent / "assets" / "guides").glob("*/walkthrough-poster.webp")}
     tables = {l: readme_table(l) for l in ("en", "zh", "ja", "pt")}
     stages = {l: stages_for(l) for l in ("en", "zh", "ja", "pt")}
 
@@ -340,7 +349,7 @@ def main():
     # one index per language, localized titles/pitches in curriculum order
     for l in ("en",) + tuple(lang_dirs):
         lt = lang_titles(l) or en_titles if l != "en" else en_titles
-        body = index_body(l, order, tables, lt, stages[l] or stages["en"])
+        body = index_body(l, order, tables, lt, stages[l] or stages["en"], media)
         rel = "../" if l == "en" else "../../"
         langs = ["en"] + lang_dirs
         alt = " · ".join(
@@ -350,7 +359,7 @@ def main():
         canonical = f"{SITE}/guides/{'' if l == 'en' else l + '/'}"
         out = OUT / "index.html" if l == "en" else OUT / l / "index.html"
         out.write_text(PAGE.format(
-            lang=l, etitle=GUIDES_LABEL[l], edesc=IDX_DESC[l].format(n=len(order)),
+            ogimage=f"{SITE}/assets/img/og-build.png?v=3", lang=l, etitle=GUIDES_LABEL[l], edesc=IDX_DESC[l].format(n=len(order)),
             rel=rel, body=body, alt=alt, mdsrc="../", page=("index.html" if l == "en" else f"{l}/index.html"),
             pager="", crumb=f"{rel}index.html", related="",
             canonical=canonical, hreflang=hreflang_block("index.html", langs),
