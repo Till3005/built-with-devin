@@ -125,7 +125,7 @@ flowchart LR
 
 - **[Eon 的 Era](https://devin.ai/customers/eon)** —— 用于训练和评估 AI agent 的仿真企业（74 套忠实还原的厂商系统：Salesforce、Slack、Zendesk、Jira……）。**98% 的合并 PR 由 Devin 撰写**，300+ 个全天的 session，2,720 个 session 由其他 session 发起。
 - **[Courtyard 的 Quick](https://courtyard.io/blog/post/from-a-slack-link-to-production-in-under-48-hours-cloning-shopifys-quick-with-devin)** —— Courtyard 复刻了 Shopify 内部静态站点部署器 "Quick"：从一条 Slack 链接到生产服务（Go、Cloud Run、Bazel、Terraform、SSO、git 后端）只用了 **~21 小时**，全部由 Devin 撰写。
-- **[Frontierfood](https://samyok.com/frontierfood)** —— Cognition 工程师 Samyok Nepal 用 Devin Voice 爬 Google 评论，按位置画出美食的帕累托前沿（[帖子](https://x.com/samyok/status/2098155977199743367)）。
+- **[Frontierfood](https://samyok.com/frontierfood/)** —— Cognition 工程师 Samyok Nepal 用 Devin Voice 爬 Google 评论，按位置画出美食的帕累托前沿（[帖子](https://x.com/samyok/status/2098155977199743367)）。
 - **Flappy Asher** —— Russell Kaplan（Cognition 总裁）让 Mac VM 上的 Devin 把婴儿照片做成游戏素材并发布了成品 —— 已上架 TestFlight（[帖子](https://x.com/russelljkaplan/status/2100280085999919555)）。
 - **[Try Devin vending machine](https://github.com/dabit3/vending-machine)** —— dabit3 的活动发码机（Next.js + Convex + Clerk）：参会者在活动页输邮箱领 Devin 额度码。`devin-ai-integration[bot]` 是仓库头号贡献者（266 commits）；线上 [trydevin.ai](https://www.trydevin.ai/)。
 - **[GymClass](https://seed.horacioh.com/writing/how-i-built-a-full-booking-system-as-a-side-project-with-devin-as-my-engineering-partner)** —— Horacio Herrera 给真实武术馆做的订课与学员管理系统（TS/Bun/React/Hono/tRPC，Cloudflare）：一个月功能量，全部在手机上会议间隙指挥 Devin 完成——含订课架构重写和 Vitest→Bun 迁移。
@@ -346,7 +346,7 @@ flowchart LR
 ## 官方资源
 
 - [Devin Community](https://devin.ai/community) —— 活动、大使申请、活动支持
-- [docs.devin.ai](https://docs.devin.ai) —— 文档：[Bots](https://docs.devin.ai/work-with-devin/bots)、[Automations](https://docs.devin.ai/product-guides/automations)、[Devin CLI](https://docs.devin.ai/cli/index.md)、[Session Insights](https://docs.devin.ai/product-guides/session-insights)（XS–XL 会话定级）、[Skills 与 Plugins](https://docs.devin.ai/work-with-devin/skills)——已弃用的 Knowledge 正迁到这里
+- [docs.devin.ai](https://docs.devin.ai) —— 文档：[Bots](https://docs.devin.ai/work-with-devin/bots)、[Automations](https://docs.devin.ai/product-guides/automations)、[Devin CLI](https://docs.devin.ai/cli/index.md)、[Session Insights](https://docs.devin.ai/product-guides/session-insights)（XS–XL 会话定级）、[Skills 与 Plugins](https://docs.devin.ai/product-guides/skills)——已弃用的 Knowledge 正迁到这里
 - [Release notes](https://docs.devin.ai/release-notes/overview) · [Devin Desktop changelog](https://docs.devin.ai/desktop/changelog) · [Devin CLI changelog](https://docs.devin.ai/cli/changelog/stable) —— 每个 stable 版本的新功能与修复
 - [Use-case gallery](https://docs.devin.ai/use-cases/gallery/index.md) —— 40+ 个带可复制 prompt 的文档化工作流；[切片最佳实践](https://docs.devin.ai/use-cases/best-practices.md)
 - [devin.ai/brand](https://devin.ai/brand) —— 官方品牌包

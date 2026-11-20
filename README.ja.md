@@ -125,7 +125,7 @@ flowchart LR
 
 - **[Eon の Era](https://devin.ai/customers/eon)** —— AI エージェントの訓練・評価用シミュレート企業（74 のベンダー忠実なシステム：Salesforce、Slack、Zendesk、Jira……）。**マージ PR の 98% が Devin 作**。300 以上の終日セッション、2,720 のセッションが他のセッションから起動。
 - **[Courtyard の Quick](https://courtyard.io/blog/post/from-a-slack-link-to-production-in-under-48-hours-cloning-shopifys-quick-with-devin)** —— Shopify 内部の静的サイトデプロイヤー "Quick" をクローン：Slack リンク 1 つから本番サービス（Go、Cloud Run、Bazel、Terraform、SSO、git バックド）まで **約 21 時間**。すべて Devin が執筆。
-- **[Frontierfood](https://samyok.com/frontierfood)** —— Cognition エンジニア Samyok Nepal が Devin Voice で Google レビューをスクレイプし、地域別グルメのパレートフロンティアをマッピング（[投稿](https://x.com/samyok/status/2098155977199743367)）。
+- **[Frontierfood](https://samyok.com/frontierfood/)** —— Cognition エンジニア Samyok Nepal が Devin Voice で Google レビューをスクレイプし、地域別グルメのパレートフロンティアをマッピング（[投稿](https://x.com/samyok/status/2098155977199743367)）。
 - **Flappy Asher** —— Russell Kaplan（Cognition 社長）が Mac VM 上の Devin に赤ちゃんの写真をゲームスプライトにさせて出荷 —— TestFlight で公開中（[投稿](https://x.com/russelljkaplan/status/2100280085999919555)）。
 - **[Try Devin vending machine](https://github.com/dabit3/vending-machine)** —— dabit3 のイベント用クレジット配布機（Next.js + Convex + Clerk）：参加者がイベント URL でメールを入力すると Devin クレジットコードを受け取る。`devin-ai-integration[bot]` がリポジトリのトップ貢献者（266 commits）。本番: [trydevin.ai](https://www.trydevin.ai/)。
 - **[GymClass](https://seed.horacioh.com/writing/how-i-built-a-full-booking-system-as-a-side-project-with-devin-as-my-engineering-partner)** —— Horacio Herrera が実在の武術アカデミー向けに作った予約・クラス管理システム（TS/Bun/React/Hono/tRPC、Cloudflare）：会議の合間にスマホから Devin を指揮して 1 ヶ月分の機能を出荷——予約アーキテクチャの全面書き換えと Vitest→Bun 移行を含む。
@@ -346,7 +346,7 @@ Devin *で*作られたものではなく、Devin の*ために*コミュニテ�
 ## 公式リソース
 
 - [Devin Community](https://devin.ai/community) —— イベント、アンバサダー申請、イベント支援
-- [docs.devin.ai](https://docs.devin.ai) —— ドキュメント：[Bots](https://docs.devin.ai/work-with-devin/bots)、[Automations](https://docs.devin.ai/product-guides/automations)、[Devin CLI](https://docs.devin.ai/cli/index.md)、[Session Insights](https://docs.devin.ai/product-guides/session-insights)（XS–XL のセッションサイジング）、[Skills / Plugins](https://docs.devin.ai/work-with-devin/skills)——廃止された Knowledge の移行先
+- [docs.devin.ai](https://docs.devin.ai) —— ドキュメント：[Bots](https://docs.devin.ai/work-with-devin/bots)、[Automations](https://docs.devin.ai/product-guides/automations)、[Devin CLI](https://docs.devin.ai/cli/index.md)、[Session Insights](https://docs.devin.ai/product-guides/session-insights)（XS–XL のセッションサイジング）、[Skills / Plugins](https://docs.devin.ai/product-guides/skills)——廃止された Knowledge の移行先
 - [Release notes](https://docs.devin.ai/release-notes/overview) · [Devin Desktop changelog](https://docs.devin.ai/desktop/changelog) · [Devin CLI changelog](https://docs.devin.ai/cli/changelog/stable) —— stable 各リリースの新機能と修正
 - [Use-case ギャラリー](https://docs.devin.ai/use-cases/gallery/index.md) —— コピペ可能なプロンプトつきの 40 以上の文書化ワークフロー。[作業分割のベストプラクティス](https://docs.devin.ai/use-cases/best-practices.md)
 - [devin.ai/brand](https://devin.ai/brand) —— 公式ブランドキット

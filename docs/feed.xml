@@ -4,7 +4,14 @@
   <title>Built with Devin — registry updates</title>
   <link>https://till3005.github.io/built-with-devin/</link>
   <description>New entries indexed in the built-with-devin registry.</description>
-  <lastBuildDate>Fri, 20 Nov 2026 12:19:49 +0000</lastBuildDate>
+  <lastBuildDate>Fri, 20 Nov 2026 13:04:24 +0000</lastBuildDate>
+  <item>
+    <title>Indexed: Frontierfood</title>
+    <link>https://till3005.github.io/built-with-devin/#products</link>
+    <guid isPermaLink="false">product:Frontierfood</guid>
+    <pubDate>Fri, 20 Nov 2026 00:00:00 +0000</pubDate>
+    <description>Cognition engineer Samyok Nepal used Devin Voice to scrape Google reviews and map the Pareto frontier of food by location (post).</description>
+  </item>
   <item>
     <title>Indexed: Spraycash</title>
     <link>https://till3005.github.io/built-with-devin/#products</link>
@@ -172,13 +179,6 @@
     <guid isPermaLink="false">bot:Personal data Bots</guid>
     <pubDate>Thu, 19 Nov 2026 00:00:00 +0000</pubDate>
     <description>Bryan Johnson — Health synthesis + family updates</description>
-  </item>
-  <item>
-    <title>Indexed: Tennis data Bots</title>
-    <link>https://till3005.github.io/built-with-devin/#deployments</link>
-    <guid isPermaLink="false">bot:Tennis data Bots</guid>
-    <pubDate>Thu, 19 Nov 2026 00:00:00 +0000</pubDate>
-    <description>Venus Williams — Pro-tennis preparation and match data</description>
   </item>
 </channel>
 </rss>
