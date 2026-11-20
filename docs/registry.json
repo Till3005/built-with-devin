@@ -6,7 +6,7 @@
     "bot_deployments": 14,
     "bot_templates": 16,
     "products": 6,
-    "enterprise_cases": 41
+    "enterprise_cases": 42
   },
   "bot_deployments": [
     {
@@ -856,6 +856,18 @@
         }
       ],
       "updated_on": "2026-11-19"
+    },
+    {
+      "company": "Philips",
+      "deployment": "Code Scans early tester — Digital Computational Pathology, Enterprise Informatics",
+      "result": "~96% PR merge rate across several repos; 700+ engineering hours estimated saved in the test window (customer quote in the launch post)",
+      "sources": [
+        {
+          "text": "Philips",
+          "url": "https://devin.ai/blog/introducing-code-scans"
+        }
+      ],
+      "updated_on": "2026-11-20"
     }
   ],
   "source_checks": {

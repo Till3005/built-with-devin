@@ -122,6 +122,11 @@
 <td>Devin como analista, não codificador: classificou ~700 tickets históricos de suporte para descobrir o que "causa não identificada" realmente era</td>
 <td>Mais da metade não era bug; escolher o que mostrar à IA (DB? docs?) importou mais que o modelo (<a href="https://zenn.dev/canly/articles/9c19bb123e208c">relato</a>, JP)</td>
 </tr>
+<tr>
+<td>Ryan Carson (Untangle)</td>
+<td>Fundador solo rodando ~15 agentes Devin simultâneos — sistema de pastas + lista P0 de papel, sem dashboard; playbook "Watchdog" monitora toda conta de escritório de advocacia; skill "LAN PR" fecha o loop — review, walkthrough em vídeo, auto-merge</td>
+<td>~$20k/mês; ~40 PRs/dia mergeados sem revisor de QA; largou agentes locais quase por completo (<a href="https://www.lennysnewsletter.com/p/i-spent-20000-on-devin-in-a-month">Lenny's podcast</a>)</td>
+</tr>
 </tbody>
 </table>
 <p>As ideias reutilizáveis dentro: <strong>gating por tabela de política</strong> (arufian: só auto-PR em trabalho de baixo risco, plan-first para complexo), <strong>prompting de saída fixa</strong> (Skillnote: formato CSV fixo + Python inline para conversão mata a variância da saída), <strong>pré-digest para o revisor</strong> (rakko: o Devin resume + sinaliza antes do humano ler), <strong>triagem com razão primeiro</strong> (hubble: o rótulo é um ponteiro; o comentário com a evidência é o entregável), <strong>remediação em forma de pipeline</strong> (SMARTCAMP: scan → issue → correção num loop estilo CI com estágios credenciados e sem privilégio separados) e <strong>contabilidade honesta</strong> (a fórmula ROI ACU-vs-salários da levtech).</p>
@@ -142,6 +147,7 @@
 <li><strong>Itere o prompt, não a ferramenta.</strong> A correção da Scott Logic não foi outro agente — foi um prompt mais estreito. Trate uma primeira execução falha como bug do prompt.</li>
 <li><strong>Entregue evidência, não vereditos.</strong> A hubble reescreveu o último passo do seu skill de Dependabot de "decidir se mergeia" para "avaliar o risco" — o agente monta o caso, o humano fica com a decisão.</li>
 </ol>
+<p>A restrição por trás das seis lições agora é medida, não sabedoria popular: um <a href="https://news.ycombinator.com/item?id=50538303">estudo de Harvard</a> (16/11, thread no HN com 459 comentários) descobriu que os agentes de código mudaram o gargalo da engenharia para a <em>revisão de código</em> — é por isso que todo padrão durável neste guia termina num portão de revisão, humano ou scriptado, não num merge silencioso.</p>
 <h2>O top-5 interno de Scott Wu (da entrevista do Lenny's)</h2>
 <p>As tarefas que a própria Cognition mais delega: <strong>correções de frontend, upgrades de versão, documentação, resposta a incidentes, testes</strong> — mais um padrão de "primeira linha de defesa" onde o Devin analisa crashes antes dos humanos engajarem, e pesquisa no DeepWiki para <em>escrever prompts melhores</em>.</p>
 <h2>Análises a fundo — o que copiar, o que observar</h2>
@@ -149,6 +155,7 @@
 <p><strong>O loop semanal de custos da hubble.</strong> Uma passada semanal pelo Datadog CCM: o Devin escolhe um candidato de redução de custo, investiga configuração e uso, e devolve um relatório pronto para decisão. O produto do loop é um <em>candidato com recomendação</em>, não uma fatura. Copie: "escolha um candidato, aprofunde, entregue" generaliza para qualquer fila permanente de higiene. Atenção: ferramentas de primeira mão (custo da AWS) se sobrepõem — vence quando seus dados de custo vivem no Datadog e a correção precisa de contexto do repo.</p>
 <p><strong>O pipeline scan→fix da SMARTCAMP.</strong> GitHub Actions agendado puxa imagens ECS → scan Trivy (HIGH/CRITICAL, pacotes OS) → abre issues → Devin remedia. O que vale copiar é o endurecimento, não a seta: o job de pull com credenciais AWS e o job do scanner sem privilégios são separados para que só artefatos cruzem; esperam ~7 dias após um release para confiar no resultado (as bases do scanner atrasam para pacotes novos); digests de imagem são pinados por hash, com um check de PR que sinaliza hashes velhos. Atenção: é defesa em profundidade contra o próprio scanner como superfície de supply chain — copiar só "scan → Devin" perde o ponto.</p>
 <p><strong>A implantação-analista da canly.</strong> O Devin classificou ~700 tickets históricos de suporte presos no balde "causa não identificada". Mais da metade não era bug — e a saída real do exercício foi um mapa do contexto que a IA ainda precisa (docs, visibilidade do DB, metadados do ticket), não os rótulos. Copie: Devin-como-analista é um uso de primeira classe — aponte para a pilha que ninguém nunca classificou antes de comprar ferramentas. Atenção: o gargalo é a seleção de contexto, não a qualidade do modelo.</p>
+<p><strong>A frota de um homem só de Ryan Carson.</strong> O fundador solo da Untangle roda ~15 agentes Devin simultâneos a ~$20k/mês — coordenados não por um dashboard mas por um sistema de pastas mais uma lista de P0s em papel, porque nessa escala o gargalo é a atenção <em>dele</em>, não o throughput dos agentes. Dois playbooks sustentam a operação: "Watchdog" monitora toda conta de escritório de advocacia para que uma pessoa cubra o customer success, e "LAN PR" fecha ~40 PRs/dia — loop de review, walkthrough em vídeo, auto-merge — sem revisor de QA. Copie: a unidade de escala é um playbook nomeado por superfície, não mais agentes. Atenção: ele largou os agentes locais quase por completo — o loop longo é dos agentes cloud; a exceção mantida é o Codex em builds de design-spec bem delimitados.</p>
 <h2>Checklist de verificação</h2>
 <ul>
 <li>[ ] Escolha o relato mais próximo do seu stack e releia o original, não a destilação — o número ainda se sustenta em contexto?</li>
@@ -185,6 +192,10 @@
 <li><a href="https://dev.to/dextralabs/devin-ai-vs-claude-code-vs-cursor-agent-which-one-actually-ships-production-code-benchmarks-3mi2">Dextra — Devin vs Claude Code vs Cursor Agent</a></li>
 <li><a href="https://qiita.com/FAL-coffee/items/be4d59093dd2bb06fb69">FAL-coffee — O primeiro artigo para equipes adotando Devin</a> (JP)</li>
 <li><a href="https://zenn.dev/mei999/articles/7d6132f1ca36b6">mei999 — Usando o Devin ao máximo: limpeza, modernização, automação</a> (JP/EN)</li>
+<li><a href="https://www.lennysnewsletter.com/p/i-spent-20000-on-devin-in-a-month">Lenny's Newsletter — Ryan Carson: $20.000 no Devin num mês</a></li>
+<li><a href="https://news.ycombinator.com/item?id=50538303">HN — estudo de Harvard: agentes mudaram o gargalo para code review</a></li>
+<li><a href="https://zhuanlan.zhihu.com/p/2025994849590026406">知乎 — AI software engineer 如何接管工作区：Devin、SWE-agent 与 OpenHands</a> (zh) — a análise de arquitetura mais clara em chinês: design de ACI, sandbox vs ambiente do desenvolvedor, e os três gargalos reais (navegação global, recuperação de falhas, contexto implícito)</li>
+<li><a href="https://juejin.cn/post/7671231304077361203">掘金 — AI 编码 Agent 90 天落地清单</a> (zh) — o padrão CI-gate bem feito: scan de segurança independente para código gerado por IA, detectar-e-escanear em etapas separadas, modelo operacional de stack misto</li>
 </ul>
 <nav class="guide-pager"><a class="pg-prev" href="enterprise-playbook.html"><span class="pg-dir">← Previous</span><span class="pg-t">Guia 7 — Padrões de rollout enterprise</span></a></nav>
 </article>

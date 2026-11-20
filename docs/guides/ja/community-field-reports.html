@@ -122,6 +122,11 @@
 <td>コーダーではなくアナリストとしての Devin：過去約 700 件の問い合わせを分類し、「原因未特定」の正体を解明</td>
 <td>半数以上はバグではなかった；AI に何を見せるか（DB？ドキュメント？）の選択がモデルより重要だった（<a href="https://zenn.dev/canly/articles/9c19bb123e208c">レポート</a>、日本語）</td>
 </tr>
+<tr>
+<td>Ryan Carson（Untangle）</td>
+<td>ソロファウンダーが ~15 台の Devin エージェントを同時稼働——ダッシュボードではなくフォルダシステム + 紙の P0 リストで統制；「Watchdog」playbook が全法律事務所アカウントを監視；「LAN PR」スキルがループを閉じる——レビュー、ビデオウォークスルー、自動マージ</td>
+<td>月 ~$20k；QA レビュアーなしで ~40 PR/日をマージ；ローカルエージェントはほぼ卒業（<a href="https://www.lennysnewsletter.com/p/i-spent-20000-on-devin-in-a-month">Lenny's ポッドキャスト</a>）</td>
+</tr>
 </tbody>
 </table>
 <p>中にある再利用可能なアイデア：<strong>ポリシーテーブルゲーティング</strong>（arufian：低リスク作業だけ自動 PR、複雑なものは計画優先）、<strong>固定出力プロンプト</strong>（Skillnote：固定 CSV 形式 + 変換用インライン Python が出力ばらつきを殺す）、<strong>レビュアー事前消化</strong>（rakko：人間が読む前に Devin が要約 + フラグ）、<strong>根拠ファーストのトリアージ</strong>（hubble：ラベルはポインタ、証拠を載せたコメントが届け物）、<strong>パイプライン型修復</strong>（SMARTCAMP：スキャン → issue → 修復を 1 本の CI 型ループに、認証あり/なしのステージを分離）、<strong>正直な会計</strong>（levtech の ACU 対賃金 ROI 式）。</p>
@@ -142,6 +147,7 @@
 <li><strong>ツールではなくプロンプトを反復する。</strong> Scott Logic の修正は別のエージェントではなく、より狭いプロンプトだった。最初の失敗実行はプロンプトのバグとして扱う。</li>
 <li><strong>評決ではなく証拠を届ける。</strong> hubble は Dependabot スキルの最終ステップを「マージ可否を決める」から「リスクを評価する」に書き換えた——エージェントは案件を組み立て、人間が決断を握る。</li>
 </ol>
+<p>この 6 つの教訓の背後にある制約は、今や俗説ではなく計測された事実だ：<a href="https://news.ycombinator.com/item?id=50538303">ハーバードの研究</a>（11/16、HN 459 コメント）は、AI コーディングエージェントが工学のボトルネックを<em>コードレビュー</em>へ移したことを示した——このガイドの持続するパターンがすべて、サイレントマージではなくレビューゲート（人間またはスクリプト）で終わる理由である。</p>
 <h2>Scott Wu の社内トップ 5（Lenny's インタビューより）</h2>
 <p>Cognition 自身が最も委任するタスク：<strong>フロントエンド修正、バージョンアップグレード、ドキュメント、インシデント対応、テスト</strong>——加えて「第一防御線」パターン（人間が関わる前に Devin がクラッシュを分析）と、<em>より良いプロンプトを書く</em>ための DeepWiki リサーチ。</p>
 <h2>深読み — 何を真似るか、何に気をつけるか</h2>
@@ -149,6 +155,7 @@
 <p><strong>hubble の週次コストループ。</strong> 週 1 回の Datadog CCM パス：Devin がコスト削減候補を 1 つ選び、設定と利用状況を深掘りし、判断可能なレポートを渡す。このループの産物は請求額ではなく<em>推奨つきの候補</em>。真似る点：「1 つ選び、掘り、渡す」は常設の衛生キューすべてに一般化できる。注意点：純正ツール（AWS のコスト系）と役割が重なる——コストデータが Datadog にあり、修正にリポジトリの文脈が要るときにだけ勝る。</p>
 <p><strong>SMARTCAMP のスキャン→修復パイプライン。</strong> スケジュール GitHub Actions が ECS イメージを pull → Trivy スキャン（HIGH/CRITICAL、OS パッケージ）→ issue 起票 → Devin が修復。真似る価値があるのは矢印ではなく堅牢化：AWS 認証情報を持つ pull ジョブと無権限のスキャナージョブを分離し成果物だけが越境；リリース後約 7 日待ってから結果を信頼（スキャナーの DB は新パッケージに遅れる）；イメージダイジェストをハッシュ固定し、古いハッシュを検知する PR チェック。注意点：これはスキャナー自体をサプライチェーン攻撃面とみなす多層防御——「スキャン → Devin」だけを真似ると要点を取りこぼす。</p>
 <p><strong>canly のアナリスト導入。</strong> Devin に「原因未特定」で滞留した約 700 件の問い合わせ履歴を分類させた。半数以上はバグではなかった——そしてこの取り組みの真の産物はラベルではなく、AI にまだ足りないコンテキストの地図（ドキュメント、DB 可視性、チケットのメタデータ）だった。真似る点：アナリストとしての Devin は第一級の使い道——ツールを買う前に「誰も分類したことがない山」に向けてみる。注意点：ボトルネックはモデルの質ではなくコンテキストの選び方。</p>
+<p><strong>Ryan Carson のワンマン艦隊。</strong> Untangle のソロファウンダーは月 ~$20k で ~15 台の Devin エージェントを同時稼働——統制はダッシュボードではなくフォルダシステム + 紙の P0 リスト。その規模で本当のボトルネックはエージェントのスループットではなく<em>彼の</em>注意力だから。運用を支える 2 つの playbook：「Watchdog」が全法律事務所アカウントを監視し一人でカスタマーサクセスを担い、「LAN PR」が ~40 PR/日を締める——レビューループ + ビデオウォークスルー + 自動マージ、QA レビュアーなし。真似る点：スケールの単位は「面ごとの命名済み playbook」であってエージェント数ではない。注意点：ローカルエージェントはほぼ卒業——長いループはクラウド担当。残した例外は Codex での厳密スコープの設計書ビルドだけ。</p>
 <h2>検証チェックリスト</h2>
 <ul>
 <li>[ ] 自スタックに最も近いレポートを 1 つ選び、蒸留版ではなく原文を読み直した——数値は文脈の中でも成立するか？</li>
@@ -185,6 +192,10 @@
 <li><a href="https://dev.to/dextralabs/devin-ai-vs-claude-code-vs-cursor-agent-which-one-actually-ships-production-code-benchmarks-3mi2">Dextra — Devin vs Claude Code vs Cursor Agent 対決</a></li>
 <li><a href="https://qiita.com/FAL-coffee/items/be4d59093dd2bb06fb69">FAL-coffee — Devin を導入したチームが最初に読む記事</a></li>
 <li><a href="https://zenn.dev/mei999/articles/7d6132f1ca36b6">mei999 — Devin を使い倒した：整理・モダナイズ・自動化</a></li>
+<li><a href="https://www.lennysnewsletter.com/p/i-spent-20000-on-devin-in-a-month">Lenny's Newsletter — Ryan Carson：月 $20,000 を Devin に</a></li>
+<li><a href="https://news.ycombinator.com/item?id=50538303">HN — ハーバード研究：エージェントはボトルネックをコードレビューへ移した</a></li>
+<li><a href="https://zhuanlan.zhihu.com/p/2025994849590026406">知乎 — AI software engineer 如何接管工作区：Devin、SWE-agent 与 OpenHands</a>（中国語）—— 最も明晰な中国語のアーキテクチャ分析：ACI 設計、サンドボックス vs 開発者同域の 2 路線、3 つの真のボトルネック</li>
+<li><a href="https://juejin.cn/post/7671231304077361203">掘金 — AI 编码 Agent 90 天落地清单</a>（中国語）—— 正しい CI ゲート：AI 生成コードに独立したセキュリティスキャン、検出とスキャンを 2 段階に分離、混成スタック運用</li>
 </ul>
 <nav class="guide-pager"><a class="pg-prev" href="enterprise-playbook.html"><span class="pg-dir">← Previous</span><span class="pg-t">ガイド 7 — エンタープライズ導入パターン</span></a></nav>
 </article>

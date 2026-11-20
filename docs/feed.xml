@@ -4,7 +4,14 @@
   <title>Built with Devin — registry updates</title>
   <link>https://till3005.github.io/built-with-devin/</link>
   <description>New entries indexed in the built-with-devin registry.</description>
-  <lastBuildDate>Fri, 20 Nov 2026 07:35:30 +0000</lastBuildDate>
+  <lastBuildDate>Fri, 20 Nov 2026 08:34:25 +0000</lastBuildDate>
+  <item>
+    <title>Indexed: Philips</title>
+    <link>https://till3005.github.io/built-with-devin/#enterprise</link>
+    <guid isPermaLink="false">enterprise:Philips</guid>
+    <pubDate>Fri, 20 Nov 2026 00:00:00 +0000</pubDate>
+    <description>Code Scans early tester — Digital Computational Pathology, Enterprise Informatics</description>
+  </item>
   <item>
     <title>Indexed: Android Bot</title>
     <link>https://till3005.github.io/built-with-devin/#deployments</link>
@@ -172,13 +179,6 @@
     <guid isPermaLink="false">enterprise:EBANX</guid>
     <pubDate>Thu, 19 Nov 2026 00:00:00 +0000</pubDate>
     <description>Devin as primary author</description>
-  </item>
-  <item>
-    <title>Indexed: Gumroad</title>
-    <link>https://till3005.github.io/built-with-devin/#enterprise</link>
-    <guid isPermaLink="false">enterprise:Gumroad</guid>
-    <pubDate>Thu, 19 Nov 2026 00:00:00 +0000</pubDate>
-    <description>Devin on the core repo</description>
   </item>
 </channel>
 </rss>
