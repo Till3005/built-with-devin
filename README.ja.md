@@ -323,6 +323,9 @@ Devin *で*作られたものではなく、Devin の*ために*コミュニテ�
 - **[Agents In Use](https://agentsinuse.com)** —— Devin エントリを含む実際のエージェント使用例ディレクトリ。
 - **[BitsExplorer —— Built with Devin](https://bitsexplorer.com/built-with/devin)** —— Devin の commit trailer で検証された 480 以上の公開プロジェクト（自己申告ではなく証拠）。
 - **[The New Stack](https://thenewstack.io/cognition-devin-bots-management/)** ——「エンジニアは 44 日中 22 日、自分の AI にメッセージを送らなかった。それでも Android アプリは作られた。」Android Bot デプロイの報道（11/19）。
+- **[I Tested SWE-2 in Devin on 24 Coding Prompts](https://www.youtube.com/watch?v=RfWpWWR5YHk)** —— Devin Desktop 内の SWE-2 を 24 題で独立ベンチ：max/high 推論ティア、「無料だから遅い」というトレードオフ、リーダーボードでの順位。
+- **[Vibe Coded Projects —— Devin インデックス](https://vibedprojects.com/ai-tools/devin)** —— コミット trailer と作者クレジットで裏付けされた 373 件の Devin 製アプリ/ツール/サイト——「実際の Devin 産物」閲覧プール。
+- **[Wes Roth —— Devin リリース再考](https://exa.ai/library/podcast/05zhn6b2hzs/episode/m7fz71g9mk6)** —— 2024 年の「Debunking Devin」騒動と実際に出荷されたものを対比するポッドキャスト（11/13）。
 - **[Dataconomy 中文](https://cn.dataconomy.com/2026/11/18/cognition-%e6%8e%a8%e5%87%ba-devin-bots-%e6%9d%a5%e7%ae%a1%e7%90%86-ai-%e7%bc%96%e7%a8%8b%e5%9b%a2%e9%98%9f/)** —— Devin Bots ローンチの中国語報道（11/18）。
 - **[Fortune —— Devin Bots ローンチ独占](https://fortune.com/2026/11/17/exclusive-cognition-bets-on-devin-bots-coding-agents-in-challenge-to-anthropics-duet-and-openais-dots/)** —— Scott Wu インタビュー：OpenAI Dots・Anthropic Duet と対抗する Bots；Poke 買収技術を内包（11/17）。
 - **[AlphaSignal —— Bots の数値](https://alphasignal.ai/news/cognition-s-devin-bots-now-run-parallel-coding-sessions-hitting-2-000-pull)** —— メッセージあたり 4.5 倍のマージ PR、ピーク 50→~2,000 PR/週。「ベータの数字には分母が必要」と冷静な注意書きつき。

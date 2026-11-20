@@ -323,6 +323,9 @@ flowchart LR
 - **[Agents In Use](https://agentsinuse.com)** —— 真实 agent 用例目录，含 Devin 条目。
 - **[BitsExplorer —— Built with Devin](https://bitsexplorer.com/built-with/devin)** —— 480+ 个由 Devin commit trailer 实证的公开项目（证据，而非自述）。
 - **[The New Stack](https://thenewstack.io/cognition-devin-bots-management/)** ——「一位工程师 44 天里有 22 天没跟他的 AI 说话，它照样把 Android 应用造了出来。」Android Bot 部署的媒体报道（11/19）。
+- **[I Tested SWE-2 in Devin on 24 Coding Prompts](https://www.youtube.com/watch?v=RfWpWWR5YHk)** —— 独立 24 题实测 SWE-2（Devin Desktop 内）：max/high 推理档、「慢是因为免费」的取舍，以及它在他榜单上的落位。
+- **[Vibe Coded Projects —— Devin 索引](https://vibedprojects.com/ai-tools/devin)** —— 373 个靠 commit trailer 和作者认领坐实的 Devin 出品应用/工具/站点——看「真实的 Devin 产物长什么样」的浏览池。
+- **[Wes Roth —— 重看 Devin 的发布](https://exa.ai/library/podcast/05zhn6b2hzs/episode/m7fz71g9mk6)** —— 拿 2024 年「Debunking Devin」旧账对照如今真实出货的播客回评（11/13）。
 - **[Dataconomy 中文](https://cn.dataconomy.com/2026/11/18/cognition-%e6%8e%a8%e5%87%ba-devin-bots-%e6%9d%a5%e7%ae%a1%e7%90%86-ai-%e7%bc%96%e7%a8%8b%e5%9b%a2%e9%98%9f/)** —— Devin Bots 发布的中文报道（11/18）。
 - **[Fortune —— Devin Bots 发布独家](https://fortune.com/2026/11/17/exclusive-cognition-bets-on-devin-bots-coding-agents-in-challenge-to-anthropics-duet-and-openais-dots/)** —— Scott Wu 专访：Bots 对标 OpenAI Dots 与 Anthropic Duet；内含 Poke 收购的技术（11/17）。
 - **[AlphaSignal —— Bots 的数字](https://alphasignal.ai/news/cognition-s-devin-bots-now-run-parallel-coding-sessions-hitting-2-000-pull)** —— 每条消息 4.5× 合并 PR、峰值 50→~2,000 PR/周，附冷静的「beta 数字需要分母」提醒。
