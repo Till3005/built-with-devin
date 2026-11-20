@@ -12,7 +12,7 @@
 <link rel="alternate" hreflang="zh" href="https://till3005.github.io/built-with-devin/guides/zh/ja/bots-203-multi-bot-org.html">
 <link rel="alternate" hreflang="x-default" href="https://till3005.github.io/built-with-devin/guides/ja/bots-203-multi-bot-org.html">
 <link rel="alternate" type="application/rss+xml" title="built-with-devin feed" href="../../feed.xml">
-<script type="application/ld+json">{"@context": "https://schema.org", "@type": "TechArticle", "headline": "ガイド 4 — マルチ Bot 組織", "description": "事業部門全体を運営する Bot 階層——スペシャリスト Bot に委任するオーケストレーター 1 体と、日次スレッド 1 本で決裁する人間 1 人。", "inLanguage": "ja", "url": "https://till3005.github.io/built-with-devin/guides/ja/bots-203-multi-bot-org.html", "isPartOf": {"@type": "Course", "name": "build-with-devin", "url": "https://till3005.github.io/built-with-devin/guides/"}, "dateModified": "2026-11-19"}</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "TechArticle", "headline": "ガイド 4 — マルチ Bot 組織", "description": "事業部門全体を運営する Bot 階層——スペシャリスト Bot に委任するオーケストレーター 1 体と、日次スレッド 1 本で決裁する人間 1 人。", "inLanguage": "ja", "url": "https://till3005.github.io/built-with-devin/guides/ja/bots-203-multi-bot-org.html", "isPartOf": {"@type": "Course", "name": "build-with-devin", "url": "https://till3005.github.io/built-with-devin/guides/"}, "dateModified": "2026-11-20"}</script>
 <link rel="icon" href="../../assets/brand/Devin_Symbol.svg" type="image/svg+xml">
 <link rel="stylesheet" href="../../assets/site.css">
 <link rel="stylesheet" href="../../assets/guides.css">
@@ -45,7 +45,7 @@
 <main>
 <article class="guide wrap" id="guide">
   <p class="guide-crumb"><a href="index.html">← ガイド</a> · <a href="../bots-203-multi-bot-org.html">English</a> · <a href="../pt/bots-203-multi-bot-org.html">Português</a> · <a href="../zh/bots-203-multi-bot-org.html">中文</a></p>
-<p class="guide-meta">更新 2026-11-19</p>
+<p class="guide-meta">更新 2026-11-20</p>
 <details class="toc" open><summary>このページの目次</summary><ol><li class="d2"><a href="#パターン">パターン</a></li><li class="d2"><a href="#前提条件">前提条件</a></li><li class="d2"><a href="#ステップ-1-まず組織図を設計する">ステップ 1 — まず組織図を設計する</a></li><li class="d2"><a href="#ステップ-2-スペシャリストを作成する">ステップ 2 — スペシャリストを作成する</a></li><li class="d2"><a href="#ステップ-3-grant-を配線する">ステップ 3 — grant を配線する</a></li><li class="d2"><a href="#ステップ-4-集約スレッド">ステップ 4 — 集約スレッド</a></li><li class="d2"><a href="#ステップ-5-ケイデンス-組織の心拍">ステップ 5 — ケイデンス = 組織の心拍</a></li><li class="d2"><a href="#ステップ-6-bot-間プロトコル-botspeak">ステップ 6 — Bot 間プロトコル（BotSpeak）</a></li><li class="d2"><a href="#検証チェックリスト">検証チェックリスト</a></li><li class="d2"><a href="#落とし穴">落とし穴</a></li><li class="d2"><a href="#理解度チェック">理解度チェック</a></li><li class="d2"><a href="#出典">出典</a></li></ol></details>
 <h1>ガイド 4 — マルチ Bot 組織</h1>
 <p><strong>目標：</strong> 事業部門全体を運営する Bot 階層——スペシャリスト Bot に委任するオーケストレーター 1 体と、日次スレッド 1 本で決裁する人間 1 人。
@@ -192,15 +192,11 @@ replies as decisions and relay them.
 <li>[ ] オーケストレーターが集約決裁スレッドをスケジュール通り投稿する</li>
 <li>[ ] 絵文字で答えた決定が正しいスペシャリストに中継・解決された</li>
 <li>[ ] Bot 間ハンドオフがエンドツーエンドで完走した（発見 → 修正 → 検証 → 報告）</li>
-<li>
-<p>[ ] 今日の人間メッセージ総数 &lt; マージされた PR 数</p>
-</li>
-<li>
-<p><strong>セッション追跡が最初に破綻する。</strong> <a href="https://www.raijuna.com/blog/devin-100-day-challenge-day-1">100 Days of Devin</a> の実録では艦隊運用は「どの Bot がこの PR を出した？ どれが私を待っている？」で先に崩れ、セットアップだけで週クォータの約18%を消費した。初日から艦隊の可観測性を予算に入れる。</p>
-</li>
+<li>[ ] 今日の人間メッセージ総数 &lt; マージされた PR 数</li>
 </ul>
 <h2 id="落とし穴">落とし穴<a class="hlink" href="#落とし穴" aria-hidden="true">#</a></h2>
 <ul>
+<li><strong>セッション追跡が最初に破綻する。</strong> <a href="https://www.raijuna.com/blog/devin-100-day-challenge-day-1">100 Days of Devin</a> の実録では艦隊運用は「どの Bot がこの PR を出した？ どれが私を待っている？」で先に崩れ、セットアップだけで週クォータの約18%を消費した。初日から艦隊の可観測性を予算に入れる。</li>
 <li><strong>オーケストレーターの省略。</strong> N 体の Bot がそれぞれ DM してくるのは N 倍のノイズ。判断が 1 スレッドに漏斗されるときだけ組織は機能する。</li>
 <li><strong>曖昧な職務境界。</strong> 「Dev Bot」と「Fix Bot」は衝突する。境界は組織図に従う——QA は<em>検証</em>、Release は<em>出荷</em>、PM は<em>優先順位付け</em>。</li>
 <li><strong>過剰な grant。</strong> メッシュ型 grant（全員が全員に届く）はカオスの再現。オーケストレーター中心のハブ＆スポークに。</li>
