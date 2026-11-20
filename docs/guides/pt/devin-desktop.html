@@ -131,6 +131,7 @@
 <li><strong>"Not authorized to use the CLI"</strong> — contas com acesso ao Desktop mas sem acesso ao CLI batem nisso no sign-in do Devin Local (corrigido na v3.14.30825; atualize se aparecer).</li>
 <li><strong>Abas são estado da janela.</strong> Uma ação numa página de sessão só atua na própria aba — mas a <em>sessão</em> é compartilhada, então um segundo cliente anexando vê a mesma sessão viva, não uma cópia.</li>
 <li><strong>Máquinas gerenciadas:</strong> admins de enterprise controlam as configurações do Desktop via políticas de dispositivo (ex.: <code>DetectProxy</code> para o language server) — confira com o TI antes de depurar a rede sozinho.</li>
+<li><strong>"Archive" vs "Mark done".</strong> O menu "..." do Desktop (frame 4) ainda diz <em>Archive</em>, mas o webapp renomeou para <em>Mark done</em> (16/11): a sessão vai para a pasta Done mas continua rodando e visível aos demais assinantes — a barra lateral agora lista as sessões que você assina, então não "limpe" uma sessão da qual outros dependem. Relacionado: o novo <strong>Phonebook</strong> vincula as identidades de cada membro entre Devin/Slack/Teams/git/Jira/Linear.</li>
 </ul>
 <h2>Teste rápido</h2>
 <ol>
@@ -140,7 +141,8 @@
 </ol>
 <h2>Fontes</h2>
 <ul>
-<li><a href="https://docs.devin.ai/desktop/changelog">Changelog do Devin Desktop</a> — v3.13.4 (abas, sessões locais em background), v3.14 (Bots no Desktop)</li>
+<li><a href="https://docs.devin.ai/desktop/changelog">Changelog do Devin Desktop</a> — v3.13.4 (abas, sessões locais em background), v3.14 (Bots no Desktop, política <code>DetectProxy</code>)</li>
+<li><a href="https://docs.devin.ai/release-notes/2026">Release notes do Devin</a> — 16/11: <em>Mark done</em> substitui Archive, barra de assinaturas, Phonebook</li>
 <li><a href="https://docs.devin.ai/cli/changelog/stable">Changelog do Devin CLI</a> — v3000.13.4: <code>devin daemon</code>, <code>--process-model</code>, monitor de sessões</li>
 <li>Relacionado: <a href="devin-cli.html">Guia 12 — Devin CLI e extensibilidade</a> · <a href="bots-101-first-bot.html">Guia 1 — Seu primeiro Bot</a></li>
 </ul>

@@ -131,6 +131,7 @@
 <li><strong>"Not authorized to use the CLI"</strong> — accounts with Desktop access but no CLI access hit this on Devin Local sign-in (fixed in v3.14.30825; update if you see it).</li>
 <li><strong>Tabs are per-window state.</strong> An action in a session page only acts on its tab — but the <em>session</em> is shared, so a second client attaching sees the same live session, not a copy.</li>
 <li><strong>Managed machines:</strong> enterprise admins control Desktop settings via device policies (e.g. <code>DetectProxy</code> for the language server) — check with IT before debugging the network yourself.</li>
+<li><strong>"Archive" vs "Mark done".</strong> Desktop's "..." menu (frame 4) still says <em>Archive</em>, but the webapp renamed it <em>Mark done</em> (Nov 16): the session moves to your Done folder yet keeps running and stays visible to its other subscribers — the sidebar now lists sessions you're subscribed to, so don't "clean up" a session other people depend on. Related: a new <strong>Phonebook</strong> links each member's identities across Devin/Slack/Teams/git/Jira/Linear.</li>
 </ul>
 <h2>Knowledge check</h2>
 <ol>
@@ -140,7 +141,8 @@
 </ol>
 <h2>Sources</h2>
 <ul>
-<li><a href="https://docs.devin.ai/desktop/changelog">Devin Desktop changelog</a> — v3.13.4 (tabs, background local sessions), v3.14 (Bots in Desktop)</li>
+<li><a href="https://docs.devin.ai/desktop/changelog">Devin Desktop changelog</a> — v3.13.4 (tabs, background local sessions), v3.14 (Bots in Desktop, <code>DetectProxy</code> policy)</li>
+<li><a href="https://docs.devin.ai/release-notes/2026">Devin release notes</a> — Nov 16: <em>Mark done</em> replaces Archive, subscribers sidebar, Phonebook</li>
 <li><a href="https://docs.devin.ai/cli/changelog/stable">Devin CLI changelog</a> — v3000.13.4: <code>devin daemon</code>, <code>--process-model</code>, session monitor</li>
 <li>Related: <a href="devin-cli.html">Guide 12 — Devin CLI &amp; extensibility</a> · <a href="bots-101-first-bot.html">Guide 1 — Your first Bot</a></li>
 </ul>

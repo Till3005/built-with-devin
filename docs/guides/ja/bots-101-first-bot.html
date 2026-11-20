@@ -89,8 +89,9 @@
 <p>サイドバー → <strong>Bots</strong> → <em>Create new Bot</em> → テンプレートを選ぶか <em>Start from scratch</em> → 名前を付ける。</p>
 <p>新しい Bot は共有するまで自分専用。使用量は通常のセッションと同じくプランにカウントされる。</p>
 <blockquote>
-<p>ヒント：テンプレートには特定の職務（QA Engineer、Data Analyst など）向けの指示が同梱される。このリポジトリのガイドでは <em>Start from scratch</em> が正解——成果プロンプトは自分で書く。</p>
+<p>ヒント：<strong>Template library</strong>（サイドバー → Bots）には Cognition 製テンプレート——QA Engineer、Migration Engineer、Data Analyst など——と組織内で共有されたものが並ぶ。同じセットは公開 <a href="https://devin.ai/bots/templates">Bot marketplace</a> で未ログインでも見られる。このリポジトリのガイドでは引き続き <em>Start from scratch</em> が正解——成果プロンプトは自分で書く。</p>
 </blockquote>
+<p>テンプレートから作った Bot が得るのはプロンプト<strong>だけ</strong>——非公開で、connections・secrets・memory はゼロ。チャットで管轄（リポジトリ、プロジェクト、チャンネル）を伝え、新規 Bot と同様に connections を配線する。トリガー前提のテンプレートなら、最初の会話で Bot 側が設定を提案してくる。プロンプトは独立コピー——後のテンプレート変更は届かない。（<em>Add to a current Bot</em> は新規作成ではなく、既存 Bot にプロンプトを送る。）</p>
 <h2>ステップ 2 — 成果を割り当てる</h2>
 <p>最初のメッセージが Bot が受け取る最も重要な入力である。<em>タスク</em>ではなく<em>目標</em>を与える：</p>
 <pre><code class="language-text">You own the Android app now. Keep it at feature parity with iOS.
@@ -179,7 +180,7 @@ and any decision you need from me.
 <h2>共有する前に——アクセスと使用量</h2>
 <p>ローンチ記事が省略してドキュメントが明記していることが2つある：</p>
 <ul>
-<li><strong>プライベート Bot はあなたのリソースを黙って引き継ぐ。</strong> あなたが既に持つアクセスは、新しい確認プロンプトなしに grant として記録されうる——プライベート Bot はサンドボックスではない。共有前に Settings → Access を開き、任務に不要な grant を外す。会話や認証情報を見せずに方法だけ真似させたいなら、Bot ではなく<em>テンプレート</em>を共有する。</li>
+<li><strong>プライベート Bot はあなたのリソースを黙って引き継ぐ。</strong> あなたが既に持つアクセスは、新しい確認プロンプトなしに grant として記録されうる——プライベート Bot はサンドボックスではない。共有前に Settings → Access を開き、任務に不要な grant を外す。会話や認証情報を見せずに方法だけ真似させたいなら、Bot ではなく<em>テンプレート</em>を共有する：Bot のサイドバーメニュー → <em>Share as template</em>。名前・一文の説明・秘匿情報を除いたプロンプトを下書きしてくれる——組織の Template library（Teams/Enterprise）か公開リンク（Pro+）で公開。リンクは署名済みテンプレート全体を URL に埋め込む——編集も取り消しもできず誰でもプロンプト全文を読めるので、コピー前に内部名は外すこと。</li>
 <li><strong>Bot の使用量 = チャット + 起動した全セッション。</strong> Max：同梱クォータの後オンデマンド——Bot 専用の上限なし。Teams：自分のクォータの後チームクレジット。管理者が Bot 専用のオンデマンド上限を設定可能。Enterprise：別途割当がない限り作成者の上限に計上。チャット内の支出指示は設定済み上限ではない——Settings で設定し、文章で書かない。</li>
 </ul>
 <h2>ステップ 5 — 働く場所に置く</h2>

@@ -82,6 +82,7 @@
 </tr>
 </tbody>
 </table>
+<p>The daemon also rewrote multi-client semantics: a session open in another terminal or editor is no longer locked — a second client <em>joins</em> it, and every client sees its output and questions. <code>devin daemon start|stop|status</code> manages the process (it exits ~10 min after the last session and client leave); <code>--process-model daemon|in-process</code> picks per launch, <code>process_model</code> in <code>config.json</code> or <code>/config</code> sets the default. One recorded exception: in our Desktop v3.14.30825 run a second Desktop window still got a lock banner with <em>Force open</em> — join held CLI-side (Guide 17, frame 9).</p>
 <h2>The extensibility stack</h2>
 <p>This is where teams make the CLI <em>theirs</em> — same layering as Guide 9, applied locally:</p>
 <table>

@@ -196,6 +196,7 @@ Action:    Start session: &quot;Sweep yesterday's Sentry issues in
 <li>Teams 私有频道只在 @mention 时触发</li>
 <li>GitHub 触发器必须指定具体 repo</li>
 <li>automation 多了用 <strong>Terraform provider</strong> 声明式管理</li>
+<li>v3 的会话创建 API 接受 <code>memory_enabled: false</code>——派生会话（及其子会话）全程不开记忆，适合不希望跨运行携带学习上下文的 automation</li>
 </ul>
 <h2>实录演示 —— 真建、真触发、真验证一个 automation，录于 Devin Desktop v3.14（Pro 方案）</h2>
 <p>走 <em>Create with Devin</em> 路径端到端：用大白话描述一个每周 changelog 清扫 → 回答它的配置问题 → 批准生成的 automation → 手动触发 → 看着一份真报告落地。</p>

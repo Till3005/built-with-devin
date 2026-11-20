@@ -196,6 +196,7 @@ Action:    Start session: &quot;Sweep yesterday's Sentry issues in
 <li>Private Teams channels only fire on @mention</li>
 <li>A GitHub trigger must name a specific repo</li>
 <li>Manage automations declaratively with the <strong>Terraform provider</strong> if you're running many</li>
+<li>The v3 session-create API accepts <code>memory_enabled: false</code> — the spawned session (and its child sessions) runs with memory off, for automations that shouldn't carry learned context between runs</li>
 </ul>
 <h2>Walkthrough — an automation built, fired and verified on Devin Desktop v3.14 (Pro plan)</h2>
 <p>The <em>Create with Devin</em> path end-to-end: describe a weekly changelog sweep in plain language, answer its config questions, approve the generated automation, fire it manually — and watch a real report land.</p>

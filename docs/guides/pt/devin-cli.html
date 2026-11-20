@@ -82,6 +82,7 @@
 </tr>
 </tbody>
 </table>
+<p>O daemon também reescreveu a semântica multi-cliente: uma sessão aberta em outro terminal ou editor não fica mais travada — um segundo cliente <em>entra</em> nela e todos veem sua saída e suas perguntas. <code>devin daemon start|stop|status</code> gerencia o processo (ele sai ~10 min depois que a última sessão e o último cliente vão embora); <code>--process-model daemon|in-process</code> escolhe por execução, <code>process_model</code> no <code>config.json</code> ou <code>/config</code> define o padrão. Exceção registrada: na nossa gravação do Desktop v3.14.30825 uma segunda janela do Desktop ainda viu banner de lock + <em>Force open</em> — o join valeu no lado do CLI (Guia 17, frame 9).</p>
 <h2>O stack de extensibilidade</h2>
 <p>É aqui que equipes tornam o CLI <em>delas</em> — mesmo empilhamento do Guia 9, aplicado localmente:</p>
 <table>

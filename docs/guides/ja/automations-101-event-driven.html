@@ -196,6 +196,7 @@ Action:    Start session: &quot;Sweep yesterday's Sentry issues in
 <li>Teams のプライベートチャンネルは @メンションでのみ発火</li>
 <li>GitHub トリガーは特定リポジトリを指名する必要がある</li>
 <li>多数運用するなら <strong>Terraform provider</strong> で宣言的管理</li>
+<li>v3 のセッション作成 API は <code>memory_enabled: false</code> を受け付ける——起動されたセッション（とその子セッション）はメモリ無効で動く。実行間に学習コンテキストを持ち越したくない automation 向け</li>
 </ul>
 <h2>実録ウォークスルー — automation を実際に作成・発火・検証、Devin Desktop v3.14（Pro プラン）で収録</h2>
 <p><em>Create with Devin</em> 経路を端から端まで：毎週 changelog スイープを平易に記述 → 設定質問に回答 → 生成された automation を承認 → 手動発火 → 本物のレポートが届くまで。</p>

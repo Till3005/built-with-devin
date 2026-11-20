@@ -82,6 +82,7 @@
 </tr>
 </tbody>
 </table>
+<p>daemon 还重写了多客户端语义：在别的终端或编辑器里打开的会话不再被锁——第二个客户端是<em>加入</em>它，每个客户端都能看到输出和提问。<code>devin daemon start|stop|status</code> 管理进程（最后一个会话和客户端退出约 10 分钟后自动退出）；<code>--process-model daemon|in-process</code> 每次启动可选，<code>config.json</code> 或 <code>/config</code> 里的 <code>process_model</code> 设默认。一个实测例外：我们在 Desktop v3.14.30825 的录制中，第二个 Desktop 窗口仍看到锁定横幅 + <em>Force open</em>——join 语义在 CLI 侧成立（见第 17 篇第 9 帧）。</p>
 <h2>可扩展性栈</h2>
 <p>团队在这里把 CLI 变成<em>自己的</em>——和第 9 篇同样的分层，应用在本地：</p>
 <table>

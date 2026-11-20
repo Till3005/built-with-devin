@@ -89,8 +89,9 @@
 <p>Sidebar → <strong>Bots</strong> → <em>Create new Bot</em> → pick a template or <em>Start from scratch</em> → name it.</p>
 <p>A new Bot is private to you until you share it. Its usage counts against your plan like any session.</p>
 <blockquote>
-<p>Tip: a template ships with instructions for one job (QA Engineer, Data Analyst, …). <em>Start from scratch</em> is the right choice for the guides in this repo — you'll write the outcome prompt yourself.</p>
+<p>Tip: the <strong>Template library</strong> (sidebar → Bots) lists Cognition's templates — QA Engineer, Migration Engineer, Data Analyst, … — plus ones shared inside your org; the same set is browsable without sign-in on the public <a href="https://devin.ai/bots/templates">Bot marketplace</a>. <em>Start from scratch</em> is still the right choice for the guides in this repo — you'll write the outcome prompt yourself.</p>
 </blockquote>
+<p>A template-created Bot gets the prompt and <strong>nothing else</strong> — it's private, with no connections, secrets or memory. Tell it in chat what it owns (repo, project, channel), wire its connections like any new Bot, and if the template is meant to run on a trigger the Bot offers to set that up on first contact. It keeps its own copy of the prompt — later template edits don't reach it. (<em>Add to a current Bot</em> sends a template's prompt to a Bot you already have instead of creating a new one.)</p>
 <h2>Step 2 — Assign the outcome</h2>
 <p>The first message is the most important input a Bot ever gets. Give it a <em>goal</em>, not a task:</p>
 <pre><code class="language-text">You own the Android app now. Keep it at feature parity with iOS.
@@ -179,7 +180,7 @@ and any decision you need from me.
 <h2>Before you share it — access and usage</h2>
 <p>Two things the launch posts skip that the docs spell out:</p>
 <ul>
-<li><strong>A private Bot inherits your resources without asking.</strong> Access you already have can be recorded as grants with no new permission prompt — a private Bot is not a sandbox. Before sharing, open Settings → Access and strip grants the job doesn't need. If teammates should copy the method without seeing your conversation or credentials, share a <em>template</em>, not the Bot.</li>
+<li><strong>A private Bot inherits your resources without asking.</strong> Access you already have can be recorded as grants with no new permission prompt — a private Bot is not a sandbox. Before sharing, open Settings → Access and strip grants the job doesn't need. If teammates should copy the method without seeing your conversation or credentials, share a <em>template</em>, not the Bot — <em>Share as template</em> in the Bot's sidebar menu drafts a name, description and cleaned prompt, published to the org's Template library (Teams/Enterprise) or as a public link (Pro+). The link embeds the whole signed template in its URL — it can't be edited or revoked and anyone can read the prompt, so strip internal names before copying it.</li>
 <li><strong>A Bot's usage covers its chat plus every session it spawns.</strong> Max: draws your included quota then on-demand — no separate Bot cap. Teams: your quota then team credits, an admin can set a Bot-specific on-demand cap. Enterprise: counts against the creator's limit unless assigned its own. A spending instruction in chat is not a configured cap — set the limit in Settings, don't describe it in prose.</li>
 </ul>
 <h2>Step 5 — Put it where you work</h2>

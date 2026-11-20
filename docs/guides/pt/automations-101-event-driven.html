@@ -196,6 +196,7 @@ Action:    Start session: &quot;Sweep yesterday's Sentry issues in
 <li>Canais privados do Teams só disparam em @menção</li>
 <li>Um trigger de GitHub precisa nomear um repo específico</li>
 <li>Gerencie automações declarativamente com o <strong>provider Terraform</strong> se você roda muitas</li>
+<li>A API v3 de criação de sessão aceita <code>memory_enabled: false</code> — a sessão criada (e suas filhas) roda com memória desligada, para automações que não devem carregar contexto aprendido entre execuções</li>
 </ul>
 <h2>Passo a passo real — uma automação criada, disparada e verificada no Devin Desktop v3.14 (plano Pro)</h2>
 <p>O caminho <em>Create with Devin</em> de ponta a ponta: descrever uma varredura semanal de changelog em linguagem simples → responder às perguntas de configuração → aprovar a automação gerada → disparar manualmente → e ver um relatório real chegar.</p>

@@ -82,6 +82,7 @@
 </tr>
 </tbody>
 </table>
+<p>daemon はマルチクライアントの挙動も書き換えた：別のターミナルやエディタで開いているセッションはもはやロックされない——2 つ目のクライアントは<em>ジョイン</em>し、どのクライアントにも出力と質問が見える。<code>devin daemon start|stop|status</code> がプロセスを管理（最後のセッションとクライアントが離れて約 10 分で自動終了）。<code>--process-model daemon|in-process</code> が起動ごとの選択、<code>config.json</code> か <code>/config</code> の <code>process_model</code> が既定値。録画上の例外：Desktop v3.14.30825 では 2 台目の Desktop ウィンドウにロックバナー + <em>Force open</em> が出た——ジョインは CLI 側で成立（ガイド 17、フレーム 9）。</p>
 <h2>拡張性スタック</h2>
 <p>チームが CLI を<em>自分のもの</em>にする場所——ガイド 9 と同じ層構造のローカル版：</p>
 <table>

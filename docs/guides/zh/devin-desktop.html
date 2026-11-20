@@ -131,6 +131,7 @@
 <li><strong>"Not authorized to use the CLI"</strong> —— 有 Desktop 权限但没 CLI 权限的账号在 Devin Local 登录会撞这个错（v3.14.30825 已修；见到就升级）。</li>
 <li><strong>标签页是窗口级状态。</strong> 会话页面里的操作只作用于自己的标签——但<em>会话</em>是共享的，第二个客户端连上看到的是同一个活会话，不是副本。</li>
 <li><strong>受管机器：</strong> 企业管理员通过设备策略控制 Desktop 设置（如语言服务器的 <code>DetectProxy</code>）——网络出问题先问 IT，别自己瞎调。</li>
+<li><strong>"Archive" 与 "Mark done" 之别。</strong> Desktop 的 "..." 菜单（第 4 帧）仍写 <em>Archive</em>，但 webapp 已改名 <em>Mark done</em>（11 月 16 日）：会话进你的 Done 文件夹但继续运行，对其他订阅者仍可见——侧栏现在列出你订阅的会话，别把别人还依赖的会话「清理」掉。相关新增：<strong>Phonebook</strong> 把每位成员在 Devin/Slack/Teams/git/Jira/Linear 上的身份关联起来。</li>
 </ul>
 <h2>自测</h2>
 <ol>
@@ -140,7 +141,8 @@
 </ol>
 <h2>来源</h2>
 <ul>
-<li><a href="https://docs.devin.ai/desktop/changelog">Devin Desktop changelog</a> —— v3.13.4（标签页、后台本地会话）、v3.14（Bots 进 Desktop）</li>
+<li><a href="https://docs.devin.ai/desktop/changelog">Devin Desktop changelog</a> —— v3.13.4（标签页、后台本地会话）、v3.14（Bots 进 Desktop、<code>DetectProxy</code> 策略）</li>
+<li><a href="https://docs.devin.ai/release-notes/2026">Devin release notes</a> —— 11 月 16 日：<em>Mark done</em> 取代 Archive、订阅侧栏、Phonebook</li>
 <li><a href="https://docs.devin.ai/cli/changelog/stable">Devin CLI changelog</a> —— v3000.13.4：<code>devin daemon</code>、<code>--process-model</code>、会话监视器</li>
 <li>相关：<a href="devin-cli.html">指南 12 — Devin CLI 与可扩展性</a> · <a href="bots-101-first-bot.html">指南 1 — 你的第一个 Bot</a></li>
 </ul>
