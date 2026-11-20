@@ -12,7 +12,7 @@
 <link rel="alternate" hreflang="zh" href="https://till3005.github.io/built-with-devin/guides/zh/migrations-at-scale.html">
 <link rel="alternate" hreflang="x-default" href="https://till3005.github.io/built-with-devin/guides/migrations-at-scale.html">
 <link rel="alternate" type="application/rss+xml" title="built-with-devin feed" href="../feed.xml">
-<script type="application/ld+json">{"@context": "https://schema.org", "@type": "TechArticle", "headline": "Guide 11 — Migrations at scale", "description": "run a large migration language, framework, database, dependency, architecture as hundreds of small verified PRs instead of one heroic rewrite.", "inLanguage": "en", "url": "https://till3005.github.io/built-with-devin/guides/migrations-at-scale.html", "isPartOf": {"@type": "Course", "name": "build-with-devin", "url": "https://till3005.github.io/built-with-devin/guides/"}, "dateModified": "2026-11-19"}</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "TechArticle", "headline": "Guide 11 — Migrations at scale", "description": "run a large migration language, framework, database, dependency, architecture as hundreds of small verified PRs instead of one heroic rewrite.", "inLanguage": "en", "url": "https://till3005.github.io/built-with-devin/guides/migrations-at-scale.html", "isPartOf": {"@type": "Course", "name": "build-with-devin", "url": "https://till3005.github.io/built-with-devin/guides/"}, "dateModified": "2026-11-20"}</script>
 <link rel="icon" href="../assets/brand/Devin_Symbol.svg" type="image/svg+xml">
 <link rel="stylesheet" href="../assets/site.css">
 <link rel="stylesheet" href="../assets/guides.css">
@@ -45,8 +45,8 @@
 <main>
 <article class="guide wrap" id="guide">
   <p class="guide-crumb"><a href="index.html">← Guides</a> · <a href="ja/migrations-at-scale.html">日本語</a> · <a href="pt/migrations-at-scale.html">Português</a> · <a href="zh/migrations-at-scale.html">中文</a></p>
-<p class="guide-meta">Updated 2026-11-19</p>
-<details class="toc" open><summary>On this page</summary><ol><li class="d2"><a href="#the-official-playbook">The official playbook</a></li><li class="d2"><a href="#step-1-check-your-migration-qualifies">Step 1 — Check your migration qualifies</a></li><li class="d2"><a href="#step-2-slice">Step 2 — Slice</a></li><li class="d2"><a href="#step-3-write-the-transformation-as-a-skill">Step 3 — Write the transformation as a skill</a></li><li class="d2"><a href="#step-4-run-parallel-sessions">Step 4 — Run parallel sessions</a></li><li class="d2"><a href="#step-5-watch-the-error-rate-not-the-progress-bar">Step 5 — Watch the error rate, not the progress bar</a></li><li class="d2"><a href="#verify-it">Verify it</a></li><li class="d2"><a href="#pitfalls">Pitfalls</a></li><li class="d2"><a href="#knowledge-check">Knowledge check</a></li><li class="d2"><a href="#sources">Sources</a></li></ol></details>
+<p class="guide-meta">Updated 2026-11-20</p>
+<details class="toc" open><summary>On this page</summary><ol><li class="d2"><a href="#the-official-playbook">The official playbook</a></li><li class="d2"><a href="#step-1-check-your-migration-qualifies">Step 1 — Check your migration qualifies</a></li><li class="d2"><a href="#step-2-slice">Step 2 — Slice</a></li><li class="d2"><a href="#step-3-write-the-transformation-as-a-skill">Step 3 — Write the transformation as a skill</a></li><li class="d2"><a href="#step-4-run-parallel-sessions">Step 4 — Run parallel sessions</a></li><li class="d2"><a href="#step-5-watch-the-error-rate-not-the-progress-bar">Step 5 — Watch the error rate, not the progress bar</a></li><li class="d2"><a href="#verify-it">Verify it</a></li><li class="d2"><a href="#pitfalls">Pitfalls</a></li><li class="d2"><a href="#knowledge-check">Knowledge check</a></li><li class="d2"><a href="#walkthrough-the-migration-loop-run-serially-on-devin-cli-v3000-14-swe-2-flash-medium">Walkthrough — the migration loop run serially, on Devin CLI v3000.14 (swe-2-flash-medium)</a></li><li class="d2"><a href="#sources">Sources</a></li></ol></details>
 <h1>Guide 11 — Migrations at scale</h1>
 <p><strong>Goal:</strong> run a large migration (language, framework, database, dependency, architecture) as hundreds of small verified PRs instead of one heroic rewrite.
 <strong>Level:</strong> intermediate → advanced
@@ -142,6 +142,18 @@
 <li>Why does every slice need its own verification? <em>(Without per-slice proof, a 500-PR migration is 500 unverified diffs — the failure surface multiplies instead of dividing.)</em></li>
 <li>Nubank reported 8–12× efficiency — what made that figure credible rather than marketing? <em>(Published methodology: measured stage times before/after on real ETL pipelines, not a projection.)</em></li>
 </ol>
+<h2 id="walkthrough-the-migration-loop-run-serially-on-devin-cli-v3000-14-swe-2-flash-medium">Walkthrough — the migration loop run serially, on Devin CLI v3000.14 (swe-2-flash-medium)<a class="hlink" href="#walkthrough-the-migration-loop-run-serially-on-devin-cli-v3000-14-swe-2-flash-medium" aria-hidden="true">#</a></h2>
+<p>The scale part (hundreds of parallel sessions) needs cloud quota — the <em>loop</em> doesn't, so we ran it serially on the free tier. <code>migrate-demo</code>: four optparse CLIs (<code>greeter</code>, <code>calc</code>, <code>backup</code>, <code>report</code>), one behavior test per tool, and the transformation written as <code>.devin/skills/optparse-to-argparse/SKILL.md</code>. Prompt: "migrate as independent slices … run the test suite, and only move to the next tool when it's green."</p>
+<p><strong>Video (41 s, silent):</strong> baseline → skill invoked → 4 slices, suite green after each → zero <code>optparse</code> left.</p>
+<p><a href="{B}/walkthrough.mp4"><img alt="The full slice loop — each tool migrated, suite green after each, per-skill recipe summary" src="{B}/walkthrough-poster.webp" /></a></p>
+<p><img alt="1. Baseline — 4 optparse tools, 7 behavior tests green" src="{B}/step1-baseline.webp" />
+<em>1. Baseline: 4 tools on OptionParser, 7 tests, one skill recipe committed</em></p>
+<p><img alt="2. Skill auto-invoked from .devin/skills — then it reads every tool and the test file first" src="{B}/step2-skill-invoked.webp" />
+<em>2. <code>Invoked skill optparse-to-argparse</code> — the recipe drives the run</em></p>
+<p><img alt="3. The slice loop — &quot;Green. Now calc.py — it relies on rest for positional args, so parse_known_args preserves that shape.&quot;" src="{B}/step3-slice-loop.webp" />
+<em>3. Per-slice verify; it even caught that calc.py needs <code>parse_known_args</code> to keep positional operands</em></p>
+<p><img alt="4. Verified after /exit — 4 files migrated, +18/−18, no optparse references left, nothing committed" src="{B}/step4-verify-diff.webp" />
+<em>4. Four small verified diffs — the slice discipline, minus the parallel fleet</em></p>
 <h2 id="sources">Sources<a class="hlink" href="#sources" aria-hidden="true">#</a></h2>
 <ul>
 <li><a href="https://docs.devin.ai/use-cases/best-practices.html">Best Practices — docs.devin.ai</a></li>
