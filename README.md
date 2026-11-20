@@ -90,7 +90,7 @@ Other documented usage: preemptive issue triage on **Manim**, firmware work, a b
 
 ### Official template library
 
-Sixteen ready-made Bots on the [public marketplace](https://devin.ai/bots/templates), plus community templates like **SuperJennyStack**:
+Sixteen ready-made Bots on the [public marketplace](https://devin.ai/bots/templates) ([templates docs](https://docs.devin.ai/work-with-devin/bots/templates) — a template-created Bot starts with no connections, secrets or memory; "Share as template" publishes your own), plus community templates like **SuperJennyStack**:
 
 | Template | What it does |
 | --- | --- |
@@ -192,7 +192,7 @@ Published customer cases with hard numbers ([full index](https://devin.ai/custom
 | [Zeb](https://devin.ai/blog/devin-for-databricks-migrations) | NetSuite→Databricks delivery partner | A global investment-advisory client's 4-week migration delivered in **2.5 weeks**; a Fortune 500 energy company migrated a 142-object platform to Unity Catalog in **8 days** |
 | **Rox** | Living Evals — weekly Devin reads production traces, replays failures in a full copy, opens eval PRs | Eval suite covers **72% of real usage** vs 43–57% hand-written ([write-up](https://www.rox.com/articles/living-evals-an-eval-suite-that-grows-from-production), [thread](https://x.com/rox_ai/status/2110779380666617997)) |
 
-Also on the record: Citi (40,000-developer rollout, 30% tech-vendor spend cut), Mercedes-Benz, Cognizant and Infosys partnerships — see the [customer index](https://devin.ai/customers).
+Also on the record: Citi (40,000-developer rollout, 30% tech-vendor spend cut), Mercedes-Benz, Cognizant and Infosys partnerships, and the **McKinsey × Cognition alliance** (Nov 16 — McKinsey advises on project selection and baselines, Devin does the work; Cognition claims 6 of 8 US G-SIBs and 3 of 6 top US health insurers as customers, [announcement](https://devin.ai/blog/cognition-mckinsey-alliance)) — see the [customer index](https://devin.ai/customers).
 
 <p align="right"><a href="#readme">back to top</a></p>
 
@@ -299,7 +299,9 @@ Documented real-world usage.
 - **[Voices — ambassador directory](https://devincentral.com/voices)** — Unofficial map of ~190 Devin Ambassadors worldwide.
 - **[devin-cli.github.io](https://devin-cli.github.io)** — Community docs on what Devin's API, Slack, and Linear surfaces cover and how to automate them.
 - **[Agents In Use](https://agentsinuse.com)** — Directory of real agent use cases, including Devin entries.
-- **[BitsExplorer — Built with Devin](https://bitsexplorer.com/built-with/devin)** — 340+ public projects verified by Devin's commit trailer (evidence, not self-report).
+- **[BitsExplorer — Built with Devin](https://bitsexplorer.com/built-with/devin)** — 480+ public projects verified by Devin's commit trailer (evidence, not self-report).
+- **[The New Stack](https://thenewstack.io/cognition-devin-bots-management/)** — "An engineer didn't message his AI for 22 of 44 days. It built an Android app anyway." Reported coverage of the Android Bot deployment (Nov 19).
+- **[Dataconomy 中文](https://cn.dataconomy.com/2026/11/18/cognition-%e6%8e%a8%e5%87%ba-devin-bots-%e6%9d%a5%e7%ae%a1%e7%90%86-ai-%e7%bc%96%e7%a8%8b%e5%9b%a2%e9%98%9f/)** — Chinese-language coverage of the Devin Bots launch (Nov 18).
 - **[Vibe Coded Projects](https://vibedprojects.com/ai-tools/devin)** — 373 apps, tools and sites vibe-coded with Devin.
 - **[Devin 2nd Anniversary Meetup Japan](https://aid.connpass.com/event/412875/)** — Ambassador-run community event marking two years of public Devin ([announcement](https://x.com/kinopee_ai/status/2123019189325848847)).
 - **[Devin's Dinner](https://x.com/MattSchrage/status/2121016484155548124)** — Matt Schrage's invite-only NYC dinner series for founders and engineers working with Devin.
