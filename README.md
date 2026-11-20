@@ -13,7 +13,7 @@
 
 <sub>Curated by [@darega0mae](https://x.com/darega0mae) · Sister tutorials: [build-with-devin](https://github.com/Till3005/build-with-devin) · [Add your project](CONTRIBUTING.md)</sub>
 
-<sub>**14** documented Bot deployments · **43** enterprise case studies · **6** shipped products · **45** tools & integrations · **30** field reports</sub>
+<sub>**14** documented Bot deployments · **43** enterprise case studies · **6** shipped products · **47** tools & integrations · **30** field reports</sub>
 
 <sub>English · [简体中文](README.zh.md) · [日本語](README.ja.md) · [Português](README.pt.md)</sub>
 
@@ -265,6 +265,8 @@ Things the community builds *for* Devin rather than *with* it.
 - **[devin-assure](https://github.com/Icaro0310/devin-assure)** — Verification monorepo: `devin-qa-pack` audits session claims, `devin-evals` replays recorded sessions against rubric graders (the `dream` subgroup synthesizes sessions with known verdicts), `devin-metrics` tracks context/token peaks locally.
 - **[hermes-devin-acp](https://github.com/raffr85/hermes-devin-acp)** — Use your Devin subscription as a Hermes Agent model provider: drives `devin acp` under Hermes while keeping auth in the official CLI.
 - **[@yuiseki/devin-gyazo](https://github.com/yuiseki/devin-gyazo)** — Screenshot→Gyazo automation scripts so a Devin session can capture browser/terminal state and post visual proof mid-task (JP).
+- **[nvim-devin](https://github.com/wstewarttennes/nvim-devin)** — Neovim plugin for the Devin API: create sessions, send visual selections or whole files as messages, per-buffer replies.
+- **[ACP client ecosystem](https://agentclientprotocol.com/get-started/clients)** — `devin acp` runs inside every ACP-compatible editor: JetBrains and Zed natively, Neovim (CodeCompanion/agentic/avante/hermes), Emacs (agent-shell.el), Sublime Text, Qt Creator, Obsidian.
 
 <p align="right"><a href="#readme">back to top</a></p>
 

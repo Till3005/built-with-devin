@@ -13,7 +13,7 @@
 
 <sub>Curated by [@darega0mae](https://x.com/darega0mae) · 姉妹チュートリアル：[build-with-devin](https://github.com/Till3005/build-with-devin) · [プロジェクトを追加](CONTRIBUTING.md)</sub>
 
-<sub>**14** 件の実証済み Bot 導入 · **43** 件のエンタープライズ事例 · **6** 件の公開プロダクト · **45** 件のツール・統合 · **30** 件の実践レポート</sub>
+<sub>**14** 件の実証済み Bot 導入 · **43** 件のエンタープライズ事例 · **6** 件の公開プロダクト · **47** 件のツール・統合 · **30** 件の実践レポート</sub>
 
 <sub>[English](README.md) · [简体中文](README.zh.md) · 日本語 · [Português](README.pt.md)</sub>
 
@@ -265,6 +265,8 @@ Devin *で*作られたものではなく、Devin の*ために*コミュニテ�
 - **[devin-assure](https://github.com/Icaro0310/devin-assure)** —— 検証モノレポ：`devin-qa-pack` がセッションの主張を監査、`devin-evals` が記録済みセッションをルーブリックで再生採点（`dream` サブグループは判定既知の合成セッションを生成）、`devin-metrics` がコンテキスト/トークン山をローカル追跡。
 - **[hermes-devin-acp](https://github.com/raffr85/hermes-devin-acp)** —— Devin サブスクを Hermes Agent のモデルプロバイダーに：Hermes 配下で `devin acp` を駆動、認証は公式 CLI のまま。
 - **[@yuiseki/devin-gyazo](https://github.com/yuiseki/devin-gyazo)** —— スクリーンショット→Gyazo 自動化スクリプト：Devin セッションがタスク途中でブラウザ/ターミナルの画面を撮って視覚的証拠を投稿（JP）。
+- **[nvim-devin](https://github.com/wstewarttennes/nvim-devin)** —— Devin API 用 Neovim プラグイン：セッション作成、ビジュアル選択やファイル全体のメッセージ送信、バッファで応答表示。
+- **[ACP クライアントエコシステム](https://agentclientprotocol.com/get-started/clients)** —— `devin acp` は全 ACP 対応エディタで動く：JetBrains と Zed はネイティブ、Neovim（CodeCompanion/agentic/avante/hermes）、Emacs（agent-shell.el）、Sublime Text、Qt Creator、Obsidian。
 
 <p align="right"><a href="#readme">back to top</a></p>
 

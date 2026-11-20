@@ -13,7 +13,7 @@
 
 <sub>维护者 [@darega0mae](https://x.com/darega0mae) · 姊妹教程库：[build-with-devin](https://github.com/Till3005/build-with-devin) · [收录你的项目](CONTRIBUTING.md)</sub>
 
-<sub>**14** 个有据可查的 Bot 部署 · **43** 个企业案例 · **6** 个已发布产品 · **45** 个工具与集成 · **30** 篇实战报告</sub>
+<sub>**14** 个有据可查的 Bot 部署 · **43** 个企业案例 · **6** 个已发布产品 · **47** 个工具与集成 · **30** 篇实战报告</sub>
 
 <sub>[English](README.md) · 简体中文 · [日本語](README.ja.md) · [Português](README.pt.md)</sub>
 
@@ -265,6 +265,8 @@ flowchart LR
 - **[devin-assure](https://github.com/Icaro0310/devin-assure)** —— 验证单仓：`devin-qa-pack` 审计会话声明，`devin-evals` 拿评分细则回放已录会话（`dream` 子组合成已知结论的假会话），`devin-metrics` 本地追 context/token 峰值。
 - **[hermes-devin-acp](https://github.com/raffr85/hermes-devin-acp)** —— 把 Devin 订阅当 Hermes Agent 的模型供应商：在 Hermes 下驱动 `devin acp`，认证仍在官方 CLI 里。
 - **[@yuiseki/devin-gyazo](https://github.com/yuiseki/devin-gyazo)** —— 截图→Gyazo 自动化脚本：让 Devin 会话在任务中途抓浏览器/终端画面并发图留证（日）。
+- **[nvim-devin](https://github.com/wstewarttennes/nvim-devin)** —— Neovim 插件：建会话、把可视选区或整个文件发成消息、独立 buffer 看回复。
+- **[ACP 客户端生态](https://agentclientprotocol.com/get-started/clients)** —— `devin acp` 可跑在一切 ACP 编辑器里：JetBrains 和 Zed 原生，Neovim（CodeCompanion/agentic/avante/hermes）、Emacs（agent-shell.el）、Sublime Text、Qt Creator、Obsidian。
 
 <p align="right"><a href="#readme">back to top</a></p>
 
