@@ -346,7 +346,7 @@ Uso real documentado.
 ## Recursos oficiais
 
 - [Devin Community](https://devin.ai/community) — eventos, candidaturas de embaixador, apoio a eventos
-- [docs.devin.ai](https://docs.devin.ai) — documentação: [Bots](https://docs.devin.ai/work-with-devin/bots), [Automations](https://docs.devin.ai/product-guides/automations), [Devin CLI](https://docs.devin.ai/cli/index.md)
+- [docs.devin.ai](https://docs.devin.ai) — documentação: [Bots](https://docs.devin.ai/work-with-devin/bots), [Automations](https://docs.devin.ai/product-guides/automations), [Devin CLI](https://docs.devin.ai/cli/index.md), [Session Insights](https://docs.devin.ai/product-guides/session-insights) (dimensionamento XS–XL), [Skills e Plugins](https://docs.devin.ai/work-with-devin/skills) — destino da migração do Knowledge descontinuado
 - [Release notes](https://docs.devin.ai/release-notes/overview) · [Changelog do Devin Desktop](https://docs.devin.ai/desktop/changelog) · [Changelog do Devin CLI](https://docs.devin.ai/cli/changelog/stable) — o que saiu em cada release estável
 - [Galeria de casos de uso](https://docs.devin.ai/use-cases/gallery/index.md) — 40+ workflows documentados com prompts prontos; [boas práticas para fatiar trabalho](https://docs.devin.ai/use-cases/best-practices.md)
 - [devin.ai/brand](https://devin.ai/brand) — kit oficial de marca
