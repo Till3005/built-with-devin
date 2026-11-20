@@ -12,7 +12,7 @@
 <link rel="alternate" hreflang="zh" href="https://till3005.github.io/built-with-devin/guides/zh/ja/bot-outcome-prompts.html">
 <link rel="alternate" hreflang="x-default" href="https://till3005.github.io/built-with-devin/guides/ja/bot-outcome-prompts.html">
 <link rel="alternate" type="application/rss+xml" title="built-with-devin feed" href="../../feed.xml">
-<script type="application/ld+json">{"@context": "https://schema.org", "@type": "TechArticle", "headline": "Bot 成果プロンプト、解剖", "description": "文書化された導入が実際にやったように成果プロンプトを書く——タスクリストではなく領域の所有。", "inLanguage": "ja", "url": "https://till3005.github.io/built-with-devin/guides/ja/bot-outcome-prompts.html", "isPartOf": {"@type": "Course", "name": "build-with-devin", "url": "https://till3005.github.io/built-with-devin/guides/"}, "dateModified": "2026-11-19"}</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "TechArticle", "headline": "Bot 成果プロンプト、解剖", "description": "文書化された導入が実際にやったように成果プロンプトを書く——タスクリストではなく領域の所有。", "inLanguage": "ja", "url": "https://till3005.github.io/built-with-devin/guides/ja/bot-outcome-prompts.html", "isPartOf": {"@type": "Course", "name": "build-with-devin", "url": "https://till3005.github.io/built-with-devin/guides/"}, "dateModified": "2026-11-20"}</script>
 <link rel="icon" href="../../assets/brand/Devin_Symbol.svg" type="image/svg+xml">
 <link rel="stylesheet" href="../../assets/site.css">
 <link rel="stylesheet" href="../../assets/guides.css">
@@ -45,8 +45,8 @@
 <main>
 <article class="guide wrap" id="guide">
   <p class="guide-crumb"><a href="index.html">← ガイド</a> · <a href="../bot-outcome-prompts.html">English</a> · <a href="../pt/bot-outcome-prompts.html">Português</a> · <a href="../zh/bot-outcome-prompts.html">中文</a></p>
-<p class="guide-meta">更新 2026-11-19</p>
-<details class="toc" open><summary>このページの目次</summary><ol><li class="d2"><a href="#模範例">模範例</a></li><li class="d2"><a href="#機能する成果プロンプトの構造">機能する成果プロンプトの構造</a></li><li class="d2"><a href="#公式テンプレートマーケットプレイスのパターン">公式テンプレートマーケットプレイスのパターン</a></li><li class="d2"><a href="#マルチ-bot-組織-権限を与えるプロンプト">マルチ Bot 組織：権限を与えるプロンプト</a></li><li class="d2"><a href="#アンチパターン">アンチパターン</a></li><li class="d2"><a href="#あなたのものを起草-3-行テスト">あなたのものを起草——3 行テスト</a></li><li class="d2"><a href="#検証チェックリスト">検証チェックリスト</a></li><li class="d2"><a href="#落とし穴">落とし穴</a></li><li class="d2"><a href="#理解度チェック">理解度チェック</a></li><li class="d2"><a href="#出典">出典</a></li></ol></details>
+<p class="guide-meta">更新 2026-11-20</p>
+<details class="toc" open><summary>このページの目次</summary><ol><li class="d2"><a href="#模範例">模範例</a></li><li class="d2"><a href="#機能する成果プロンプトの構造">機能する成果プロンプトの構造</a></li><li class="d2"><a href="#公式テンプレートマーケットプレイスのパターン">公式テンプレートマーケットプレイスのパターン</a></li><li class="d2"><a href="#マルチ-bot-組織-権限を与えるプロンプト">マルチ Bot 組織：権限を与えるプロンプト</a></li><li class="d2"><a href="#アンチパターン">アンチパターン</a></li><li class="d2"><a href="#あなたのものを起草-3-行テスト">あなたのものを起草——3 行テスト</a></li><li class="d2"><a href="#検証チェックリスト">検証チェックリスト</a></li><li class="d2"><a href="#落とし穴">落とし穴</a></li><li class="d2"><a href="#理解度チェック">理解度チェック</a></li><li class="d2"><a href="#実録-outcome-プロンプト-vs-タスク-プロンプト-devin-cli-v3000-14-swe-2-flash-medium-で実演">実録 —— outcome プロンプト vs タスク プロンプト、Devin CLI v3000.14（swe-2-flash-medium）で実演</a></li><li class="d2"><a href="#出典">出典</a></li></ol></details>
 <h1>Bot 成果プロンプト、解剖</h1>
 <p><strong>目標：</strong> 文書化された導入が実際にやったように成果プロンプトを書く——タスクリストではなく領域の所有。
 <strong>レベル：</strong> 中級 · <strong>所要時間：</strong> 草案 20 分、調整に 1 週間</p>
@@ -131,6 +131,26 @@
 <li>"make the CI fast" の何が悪いか？<em>（外部から検証不能——閾値がない。"CI under 8 minutes" は検証可能）</em></li>
 <li>"text me if tests fail" は 3 問のどれに答えているか？<em>（恒常の振る舞い——状態に対し Bot が何をするかは言うが、領域も目標も言わない）</em></li>
 </ol>
+<h2 id="実録-outcome-プロンプト-vs-タスク-プロンプト-devin-cli-v3000-14-swe-2-flash-medium-で実演">実録 —— outcome プロンプト vs タスク プロンプト、Devin CLI v3000.14（swe-2-flash-medium）で実演<a class="hlink" href="#実録-outcome-プロンプト-vs-タスク-プロンプト-devin-cli-v3000-14-swe-2-flash-medium-で実演" aria-hidden="true">#</a></h2>
+<p>Bot には Max または Teams プランが必要——しかしこのガイドが教えるプロンプトの仕組みは surface に依存しないため、無料の SWE-2 CLI 枠で収録。同じリポジトリ（<code>orders.py</code>、ベースラインはテスト 2 件のみ）、同一のコピーを 2 つ用意し、それぞれに 1 つずつプロンプトを投入：</p>
+<ul>
+<li><strong>タスク型：</strong> 「apply_discount('SAVE10') が 90.0 を返すテストと total([]) が 0 を返すテストを追加……」</li>
+<li><strong>outcome 型：</strong> 「orders.py のテストカバレッジをあなたの担当領域とする。良い状態：total・apply_discount・shipping_fee の全分岐にテストがあり、python3 -m unittest -v が全緑。」</li>
+</ul>
+<p><strong>動画（64 秒・無音）：</strong> ベースライン → タスク実行 → +6 行 → outcome 実行 → 自ら分解したカバレッジマップ → +37 行。</p>
+<p><a href="{B}/walkthrough.mp4"><img alt="outcome 実行のレポート——13 テスト全緑、分岐カバレッジはエージェント自身が列挙" src="{B}/walkthrough-poster.webp" /></a></p>
+<p><img alt="1. ベースラインにタスク型プロンプト——テスト 2 件、項目を列挙するだけ" src="{B}/step1-task-prompt.webp" />
+<em>1. タスク型プロンプト——エージェントに渡したのは買い物リスト</em></p>
+<p><img alt="2. タスク実行完了——指定の 2 テストだけ追加、4 件全緑、「Nothing committed」、その後停止" src="{B}/step2-task-done.webp" />
+<em>2. タスク型：リストを終えたら停止——オーナーではなくセッション</em></p>
+<p><img alt="3. 同一コピーに outcome 型プロンプト——役割・担当面・検証可能な状態。項目リストなし" src="{B}/step3-outcome-prompt.webp" />
+<em>3. outcome 型：役割 + 境界ある担当面 + 「良い状態」の定義——チェックリストなし</em></p>
+<p><img alt="4. outcome プロンプトが生んだ diff——全分岐をエージェントが自分で列挙" src="{B}/step4-outcome-diff.webp" />
+<em>4. どのテストを書くか教えていない——+39 行、分岐はすべて自己列挙</em></p>
+<p><img alt="5. レポートは「完了」ではなく「状態」——「All 13 tests pass. Branch coverage: …」" src="{B}/step5-coverage-report.webp" />
+<em>5. 「良い状態」の定義に照らして検証し、カバレッジマップを報告</em></p>
+<p><img alt="6. 並べて比較——タスク型 +6 行、outcome 型 +37 行。同じモデル・同じリポジトリ" src="{B}/step6-side-by-side.webp" />
+<em>6. 同モデル・同リポジトリ、違いはプロンプトの形だけ：+6 対 +37、テスト 4 対 13</em></p>
 <h2 id="出典">出典<a class="hlink" href="#出典" aria-hidden="true">#</a></h2>
 <ul>
 <li><a href="https://devin.ai/blog/introducing-devin-bots">Introducing Devin Bots</a> · <a href="https://docs.devin.ai/work-with-devin/bots">Bots ドキュメント</a> · <a href="https://devin.ai/bots/templates">テンプレートマーケットプレイス</a></li>
