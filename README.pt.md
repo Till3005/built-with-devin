@@ -13,7 +13,7 @@
 
 <sub>Curado por [@darega0mae](https://x.com/darega0mae) · Tutoriais irmãos: [build-with-devin](https://github.com/Till3005/build-with-devin) · [Adicione seu projeto](CONTRIBUTING.md)</sub>
 
-<sub>**14** implantações de Bot documentadas · **43** casos corporativos · **6** produtos lançados · **39** ferramentas e integrações · **30** relatos de campo</sub>
+<sub>**14** implantações de Bot documentadas · **43** casos corporativos · **6** produtos lançados · **42** ferramentas e integrações · **30** relatos de campo</sub>
 
 <sub>[English](README.md) · [简体中文](README.zh.md) · [日本語](README.ja.md) · Português</sub>
 
@@ -209,6 +209,9 @@ Colocando o Devin dentro de outros produtos e canais.
 - **[Buzz for Devin](https://github.com/fenner888/BuzzforDevin)** — Fork comunitário do Buzz da Block que adiciona o Devin CLI oficial (`devin acp`) como runtime nativo, para que cada pessoa traga seu próprio Devin autenticado para comunidades agent-native.
 - **[devin-sse-proxy](https://github.com/sotayamashita/devin-sse-proxy)** — Servidor MCP mínimo que permite ao Claude Desktop falar com o transport SSE do Devin repassando uma Personal API Key.
 - **[devin-flow](https://github.com/xlm/devin-flow)** — Editor visual de workflows Devin orientados a eventos sobre a API de Automations, com rastreamento de sessões (FastAPI + Vue 3).
+- **[OpenAB](https://github.com/openabdev/openab)** — Open Agent Broker: harness ACP leve em Rust que liga Discord/Slack (mais adapters gateway p/ Telegram, LINE, Feishu/Lark, Google Chat, WeCom, MS Teams) a qualquer CLI ACP — `devin acp` é backend de primeira classe.
+- **[Devin Orchestrator](https://github.com/huydx/devin)** — Backend Go que recebe webhooks do GitHub, inicia sessões Devin ou reviews de PR, e monitora resultados num dashboard de observabilidade; inclui stub local da API do Devin para desenvolvimento.
+- **[eventflow-devin-integration](https://github.com/Cognition-Partner-Workshops/eventflow-devin-integration)** — Referência de workshop parceiro: alerta Azure Monitor → webhook Azure Function → sessão de investigação Devin (Log Analytics via MCP) → PR de correção.
 
 <p align="right"><a href="#readme">back to top</a></p>
 

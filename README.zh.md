@@ -13,7 +13,7 @@
 
 <sub>维护者 [@darega0mae](https://x.com/darega0mae) · 姊妹教程库：[build-with-devin](https://github.com/Till3005/build-with-devin) · [收录你的项目](CONTRIBUTING.md)</sub>
 
-<sub>**14** 个有据可查的 Bot 部署 · **43** 个企业案例 · **6** 个已发布产品 · **39** 个工具与集成 · **30** 篇实战报告</sub>
+<sub>**14** 个有据可查的 Bot 部署 · **43** 个企业案例 · **6** 个已发布产品 · **42** 个工具与集成 · **30** 篇实战报告</sub>
 
 <sub>[English](README.md) · 简体中文 · [日本語](README.ja.md) · [Português](README.pt.md)</sub>
 
@@ -209,6 +209,9 @@ flowchart LR
 - **[Buzz for Devin](https://github.com/fenner888/BuzzforDevin)** —— Block 的 Buzz 社区 fork，把官方 Devin CLI（`devin acp`）加为原生 runtime，让每个人带着自己已认证的 Devin 进共享 agent 社区。
 - **[devin-sse-proxy](https://github.com/sotayamashita/devin-sse-proxy)** —— 极简 MCP server，让 Claude Desktop 在带 Personal API Key 的情况下与 Devin 的 SSE transport 对话。
 - **[devin-flow](https://github.com/xlm/devin-flow)** —— Automations API 上的事件驱动 Devin 工作流可视化编辑器，带 session 追踪（FastAPI + Vue 3）。
+- **[OpenAB](https://github.com/openabdev/openab)** —— Open Agent Broker：轻量 Rust ACP harness，把 Discord/Slack（另有 Telegram、LINE、飞书/Lark、Google Chat、企业微信、Teams 的 gateway adapter）桥到任意 ACP CLI——`devin acp` 是一等后端。
+- **[Devin Orchestrator](https://github.com/huydx/devin)** —— Go 后端：接 GitHub webhook → 起 Devin 会话或 PR 评审 → 可观测性看板；附带本地 Devin API stub 供开发用。
+- **[eventflow-devin-integration](https://github.com/Cognition-Partner-Workshops/eventflow-devin-integration)** —— 合作伙伴工坊参考架构：Azure Monitor 告警 → Azure Function webhook → Devin 调查会话（经 MCP 查 Log Analytics）→ 修复 PR。
 
 <p align="right"><a href="#readme">back to top</a></p>
 

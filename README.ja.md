@@ -13,7 +13,7 @@
 
 <sub>Curated by [@darega0mae](https://x.com/darega0mae) · 姉妹チュートリアル：[build-with-devin](https://github.com/Till3005/build-with-devin) · [プロジェクトを追加](CONTRIBUTING.md)</sub>
 
-<sub>**14** 件の実証済み Bot 導入 · **43** 件のエンタープライズ事例 · **6** 件の公開プロダクト · **39** 件のツール・統合 · **30** 件の実践レポート</sub>
+<sub>**14** 件の実証済み Bot 導入 · **43** 件のエンタープライズ事例 · **6** 件の公開プロダクト · **42** 件のツール・統合 · **30** 件の実践レポート</sub>
 
 <sub>[English](README.md) · [简体中文](README.zh.md) · 日本語 · [Português](README.pt.md)</sub>
 
@@ -209,6 +209,9 @@ flowchart LR
 - **[Buzz for Devin](https://github.com/fenner888/BuzzforDevin)** —— Block の Buzz のコミュニティフォーク。公式 Devin CLI（`devin acp`）をネイティブランタイムとして追加し、各自が認証済み Devin を持ち寄れるエージェントネイティブなコミュニティを実現。
 - **[devin-sse-proxy](https://github.com/sotayamashita/devin-sse-proxy)** —— Claude Desktop が Personal API Key を渡しつつ Devin の SSE transport と会話できる最小 MCP サーバー。
 - **[devin-flow](https://github.com/xlm/devin-flow)** —— Automations API 上のイベント駆動 Devin ワークフローのビジュアルエディタ。セッション追跡つき（FastAPI + Vue 3）。
+- **[OpenAB](https://github.com/openabdev/openab)** —— Open Agent Broker：軽量 Rust ACP ハーネス。Discord/Slack（+ Telegram、LINE、Feishu/Lark、Google Chat、WeCom、MS Teams のゲートウェイアダプタ）を任意の ACP CLI に橋渡し——`devin acp` が第一級バックエンド。
+- **[Devin Orchestrator](https://github.com/huydx/devin)** —— Go バックエンド：GitHub webhook を受けて Devin セッションや PR レビューを起動し、オブザーバビリティダッシュボードで監視。開発用ローカル Devin API スタブ付き。
+- **[eventflow-devin-integration](https://github.com/Cognition-Partner-Workshops/eventflow-devin-integration)** —— パートナーワークショップの参照構成：Azure Monitor アラート → Azure Function webhook → Devin 調査セッション（MCP 経由で Log Analytics）→ 修正 PR。
 
 <p align="right"><a href="#readme">back to top</a></p>
 

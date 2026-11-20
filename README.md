@@ -13,7 +13,7 @@
 
 <sub>Curated by [@darega0mae](https://x.com/darega0mae) · Sister tutorials: [build-with-devin](https://github.com/Till3005/build-with-devin) · [Add your project](CONTRIBUTING.md)</sub>
 
-<sub>**14** documented Bot deployments · **43** enterprise case studies · **6** shipped products · **39** tools & integrations · **30** field reports</sub>
+<sub>**14** documented Bot deployments · **43** enterprise case studies · **6** shipped products · **42** tools & integrations · **30** field reports</sub>
 
 <sub>English · [简体中文](README.zh.md) · [日本語](README.ja.md) · [Português](README.pt.md)</sub>
 
@@ -209,6 +209,9 @@ Putting Devin inside other products and channels.
 - **[Buzz for Devin](https://github.com/fenner888/BuzzforDevin)** — Community fork of Block's Buzz adding the official Devin CLI (`devin acp`) as a native runtime, so each person brings their own authenticated Devin into shared agent-native communities.
 - **[devin-sse-proxy](https://github.com/sotayamashita/devin-sse-proxy)** — Minimal MCP server letting Claude Desktop talk to Devin's SSE transport while passing a Personal API Key.
 - **[devin-flow](https://github.com/xlm/devin-flow)** — Visual editor for event-driven Devin workflows on the Automations API, with session tracking (FastAPI + Vue 3).
+- **[OpenAB](https://github.com/openabdev/openab)** — Open Agent Broker: a lightweight Rust ACP harness bridging Discord/Slack (plus gateway adapters for Telegram, LINE, Feishu/Lark, Google Chat, WeCom, MS Teams) to any ACP CLI — `devin acp` is a first-class backend.
+- **[Devin Orchestrator](https://github.com/huydx/devin)** — Go backend that receives GitHub webhooks, starts Devin sessions or PR reviews, monitors results on an observability dashboard; ships a local Devin API stub for development.
+- **[eventflow-devin-integration](https://github.com/Cognition-Partner-Workshops/eventflow-devin-integration)** — Partner-workshop reference: Azure Monitor alert → Azure Function webhook → Devin investigation session (Log Analytics via MCP) → fix PR.
 
 <p align="right"><a href="#readme">back to top</a></p>
 
