@@ -6,7 +6,7 @@
     "bot_deployments": 14,
     "bot_templates": 16,
     "products": 6,
-    "enterprise_cases": 42
+    "enterprise_cases": 43
   },
   "bot_deployments": [
     {
@@ -419,15 +419,15 @@
     },
     {
       "company": "Finch",
-      "deployment": "Feature + maintenance work",
-      "result": "3,000 PRs merged, ~20 engineer-months saved",
+      "deployment": "Slack→Linear intake → log/trace investigation → browser test → same-day PR",
+      "result": "3,000 PRs merged, ~20 engineer-months saved; before Devin, 20 requests/day meant 3–4 addressed — \"biggest unlock is capacity to parallelize\"",
       "sources": [
         {
           "text": "Finch",
           "url": "https://devin.ai/customers/finch"
         }
       ],
-      "updated_on": "2026-11-19"
+      "updated_on": "2026-11-20"
     },
     {
       "company": "Comarch",
@@ -479,27 +479,27 @@
     },
     {
       "company": "Eight Sleep",
-      "deployment": "Devin across the company",
-      "result": "8× more shipped",
+      "deployment": "Devin across the company incl. non-engineers",
+      "result": "8× more shipped; a support manager built an end-to-end pipeline+dashboard in <1h; profit-forecast model within 10% on monthly backtest after ~1 week of iterating",
       "sources": [
         {
           "text": "Eight Sleep",
           "url": "https://devin.ai/customers/eight-sleep"
         }
       ],
-      "updated_on": "2026-11-19"
+      "updated_on": "2026-11-20"
     },
     {
       "company": "Exa",
-      "deployment": "End-to-end shipping",
-      "result": "Production ships without engineers ever pulling code locally",
+      "deployment": "End-to-end shipping; repos made fully cloud-bootstrappable",
+      "result": "Production ships without engineers ever pulling code locally; a multi-week session rolled a test-system contract across ~30–40 PRs; newer engineers have never configured a local env",
       "sources": [
         {
           "text": "Exa",
           "url": "https://devin.ai/customers/exa"
         }
       ],
-      "updated_on": "2026-11-19"
+      "updated_on": "2026-11-20"
     },
     {
       "company": "RV Tech",
@@ -515,27 +515,27 @@
     },
     {
       "company": "Melius",
-      "deployment": "High-throughput small team",
-      "result": "~100 PRs/day",
+      "deployment": "Primary cloud-session interface; morning automation sweeps PRs stale >7d, fixes tests, tags a human",
+      "result": "~100 PRs/day; 8-person team \"functions like a team of 100\"",
       "sources": [
         {
           "text": "Melius",
           "url": "https://devin.ai/customers/melius"
         }
       ],
-      "updated_on": "2026-11-19"
+      "updated_on": "2026-11-20"
     },
     {
       "company": "Hamming",
-      "deployment": "Devin on the codebase",
-      "result": "25% of total code volume",
+      "deployment": "\"Devinable\" task framework — bounded tasks + clear specs + objective evals; codebase optimized for agents (functional > OOP, eval-driven)",
+      "result": "25% of total code volume, tied as top contributor with two human engineers",
       "sources": [
         {
           "text": "Hamming",
           "url": "https://devin.ai/customers/hamming"
         }
       ],
-      "updated_on": "2026-11-19"
+      "updated_on": "2026-11-20"
     },
     {
       "company": "Airbyte",
@@ -551,15 +551,15 @@
     },
     {
       "company": "Litera",
-      "deployment": "Regression testing",
-      "result": "Regression cycles cut 90%",
+      "deployment": "QE Evolution — specialized Devin agents embedded in scrum teams; \"AI composers\" role",
+      "result": "Regression cycles cut 90%; 5 products shipped in 3 weeks pre-ILTACON; 90+ active engineers in 30 days; ~250 engineers \"at the speed of a thousand\"",
       "sources": [
         {
           "text": "Litera",
           "url": "https://devin.ai/customers/litera"
         }
       ],
-      "updated_on": "2026-11-19"
+      "updated_on": "2026-11-20"
     },
     {
       "company": "Ramp",
@@ -615,15 +615,15 @@
     },
     {
       "company": "Crosby",
-      "deployment": "AI-native law firm",
-      "result": "20–40 bug reports/alerts get a first pass daily, ~5 min each; 12 engineers serve 50+ attorneys",
+      "deployment": "AI-native law firm; automation starts a session per Slack bug report + Sentry alert; lawyers' review feedback triaged/grouped by Devin",
+      "result": "20–40 bugs/alerts get first-pass investigation daily in ~5 min each; Sentry alert noise −50%; on-call stayed at 1 engineer while legal workforce ~5×'ed",
       "sources": [
         {
           "text": "Crosby",
           "url": "https://devin.ai/customers/crosby"
         }
       ],
-      "updated_on": "2026-11-19"
+      "updated_on": "2026-11-20"
     },
     {
       "company": "Endava",
@@ -639,15 +639,15 @@
     },
     {
       "company": "Tavrn",
-      "deployment": "HIPAA-constrained fleet",
-      "result": "8-person team ships like 50; 1,800+ PRs in 6 weeks, 6× output",
+      "deployment": "Fleet dispatched from Slack across eng/ops/CS/sales inside a HIPAA tenant (SSO, scoped access); daily automation investigates failed quality-judge cases",
+      "result": "8-person team ships like 50; 1,800+ PRs in 6 weeks (~80% merge of decided); 93% of merged code Devin-originated last month; alert→investigation median 35s; ~90% of alerts get full in-thread investigation",
       "sources": [
         {
           "text": "Tavrn",
           "url": "https://devin.ai/customers/tavrn"
         }
       ],
-      "updated_on": "2026-11-19"
+      "updated_on": "2026-11-20"
     },
     {
       "company": "Evinova",
@@ -868,6 +868,18 @@
         }
       ],
       "updated_on": "2026-11-20"
+    },
+    {
+      "company": "Cognition (internal)",
+      "deployment": "Software factory: self-driving PR loop (bug report→merge→monitoring→maintenance), pods + disposable hourly-rebuilt VMs w/ Docker-Compose mocks; agents given measurable jobs",
+      "result": "40× merged-PR throughput in a year on 2.7× headcount — >10× per-engineer productivity (Walden Yan, AI Engineer)",
+      "sources": [
+        {
+          "text": "Walden Yan, AI Engineer",
+          "url": "https://aietalks.com/talks/40x-more-merged-prs-with-2-7x-the-engineers"
+        }
+      ],
+      "updated_on": null
     }
   ],
   "source_checks": {

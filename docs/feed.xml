@@ -4,7 +4,63 @@
   <title>Built with Devin — registry updates</title>
   <link>https://till3005.github.io/built-with-devin/</link>
   <description>New entries indexed in the built-with-devin registry.</description>
-  <lastBuildDate>Fri, 20 Nov 2026 11:55:49 +0000</lastBuildDate>
+  <lastBuildDate>Fri, 20 Nov 2026 12:02:16 +0000</lastBuildDate>
+  <item>
+    <title>Indexed: Finch</title>
+    <link>https://till3005.github.io/built-with-devin/#enterprise</link>
+    <guid isPermaLink="false">enterprise:Finch</guid>
+    <pubDate>Fri, 20 Nov 2026 00:00:00 +0000</pubDate>
+    <description>Slack→Linear intake → log/trace investigation → browser test → same-day PR</description>
+  </item>
+  <item>
+    <title>Indexed: Eight Sleep</title>
+    <link>https://till3005.github.io/built-with-devin/#enterprise</link>
+    <guid isPermaLink="false">enterprise:Eight Sleep</guid>
+    <pubDate>Fri, 20 Nov 2026 00:00:00 +0000</pubDate>
+    <description>Devin across the company incl. non-engineers</description>
+  </item>
+  <item>
+    <title>Indexed: Exa</title>
+    <link>https://till3005.github.io/built-with-devin/#enterprise</link>
+    <guid isPermaLink="false">enterprise:Exa</guid>
+    <pubDate>Fri, 20 Nov 2026 00:00:00 +0000</pubDate>
+    <description>End-to-end shipping; repos made fully cloud-bootstrappable</description>
+  </item>
+  <item>
+    <title>Indexed: Melius</title>
+    <link>https://till3005.github.io/built-with-devin/#enterprise</link>
+    <guid isPermaLink="false">enterprise:Melius</guid>
+    <pubDate>Fri, 20 Nov 2026 00:00:00 +0000</pubDate>
+    <description>Primary cloud-session interface; morning automation sweeps PRs stale &gt;7d, fixes tests, tags a human</description>
+  </item>
+  <item>
+    <title>Indexed: Hamming</title>
+    <link>https://till3005.github.io/built-with-devin/#enterprise</link>
+    <guid isPermaLink="false">enterprise:Hamming</guid>
+    <pubDate>Fri, 20 Nov 2026 00:00:00 +0000</pubDate>
+    <description>"Devinable" task framework — bounded tasks + clear specs + objective evals; codebase optimized for agents (functional &gt; OOP, eval-driven)</description>
+  </item>
+  <item>
+    <title>Indexed: Litera</title>
+    <link>https://till3005.github.io/built-with-devin/#enterprise</link>
+    <guid isPermaLink="false">enterprise:Litera</guid>
+    <pubDate>Fri, 20 Nov 2026 00:00:00 +0000</pubDate>
+    <description>QE Evolution — specialized Devin agents embedded in scrum teams; "AI composers" role</description>
+  </item>
+  <item>
+    <title>Indexed: Crosby</title>
+    <link>https://till3005.github.io/built-with-devin/#enterprise</link>
+    <guid isPermaLink="false">enterprise:Crosby</guid>
+    <pubDate>Fri, 20 Nov 2026 00:00:00 +0000</pubDate>
+    <description>AI-native law firm; automation starts a session per Slack bug report + Sentry alert; lawyers' review feedback triaged/grouped by Devin</description>
+  </item>
+  <item>
+    <title>Indexed: Tavrn</title>
+    <link>https://till3005.github.io/built-with-devin/#enterprise</link>
+    <guid isPermaLink="false">enterprise:Tavrn</guid>
+    <pubDate>Fri, 20 Nov 2026 00:00:00 +0000</pubDate>
+    <description>Fleet dispatched from Slack across eng/ops/CS/sales inside a HIPAA tenant (SSO, scoped access); daily automation investigates failed quality-judge cases</description>
+  </item>
   <item>
     <title>Indexed: Philips</title>
     <link>https://till3005.github.io/built-with-devin/#enterprise</link>
@@ -123,62 +179,6 @@
     <guid isPermaLink="false">product:Courtyard's Quick</guid>
     <pubDate>Thu, 19 Nov 2026 00:00:00 +0000</pubDate>
     <description>Courtyard cloned Shopify's internal "Quick" static-site deployer: from a Slack link to a production service (Go, Cloud Run, Bazel, Terraform, SSO, git-backed) in ~21 hours, all written by Devin.</description>
-  </item>
-  <item>
-    <title>Indexed: Frontierfood</title>
-    <link>https://till3005.github.io/built-with-devin/#products</link>
-    <guid isPermaLink="false">product:Frontierfood</guid>
-    <pubDate>Thu, 19 Nov 2026 00:00:00 +0000</pubDate>
-    <description>Cognition engineer Samyok Nepal used Devin Voice to scrape Google reviews and map the Pareto frontier of food by location (post).</description>
-  </item>
-  <item>
-    <title>Indexed: Flappy Asher</title>
-    <link>https://till3005.github.io/built-with-devin/#products</link>
-    <guid isPermaLink="false">product:Flappy Asher</guid>
-    <pubDate>Thu, 19 Nov 2026 00:00:00 +0000</pubDate>
-    <description>Russell Kaplan (Cognition president) had Devin on a Mac VM turn baby photos into game sprites and ship the result — live in TestFlight (post).</description>
-  </item>
-  <item>
-    <title>Indexed: Try Devin vending machine</title>
-    <link>https://till3005.github.io/built-with-devin/#products</link>
-    <guid isPermaLink="false">product:Try Devin vending machine</guid>
-    <pubDate>Thu, 19 Nov 2026 00:00:00 +0000</pubDate>
-    <description>dabit3's event credit dispenser (Next.js + Convex + Clerk): attendees enter their email at an event URL and get a unique Devin credit code. devin-ai-integration[bot] is the repo's top contributor (266 commits); live at trydevin.ai.</description>
-  </item>
-  <item>
-    <title>Indexed: GymClass</title>
-    <link>https://till3005.github.io/built-with-devin/#products</link>
-    <guid isPermaLink="false">product:GymClass</guid>
-    <pubDate>Thu, 19 Nov 2026 00:00:00 +0000</pubDate>
-    <description>Horacio Herrera's booking and class-management system for a real martial-arts academy (TS/Bun/React/Hono/tRPC on Cloudflare): a month of features directed from his phone between meetings — including a full booking-architecture rewrite and a Vitest→Bun migration.</description>
-  </item>
-  <item>
-    <title>Indexed: Nubank</title>
-    <link>https://till3005.github.io/built-with-devin/#enterprise</link>
-    <guid isPermaLink="false">enterprise:Nubank</guid>
-    <pubDate>Thu, 19 Nov 2026 00:00:00 +0000</pubDate>
-    <description>Multi-million-line, 8-year-old ETL monolith → sub-modules</description>
-  </item>
-  <item>
-    <title>Indexed: Wayfair</title>
-    <link>https://till3005.github.io/built-with-devin/#enterprise</link>
-    <guid isPermaLink="false">enterprise:Wayfair</guid>
-    <pubDate>Thu, 19 Nov 2026 00:00:00 +0000</pubDate>
-    <description>Cloud agents across the org</description>
-  </item>
-  <item>
-    <title>Indexed: The Access Group</title>
-    <link>https://till3005.github.io/built-with-devin/#enterprise</link>
-    <guid isPermaLink="false">enterprise:The Access Group</guid>
-    <pubDate>Thu, 19 Nov 2026 00:00:00 +0000</pubDate>
-    <description>Devin across 250 products, 2,000+ engineers</description>
-  </item>
-  <item>
-    <title>Indexed: EBANX</title>
-    <link>https://till3005.github.io/built-with-devin/#enterprise</link>
-    <guid isPermaLink="false">enterprise:EBANX</guid>
-    <pubDate>Thu, 19 Nov 2026 00:00:00 +0000</pubDate>
-    <description>Devin as primary author</description>
   </item>
 </channel>
 </rss>

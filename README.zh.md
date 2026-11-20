@@ -13,7 +13,7 @@
 
 <sub>维护者 [@darega0mae](https://x.com/darega0mae) · 姊妹教程库：[build-with-devin](https://github.com/Till3005/build-with-devin) · [收录你的项目](CONTRIBUTING.md)</sub>
 
-<sub>**14** 个有据可查的 Bot 部署 · **42** 个企业案例 · **6** 个已发布产品 · **32** 个工具与集成 · **29** 篇实战报告</sub>
+<sub>**14** 个有据可查的 Bot 部署 · **43** 个企业案例 · **6** 个已发布产品 · **32** 个工具与集成 · **30** 篇实战报告</sub>
 
 <sub>[English](README.md) · 简体中文 · [日本語](README.ja.md) · [Português](README.pt.md)</sub>
 
@@ -155,25 +155,25 @@ flowchart LR
 | [The Access Group](https://devin.ai/customers/access-group) | 250 个产品、2,000+ 工程师的 Devin | 工程产出 5× |
 | [EBANX](https://devin.ai/customers/ebanx) | Devin 当主要作者 | **92% 的合并 PR 出自 Devin** |
 | [Gumroad](https://devin.ai/customers/gumroad) | 核心仓库上的 Devin | Devin 是该仓库的**头号贡献者**：1,500+ 合并 PR |
-| [Finch](https://devin.ai/customers/finch) | 功能 + 维护工作 | 合并 3,000 个 PR，省约 20 个工程师月 |
+| [Finch](https://devin.ai/customers/finch) | Slack→Linear 接入 → 日志/追踪调查 → 浏览器实测 → 当天出 PR | **合并 3,000 个 PR，省约 20 个工程师月**；上 Devin 前每天 20 个请求只能处理 3–4 个——「最大的解锁是并行能力」|
 | [Comarch](https://devin.ai/customers/comarch) | 20 年、千万行 ERP 重建 | 全系统现代化进行中 |
 | [AngelList](https://devin.ai/customers/angellist) | 事故分诊 + 数据迁移 | 70% 的事故由 Devin 先于工程师定位根因；Redshift→Snowflake 快 5.2× |
 | [Modal](https://devin.ai/customers/modal) | 事故响应 | 80% 的事故在工程师打开线程前已完成初查 |
 | [Reducto](https://devin.ai/customers/reducto) | Devin Oncall 当一线响应 | 工程师几乎不再被 page |
-| [Eight Sleep](https://devin.ai/customers/eight-sleep) | 全公司 Devin | 交付量 8× |
-| [Exa](https://devin.ai/customers/exa) | 端到端交付 | 工程师本地不拉代码也能上生产 |
+| [Eight Sleep](https://devin.ai/customers/eight-sleep) | 全公司 Devin（含非工程师） | **交付量 8×**；客服经理 1 小时内自建端到端 pipeline+看板；利润预测模型迭代约一周后月度回测误差 <10% |
+| [Exa](https://devin.ai/customers/exa) | 端到端交付；仓库做成完全云端可自举 | 工程师本地不拉代码也能上生产；一个多周会话把测试系统契约滚过 **~30–40 个 PR**；新工程师从没配过本地环境 |
 | [RV Tech](https://devin.ai/customers/rvtech) | Rivian × VW 合资，软件定义汽车 | 测试速度 10× |
-| [Melius](https://devin.ai/customers/melius) | 高吞吐小团队 | ~100 PR/天 |
-| [Hamming](https://devin.ai/customers/hamming) | 代码库上的 Devin | 占总代码量 25% |
+| [Melius](https://devin.ai/customers/melius) | 以云端会话为主界面；每日 automation 清扫停滞超 7 天的 PR、修测试、@人 | **~100 PR/天**；8 人团队「干出 100 人的活」|
+| [Hamming](https://devin.ai/customers/hamming) | 「Devinable」任务框架——有界+规格清晰+客观评估；代码库为 agent 优化（函数式>OOP、eval 驱动） | **占总代码量 25%**，与两位人类工程师并列第一贡献者 |
 | [Airbyte](https://devin.ai/customers/airbyte) | 连接器维护 | 维持 700+ 连接器运行 |
-| [Litera](https://devin.ai/customers/litera) | 回归测试 | 回归周期缩短 90% |
+| [Litera](https://devin.ai/customers/litera) | QE Evolution——专职 Devin agent 嵌进各 scrum 团队；设「AI composer」岗位 | **回归周期缩短 90%**；ILTACON 前 3 周交付 5 个产品；30 天 90+ 工程师活跃；~250 人「跑出一千人的速度」|
 | [Ramp](https://devin.ai/customers/ramp) | 技术债清理 | **每周 80 个合并 PR，省 10,000+ 工程师小时**；由一个小而熟 Devin 的团队运营 |
 | [Linktree](https://devin.ai/customers/linktree) | 功能 + 客户 bug 流水线 | 上月 ~300 个 PR 撰写 / ~100 合并；团队的条件反射变成了 "can I just Devin it?" |
 | [Bilt](https://devin.ai/customers/bilt) | 全组织铺开 | 2 月以来 800+ 合并 PR，周均 ~117；发布后**其 Devin Bots 单周合并 ~1,600 PR**——工程 VP Will Laughlin（[Bots 评价](https://devin.ai/bots)）|
 | [Rohlik Group](https://devin.ai/customers/rohlikgroup) | agent 驱动的杂货零售 | 工程吞吐 2×；含仓储机器人在内的自动化上线快 4×；50+ MCP 集成 |
-| [Crosby](https://devin.ai/customers/crosby) | AI 原生律所 | 每天 20–40 个 bug 报告/告警拿到 first pass，平均 ~5 分钟；12 名工程师服务 50+ 律师 |
+| [Crosby](https://devin.ai/customers/crosby) | AI 原生律所；automation 为每条 Slack bug 报告+Sentry 告警起会话；律师评审反馈由 Devin 归类分组 | 每天 20–40 个 bug/告警首查，~5 分钟/个；**Sentry 告警噪声 −50%**；法务团队扩 5×，值班仍 1 名工程师 |
 | [Endava](https://devin.ai/customers/endava) | 企业级全员配置 | 2,000+ 员工上平台；四个月 3×；PR 合并率 78% |
-| [Tavrn](https://devin.ai/customers/tavrn) | HIPAA 约束下的舰队 | 8 人队打出 50 人的交付；**6 周 1,800+ PR**，产出 6× |
+| [Tavrn](https://devin.ai/customers/tavrn) | HIPAA 租户内（SSO/权限范围/审计日志）Slack 派舰队，跨工程/运营/客服/销售；每日 automation 重查质检失败案 | 8 人队打出 50 人交付；**6 周 1,800+ PR**（已评审合并率 ~80%）；**上月合并代码 93% 由 Devin 产出**；告警→调查中位 **35 秒** |
 | [Itaú](https://devin.ai/customers/itau) | 巴西最大银行全 SDLC 铺开 | 59 个服务 .NET→Java 迁移**提速 6×、成本 1/5**；800 个 SQL Server 对象迁移 **5×**；~70% SonarQube/Fortify/Veracode 漏洞自动修复；**30 万+ 仓库**持续更新的文档；测试覆盖率 ~50%→~90+%；千人候补名单后，**17,000 人技术组织的 75%** 在用 |
 | [Ripple Treasury](https://devin.ai/customers/ripple) | 自动化 bug 分诊（"Guardians 2.0"）+ 非工程人员的代码库问答 | 未分诊积压 **−75%**，每日修 bug 0.5→1.5（**3×**），取消每周两次分诊会；70 名非工程同事在用——4,600+ 次问答 ≈ **省 2,300 工程师小时** |
 | [WPP Enterprise Solutions](https://devin.ai/customers/wpp-enterprise-solutions) | 固定总价客户交付的底座 | 真实项目实测 **SDLC 效率提升 30–40%**；Halfords 重构以**少 25% 时间交付 110% 范围**、99.97% 可用性；测试框架迁移 80 人日→8（**10×**）；九个月周活工程师 **4×** |
@@ -183,6 +183,7 @@ flowchart LR
 | [Zeb](https://devin.ai/blog/devin-for-databricks-migrations) | NetSuite→Databricks 交付伙伴 | 一家全球投资咨询客户的 4 周迁移 **2.5 周交付**；一家财富 500 能源公司 8 天迁完 142 个对象到 Unity Catalog |
 | **Rox** | Living Evals —— 每周 Devin 读生产 trace，在完整副本中回放失败，开 eval PR | 评测集覆盖**真实用量的 72%**（手写只有 43–57%）（[全文](https://www.rox.com/articles/living-evals-an-eval-suite-that-grows-from-production)、[推文](https://x.com/rox_ai/status/2110779380666617997)） |
 | [Philips](https://devin.ai/blog/introducing-code-scans) | Code Scans 早期测试方——数字计算病理学，Enterprise Informatics | 多个仓库 **~96% PR 合并率**；测试期内估算节省 **700+ 工程师小时**（launch 帖中客户原话） |
+| **Cognition**（内部） | 软件工厂：自闭环 PR 流水线（bug 报告→合并→监控→维护）、小 pod + 每小时重建的抛弃式 VM + Docker Compose mock；给 agent 可度量目标 | **一年内合并 PR 吞吐 40×，人员仅 2.7×**——人均效率 >10×（[Walden Yan，AI Engineer](https://aietalks.com/talks/40x-more-merged-prs-with-2-7x-the-engineers)）|
 | [Evinova](https://devin.ai/customers/evinova) | GxP 合规交付 | GxP 文档快 8×；迁移快 3×；66% 边界清晰的 bug 被自主修复 |
 | [Compiled Health](https://devin.ai/customers/compiledhealth) | 临床基准构建 | 2 名研究员 2 个月 = 5–6 名工程师的活；~430 工程师小时、~$17/小时 ≈ 给 4 人队添 4 名工程师 |
 | [Común](https://devin.ai/customers/comun) | 13 人金融科技团队 | 产出 3×；后端周 PR 50 → 170（四周） |
@@ -288,6 +289,7 @@ flowchart LR
 - **[免费 SWE-2 上的多 AI 编排](https://qiita.com/ishizakahiroshi/items/72ab801a5f2a8c941b61)** —— 利用 Devin CLI 永久免费的 SWE-2 档在多个 agent 间路由工作的设计（日文）。
 - **[SMARTCAMP 的 Trivy 扫描 → Devin 修复](https://zenn.dev/smartcamp/articles/97ac804043530e)** —— 定时 GitHub Actions 拉取 ECS 镜像跑 Trivy，HIGH/CRITICAL 落成 issue 交给 Devin 修复；AWS 凭证 job 和扫描 job 分离、只靠 artifact 传递（日文）。
 - **[Devin 当我一整个月的工程团队](https://ravtheman.medium.com/im-17-and-for-one-month-devin-was-my-entire-engineering-team-here-s-everything-i-learned-183d59099384)** —— 一个墨尔本高中生的 Max 体验月：一晚 67 个 PR 处理、44 个合入；课间造出一个 Linux 发行版、一套本地模型家族和一个多 agent IDE —— 附实测的 CLI/云端工作流（Medium）。
+- **[Devin 2025 年度表现复核](https://cognition.com/blog/devin-annual-performance-review-2025)** —— Cognition 自己 18 个月的成绩单，少见地诚实：强项（PR 合并率 34%→67%、解题快 4×、漏洞修复比人快 20×、ETL 迁移 10×、覆盖率通常 50–60%→80–90%、自家 webapp 约三分之一 commit 出自 Devin）和点名弱点（需求模糊、中途改范围、软技能）。
 - **[独立创始人月烧 $20k 的 Devin 运营](https://www.lennysnewsletter.com/p/i-spent-20000-on-devin-in-a-month)** —— Ryan Carson（Untangle）同时跑 ~15 个 Devin agent：不用仪表盘，靠文件夹系统 + 纸上 P0 清单调度；「Watchdog」playbook 顶替整个客户成功团队盯每个律所账号，「LAN PR」skill 每天合 ~40 个 PR、无 QA 审阅人（Lenny's 播客）。
 
 <p align="right"><a href="#readme">back to top</a></p>

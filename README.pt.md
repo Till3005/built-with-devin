@@ -13,7 +13,7 @@
 
 <sub>Curado por [@darega0mae](https://x.com/darega0mae) · Tutoriais irmãos: [build-with-devin](https://github.com/Till3005/build-with-devin) · [Adicione seu projeto](CONTRIBUTING.md)</sub>
 
-<sub>**14** implantações de Bot documentadas · **42** casos corporativos · **6** produtos lançados · **32** ferramentas e integrações · **29** relatos de campo</sub>
+<sub>**14** implantações de Bot documentadas · **43** casos corporativos · **6** produtos lançados · **32** ferramentas e integrações · **30** relatos de campo</sub>
 
 <sub>[English](README.md) · [简体中文](README.zh.md) · [日本語](README.ja.md) · Português</sub>
 
@@ -155,25 +155,25 @@ Casos de clientes publicados com números concretos ([índice completo](https://
 | [The Access Group](https://devin.ai/customers/access-group) | Devin em 250 produtos, 2.000+ engenheiros | Produção de engenharia 5× |
 | [EBANX](https://devin.ai/customers/ebanx) | Devin como autor principal | **92% dos PRs mergeados são de autoria do Devin** |
 | [Gumroad](https://devin.ai/customers/gumroad) | Devin no repositório central | Devin é o **contribuidor nº 1** do repo: 1.500+ PRs mergeados |
-| [Finch](https://devin.ai/customers/finch) | Trabalho de features + manutenção | 3.000 PRs mergeados, ~20 engenheiros-mês economizados |
+| [Finch](https://devin.ai/customers/finch) | Intake Slack→Linear → investigação com logs/traces → teste no browser → PR no mesmo dia | **3.000 PRs mergeados, ~20 engenheiros-mês economizados**；antes do Devin, 20 pedidos/dia viravam 3–4 atendidos — "o maior destrave é a capacidade de paralelizar" |
 | [Comarch](https://devin.ai/customers/comarch) | Reconstrução de ERP de 20 anos e 10M linhas | Modernização completa em andamento |
 | [AngelList](https://devin.ai/customers/angellist) | Triagem de incidentes + migração de dados | Devin acha a causa-raiz de 70% dos incidentes antes do engenheiro; Redshift→Snowflake 5,2× mais rápido |
 | [Modal](https://devin.ai/customers/modal) | Resposta a incidentes | 80% dos incidentes investigados antes de um engenheiro abrir a thread |
 | [Reducto](https://devin.ai/customers/reducto) | Devin Oncall como primeiro respondedor | Engenheiros raramente são paginados |
-| [Eight Sleep](https://devin.ai/customers/eight-sleep) | Devin em toda a empresa | 8× mais entregas |
-| [Exa](https://devin.ai/customers/exa) | Entrega de ponta a ponta | Produção sem engenheiros baixarem código localmente |
+| [Eight Sleep](https://devin.ai/customers/eight-sleep) | Devin na empresa toda, incl. não-engenheiros | **8× mais entregas**；gerente de suporte montou pipeline+dashboard E2E em <1h；modelo de previsão de lucro dentro de 10% no backtest mensal após ~1 semana iterando |
+| [Exa](https://devin.ai/customers/exa) | Entrega E2E; repos totalmente bootstrappable na nuvem | Produção sem engenheiros baixarem código local；uma sessão de várias semanas rolou um contrato de sistema de testes em **~30–40 PRs**；engenheiros novos nunca configuraram ambiente local |
 | [RV Tech](https://devin.ai/customers/rvtech) | JV Rivian × VW, veículos definidos por software | Velocidade de teste 10× |
-| [Melius](https://devin.ai/customers/melius) | Time pequeno de alto throughput | ~100 PRs/dia |
-| [Hamming](https://devin.ai/customers/hamming) | Devin na codebase | 25% do volume total de código |
+| [Melius](https://devin.ai/customers/melius) | Sessões cloud como interface principal; automação matinal varre PRs parados >7d, corrige testes, marca humano | **~100 PRs/dia**；time de 8 "funciona como um de 100" |
+| [Hamming](https://devin.ai/customers/hamming) | Framework "Devinable" — tarefas limitadas + spec clara + avaliação objetiva; codebase otimizado p/ agentes (funcional > OOP, eval-driven) | **25% do volume total de código**, empatado como top contribuidor com dois engenheiros humanos |
 | [Airbyte](https://devin.ai/customers/airbyte) | Manutenção de conectores | Mantém 700+ conectores funcionando |
-| [Litera](https://devin.ai/customers/litera) | Testes de regressão | Ciclos de regressão reduzidos em 90% |
+| [Litera](https://devin.ai/customers/litera) | QE Evolution — agentes Devin especializados embutidos nos scrum teams; cargo de "AI composer" | **Ciclos de regressão −90%**；5 produtos em 3 semanas pré-ILTACON；90+ engenheiros ativos em 30 dias；~250 engenheiros "na velocidade de mil" |
 | [Ramp](https://devin.ai/customers/ramp) | Limpeza de dívida técnica | **80 PRs mergeados/semana, 10.000+ horas de engenharia economizadas**; um time pequeno e versado em Devin opera |
 | [Linktree](https://devin.ai/customers/linktree) | Pipeline de features + bugs de clientes | ~300 PRs escritos / ~100 mergeados no último mês; o reflexo do time virou "dá pra só mandar pro Devin?" |
 | [Bilt](https://devin.ai/customers/bilt) | Rollout em toda a organização | 800+ PRs mergeados desde fevereiro, média ~117/semana; **seus Devin Bots mergearam ~1.600 PRs numa única semana** pós-lançamento — VP de Engenharia Will Laughlin ([depoimentos Bots](https://devin.ai/bots)) |
 | [Rohlik Group](https://devin.ai/customers/rohlikgroup) | Operações de supermercado dirigidas por agentes | Throughput de engenharia 2×; rollout de automação 4× mais rápido incl. robótica de armazém; 50+ integrações MCP |
-| [Crosby](https://devin.ai/customers/crosby) | Escritório de advocacia AI-nativo | 20–40 relatórios de bugs/alertas recebem primeira análise por dia, ~5 min cada; 12 engenheiros atendem 50+ advogados |
+| [Crosby](https://devin.ai/customers/crosby) | Escritório AI-nativo; automação abre sessão por relatório de bug no Slack + alerta Sentry; feedback dos advogados triado/agrupado pelo Devin | 20–40 bugs/alertas investigados por dia em ~5 min cada；**ruído de alertas Sentry −50%**；on-call seguiu 1 engenheiro com força jurídica ~5× maior |
 | [Endava](https://devin.ai/customers/endava) | Provisionamento corporativo | 2.000+ funcionários na plataforma; 3× em quatro meses; taxa de merge de PRs de 78% |
-| [Tavrn](https://devin.ai/customers/tavrn) | Frota sob restrição HIPAA | Time de 8 entrega como 50; **1.800+ PRs em 6 semanas**, produção 6× |
+| [Tavrn](https://devin.ai/customers/tavrn) | Frota despachada via Slack em eng/ops/CS/vendas dentro de tenant HIPAA (SSO, acesso escopado, audit logs); automação diária re-investiga casos reprovados no juiz | Time de 8 entrega como 50；**1.800+ PRs em 6 semanas** (~80% merge dos decididos)；**93% do código mergeado no mês foi do Devin**；alerta→investigação mediana **35s** |
 | [Itaú](https://devin.ai/customers/itau) | Devin em todo o SDLC no maior banco do Brasil | Migração .NET→Java de 59 serviços **6× mais rápida a 1/5 do custo**; migração SQL Server de 800 objetos **5× mais rápida**; ~70% dos achados SonarQube/Fortify/Veracode remediados automaticamente; docs atualizadas continuamente em **300.000+ repositórios**; cobertura de testes ~50%→~90+%; após fila de ~1.000 devs, **75% da org de tecnologia de 17.000 pessoas** usa |
 | [Ripple Treasury](https://devin.ai/customers/ripple) | Triagem automática de bugs ("Guardians 2.0") + Q&A de codebase para não-engenheiros | Backlog não triado **−75%**, 0,5→1,5 bugs corrigidos/dia (**3×**), reuniões de triagem eliminadas; 70 colegas fora de engenharia usam — 4.600+ perguntas ≈ **2.300 horas de engenharia poupadas** |
 | [WPP Enterprise Solutions](https://devin.ai/customers/wpp-enterprise-solutions) | Devin como camada de entrega de projetos de preço fixo | **Ganhos de 30–40% de eficiência no SDLC** provados em projetos reais; rebuild da Halfords entregou **110% do escopo em 25% menos tempo** com 99,97% de uptime; migração de framework de testes 80 dias-pessoa → 8 (**10×**); engenheiros ativos semanais **4× em 9 meses** |
@@ -183,6 +183,7 @@ Casos de clientes publicados com números concretos ([índice completo](https://
 | [Zeb](https://devin.ai/blog/devin-for-databricks-migrations) | Parceiro de entrega NetSuite→Databricks | Migração de 4 semanas de uma consultoria global de investimentos entregue em **2,5 semanas**; uma energética Fortune 500 migrou uma plataforma de 142 objetos para o Unity Catalog em **8 dias** |
 | **Rox** | Living Evals — Devin semanal lê traces de produção, reproduz falhas numa cópia completa, abre PRs de eval | A suite cobre **72% do uso real** vs 43–57% escrito à mão ([artigo](https://www.rox.com/articles/living-evals-an-eval-suite-that-grows-from-production), [thread](https://x.com/rox_ai/status/2110779380666617997)) |
 | [Philips](https://devin.ai/blog/introducing-code-scans) | Testador inicial do Code Scans — Patologia Computacional Digital, Enterprise Informatics | **~96% de merge rate de PRs** em vários repos; **700+ horas-engenheiro** estimadas poupadas na janela de teste (citação do cliente no post de lançamento) |
+| **Cognition** (interno) | Fábrica de software: loop de PR auto-dirigido (bug report→merge→monitoramento→manutenção), pods pequenos + VMs descartáveis reconstruídas por hora c/ Docker Compose; agentes recebem metas mensuráveis | **Throughput de PRs mergeados 40× num ano com 2,7× engenheiros** — >10× de produtividade por engenheiro ([Walden Yan, AI Engineer](https://aietalks.com/talks/40x-more-merged-prs-with-2-7x-the-engineers)) |
 | [Evinova](https://devin.ai/customers/evinova) | Entrega regulada por GxP | Documentação GxP 8× mais rápida; migrações 3×; 66% dos bugs claros corrigidos autonomamente |
 | [Compiled Health](https://devin.ai/customers/compiledhealth) | Construção de benchmark clínico | 2 pesquisadores/2 meses = trabalho de 5–6 engenheiros; ~430 horas-engenheiro a ~$17/h ≈ +4 engenheiros num time de 4 |
 | [Común](https://devin.ai/customers/comun) | Time fintech de 13 pessoas | Produção 3×; PRs backend semanais 50 → 170 em quatro semanas |
@@ -288,6 +289,7 @@ Uso real documentado.
 - **[Orquestração multi-IA no SWE-2 grátis](https://qiita.com/ishizakahiroshi/items/72ab801a5f2a8c941b61)** — Um design para rotear trabalho entre agentes usando o tier permanentemente gratuito SWE-2 do Devin CLI (JP).
 - **[Scan Trivy → remediação Devin na SMARTCAMP](https://zenn.dev/smartcamp/articles/97ac804043530e)** — Pipeline agendado do GitHub Actions baixa imagens do ECS, escaneia com Trivy e abre issues HIGH/CRITICAL que o Devin remedia — jobs com credenciais AWS e do scanner separados, apenas artefatos cruzam (JP).
 - **[Devin como minha equipe de engenharia por um mês](https://ravtheman.medium.com/im-17-and-for-one-month-devin-was-my-entire-engineering-team-here-s-everything-i-learned-183d59099384)** — Um mês de um estudante de Melbourne no giveaway do Max: 67 PRs tocados e 44 mergeados numa noite; uma distro Linux, uma família de modelos locais e um IDE multiagente feitos entre aulas — com um resumo medido do fluxo CLI/cloud (Medium).
+- **[Revisão de Performance 2025 do Devin](https://cognition.com/blog/devin-annual-performance-review-2025)** — o boletim de 18 meses da própria Cognition, raro na honestidade: forças (merge rate 34%→67%, resolução 4× mais rápida, fixes de vuln 20×, migrações ETL 10×, cobertura 50–60%→80–90%, ~⅓ dos commits do webapp) e fraquezas nomeadas (requisitos ambíguos, mudanças de escopo no meio, soft skills).
 - **[A operação Devin de $20k/mês de um fundador solo](https://www.lennysnewsletter.com/p/i-spent-20000-on-devin-in-a-month)** — Ryan Carson (Untangle) roda ~15 agentes Devin simultâneos coordenados por sistema de pastas + lista P0 de papel, sem dashboard; um playbook "Watchdog" cobre o customer success de toda conta de escritório de advocacia, e a skill "LAN PR" fecha ~40 PRs/dia sem revisor de QA (Lenny's podcast).
 
 <p align="right"><a href="#readme">back to top</a></p>

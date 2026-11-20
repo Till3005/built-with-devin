@@ -13,7 +13,7 @@
 
 <sub>Curated by [@darega0mae](https://x.com/darega0mae) · 姉妹チュートリアル：[build-with-devin](https://github.com/Till3005/build-with-devin) · [プロジェクトを追加](CONTRIBUTING.md)</sub>
 
-<sub>**14** 件の実証済み Bot 導入 · **42** 件のエンタープライズ事例 · **6** 件の公開プロダクト · **32** 件のツール・統合 · **29** 件の実践レポート</sub>
+<sub>**14** 件の実証済み Bot 導入 · **43** 件のエンタープライズ事例 · **6** 件の公開プロダクト · **32** 件のツール・統合 · **30** 件の実践レポート</sub>
 
 <sub>[English](README.md) · [简体中文](README.zh.md) · 日本語 · [Português](README.pt.md)</sub>
 
@@ -155,25 +155,25 @@ flowchart LR
 | [The Access Group](https://devin.ai/customers/access-group) | 250 製品・2,000 人超のエンジニアに Devin | エンジニアリング成果 5 倍 |
 | [EBANX](https://devin.ai/customers/ebanx) | 主要著者としての Devin | **マージ PR の 92% が Devin 作** |
 | [Gumroad](https://devin.ai/customers/gumroad) | コアリポジトリの Devin | Devin はリポジトリの**第 1 位コントリビューター**：1,500 以上のマージ PR |
-| [Finch](https://devin.ai/customers/finch) | 機能 + 保守作業 | 3,000 PR マージ、約 20 エンジニア月を節約 |
+| [Finch](https://devin.ai/customers/finch) | Slack→Linear 受付 → ログ/トレース調査 → ブラウザ検証 → 当日 PR | **3,000 PR マージ、約 20 エンジニア月節約**；導入前は 1 日 20 件の依頼に 3–4 件しか対応できず——「最大の解放は並列化能力」|
 | [Comarch](https://devin.ai/customers/comarch) | 20 年物・1,000 万行 ERP の再構築 | 全システム近代化が進行中 |
 | [AngelList](https://devin.ai/customers/angellist) | インシデントトリアージ + データ移行 | インシデントの 70% をエンジニアの前に Devin が原因特定。Redshift→Snowflake が 5.2 倍速 |
 | [Modal](https://devin.ai/customers/modal) | インシデント対応 | 80% のインシデントがエンジニアがスレッドを開く前に調査済み |
 | [Reducto](https://devin.ai/customers/reducto) | Devin Oncall が一次対応 | エンジニアがページされることはほぼない |
-| [Eight Sleep](https://devin.ai/customers/eight-sleep) | 全社的な Devin | 出荷量 8 倍 |
-| [Exa](https://devin.ai/customers/exa) | エンドツーエンドの出荷 | エンジニアがローカルでコードを引かなくても本番へ |
+| [Eight Sleep](https://devin.ai/customers/eight-sleep) | 非エンジニア含む全社的な Devin | **出荷量 8 倍**；サポートマネージャーが 1 時間未満で E2E パイプライン+ダッシュボードを構築；利益予測モデルは約 1 週間の反復で月次バックテスト誤差 10% 以内 |
+| [Exa](https://devin.ai/customers/exa) | エンドツーエンド出荷；リポジトリは完全にクラウドでブート可能 | エンジニアがローカルにコードを引かず本番へ；複数週のセッションがテストシステム契約を **~30–40 PR** に展開；新しいエンジニアはローカル環境を一度も構築していない |
 | [RV Tech](https://devin.ai/customers/rvtech) | Rivian × VW JV、ソフトウェア定義車両 | テスト速度 10 倍 |
-| [Melius](https://devin.ai/customers/melius) | 高スループットの小チーム | 1 日 ~100 PR |
-| [Hamming](https://devin.ai/customers/hamming) | コードベース上の Devin | 総コード量の 25% |
+| [Melius](https://devin.ai/customers/melius) | クラウドセッションが主インターフェース；朝の automation が 7 日以上停滞の PR を掃除・テスト修正・人にメンション | **1 日 ~100 PR**；8 人のチームが「100 人規模として機能」|
+| [Hamming](https://devin.ai/customers/hamming) | 「Devinable」タスクフレームワーク——有界+明確な仕様+客観評価；エージェント向けにコードベース最適化（OOP より関数型、eval 駆動） | **総コード量の 25%**、人間エンジニア 2 人と並ぶトップ貢献者 |
 | [Airbyte](https://devin.ai/customers/airbyte) | コネクタ保守 | 700 以上のコネクタを稼働維持 |
-| [Litera](https://devin.ai/customers/litera) | リグレッションテスト | リグレッションサイクル 90% 削減 |
+| [Litera](https://devin.ai/customers/litera) | QE Evolution——専門 Devin エージェントを各スクラムチームに埋め込み；「AI コンポーザー」役職 | **リグレッションサイクル 90% 削減**；ILTACON 前 3 週間で 5 製品出荷；30 日で 90+ アクティブエンジニア；~250 人が「1,000 人の速度」|
 | [Ramp](https://devin.ai/customers/ramp) | 技術的負債の解消 | **週 80 PR マージ、10,000 時間超のエンジニア工数削減**。Devin に精通した小チームが運用 |
 | [Linktree](https://devin.ai/customers/linktree) | 機能 + 顧客バグパイプライン | 先月 ~300 PR 執筆 / ~100 マージ。チームの反射は「Devin でやれるか？」に |
 | [Bilt](https://devin.ai/customers/bilt) | 組織全体への展開 | 2 月以降 800 以上のマージ PR、週平均 ~117；リリース後**Devin Bots が 1 週間で ~1,600 PR をマージ**——VP Engineering Will Laughlin（[Bots の声](https://devin.ai/bots)）|
 | [Rohlik Group](https://devin.ai/customers/rohlikgroup) | エージェント駆動の食料品オペレーション | エンジニアリングスループット 2 倍。倉庫ロボットを含む自動化展開 4 倍速。50 以上の MCP 統合 |
-| [Crosby](https://devin.ai/customers/crosby) | AI ネイティブ法律事務所 | 毎日 20–40 件のバグレポート/アラートに初回対応、各 ~5 分。12 人のエンジニアが 50 人以上の弁護士に対応 |
+| [Crosby](https://devin.ai/customers/crosby) | AI ネイティブ法律事務所；automation が Slack バグ報告+Sentry アラート毎にセッション起動；弁護士のレビュー FB を Devin が分類 | 毎日 20–40 件を各 ~5 分で初動調査；**Sentry アラートノイズ −50%**；法務要員 ~5 倍化でもオンコールは 1 人のまま |
 | [Endava](https://devin.ai/customers/endava) | 企業全体への提供 | 2,000 人以上の従業員がプラットフォーム利用。4 ヶ月で 3 倍。PR マージ率 78% |
-| [Tavrn](https://devin.ai/customers/tavrn) | HIPAA 制約下のフリート | 8 人のチームが 50 人のように出荷。**6 週間で 1,800 以上の PR**、生産量 6 倍 |
+| [Tavrn](https://devin.ai/customers/tavrn) | HIPAA テナント内（SSO/スコープ権限/監査ログ）で Slack からフリート派遣——eng/ops/CS/sales 横断；日次 automation が品質判定落ちを再調査 | 8 人が 50 人分；**6 週間で 1,800+ PR**（決定済み ~80% マージ）；**先月マージコードの 93% が Devin 発**；アラート→調査中央値 **35 秒** |
 | [Itaú](https://devin.ai/customers/itau) | ブラジル最大銀行で SDLC 全体に展開 | 59 サービスの .NET→Java 移行が**6 倍速・1/5 コスト**、800 オブジェクトの SQL Server 移行 **5 倍速**、SonarQube/Fortify/Veracode 指摘の ~70% を自動修正、**30 万以上のリポジトリ**のドキュメントを継続更新、テストカバレッジ ~50%→~90+%、約 1,000 人のウェイトリスト形成後に **17,000 人技術組織の 75%** が利用 |
 | [Ripple Treasury](https://devin.ai/customers/ripple) | 自動バグトリアージ（"Guardians 2.0"）+ 非エンジニア向けコードベース QA | 未トリアージのバックログ **−75%**、修正数 0.5→1.5 件/日（**3 倍**）、週 2 回のトリアージ会議を廃止、エンジニア以外の 70 人が利用 —— 4,600+ 件の質問 ≈ **2,300 エンジニア時間を節約** |
 | [WPP Enterprise Solutions](https://devin.ai/customers/wpp-enterprise-solutions) | 固定価格のクライアント案件のデリバリー基盤 | 実案件で **SDLC 効率 30–40% 向上**を実測、Halfords リビルドは**25% 短縮でスコープ 110%**・稼働率 99.97%、テストフレームワーク移行 80 人日→8（**10 倍**）、週次アクティブエンジニアが 9 ヶ月で **4 倍** |
@@ -183,6 +183,7 @@ flowchart LR
 | [Zeb](https://devin.ai/blog/devin-for-databricks-migrations) | NetSuite→Databricks のデリバリーパートナー | 世界的投資アドバイザリー企業の 4 週間案件を **2.5 週間で納品**、Fortune 500 エネルギー企業が 142 オブジェクトのプラットフォームを **8 日**で Unity Catalog へ移行 |
 | **Rox** | Living Evals —— 週次 Devin が本番トレースを読み、完全コピーで障害を再生、eval PR をオープン | eval スイートが**実使用量の 72%**をカバー（手書きは 43–57%）（[記事](https://www.rox.com/articles/living-evals-an-eval-suite-that-grows-from-production)、[スレッド](https://x.com/rox_ai/status/2110779380666617997)） |
 | [Philips](https://devin.ai/blog/introducing-code-scans) | Code Scans 早期テスター——デジタル計算病理学、Enterprise Informatics | 複数リポジトリで **~96% の PR マージ率**；テスト期間中に **700+ エンジニア時間**削減と推計（launch 記事中の顧客証言） |
+| **Cognition**（自社） | ソフトウェアファクトリー：自己駆動 PR ループ（バグ報告→マージ→監視→保守）、小ポッド + 毎時再構築の使い捨て VM + Docker Compose モック；エージェントに測定可能な目標 | **1 年でマージ PR スループット 40 倍、エンジニア 2.7 倍**——1 人あたり生産性 >10 倍（[Walden Yan、AI Engineer](https://aietalks.com/talks/40x-more-merged-prs-with-2-7x-the-engineers)）|
 | [Evinova](https://devin.ai/customers/evinova) | GxP 規制下のデリバリー | GxP 文書化 8 倍速。マイグレーション 3 倍速。明確なバグの 66% を自律修正 |
 | [Compiled Health](https://devin.ai/customers/compiledhealth) | 臨床ベンチマーク構築 | 2 人の研究者・2 ヶ月 = 5–6 人のエンジニアの仕事。~430 エンジニア時間・時給 ~$17 ≈ 4 人チームに +4 名分 |
 | [Común](https://devin.ai/customers/comun) | 13 人のフィンテックチーム | 生産量 3 倍。週間バックエンド PR が 4 週間で 50 → 170 |
@@ -288,6 +289,7 @@ Devin *で*作られたものではなく、Devin の*ために*コミュニテ�
 - **[無料 SWE-2 上のマルチ AI オーケストレーション](https://qiita.com/ishizakahiroshi/items/72ab801a5f2a8c941b61)** —— Devin CLI の永久無料 SWE-2 枠でエージェント間のワークルーティングを設計。
 - **[SMARTCAMP の Trivy スキャン → Devin 修復](https://zenn.dev/smartcamp/articles/97ac804043530e)** —— 定期 GitHub Actions が ECS イメージを pull して Trivy スキャン、HIGH/CRITICAL を issue 化して Devin が対応。AWS 認証ジョブとスキャンジョブを分離し artifact のみで連携。
 - **[Devin が1か月間、私のエンジニアチームだった記録](https://ravtheman.medium.com/im-17-and-for-one-month-devin-was-my-entire-engineering-team-here-s-everything-i-learned-183d59099384)** —— メルボルンの高校生による Max 枠1か月の実測：一晩で 67 PR 処理・44 マージ。授業の合間に Linux ディストロ、ローカルモデル群、マルチエージェント IDE を構築 — 実測の CLI/クラウド運用解説つき（Medium）。
+- **[Devin 2025 年次パフォーマンスレビュー](https://cognition.com/blog/devin-annual-performance-review-2025)** —— Cognition 自身の 18 ヶ月通信簿、ベンダーとして異例の正直さ：強み（PR マージ率 34%→67%、問題解決 4 倍速、脆弱性修正 20 倍、ETL 移行 10 倍、カバレッジ 50–60%→80–90%、自社 webapp コミットの約 1/3）と名指しの弱点（曖昧な要件、途中スコープ変更、ソフトスキル）。
 - **[月 $20k を Devin に使うソロファウンダーのオペレーション](https://www.lennysnewsletter.com/p/i-spent-20000-on-devin-in-a-month)** —— Ryan Carson（Untangle）は ~15 台の Devin エージェントを同時稼働。ダッシュボードではなくフォルダシステム + 紙の P0 リストで統制；「Watchdog」playbook が全法律事務所アカウントの CS を一手に担い、「LAN PR」スキルが QA レビュアーなしで ~40 PR/日を締める（Lenny's ポッドキャスト）。
 
 <p align="right"><a href="#readme">back to top</a></p>
