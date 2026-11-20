@@ -12,7 +12,7 @@
 <link rel="alternate" hreflang="zh" href="https://till3005.github.io/built-with-devin/guides/zh/ja/design-with-devin.html">
 <link rel="alternate" hreflang="x-default" href="https://till3005.github.io/built-with-devin/guides/ja/design-with-devin.html">
 <link rel="alternate" type="application/rss+xml" title="built-with-devin feed" href="../../feed.xml">
-<script type="application/ld+json">{"@context": "https://schema.org", "@type": "TechArticle", "headline": "ガイド 8 — デザインとビジュアルワーク", "description": "Devin をアートディレクター兼実装者として使い、本番のビジュアルデザイン——生成画像、アニメーションシステム、タイポグラフィ——を会話だけで作る。", "inLanguage": "ja", "url": "https://till3005.github.io/built-with-devin/guides/ja/design-with-devin.html", "isPartOf": {"@type": "Course", "name": "build-with-devin", "url": "https://till3005.github.io/built-with-devin/guides/"}, "dateModified": "2026-11-19"}</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "TechArticle", "headline": "ガイド 8 — デザインとビジュアルワーク", "description": "Devin をアートディレクター兼実装者として使い、本番のビジュアルデザイン——生成画像、アニメーションシステム、タイポグラフィ——を会話だけで作る。", "inLanguage": "ja", "url": "https://till3005.github.io/built-with-devin/guides/ja/design-with-devin.html", "isPartOf": {"@type": "Course", "name": "build-with-devin", "url": "https://till3005.github.io/built-with-devin/guides/"}, "dateModified": "2026-11-20"}</script>
 <link rel="icon" href="../../assets/brand/Devin_Symbol.svg" type="image/svg+xml">
 <link rel="stylesheet" href="../../assets/site.css">
 <link rel="stylesheet" href="../../assets/guides.css">
@@ -45,8 +45,8 @@
 <main>
 <article class="guide wrap" id="guide">
   <p class="guide-crumb"><a href="index.html">← ガイド</a> · <a href="../design-with-devin.html">English</a> · <a href="../pt/design-with-devin.html">Português</a> · <a href="../zh/design-with-devin.html">中文</a></p>
-<p class="guide-meta">更新 2026-11-19</p>
-<details class="toc" open><summary>このページの目次</summary><ol><li class="d2"><a href="#パターン">パターン</a></li><li class="d2"><a href="#ステップ-1-クリエイティブディレクターのようにブリーフする">ステップ 1 — クリエイティブディレクターのようにブリーフする</a></li><li class="d2"><a href="#ステップ-2-ピクセルの前にタイプシステムを固める">ステップ 2 — ピクセルの前にタイプシステムを固める</a></li><li class="d2"><a href="#ステップ-3-セッション内で画像を生成する">ステップ 3 — セッション内で画像を生成する</a></li><li class="d2"><a href="#ステップ-4-形容詞ではなく機構でアニメーションする">ステップ 4 — 形容詞ではなく機構でアニメーションする</a></li><li class="d2"><a href="#ステップ-5-批評ループこそがクラフト">ステップ 5 — 批評ループこそがクラフト</a></li><li class="d2"><a href="#検証チェックリスト">検証チェックリスト</a></li><li class="d2"><a href="#落とし穴">落とし穴</a></li><li class="d2"><a href="#理解度チェック">理解度チェック</a></li><li class="d2"><a href="#出典">出典</a></li></ol></details>
+<p class="guide-meta">更新 2026-11-20</p>
+<details class="toc" open><summary>このページの目次</summary><ol><li class="d2"><a href="#パターン">パターン</a></li><li class="d2"><a href="#ステップ-1-クリエイティブディレクターのようにブリーフする">ステップ 1 — クリエイティブディレクターのようにブリーフする</a></li><li class="d2"><a href="#ステップ-2-ピクセルの前にタイプシステムを固める">ステップ 2 — ピクセルの前にタイプシステムを固める</a></li><li class="d2"><a href="#ステップ-3-セッション内で画像を生成する">ステップ 3 — セッション内で画像を生成する</a></li><li class="d2"><a href="#ステップ-4-形容詞ではなく機構でアニメーションする">ステップ 4 — 形容詞ではなく機構でアニメーションする</a></li><li class="d2"><a href="#ステップ-5-批評ループこそがクラフト">ステップ 5 — 批評ループこそがクラフト</a></li><li class="d2"><a href="#検証チェックリスト">検証チェックリスト</a></li><li class="d2"><a href="#落とし穴">落とし穴</a></li><li class="d2"><a href="#理解度チェック">理解度チェック</a></li><li class="d2"><a href="#実録-機構レベルのブリーフで指示-クリティークで磨く-devin-cli-v3000-14-swe-2-flash-medium">実録 —— 機構レベルのブリーフで指示、クリティークで磨く、Devin CLI v3000.14（swe-2-flash-medium）</a></li><li class="d2"><a href="#出典">出典</a></li></ol></details>
 <h1>ガイド 8 — デザインとビジュアルワーク</h1>
 <p><strong>目標：</strong> Devin をアートディレクター兼実装者として使い、本番のビジュアルデザイン——生成画像、アニメーションシステム、タイポグラフィ——を会話だけで作る。
 <strong>レベル：</strong> 中級
@@ -120,6 +120,20 @@ Nothing else uses another size.
 <li>「生成画像 + レイヤードアニメーション」に必要で、スクリーンショットのモックにないものは？<em>（出荷可能なアセットと動作するアニメーションシステム——検証は画像ではなくレンダリングされたページ）</em></li>
 <li>ランディングページでデザインツールよりチャット指示が優れるのはいつか？<em>（出力がどうせ本番コードになるとき——デザインセッションこそが実装）</em></li>
 </ol>
+<h2 id="実録-機構レベルのブリーフで指示-クリティークで磨く-devin-cli-v3000-14-swe-2-flash-medium">実録 —— 機構レベルのブリーフで指示、クリティークで磨く、Devin CLI v3000.14（swe-2-flash-medium）<a class="hlink" href="#実録-機構レベルのブリーフで指示-クリティークで磨く-devin-cli-v3000-14-swe-2-flash-medium" aria-hidden="true">#</a></h2>
+<p>素の fintech ページ（<code>index.html</code>、デフォルト書体）に、Spraycash 流の機構ブリーフ（hex パレット、<code>stroke-dashoffset</code> 1.4s の描画リング、40/60/90s の3層雲、3書体スケール）を投げ、続けて数値指定のクリティークを1回。2ラウンドとも同じセッション内。</p>
+<p><strong>動画（61 秒・無音）：</strong> 素のページ → 機構ブリーフ → 実装 → レンダリング → クリティーク → 再レンダリング。</p>
+<p><a href="{B}/walkthrough.mp4"><img alt="素の HTML からデザイン済み hero へ——ブリーフ、描画、クリティーク、再描画" src="{B}/walkthrough-poster.webp" /></a></p>
+<p><img alt="1. 出発点——プレーンな HTML、デフォルトスタイル" src="{B}/step1-bare-page.webp" />
+<em>1. ビフォー：コピー 3 行とボタンだけ</em></p>
+<p><img alt="2. 実装レポート——全機構を名指し：dashoffset 1131→203.6 / 1.4s、40/60/90s 雲層、56/28/16 スケール" src="{B}/step2-brief-applied.webp" />
+<em>2. ブリーフの数値がそのままコードに。prefers-reduced-motion のフォールバックは自発的に追加</em></p>
+<p><img alt="3. 初回レンダリング——ネイビー hero、82% の描画リング、漂う雲層、等幅の数値" src="{B}/step3-first-render.webp" />
+<em>3. ラウンド1の成果——モックではなく実際の CSS/SVG</em></p>
+<p><img alt="4. クリティーク適用——雲を不透明度 12%、リングを #3ECF8E に抑え、stats 間隔 48px。CTA が旧グリーンのままな点まで指摘" src="{B}/step4-critique-applied.webp" />
+<em>4. 職人技はクリティークに宿る：正確な値を入れれば正確な diff が返る——こちらが言わなかった不整合も捕捉</em></p>
+<p><img alt="5. 最終レンダリング——同じ構造で、落ち着いたバランス" src="{B}/step5-final-render.webp" />
+<em>5. ラウンド2の成果——反復はチケットではなくメッセージ</em></p>
 <h2 id="出典">出典<a class="hlink" href="#出典" aria-hidden="true">#</a></h2>
 <ul>
 <li><a href="https://dev.to/ibrahimpima/designing-the-spraycash-ui-with-kimi-k3-in-devin-4l2f">Designing the Spraycash UI with Kimi K3 in Devin</a> — 全プロンプトと反復履歴</li>
