@@ -13,7 +13,7 @@
 
 <sub>Curated by [@darega0mae](https://x.com/darega0mae) · 姉妹チュートリアル：[build-with-devin](https://github.com/Till3005/build-with-devin) · [プロジェクトを追加](CONTRIBUTING.md)</sub>
 
-<sub>**14** 件の実証済み Bot 導入 · **45** 件のエンタープライズ事例 · **8** 件の公開プロダクト · **47** 件のツール・統合 · **34** 件の実践レポート</sub>
+<sub>**14** 件の実証済み Bot 導入 · **45** 件のエンタープライズ事例 · **9** 件の公開プロダクト · **47** 件のツール・統合 · **34** 件の実践レポート</sub>
 
 <sub>[English](README.md) · [简体中文](README.zh.md) · 日本語 · [Português](README.pt.md)</sub>
 
@@ -132,6 +132,7 @@ flowchart LR
 
 - **[Spraycash](https://spraycash.onrender.com)** —— ライブ中の決済エクスプローラーサイト。UI 全体が Devin チャット内でアートディレクト（Kimi K3）：全プロンプトは[ビルドログ](https://dev.to/ibrahimpima/designing-the-spraycash-ui-with-kimi-k3-in-devin-4l2f)に公開、コードは [fozagtx/spraycash](https://github.com/fozagtx/spraycash)。
 - **CosmosOS + NEXI** —— 高2の学生が Max で1ヶ月間に出した3点セット：CosmosOS——授業の合間に Devin が組み上げた自作 Linux ディストロ；NEXI——ローカルモデル群；そしてマルチエージェント IDE（[全記録](https://ravtheman.medium.com/im-17-and-for-one-month-devin-was-my-entire-engineering-team-here-s-everything-i-learned-183d59099384)）。
+- **[SupaSEO](https://supaseo.dev)** —— Noah Zixin Zhang のローカル SEO + AI 引用トラッカー（Google マップ/オーガニック順位に加え ChatGPT/Perplexity の引用可否を追跡。BYOK スキャン、買い切り $99）：アプリ本体は **8 Bot フリートが ~48 時間でエンドツーエンド構築**——Chief of Staff Bot がプロダクトリード Bot 経由で専門 Bot 群へルーティング、~951 コミット。人間はランディングページのみ担当（[ローンチ投稿](https://x.com/noah_z_zhang/status/2124146220159377769)、[ギブアウェイ/構成投稿](https://x.com/noah_z_zhang/status/2124158990221259110)）。
 
 *Devin で作った出荷済みプロダクトを知っていますか？[追加してください](CONTRIBUTING.md)。**
 

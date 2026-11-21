@@ -13,7 +13,7 @@
 
 <sub>Curado por [@darega0mae](https://x.com/darega0mae) · Tutoriais irmãos: [build-with-devin](https://github.com/Till3005/build-with-devin) · [Adicione seu projeto](CONTRIBUTING.md)</sub>
 
-<sub>**14** implantações de Bot documentadas · **45** casos corporativos · **8** produtos lançados · **47** ferramentas e integrações · **34** relatos de campo</sub>
+<sub>**14** implantações de Bot documentadas · **45** casos corporativos · **9** produtos lançados · **47** ferramentas e integrações · **34** relatos de campo</sub>
 
 <sub>[English](README.md) · [简体中文](README.zh.md) · [日本語](README.ja.md) · Português</sub>
 
@@ -132,6 +132,7 @@ Software real em que o Devin escreveu o código — não demos, trabalho lançad
 
 - **[Spraycash](https://spraycash.onrender.com)** — Site de explorer de pagamentos no ar cuja UI inteira foi art-directionada dentro do chat do Devin (Kimi K3): todos os prompts publicados no [build log](https://dev.to/ibrahimpima/designing-the-spraycash-ui-with-kimi-k3-in-devin-4l2f), código em [fozagtx/spraycash](https://github.com/fozagtx/spraycash).
 - **CosmosOS + NEXI** — O trio lançado por um estudante do 11º ano num mês de Max: CosmosOS, sua própria distro Linux construída pelo Devin entre aulas; NEXI, uma família de modelos locais; e uma IDE multi-agente ([relato completo](https://ravtheman.medium.com/im-17-and-for-one-month-devin-was-my-entire-engineering-team-here-s-everything-i-learned-183d59099384)).
+- **[SupaSEO](https://supaseo.dev)** — O rastreador de SEO local + citações em IA de Noah Zixin Zhang (posições no Google Maps/orgânico e se ChatGPT/Perplexity te citam; scans BYOK, licença única de $99): o app foi **construído de ponta a ponta por uma frota de 8 Bots em ~48 horas** — um Bot Chief-of-Staff roteando via um Bot product-lead para Bots especialistas, ~951 commits, com o humano cuidando só da landing page ([post de lançamento](https://x.com/noah_z_zhang/status/2124146220159377769), [giveaway/setup](https://x.com/noah_z_zhang/status/2124158990221259110)).
 
 *Conhece um produto lançado feito com Devin? [Adicione-o](CONTRIBUTING.md).**
 

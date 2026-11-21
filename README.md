@@ -13,7 +13,7 @@
 
 <sub>Curated by [@darega0mae](https://x.com/darega0mae) · Sister tutorials: [build-with-devin](https://github.com/Till3005/build-with-devin) · [Add your project](CONTRIBUTING.md)</sub>
 
-<sub>**14** documented Bot deployments · **45** enterprise case studies · **8** shipped products · **47** tools & integrations · **34** field reports</sub>
+<sub>**14** documented Bot deployments · **45** enterprise case studies · **9** shipped products · **47** tools & integrations · **34** field reports</sub>
 
 <sub>English · [简体中文](README.zh.md) · [日本語](README.ja.md) · [Português](README.pt.md)</sub>
 
@@ -132,6 +132,7 @@ Real software where Devin wrote the code — not demos, shipped work.
 
 - **[Spraycash](https://spraycash.onrender.com)** — A live payments-explorer site whose entire UI was art-directed inside Devin chat (Kimi K3): every prompt published in the [build log](https://dev.to/ibrahimpima/designing-the-spraycash-ui-with-kimi-k3-in-devin-4l2f), code at [fozagtx/spraycash](https://github.com/fozagtx/spraycash).
 - **CosmosOS + NEXI** — A year-11 student's shipped trio from a month on Max: CosmosOS, his own Linux distribution built by Devin between classes; NEXI, a family of local models; and a multi-agent IDE ([full account](https://ravtheman.medium.com/im-17-and-for-one-month-devin-was-my-entire-engineering-team-here-s-everything-i-learned-183d59099384)).
+- **[SupaSEO](https://supaseo.dev)** — Noah Zixin Zhang's local SEO + AI-citation tracker (Google Maps/organic ranks plus whether ChatGPT/Perplexity cite you; BYOK scans, one-time $99 license): the app was **built end-to-end by an 8-Bot fleet in ~48 hours** — a Chief-of-Staff Bot routing work through a product-lead Bot to specialist Bots, ~951 commits, while the human handled only the landing page ([launch post](https://x.com/noah_z_zhang/status/2124146220159377769), [giveaway/setup post](https://x.com/noah_z_zhang/status/2124158990221259110)).
 
 *Know a shipped product built with Devin? [Add it](CONTRIBUTING.md).*
 

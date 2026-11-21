@@ -5,7 +5,7 @@
   "counts": {
     "bot_deployments": 14,
     "bot_templates": 16,
-    "products": 8,
+    "products": 9,
     "enterprise_cases": 45
   },
   "bot_deployments": [
@@ -384,6 +384,25 @@
         }
       ],
       "updated_on": "2026-11-20"
+    },
+    {
+      "name": "SupaSEO",
+      "description": "Noah Zixin Zhang's local SEO + AI-citation tracker (Google Maps/organic ranks plus whether ChatGPT/Perplexity cite you; BYOK scans, one-time $99 license): the app was built end-to-end by an 8-Bot fleet in ~48 hours — a Chief-of-Staff Bot routing work through a product-lead Bot to specialist Bots, ~951 commits, while the human handled only the landing page (launch post, giveaway/setup post).",
+      "sources": [
+        {
+          "text": "SupaSEO",
+          "url": "https://supaseo.dev"
+        },
+        {
+          "text": "launch post",
+          "url": "https://x.com/noah_z_zhang/status/2124146220159377769"
+        },
+        {
+          "text": "giveaway/setup post",
+          "url": "https://x.com/noah_z_zhang/status/2124158990221259110"
+        }
+      ],
+      "updated_on": "2026-11-21"
     }
   ],
   "enterprise_cases": [

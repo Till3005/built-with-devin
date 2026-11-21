@@ -13,7 +13,7 @@
 
 <sub>维护者 [@darega0mae](https://x.com/darega0mae) · 姊妹教程库：[build-with-devin](https://github.com/Till3005/build-with-devin) · [收录你的项目](CONTRIBUTING.md)</sub>
 
-<sub>**14** 个有据可查的 Bot 部署 · **45** 个企业案例 · **8** 个已发布产品 · **47** 个工具与集成 · **34** 篇实战报告</sub>
+<sub>**14** 个有据可查的 Bot 部署 · **45** 个企业案例 · **9** 个已发布产品 · **47** 个工具与集成 · **34** 篇实战报告</sub>
 
 <sub>[English](README.md) · 简体中文 · [日本語](README.ja.md) · [Português](README.pt.md)</sub>
 
@@ -132,6 +132,7 @@ flowchart LR
 
 - **[Spraycash](https://spraycash.onrender.com)** —— 一个在线收付款浏览器站点，整套 UI 在 Devin 聊天里逐条 art-direct 出来（Kimi K3）：每句 prompt 都公开在[构建记录](https://dev.to/ibrahimpima/designing-the-spraycash-ui-with-kimi-k3-in-devin-4l2f)，代码在 [fozagtx/spraycash](https://github.com/fozagtx/spraycash)。
 - **CosmosOS + NEXI** —— 一位高二学生在 Max 上一个月的出货三件套：CosmosOS——他自己命名的 Linux 发行版，上课期间由 Devin 构建；NEXI——一组本地模型；外加一个多 agent IDE（[完整自述](https://ravtheman.medium.com/im-17-and-for-one-month-devin-was-my-entire-engineering-team-here-s-everything-i-learned-183d59099384)）。
+- **[SupaSEO](https://supaseo.dev)** —— Noah Zixin Zhang 的本地 SEO + AI 引用追踪器（Google Maps/自然排名，外加 ChatGPT/Perplexity 有没有引用你；自带 key 按量扫描，一次性 $99）：整个 app 由一支 **8 个 Devin Bot 的舰队 ~48 小时端到端建成**——Chief of Staff Bot 把活路由给一个 product-lead Bot 再分派给专家 Bot，~951 个 commit，人类只写了落地页（[发布帖](https://x.com/noah_z_zhang/status/2124146220159377769)、[活动/搭建帖](https://x.com/noah_z_zhang/status/2124158990221259110)）。
 
 *知道有 Devin 做出的已发布产品？[收录它](CONTRIBUTING.md)。**
 

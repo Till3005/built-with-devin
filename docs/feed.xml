@@ -4,7 +4,14 @@
   <title>Built with Devin — registry updates</title>
   <link>https://till3005.github.io/built-with-devin/</link>
   <description>New entries indexed in the built-with-devin registry.</description>
-  <lastBuildDate>Sat, 21 Nov 2026 12:51:05 +0000</lastBuildDate>
+  <lastBuildDate>Sat, 21 Nov 2026 15:43:22 +0000</lastBuildDate>
+  <item>
+    <title>Indexed: SupaSEO</title>
+    <link>https://till3005.github.io/built-with-devin/#products</link>
+    <guid isPermaLink="false">product:SupaSEO</guid>
+    <pubDate>Sat, 21 Nov 2026 00:00:00 +0000</pubDate>
+    <description>Noah Zixin Zhang's local SEO + AI-citation tracker (Google Maps/organic ranks plus whether ChatGPT/Perplexity cite you; BYOK scans, one-time $99 license): the app was built end-to-end by an 8-Bot fleet in ~48 hours — a Chief-of-Staff Bot routing work through a product-lead Bot to specialist Bots, ~951 commits, while the human handled only the landing page (launch post, giveaway/setup post).</description>
+  </item>
   <item>
     <title>Indexed: AngelList</title>
     <link>https://till3005.github.io/built-with-devin/#enterprise</link>
@@ -172,13 +179,6 @@
     <guid isPermaLink="false">enterprise:Hippo</guid>
     <pubDate>Thu, 19 Nov 2026 00:00:00 +0000</pubDate>
     <description>Devin across the insurance engineering org</description>
-  </item>
-  <item>
-    <title>Indexed: Zeb</title>
-    <link>https://till3005.github.io/built-with-devin/#enterprise</link>
-    <guid isPermaLink="false">enterprise:Zeb</guid>
-    <pubDate>Thu, 19 Nov 2026 00:00:00 +0000</pubDate>
-    <description>NetSuite→Databricks delivery partner</description>
   </item>
 </channel>
 </rss>
