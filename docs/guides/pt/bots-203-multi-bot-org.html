@@ -117,6 +117,7 @@ decision to the orchestrator.
 staging ──► PM Bot reporta status no canal
 </code></pre>
 <p>Aprove grants de forma estreita: o orquestrador lê e manda mensagem aos especialistas; especialistas não precisam todos se alcançar.</p>
+<p><strong>Modelo de acesso de 20/11.</strong> Bots compartilhados e service users agora só enxergam recursos explicitamente concedidos — repos, segredos, plugins, playbooks, skills e servidores MCP têm escopo por Bot, e sessões carregam controles próprios de compartilhamento/privacidade. Leia <a href="https://docs.devin.ai/work-with-devin/bots/access-and-security">acesso e segurança</a> antes de ligar a org: um Bot que manda mensagem a um especialista mas não lê o repo dele não pega o handoff de verdade.</p>
 <h2 id="passo-4-a-thread-consolidada">Passo 4 — A thread consolidada<a class="hlink" href="#passo-4-a-thread-consolidada" aria-hidden="true">#</a></h2>
 <p>Esta é a instrução mais importante — converte interrupções de 20 Bots num hábito só:</p>
 <pre><code class="language-text">Collect every pending decision from the Bots you work with into one
@@ -212,7 +213,7 @@ replies as decisions and relay them.
 <ul>
 <li><a href="https://devin.ai/blog/introducing-devin-bots">Introducing Devin Bots</a> — números do SuperJennyStack, variante grant-handoff</li>
 <li><a href="https://devin.ai/bots/templates">Bot marketplace</a> — template comunitário SuperJennyStack + 16 templates oficiais</li>
-<li><a href="https://docs.devin.ai/work-with-devin/bots">Docs de Bots</a> — grants, memória, acesso</li>
+<li><a href="https://docs.devin.ai/work-with-devin/bots">Docs de Bots</a> — grants, memória, <a href="https://docs.devin.ai/work-with-devin/bots/access-and-security">acesso e segurança</a></li>
 <li>Relacionado: <a href="bots-204-reference-grounded-swarm.html">Guia 5 — Enxame ancorado em referência</a> para enxames que <em>escrevem</em> em vez de <em>operar</em></li>
 </ul>
 <section class="related"><h3>Mesmo estágio — Estágio 2 · Escalar</h3><p><a href="bots-201-product-owner.html">Guia 2 — Bot product-owner</a> · <a href="bots-202-scheduled-sentinel.html">Guia 3 — Bot sentinela agendado</a> · <a href="bots-204-reference-grounded-swarm.html">Guia 5 — Enxame ancorado em referência</a> · <a href="migrations-at-scale.html">Guia 11 — Migrações em escala</a> · <a href="living-evals.html">Guia 15 — Living evals a partir de traces de produção</a> · <a href="enterprise-playbook.html">Guia 7 — Padrões de rollout enterprise</a></p></section>

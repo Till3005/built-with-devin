@@ -117,6 +117,7 @@ decision to the orchestrator.
 staging ──► PM Bot reports status in channel
 </code></pre>
 <p>grant 按窄批准：编排者能读和发消息给专家；专家之间不必互达。</p>
+<p><strong>11/20 权限模型。</strong> 共享 Bot 和 service user 现在只能看到你显式授予的资源——repo、密钥、plugin、playbook、skill 和 MCP server 都按 Bot 逐个授权，session 也带自己的分享/隐私开关。接线前先读<a href="https://docs.devin.ai/work-with-devin/bots/access-and-security">访问与安全文档</a>：能给专家发消息却读不到它 repo 的 Bot，实际上接不住交接。</p>
 <h2 id="第-4-步-汇总-thread">第 4 步 — 汇总 thread<a class="hlink" href="#第-4-步-汇总-thread" aria-hidden="true">#</a></h2>
 <p>这是最重要的一条指令——它把 20 个 Bot 的打扰折算成一个习惯：</p>
 <pre><code class="language-text">Collect every pending decision from the Bots you work with into one
@@ -213,7 +214,7 @@ replies as decisions and relay them.
 <ul>
 <li><a href="https://devin.ai/blog/introducing-devin-bots">Introducing Devin Bots</a> — SuperJennyStack 数字、grant 交接变体</li>
 <li><a href="https://devin.ai/bots/templates">Bot marketplace</a> — SuperJennyStack 社区模板 + 16 个官方模板</li>
-<li><a href="https://docs.devin.ai/work-with-devin/bots">Bots docs</a> — grants、memory、access</li>
+<li><a href="https://docs.devin.ai/work-with-devin/bots">Bots docs</a> — grants、memory、<a href="https://docs.devin.ai/work-with-devin/bots/access-and-security">access &amp; security</a></li>
 <li>相关：<a href="bots-204-reference-grounded-swarm.html">第 5 篇 — 参考基准锚定的 swarm</a>（<em>构建</em>而非<em>运营</em>的 swarm）</li>
 </ul>
 <section class="related"><h3>同阶段 — 二阶 · 规模化</h3><p><a href="bots-201-product-owner.html">指南 2 — 产品所有制 Bot</a> · <a href="bots-202-scheduled-sentinel.html">指南 3 — 定时哨兵 Bot</a> · <a href="bots-204-reference-grounded-swarm.html">指南 5 — 参考基准锚定的 swarm</a> · <a href="migrations-at-scale.html">指南 11 — 规模化迁移</a> · <a href="living-evals.html">指南 15 — 生产 trace 驱动的&quot;活&quot;评测集</a> · <a href="enterprise-playbook.html">指南 7 — 企业级铺开模式</a></p></section>

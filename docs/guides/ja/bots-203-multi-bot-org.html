@@ -117,6 +117,7 @@ decision to the orchestrator.
 再テスト ──► PM Bot がチャンネルに状況報告
 </code></pre>
 <p>grant は狭く承認する：オーケストレーターはスペシャリストを読みメッセージする；スペシャリスト同士が全員互いに届く必要はない。</p>
+<p><strong>11/20 のアクセスモデル。</strong> 共有 Bot とサービスユーザーは明示的に grant されたリソースしか見えなくなった——repo・シークレット・プラグイン・プレイブック・スキル・MCP サーバーは Bot ごとにスコープされ、セッションにも個別の共有/プライバシー制御がある。組織を配線する前に<a href="https://docs.devin.ai/work-with-devin/bots/access-and-security">アクセスとセキュリティ</a>を読む：スペシャリストにメッセージできてもその repo を読めない Bot は、実際にはハンドオフを受けられない。</p>
 <h2 id="ステップ-4-集約スレッド">ステップ 4 — 集約スレッド<a class="hlink" href="#ステップ-4-集約スレッド" aria-hidden="true">#</a></h2>
 <p>最も重要な指示——20 Bot 分の割り込みを 1 つの習慣に変換する：</p>
 <pre><code class="language-text">Collect every pending decision from the Bots you work with into one
@@ -212,7 +213,7 @@ replies as decisions and relay them.
 <ul>
 <li><a href="https://devin.ai/blog/introducing-devin-bots">Introducing Devin Bots</a> — SuperJennyStack の数値、grant ハンドオフの亜種</li>
 <li><a href="https://devin.ai/bots/templates">Bot マーケットプレイス</a> — SuperJennyStack コミュニティテンプレート + 公式テンプレート 16 種</li>
-<li><a href="https://docs.devin.ai/work-with-devin/bots">Bots ドキュメント</a> — grants、メモリ、アクセス</li>
+<li><a href="https://docs.devin.ai/work-with-devin/bots">Bots ドキュメント</a> — grants、メモリ、<a href="https://docs.devin.ai/work-with-devin/bots/access-and-security">アクセスとセキュリティ</a></li>
 <li>関連：<a href="bots-204-reference-grounded-swarm.html">ガイド 5 — 参照基盤スウォーム</a> <em>運用</em>ではなく<em>執筆</em>するスウォーム向け</li>
 </ul>
 <section class="related"><h3>同じステージ — ステージ2 · スケール</h3><p><a href="bots-201-product-owner.html">ガイド 2 — プロダクトオーナー Bot</a> · <a href="bots-202-scheduled-sentinel.html">ガイド 3 — 定期監視 Bot</a> · <a href="bots-204-reference-grounded-swarm.html">ガイド 5 — 参照基盤スウォーム</a> · <a href="migrations-at-scale.html">ガイド 11 — スケールする移行</a> · <a href="living-evals.html">ガイド 15 — 本番トレースから育つリビング eval</a> · <a href="enterprise-playbook.html">ガイド 7 — エンタープライズ導入パターン</a></p></section>

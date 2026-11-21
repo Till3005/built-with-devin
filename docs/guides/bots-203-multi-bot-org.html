@@ -117,6 +117,7 @@ decision to the orchestrator.
 staging ──► PM Bot reports status in channel
 </code></pre>
 <p>Approve grants narrowly: the orchestrator reads and messages specialists; specialists don't all need to reach each other.</p>
+<p><strong>Nov 20 access model.</strong> Shared Bots and service users now see only the resources you explicitly grant — repos, secrets, plugins, playbooks, skills and MCP servers are scoped per-Bot, and sessions carry their own share/privacy controls. Read <a href="https://docs.devin.ai/work-with-devin/bots/access-and-security">access &amp; security</a> before wiring the org: a Bot that can message a specialist but can't read its repo can't actually take the handoff.</p>
 <h2 id="step-4-the-roll-up-thread">Step 4 — The roll-up thread<a class="hlink" href="#step-4-the-roll-up-thread" aria-hidden="true">#</a></h2>
 <p>This is the single most important instruction — it converts 20 Bots' worth of interruptions into one habit:</p>
 <pre><code class="language-text">Collect every pending decision from the Bots you work with into one
@@ -212,7 +213,7 @@ replies as decisions and relay them.
 <ul>
 <li><a href="https://devin.ai/blog/introducing-devin-bots">Introducing Devin Bots</a> — SuperJennyStack numbers, grant-handoff variant</li>
 <li><a href="https://devin.ai/bots/templates">Bot marketplace</a> — SuperJennyStack community template + 16 official templates</li>
-<li><a href="https://docs.devin.ai/work-with-devin/bots">Bots docs</a> — grants, memory, access</li>
+<li><a href="https://docs.devin.ai/work-with-devin/bots">Bots docs</a> — grants, memory, <a href="https://docs.devin.ai/work-with-devin/bots/access-and-security">access &amp; security</a></li>
 <li>Related: <a href="bots-204-reference-grounded-swarm.html">Guide 5 — Reference-grounded swarm</a> for swarms that <em>write</em> rather than <em>operate</em></li>
 </ul>
 <section class="related"><h3>Same stage — Stage 2 · Scale</h3><p><a href="bots-201-product-owner.html">Guide 2 — Product-owner Bot</a> · <a href="bots-202-scheduled-sentinel.html">Guide 3 — Scheduled-sentinel Bot</a> · <a href="bots-204-reference-grounded-swarm.html">Guide 5 — Reference-grounded swarm</a> · <a href="migrations-at-scale.html">Guide 11 — Migrations at scale</a> · <a href="living-evals.html">Guide 15 — Living evals from production traces</a> · <a href="enterprise-playbook.html">Guide 7 — Enterprise rollout patterns</a></p></section>

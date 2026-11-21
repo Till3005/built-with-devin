@@ -13,7 +13,7 @@
 
 <sub>Curated by [@darega0mae](https://x.com/darega0mae) · 姉妹チュートリアル：[build-with-devin](https://github.com/Till3005/build-with-devin) · [プロジェクトを追加](CONTRIBUTING.md)</sub>
 
-<sub>**14** 件の実証済み Bot 導入 · **43** 件のエンタープライズ事例 · **8** 件の公開プロダクト · **47** 件のツール・統合 · **32** 件の実践レポート</sub>
+<sub>**14** 件の実証済み Bot 導入 · **45** 件のエンタープライズ事例 · **8** 件の公開プロダクト · **47** 件のツール・統合 · **34** 件の実践レポート</sub>
 
 <sub>[English](README.md) · [简体中文](README.zh.md) · 日本語 · [Português](README.pt.md)</sub>
 
@@ -113,7 +113,7 @@ flowchart LR
 
 **[→ 再現ガイド：実証済みのすべての Bot を再構築する方法](docs/reproducing-devin-bots.md)** —— 姉妹リポジトリ **[build-with-devin](https://github.com/Till3005/build-with-devin)** の拡張チュートリアル版も
 
-サイト：**[till3005.github.io/built-with-devin](https://till3005.github.io/built-with-devin/)**（Devin スタイルのレジストリページ）· 深掘り：**[Devin Bot の解剖](docs/devin-bots-anatomy.md)**（実証済み 6 つの機構 + 数字が実際に示すこと）· **[Devin の経済学](docs/economics.md)**（公開済みのコスト/リターン数値を一冊に —— [フィルタ可能なページ](docs/economics.html)版も）
+サイト：**[till3005.github.io/built-with-devin](https://till3005.github.io/built-with-devin/)**（Devin スタイルのレジストリページ）· 深掘り：**[Devin Bot の解剖](docs/devin-bots-anatomy.md)**（実証済み 6 つの機構 + 数字が実際に示すこと）· **[Devin の経済学](docs/economics.md)**（公開済みのコスト/リターン数値を一冊に —— [サイト版](https://till3005.github.io/built-with-devin/economics)も）
 
 <p align="right"><a href="#readme">back to top</a></p>
 
@@ -160,7 +160,7 @@ flowchart LR
 | [Gumroad](https://devin.ai/customers/gumroad) | コアリポジトリの Devin | Devin はリポジトリの**第 1 位コントリビューター**：1,500 以上のマージ PR |
 | [Finch](https://devin.ai/customers/finch) | Slack→Linear 受付 → ログ/トレース調査 → ブラウザ検証 → 当日 PR | **3,000 PR マージ、約 20 エンジニア月節約**；導入前は 1 日 20 件の依頼に 3–4 件しか対応できず——「最大の解放は並列化能力」|
 | [Comarch](https://devin.ai/customers/comarch) | 20 年物・1,000 万行 ERP の再構築 | 全システム近代化が進行中 |
-| [AngelList](https://devin.ai/customers/angellist) | インシデントトリアージ + データ移行 | インシデントの 70% をエンジニアの前に Devin が原因特定。Redshift→Snowflake が 5.2 倍速 |
+| [AngelList](https://devin.ai/customers/angellist) | インシデントトリアージ + データ移行 | Devin Oncall がインシデントの **70%** を初回で原因特定——自前の Claude SDK エージェント「Sky」は **20%**。週約 20 件、50% をエンドツーエンドで処理（[Oncall 事例](https://devin.ai/customers/angellist-oncall)）。Redshift→Snowflake が 5.2 倍速 |
 | [Modal](https://devin.ai/customers/modal) | インシデント対応 | 80% のインシデントがエンジニアがスレッドを開く前に調査済み |
 | [Reducto](https://devin.ai/customers/reducto) | Devin Oncall が一次対応 | エンジニアがページされることはほぼない |
 | [Eight Sleep](https://devin.ai/customers/eight-sleep) | 非エンジニア含む全社的な Devin | **出荷量 8 倍**；サポートマネージャーが 1 時間未満で E2E パイプライン+ダッシュボードを構築；利益予測モデルは約 1 週間の反復で月次バックテスト誤差 10% 以内 |
@@ -184,6 +184,8 @@ flowchart LR
 | [Mercor](https://devin.ai/customers/mercor) | 24 時間稼働するエンジニア組織 | 評価額 100 億ドルのヒューマンインテリジェンス・ネットワークが Devin を 24/7 運用（公開事例ページ） |
 | [Hippo](https://devin.ai/customers/hippo) | 保険エンジニア組織への全面展開 | Cognition と提携：全米 50 州の保険ルールに耐えるプロダクトをエージェント的に構築・テスト（公開事例ページ） |
 | [Zeb](https://devin.ai/blog/devin-for-databricks-migrations) | NetSuite→Databricks のデリバリーパートナー | 世界的投資アドバイザリー企業の 4 週間案件を **2.5 週間で納品**、Fortune 500 エネルギー企業が 142 オブジェクトのプラットフォームを **8 日**で Unity Catalog へ移行 |
+| [Gamma](https://research.gamma.app/2026/11/template-factory) | デザインテンプレート工場 + PowerPoint インポート再建 | 各チケットで Devin セッションを起ち、Gamma 独自のエージェントハーネス（build→render→critic ラウンド）を実行。数千テンプレート、1 件 2–4 時間。人の介入は 1 デッキ 10–15 回から **10 月に完全自律へ**。PPT インポートはエンジニア 3 名 + ~10 の Devin fixer 群で再建——**3,500+ マージ**。従来見積はエンジニア 5–10 名 × 1 年、数週間で完了（[インポート記事](https://research.gamma.app/2026/11/pptx-import)） |
+| [Odyssey Logistics](https://news.cognizant.com/2026-09-23-Cognizant-and-Cognition-put-autonomous-AI-engineering-into-production-at-Odyssey-Logistics,-with-a-37-percent-net-cost-saving) | レガシー Access/VBA フォーム → クラウドネイティブ OdysseyONE TMS。Cognizant の 7 人チームが納品、変更ごとに人が承認 | 従来型リビルド比 **37% の純コスト削減**、固定予算・短縮工期の中で。デリバリースループットは約 ⅓ 増。現在フェーズは本番稼働中（2026 年 9 月プレスリリース） |
 | **Rox** | Living Evals —— 週次 Devin が本番トレースを読み、完全コピーで障害を再生、eval PR をオープン | eval スイートが**実使用量の 72%**をカバー（手書きは 43–57%）（[記事](https://www.rox.com/articles/living-evals-an-eval-suite-that-grows-from-production)、[スレッド](https://x.com/rox_ai/status/2110779380666617997)） |
 | [Philips](https://devin.ai/blog/introducing-code-scans) | Code Scans 早期テスター——デジタル計算病理学、Enterprise Informatics | 複数リポジトリで **~96% の PR マージ率**；テスト期間中に **700+ エンジニア時間**削減と推計（launch 記事中の顧客証言） |
 | **Cognition**（自社） | ソフトウェアファクトリー：自己駆動 PR ループ（バグ報告→マージ→監視→保守）、小ポッド + 毎時再構築の使い捨て VM + Docker Compose モック；エージェントに測定可能な目標 | **1 年でマージ PR スループット 40 倍、エンジニア 2.7 倍**——1 人あたり生産性 >10 倍（[Walden Yan、AI Engineer](https://aietalks.com/talks/40x-more-merged-prs-with-2-7x-the-engineers)）|
@@ -308,7 +310,9 @@ Devin *で*作られたものではなく、Devin の*ために*コミュニテ�
 - **[SMARTCAMP の Trivy スキャン → Devin 修復](https://zenn.dev/smartcamp/articles/97ac804043530e)** —— 定期 GitHub Actions が ECS イメージを pull して Trivy スキャン、HIGH/CRITICAL を issue 化して Devin が対応。AWS 認証ジョブとスキャンジョブを分離し artifact のみで連携。
 - **[Devin が1か月間、私のエンジニアチームだった記録](https://ravtheman.medium.com/im-17-and-for-one-month-devin-was-my-entire-engineering-team-here-s-everything-i-learned-183d59099384)** —— メルボルンの高校生による Max 枠1か月の実測：一晩で 67 PR 処理・44 マージ。授業の合間に Linux ディストロ、ローカルモデル群、マルチエージェント IDE を構築 — 実測の CLI/クラウド運用解説つき（Medium）。
 - **[Devin 2025 年次パフォーマンスレビュー](https://cognition.com/blog/devin-annual-performance-review-2025)** —— Cognition 自身の 18 ヶ月通信簿、ベンダーとして異例の正直さ：強み（PR マージ率 34%→67%、問題解決 4 倍速、脆弱性修正 20 倍、ETL 移行 10 倍、カバレッジ 50–60%→80–90%、自社 webapp コミットの約 1/3）と名指しの弱点（曖昧な要件、途中スコープ変更、ソフトスキル）。
-- **[100 Days of Devin——エージェント工場主の移行ログ](https://www.raijuna.com/blog/devin-100-day-challenge-day-1)** —— 自前のエージェント工場で日産数百 PR を出す著者が、Devin Bots に載せ替えて 100 日間検証。Day 1：~15 Bot、正直な摩擦記録（セッション追跡が艦隊規模に耐えない——「どれが PR を出した？どれが私を待ってる？」）、スクリーンショットを上回る動画 QA、セットアップで週クォータの 18% 消費。連載中。
+- **[100 Days of Devin——エージェント工場主の移行ログ](https://www.raijuna.com/blog/devin-100-day-challenge-day-1)** —— 自前のエージェント工場で日産数百 PR を出す著者が、Devin Bots に載せ替えて 100 日間検証。Day 1：~15 Bot、正直な摩擦記録（セッション追跡が艦隊規模に耐えない——「どれが PR を出した？どれが私を待ってる？」）、スクリーンショットを上回る動画 QA、セットアップで週クォータの 18% 消費。[Day 2](https://www.raijuna.com/blog/devin-100-day-challenge-day-2)：GPT モデル上で Bot が数分で文脈を失いタスクを拾わず（本人注：モデル要因の可能性あり）、bot/ローカル/VPS/クラウドのセッション区別は依然読みにくいまま、2 日で週クォータの 33% 消費——現時点では「オープンソースと自前マシンに敵わない」。連載中。
+- **[swyx の Devin Bots 一週間レポート](https://x.com/swyx/status/2122746401482592549)** —— AEO、QA、クロスプラットフォーム移植、個人管理、動画編集を丸ごと委譲し、ローカル worktree 地獄からも解放：「multi-agent teams done right……欲しいのは『AI 従業員』ではなく、成果を所有するエージェントマネージャー」。本人も明言する注意点：Cognition と関係あり、品質指標なし——実践者レポートでありベンチマークではない。
+- **[linux.do——poke.com/bots プロモ実録](https://linux.do/t/topic/3206201)**（zh）—— 無料 Bot 実験の失敗モードを集めた 20 ポストのコミュニティ記録：Poke が値切った額（$45→$20→$5）をバックエンドが拒否、iMessage/Apple Messages 限定で Android 登録者は後から弾かれる——「玩不起可以不出这个活动」。LP に書かれない細則を群衆が補完。
 - **[掘金——Devin 時価 470 億、でも私の失敗談](https://juejin.cn/post/7680768670986092544)**（zh）—— 懐疑的な実ユーザーの記録：手で 30 分の「Go マイクロサービス + Redis キャッシュ」タスクを Devin に渡し、自律性がどこで漏れるかを追う。ケーススタディの数字へのバラスト。
 - **[月 $20k を Devin に使うソロファウンダーのオペレーション](https://www.lennysnewsletter.com/p/i-spent-20000-on-devin-in-a-month)** —— Ryan Carson（Untangle）は ~15 台の Devin エージェントを同時稼働。ダッシュボードではなくフォルダシステム + 紙の P0 リストで統制；「Watchdog」playbook が全法律事務所アカウントの CS を一手に担い、「LAN PR」スキルが QA レビュアーなしで ~40 PR/日を締める（Lenny's ポッドキャスト）。
 
@@ -337,6 +341,9 @@ Devin *で*作られたものではなく、Devin の*ために*コミュニテ�
 - **[Metarix —— Code Scans への懐疑的な読み](https://metarix.io/devin-scans-the-whole-repo)** —— ベンダー公表値（Dioxus コンパイル 64% 短縮、Philips 96%）と再現可能な数字を分ける：「引用する前に自分のリポジトリで再現せよ」。
 - **[Vibe Coded Projects](https://vibedprojects.com/ai-tools/devin)** —— Devin で vibe-code された 373 のアプリ・ツール・サイト。
 - **[Devin 日本 2 周年ミートアップ](https://aid.connpass.com/event/412875/)** —— アンバサダー主催のコミュニティイベント（[発表](https://x.com/kinopee_ai/status/2123019189325848847)）。
+- **[The Inference——Bots ローンチ分析](https://theinference.org/article/cognition-launches-devin-bots-ai-managers-that-built-an-android-app-in-44-days)** —— 数字まで踏み込んだ唯一のローンチ記事：Bots は $48B 評価（約 48× 売上倍率）の初の製品エビデンス。報じられる $70–80B の提示額と TechCrunch の ~$8 億燃焼見積もりを文脈に（11/18）。
+- **[Devin Apps——タイ語の深掘り](https://dev.to/sarantoon/devin-apps-ekhruuengmuuephaayainbnekhruuengkhlaawdkhngedwin-4j8h)** —— 初のタイ語分析（11/18）：「Devin のマシンでホスト」の実態——セッション課金、最終リクエスト 5 分後にスリープ、単一 VM の適用範囲（高トラフィックではなく内部ツール向け）、発表が圧縮した secrets/token の注意点（TH）。
+- **[AI Native Operators——Devin Bots ガイド](https://ainativeoperators.ai/blog/devin-bots-guide)** —— ドキュメントベースのセットアップガイド（11/17）。価値は見本の outcome prompt：入力・環境・証拠・自分に残す決定・明示的な NG リストまで名指しで書く型——最初の Bot にそのまま盗める。
 - **[Devin's Dinner](https://x.com/MattSchrage/status/2121016484155548124)** —— Matt Schrage の招待制ニューヨークディナーシリーズ。Devin を使うファウンダーとエンジニア向け。
 
 <p align="right"><a href="#readme">back to top</a></p>
@@ -346,7 +353,7 @@ Devin *で*作られたものではなく、Devin の*ために*コミュニテ�
 ## 公式リソース
 
 - [Devin Community](https://devin.ai/community) —— イベント、アンバサダー申請、イベント支援
-- [docs.devin.ai](https://docs.devin.ai) —— ドキュメント：[Bots](https://docs.devin.ai/work-with-devin/bots)、[Automations](https://docs.devin.ai/product-guides/automations)、[Devin CLI](https://docs.devin.ai/cli/index.md)、[Session Insights](https://docs.devin.ai/product-guides/session-insights)（XS–XL のセッションサイジング）、[Skills / Plugins](https://docs.devin.ai/product-guides/skills)——廃止された Knowledge の移行先
+- [docs.devin.ai](https://docs.devin.ai) —— ドキュメント：[Bots](https://docs.devin.ai/work-with-devin/bots)（[アクセスとセキュリティ](https://docs.devin.ai/work-with-devin/bots/access-and-security)——grants・共有・課金の帰属を含む）、[Automations](https://docs.devin.ai/product-guides/automations)、[Devin CLI](https://docs.devin.ai/cli/index.md)、[Session Insights](https://docs.devin.ai/product-guides/session-insights)（XS–XL のセッションサイジング）、[Skills / Plugins](https://docs.devin.ai/product-guides/skills)——廃止された Knowledge の移行先。ローカライズ版も：[中文文档](https://docs.devin.ai/zh/work-with-devin/bots) · [日本語ドキュメント](https://docs.devin.ai/ja/work-with-devin/bots)
 - [Release notes](https://docs.devin.ai/release-notes/overview) · [Devin Desktop changelog](https://docs.devin.ai/desktop/changelog) · [Devin CLI changelog](https://docs.devin.ai/cli/changelog/stable) —— stable 各リリースの新機能と修正
 - [Use-case ギャラリー](https://docs.devin.ai/use-cases/gallery/index.md) —— コピペ可能なプロンプトつきの 40 以上の文書化ワークフロー。[作業分割のベストプラクティス](https://docs.devin.ai/use-cases/best-practices.md)
 - [devin.ai/brand](https://devin.ai/brand) —— 公式ブランドキット
@@ -356,7 +363,7 @@ Devin *で*作られたものではなく、Devin の*ために*コミュニテ�
 - [CognitionAI/team-marketplace-template](https://github.com/CognitionAI/team-marketplace-template) —— 組織管理型プラグインエコシステムの公式テンプレート：1 つのリポジトリでチーム共有プラグインを管理し、Devin Web アプリから全員に配布。必須/任意プラグインのパターン付き
 - [Devin for Databricks Migrations](https://devin.ai/blog/devin-for-databricks-migrations) —— Databricks と共同構築した公式移行サービス（11 月 19 日）：レガシー DWH コードを変換し、顧客ワークスペースでテスト、カットオーバー前に全ソースを照合 —— Databricks Marketplace 提供
 - [Devin で Modal 上のカスタムモデルを学習・デプロイ](https://gist.github.com/dabit3/866caaab49a4a5371ae01655fecad34b) —— Cognition エンジニア Nader Dabit の実働テンプレート
-- [Devin for Startups](https://devin.ai/startups) —— 適格チーム向け最大 $65k クレジット。[Devin for Gaming](https://talofagames.com/devin-for-gaming/) —— Talofa × Cognition の 3 週間スタジオコホート。対面ワークショップとクレジット賞。**[poke.com/bots](https://poke.com/bots)** —— 期間限定実験（11/18 開始）：Poke にテキストでアイデアを送り、クレジットに値する理由を説得すれば無料の Devin Bot を獲得 —— 10,000 アカウント、各最大 $10,000（Nader Dabit によると総額 ~$1 億）、$200/月の Max 要件を回避可能。これまでに報告された最高の交渉額は $1,887（[walden_yan](https://x.com/walden_yan/status/2123326058644828366)、[報道](https://news.sulat.com/2026/11/19/devin-bots-giveaway/)）
+- [Devin for Startups](https://devin.ai/startups) —— 適格チーム向け最大 $65k クレジット。[Devin for Gaming](https://talofagames.com/devin-for-gaming/) —— Talofa × Cognition の 3 週間スタジオコホート。対面ワークショップとクレジット賞。**[poke.com/bots](https://poke.com/bots)** —— 期間限定実験（11/18 開始）：Poke にテキストでアイデアを送り、クレジットに値する理由を説得すれば無料の Devin Bot を獲得 —— 10,000 アカウント、各最大 $10,000（Nader Dabit によると総額 ~$1 億）、$200/月の Max 要件を回避可能。これまでに報告された最高の交渉額は $1,887（[walden_yan](https://x.com/walden_yan/status/2123326058644828366)、[報道](https://news.sulat.com/2026/11/19/devin-bots-giveaway/)）。LP に書かれていない細則：**iMessage/Apple Messages 限定**（Android 登録者は後から弾かれる）、Poke と合意した額がバックエンドに拒否される事例が多発、スパム対策で一時停止後に招待リンク復帰（[コミュニティ記録](https://linux.do/t/topic/3206201)、zh）
 - [Devin Automations クイックスタート](https://www.youtube.com/watch?v=6xxKtIpgOyE) —— Bots が土台とする、イベント/スケジュールトリガー型エージェント設定の公式ビデオ
 - [SWE-2 Flash](https://cognition.com/blog/swe-2-flash) —— Cognition の高速コーディングモデル：主要評価で全米オープンウェイトモデルを上回り、SWE-2 の 3 倍速・1/5 の価格
 - [Devin Apps](https://devin.ai/blog/devin-apps) —— Devin が自マシンで構築し安定 URL で提供するライブ Web アプリ（内部ツール、ダッシュボード、ステージングコピー）
