@@ -13,7 +13,7 @@
 
 <sub>维护者 [@darega0mae](https://x.com/darega0mae) · 姊妹教程库：[build-with-devin](https://github.com/Till3005/build-with-devin) · [收录你的项目](CONTRIBUTING.md)</sub>
 
-<sub>**14** 个有据可查的 Bot 部署 · **45** 个企业案例 · **9** 个已发布产品 · **47** 个工具与集成 · **34** 篇实战报告</sub>
+<sub>**14** 个有据可查的 Bot 部署 · **45** 个企业案例 · **9** 个已发布产品 · **47** 个工具与集成 · **35** 篇实战报告</sub>
 
 <sub>[English](README.md) · 简体中文 · [日本語](README.ja.md) · [Português](README.pt.md)</sub>
 
@@ -301,6 +301,7 @@ flowchart LR
 - **[角色分工的 bot 开发队 + 轻量 PR 自动合并](https://zenn.dev/kyto64/articles/ai-bot-dev-env)** —— kyto64 的个人开发环境：专职 AI bot 加 Devin，低风险 PR 自动合并（日文）。
 - **[Devin CLI 上下文上限实战](https://qiita.com/ishizakahiroshi/items/cee2a8ea2be18f2ccee3)** —— 把 AGENTS.md 和审批规则塞进 16KB/32KB 上限的工作笔记（日文）。
 - **[NOT A HOTEL 的首次 Devin 试用](https://zenn.dev/notahotel/articles/d401a1046d6076)** —— 从配置到首个合并 PR 不到一小时的 mob 实战记录——含 Devin 对仓库接入分类项的要求（日文）。
+- **[Devin 五个必备技巧](https://townlet.eu.org/devin-five-tips-auto-compaction-sessions-subagents-review-browser/)** —— 中文实操者的五个日常设置：450K 自动压缩阈值（注意 SWE-2 窗口只有 256K、不受影响）、`devin -p --model X` 独立会话、桌面端子会话与 Re-parent、`run_subagent` 定档 profile（以及为什么别滥用）、GitHub 自动审 PR 配置、侧栏浏览器的设备视图 + 选中元素评论。
 - **[Hello World… Meet Devin](https://jamesin.substack.com/p/hello-world-meet-devin)** —— Jamesin Seidel 上线初期实录：第一次看 Devin 把代码提交进自己仓库，做了个邮件分拣助手（Substack）。
 - **[用 Devin 部署一个网站](https://www.hostinger.com/tutorials/how-to-deploy-a-website-with-devin/)** —— Hostinger 的逐步教程：三条部署路线（App Deploys beta 用于预览、GitHub→主机商用于生产、手动上传），外加他们的 MCP Connector 让 Devin Desktop 直连 100+ 个托管工具。
 - **[Devin Apps 教程：用一句 prompt 建私有内部应用](https://lightmind24.blogspot.com/2026/11/devin-apps-tutorial-build-private.html)** —— 官方发布文之外最完整的 Apps 实操：第一条 prompt 该写什么（用户、数据源、页面、技术栈）、Apps 怎么自动套用你的设计系统、以及什么场景下 Apps 就不是对的工具了。
@@ -346,6 +347,7 @@ flowchart LR
 - **[Devin Apps 泰语深度解析](https://dev.to/sarantoon/devin-apps-ekhruuengmuuephaayainbnekhruuengkhlaawdkhngedwin-4j8h)** —— 首篇泰语深读（11/18）：把「跑在 Devin 自己机器上」拆开——按 session 计费、无请求 5 分钟后休眠、单 VM 边界（内部工具而非高流量生产）、以及官方发布稿一笔带过的 secrets/token 注意事项（TH）。
 - **[AI Native Operators——Devin Bots 上手指南](https://ainativeoperators.ai/blog/devin-bots-guide)** —— 基于文档的搭建指南（11/17），最有价值的是那条示例 outcome prompt：写清输入、环境、证据、留给你的决策和明确的禁区清单——第一个 Bot 可以直接抄。
 - **[Devin's Dinner](https://x.com/MattSchrage/status/2121016484155548124)** —— Matt Schrage 在纽约的邀请制晚宴系列，面向用 Devin 的创始人和工程师。
+- **[V2EX——Devin GUI 主控三家 CLI](https://www.v2ex.com/t/1258858)** —— 中文用户经 poke.com/bots 活动拿到免费 Bot（$50 额度 + 一个月 $200 Max），让 Devin Desktop 作主控同时管 gemini/codex/claude 三个 CLI，再接 Devin Bot 与 Poke 短信入口——「手机上发几条短信就处理完」。其中 +280–300% 提速是 agent 自报估算，非实测数据（11/22）。
 
 <p align="right"><a href="#readme">back to top</a></p>
 

@@ -13,7 +13,7 @@
 
 <sub>Curated by [@darega0mae](https://x.com/darega0mae) · 姉妹チュートリアル：[build-with-devin](https://github.com/Till3005/build-with-devin) · [プロジェクトを追加](CONTRIBUTING.md)</sub>
 
-<sub>**14** 件の実証済み Bot 導入 · **45** 件のエンタープライズ事例 · **9** 件の公開プロダクト · **47** 件のツール・統合 · **34** 件の実践レポート</sub>
+<sub>**14** 件の実証済み Bot 導入 · **45** 件のエンタープライズ事例 · **9** 件の公開プロダクト · **47** 件のツール・統合 · **35** 件の実践レポート</sub>
 
 <sub>[English](README.md) · [简体中文](README.zh.md) · 日本語 · [Português](README.pt.md)</sub>
 
@@ -301,6 +301,7 @@ Devin *で*作られたものではなく、Devin の*ために*コミュニテ�
 - **[役割別 bot 開発チーム + 軽量 PR 自動マージ](https://zenn.dev/kyto64/articles/ai-bot-dev-env)** —— kyto64 の個人開発環境：専門 AI bot + Devin、低リスク PR の自動マージ。
 - **[Devin CLI のコンテキスト上限の実践](https://qiita.com/ishizakahiroshi/items/cee2a8ea2be18f2ccee3)** —— AGENTS.md と承認ルールを 16KB/32KB 上限に収める作業ノート。
 - **[NOT A HOTEL の初めての Devin 導入](https://zenn.dev/notahotel/articles/d401a1046d6076)** —— セットアップから初マージ PR まで 1 時間未満のモブワーク記録——Devin が求めるリポジトリ接続設定の分類項目も紹介。
+- **[Devin 5つの必須テクニック（中文）](https://townlet.eu.org/devin-five-tips-auto-compaction-sessions-subagents-review-browser/)** — 中国語圏オペレーターの日常設定 5 つ：450K 自動圧縮しきい値（SWE-2 は 256K 窓なので無関係という注意付き）、`devin -p --model X` の独立セッション、Desktop の子セッション / Re-parent、`run_subagent` 固定モデル profile（濫用注意）、GitHub Automatic review の設定、サイドバーブラウザのデバイス表示 + 要素選択コメント（中文）。
 - **[Hello World… Meet Devin](https://jamesin.substack.com/p/hello-world-meet-devin)** —— Jamesin Seidel のローンチ期記録：初めて Devin が自分のリポジトリにコードをコミットするのを見た、メール振り分けアシスタント開発（Substack）。
 - **[Devin でウェブサイトをデプロイする方法](https://www.hostinger.com/tutorials/how-to-deploy-a-website-with-devin/)** —— Hostinger のステップバイステップ：3 つのデプロイルート（プレビュー向け App Deploys beta、本番向け GitHub→ホスト、手動アップロード）、加えて MCP Connector で Devin Desktop が 100+ のホスティングツールに直接アクセス。
 - **[Devin Apps チュートリアル：プロンプトでプライベート内部アプリを作る](https://lightmind24.blogspot.com/2026/11/devin-apps-tutorial-build-private.html)** —— ローンチ記事以外で最も完全な Apps 実践ガイド：最初のプロンプトに書くべきこと（ユーザー、データソース、画面、スタック）、Apps がデザインシステムを拾う仕組み、Apps が適さなくなる境界。
@@ -346,6 +347,7 @@ Devin *で*作られたものではなく、Devin の*ために*コミュニテ�
 - **[Devin Apps——タイ語の深掘り](https://dev.to/sarantoon/devin-apps-ekhruuengmuuephaayainbnekhruuengkhlaawdkhngedwin-4j8h)** —— 初のタイ語分析（11/18）：「Devin のマシンでホスト」の実態——セッション課金、最終リクエスト 5 分後にスリープ、単一 VM の適用範囲（高トラフィックではなく内部ツール向け）、発表が圧縮した secrets/token の注意点（TH）。
 - **[AI Native Operators——Devin Bots ガイド](https://ainativeoperators.ai/blog/devin-bots-guide)** —— ドキュメントベースのセットアップガイド（11/17）。価値は見本の outcome prompt：入力・環境・証拠・自分に残す決定・明示的な NG リストまで名指しで書く型——最初の Bot にそのまま盗める。
 - **[Devin's Dinner](https://x.com/MattSchrage/status/2121016484155548124)** —— Matt Schrage の招待制ニューヨークディナーシリーズ。Devin を使うファウンダーとエンジニア向け。
+- **[V2EX — Devin GUI が他社 CLI を指揮](https://www.v2ex.com/t/1258858)** — poke.com/bots で無料 Bot（$50 クレジット + $200 Max 1ヶ月）を得た中文ユーザーが、Devin Desktop を指揮役に gemini/codex/claude の 3 CLI と Devin Bot + Poke SMS を束ね「携帯から数通の SMS で処理」。引用の +280–300% 高速化はエージェントの自己申告推定で実測値ではない（中文、11/22）。
 
 <p align="right"><a href="#readme">back to top</a></p>
 

@@ -13,7 +13,7 @@
 
 <sub>Curated by [@darega0mae](https://x.com/darega0mae) · Sister tutorials: [build-with-devin](https://github.com/Till3005/build-with-devin) · [Add your project](CONTRIBUTING.md)</sub>
 
-<sub>**14** documented Bot deployments · **45** enterprise case studies · **9** shipped products · **47** tools & integrations · **34** field reports</sub>
+<sub>**14** documented Bot deployments · **45** enterprise case studies · **9** shipped products · **47** tools & integrations · **35** field reports</sub>
 
 <sub>English · [简体中文](README.zh.md) · [日本語](README.ja.md) · [Português](README.pt.md)</sub>
 
@@ -301,6 +301,7 @@ Documented real-world usage.
 - **[Role-based bot dev team + light-PR auto-merge](https://zenn.dev/kyto64/articles/ai-bot-dev-env)** — kyto64's personal-dev setup: specialized AI bots plus Devin, with low-risk PRs merging themselves (JP).
 - **[Devin CLI's context limits in practice](https://qiita.com/ishizakahiroshi/items/cee2a8ea2be18f2ccee3)** — Working notes on fitting AGENTS.md and approval rules inside the 16KB/32KB caps (JP).
 - **[NOT A HOTEL's first Devin session](https://zenn.dev/notahotel/articles/d401a1046d6076)** — A mob-workshop report from setup to first merged PR in under an hour — including what repo onboarding categories Devin asks for (JP).
+- **[Devin 使用五技巧（中文）](https://townlet.eu.org/devin-five-tips-auto-compaction-sessions-subagents-review-browser/)** — A Chinese operator's five daily settings: 450K auto-compaction threshold (with the caveat that SWE-2's 256K window is unaffected), independent sessions via `devin -p --model X`, child sessions / Re-parent in Desktop, `run_subagent` fixed-model profiles (and why not to over-use them), GitHub Automatic review setup, and the sidebar browser's device views + send-element commenting (CN).
 - **[Hello World… Meet Devin](https://jamesin.substack.com/p/hello-world-meet-devin)** — Jamesin Seidel's launch-era account: watching code get committed into his own repo by Devin for the first time, building an email-triage assistant (Substack).
 - **[How to deploy a website with Devin](https://www.hostinger.com/tutorials/how-to-deploy-a-website-with-devin/)** — Hostinger's step-by-step: the three deployment routes (App Deploys beta for previews, GitHub→host for production, manual upload), plus their MCP Connector giving Devin Desktop direct access to 100+ hosting tools.
 - **[Devin Apps tutorial: build a private internal app by prompt](https://lightmind24.blogspot.com/2026/11/devin-apps-tutorial-build-private.html)** — The most complete Apps walkthrough outside the launch post: what to put in the first prompt (users, data source, screens, stack), how Apps pick up your design system, and where Apps stops being the right tool.
@@ -346,6 +347,7 @@ Documented real-world usage.
 - **[Devin Apps — a Thai analysis](https://dev.to/sarantoon/devin-apps-ekhruuengmuuephaayainbnekhruuengkhlaawdkhngedwin-4j8h)** — First Thai-language deep read (Nov 18): what hosting on Devin's own machine actually means — session-priced billing, machines sleep 5 min after last request, single-VM scope (internal tools, not high-traffic), and the secrets/token caveats the launch post compresses (TH).
 - **[AI Native Operators — Devin Bots guide](https://ainativeoperators.ai/blog/devin-bots-guide)** — Docs-grounded setup guide (Nov 17) whose value is the example outcome-prompt: names input, environment, evidence, the decisions that stay yours, and the explicit no-go list — a template worth stealing for your first Bot.
 - **[Devin's Dinner](https://x.com/MattSchrage/status/2121016484155548124)** — Matt Schrage's invite-only NYC dinner series for founders and engineers working with Devin.
+- **[V2EX — Devin GUI orchestrating rival CLIs](https://www.v2ex.com/t/1258858)** — A Chinese operator got a free Bot via poke.com/bots ($50 credits + a $200 Max month), then runs Devin Desktop as the conductor over gemini/codex/claude CLIs plus a Devin Bot reachable via Poke SMS — 'all handled from the phone'. The quoted +280–300% speedup is the agent's own estimate, not a measurement (CN, Nov 22).
 
 <p align="right"><a href="#readme">back to top</a></p>
 

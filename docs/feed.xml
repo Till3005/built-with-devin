@@ -4,7 +4,7 @@
   <title>Built with Devin — registry updates</title>
   <link>https://till3005.github.io/built-with-devin/</link>
   <description>New entries indexed in the built-with-devin registry.</description>
-  <lastBuildDate>Sat, 21 Nov 2026 15:43:22 +0000</lastBuildDate>
+  <lastBuildDate>Sun, 22 Nov 2026 12:37:54 +0000</lastBuildDate>
   <item>
     <title>Indexed: SupaSEO</title>
     <link>https://till3005.github.io/built-with-devin/#products</link>
@@ -118,67 +118,67 @@
     <description>Code Scans early tester — Digital Computational Pathology, Enterprise Informatics</description>
   </item>
   <item>
-    <title>Indexed: Rewards Chief-of-Staff</title>
+    <title>Indexed: Android Bot</title>
     <link>https://till3005.github.io/built-with-devin/#deployments</link>
-    <guid isPermaLink="false">bot:Rewards Chief-of-Staff</guid>
+    <guid isPermaLink="false">bot:Android Bot</guid>
     <pubDate>Thu, 19 Nov 2026 00:00:00 +0000</pubDate>
-    <description>Avinash (Cognition, MENA) — Daily standup + rewards for a personal bot fleet</description>
+    <description>Cognition — Devin's Android app, end to end</description>
   </item>
   <item>
-    <title>Indexed: Personal data Bots</title>
+    <title>Indexed: Layout Bot</title>
     <link>https://till3005.github.io/built-with-devin/#deployments</link>
-    <guid isPermaLink="false">bot:Personal data Bots</guid>
+    <guid isPermaLink="false">bot:Layout Bot</guid>
     <pubDate>Thu, 19 Nov 2026 00:00:00 +0000</pubDate>
-    <description>Bryan Johnson — Health synthesis + family updates</description>
+    <description>Cognition — Layout-shift regression on the Devin web app</description>
   </item>
   <item>
-    <title>Indexed: Tennis data Bots</title>
+    <title>Indexed: Super Jenny</title>
     <link>https://till3005.github.io/built-with-devin/#deployments</link>
-    <guid isPermaLink="false">bot:Tennis data Bots</guid>
+    <guid isPermaLink="false">bot:Super Jenny</guid>
     <pubDate>Thu, 19 Nov 2026 00:00:00 +0000</pubDate>
-    <description>Venus Williams — Pro-tennis preparation and match data</description>
+    <description>Jenny Xu (community) — An entire mobile game studio</description>
   </item>
   <item>
-    <title>Indexed: Bilt</title>
-    <link>https://till3005.github.io/built-with-devin/#enterprise</link>
-    <guid isPermaLink="false">enterprise:Bilt</guid>
+    <title>Indexed: dabit3's fleet</title>
+    <link>https://till3005.github.io/built-with-devin/#deployments</link>
+    <guid isPermaLink="false">bot:dabit3's fleet</guid>
     <pubDate>Thu, 19 Nov 2026 00:00:00 +0000</pubDate>
-    <description>Org-wide rollout</description>
+    <description>Nader Dabit (Cognition DevRel) — A personal 5-bot org + a game studio</description>
   </item>
   <item>
-    <title>Indexed: Itaú</title>
-    <link>https://till3005.github.io/built-with-devin/#enterprise</link>
-    <guid isPermaLink="false">enterprise:Itaú</guid>
+    <title>Indexed: Onboarding QA Bot</title>
+    <link>https://till3005.github.io/built-with-devin/#deployments</link>
+    <guid isPermaLink="false">bot:Onboarding QA Bot</guid>
     <pubDate>Thu, 19 Nov 2026 00:00:00 +0000</pubDate>
-    <description>Devin across the full SDLC at Brazil's largest bank</description>
+    <description>Cognition (Walden Yan) — QA of 30+ onboarding flows, 24/7</description>
   </item>
   <item>
-    <title>Indexed: Ripple Treasury</title>
-    <link>https://till3005.github.io/built-with-devin/#enterprise</link>
-    <guid isPermaLink="false">enterprise:Ripple Treasury</guid>
+    <title>Indexed: "Phil"</title>
+    <link>https://till3005.github.io/built-with-devin/#deployments</link>
+    <guid isPermaLink="false">bot:"Phil"</guid>
     <pubDate>Thu, 19 Nov 2026 00:00:00 +0000</pubDate>
-    <description>Automated bug triage ("Guardians 2.0") + codebase Q&amp;A for non-engineers</description>
+    <description>Harvey — Collaborative Word-compatible editor engine</description>
   </item>
   <item>
-    <title>Indexed: WPP Enterprise Solutions</title>
-    <link>https://till3005.github.io/built-with-devin/#enterprise</link>
-    <guid isPermaLink="false">enterprise:WPP Enterprise Solutions</guid>
+    <title>Indexed: Shared bot fleet</title>
+    <link>https://till3005.github.io/built-with-devin/#deployments</link>
+    <guid isPermaLink="false">bot:Shared bot fleet</guid>
     <pubDate>Thu, 19 Nov 2026 00:00:00 +0000</pubDate>
-    <description>Devin as the delivery layer for fixed-price client engagements</description>
+    <description>Decagon — On-call, DevEx optimization, thread routing</description>
   </item>
   <item>
-    <title>Indexed: Mercor</title>
-    <link>https://till3005.github.io/built-with-devin/#enterprise</link>
-    <guid isPermaLink="false">enterprise:Mercor</guid>
+    <title>Indexed: AutoResearch loop</title>
+    <link>https://till3005.github.io/built-with-devin/#deployments</link>
+    <guid isPermaLink="false">bot:AutoResearch loop</guid>
     <pubDate>Thu, 19 Nov 2026 00:00:00 +0000</pubDate>
-    <description>Engineers building around the clock</description>
+    <description>Decagon — An inference research lab</description>
   </item>
   <item>
-    <title>Indexed: Hippo</title>
-    <link>https://till3005.github.io/built-with-devin/#enterprise</link>
-    <guid isPermaLink="false">enterprise:Hippo</guid>
+    <title>Indexed: Frankie's org</title>
+    <link>https://till3005.github.io/built-with-devin/#deployments</link>
+    <guid isPermaLink="false">bot:Frankie's org</guid>
     <pubDate>Thu, 19 Nov 2026 00:00:00 +0000</pubDate>
-    <description>Devin across the insurance engineering org</description>
+    <description>Mark Fenner (community) — Personal agent fleet</description>
   </item>
 </channel>
 </rss>

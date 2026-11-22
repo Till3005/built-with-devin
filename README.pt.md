@@ -13,7 +13,7 @@
 
 <sub>Curado por [@darega0mae](https://x.com/darega0mae) · Tutoriais irmãos: [build-with-devin](https://github.com/Till3005/build-with-devin) · [Adicione seu projeto](CONTRIBUTING.md)</sub>
 
-<sub>**14** implantações de Bot documentadas · **45** casos corporativos · **9** produtos lançados · **47** ferramentas e integrações · **34** relatos de campo</sub>
+<sub>**14** implantações de Bot documentadas · **45** casos corporativos · **9** produtos lançados · **47** ferramentas e integrações · **35** relatos de campo</sub>
 
 <sub>[English](README.md) · [简体中文](README.zh.md) · [日本語](README.ja.md) · Português</sub>
 
@@ -301,6 +301,7 @@ Uso real documentado.
 - **[Time dev de bots por função + auto-merge de PRs leves](https://zenn.dev/kyto64/articles/ai-bot-dev-env)** — Setup de dev pessoal do kyto64: bots de IA especializados mais Devin, com PRs de baixo risco se auto-mergeando (JP).
 - **[Os limites de contexto do Devin CLI na prática](https://qiita.com/ishizakahiroshi/items/cee2a8ea2be18f2ccee3)** — Notas de trabalho para caber AGENTS.md e regras de aprovação nos limites de 16KB/32KB (JP).
 - **[Primeira sessão Devin da NOT A HOTEL](https://zenn.dev/notahotel/articles/d401a1046d6076)** — Relato de um workshop em mob do setup ao primeiro PR mergeado em menos de uma hora — incluindo as categorias de onboarding que o Devin pede (JP).
+- **[Cinco truques essenciais do Devin (em chinês)](https://townlet.eu.org/devin-five-tips-auto-compaction-sessions-subagents-review-browser/)** — Cinco ajustes diários de um operador: threshold de auto-compactação em 450K (com a ressalva de que o SWE-2 tem janela de 256K e não é afetado), sessões independentes via `devin -p --model X`, sessões filhas / Re-parent no Desktop, profiles de modelo fixo do `run_subagent` (e por que não abusar), configuração do Automatic review no GitHub, e o browser da barra lateral com visões por dispositivo + comentário por elemento (CN).
 - **[Hello World… Meet Devin](https://jamesin.substack.com/p/hello-world-meet-devin)** — Relato da era de lançamento de Jamesin Seidel: vendo código ser commitado no seu próprio repo pelo Devin pela primeira vez, construindo um assistente de triagem de email (Substack).
 - **[Como fazer deploy de um site com o Devin](https://www.hostinger.com/tutorials/how-to-deploy-a-website-with-devin/)** — passo a passo da Hostinger: as três rotas de deploy (App Deploys beta para previews, GitHub→host para produção, upload manual), mais o MCP Connector que dá ao Devin Desktop acesso direto a 100+ ferramentas de hospedagem.
 - **[Tutorial de Devin Apps: construa um app interno privado por prompt](https://lightmind24.blogspot.com/2026/11/devin-apps-tutorial-build-private.html)** — o guia de Apps mais completo fora do post de lançamento: o que incluir no primeiro prompt (usuários, fonte de dados, telas, stack), como os Apps capturam seu design system, e onde Apps deixa de ser a ferramenta certa.
@@ -346,6 +347,7 @@ Uso real documentado.
 - **[Devin Apps — análise em tailandês](https://dev.to/sarantoon/devin-apps-ekhruuengmuuephaayainbnekhruuengkhlaawdkhngedwin-4j8h)** — Primeira leitura profunda em tailandês (18/11): o que "hospedar na máquina do próprio Devin" significa — cobrança por sessão, máquina dorme 5 min após o último request, escopo de VM única (ferramentas internas, não tráfego alto) e as ressalvas de secrets/tokens que o anúncio comprime (TH).
 - **[AI Native Operators — guia Devin Bots](https://ainativeoperators.ai/blog/devin-bots-guide)** — Guia de setup baseado na documentação (17/11) cujo valor é o outcome-prompt de exemplo: nomeia entrada, ambiente, evidência, as decisões que ficam com você e a lista explícita de proibições — um template para roubar no seu primeiro Bot.
 - **[Devin's Dinner](https://x.com/MattSchrage/status/2121016484155548124)** — Série de jantares em NYC do Matt Schrage, só com convite, para founders e engenheiros que trabalham com Devin.
+- **[V2EX — Devin GUI orquestrando CLIs rivais](https://www.v2ex.com/t/1258858)** — Um usuário chinês conseguiu um Bot grátis via poke.com/bots ($50 + um mês de Max de $200) e usa o Devin Desktop como maestro de CLIs gemini/codex/claude + Devin Bot via SMS do Poke — 'tudo resolvido pelo celular'. O ganho de +280–300% citado é estimativa do próprio agente, não medição (CN, 22/11).
 
 <p align="right"><a href="#readme">back to top</a></p>
 
