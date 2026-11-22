@@ -12,7 +12,7 @@
 <link rel="alternate" hreflang="zh" href="https://till3005.github.io/built-with-devin/guides/zh/ja/living-evals.html">
 <link rel="alternate" hreflang="x-default" href="https://till3005.github.io/built-with-devin/guides/ja/living-evals.html">
 <link rel="alternate" type="application/rss+xml" title="built-with-devin feed" href="../../feed.xml">
-<script type="application/ld+json">{"@context": "https://schema.org", "@type": "TechArticle", "headline": "ガイド 15 — 本番トレースから育つリビング eval", "description": "あなたのエージェントのための、自分で書く eval スイート——定期実行される Devin が実際の本番会話を読み、システムの完全コピーで各失敗を再構築し、その失敗を回帰テストとして追加する PR を開く。", "inLanguage": "ja", "url": "https://till3005.github.io/built-with-devin/guides/ja/living-evals.html", "isPartOf": {"@type": "Course", "name": "build-with-devin", "url": "https://till3005.github.io/built-with-devin/guides/"}, "dateModified": "2026-11-18"}</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "TechArticle", "headline": "ガイド 15 — 本番トレースから育つリビング eval", "description": "あなたのエージェントのための、自分で書く eval スイート——定期実行される Devin が実際の本番会話を読み、システムの完全コピーで各失敗を再構築し、その失敗を回帰テストとして追加する PR を開く。", "inLanguage": "ja", "url": "https://till3005.github.io/built-with-devin/guides/ja/living-evals.html", "isPartOf": {"@type": "Course", "name": "build-with-devin", "url": "https://till3005.github.io/built-with-devin/guides/"}, "dateModified": "2026-11-19"}</script>
 <link rel="icon" href="../../assets/brand/Devin_Symbol.svg" type="image/svg+xml">
 <link rel="stylesheet" href="../../assets/site.css">
 <link rel="stylesheet" href="../../assets/guides.css">
@@ -45,7 +45,7 @@
 <main>
 <article class="guide wrap" id="guide">
   <p class="guide-crumb"><a href="index.html">← ガイド</a> · <a href="../living-evals.html">English</a> · <a href="../pt/living-evals.html">Português</a> · <a href="../zh/living-evals.html">中文</a></p>
-<p class="guide-meta">更新 2026-11-18</p>
+<p class="guide-meta">更新 2026-11-19</p>
 <details class="toc" open><summary>このページの目次</summary><ol><li class="d2"><a href="#パターン">パターン</a></li><li class="d2"><a href="#前提条件">前提条件</a></li><li class="d2"><a href="#ステップ-1-まず-1-件のトレースを手動でリプレイ可能にする">ステップ 1 — まず 1 件のトレースを手動でリプレイ可能にする</a></li><li class="d2"><a href="#ステップ-2-バグ報告ではなく-eval-として凍結する">ステップ 2 — バグ報告ではなく eval として凍結する</a></li><li class="d2"><a href="#ステップ-3-スケール前に行動でグルーピングする">ステップ 3 — スケール前に行動でグルーピングする</a></li><li class="d2"><a href="#ステップ-4-手順全体をスキルとしてエンコードする">ステップ 4 — 手順全体をスキルとしてエンコードする</a></li><li class="d2"><a href="#ステップ-5-週次でスケジュールする">ステップ 5 — 週次でスケジュールする</a></li><li class="d2"><a href="#検証チェックリスト">検証チェックリスト</a></li><li class="d2"><a href="#落とし穴">落とし穴</a></li><li class="d2"><a href="#理解度チェック">理解度チェック</a></li><li class="d2"><a href="#出典">出典</a></li></ol></details>
 <h1>ガイド 15 — 本番トレースから育つリビング eval</h1>
 <p><strong>目標：</strong> <em>あなたの</em>エージェントのための、自分で書く eval スイート——定期実行される Devin が実際の本番会話を読み、システムの完全コピーで各失敗を再構築し、その失敗を回帰テストとして追加する PR を開く。
