@@ -15,6 +15,8 @@ A running ledger of the *published, auditable* cost/return numbers — the thing
 | **20× cost savings** | [Nubank](https://devin.ai/customers/nubank) | Migration program vs. the same work staffed conventionally; 8–12× engineering efficiency alongside |
 | **85% cost reduction** on legacy-app revamps | [The Citation Group](https://devin.ai/customers/thecitationgroup) | ROI-measured rollout; 271 merged PRs @ 80% in 3 months |
 | **50% engineering efficiency gain** | The Citation Group | Same study |
+| **37% net cost saving** vs a conventional rebuild | [Odyssey Logistics](https://news.cognizant.com/2026-09-23-Cognizant-and-Cognition-put-autonomous-AI-engineering-into-production-at-Odyssey-Logistics,-with-a-37-percent-net-cost-saving) | Cognizant-delivered Access/VBA → cloud-native TMS; fixed budget, accelerated timeline, delivery throughput up ~⅓ |
+| Job sized at **5–10 engineers × a year**, done by 3 engineers + a ~10-agent Devin fleet in weeks | [Gamma](https://research.gamma.app/2026/11/pptx-import) | PowerPoint import rebuilt via 3,500+ merges; sister program's human interventions fell 10–15/deck → full autonomy |
 
 ## Throughput per person
 
@@ -33,6 +35,7 @@ A running ledger of the *published, auditable* cost/return numbers — the thing
 | 20–40 bugs/alerts first-passed daily in ~5 min; Sentry noise −50% | [Crosby](https://devin.ai/customers/crosby) |
 | 25% of total code volume — tied top contributor | [Hamming](https://devin.ai/customers/hamming) |
 | **40× merged-PR throughput on 2.7× headcount** (>10×/engineer) | [Cognition internal](https://aietalks.com/talks/40x-more-merged-prs-with-2-7x-the-engineers) |
+| 4-week client migration delivered in 2.5 weeks; 142-object platform in 8 days | [Zeb](https://devin.ai/blog/devin-for-databricks-migrations) (NetSuite→Databricks delivery partner) |
 
 ## The honest-ledger rule
 

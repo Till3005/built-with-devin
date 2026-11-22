@@ -57,6 +57,7 @@ Key difference from a one-shot session: the Bot persists. The Android Bot ran **
 - Self-merge rates (88%) reflect repos where CI + review gates were already configured for autonomous merges — not a default.
 - Memory is editable: operators can and do correct a bot's accumulated beliefs directly in its chat.
 - **Fleet observability doesn't scale by itself.** The independent [100 Days of Devin](https://www.raijuna.com/blog/devin-100-day-challenge-day-1) log reports session tracking is the first operational wall at ~15 bots ("which one produced this PR?"), and environment setup alone consumed ~18% of weekly quota.
+- **Shared Bots are scoped, not org-wide.** Under the Nov 20 Access & Sharing rollout, shared Bots and service users see only the repos, secrets, playbooks and skills explicitly granted to them — a Bot that can message you may still be unable to read the repo it needs ([access & security docs](https://docs.devin.ai/work-with-devin/bots/access-and-security)).
 
 ## Sources
 
