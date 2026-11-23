@@ -13,7 +13,7 @@
 
 <sub>Curated by [@darega0mae](https://x.com/darega0mae) · Sister tutorials: [build-with-devin](https://github.com/Till3005/build-with-devin) · [Add your project](CONTRIBUTING.md)</sub>
 
-<sub>**14** documented Bot deployments · **45** enterprise case studies · **9** shipped products · **47** tools & integrations · **35** field reports</sub>
+<sub>**14** documented Bot deployments · **45** enterprise case studies · **9** shipped products · **47** tools & integrations · **37** field reports</sub>
 
 <sub>English · [简体中文](README.zh.md) · [日本語](README.ja.md) · [Português](README.pt.md)</sub>
 
@@ -317,6 +317,8 @@ Documented real-world usage.
 - **[linux.do — the poke.com/bots promo, from inside](https://linux.do/t/topic/3206201)** (zh) — A 20-post community log of the free-Bot experiment's failure modes: Poke negotiates grants down ($45→$20→$5), then the backend rejects the agreed number anyway; iMessage-only eligibility learned only after registering on Android; "玩不起可以不出这个活动". The missing fine print, crowd-sourced.
 - **[掘金 — Devin 估值 470 亿，但我的踩坑史](https://juejin.cn/post/7680768670986092544)** (zh) — A skeptical real-user account: hand Devin a Go microservice + Redis cache task that takes 30 min by hand, and read where the autonomy leaks. Useful ballast next to the case-study numbers.
 - **[A solo founder's $20k/month Devin operation](https://www.lennysnewsletter.com/p/i-spent-20000-on-devin-in-a-month)** — Ryan Carson (Untangle) runs ~15 concurrent Devin agents coordinated by a folder system + paper P0 list, not a dashboard; a "Watchdog" playbook covers customer success across every law-firm account, and a "LAN PR" skill closes ~40 PRs/day without a QA reviewer (Lenny's podcast).
+- **[How Cognition runs Devin on EC2 Mac](https://aws.amazon.com/blogs/architecture/ai-coding-agents-on-amazon-ec2-mac-how-cognition-scales-devin-for-macos/)** — AWS Architecture Blog × Cognition engineers: the macOS fleet behind Devin's iOS sessions — ~1,000 orgs in six weeks, a fresh macOS VM per session in <1 min across six Regions (15–20× faster than self-hosted Macs), two workspaces per bare-metal host under the 24h Dedicated-Host minimum, idle sessions surviving on disk snapshots.
+- **[.NET Framework → .NET Core with a Devin fleet](https://cognition.com/blog/dotnet-migration-with-devin)** — Cognition's migration playbook: Ask Devin ranks controllers by context, coordinated sessions port in parallel — months → weeks (vendor-published, Oct).
 
 <p align="right"><a href="#readme">back to top</a></p>
 

@@ -13,7 +13,7 @@
 
 <sub>Curated by [@darega0mae](https://x.com/darega0mae) · 姉妹チュートリアル：[build-with-devin](https://github.com/Till3005/build-with-devin) · [プロジェクトを追加](CONTRIBUTING.md)</sub>
 
-<sub>**14** 件の実証済み Bot 導入 · **45** 件のエンタープライズ事例 · **9** 件の公開プロダクト · **47** 件のツール・統合 · **35** 件の実践レポート</sub>
+<sub>**14** 件の実証済み Bot 導入 · **45** 件のエンタープライズ事例 · **9** 件の公開プロダクト · **47** 件のツール・統合 · **37** 件の実践レポート</sub>
 
 <sub>[English](README.md) · [简体中文](README.zh.md) · 日本語 · [Português](README.pt.md)</sub>
 
@@ -317,6 +317,8 @@ Devin *で*作られたものではなく、Devin の*ために*コミュニテ�
 - **[linux.do——poke.com/bots プロモ実録](https://linux.do/t/topic/3206201)**（zh）—— 無料 Bot 実験の失敗モードを集めた 20 ポストのコミュニティ記録：Poke が値切った額（$45→$20→$5）をバックエンドが拒否、iMessage/Apple Messages 限定で Android 登録者は後から弾かれる——「玩不起可以不出这个活动」。LP に書かれない細則を群衆が補完。
 - **[掘金——Devin 時価 470 億、でも私の失敗談](https://juejin.cn/post/7680768670986092544)**（zh）—— 懐疑的な実ユーザーの記録：手で 30 分の「Go マイクロサービス + Redis キャッシュ」タスクを Devin に渡し、自律性がどこで漏れるかを追う。ケーススタディの数字へのバラスト。
 - **[月 $20k を Devin に使うソロファウンダーのオペレーション](https://www.lennysnewsletter.com/p/i-spent-20000-on-devin-in-a-month)** —— Ryan Carson（Untangle）は ~15 台の Devin エージェントを同時稼働。ダッシュボードではなくフォルダシステム + 紙の P0 リストで統制；「Watchdog」playbook が全法律事務所アカウントの CS を一手に担い、「LAN PR」スキルが QA レビュアーなしで ~40 PR/日を締める（Lenny's ポッドキャスト）。
+- **[Cognition が EC2 Mac で Devin を動かす仕組み](https://aws.amazon.com/blogs/architecture/ai-coding-agents-on-amazon-ec2-mac-how-cognition-scales-devin-for-macos/)** —— AWS アーキテクチャブログ × Cognition エンジニア：Devin の iOS セッションを支える macOS フリート設計——ローンチ 6 週で約 1,000 組織、セッションごとに 1 分未満で新規 macOS VM（6 リージョン）、自前 Mac ホスト比 15–20 倍速；ベアメタル 1 台に 2 ワークスペース（Dedicated Host 最低 24 時間）、アイドルセッションはディスクスナップショットで維持。
+- **[Devin フリートで .NET Framework → .NET Core 移行](https://cognition.com/blog/dotnet-migration-with-devin)** —— Cognition の移行プレイブック：Ask Devin がコンテキストでコントローラを順位付けし、複数セッションが並列で移植——数ヶ月を数週間に（ベンダー公表、10 月）。
 
 <p align="right"><a href="#readme">back to top</a></p>
 

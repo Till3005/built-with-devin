@@ -13,7 +13,7 @@
 
 <sub>Curado por [@darega0mae](https://x.com/darega0mae) · Tutoriais irmãos: [build-with-devin](https://github.com/Till3005/build-with-devin) · [Adicione seu projeto](CONTRIBUTING.md)</sub>
 
-<sub>**14** implantações de Bot documentadas · **45** casos corporativos · **9** produtos lançados · **47** ferramentas e integrações · **35** relatos de campo</sub>
+<sub>**14** implantações de Bot documentadas · **45** casos corporativos · **9** produtos lançados · **47** ferramentas e integrações · **37** relatos de campo</sub>
 
 <sub>[English](README.md) · [简体中文](README.zh.md) · [日本語](README.ja.md) · Português</sub>
 
@@ -317,6 +317,8 @@ Uso real documentado.
 - **[linux.do — a promo poke.com/bots por dentro](https://linux.do/t/topic/3206201)** (zh) — Log comunitário de 20 posts sobre os modos de falha do experimento do Bot grátis: o Poke pechincha o valor ($45→$20→$5) e o backend rejeita mesmo assim; elegibilidade só via iMessage/Apple Messages — usuários Android só descobrem depois de se registrar; "玩不起可以不出这个活动". As letras miúdas que a landing page não conta.
 - **[掘金 — Devin vale $47B, mas minha história de erros](https://juejin.cn/post/7680768670986092544)** (zh) — Relato cético de usuário real: entregar a tarefa "microsserviço Go + cache Redis" (30 min à mão) ao Devin e ver onde a autonomia vaza. Contrapeso aos números dos case studies.
 - **[A operação Devin de $20k/mês de um fundador solo](https://www.lennysnewsletter.com/p/i-spent-20000-on-devin-in-a-month)** — Ryan Carson (Untangle) roda ~15 agentes Devin simultâneos coordenados por sistema de pastas + lista P0 de papel, sem dashboard; um playbook "Watchdog" cobre o customer success de toda conta de escritório de advocacia, e a skill "LAN PR" fecha ~40 PRs/dia sem revisor de QA (Lenny's podcast).
+- **[Como a Cognition roda Devin em EC2 Mac](https://aws.amazon.com/blogs/architecture/ai-coding-agents-on-amazon-ec2-mac-how-cognition-scales-devin-for-macos/)** — AWS Architecture Blog × engenheiros da Cognition: a frota macOS por trás das sessões iOS do Devin — ~1.000 organizações em seis semanas, VM macOS nova por sessão em <1 min em seis regiões (15–20× mais rápido que hospedar Macs), dois workspaces por host bare-metal sob o mínimo de 24h do Dedicated Host, sessões ociosas preservadas em snapshots de disco.
+- **[.NET Framework → .NET Core com uma frota Devin](https://cognition.com/blog/dotnet-migration-with-devin)** — Playbook de migração da Cognition: o Ask Devin ranqueia controllers por contexto e sessões coordenadas portam em paralelo — meses → semanas (números do fornecedor, out).
 
 <p align="right"><a href="#readme">back to top</a></p>
 

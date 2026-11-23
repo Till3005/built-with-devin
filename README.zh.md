@@ -13,7 +13,7 @@
 
 <sub>维护者 [@darega0mae](https://x.com/darega0mae) · 姊妹教程库：[build-with-devin](https://github.com/Till3005/build-with-devin) · [收录你的项目](CONTRIBUTING.md)</sub>
 
-<sub>**14** 个有据可查的 Bot 部署 · **45** 个企业案例 · **9** 个已发布产品 · **47** 个工具与集成 · **35** 篇实战报告</sub>
+<sub>**14** 个有据可查的 Bot 部署 · **45** 个企业案例 · **9** 个已发布产品 · **47** 个工具与集成 · **37** 篇实战报告</sub>
 
 <sub>[English](README.md) · 简体中文 · [日本語](README.ja.md) · [Português](README.pt.md)</sub>
 
@@ -317,6 +317,8 @@ flowchart LR
 - **[linux.do——poke.com/bots 活动亲历记](https://linux.do/t/topic/3206201)** —— 20 楼社区实录，记下这场免费 Bot 实验的失败模式：Poke 砍价（$45→$20→$5）后后端照样拒发；仅限 iMessage/Apple Messages，安卓用户注册完才被弹回；「玩不起可以不出这个活动」。官网没写的细则，群众给凑齐了。
 - **[掘金——Devin 估值 470 亿，但我的踩坑史](https://juejin.cn/post/7680768670986092544)** —— 一篇怀疑论实测：把「Go 微服务加 Redis 缓存」这种手写 30 分钟的活交给 Devin，看自主能力在哪里漏。给企业案例数字当配重。
 - **[独立创始人月烧 $20k 的 Devin 运营](https://www.lennysnewsletter.com/p/i-spent-20000-on-devin-in-a-month)** —— Ryan Carson（Untangle）同时跑 ~15 个 Devin agent：不用仪表盘，靠文件夹系统 + 纸上 P0 清单调度；「Watchdog」playbook 顶替整个客户成功团队盯每个律所账号，「LAN PR」skill 每天合 ~40 个 PR、无 QA 审阅人（Lenny's 播客）。
+- **[Cognition 如何在 EC2 Mac 上跑 Devin](https://aws.amazon.com/blogs/architecture/ai-coding-agents-on-amazon-ec2-mac-how-cognition-scales-devin-for-macos/)** —— AWS 架构博客 × Cognition 工程师联署：Devin iOS 会话背后的 macOS 舰队设计——六周内近 1,000 个组织启用、每会话 1 分钟内开出新 macOS VM（六区域）、比自建 Mac 主机快 15–20 倍；每台裸机跑 2 个隔离工作区（Dedicated Host 最短 24 小时），空闲会话靠磁盘快照续命。
+- **[Devin 舰队做 .NET Framework → .NET Core 迁移](https://cognition.com/blog/dotnet-migration-with-devin)** —— Cognition 官方迁移打法：Ask Devin 按上下文给 controller 排序，多会话并行移植——数月压成数周（厂商口径，10 月）。
 
 <p align="right"><a href="#readme">back to top</a></p>
 
