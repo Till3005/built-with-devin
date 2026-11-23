@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Guide 19 — The session loop: research, delegate, review, and what it costs — build-with-devin guides</title>
+<meta name="description" content="Run the full Devin loop end to end — understand the codebase before you brief, delegate a scoped session, get an independent review on the PR, and read Session ">
+<link rel="canonical" href="https://till3005.github.io/built-with-devin/guides/the-session-loop.html">
+<link rel="alternate" hreflang="en" href="https://till3005.github.io/built-with-devin/guides/the-session-loop.html">
+<link rel="alternate" hreflang="ja" href="https://till3005.github.io/built-with-devin/guides/ja/the-session-loop.html">
+<link rel="alternate" hreflang="pt" href="https://till3005.github.io/built-with-devin/guides/pt/the-session-loop.html">
+<link rel="alternate" hreflang="zh" href="https://till3005.github.io/built-with-devin/guides/zh/the-session-loop.html">
+<link rel="alternate" hreflang="x-default" href="https://till3005.github.io/built-with-devin/guides/the-session-loop.html">
+<link rel="alternate" type="application/rss+xml" title="built-with-devin feed" href="../feed.xml">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "TechArticle", "headline": "Guide 19 — The session loop: research, delegate, review, and what it costs", "description": "Run the full Devin loop end to end — understand the codebase before you brief, delegate a scoped session, get an independent review on the PR, and read Session ", "inLanguage": "en", "url": "https://till3005.github.io/built-with-devin/guides/the-session-loop.html", "isPartOf": {"@type": "Course", "name": "build-with-devin", "url": "https://till3005.github.io/built-with-devin/guides/"}}</script>
+<link rel="icon" href="../assets/brand/Devin_Symbol.svg" type="image/svg+xml">
+<link rel="stylesheet" href="../assets/site.css">
+<link rel="stylesheet" href="../assets/guides.css">
+
+<meta property="og:title" content="Guide 19 — The session loop: research, delegate, review, and what it costs">
+<meta property="og:description" content="Run the full Devin loop end to end — understand the codebase before you brief, delegate a scoped session, get an independent review on the PR, and read Session ">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://till3005.github.io/built-with-devin/guides/the-session-loop.html">
+<meta property="og:image" content="https://till3005.github.io/built-with-devin/assets/img/og-build.png?v=3">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://till3005.github.io/built-with-devin/assets/img/og-build.png?v=3">
+</head>
+<body>
+<a class="skip" href="#guide">Skip to content</a>
+<nav><div class="wrap nav-inner">
+  <div class="nav-left">
+    <a class="brand" href="../index.html" aria-label="Built with Devin">
+      <span class="brand-text">built<strong>-with-</strong></span><img class="brand-mark" src="../assets/brand/Devin_Primary_Logo.svg" alt="Devin" height="16"><span class="unofficial-chip">unofficial</span>
+    </a>
+  </div>
+  <div class="nav-side">
+    <div class="mode-toggle" role="tablist" aria-label="Site section">
+      <button class="mode-btn" data-mode="built" role="tab" aria-selected="false" onclick="location.href='../index.html'">Built</button>
+      <button class="mode-btn on" data-mode="build" role="tab" aria-selected="true" onclick="location.href='../index.html#build'">Build</button>
+      <span class="mode-pill" aria-hidden="true"></span>
+    </div>
+    <a class="cta" href="https://github.com/Till3005/build-with-devin/blob/main/guides/the-session-loop.md">GitHub</a>
+  </div>
+</div></nav>
+<main>
+<article class="guide wrap" id="guide">
+  <p class="guide-crumb"><a href="index.html">← Guides</a> · <a href="ja/the-session-loop.html">日本語</a> · <a href="pt/the-session-loop.html">Português</a> · <a href="zh/the-session-loop.html">中文</a></p>
+
+<details class="toc" open><summary>On this page</summary><ol><li class="d2"><a href="#the-loop-most-people-skip-half-of">The loop most people skip half of</a></li><li class="d2"><a href="#understand-deepwiki-and-ask-devin-before-you-spend-an-acu">Understand: DeepWiki and Ask Devin before you spend an ACU</a></li><li class="d2"><a href="#delegate-the-step-you-already-know">Delegate — the step you already know</a></li><li class="d2"><a href="#review-a-second-agent-on-every-pr">Review: a second agent on every PR</a></li><li class="d2"><a href="#learn-session-insights-and-the-acu-meter">Learn: Session Insights and the ACU meter</a></li><li class="d2"><a href="#verify-it">Verify it</a></li><li class="d2"><a href="#pitfalls">Pitfalls</a></li><li class="d2"><a href="#knowledge-check">Knowledge check</a></li><li class="d2"><a href="#sources">Sources</a></li></ol></details>
+<h1>Guide 19 — The session loop: research, delegate, review, and what it costs</h1>
+<p><strong>Goal:</strong> Run the full Devin loop end to end — understand the codebase before you brief, delegate a scoped session, get an independent review on the PR, and read Session Insights so the next loop is cheaper.
+<strong>Level:</strong> Start here (pairs with <a href="talking-to-devin.html">Guide 18</a>)
+<strong>Sources:</strong> <a href="https://learndevin.com">Devin University — Cloud 101/103</a> · <a href="https://docs.devin.ai/work-with-devin/deepwiki">DeepWiki docs</a> · <a href="https://docs.devin.ai/work-with-devin/ask-devin">Ask Devin docs</a> · <a href="https://docs.devin.ai/work-with-devin/devin-review">Devin Review docs</a> · <a href="https://docs.devin.ai/product-guides/session-insights">Session Insights docs</a></p>
+<h2 id="the-loop-most-people-skip-half-of">The loop most people skip half of<a class="hlink" href="#the-loop-most-people-skip-half-of" aria-hidden="true">#</a></h2>
+<p>Guide 18 teaches you to write a brief Devin can't misread. Devin University's Cloud track wraps that brief in the loop that produces it and consumes its output:</p>
+<pre><code>Understand ──► Delegate ──► Review ──► Learn
+ DeepWiki      brief+session   Devin Review   Session Insights
+ Ask Devin                      on the PR     → better next brief
+</code></pre>
+<p>Most failed sessions fail at the ends, not the middle: the brief was written blind about the codebase, or the PR was merged on vibes. This guide covers the two ends and the meter that runs under all of it.</p>
+<h2 id="understand-deepwiki-and-ask-devin-before-you-spend-an-acu">Understand: DeepWiki and Ask Devin before you spend an ACU<a class="hlink" href="#understand-deepwiki-and-ask-devin-before-you-spend-an-acu" aria-hidden="true">#</a></h2>
+<p><strong>DeepWiki</strong> auto-indexes your connected repos and generates a wiki per repo — architecture diagrams, summaries, source links, configurable via <code>.devin/wiki.json</code>. It answers the questions you'd otherwise spend session time discovering: where does this module live, what calls it, what's the established pattern.</p>
+<ul>
+<li>Effort levels are set per org (overridable per repo): <strong>Low is free</strong> and the default; Medium runs ~5–10 ACUs per wiki, High ~20–40. Low is enough for briefing support in most repos.</li>
+<li>Onboarding indexes repos you set up automatically; add others under <strong>Settings → DeepWiki</strong>.</li>
+<li>For public repos, <a href="https://deepwiki.com">deepwiki.com</a> is the free version — index any public GitHub repo, get the same diagrams and Q&amp;A, no account. There is also a DeepWiki MCP for your other agents.</li>
+</ul>
+<p><strong>Ask Devin</strong> is the conversational layer on top of that index — at <a href="https://app.devin.ai/search">app.devin.ai/search</a>:</p>
+<ul>
+<li><strong>Ask mode</strong>: questions about your code answered with code citations, grounded in the index — "how does retry work in the billing poller" returns the file, the call sites, the pattern.</li>
+<li><strong>Plan mode</strong>: describe the change, and Devin scopes it with you — then generates a context-rich prompt ready to hand to a session. This is the single cheapest way to satisfy Guide 18's rules: the where-to-start and the reference pattern come out of the index instead of your memory.</li>
+<li>Start the session from inside the conversation, and its status stays visible there — no context switch.</li>
+</ul>
+<p>The doctrine pays off twice here: a brief informed by indexed facts is both more specific <em>and</em> shorter.</p>
+<h2 id="delegate-the-step-you-already-know">Delegate — the step you already know<a class="hlink" href="#delegate-the-step-you-already-know" aria-hidden="true">#</a></h2>
+<p>Hand off the Ask-Devin-generated prompt (or your own brief per <a href="talking-to-devin.html">Guide 18</a>) as a scoped session. Everything that changes is what the brief already knows: the files, the pattern, the check, the boundary.</p>
+<h2 id="review-a-second-agent-on-every-pr">Review: a second agent on every PR<a class="hlink" href="#review-a-second-agent-on-every-pr" aria-hidden="true">#</a></h2>
+<p><strong>Devin Review</strong> is an independent reviewer, not a rerun of the session's own opinion:</p>
+<ul>
+<li>Trigger per-PR: comment <code>/devin review</code> on a GitHub PR or GitLab MR, or open the PR in <a href="https://app.devin.ai/review">Devin Review</a>. It groups related changes, explains them alongside the diff, and surfaces bugs and security findings you can quote into chat — including asking Devin to fix in place.</li>
+<li>Org-wide: auto-review, review instructions, and cost controls exist for running it on every PR. Review 2.0 (Nov 2026) cut per-PR cost <strong>82%</strong>, which is what makes always-on economically sane.</li>
+<li>Use it on Devin's own PRs too. The writer and the reviewer being different agents is the point — the same asymmetry Guide 18 assigns you vs. the session.</li>
+</ul>
+<h2 id="learn-session-insights-and-the-acu-meter">Learn: Session Insights and the ACU meter<a class="hlink" href="#learn-session-insights-and-the-acu-meter" aria-hidden="true">#</a></h2>
+<p>Every completed session gets a <strong>Session Insights</strong> read (menu <strong>⋯ → Session insights</strong>, free):</p>
+<ul>
+<li><strong>Session size chip</strong> — XS–XL classification auto-generated at teardown; L/XL sessions get a full analysis automatically, smaller ones on demand.</li>
+<li><strong>ACU usage</strong> (or on-demand dollars on quota plans) — compare similar tasks to spot sessions that burned compute on retries and dead ends.</li>
+<li><strong>User messages</strong> — a high count means the brief lacked context; each message is a course correction you could have written upfront.</li>
+<li>The analysis recommends concrete improvements — tighter prompts, missing knowledge, wrong scope. The goal stated in Cloud 103 is the right one: <em>make every session cheaper than the last.</em></li>
+</ul>
+<p>Cost hygiene that shows up in every field report: scope sessions narrowly, kill idle ones (thinking and waiting both bill), and check quota before kicking off a fleet — the 100 Days operator burned <strong>33% of his weekly quota in two days</strong> of Bot setup (<a href="community-field-reports.html">field reports</a>).</p>
+<h2 id="verify-it">Verify it<a class="hlink" href="#verify-it" aria-hidden="true">#</a></h2>
+<ul>
+<li>[ ] You can answer "where does X live and what calls it" from DeepWiki/Ask Devin <em>without</em> starting a session.</li>
+<li>[ ] Your next brief contains at least one fact you learned from the index, not from memory.</li>
+<li>[ ] A Devin Review ran on the last PR you touched — yours or Devin's.</li>
+<li>[ ] You can read your last session's size, ACUs, and message count, and name one thing the analysis flagged.</li>
+</ul>
+<h2 id="pitfalls">Pitfalls<a class="hlink" href="#pitfalls" aria-hidden="true">#</a></h2>
+<ul>
+<li><strong>Briefing blind.</strong> Writing prompts from memory of the codebase you haven't opened in months — the index knows more than you do now. Two minutes in Ask Devin beats a mid-session correction.</li>
+<li><strong>Skipping review because CI is green.</strong> CI checks what you thought to check. Review reads the diff itself; they're different nets.</li>
+<li><strong>Reading Insights only on failures.</strong> The expensive pattern is the mediocre session you repeat every week. Review successes too — that's where the repeatable brief lives.</li>
+<li><strong>Effort-level overspend.</strong> High-effort wikis on repos you only touch quarterly; per-repo override exists for a reason.</li>
+</ul>
+<h2 id="knowledge-check">Knowledge check<a class="hlink" href="#knowledge-check" aria-hidden="true">#</a></h2>
+<ol>
+<li><em>Why start a session from Ask Devin instead of the Devin sidebar?</em> Because Plan mode grounds the prompt in indexed code — the where-to-start, the existing pattern, and the checkable surface all come from the repo itself, so the session opens with the context you'd otherwise type or discover mid-run.</li>
+<li><em>The session's own report says the work is done and tested. Why run Devin Review?</em> Independence. The session graded its own homework; Review is a different agent reading the diff with fresh context — same reason a teammate's PR doesn't get self-approved.</li>
+<li><em>ACUs are flat and a session came in at XL. What do you check first?</em> User-messages count in Session Insights — a large session driven by many small corrections is a briefing problem, not a task-size problem. Split or re-brief before assuming the work was just big.</li>
+</ol>
+<h2 id="sources">Sources<a class="hlink" href="#sources" aria-hidden="true">#</a></h2>
+<ul>
+<li><a href="https://learndevin.com">Devin University</a> — Cloud 101 (this loop) and Cloud 103 (efficiency) courses; free lessons, exams need an Enterprise seat</li>
+<li><a href="https://docs.devin.ai/work-with-devin/deepwiki">DeepWiki</a> + <a href="https://docs.devin.ai/work-with-devin/ask-devin">Ask Devin</a> — indexing, effort levels, Plan mode, <a href="https://deepwiki.com">deepwiki.com</a> for public repos</li>
+<li><a href="https://docs.devin.ai/work-with-devin/devin-review">Devin Review</a> — <code>/devin review</code>, auto-review, <a href="https://devin.ai/blog/devin-review-2">Review 2.0 cost cut</a></li>
+<li><a href="https://docs.devin.ai/product-guides/session-insights">Session Insights</a> — XS–XL sizing, ACU/message metrics, API</li>
+<li>Next: <a href="talking-to-devin.html">Guide 18 — Talking to Devin</a> if you haven't · <a href="playbooks-and-knowledge.html">Guide 9 — Playbooks</a> to make the improved brief permanent</li>
+</ul>
+<section class="related"><h3>Same stage — Stage 0 · Foundations</h3><p><a href="talking-to-devin.html">Guide 18 — Talking to Devin: the prompting doctrine</a> · <a href="devin-desktop.html">Guide 17 — Devin Desktop</a> · <a href="devin-cli.html">Guide 12 — Devin CLI &amp; extensibility</a> · <a href="bots-101-first-bot.html">Guide 1 — Your first Bot</a> · <a href="official-cookbook.html">Guide 13 — The official use-case cookbook</a></p></section>
+<nav class="guide-pager"><a class="pg-prev" href="talking-to-devin.html"><span class="pg-dir">← Previous</span><span class="pg-t">Guide 18 — Talking to Devin: the prompting doctrine</span></a><a class="pg-next" href="devin-desktop.html"><span class="pg-dir">Next →</span><span class="pg-t">Guide 17 — Devin Desktop</span></a></nav>
+</article>
+<footer><div class="wrap foot-base"><span data-i18n="foot.note">Unofficial community project — not affiliated with Cognition AI.</span><span><a href="../index.html">built-with-devin</a> · <a href="https://github.com/Till3005/build-with-devin">build-with-devin</a></span></div></footer>
+</main>
+<script src="../assets/theme.js"></script>
+<script src="../assets/i18n.js"></script>
+<script src="../assets/i18n-runtime.js"></script>
+</body>
+</html>

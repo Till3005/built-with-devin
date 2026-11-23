@@ -363,6 +363,7 @@ flowchart LR
 - [docs.devin.ai](https://docs.devin.ai) —— 文档：[Bots](https://docs.devin.ai/work-with-devin/bots)（含[访问与安全](https://docs.devin.ai/work-with-devin/bots/access-and-security)——grants、共享、计费归属）、[Automations](https://docs.devin.ai/product-guides/automations)、[Devin CLI](https://docs.devin.ai/cli/index.md)、[Session Insights](https://docs.devin.ai/product-guides/session-insights)（XS–XL 会话定级）、[Skills 与 Plugins](https://docs.devin.ai/product-guides/skills)——已弃用的 Knowledge 正迁到这里；另有本地化版本：[中文文档](https://docs.devin.ai/zh/work-with-devin/bots) · [日本語ドキュメント](https://docs.devin.ai/ja/work-with-devin/bots)
 - [Release notes](https://docs.devin.ai/release-notes/overview) · [Devin Desktop changelog](https://docs.devin.ai/desktop/changelog) · [Devin CLI changelog](https://docs.devin.ai/cli/changelog/stable) —— 每个 stable 版本的新功能与修复
 - [Use-case gallery](https://docs.devin.ai/use-cases/gallery/index.md) —— 40+ 个带可复制 prompt 的文档化工作流；[切片最佳实践](https://docs.devin.ai/use-cases/best-practices.md)
+- [Devin University](https://learndevin.com) —— 官方课程平台：Foundations → Cloud 101–103 → 角色轨道（Admins 已上线；Non-Engineers/Security 即将推出）+ 认证体系——课程免费，考试需 Enterprise 席位；[教程库](https://docs.devin.ai/tutorial-library) —— 官方视频+图文实操；[deepwiki.com](https://deepwiki.com) —— 公开仓库的免费 DeepWiki
 - [devin.ai/brand](https://devin.ai/brand) —— 官方品牌包
 - [Devin Discord](https://devin.ai/community) 和 [r/DevinAI](https://www.reddit.com/r/DevinAI/) —— 官方社区
 - [CognitionAI/qa-devin](https://github.com/CognitionAI/qa-devin) —— Cognition 自家的 "Devin 做 QA" 参考仓库

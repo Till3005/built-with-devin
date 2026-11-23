@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ガイド 19 — セッションの全ループ：リサーチ、委任、レビュー、そしてコスト — build-with-devin guides</title>
+<meta name="description" content="Devin の全ループを端から端まで回す——ブリーフを書く前にインデックスでコードベースを理解し、スコープされたセッションを委任し、独立レビューを PR に通し、Session Insights を読んで次のループを安くする。">
+<link rel="canonical" href="https://till3005.github.io/built-with-devin/guides/ja/the-session-loop.html">
+<link rel="alternate" hreflang="en" href="https://till3005.github.io/built-with-devin/guides/ja/the-session-loop.html">
+<link rel="alternate" hreflang="ja" href="https://till3005.github.io/built-with-devin/guides/ja/ja/the-session-loop.html">
+<link rel="alternate" hreflang="pt" href="https://till3005.github.io/built-with-devin/guides/pt/ja/the-session-loop.html">
+<link rel="alternate" hreflang="zh" href="https://till3005.github.io/built-with-devin/guides/zh/ja/the-session-loop.html">
+<link rel="alternate" hreflang="x-default" href="https://till3005.github.io/built-with-devin/guides/ja/the-session-loop.html">
+<link rel="alternate" type="application/rss+xml" title="built-with-devin feed" href="../../feed.xml">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "TechArticle", "headline": "ガイド 19 — セッションの全ループ：リサーチ、委任、レビュー、そしてコスト", "description": "Devin の全ループを端から端まで回す——ブリーフを書く前にインデックスでコードベースを理解し、スコープされたセッションを委任し、独立レビューを PR に通し、Session Insights を読んで次のループを安くする。", "inLanguage": "ja", "url": "https://till3005.github.io/built-with-devin/guides/ja/the-session-loop.html", "isPartOf": {"@type": "Course", "name": "build-with-devin", "url": "https://till3005.github.io/built-with-devin/guides/"}}</script>
+<link rel="icon" href="../../assets/brand/Devin_Symbol.svg" type="image/svg+xml">
+<link rel="stylesheet" href="../../assets/site.css">
+<link rel="stylesheet" href="../../assets/guides.css">
+
+<meta property="og:title" content="ガイド 19 — セッションの全ループ：リサーチ、委任、レビュー、そしてコスト">
+<meta property="og:description" content="Devin の全ループを端から端まで回す——ブリーフを書く前にインデックスでコードベースを理解し、スコープされたセッションを委任し、独立レビューを PR に通し、Session Insights を読んで次のループを安くする。">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://till3005.github.io/built-with-devin/guides/ja/the-session-loop.html">
+<meta property="og:image" content="https://till3005.github.io/built-with-devin/assets/img/og-build.png?v=3">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://till3005.github.io/built-with-devin/assets/img/og-build.png?v=3">
+</head>
+<body>
+<a class="skip" href="#guide">Skip to content</a>
+<nav><div class="wrap nav-inner">
+  <div class="nav-left">
+    <a class="brand" href="../../index.html" aria-label="Built with Devin">
+      <span class="brand-text">built<strong>-with-</strong></span><img class="brand-mark" src="../../assets/brand/Devin_Primary_Logo.svg" alt="Devin" height="16"><span class="unofficial-chip">unofficial</span>
+    </a>
+  </div>
+  <div class="nav-side">
+    <div class="mode-toggle" role="tablist" aria-label="Site section">
+      <button class="mode-btn" data-mode="built" role="tab" aria-selected="false" onclick="location.href='../../index.html'">Built</button>
+      <button class="mode-btn on" data-mode="build" role="tab" aria-selected="true" onclick="location.href='../../index.html#build'">Build</button>
+      <span class="mode-pill" aria-hidden="true"></span>
+    </div>
+    <a class="cta" href="https://github.com/Till3005/build-with-devin/blob/main/guides/ja/the-session-loop.md">GitHub</a>
+  </div>
+</div></nav>
+<main>
+<article class="guide wrap" id="guide">
+  <p class="guide-crumb"><a href="index.html">← ガイド</a> · <a href="../the-session-loop.html">English</a> · <a href="../pt/the-session-loop.html">Português</a> · <a href="../zh/the-session-loop.html">中文</a></p>
+
+<details class="toc" open><summary>このページの目次</summary><ol><li class="d2"><a href="#大半の人が半分しか回さないループ">大半の人が半分しか回さないループ</a></li><li class="d2"><a href="#理解-最初の-acu-を使う前に-deepwiki-と-ask-devin">理解：最初の ACU を使う前に DeepWiki と Ask Devin</a></li><li class="d2"><a href="#委任-もう知っているステップ">委任——もう知っているステップ</a></li><li class="d2"><a href="#レビュー-すべての-pr-に第二のエージェント">レビュー：すべての PR に第二のエージェント</a></li><li class="d2"><a href="#学習-session-insights-と-acu-メーター">学習：Session Insights と ACU メーター</a></li><li class="d2"><a href="#確認リスト">確認リスト</a></li><li class="d2"><a href="#落とし穴">落とし穴</a></li><li class="d2"><a href="#理解度チェック">理解度チェック</a></li><li class="d2"><a href="#出典">出典</a></li></ol></details>
+<h1>ガイド 19 — セッションの全ループ：リサーチ、委任、レビュー、そしてコスト</h1>
+<p><strong>目標：</strong> Devin の全ループを端から端まで回す——ブリーフを書く前にインデックスでコードベースを理解し、スコープされたセッションを委任し、独立レビューを PR に通し、Session Insights を読んで次のループを安くする。
+<strong>レベル：</strong> 入門（<a href="talking-to-devin.html">ガイド 18</a> とペア）
+<strong>出典：</strong> <a href="https://learndevin.com">Devin University — Cloud 101/103</a> · <a href="https://docs.devin.ai/work-with-devin/deepwiki">DeepWiki ドキュメント</a> · <a href="https://docs.devin.ai/work-with-devin/ask-devin">Ask Devin ドキュメント</a> · <a href="https://docs.devin.ai/work-with-devin/devin-review">Devin Review ドキュメント</a> · <a href="https://docs.devin.ai/product-guides/session-insights">Session Insights ドキュメント</a></p>
+<h2 id="大半の人が半分しか回さないループ">大半の人が半分しか回さないループ<a class="hlink" href="#大半の人が半分しか回さないループ" aria-hidden="true">#</a></h2>
+<p>ガイド 18 は Devin が誤読しないブリーフの書き方を教えた。Devin University の Cloud トラックは、そのブリーフを生み出し、その成果を消費する完全なループで包む：</p>
+<pre><code>理解 ──► 委任 ──► レビュー ──► 学習
+ DeepWiki    ブリーフ+      Devin Review   Session Insights
+ Ask Devin   セッション      PR 上で        → 次のブリーフ改善
+</code></pre>
+<p>失敗するセッションのほとんどは、真ん中ではなく両端で死ぬ：コードベースを知らずにブリーフを書いたか、雰囲気で PR をマージしたかだ。このガイドは両端と、その下を走るメーターを扱う。</p>
+<h2 id="理解-最初の-acu-を使う前に-deepwiki-と-ask-devin">理解：最初の ACU を使う前に DeepWiki と Ask Devin<a class="hlink" href="#理解-最初の-acu-を使う前に-deepwiki-と-ask-devin" aria-hidden="true">#</a></h2>
+<p><strong>DeepWiki</strong> は接続されたリポジトリを自動でインデックスし、リポジトリごとに wiki を生成する——アーキテクチャ図、要約、ソースリンク。<code>.devin/wiki.json</code> で設定可能。セッション時間を使って発見していた質問——このモジュールはどこか、何が呼んでいるか、確立されたパターンは何か——に先回りして答える。</p>
+<ul>
+<li>エフォートレベルは組織単位で設定（リポジトリごとに上書き可能）：<strong>Low は無料</strong>でデフォルト。Medium は wiki あたり約 5–10 ACU、High は約 20–40。ブリーフ支援なら多くのリポジトリで Low で十分。</li>
+<li>オンボーディングで設定したリポジトリは自動でインデックスされる。残りは <strong>Settings → DeepWiki</strong> から追加。</li>
+<li>公開リポジトリには無料版 <a href="https://deepwiki.com">deepwiki.com</a> がある——任意の公開 GitHub リポジトリをインデックスし、同じ図と Q&amp;A をアカウントなしで得られる。他のエージェント向けの DeepWiki MCP もある。</li>
+</ul>
+<p><strong>Ask Devin</strong> はそのインデックスの上の会話レイヤー——<a href="https://app.devin.ai/search">app.devin.ai/search</a> で：</p>
+<ul>
+<li><strong>Ask モード</strong>：コードについての質問に、インデックスに基づくコード引用つきで回答——「billing poller のリトライはどう動くか」にファイル、呼び出し箇所、パターンが返る。</li>
+<li><strong>Plan モード</strong>：変更を説明すると Devin が一緒にスコープを決め——セッションに渡せるコンテキスト豊富なプロンプトを生成する。ガイド 18 のルールを満たす最も安い方法：どこから始めるか、どのパターンを参照するかは、記憶ではなくインデックスから来る。</li>
+<li>会話の中からセッションを開始でき、ステータスもその中に残る——コンテキストスイッチ不要。</li>
+</ul>
+<p>リターンは二重だ：インデックスの事実で書かれたブリーフは、より具体的<em>かつ</em>短くなる。</p>
+<h2 id="委任-もう知っているステップ">委任——もう知っているステップ<a class="hlink" href="#委任-もう知っているステップ" aria-hidden="true">#</a></h2>
+<p>Ask Devin が生成したプロンプト（または<a href="talking-to-devin.html">ガイド 18</a> 通りに書いたブリーフ）をスコープされたセッションとして渡す。変わるのは、ブリーフがすべてを知っていることだけ：ファイル、パターン、検証チェック、境界。</p>
+<h2 id="レビュー-すべての-pr-に第二のエージェント">レビュー：すべての PR に第二のエージェント<a class="hlink" href="#レビュー-すべての-pr-に第二のエージェント" aria-hidden="true">#</a></h2>
+<p><strong>Devin Review</strong> は独立したレビュアーであり、セッションの自己評価の再演ではない：</p>
+<ul>
+<li>PR 単位のトリガー：GitHub PR や GitLab MR に <code>/devin review</code> とコメントするか、<a href="https://app.devin.ai/review">Devin Review</a> で PR を開く。関連する変更をグループ化し、diff に沿って説明し、チャットに引用できるバグやセキュリティの所見を提示——Devin にその場で修正させることもできる。</li>
+<li>組織全体：自動レビュー、レビュー指示、コスト管理があり、全 PR で実行できる。Review 2.0（2026年11月）で PR あたりのコストが <strong>82%</strong> 削減され——常時稼働が経済的に成立するようになった。</li>
+<li>Devin 自身の PR にも使う。書き手とレビュアーが別のエージェントであることが要点——ガイド 18 があなたに割り当てる非対称と同じだ。</li>
+</ul>
+<h2 id="学習-session-insights-と-acu-メーター">学習：Session Insights と ACU メーター<a class="hlink" href="#学習-session-insights-と-acu-メーター" aria-hidden="true">#</a></h2>
+<p>完了したすべてのセッションに <strong>Session Insights</strong> がつく（メニュー <strong>⋯ → Session insights</strong>、無料）：</p>
+<ul>
+<li><strong>セッションサイズチップ</strong>——XS–XL の自動分類がティアダウン時に生成。L/XL セッションは自動で完全分析、小さいものは手動トリガー。</li>
+<li><strong>ACU 使用量</strong>（クォータ制プランではオンデマンドのドル表示）——類似タスクを比較して、リトライや袋小路に計算資源を燃やしたセッションを見つける。</li>
+<li><strong>ユーザーメッセージ数</strong>——多いのはブリーフのコンテキスト不足のサイン。各メッセージは冒頭で書けたはずの軌道修正。</li>
+<li>分析は具体的な改善を勧める——より厳密なプロンプト、不足している knowledge、誤ったスコープ。Cloud 103 の目標が正しい：<em>毎回のセッションを前回より安く。</em></li>
+</ul>
+<p>すべてのフィールドレポートに登場するコスト規律：セッションのスコープを狭く、放置セッションは止める（思考も待機も課金される）、フリートを回す前にクォータを確認——100 Days の運営者は Bot セットアップの 2 日間で<strong>週間クォータの 33%</strong> を燃やした（<a href="community-field-reports.html">フィールドレポート</a>）。</p>
+<h2 id="確認リスト">確認リスト<a class="hlink" href="#確認リスト" aria-hidden="true">#</a></h2>
+<ul>
+<li>[ ] セッションを立てずに、DeepWiki/Ask Devin で「X はどこにあり、何が呼ぶか」を答えられる。</li>
+<li>[ ] 次のブリーフに、記憶ではなくインデックスから得た事実が少なくとも 1 つある。</li>
+<li>[ ] 最後に触った PR で Devin Review が走った——自分のでも Devin のでも。</li>
+<li>[ ] 直近セッションのサイズ・ACU・メッセージ数が読め、分析が指摘した点を 1 つ言える。</li>
+</ul>
+<h2 id="落とし穴">落とし穴<a class="hlink" href="#落とし穴" aria-hidden="true">#</a></h2>
+<ul>
+<li><strong>目隠しブリーフ。</strong> 数ヶ月開いていないコードベースの記憶でプロンプトを書く——今はインデックスの方が詳しい。Ask Devin の 2 分はセッション途中の修正に勝る。</li>
+<li><strong>CI が緑だからレビューを飛ばす。</strong> CI が検査するのは思いついたチェックだけ。Review は diff そのものを読む。網が違う。</li>
+<li><strong>失敗時だけ Insights を読む。</strong> 高いのは毎週繰り返す平凡なセッション。成功もレビューせよ——再利用できるブリーフはそこにある。</li>
+<li><strong>エフォートレベルの過剰。</strong> 四半期に一度しか触らないリポジトリに High レベルの wiki。リポジトリ別上書きはそのためにある。</li>
+</ul>
+<h2 id="理解度チェック">理解度チェック<a class="hlink" href="#理解度チェック" aria-hidden="true">#</a></h2>
+<ol>
+<li><em>なぜ Devin サイドバーではなく Ask Devin からセッションを始めるのか？</em> Plan モードがプロンプトをインデックス済みコードに根づかせるから——どこから始めるか、既存パターン、検証可能な面はすべてリポジトリ自身から来るので、セッションは手で打つか途中で発見するはずのコンテキストを持って始まる。</li>
+<li><em>セッション自身の報告が完了・テスト済みと言っているのに、なぜ Devin Review を回すのか？</em> 独立性。セッションは自分の宿題を採点した。Review は別のエージェントが新鮮なコンテキストで diff を読む——チームメイトの PR を自己承認しないのと同じ理由。</li>
+<li><em>ACU は定額で、あるセッションが XL になった。最初に何を見るか？</em> Session Insights のユーザーメッセージ数——多数の小さな修正に駆動された大きなセッションはブリーフの問題であり、タスクサイズの問題ではない。作業が本当に大きかったと結論する前に、分割か再ブリーフを。</li>
+</ol>
+<h2 id="出典">出典<a class="hlink" href="#出典" aria-hidden="true">#</a></h2>
+<ul>
+<li><a href="https://learndevin.com">Devin University</a>——Cloud 101（このループ）と Cloud 103（効率）コース。レッスンは無料、試験は Enterprise シートが必要</li>
+<li><a href="https://docs.devin.ai/work-with-devin/deepwiki">DeepWiki</a> + <a href="https://docs.devin.ai/work-with-devin/ask-devin">Ask Devin</a>——インデックス、エフォートレベル、Plan モード、公開リポジトリは <a href="https://deepwiki.com">deepwiki.com</a></li>
+<li><a href="https://docs.devin.ai/work-with-devin/devin-review">Devin Review</a>——<code>/devin review</code>、自動レビュー、<a href="https://devin.ai/blog/devin-review-2">Review 2.0 のコスト削減</a></li>
+<li><a href="https://docs.devin.ai/product-guides/session-insights">Session Insights</a>——XS–XL サイズ分け、ACU/メッセージ指標、API</li>
+<li>次へ：<a href="talking-to-devin.html">ガイド 18 — Devin との話し方</a> をまだなら · <a href="playbooks-and-knowledge.html">ガイド 9 — Playbooks</a> で改善したブリーフを永続化</li>
+</ul>
+<section class="related"><h3>同じステージ — ステージ0 · 基礎</h3><p><a href="talking-to-devin.html">ガイド 18 — Devin への伝え方：プロンプトの教義</a> · <a href="devin-desktop.html">ガイド 17 — Devin Desktop</a> · <a href="devin-cli.html">ガイド 12 — Devin CLI と拡張性</a> · <a href="bots-101-first-bot.html">ガイド 1 — 初めての Bot</a> · <a href="official-cookbook.html">ガイド 13 — 公式ユースケース・クックブック</a></p></section>
+<nav class="guide-pager"><a class="pg-prev" href="talking-to-devin.html"><span class="pg-dir">← 前へ</span><span class="pg-t">ガイド 18 — Devin への伝え方：プロンプトの教義</span></a><a class="pg-next" href="devin-desktop.html"><span class="pg-dir">次へ →</span><span class="pg-t">ガイド 17 — Devin Desktop</span></a></nav>
+</article>
+<footer><div class="wrap foot-base"><span data-i18n="foot.note">Unofficial community project — not affiliated with Cognition AI.</span><span><a href="../../index.html">built-with-devin</a> · <a href="https://github.com/Till3005/build-with-devin">build-with-devin</a></span></div></footer>
+</main>
+<script src="../../assets/theme.js"></script>
+<script src="../../assets/i18n.js"></script>
+<script src="../../assets/i18n-runtime.js"></script>
+</body>
+</html>

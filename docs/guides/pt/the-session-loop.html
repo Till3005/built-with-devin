@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Guia 19 — O loop completo da sessão: pesquisar, delegar, revisar — e quanto custa — build-with-devin guides</title>
+<meta name="description" content="Rodar o loop completo do Devin de ponta a ponta — entender a codebase via índice antes de escrever o brief, delegar uma sessão com escopo, passar uma revisão in">
+<link rel="canonical" href="https://till3005.github.io/built-with-devin/guides/pt/the-session-loop.html">
+<link rel="alternate" hreflang="en" href="https://till3005.github.io/built-with-devin/guides/pt/the-session-loop.html">
+<link rel="alternate" hreflang="ja" href="https://till3005.github.io/built-with-devin/guides/ja/pt/the-session-loop.html">
+<link rel="alternate" hreflang="pt" href="https://till3005.github.io/built-with-devin/guides/pt/pt/the-session-loop.html">
+<link rel="alternate" hreflang="zh" href="https://till3005.github.io/built-with-devin/guides/zh/pt/the-session-loop.html">
+<link rel="alternate" hreflang="x-default" href="https://till3005.github.io/built-with-devin/guides/pt/the-session-loop.html">
+<link rel="alternate" type="application/rss+xml" title="built-with-devin feed" href="../../feed.xml">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "TechArticle", "headline": "Guia 19 — O loop completo da sessão: pesquisar, delegar, revisar — e quanto custa", "description": "Rodar o loop completo do Devin de ponta a ponta — entender a codebase via índice antes de escrever o brief, delegar uma sessão com escopo, passar uma revisão in", "inLanguage": "pt", "url": "https://till3005.github.io/built-with-devin/guides/pt/the-session-loop.html", "isPartOf": {"@type": "Course", "name": "build-with-devin", "url": "https://till3005.github.io/built-with-devin/guides/"}}</script>
+<link rel="icon" href="../../assets/brand/Devin_Symbol.svg" type="image/svg+xml">
+<link rel="stylesheet" href="../../assets/site.css">
+<link rel="stylesheet" href="../../assets/guides.css">
+
+<meta property="og:title" content="Guia 19 — O loop completo da sessão: pesquisar, delegar, revisar — e quanto custa">
+<meta property="og:description" content="Rodar o loop completo do Devin de ponta a ponta — entender a codebase via índice antes de escrever o brief, delegar uma sessão com escopo, passar uma revisão in">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://till3005.github.io/built-with-devin/guides/pt/the-session-loop.html">
+<meta property="og:image" content="https://till3005.github.io/built-with-devin/assets/img/og-build.png?v=3">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://till3005.github.io/built-with-devin/assets/img/og-build.png?v=3">
+</head>
+<body>
+<a class="skip" href="#guide">Skip to content</a>
+<nav><div class="wrap nav-inner">
+  <div class="nav-left">
+    <a class="brand" href="../../index.html" aria-label="Built with Devin">
+      <span class="brand-text">built<strong>-with-</strong></span><img class="brand-mark" src="../../assets/brand/Devin_Primary_Logo.svg" alt="Devin" height="16"><span class="unofficial-chip">unofficial</span>
+    </a>
+  </div>
+  <div class="nav-side">
+    <div class="mode-toggle" role="tablist" aria-label="Site section">
+      <button class="mode-btn" data-mode="built" role="tab" aria-selected="false" onclick="location.href='../../index.html'">Built</button>
+      <button class="mode-btn on" data-mode="build" role="tab" aria-selected="true" onclick="location.href='../../index.html#build'">Build</button>
+      <span class="mode-pill" aria-hidden="true"></span>
+    </div>
+    <a class="cta" href="https://github.com/Till3005/build-with-devin/blob/main/guides/pt/the-session-loop.md">GitHub</a>
+  </div>
+</div></nav>
+<main>
+<article class="guide wrap" id="guide">
+  <p class="guide-crumb"><a href="index.html">← Guias</a> · <a href="../the-session-loop.html">English</a> · <a href="../ja/the-session-loop.html">日本語</a> · <a href="../zh/the-session-loop.html">中文</a></p>
+
+<details class="toc" open><summary>Nesta página</summary><ol><li class="d2"><a href="#o-loop-que-a-maioria-só-roda-pela-metade">O loop que a maioria só roda pela metade</a></li><li class="d2"><a href="#entender-deepwiki-e-ask-devin-antes-de-gastar-o-primeiro-acu">Entender: DeepWiki e Ask Devin antes de gastar o primeiro ACU</a></li><li class="d2"><a href="#delegar-o-passo-que-você-já-conhece">Delegar — o passo que você já conhece</a></li><li class="d2"><a href="#revisar-um-segundo-agente-em-todo-pr">Revisar: um segundo agente em todo PR</a></li><li class="d2"><a href="#aprender-session-insights-e-o-medidor-de-acu">Aprender: Session Insights e o medidor de ACU</a></li><li class="d2"><a href="#checklist-de-verificação">Checklist de verificação</a></li><li class="d2"><a href="#armadilhas">Armadilhas</a></li><li class="d2"><a href="#teste-de-conhecimento">Teste de conhecimento</a></li><li class="d2"><a href="#fontes">Fontes</a></li></ol></details>
+<h1>Guia 19 — O loop completo da sessão: pesquisar, delegar, revisar — e quanto custa</h1>
+<p><strong>Objetivo:</strong> Rodar o loop completo do Devin de ponta a ponta — entender a codebase via índice antes de escrever o brief, delegar uma sessão com escopo, passar uma revisão independente no PR e ler o Session Insights para o próximo loop sair mais barato.
+<strong>Nível:</strong> Inicial (par do <a href="talking-to-devin.html">Guia 18</a>)
+<strong>Fontes:</strong> <a href="https://learndevin.com">Devin University — Cloud 101/103</a> · <a href="https://docs.devin.ai/work-with-devin/deepwiki">Docs do DeepWiki</a> · <a href="https://docs.devin.ai/work-with-devin/ask-devin">Docs do Ask Devin</a> · <a href="https://docs.devin.ai/work-with-devin/devin-review">Docs do Devin Review</a> · <a href="https://docs.devin.ai/product-guides/session-insights">Docs do Session Insights</a></p>
+<h2 id="o-loop-que-a-maioria-só-roda-pela-metade">O loop que a maioria só roda pela metade<a class="hlink" href="#o-loop-que-a-maioria-só-roda-pela-metade" aria-hidden="true">#</a></h2>
+<p>O Guia 18 ensina a escrever um brief que o Devin não consegue interpretar errado. A trilha Cloud da Devin University envolve esse brief no loop completo que o produz e consome o resultado:</p>
+<pre><code>Entender ──► Delegar ──► Revisar ──► Aprender
+ DeepWiki     brief+          Devin Review    Session Insights
+ Ask Devin    sessão          no PR           → próximo brief melhor
+</code></pre>
+<p>A maioria das sessões que falha morre nas pontas, não no meio: o brief foi escrito às cegas sobre a codebase, ou o PR foi mergeado no feeling. Este guia cobre as duas pontas e o medidor que corre por baixo de tudo.</p>
+<h2 id="entender-deepwiki-e-ask-devin-antes-de-gastar-o-primeiro-acu">Entender: DeepWiki e Ask Devin antes de gastar o primeiro ACU<a class="hlink" href="#entender-deepwiki-e-ask-devin-antes-de-gastar-o-primeiro-acu" aria-hidden="true">#</a></h2>
+<p>O <strong>DeepWiki</strong> indexa automaticamente seus repos conectados e gera uma wiki por repo — diagramas de arquitetura, resumos, links para o código-fonte, configurável via <code>.devin/wiki.json</code>. Ele responde as perguntas que você descobriria gastando tempo de sessão: onde mora esse módulo, quem o chama, qual é o padrão estabelecido.</p>
+<ul>
+<li>Os níveis de esforço são por org (com override por repo): <strong>Low é grátis</strong> e o padrão; Medium roda ~5–10 ACUs por wiki, High ~20–40. Low basta para apoiar briefs na maioria dos repos.</li>
+<li>O onboarding indexa os repos que você configurou automaticamente; adicione outros em <strong>Settings → DeepWiki</strong>.</li>
+<li>Para repos públicos existe o <a href="https://deepwiki.com">deepwiki.com</a> gratuito — indexe qualquer repo público do GitHub e ganhe os mesmos diagramas e Q&amp;A sem conta. Também há um MCP do DeepWiki para seus outros agentes.</li>
+</ul>
+<p>O <strong>Ask Devin</strong> é a camada conversacional sobre esse índice — em <a href="https://app.devin.ai/search">app.devin.ai/search</a>:</p>
+<ul>
+<li><strong>Modo Ask</strong>: perguntas sobre seu código respondidas com citações de código, ancoradas no índice — "como funciona o retry no billing poller" retorna o arquivo, os call sites, o padrão.</li>
+<li><strong>Modo Plan</strong>: descreva a mudança e o Devin define o escopo com você — depois gera um prompt rico em contexto, pronto para entregar a uma sessão. É o jeito mais barato de cumprir as regras do Guia 18: o ponto de partida e o padrão de referência vêm do índice, não da sua memória.</li>
+<li>Inicie a sessão de dentro da conversa e o status dela fica visível ali — sem trocar de contexto.</li>
+</ul>
+<p>O retorno é duplo: um brief informado por fatos indexados é mais específico <em>e</em> mais curto.</p>
+<h2 id="delegar-o-passo-que-você-já-conhece">Delegar — o passo que você já conhece<a class="hlink" href="#delegar-o-passo-que-você-já-conhece" aria-hidden="true">#</a></h2>
+<p>Entregue o prompt gerado pelo Ask Devin (ou seu próprio brief do <a href="talking-to-devin.html">Guia 18</a>) como uma sessão com escopo. O que muda é que o brief já sabe tudo: os arquivos, o padrão, o check, o limite.</p>
+<h2 id="revisar-um-segundo-agente-em-todo-pr">Revisar: um segundo agente em todo PR<a class="hlink" href="#revisar-um-segundo-agente-em-todo-pr" aria-hidden="true">#</a></h2>
+<p>O <strong>Devin Review</strong> é um revisor independente, não um replay da autoavaliação da sessão:</p>
+<ul>
+<li>Disparo por PR: comente <code>/devin review</code> num PR do GitHub ou MR do GitLab, ou abra o PR no <a href="https://app.devin.ai/review">Devin Review</a>. Ele agrupa mudanças relacionadas, explica ao lado do diff e aponta bugs e achados de segurança que você pode citar no chat — inclusive pedindo ao Devin para corrigir na hora.</li>
+<li>Para a org: existem auto-review, instruções de revisão e controles de custo para rodar em todo PR. O Review 2.0 (nov/2026) cortou o custo por PR em <strong>82%</strong> — é o que torna o always-on economicamente viável.</li>
+<li>Use também nos PRs do próprio Devin. Escritor e revisor sendo agentes diferentes é o ponto — a mesma assimetria que o Guia 18 atribui a você versus a sessão.</li>
+</ul>
+<h2 id="aprender-session-insights-e-o-medidor-de-acu">Aprender: Session Insights e o medidor de ACU<a class="hlink" href="#aprender-session-insights-e-o-medidor-de-acu" aria-hidden="true">#</a></h2>
+<p>Toda sessão concluída ganha um <strong>Session Insights</strong> (menu <strong>⋯ → Session insights</strong>, grátis):</p>
+<ul>
+<li><strong>Chip de tamanho da sessão</strong> — classificação XS–XL gerada no teardown; sessões L/XL ganham análise completa automática, as menores por demanda.</li>
+<li><strong>Uso de ACU</strong> (ou dólares on-demand em planos por quota) — compare tarefas semelhantes para achar sessões que queimaram computação em retries e becos sem saída.</li>
+<li><strong>Mensagens do usuário</strong> — contagem alta indica brief sem contexto; cada mensagem é uma correção de rota que podia ter sido escrita no início.</li>
+<li>A análise recomenda melhorias concretas — prompts mais firmes, knowledge faltando, escopo errado. A meta do Cloud 103 é a certa: <em>cada sessão mais barata que a anterior.</em></li>
+</ul>
+<p>Higiene de custo presente em todo field report: escopo estreito por sessão, mate sessões ociosas (pensar e esperar ambos cobram), cheque a quota antes de soltar uma frota — o operador do 100 Days queimou <strong>33% da quota semanal em dois dias</strong> de setup de Bots (<a href="community-field-reports.html">field reports</a>).</p>
+<h2 id="checklist-de-verificação">Checklist de verificação<a class="hlink" href="#checklist-de-verificação" aria-hidden="true">#</a></h2>
+<ul>
+<li>[ ] Você responde "onde mora X e quem o chama" pelo DeepWiki/Ask Devin <em>sem</em> abrir sessão.</li>
+<li>[ ] Seu próximo brief contém pelo menos um fato vindo do índice, não da memória.</li>
+<li>[ ] O último PR que você tocou passou por um Devin Review — seu ou do Devin.</li>
+<li>[ ] Você lê o tamanho, os ACUs e a contagem de mensagens da última sessão, e cita um ponto que a análise marcou.</li>
+</ul>
+<h2 id="armadilhas">Armadilhas<a class="hlink" href="#armadilhas" aria-hidden="true">#</a></h2>
+<ul>
+<li><strong>Briefar às cegas.</strong> Escrever prompts pela memória de uma codebase que você não abre há meses — o índice sabe mais que você agora. Dois minutos no Ask Devin valem mais que uma correção no meio da sessão.</li>
+<li><strong>Pular revisão porque o CI está verde.</strong> O CI verifica o que você lembrou de checar. O Review lê o próprio diff; são redes diferentes.</li>
+<li><strong>Ler Insights só nas falhas.</strong> O padrão caro é a sessão medíocre que você repete toda semana. Revise sucessos também — é onde mora o brief reutilizável.</li>
+<li><strong>Gastar demais em nível de esforço.</strong> Wikis em High para repos que você só toca uma vez por trimestre; o override por repo existe por isso.</li>
+</ul>
+<h2 id="teste-de-conhecimento">Teste de conhecimento<a class="hlink" href="#teste-de-conhecimento" aria-hidden="true">#</a></h2>
+<ol>
+<li><em>Por que iniciar a sessão pelo Ask Devin e não pela sidebar do Devin?</em> Porque o modo Plan ancora o prompt no código indexado — o ponto de partida, o padrão existente e a superfície verificável vêm do próprio repo, então a sessão abre com o contexto que você digitaria ou descobriria no meio do caminho.</li>
+<li><em>O relatório da sessão diz que o trabalho está feito e testado. Por que rodar o Devin Review?</em> Independência. A sessão corrigiu a própria lição; o Review é outro agente lendo o diff com contexto novo — o mesmo motivo pelo qual o PR de um colega não é auto-aprovado.</li>
+<li><em>ACU é taxa fixa e uma sessão veio XL. O que checar primeiro?</em> A contagem de mensagens do usuário no Session Insights — uma sessão grande movida a muitas correções pequenas é problema de brief, não de tamanho de tarefa. Divida ou re-escreva o brief antes de concluir que o trabalho era grande mesmo.</li>
+</ol>
+<h2 id="fontes">Fontes<a class="hlink" href="#fontes" aria-hidden="true">#</a></h2>
+<ul>
+<li><a href="https://learndevin.com">Devin University</a> — cursos Cloud 101 (este loop) e Cloud 103 (eficiência); aulas grátis, exames exigem assento Enterprise</li>
+<li><a href="https://docs.devin.ai/work-with-devin/deepwiki">DeepWiki</a> + <a href="https://docs.devin.ai/work-with-devin/ask-devin">Ask Devin</a> — indexação, níveis de esforço, modo Plan, <a href="https://deepwiki.com">deepwiki.com</a> para repos públicos</li>
+<li><a href="https://docs.devin.ai/work-with-devin/devin-review">Devin Review</a> — <code>/devin review</code>, auto-review, <a href="https://devin.ai/blog/devin-review-2">corte de custo do Review 2.0</a></li>
+<li><a href="https://docs.devin.ai/product-guides/session-insights">Session Insights</a> — dimensionamento XS–XL, métricas de ACU/mensagens, API</li>
+<li>Próximo: <a href="talking-to-devin.html">Guia 18 — Falando com o Devin</a> se ainda não leu · <a href="playbooks-and-knowledge.html">Guia 9 — Playbooks</a> para fixar o brief melhorado</li>
+</ul>
+<section class="related"><h3>Mesmo estágio — Estágio 0 · Fundamentos</h3><p><a href="talking-to-devin.html">Guia 18 — Falando com Devin: a doutrina do prompt</a> · <a href="devin-desktop.html">Guia 17 — Devin Desktop</a> · <a href="devin-cli.html">Guia 12 — Devin CLI &amp; extensibilidade</a> · <a href="bots-101-first-bot.html">Guia 1 — Seu primeiro Bot</a> · <a href="official-cookbook.html">Guia 13 — O cookbook oficial de casos de uso</a></p></section>
+<nav class="guide-pager"><a class="pg-prev" href="talking-to-devin.html"><span class="pg-dir">← Anterior</span><span class="pg-t">Guia 18 — Falando com Devin: a doutrina do prompt</span></a><a class="pg-next" href="devin-desktop.html"><span class="pg-dir">Próximo →</span><span class="pg-t">Guia 17 — Devin Desktop</span></a></nav>
+</article>
+<footer><div class="wrap foot-base"><span data-i18n="foot.note">Unofficial community project — not affiliated with Cognition AI.</span><span><a href="../../index.html">built-with-devin</a> · <a href="https://github.com/Till3005/build-with-devin">build-with-devin</a></span></div></footer>
+</main>
+<script src="../../assets/theme.js"></script>
+<script src="../../assets/i18n.js"></script>
+<script src="../../assets/i18n-runtime.js"></script>
+</body>
+</html>

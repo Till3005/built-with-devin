@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>指南 19 — 会话全环：研究、委托、审查，以及成本 — build-with-devin guides</title>
+<meta name="description" content="跑通 Devin 全环——写简报前先用索引理解代码库，委托一个有边界的会话，让独立审查过一遍 PR，再读 Session Insights 让下一环更便宜。">
+<link rel="canonical" href="https://till3005.github.io/built-with-devin/guides/zh/the-session-loop.html">
+<link rel="alternate" hreflang="en" href="https://till3005.github.io/built-with-devin/guides/zh/the-session-loop.html">
+<link rel="alternate" hreflang="ja" href="https://till3005.github.io/built-with-devin/guides/ja/zh/the-session-loop.html">
+<link rel="alternate" hreflang="pt" href="https://till3005.github.io/built-with-devin/guides/pt/zh/the-session-loop.html">
+<link rel="alternate" hreflang="zh" href="https://till3005.github.io/built-with-devin/guides/zh/zh/the-session-loop.html">
+<link rel="alternate" hreflang="x-default" href="https://till3005.github.io/built-with-devin/guides/zh/the-session-loop.html">
+<link rel="alternate" type="application/rss+xml" title="built-with-devin feed" href="../../feed.xml">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "TechArticle", "headline": "指南 19 — 会话全环：研究、委托、审查，以及成本", "description": "跑通 Devin 全环——写简报前先用索引理解代码库，委托一个有边界的会话，让独立审查过一遍 PR，再读 Session Insights 让下一环更便宜。", "inLanguage": "zh", "url": "https://till3005.github.io/built-with-devin/guides/zh/the-session-loop.html", "isPartOf": {"@type": "Course", "name": "build-with-devin", "url": "https://till3005.github.io/built-with-devin/guides/"}}</script>
+<link rel="icon" href="../../assets/brand/Devin_Symbol.svg" type="image/svg+xml">
+<link rel="stylesheet" href="../../assets/site.css">
+<link rel="stylesheet" href="../../assets/guides.css">
+
+<meta property="og:title" content="指南 19 — 会话全环：研究、委托、审查，以及成本">
+<meta property="og:description" content="跑通 Devin 全环——写简报前先用索引理解代码库，委托一个有边界的会话，让独立审查过一遍 PR，再读 Session Insights 让下一环更便宜。">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://till3005.github.io/built-with-devin/guides/zh/the-session-loop.html">
+<meta property="og:image" content="https://till3005.github.io/built-with-devin/assets/img/og-build.png?v=3">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://till3005.github.io/built-with-devin/assets/img/og-build.png?v=3">
+</head>
+<body>
+<a class="skip" href="#guide">Skip to content</a>
+<nav><div class="wrap nav-inner">
+  <div class="nav-left">
+    <a class="brand" href="../../index.html" aria-label="Built with Devin">
+      <span class="brand-text">built<strong>-with-</strong></span><img class="brand-mark" src="../../assets/brand/Devin_Primary_Logo.svg" alt="Devin" height="16"><span class="unofficial-chip">unofficial</span>
+    </a>
+  </div>
+  <div class="nav-side">
+    <div class="mode-toggle" role="tablist" aria-label="Site section">
+      <button class="mode-btn" data-mode="built" role="tab" aria-selected="false" onclick="location.href='../../index.html'">Built</button>
+      <button class="mode-btn on" data-mode="build" role="tab" aria-selected="true" onclick="location.href='../../index.html#build'">Build</button>
+      <span class="mode-pill" aria-hidden="true"></span>
+    </div>
+    <a class="cta" href="https://github.com/Till3005/build-with-devin/blob/main/guides/zh/the-session-loop.md">GitHub</a>
+  </div>
+</div></nav>
+<main>
+<article class="guide wrap" id="guide">
+  <p class="guide-crumb"><a href="index.html">← 指南</a> · <a href="../the-session-loop.html">English</a> · <a href="../ja/the-session-loop.html">日本語</a> · <a href="../pt/the-session-loop.html">Português</a></p>
+
+<details class="toc" open><summary>本页目录</summary><ol><li class="d2"><a href="#大多数人只做了一半的环">大多数人只做了一半的环</a></li><li class="d2"><a href="#理解-在烧第一个-acu-之前用-deepwiki-和-ask-devin">理解：在烧第一个 ACU 之前用 DeepWiki 和 Ask Devin</a></li><li class="d2"><a href="#委托-你已经会的那一步">委托——你已经会的那一步</a></li><li class="d2"><a href="#审查-每个-pr-上的第二个-agent">审查：每个 PR 上的第二个 agent</a></li><li class="d2"><a href="#复盘-session-insights-和-acu-计费器">复盘：Session Insights 和 ACU 计费器</a></li><li class="d2"><a href="#验收清单">验收清单</a></li><li class="d2"><a href="#常见坑">常见坑</a></li><li class="d2"><a href="#自测">自测</a></li><li class="d2"><a href="#来源">来源</a></li></ol></details>
+<h1>指南 19 — 会话全环：研究、委托、审查，以及成本</h1>
+<p><strong>目标：</strong> 跑通 Devin 全环——写简报前先用索引理解代码库，委托一个有边界的会话，让独立审查过一遍 PR，再读 Session Insights 让下一环更便宜。
+<strong>级别：</strong> 入门（与<a href="talking-to-devin.html">指南 18</a> 配套）
+<strong>来源：</strong> <a href="https://learndevin.com">Devin University — Cloud 101/103</a> · <a href="https://docs.devin.ai/work-with-devin/deepwiki">DeepWiki 文档</a> · <a href="https://docs.devin.ai/work-with-devin/ask-devin">Ask Devin 文档</a> · <a href="https://docs.devin.ai/work-with-devin/devin-review">Devin Review 文档</a> · <a href="https://docs.devin.ai/product-guides/session-insights">Session Insights 文档</a></p>
+<h2 id="大多数人只做了一半的环">大多数人只做了一半的环<a class="hlink" href="#大多数人只做了一半的环" aria-hidden="true">#</a></h2>
+<p>指南 18 教你写一条 Devin 不会误读的简报。Devin University 的 Cloud 系列把这条简报放进了产生它、消费它的完整环路：</p>
+<pre><code>理解 ──► 委托 ──► 审查 ──► 复盘
+ DeepWiki    简报+会话      Devin Review    Session Insights
+ Ask Devin                  在 PR 上        → 更好的下一条简报
+</code></pre>
+<p>多数失败的会话死在两端而不是中间：写简报时对代码库一无所知，或者凭感觉合并了 PR。本指南讲这两端，以及贯穿全程的那台计费器。</p>
+<h2 id="理解-在烧第一个-acu-之前用-deepwiki-和-ask-devin">理解：在烧第一个 ACU 之前用 DeepWiki 和 Ask Devin<a class="hlink" href="#理解-在烧第一个-acu-之前用-deepwiki-和-ask-devin" aria-hidden="true">#</a></h2>
+<p><strong>DeepWiki</strong> 会自动索引你连通的仓库，为每个仓库生成 wiki——架构图、摘要、源码链接，可用 <code>.devin/wiki.json</code> 配置。它回答那些否则要花会话时间才发现的问题：这个模块在哪、谁在调它、既有模式是什么。</p>
+<ul>
+<li>力度档位按组织设置（可按仓库覆盖）：<strong>Low 免费</strong>且是默认；Medium 每个 wiki 约 5–10 ACU，High 约 20–40。大多数仓库 Low 就够支撑写简报。</li>
+<li>入门引导会自动索引你配置的仓库；其余在 <strong>Settings → DeepWiki</strong> 下补加。</li>
+<li>公开仓库有免费版 <a href="https://deepwiki.com">deepwiki.com</a>——索引任何公开 GitHub 仓库，拿到同样的架构图和问答，不需要账号。另有 DeepWiki MCP 可供你的其他 agent 使用。</li>
+</ul>
+<p><strong>Ask Devin</strong> 是索引之上的对话层——在 <a href="https://app.devin.ai/search">app.devin.ai/search</a>：</p>
+<ul>
+<li><strong>Ask 模式</strong>：就代码提问，答案带代码引用、基于索引——"billing poller 的重试逻辑怎么跑"会返回文件、调用点和模式。</li>
+<li><strong>Plan 模式</strong>：描述改动，Devin 和你一起圈定范围——然后生成一条上下文充足的提示词，直接交给会话。这是满足指南 18 规则最便宜的方式：从哪里下手、参照什么模式，都从索引里来，而不是凭你的记忆。</li>
+<li>在对话里直接开会话，状态也留在对话里——不用切窗口。</li>
+</ul>
+<p>这里的回报是双份的：基于索引事实写出的简报既更精确<em>又</em>更短。</p>
+<h2 id="委托-你已经会的那一步">委托——你已经会的那一步<a class="hlink" href="#委托-你已经会的那一步" aria-hidden="true">#</a></h2>
+<p>把 Ask Devin 生成的提示词（或你按<a href="talking-to-devin.html">指南 18</a> 写的简报）作为一个有边界的会话交出去。变化只在于简报已经知道一切：文件、模式、验收检查、边界。</p>
+<h2 id="审查-每个-pr-上的第二个-agent">审查：每个 PR 上的第二个 agent<a class="hlink" href="#审查-每个-pr-上的第二个-agent" aria-hidden="true">#</a></h2>
+<p><strong>Devin Review</strong> 是独立审查者，不是会话自评的重播：</p>
+<ul>
+<li>按 PR 触发：在 GitHub PR 或 GitLab MR 上评论 <code>/devin review</code>，或在 <a href="https://app.devin.ai/review">Devin Review</a> 里打开 PR。它把相关改动分组、贴着 diff 解释，并指出 bug 和安全发现——可以引用进聊天，包括让 Devin 就地修复。</li>
+<li>组织级：有自动审查、审查指令和成本控制，可以在每个 PR 上跑。Review 2.0（2026 年 11 月）把单 PR 审查成本砍了 <strong>82%</strong>——常开在经济上才成立。</li>
+<li>Devin 自己的 PR 也用。写的人和审的人是不同 agent，这正是要点——和指南 18 分派给你的不对称是同一个。</li>
+</ul>
+<h2 id="复盘-session-insights-和-acu-计费器">复盘：Session Insights 和 ACU 计费器<a class="hlink" href="#复盘-session-insights-和-acu-计费器" aria-hidden="true">#</a></h2>
+<p>每个完成的会话都有一份 <strong>Session Insights</strong>（菜单 <strong>⋯ → Session insights</strong>，免费）：</p>
+<ul>
+<li><strong>会话尺寸标签</strong>——XS–XL 自动分类在拆除时生成；L/XL 会话自动生成完整分析，较小的可手动触发。</li>
+<li><strong>ACU 用量</strong>（按量计划显示美元）——横向对比同类任务，找出把算力烧在重试和死胡同上的会话。</li>
+<li><strong>用户消息数</strong>——数高说明简报缺上下文；每条消息都是本可在开头写明的纠偏。</li>
+<li>分析会给出具体改进建议——更紧的提示词、缺的 knowledge、错误的范围。Cloud 103 的那句话是对的：<em>让每个会话都比上一个便宜。</em></li>
+</ul>
+<p>每份实战报告里都会出现的成本纪律：会话范围收窄、空闲会话杀掉（思考和等待都计费）、开舰队前查额度——100 Days 那位操盘手在 Bot 搭建两天里烧掉了<strong>每周额度的 33%</strong>（<a href="community-field-reports.html">实战报告</a>）。</p>
+<h2 id="验收清单">验收清单<a class="hlink" href="#验收清单" aria-hidden="true">#</a></h2>
+<ul>
+<li>[ ] 不开会话，你就能从 DeepWiki/Ask Devin 答出"X 在哪、谁调它"。</li>
+<li>[ ] 你的下一条简报里至少有一个来自索引而非记忆的事实。</li>
+<li>[ ] 你碰的上一个 PR 跑过 Devin Review——你的或 Devin 的。</li>
+<li>[ ] 你能读出上个会话的尺寸、ACU、消息数，并说出一项分析标记。</li>
+</ul>
+<h2 id="常见坑">常见坑<a class="hlink" href="#常见坑" aria-hidden="true">#</a></h2>
+<ul>
+<li><strong>盲写简报。</strong> 凭几个月没碰的代码库记忆写提示词——索引现在比你懂。Ask Devin 两分钟好过会话中途纠偏。</li>
+<li><strong>CI 绿了就跳过审查。</strong> CI 检查的是你想起来要查的东西；Review 读的是 diff 本身。两张网不同。</li>
+<li><strong>只在失败时看 Insights。</strong> 最贵的模式是那个你每周重复的平庸会话。成功的也要复盘——可复用的简报就藏在那里。</li>
+<li><strong>力度档位超支。</strong> 对每季度才碰一次的仓库开 High 级 wiki；按仓库覆盖就是为此存在。</li>
+</ul>
+<h2 id="自测">自测<a class="hlink" href="#自测" aria-hidden="true">#</a></h2>
+<ol>
+<li><em>为什么从 Ask Devin 开会话而不是从 Devin 侧栏？</em> 因为 Plan 模式把提示词扎进索引过的代码——从哪里下手、既有模式、可验收的覆盖面都来自仓库本身，会话一开始就带着你否则要手打或中途才发现的上下文。</li>
+<li><em>会话自己的报告说做完且测过了，为什么还要跑 Devin Review？</em> 独立性。会话给自己的作业打了分；Review 是另一个 agent 用全新上下文读 diff——和队友的 PR 不能自我批准是同一个道理。</li>
+<li><em>ACU 是固定费率，一个会话跑成了 XL，先查什么？</em> Session Insights 里的用户消息数——一个被大量小纠偏驱动的大会话是简报问题，不是任务体量问题。先拆分或重写简报，再假设活本来就大。</li>
+</ol>
+<h2 id="来源">来源<a class="hlink" href="#来源" aria-hidden="true">#</a></h2>
+<ul>
+<li><a href="https://learndevin.com">Devin University</a>——Cloud 101（本环）和 Cloud 103（效率）课程；课程免费，考试需 Enterprise 席位</li>
+<li><a href="https://docs.devin.ai/work-with-devin/deepwiki">DeepWiki</a> + <a href="https://docs.devin.ai/work-with-devin/ask-devin">Ask Devin</a>——索引、力度档位、Plan 模式，公开仓库用 <a href="https://deepwiki.com">deepwiki.com</a></li>
+<li><a href="https://docs.devin.ai/work-with-devin/devin-review">Devin Review</a>——<code>/devin review</code>、自动审查、<a href="https://devin.ai/blog/devin-review-2">Review 2.0 降价</a></li>
+<li><a href="https://docs.devin.ai/product-guides/session-insights">Session Insights</a>——XS–XL 分档、ACU/消息指标、API</li>
+<li>下一条：<a href="talking-to-devin.html">指南 18 — 和 Devin 说话</a> 如果还没读 · <a href="playbooks-and-knowledge.html">指南 9 — Playbooks</a> 把改好的简报固化下来</li>
+</ul>
+<section class="related"><h3>同阶段 — 零阶 · 起步</h3><p><a href="talking-to-devin.html">指南 18 — 跟 Devin 说话：提示词基本法</a> · <a href="devin-desktop.html">指南 17 — Devin Desktop</a> · <a href="devin-cli.html">指南 12 — Devin CLI 与可扩展性</a> · <a href="bots-101-first-bot.html">指南 1 — 你的第一个 Bot</a> · <a href="official-cookbook.html">指南 13 — 官方用例食谱</a></p></section>
+<nav class="guide-pager"><a class="pg-prev" href="talking-to-devin.html"><span class="pg-dir">← 上一篇</span><span class="pg-t">指南 18 — 跟 Devin 说话：提示词基本法</span></a><a class="pg-next" href="devin-desktop.html"><span class="pg-dir">下一篇 →</span><span class="pg-t">指南 17 — Devin Desktop</span></a></nav>
+</article>
+<footer><div class="wrap foot-base"><span data-i18n="foot.note">Unofficial community project — not affiliated with Cognition AI.</span><span><a href="../../index.html">built-with-devin</a> · <a href="https://github.com/Till3005/build-with-devin">build-with-devin</a></span></div></footer>
+</main>
+<script src="../../assets/theme.js"></script>
+<script src="../../assets/i18n.js"></script>
+<script src="../../assets/i18n-runtime.js"></script>
+</body>
+</html>
