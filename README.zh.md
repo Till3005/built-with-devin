@@ -377,6 +377,7 @@ flowchart LR
 - [用 Devin 在 Modal 上训练并部署自定义模型](https://gist.github.com/dabit3/866caaab49a4a5371ae01655fecad34b) —— Cognition 工程师 Nader Dabit 的可运行模板
 - [Devin for Startups](https://devin.ai/startups) —— 合格团队最高 $65k credits；[Devin for Gaming](https://talofagames.com/devin-for-gaming/) —— Talofa × Cognition 三周工作室 cohort，含线下工作坊和 credit 奖励；**[poke.com/bots](https://poke.com/bots)** —— 限时实验（11/18 起）：给 Poke 发短信说出你想建的东西、说明为什么值这些 credits，就能拿一个免费 Devin Bot —— 共 10,000 个账号、每席最高 $10,000（Nader Dabit 称总额 ~$1 亿），绕过 $200/月的 Max 门槛；目前已报出的最高谈判结果是 $1,887（[walden_yan](https://x.com/walden_yan/status/2123326058644828366)、[报道](https://news.sulat.com/2026/11/19/devin-bots-giveaway/)）。**活动 11/18–23 已结束（截止 00:00 PT）**。落地页没写的细则：**仅限 iMessage + 非 +86 号码**（安卓注册完才被拒），Poke 谈好的价格常被后端拒付，领取链接发出后 48 小时失效、credits 自领取起 7 天过期（[完整谈判实录](https://dev.to/shinkaspool/i-negotiated-with-an-ai-gatekeeper-and-got-devin-max-free-for-a-month-45in)），实验还因反垃圾短暂关停后才恢复邀请链接（[社区实录](https://linux.do/t/topic/3206201)）
 - [Devin Automations QuickStart](https://www.youtube.com/watch?v=6xxKtIpgOyE) —— 官方视频：事件/定时触发 agent 配置，Bots 的底层机制
+- [Set Up Devin's Cloud Agent Environment in One Prompt](https://www.youtube.com/watch?v=lAJL8ycNSKQ) —— 官方视频：一句话让 Devin 配置仓库环境，它自己写 Blueprint——依赖、密钥提示、每次会话克隆的可启动快照
 - [SWE-2 Flash](https://cognition.com/blog/swe-2-flash) —— Cognition 的快速编码模型：主流评测超过所有美国开源权重模型，速度为 SWE-2 的 3×、价格 1/5
 - [Devin Apps](https://devin.ai/blog/devin-apps) —— Devin 在自己机器上构建并以稳定 URL 提供的 live web 应用（内部工具、看板、staging 副本）
 
