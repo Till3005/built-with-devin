@@ -46,7 +46,7 @@
 <article class="guide wrap" id="guide">
   <p class="guide-crumb"><a href="index.html">← 指南</a> · <a href="../community-field-reports.html">English</a> · <a href="../ja/community-field-reports.html">日本語</a> · <a href="../pt/community-field-reports.html">Português</a></p>
 <p class="guide-meta">更新于 2026-11-20</p>
-<details class="toc" open><summary>本页目录</summary><ol><li class="d2"><a href="#每篇报告都在重复的模式">每篇报告都在重复的模式</a></li><li class="d2"><a href="#有据可查的成功场景">有据可查的成功场景</a></li><li class="d2"><a href="#有据可查的失败场景">有据可查的失败场景</a></li><li class="d2"><a href="#实名团队部署-社区-带数字">实名团队部署（社区、带数字）</a></li><li class="d2"><a href="#蒸馏出的教训">蒸馏出的教训</a></li><li class="d2"><a href="#scott-wu-的内部-top-5-来自-lenny-s-访谈">Scott Wu 的内部 top-5（来自 Lenny&#x27;s 访谈）</a></li><li class="d2"><a href="#深读-抄什么-防什么">深读——抄什么、防什么</a></li><li class="d2"><a href="#验证">验证</a></li><li class="d2"><a href="#常见陷阱">常见陷阱</a></li><li class="d2"><a href="#自检">自检</a></li><li class="d2"><a href="#sources">Sources</a></li></ol></details>
+<details class="toc" open><summary>本页目录</summary><ol><li class="d2"><a href="#每篇报告都在重复的模式">每篇报告都在重复的模式</a></li><li class="d2"><a href="#有据可查的成功场景">有据可查的成功场景</a></li><li class="d2"><a href="#有据可查的失败场景">有据可查的失败场景</a></li><li class="d2"><a href="#实名团队部署-社区-带数字">实名团队部署（社区、带数字）</a></li><li class="d2"><a href="#bots-时代-第一批回执-2026-年-11-月">Bots 时代——第一批回执（2026 年 11 月）</a></li><li class="d2"><a href="#蒸馏出的教训">蒸馏出的教训</a></li><li class="d2"><a href="#scott-wu-的内部-top-5-来自-lenny-s-访谈">Scott Wu 的内部 top-5（来自 Lenny&#x27;s 访谈）</a></li><li class="d2"><a href="#深读-抄什么-防什么">深读——抄什么、防什么</a></li><li class="d2"><a href="#验证">验证</a></li><li class="d2"><a href="#常见陷阱">常见陷阱</a></li><li class="d2"><a href="#自检">自检</a></li><li class="d2"><a href="#sources">Sources</a></li></ol></details>
 <h1>指南 14 — 社区实战报告</h1>
 <p><strong>目标：</strong> 工程师把 Devin 用在真实工作上后实际学到了什么——包括失败。蒸馏自已发表的 hands-on 记录，好评和恶评都有。
 <strong>级别：</strong> 入门（判断力篇）
@@ -70,6 +70,7 @@
 <li><strong>优雅降级的边角。</strong> 一篇<a href="https://dev.to/dextralabs/devin-ai-vs-claude-code-vs-cursor-agent-which-one-actually-ships-production-code-benchmarks-3mi2">三 agent 对决</a>里同一个限流任务，Devin 的实现贴合代码库规范、Redis 滑动窗口也写对了——但 Redis 挂了的路径抛出未处理 rejection 而不是放行兜底。没人读错误路径就上不了线。</li>
 <li><strong>整个品类不合适的情况。</strong> <a href="https://zenn.dev/vesslabs/articles/da9593d77369ee">vesslabs</a> 用 Pro 做了一周、10 个会话、3 个仓库的严谨评估，最终主动决定<em>不采用</em>——不是 Devin 不行，而是云端 agent 的优势和他们不匹配：提需求的全是工程师（Slack/Jira 入口反而成了会话跟踪负担）、6 人团队会话共享多余、iOS 模拟器跑不了 Linux 沙箱、成本拆不到会话粒度。正确的拒绝和采用同样有信息量。</li>
 <li><strong>不可检验的活。</strong> <a href="https://expectedwrong.com/devin-appraised">expectedwrong</a> 和 <a href="https://dev.to/alanwest/i-gave-devin-10-real-tasks-it-completed-3-3063">alanwest 的 10 任务测试</a>记录了失败模式：自信但坏掉或缺失的输出、credit 在循环中烧掉。他们的任务偏向没有明确验证的活——正是官方 playbook 强制要求的那道闸（第 11 篇）。</li>
+<li><strong>舰队级的不透明。</strong> 第一份舰队规模报告（<a href="https://www.raijuna.com/blog/devin-100-day-challenge-day-2">raijuna，Day 1–2</a>）撞上了单会话用户永远遇不到的失败类：~15 个 Bot 同时跑时，<em>哪个会话产出了哪个 PR</em> 变得无法追踪；非 Devin 模型上上下文几分钟就丢；每周额度的三分之一消失在搭建里——编排本身是有税的。</li>
 </ul>
 <h2 id="实名团队部署-社区-带数字">实名团队部署（社区、带数字）<a class="hlink" href="#实名团队部署-社区-带数字" aria-hidden="true">#</a></h2>
 <p>公开运营数据的真实组织——大多来自日本工程社区，那里的记录异常详尽：</p>
@@ -147,6 +148,13 @@
 <li>隐形 ACU 消耗：默认 Devin 开的 PR 上每条评论都会唤醒会话。他们打开了 <strong>"Only respond to PR comments that mention Devin"</strong>，让人随便讨论。</li>
 <li>仓库 onboarding 是串行的——一个在 setup 中就卡住下一个，得排期。</li>
 <li>他们的 ROI 分布：高的在 PR 预评审（<code>devin-review</code> 标签 → Actions → API Playbook，每次 ~1–2 ACU）、定期库升级风险评估、以及喂了<em>相似既有 PR</em> 的遗留代码活；低的在大范围重构和小到不值得的任务。</li>
+</ul>
+<h2 id="bots-时代-第一批回执-2026-年-11-月">Bots 时代——第一批回执（2026 年 11 月）<a class="hlink" href="#bots-时代-第一批回执-2026-年-11-月" aria-hidden="true">#</a></h2>
+<p>发布后的报告还薄，但值得盯着——三份都是自述，无独立基准：</p>
+<ul>
+<li><strong>swyx 的一周</strong>——把一个 Devin Bots 组织交给了 AEO、QA、跨平台移植、个人事务和视频剪辑；搬离了本地 worktree。结论：<em>"你要的不是 'AI 员工'，而是对结果负责的 agent 管理者。"</em> 他自己标注的保留意见：与 Cognition 有关联、无质量指标——从业者报告，不是基准（<a href="https://x.com/swyx/status/2122746401482592549">帖子</a>）。</li>
+<li><strong>raijuna 的 100 天</strong>——自家 agent 工厂的运营者把工厂移植到 Bots。Day 1：~15 个 Bot 上线，仅搭建就烧掉每周额度 18%，对 UX 的诚实抱怨（会话追踪扛不住舰队规模）。Day 2：GPT 模型上 Bot 几分钟就丢上下文（他的保留：可能是模型问题），一周没了 33%——<em>目前"还比不过开源自建"</em>（<a href="https://www.raijuna.com/blog/devin-100-day-challenge-day-1">Day 1</a>、<a href="https://www.raijuna.com/blog/devin-100-day-challenge-day-2">Day 2</a>）。</li>
+<li><strong>SupaSEO</strong>——目前最干净的可交付物：8 Bot 的 Chief-of-Staff→负责→专家链 ~48 小时建成一个收费 SaaS（本地 SEO + AI 引用追踪，$99），~951 commits；人类只写落地页。他的可复现技巧：专家 Bot 跨项目共享、提示词细粒度（<a href="https://x.com/noah_z_zhang/status/2124146220159377769">发布串</a>）。</li>
 </ul>
 <h2 id="蒸馏出的教训">蒸馏出的教训<a class="hlink" href="#蒸馏出的教训" aria-hidden="true">#</a></h2>
 <ol>

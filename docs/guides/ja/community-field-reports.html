@@ -46,7 +46,7 @@
 <article class="guide wrap" id="guide">
   <p class="guide-crumb"><a href="index.html">← ガイド</a> · <a href="../community-field-reports.html">English</a> · <a href="../pt/community-field-reports.html">Português</a> · <a href="../zh/community-field-reports.html">中文</a></p>
 <p class="guide-meta">更新 2026-11-20</p>
-<details class="toc" open><summary>このページの目次</summary><ol><li class="d2"><a href="#すべてのレポートに繰り返されるパターン">すべてのレポートに繰り返されるパターン</a></li><li class="d2"><a href="#devin-が勝った-記録された事例">Devin が勝った、記録された事例</a></li><li class="d2"><a href="#失敗した-記録された事例">失敗した、記録された事例</a></li><li class="d2"><a href="#名付けられたチーム導入-コミュニティ-数値つき">名付けられたチーム導入（コミュニティ、数値つき）</a></li><li class="d2"><a href="#抽出された教訓">抽出された教訓</a></li><li class="d2"><a href="#scott-wu-の社内トップ-5-lenny-s-インタビューより">Scott Wu の社内トップ 5（Lenny&#x27;s インタビューより）</a></li><li class="d2"><a href="#深読み-何を真似るか-何に気をつけるか">深読み — 何を真似るか、何に気をつけるか</a></li><li class="d2"><a href="#検証チェックリスト">検証チェックリスト</a></li><li class="d2"><a href="#落とし穴">落とし穴</a></li><li class="d2"><a href="#理解度チェック">理解度チェック</a></li><li class="d2"><a href="#出典">出典</a></li></ol></details>
+<details class="toc" open><summary>このページの目次</summary><ol><li class="d2"><a href="#すべてのレポートに繰り返されるパターン">すべてのレポートに繰り返されるパターン</a></li><li class="d2"><a href="#devin-が勝った-記録された事例">Devin が勝った、記録された事例</a></li><li class="d2"><a href="#失敗した-記録された事例">失敗した、記録された事例</a></li><li class="d2"><a href="#名付けられたチーム導入-コミュニティ-数値つき">名付けられたチーム導入（コミュニティ、数値つき）</a></li><li class="d2"><a href="#bots-時代-最初の領収書-2026-年-11-月">Bots 時代——最初の領収書（2026 年 11 月）</a></li><li class="d2"><a href="#抽出された教訓">抽出された教訓</a></li><li class="d2"><a href="#scott-wu-の社内トップ-5-lenny-s-インタビューより">Scott Wu の社内トップ 5（Lenny&#x27;s インタビューより）</a></li><li class="d2"><a href="#深読み-何を真似るか-何に気をつけるか">深読み — 何を真似るか、何に気をつけるか</a></li><li class="d2"><a href="#検証チェックリスト">検証チェックリスト</a></li><li class="d2"><a href="#落とし穴">落とし穴</a></li><li class="d2"><a href="#理解度チェック">理解度チェック</a></li><li class="d2"><a href="#出典">出典</a></li></ol></details>
 <h1>ガイド 14 — コミュニティ実践レポート</h1>
 <p><strong>目標：</strong> 実際の業務で Devin を運用したエンジニアたちが学んだこと——失敗も含めて。称賛的・批判的双方の公開体験記から抽出。
 <strong>レベル：</strong> 判断力を得るならここから
@@ -70,6 +70,7 @@
 <li><strong>グレースフルデグラデーションのエッジ。</strong> <a href="https://dev.to/dextralabs/devin-ai-vs-claude-code-vs-cursor-agent-which-one-actually-ships-production-code-benchmarks-3mi2">3 エージェント対決</a>の同じレート制限タスクで、Devin の実装はコードベースの規約に合致し Redis スライディングウィンドウも正しかった——しかし Redis 障害パスがフォールスルーではなく未処理 rejection を投げた。人間がエラーパスを読まなければ出荷できなかった。</li>
 <li><strong>カテゴリごと合わないケース。</strong> <a href="https://zenn.dev/vesslabs/articles/da9593d77369ee">vesslabs</a> は Pro で 1 週間・10 セッション・3 リポジトリの厳密な評価を行い、意図的に<em>不採用</em>を選んだ——Devin が失敗したのではなく、クラウドエージェントの強みが自社と合わなかった：依頼者が全員エンジニア（Slack/Jira の入口がセッション追跡の負担化）、6 人ではセッション共有が不要、iOS シミュレータが Linux サンドボックスで動かない、部位ごとのコスト内訳が取れない。正しい不採用は採用と同じくらい学びがある。</li>
 <li><strong>検査不能な仕事。</strong> <a href="https://expectedwrong.com/devin-appraised">expectedwrong</a>と <a href="https://dev.to/alanwest/i-gave-devin-10-real-tasks-it-completed-3-3063">alanwest の 10 タスク検査</a>が失敗モードを記録：壊れているか存在しない自信満々の出力、ループで燃えるクレジット。彼らのタスクは明確な検証のない仕事に偏っていた——公式プレイブックが必須とするのと同じゲート（ガイド 11）。</li>
+<li><strong>フリート規模の不透明さ。</strong> 初のフリート規模レポート（<a href="https://www.raijuna.com/blog/devin-100-day-challenge-day-2">raijuna、Day 1–2</a>）は、シングルセッションユーザーが決して見ない失敗類にぶつかった：約 15 の Bot が動くと<em>どのセッションがどの PR を出したか</em>が追えなくなり、Devin 以外のモデルでは数分でコンテキストが失われ、週間クォータの 3 分の 1 がセットアップに消えた——オーケストレーションには独自の税がある。</li>
 </ul>
 <h2 id="名付けられたチーム導入-コミュニティ-数値つき">名付けられたチーム導入（コミュニティ、数値つき）<a class="hlink" href="#名付けられたチーム導入-コミュニティ-数値つき" aria-hidden="true">#</a></h2>
 <p>Devin の運用データを公開している実組織——異常に記録の良い日本のエンジニアリングコミュニティからが多い：</p>
@@ -147,6 +148,13 @@
 <li>静かな ACU 燃焼：デフォルトでは Devin 作成 PR へのコメントごとにセッションが起動。<strong>「Only respond to PR comments that mention Devin」</strong>をオンにし、人間は自由に議論できるようにした。</li>
 <li>リポジトリのオンボーディングは直列——セットアップ中の 1 リポジトリが次をブロックする。スケジュールすること。</li>
 <li>ROI 内訳：高かったのは PR 一次レビュー（<code>devin-review</code> ラベル → Actions → API Playbook で 1 回あたり約 1–2 ACU）、定期的なライブラリ更新のリスク評価、<em>類似の既存 PR</em> を与えたレガシー作業；低かったのは広範囲リファクタリングと小さすぎるタスク。</li>
+</ul>
+<h2 id="bots-時代-最初の領収書-2026-年-11-月">Bots 時代——最初の領収書（2026 年 11 月）<a class="hlink" href="#bots-時代-最初の領収書-2026-年-11-月" aria-hidden="true">#</a></h2>
+<p>ローンチ後のレポートはまだ薄いが、追う価値がある——3 つとも自己申告で、独立ベンチマークなし：</p>
+<ul>
+<li><strong>swyx の 1 週間</strong>——Devin Bots の組織に AEO、QA、クロスプラットフォーム移植、個人管理、動画編集を任せ、ローカル worktree から離れた。結論：<em>「欲しいのは 'AI 従業員' ではなく、アウトカムを所有するエージェントマネージャーだ」</em>。本人が明記する留保：Cognition 関連、品質指標なし——実践者レポートでありベンチマークではない（<a href="https://x.com/swyx/status/2122746401482592549">投稿</a>）。</li>
+<li><strong>raijuna の 100 Days</strong>——自前のエージェントファクトリーの運営者が Bots へ移植。Day 1：約 15 Bot 稼働、セットアップだけで週間クォータの 18%、率直な UX 不満（セッション追跡がフリートにスケールしない）。Day 2：GPT モデルで Bot が数分でコンテキストを喪失（本人の留保：モデルのせいかも）、週の 33% が消えた——現時点で<em>「オープンソースの自前構築には敵わない」</em>（<a href="https://www.raijuna.com/blog/devin-100-day-challenge-day-1">Day 1</a>、<a href="https://www.raijuna.com/blog/devin-100-day-challenge-day-2">Day 2</a>）。</li>
+<li><strong>SupaSEO</strong>——これまでで最もクリーンな出荷物：8 Bot の Chief-of-Staff→リード→スペシャリスト チェーンが約 48 時間で有料 SaaS（ローカル SEO + AI 引用追跡、$99）を構築、約 951 commits。人間が書いたのはランディングページのみ。再現可能なコツ：スペシャリスト Bot はプロジェクト横断で共有、プロンプトは細粒度（<a href="https://x.com/noah_z_zhang/status/2124146220159377769">ローンチスレッド</a>）。</li>
 </ul>
 <h2 id="抽出された教訓">抽出された教訓<a class="hlink" href="#抽出された教訓" aria-hidden="true">#</a></h2>
 <ol>

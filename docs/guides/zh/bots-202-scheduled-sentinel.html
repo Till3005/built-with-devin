@@ -50,7 +50,7 @@
 <h1>指南 3 — 定时哨兵 Bot</h1>
 <p><strong>目标：</strong> 一个拥有某 recurring 质量检查的 Bot——按时间表运行它、分拣失败、追到根因、交付修复。
 <strong>级别：</strong> 中级
-<strong>出处部署：</strong> Cognition 的 <strong>Layout Bot</strong>——盯 Devin web app 的 layout-shift 回归。每 3 小时构建生产 <code>main</code>，模拟首次/重复/延迟请求三种访问，提交修复。<strong>3 周 159 个 PR；卡顿 −70%。</strong>
+<strong>出处部署：</strong> Cognition 的 <strong>Layout Bot</strong>——盯 Devin web app 的 layout-shift 回归。每 3 小时构建生产 <code>main</code>，模拟首次/重复/延迟请求三种访问，提交修复。<strong>3 周 159 个 PR；卡顿 −70%。</strong> 在野生环境里，同一形态已跑到最大规模：Grant Sanderson 的 <strong>Manim 维护 Bot</strong> 在 3Blue1Brown 背后的开源引擎上做 issue 预检——<strong>96.6k stars、月下载 25 万</strong>的维护量在维护者看到之前就被消化。
 <strong>来源：</strong> <a href="https://devin.ai/blog/introducing-devin-bots">launch post</a> · <a href="https://docs.devin.ai/product-guides/automations">Automations docs</a></p>
 <h2 id="模式">模式<a class="hlink" href="#模式" aria-hidden="true">#</a></h2>
 <p>有些活永远干不完——它按时钟循环：性能预算、视觉回归、依赖保鲜、密钥扫描、可用性。哨兵 Bot 拥有的是<em>检查本身</em>，不只是修复：代码库变化时它维护检查持续有效、过滤噪声、只在回归为真时开修复 PR。</p>

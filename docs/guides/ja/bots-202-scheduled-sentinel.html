@@ -50,7 +50,7 @@
 <h1>ガイド 3 — 定期監視 Bot</h1>
 <p><strong>目標：</strong> 定期的な品質チェックを所有する Bot——スケジュールで実行し、失敗をトリアージし、原因まで追跡し、修正を出荷する。
 <strong>レベル：</strong> 中級
-<strong>出典となる導入事例：</strong> Cognition の <strong>Layout Bot</strong>——Devin web アプリのレイアウトシフト退行を監視。3 時間ごとに本番 <code>main</code> をビルドし、初回/再訪/遅延リクエストの訪問をシミュレートして修正を出荷する。<strong>3 週間で 159 PR；ラグ −70%。</strong>
+<strong>出典となる導入事例：</strong> Cognition の <strong>Layout Bot</strong>——Devin web アプリのレイアウトシフト退行を監視。3 時間ごとに本番 <code>main</code> をビルドし、初回/再訪/遅延リクエストの訪問をシミュレートして修正を出荷する。<strong>3 週間で 159 PR；ラグ −70%。</strong> 野生では同じ形が最大規模で動いている：Grant Sanderson の <strong>Manim メンテナー Bot</strong> が 3Blue1Brown を支えるオープンソースエンジンの issue 事前トリアージを担当——<strong>96.6k stars、月 25 万ダウンロード</strong>分の保守が、メンテナの目に届く前に処理される。
 <strong>出典：</strong> <a href="https://devin.ai/blog/introducing-devin-bots">ローンチ記事</a> · <a href="https://docs.devin.ai/product-guides/automations">Automations ドキュメント</a></p>
 <h2 id="パターン">パターン<a class="hlink" href="#パターン" aria-hidden="true">#</a></h2>
 <p>「終わることのない」仕事がある——時計の上で再発する：パフォーマンス予算、視覚退行、依存関係の鮮度、シークレットスキャン、稼働率。監視 Bot は修正だけでなく<em>チェック自体</em>を所有する：コードベースの変化に合わせてチェックを維持し、ノイズを除去し、退行が本物のときだけ修正を開く。</p>

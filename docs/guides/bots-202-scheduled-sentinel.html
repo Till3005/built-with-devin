@@ -50,7 +50,7 @@
 <h1>Guide 3 — Scheduled-sentinel Bot</h1>
 <p><strong>Goal:</strong> a Bot that owns a recurring quality check — runs it on a schedule, triages failures, traces them to the cause, and ships fixes.
 <strong>Level:</strong> intermediate
-<strong>Source deployment:</strong> Cognition's <strong>Layout Bot</strong> — watches layout-shift regression on the Devin web app. Every 3 hours it builds production <code>main</code>, simulates first/repeat/delayed-request visits, and ships fixes. <strong>159 PRs in 3 weeks; lag −70%.</strong>
+<strong>Source deployments:</strong> Cognition's <strong>Layout Bot</strong> — watches layout-shift regression on the Devin web app. Every 3 hours it builds production <code>main</code>, simulates first/repeat/delayed-request visits, and ships fixes. <strong>159 PRs in 3 weeks; lag −70%.</strong> In the wild, the same shape runs on the largest scale yet: Grant Sanderson's <strong>Manim Maintainer Bot</strong> does preemptive issue triage on the open-source engine behind 3Blue1Brown — <strong>96.6k stars, 250k downloads/month</strong> of maintenance surfaced before the maintainer sees it.
 <strong>Sources:</strong> <a href="https://devin.ai/blog/introducing-devin-bots">launch post</a> · <a href="https://docs.devin.ai/product-guides/automations">Automations docs</a></p>
 <h2 id="the-pattern">The pattern<a class="hlink" href="#the-pattern" aria-hidden="true">#</a></h2>
 <p>Some work is never done — it recurs on a clock: performance budgets, visual regression, dependency freshness, secret scans, uptime. A sentinel Bot owns <em>the check itself</em>, not just the fixes: it keeps the check working as the codebase changes, filters noise, and opens a fix only when the regression is real.</p>
