@@ -13,7 +13,7 @@
 
 <sub>Curated by [@darega0mae](https://x.com/darega0mae) · 姉妹チュートリアル：[build-with-devin](https://github.com/Till3005/build-with-devin) · [プロジェクトを追加](CONTRIBUTING.md)</sub>
 
-<sub>**14** 件の実証済み Bot 導入 · **45** 件のエンタープライズ事例 · **9** 件の公開プロダクト · **47** 件のツール・統合 · **38** 件の実践レポート</sub>
+<sub>**15** 件の実証済み Bot 導入 · **45** 件のエンタープライズ事例 · **9** 件の公開プロダクト · **47** 件のツール・統合 · **38** 件の実践レポート</sub>
 
 <sub>[English](README.md) · [简体中文](README.zh.md) · 日本語 · [Português](README.pt.md)</sub>
 
@@ -68,6 +68,7 @@ flowchart LR
 | **Electra** | Basis | 内部ツール + コード、自律型 | 名前つきの Devin チームメイト（Bots 以前）：やるべきことを自分で決め、コードを書いてテストし、内部ツールの更新を出荷し、チームを動かす —— Basis は税務エージェントごとに 20 日間のスレッドを運用（[投稿](https://x.com/trybasis/status/2113307030203089189)、[20 日スレッド](https://x.com/trybasis/status/2120658137766100992)）。 |
 | **パーソナルデータ Bot** | Bryan Johnson | 健康データ統合 + 家族への報告 | 1 つの Bot が数年分のバイオメトリクスと脳スキャンデータを 1 つの読み物に統合。もう 1 つが母親に毎日の近況をテキスト送信。（[投稿](https://x.com/bryan_johnson/status/2122814114976383406)） |
 | **テニスデータ Bot** | Venus Williams | プロテニスの準備 + 試合データ分析 | グランドスラムシングルス 7 度の優勝者が Devin Bots でプロテニスの準備を分析——対戦相手の戦法、湿度・温度に応じたラケット調整、試合データ分析、食事と休息の管理。（[Cognition 動画](https://x.com/cognition/status/2123093354196140285)、[@walden_yan](https://x.com/walden_yan/status/2123105884125671605)） |
+| **Manim メンテナー Bot** | Grant Sanderson（3Blue1Brown）| Manim リポジトリの issue 事前トリアージ | 数学教育チャンネルの作者が、3Blue1Brown の全動画を支えるオープンソース・アニメーションエンジンの保守を Devin Bot に委託——**96.6k stars、7,936 forks、月 25 万ダウンロード**——Bot が issue を処理し、本人は数学に専念。（[Cognition 動画](https://x.com/cognition/status/2123813355538239878)） |
 
 ### 実証済みのパターン
 
@@ -86,7 +87,7 @@ flowchart LR
 
 ローンチ前の数週間で **1,000 人以上のベータテスター**。テスターはメッセージあたり **4.5 倍**多くの PR をマージ。Cognition は週 2,000 以上の PR をマージし、マージ済み PR スループットを 40 倍に拡大、**単一の自律目標から 1,000 以上の PR** を達成。初期アクセス顧客には **Decagon、Fireworks AI、Reducto** が名を連ね、最初の 2 週間で使用量が 10 倍に（[Fortune](https://fortune.com/2026/11/17/exclusive-cognition-bets-on-devin-bots-coding-agents-in-challenge-to-anthropics-duet-and-openais-dots/)）。
 
-その他の実証済み用途：**Manim** の issue 事前トリアージ、ファームウェア作業、Bot 主導チームによる**フロンティア推論エンジン**構築、テニス分析、経理自動化（trybasis：20 時間 → 30 分）、swyx の 1 週間トライアル（AEO、QA、クロスプラットフォーム移植、個人管理、動画編集 —— [彼のまとめ](https://x.com/swyx/status/2122746401482592549)）、アンバサダーの **Chris Wozniczek** が Slack から Web スタジオを運営（コールドアウトリーチ、顧客プレビュー）、**Nick White**（Helionova）の初期 Bots フリート試行、Cognition リサーチチームの「数週間を数日に短縮」（[@silasalberti](https://x.com/silasalberti)）。詳細は[再現ガイド](docs/reproducing-devin-bots.md#reported-usage-beyond-cognition)へ。
+その他の実証済み用途：ファームウェア作業、Bot 主導チームによる**フロンティア推論エンジン**構築、テニス分析、経理自動化（trybasis：20 時間 → 30 分）、swyx の 1 週間トライアル（AEO、QA、クロスプラットフォーム移植、個人管理、動画編集 —— [彼のまとめ](https://x.com/swyx/status/2122746401482592549)）、アンバサダーの **Chris Wozniczek** が Slack から Web スタジオを運営（コールドアウトリーチ、顧客プレビュー）、**Nick White**（Helionova）の初期 Bots フリート試行、Cognition リサーチチームの「数週間を数日に短縮」（[@silasalberti](https://x.com/silasalberti)）。詳細は[再現ガイド](docs/reproducing-devin-bots.md#reported-usage-beyond-cognition)へ。
 
 ### 公式テンプレートライブラリ
 

@@ -13,7 +13,7 @@
 
 <sub>Curado por [@darega0mae](https://x.com/darega0mae) · Tutoriais irmãos: [build-with-devin](https://github.com/Till3005/build-with-devin) · [Adicione seu projeto](CONTRIBUTING.md)</sub>
 
-<sub>**14** implantações de Bot documentadas · **45** casos corporativos · **9** produtos lançados · **47** ferramentas e integrações · **38** relatos de campo</sub>
+<sub>**15** implantações de Bot documentadas · **45** casos corporativos · **9** produtos lançados · **47** ferramentas e integrações · **38** relatos de campo</sub>
 
 <sub>[English](README.md) · [简体中文](README.zh.md) · [日本語](README.ja.md) · Português</sub>
 
@@ -68,6 +68,7 @@ flowchart LR
 | **Electra** | Basis | Ferramentas internas + código, autodirigida | Uma colega Devin com nome (pré-Bots): decide o que precisa ser feito, escreve e testa código, lança atualizações em ferramentas internas e empurra o time — a Basis roda uma thread de 20 dias por agente fiscal ([post](https://x.com/trybasis/status/2113307030203089189), [thread de 20 dias](https://x.com/trybasis/status/2120658137766100992)). |
 | **Bots de dados pessoais** | Bryan Johnson | Síntese de saúde + atualizações à família | Um Bot sintetiza anos de dados biométricos e de exames cerebrais num único relatório; outro manda à mãe dele um resumo diário de como ele está. ([post](https://x.com/bryan_johnson/status/2122814114976383406)) |
 | **Bots de dados de tênis** | Venus Williams | Preparação de tênis profissional + dados de jogo | A heptacampeã de Grand Slam usa Devin Bots para organizar a preparação no circuito — jogos das adversárias, ajuste de raquetes por umidade e temperatura, análise de partidas, refeições e descanso. ([vídeo da Cognition](https://x.com/cognition/status/2123093354196140285), [@walden_yan](https://x.com/walden_yan/status/2123105884125671605)) |
+| **Bot mantenedor do Manim** | Grant Sanderson (3Blue1Brown) | Triagem preventiva de issues no repositório Manim | O autor do canal de matemática delegou a manutenção do motor de animação open-source por trás de todos os vídeos do 3Blue1Brown a um Devin Bot — **96,6 mil stars, 7.936 forks, 250 mil downloads/mês** — os issues ficam com o Bot enquanto ele foca na matemática. ([vídeo da Cognition](https://x.com/cognition/status/2123813355538239878)) |
 
 ### Padrões documentados
 
@@ -86,7 +87,7 @@ flowchart LR
 
 **Mais de 1.000 beta testers** nas semanas antes do lançamento. Testadores mergeam **4,5× mais PRs por mensagem**; a Cognition mergeia 2.000+ PRs/semana, multiplicou por 40 o throughput de PRs mergeados e entregou **1.000+ PRs a partir de um único objetivo autônomo**. Clientes de early access incluem **Decagon, Fireworks AI e Reducto**, com uso 10× maior nas duas primeiras semanas ([Fortune](https://fortune.com/2026/11/17/exclusive-cognition-bets-on-devin-bots-coding-agents-in-challenge-to-anthropics-duet-and-openais-dots/)).
 
-Outros usos documentados: triagem preventiva de issues no **Manim**, trabalho em firmware, um time liderado por bots construindo um **motor de inferência de fronteira**, análise de tênis, automação contábil (trybasis: 20h → 30 min), o trial de uma semana do swyx (AEO, QA, portabilidade entre plataformas, administração pessoal, edição de vídeo — [seu resumo](https://x.com/swyx/status/2122746401482592549)), o embaixador **Chris Wozniczek** rodando seu estúdio web pelo Slack (cold outreach, previews para clientes), **Nick White** (Helionova) testando frotas iniciais de Bots e o time de pesquisa da Cognition comprimindo "semanas em dias" ([@silasalberti](https://x.com/silasalberti)). Relatos completos no [guia de reprodução](docs/reproducing-devin-bots.md#reported-usage-beyond-cognition).
+Outros usos documentados: trabalho em firmware, um time liderado por bots construindo um **motor de inferência de fronteira**, análise de tênis, automação contábil (trybasis: 20h → 30 min), o trial de uma semana do swyx (AEO, QA, portabilidade entre plataformas, administração pessoal, edição de vídeo — [seu resumo](https://x.com/swyx/status/2122746401482592549)), o embaixador **Chris Wozniczek** rodando seu estúdio web pelo Slack (cold outreach, previews para clientes), **Nick White** (Helionova) testando frotas iniciais de Bots e o time de pesquisa da Cognition comprimindo "semanas em dias" ([@silasalberti](https://x.com/silasalberti)). Relatos completos no [guia de reprodução](docs/reproducing-devin-bots.md#reported-usage-beyond-cognition).
 
 ### Biblioteca oficial de templates
 

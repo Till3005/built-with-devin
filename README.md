@@ -13,7 +13,7 @@
 
 <sub>Curated by [@darega0mae](https://x.com/darega0mae) · Sister tutorials: [build-with-devin](https://github.com/Till3005/build-with-devin) · [Add your project](CONTRIBUTING.md)</sub>
 
-<sub>**14** documented Bot deployments · **45** enterprise case studies · **9** shipped products · **47** tools & integrations · **38** field reports</sub>
+<sub>**15** documented Bot deployments · **45** enterprise case studies · **9** shipped products · **47** tools & integrations · **38** field reports</sub>
 
 <sub>English · [简体中文](README.zh.md) · [日本語](README.ja.md) · [Português](README.pt.md)</sub>
 
@@ -68,6 +68,7 @@ flowchart LR
 | **Electra** | Basis | Internal tools + code, self-directed | A named Devin teammate (pre-Bots): decides what needs doing, writes and tests code, ships updates to internal tools, and pushes the team — Basis runs one 20-day thread per tax agent ([post](https://x.com/trybasis/status/2113307030203089189), [20-day thread](https://x.com/trybasis/status/2120658137766100992)). |
 | **Personal data Bots** | Bryan Johnson | Health synthesis + family updates | One Bot synthesizes years of biometric and brain-scan data into a single readout; another texts his mother a daily update on how he's doing. ([post](https://x.com/bryan_johnson/status/2122814114976383406)) |
 | **Tennis data Bots** | Venus Williams | Pro-tennis preparation and match data | The seven-time Grand Slam singles champion uses Devin Bots to make sense of pro-tennis prep — opponent plays, racket tuning for humidity and temperature, match analysis, meals and rest. ([Cognition video](https://x.com/cognition/status/2123093354196140285), [@walden_yan](https://x.com/walden_yan/status/2123105884125671605)) |
+| **Manim Maintainer Bot** | Grant Sanderson (3Blue1Brown) | Preemptive issue triage on the Manim repo | The math-education channel's author handed maintenance of the open-source animation engine behind every 3Blue1Brown video — **96.6k stars, 7,936 forks, 250k downloads/month** — to a Devin Bot, so the issues get addressed while he stays on the math. ([Cognition video](https://x.com/cognition/status/2123813355538239878)) |
 
 ### Documented patterns
 
@@ -86,7 +87,7 @@ flowchart LR
 
 **1,000+ beta testers** in the weeks before launch. Testers merge **4.5× more PRs per message**; Cognition merges 2,000+ PRs/week, 40×'d its merged-PR throughput, and landed **1,000+ PRs from a single autonomous goal**. Named early-access customers include **Decagon, Fireworks AI, and Reducto**, with usage up 10× in the first two weeks ([Fortune](https://fortune.com/2026/11/17/exclusive-cognition-bets-on-devin-bots-coding-agents-in-challenge-to-anthropics-duet-and-openais-dots/)).
 
-Other documented usage: preemptive issue triage on **Manim**, firmware work, a bot-led team building a **frontier inference engine**, tennis analytics, accounting automation (trybasis: 20h → 30 min), swyx's week-long trial (AEO, QA, cross-platform porting, personal admin, video editing — [his summary](https://x.com/swyx/status/2122746401482592549)), ambassador **Chris Wozniczek** running his web studio from Slack (cold outreach, customer previews), **Nick White** (Helionova) testing early Bots fleets, and Cognition's research team compressing "weeks into days" ([@silasalberti](https://x.com/silasalberti)). Full write-ups in the [reproduction guide](docs/reproducing-devin-bots.md#reported-usage-beyond-cognition).
+Other documented usage: firmware work, a bot-led team building a **frontier inference engine**, tennis analytics, accounting automation (trybasis: 20h → 30 min), swyx's week-long trial (AEO, QA, cross-platform porting, personal admin, video editing — [his summary](https://x.com/swyx/status/2122746401482592549)), ambassador **Chris Wozniczek** running his web studio from Slack (cold outreach, customer previews), **Nick White** (Helionova) testing early Bots fleets, and Cognition's research team compressing "weeks into days" ([@silasalberti](https://x.com/silasalberti)). Full write-ups in the [reproduction guide](docs/reproducing-devin-bots.md#reported-usage-beyond-cognition).
 
 ### Official template library
 

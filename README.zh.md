@@ -13,7 +13,7 @@
 
 <sub>维护者 [@darega0mae](https://x.com/darega0mae) · 姊妹教程库：[build-with-devin](https://github.com/Till3005/build-with-devin) · [收录你的项目](CONTRIBUTING.md)</sub>
 
-<sub>**14** 个有据可查的 Bot 部署 · **45** 个企业案例 · **9** 个已发布产品 · **47** 个工具与集成 · **38** 篇实战报告</sub>
+<sub>**15** 个有据可查的 Bot 部署 · **45** 个企业案例 · **9** 个已发布产品 · **47** 个工具与集成 · **38** 篇实战报告</sub>
 
 <sub>[English](README.md) · 简体中文 · [日本語](README.ja.md) · [Português](README.pt.md)</sub>
 
@@ -68,6 +68,7 @@ flowchart LR
 | **Electra** | Basis | 内部工具 + 代码，自主导向 | 一个有名字的 Devin 队友（Bots 之前）：自己决定该做什么、写码并测试、给内部工具推更新、反过来推动团队 —— Basis 给每个税务 agent 跑一条 20 天的长线程（[帖子](https://x.com/trybasis/status/2113307030203089189)、[20 天线程](https://x.com/trybasis/status/2120658137766100992)）。 |
 | **个人数据 Bot** | Bryan Johnson | 健康数据综合 + 给家人汇报 | 一个 Bot 把多年的生物指标和脑扫描数据综合成单一读数；另一个每天给他母亲发一条他的近况短信。（[帖子](https://x.com/bryan_johnson/status/2122814114976383406)） |
 | **网球数据 Bot** | Venus Williams | 职业网球备战 + 比赛数据分析 | 七届大满贯单打冠军用 Devin Bots 打理职业网球备战——研究对手打法、按温湿度调球拍、比赛数据分析、饮食和休息安排。（[Cognition 视频](https://x.com/cognition/status/2123093354196140285)、[@walden_yan](https://x.com/walden_yan/status/2123105884125671605)） |
+| **Manim 维护 Bot** | Grant Sanderson（3Blue1Brown）| Manim 仓库 issue 预检 | 数学科普频道主理人把每支 3Blue1Brown 视频背后的开源动画引擎交给 Devin Bot 维护——**96.6k stars、7,936 forks、月下载 25 万**——Bot 处理 issue，他专心做数学。（[Cognition 视频](https://x.com/cognition/status/2123813355538239878)） |
 
 ### 有据可查的模式
 
@@ -86,7 +87,7 @@ flowchart LR
 
 发布前几周有 **1,000+ beta 测试者**。测试者每条消息合并的 PR 数提升 **4.5×**；Cognition 每周合并 2,000+ PR，合并吞吐提升 40 倍，并实现了**单一自主目标产出 1,000+ PR**。早期客户包括 **Decagon、Fireworks AI、Reducto**，上线两周内用量增长 10 倍（[Fortune](https://fortune.com/2026/11/17/exclusive-cognition-bets-on-devin-bots-coding-agents-in-challenge-to-anthropics-duet-and-openais-dots/)）。
 
-其他有据可查的用法：**Manim** 的 issue 预检、固件开发、bot 团队打造的**前沿推理引擎**、网球数据分析、财务自动化（trybasis：20 小时 → 30 分钟）、swyx 的一周试用（AEO、QA、跨平台移植、个人事务、视频剪辑 —— [他的总结](https://x.com/swyx/status/2122746401482592549)）、大使 **Chris Wozniczek** 用 Slack 运营自己的建站工作室（冷邮件外联、客户预览）、**Nick White**（Helionova）的早期 Bots 测试，以及 Cognition 研究团队把"数周压成数天"（[@silasalberti](https://x.com/silasalberti)）。完整记述见[复现指南](docs/reproducing-devin-bots.md#reported-usage-beyond-cognition)。
+其他有据可查的用法：固件开发、bot 团队打造的**前沿推理引擎**、网球数据分析、财务自动化（trybasis：20 小时 → 30 分钟）、swyx 的一周试用（AEO、QA、跨平台移植、个人事务、视频剪辑 —— [他的总结](https://x.com/swyx/status/2122746401482592549)）、大使 **Chris Wozniczek** 用 Slack 运营自己的建站工作室（冷邮件外联、客户预览）、**Nick White**（Helionova）的早期 Bots 测试，以及 Cognition 研究团队把"数周压成数天"（[@silasalberti](https://x.com/silasalberti)）。完整记述见[复现指南](docs/reproducing-devin-bots.md#reported-usage-beyond-cognition)。
 
 ### 官方模板库
 

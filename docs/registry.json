@@ -3,7 +3,7 @@
   "generated_from": "https://github.com/Till3005/built-with-devin/blob/main/README.md",
   "license": "CC0-1.0",
   "counts": {
-    "bot_deployments": 14,
+    "bot_deployments": 15,
     "bot_templates": 16,
     "products": 9,
     "enterprise_cases": 45
@@ -196,6 +196,19 @@
         }
       ],
       "updated_on": "2026-11-19"
+    },
+    {
+      "name": "Manim Maintainer Bot",
+      "owner": "Grant Sanderson (3Blue1Brown)",
+      "owns": "Preemptive issue triage on the Manim repo",
+      "results": "The math-education channel's author handed maintenance of the open-source animation engine behind every 3Blue1Brown video — 96.6k stars, 7,936 forks, 250k downloads/month — to a Devin Bot, so the issues get addressed while he stays on the math. (Cognition video)",
+      "sources": [
+        {
+          "text": "Cognition video",
+          "url": "https://x.com/cognition/status/2123813355538239878"
+        }
+      ],
+      "updated_on": "2026-11-23"
     }
   ],
   "bot_templates": [

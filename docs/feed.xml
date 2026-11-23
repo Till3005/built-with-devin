@@ -4,7 +4,14 @@
   <title>Built with Devin — registry updates</title>
   <link>https://till3005.github.io/built-with-devin/</link>
   <description>New entries indexed in the built-with-devin registry.</description>
-  <lastBuildDate>Mon, 23 Nov 2026 14:35:30 +0000</lastBuildDate>
+  <lastBuildDate>Mon, 23 Nov 2026 14:43:00 +0000</lastBuildDate>
+  <item>
+    <title>Indexed: Manim Maintainer Bot</title>
+    <link>https://till3005.github.io/built-with-devin/#deployments</link>
+    <guid isPermaLink="false">bot:Manim Maintainer Bot</guid>
+    <pubDate>Mon, 23 Nov 2026 00:00:00 +0000</pubDate>
+    <description>Grant Sanderson (3Blue1Brown) — Preemptive issue triage on the Manim repo</description>
+  </item>
   <item>
     <title>Indexed: RV Tech</title>
     <link>https://till3005.github.io/built-with-devin/#enterprise</link>
@@ -172,13 +179,6 @@
     <guid isPermaLink="false">enterprise:WPP Enterprise Solutions</guid>
     <pubDate>Thu, 19 Nov 2026 00:00:00 +0000</pubDate>
     <description>Devin as the delivery layer for fixed-price client engagements</description>
-  </item>
-  <item>
-    <title>Indexed: Mercor</title>
-    <link>https://till3005.github.io/built-with-devin/#enterprise</link>
-    <guid isPermaLink="false">enterprise:Mercor</guid>
-    <pubDate>Thu, 19 Nov 2026 00:00:00 +0000</pubDate>
-    <description>Engineers building around the clock</description>
   </item>
 </channel>
 </rss>
