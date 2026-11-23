@@ -12,7 +12,7 @@
 <link rel="alternate" hreflang="zh" href="https://till3005.github.io/built-with-devin/guides/zh/pt/migrations-at-scale.html">
 <link rel="alternate" hreflang="x-default" href="https://till3005.github.io/built-with-devin/guides/pt/migrations-at-scale.html">
 <link rel="alternate" type="application/rss+xml" title="built-with-devin feed" href="../../feed.xml">
-<script type="application/ld+json">{"@context": "https://schema.org", "@type": "TechArticle", "headline": "Guia 11 — Migrações em escala", "description": "rodar uma migração grande linguagem, framework, banco de dados, dependência, arquitetura como centenas de PRs pequenos verificados em vez de uma reescrita heroi", "inLanguage": "pt", "url": "https://till3005.github.io/built-with-devin/guides/pt/migrations-at-scale.html", "isPartOf": {"@type": "Course", "name": "build-with-devin", "url": "https://till3005.github.io/built-with-devin/guides/"}, "dateModified": "2026-11-20"}</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "TechArticle", "headline": "Guia 11 — Migrações em escala", "description": "rodar uma migração grande linguagem, framework, banco de dados, dependência, arquitetura como centenas de PRs pequenos verificados em vez de uma reescrita heroi", "inLanguage": "pt", "url": "https://till3005.github.io/built-with-devin/guides/pt/migrations-at-scale.html", "isPartOf": {"@type": "Course", "name": "build-with-devin", "url": "https://till3005.github.io/built-with-devin/guides/"}, "dateModified": "2026-11-24"}</script>
 <link rel="icon" href="../../assets/brand/Devin_Symbol.svg" type="image/svg+xml">
 <link rel="stylesheet" href="../../assets/site.css">
 <link rel="stylesheet" href="../../assets/guides.css">
@@ -45,7 +45,7 @@
 <main>
 <article class="guide wrap" id="guide">
   <p class="guide-crumb"><a href="index.html">← Guias</a> · <a href="../migrations-at-scale.html">English</a> · <a href="../ja/migrations-at-scale.html">日本語</a> · <a href="../zh/migrations-at-scale.html">中文</a></p>
-<p class="guide-meta">Atualizado 2026-11-20</p>
+<p class="guide-meta">Atualizado 2026-11-24</p>
 <details class="toc" open><summary>Nesta página</summary><ol><li class="d2"><a href="#o-playbook-oficial">O playbook oficial</a></li><li class="d2"><a href="#passo-1-verifique-se-sua-migração-se-qualifica">Passo 1 — Verifique se sua migração se qualifica</a></li><li class="d2"><a href="#passo-2-fatie">Passo 2 — Fatie</a></li><li class="d2"><a href="#passo-3-escreva-a-transformação-como-um-skill">Passo 3 — Escreva a transformação como um skill</a></li><li class="d2"><a href="#passo-4-rode-sessões-paralelas">Passo 4 — Rode sessões paralelas</a></li><li class="d2"><a href="#passo-5-vigie-a-taxa-de-erro-não-a-barra-de-progresso">Passo 5 — Vigie a taxa de erro, não a barra de progresso</a></li><li class="d2"><a href="#checklist-de-verificação">Checklist de verificação</a></li><li class="d2"><a href="#armadilhas">Armadilhas</a></li><li class="d2"><a href="#teste-de-conhecimento">Teste de conhecimento</a></li><li class="d2"><a href="#demonstração-o-loop-de-migração-executado-em-série-no-devin-cli-v3000-14-swe-2-flash-medium">Demonstração — o loop de migração executado em série, no Devin CLI v3000.14 (swe-2-flash-medium)</a></li><li class="d2"><a href="#fontes">Fontes</a></li></ol></details>
 <h1>Guia 11 — Migrações em escala</h1>
 <p><strong>Objetivo:</strong> rodar uma migração grande (linguagem, framework, banco de dados, dependência, arquitetura) como centenas de PRs pequenos verificados em vez de uma reescrita heroica.

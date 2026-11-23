@@ -4,7 +4,7 @@
   <title>Built with Devin — registry updates</title>
   <link>https://till3005.github.io/built-with-devin/</link>
   <description>New entries indexed in the built-with-devin registry.</description>
-  <lastBuildDate>Mon, 23 Nov 2026 16:04:58 +0000</lastBuildDate>
+  <lastBuildDate>Mon, 23 Nov 2026 17:14:08 +0000</lastBuildDate>
   <item>
     <title>Indexed: Manim Maintainer Bot</title>
     <link>https://till3005.github.io/built-with-devin/#deployments</link>
@@ -18,6 +18,20 @@
     <guid isPermaLink="false">enterprise:RV Tech</guid>
     <pubDate>Mon, 23 Nov 2026 00:00:00 +0000</pubDate>
     <description>Rivian × VW JV, software-defined vehicles</description>
+  </item>
+  <item>
+    <title>Indexed: DevinDash</title>
+    <link>https://till3005.github.io/built-with-devin/#deep</link>
+    <guid isPermaLink="false">template:DevinDash</guid>
+    <pubDate>Mon, 23 Nov 2026 00:00:00 +0000</pubDate>
+    <description>Orders food for your team on DoorDash — finds what's open, builds the cart, places the order (the novelty template; proof Bots run non-code errands)</description>
+  </item>
+  <item>
+    <title>Indexed: Poke</title>
+    <link>https://till3005.github.io/built-with-devin/#deep</link>
+    <guid isPermaLink="false">template:Poke</guid>
+    <pubDate>Mon, 23 Nov 2026 00:00:00 +0000</pubDate>
+    <description>The Poke from your texts doing real engineering — fixes the bug, opens the PR, chases the review (the acquired startup, now a template)</description>
   </item>
   <item>
     <title>Indexed: SupaSEO</title>
@@ -165,20 +179,6 @@
     <guid isPermaLink="false">enterprise:Itaú</guid>
     <pubDate>Thu, 19 Nov 2026 00:00:00 +0000</pubDate>
     <description>Devin across the full SDLC at Brazil's largest bank</description>
-  </item>
-  <item>
-    <title>Indexed: Ripple Treasury</title>
-    <link>https://till3005.github.io/built-with-devin/#enterprise</link>
-    <guid isPermaLink="false">enterprise:Ripple Treasury</guid>
-    <pubDate>Thu, 19 Nov 2026 00:00:00 +0000</pubDate>
-    <description>Automated bug triage ("Guardians 2.0") + codebase Q&amp;A for non-engineers</description>
-  </item>
-  <item>
-    <title>Indexed: WPP Enterprise Solutions</title>
-    <link>https://till3005.github.io/built-with-devin/#enterprise</link>
-    <guid isPermaLink="false">enterprise:WPP Enterprise Solutions</guid>
-    <pubDate>Thu, 19 Nov 2026 00:00:00 +0000</pubDate>
-    <description>Devin as the delivery layer for fixed-price client engagements</description>
   </item>
 </channel>
 </rss>

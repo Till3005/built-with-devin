@@ -4,7 +4,7 @@
   "license": "CC0-1.0",
   "counts": {
     "bot_deployments": 15,
-    "bot_templates": 16,
+    "bot_templates": 18,
     "products": 9,
     "enterprise_cases": 45
   },
@@ -291,6 +291,16 @@
       "name": "Compliance Engineer",
       "does": "Collects control evidence from code, warns when a control lapses",
       "updated_on": "2026-11-18"
+    },
+    {
+      "name": "DevinDash",
+      "does": "Orders food for your team on DoorDash — finds what's open, builds the cart, places the order (the novelty template; proof Bots run non-code errands)",
+      "updated_on": "2026-11-23"
+    },
+    {
+      "name": "Poke",
+      "does": "The Poke from your texts doing real engineering — fixes the bug, opens the PR, chases the review (the acquired startup, now a template)",
+      "updated_on": "2026-11-23"
     }
   ],
   "products": [

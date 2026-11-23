@@ -12,7 +12,7 @@
 <link rel="alternate" hreflang="zh" href="https://till3005.github.io/built-with-devin/guides/zh/zh/migrations-at-scale.html">
 <link rel="alternate" hreflang="x-default" href="https://till3005.github.io/built-with-devin/guides/zh/migrations-at-scale.html">
 <link rel="alternate" type="application/rss+xml" title="built-with-devin feed" href="../../feed.xml">
-<script type="application/ld+json">{"@context": "https://schema.org", "@type": "TechArticle", "headline": "指南 11 — 规模化迁移", "description": "把大型迁移（语言、框架、数据库、依赖、架构）跑成几百个已验证的小 PR，而不是一次英雄式重写。", "inLanguage": "zh", "url": "https://till3005.github.io/built-with-devin/guides/zh/migrations-at-scale.html", "isPartOf": {"@type": "Course", "name": "build-with-devin", "url": "https://till3005.github.io/built-with-devin/guides/"}, "dateModified": "2026-11-20"}</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "TechArticle", "headline": "指南 11 — 规模化迁移", "description": "把大型迁移（语言、框架、数据库、依赖、架构）跑成几百个已验证的小 PR，而不是一次英雄式重写。", "inLanguage": "zh", "url": "https://till3005.github.io/built-with-devin/guides/zh/migrations-at-scale.html", "isPartOf": {"@type": "Course", "name": "build-with-devin", "url": "https://till3005.github.io/built-with-devin/guides/"}, "dateModified": "2026-11-24"}</script>
 <link rel="icon" href="../../assets/brand/Devin_Symbol.svg" type="image/svg+xml">
 <link rel="stylesheet" href="../../assets/site.css">
 <link rel="stylesheet" href="../../assets/guides.css">
@@ -45,7 +45,7 @@
 <main>
 <article class="guide wrap" id="guide">
   <p class="guide-crumb"><a href="index.html">← 指南</a> · <a href="../migrations-at-scale.html">English</a> · <a href="../ja/migrations-at-scale.html">日本語</a> · <a href="../pt/migrations-at-scale.html">Português</a></p>
-<p class="guide-meta">更新于 2026-11-20</p>
+<p class="guide-meta">更新于 2026-11-24</p>
 <details class="toc" open><summary>本页目录</summary><ol><li class="d2"><a href="#官方-playbook">官方 playbook</a></li><li class="d2"><a href="#第-1-步-确认你的迁移够格">第 1 步 — 确认你的迁移够格</a></li><li class="d2"><a href="#第-2-步-切片">第 2 步 — 切片</a></li><li class="d2"><a href="#第-3-步-把变换写成-skill">第 3 步 — 把变换写成 skill</a></li><li class="d2"><a href="#第-4-步-并行会话">第 4 步 — 并行会话</a></li><li class="d2"><a href="#第-5-步-盯错误率-不盯进度条">第 5 步 — 盯错误率，不盯进度条</a></li><li class="d2"><a href="#verify-it">Verify it</a></li><li class="d2"><a href="#坑">坑</a></li><li class="d2"><a href="#自检">自检</a></li><li class="d2"><a href="#实录演示-迁移回路串行跑一遍-录于-devin-cli-v3000-14-swe-2-flash-medium">实录演示 —— 迁移回路串行跑一遍，录于 Devin CLI v3000.14（swe-2-flash-medium）</a></li><li class="d2"><a href="#sources">Sources</a></li></ol></details>
 <h1>指南 11 — 规模化迁移</h1>
 <p><strong>目标：</strong> 把大型迁移（语言、框架、数据库、依赖、架构）跑成几百个已验证的小 PR，而不是一次英雄式重写。

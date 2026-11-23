@@ -25,7 +25,7 @@
 
 ## Contents
 
-- [Devin Bots — official product](#devin-bots--official-product) — deployments, reusable patterns, results, the 16-template marketplace
+- [Devin Bots — official product](#devin-bots--official-product) — deployments, reusable patterns, results, the 18-template marketplace
 - [Products built with Devin](#products-built-with-devin) — shipped software where Devin wrote the code
 - [Enterprise deployments](#enterprise-deployments) — published customer cases with hard numbers
 - [Bots & surfaces](#bots--surfaces) — Devin inside Discord, Telegram, Slack and other products
@@ -111,6 +111,8 @@ Sixteen ready-made Bots on the [public marketplace](https://devin.ai/bots/templa
 | Code Health Engineer | Stale flags, old dependencies, CVEs → small safe PRs |
 | Technical Writer | Keeps repo wikis and diagrams in step with `main` after merges |
 | Compliance Engineer | Collects control evidence from code, warns when a control lapses |
+| DevinDash | Orders food for your team on DoorDash — finds what's open, builds the cart, places the order (the novelty template; proof Bots run non-code errands) |
+| Poke | The Poke from your texts doing real engineering — fixes the bug, opens the PR, chases the review (the acquired startup, now a template) |
 
 **[→ Reproduction guide: how to rebuild every documented Bot](docs/reproducing-devin-bots.md)** — and its expanded tutorial form in the sister repo **[build-with-devin](https://github.com/Till3005/build-with-devin)**
 

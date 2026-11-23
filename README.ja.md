@@ -25,7 +25,7 @@
 
 ## 目次
 
-- [Devin Bots —— 公式プロダクト](#devin-bots----公式プロダクト) —— 導入実績、再利用可能なパターン、公式データ、16 テンプレートのマーケットプレイス
+- [Devin Bots —— 公式プロダクト](#devin-bots----公式プロダクト) —— 導入実績、再利用可能なパターン、公式データ、18 テンプレートのマーケットプレイス
 - [Devin で作られたプロダクト](#devin-で作られたプロダクト) —— Devin がコードを書いた出荷済みソフトウェア
 - [エンタープライズ導入](#エンタープライズ導入) —— 具体的な数字つきの公開顧客事例
 - [Bots と接続面](#bots-と接続面) —— Discord、Telegram、Slack 等への Devin 組み込み
@@ -91,7 +91,7 @@ flowchart LR
 
 ### 公式テンプレートライブラリ
 
-[公開マーケットプレイス](https://devin.ai/bots/templates)にある 16 の既製 Bot（[テンプレートドキュメント](https://docs.devin.ai/work-with-devin/bots/templates)——テンプレートから作った Bot は接続・シークレット・メモリを一切持たない；「Share as template」で自分のものを公開できる）に加え、**SuperJennyStack** などのコミュニティテンプレート：
+[公開マーケットプレイス](https://devin.ai/bots/templates)にある 18 の既製 Bot（[テンプレートドキュメント](https://docs.devin.ai/work-with-devin/bots/templates)——テンプレートから作った Bot は接続・シークレット・メモリを一切持たない；「Share as template」で自分のものを公開できる）に加え、**SuperJennyStack** などのコミュニティテンプレート：
 
 | テンプレート | 役割 |
 | --- | --- |
@@ -111,6 +111,8 @@ flowchart LR
 | Code Health Engineer | 古いフラグ、古い依存、CVE → 小さな安全な PR |
 | Technical Writer | マージ後に `main` と同期したリポジトリ wiki と図を維持 |
 | Compliance Engineer | コードから統制証跡を収集し、統制が失効したら警告 |
+| DevinDash | DoorDash でチームの食事を注文——営業中の店を探し、カートを組み、注文まで実行（遊び心テンプレート；Bot がコード以外の雑務もこなす証明） |
+| Poke | あなたのテキストにいた Poke が、いまは本物のエンジニアリングをやる——バグを直し、PR を開き、レビューを追う（買収されたスタートアップ、いまやテンプレートに） |
 
 **[→ 再現ガイド：実証済みのすべての Bot を再構築する方法](docs/reproducing-devin-bots.md)** —— 姉妹リポジトリ **[build-with-devin](https://github.com/Till3005/build-with-devin)** の拡張チュートリアル版も
 

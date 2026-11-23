@@ -25,7 +25,7 @@
 
 ## Sumário
 
-- [Devin Bots — produto oficial](#devin-bots----produto-oficial) — implantações, padrões reutilizáveis, resultados, o marketplace de 16 templates
+- [Devin Bots — produto oficial](#devin-bots----produto-oficial) — implantações, padrões reutilizáveis, resultados, o marketplace de 18 templates
 - [Produtos construídos com Devin](#produtos-construídos-com-devin) — software lançado cujo código foi escrito pelo Devin
 - [Implantações corporativas](#implantações-corporativas) — casos de clientes publicados com números concretos
 - [Bots e superfícies](#bots-e-superfícies) — Devin dentro de Discord, Telegram, Slack e outros produtos
@@ -91,7 +91,7 @@ Outros usos documentados: trabalho em firmware, um time liderado por bots constr
 
 ### Biblioteca oficial de templates
 
-Dezesseis Bots prontos no [marketplace público](https://devin.ai/bots/templates) ([docs de templates](https://docs.devin.ai/work-with-devin/bots/templates) — um Bot criado por template começa sem conexões, segredos ou memória; "Share as template" publica o seu), além de templates comunitários como **SuperJennyStack**:
+Dezoito Bots prontos no [marketplace público](https://devin.ai/bots/templates) ([docs de templates](https://docs.devin.ai/work-with-devin/bots/templates) — um Bot criado por template começa sem conexões, segredos ou memória; "Share as template" publica o seu), além de templates comunitários como **SuperJennyStack**:
 
 | Template | O que faz |
 | --- | --- |
@@ -111,6 +111,8 @@ Dezesseis Bots prontos no [marketplace público](https://devin.ai/bots/templates
 | Code Health Engineer | Flags antigos, dependências velhas, CVEs → PRs pequenos e seguros |
 | Technical Writer | Mantém wikis e diagramas do repo em sincronia com a `main` após merges |
 | Compliance Engineer | Coleta evidências de controles no código e avisa quando um controle expira |
+| DevinDash | Pede comida para seu time no DoorDash — acha o que está aberto, monta o carrinho e finaliza o pedido (o template divertido; prova de que Bots fazem tarefas fora do código) |
+| Poke | O Poke dos seus textos fazendo engenharia de verdade — corrige o bug, abre o PR, cobra o review (a startup adquirida, agora um template) |
 
 **[→ Guia de reprodução: como reconstruir cada Bot documentado](docs/reproducing-devin-bots.md)** — e sua forma tutorial expandida no repositório irmão **[build-with-devin](https://github.com/Till3005/build-with-devin)**
 

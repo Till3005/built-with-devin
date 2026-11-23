@@ -25,7 +25,7 @@
 
 ## 目录
 
-- [Devin Bots —— 官方产品](#devin-bots----官方产品) —— 部署实录、可复用模式、官方数据、16 个官方模板
+- [Devin Bots —— 官方产品](#devin-bots----官方产品) —— 部署实录、可复用模式、官方数据、18 个官方模板
 - [用 Devin 做出的产品](#用-devin-做出的产品) —— 代码由 Devin 撰写的已发布软件
 - [企业级部署](#企业级部署) —— 带硬指标的公开客户案例
 - [Bots 与接入面](#bots-与接入面) —— 把 Devin 接进 Discord、Telegram、Slack 等产品
@@ -91,7 +91,7 @@ flowchart LR
 
 ### 官方模板库
 
-[公开模板市场](https://devin.ai/bots/templates)上 16 个现成 Bot（[模板文档](https://docs.devin.ai/work-with-devin/bots/templates)——模板建的 Bot 不带任何连接、密钥或记忆；「Share as template」可发布你自己的），外加 **SuperJennyStack** 等社区模板：
+[公开模板市场](https://devin.ai/bots/templates)上 18 个现成 Bot（[模板文档](https://docs.devin.ai/work-with-devin/bots/templates)——模板建的 Bot 不带任何连接、密钥或记忆；「Share as template」可发布你自己的），外加 **SuperJennyStack** 等社区模板：
 
 | 模板 | 职责 |
 | --- | --- |
@@ -111,6 +111,8 @@ flowchart LR
 | Code Health Engineer | 过期 flag、老旧依赖、CVE → 安全小 PR |
 | Technical Writer | 合并后让 repo wiki 和图跟上 `main` |
 | Compliance Engineer | 从代码里收集合规证据，控制项失效时告警 |
+| DevinDash | 在 DoorDash 上给团队订餐——找营业中的店、组购物车、下单（玩票模板；同时证明 Bot 能干非写码杂务） |
+| Poke | 你短信里那个 Poke，现在干真工程——修 bug、开 PR、催 review（被收购的创业公司，如今成了模板） |
 
 **[→ 复现指南：如何重建每一个有据可查的 Bot](docs/reproducing-devin-bots.md)** —— 扩展教程版在姊妹库 **[build-with-devin](https://github.com/Till3005/build-with-devin)**
 
