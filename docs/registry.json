@@ -15,7 +15,7 @@
       "owns": "Devin's Android app, end to end",
       "results": "Prompted \"your job is to product manage the android app\" on Sep 28, 2026 — filed its own tickets, ran a Devin session per ticket, shipped to Google Play open beta in 44 days: 1,134 PRs merged, 344,651 lines of Kotlin, 2,841 screenshot tests. Its human sent 183 messages total — 22 days of complete silence — and 88% of PRs were self-merged. Now owns Android/iOS feature parity.",
       "sources": [],
-      "updated_on": "2026-11-19"
+      "updated_on": "2026-11-18"
     },
     {
       "name": "Layout Bot",
@@ -23,7 +23,7 @@
       "owns": "Layout-shift regression on the Devin web app",
       "results": "Every 3 hours it builds production main, simulates first/repeat/delayed-request visits, traces regressions to the introducing PR, opens fixes with before/after videos. 159 PRs in 3 weeks; lag −70%.",
       "sources": [],
-      "updated_on": "2026-11-19"
+      "updated_on": "2026-11-18"
     },
     {
       "name": "Super Jenny",
@@ -40,7 +40,7 @@
           "url": "https://x.com/xujennyc/status/2123111543105868166"
         }
       ],
-      "updated_on": "2026-11-19"
+      "updated_on": "2026-11-18"
     },
     {
       "name": "dabit3's fleet",
@@ -53,7 +53,7 @@
           "url": "https://x.com/dabit3/status/2122755275182469515"
         }
       ],
-      "updated_on": "2026-11-19"
+      "updated_on": "2026-11-18"
     },
     {
       "name": "Onboarding QA Bot",
@@ -66,7 +66,7 @@
           "url": "https://x.com/walden_yan"
         }
       ],
-      "updated_on": "2026-11-19"
+      "updated_on": "2026-11-18"
     },
     {
       "name": "\"Phil\"",
@@ -79,7 +79,7 @@
           "url": "https://x.com/gabepereyra"
         }
       ],
-      "updated_on": "2026-11-19"
+      "updated_on": "2026-11-18"
     },
     {
       "name": "Shared bot fleet",
@@ -92,7 +92,7 @@
           "url": "https://x.com/tylerxdev/status/2122743518712287400"
         }
       ],
-      "updated_on": "2026-11-19"
+      "updated_on": "2026-11-18"
     },
     {
       "name": "AutoResearch loop",
@@ -109,7 +109,7 @@
           "url": "https://x.com/devindevelopers/status/2115601107581821172"
         }
       ],
-      "updated_on": "2026-11-19"
+      "updated_on": "2026-11-18"
     },
     {
       "name": "Frankie's org",
@@ -122,7 +122,7 @@
           "url": "https://x.com/markfenner/status/2122740244328145211"
         }
       ],
-      "updated_on": "2026-11-19"
+      "updated_on": "2026-11-18"
     },
     {
       "name": "tigsbot",
@@ -135,7 +135,7 @@
           "url": "https://x.com/0xtigs/status/2122742784176034056"
         }
       ],
-      "updated_on": "2026-11-19"
+      "updated_on": "2026-11-18"
     },
     {
       "name": "Rewards Chief-of-Staff",
@@ -165,7 +165,7 @@
           "url": "https://x.com/trybasis/status/2120658137766100992"
         }
       ],
-      "updated_on": "2026-11-19"
+      "updated_on": "2026-11-18"
     },
     {
       "name": "Personal data Bots",
@@ -202,82 +202,82 @@
     {
       "name": "Software Factory",
       "does": "Finds bugs, polish, performance and refactoring work in a named product area; opens one small PR each with proof it works",
-      "updated_on": "2026-11-19"
+      "updated_on": "2026-11-18"
     },
     {
       "name": "Product Engineer",
       "does": "Takes a ticket or request to a tested PR and through review",
-      "updated_on": "2026-11-19"
+      "updated_on": "2026-11-18"
     },
     {
       "name": "QA Engineer",
       "does": "Tests each PR in a real browser and posts the video of pass/fail",
-      "updated_on": "2026-11-19"
+      "updated_on": "2026-11-18"
     },
     {
       "name": "Anomaly Watcher",
       "does": "Twice daily scans product + business data for problems no monitor watches",
-      "updated_on": "2026-11-19"
+      "updated_on": "2026-11-18"
     },
     {
       "name": "Code Reaper",
       "does": "Removes dead code weekly, one safe PR at a time",
-      "updated_on": "2026-11-19"
+      "updated_on": "2026-11-18"
     },
     {
       "name": "Chief of Staff",
       "does": "Watches channels, posts updates, hands work to the team and follows it to done",
-      "updated_on": "2026-11-19"
+      "updated_on": "2026-11-18"
     },
     {
       "name": "Migration Engineer",
       "does": "Owns one big migration as small, tracked PRs with a progress surface",
-      "updated_on": "2026-11-19"
+      "updated_on": "2026-11-18"
     },
     {
       "name": "Latency Optimizer",
       "does": "Finds the slowest endpoints/jobs/queries; weekly fix PR with before/after speed",
-      "updated_on": "2026-11-19"
+      "updated_on": "2026-11-18"
     },
     {
       "name": "iOS Engineer",
       "does": "SwiftUI features to PR + TestFlight build",
-      "updated_on": "2026-11-19"
+      "updated_on": "2026-11-18"
     },
     {
       "name": "Android Engineer",
       "does": "Kotlin features to PR + internal-test build",
-      "updated_on": "2026-11-19"
+      "updated_on": "2026-11-18"
     },
     {
       "name": "Internal Tools Engineer",
       "does": "Admin panels and internal tools on your stack",
-      "updated_on": "2026-11-19"
+      "updated_on": "2026-11-18"
     },
     {
       "name": "Data Analyst",
       "does": "Answers data questions with the chart and the query behind it",
-      "updated_on": "2026-11-19"
+      "updated_on": "2026-11-18"
     },
     {
       "name": "Devin Coach",
       "does": "Teaches your team to use Devin well from your own usage data",
-      "updated_on": "2026-11-19"
+      "updated_on": "2026-11-18"
     },
     {
       "name": "Code Health Engineer",
       "does": "Stale flags, old dependencies, CVEs → small safe PRs",
-      "updated_on": "2026-11-19"
+      "updated_on": "2026-11-18"
     },
     {
       "name": "Technical Writer",
       "does": "Keeps repo wikis and diagrams in step with main after merges",
-      "updated_on": "2026-11-19"
+      "updated_on": "2026-11-18"
     },
     {
       "name": "Compliance Engineer",
       "does": "Collects control evidence from code, warns when a control lapses",
-      "updated_on": "2026-11-19"
+      "updated_on": "2026-11-18"
     }
   ],
   "products": [
@@ -290,7 +290,7 @@
           "url": "https://devin.ai/customers/eon"
         }
       ],
-      "updated_on": "2026-11-19"
+      "updated_on": "2026-11-18"
     },
     {
       "name": "Courtyard's Quick",
@@ -301,7 +301,7 @@
           "url": "https://courtyard.io/blog/post/from-a-slack-link-to-production-in-under-48-hours-cloning-shopifys-quick-with-devin"
         }
       ],
-      "updated_on": "2026-11-19"
+      "updated_on": "2026-11-18"
     },
     {
       "name": "Frontierfood",
@@ -327,7 +327,7 @@
           "url": "https://x.com/russelljkaplan/status/2100280085999919555"
         }
       ],
-      "updated_on": "2026-11-19"
+      "updated_on": "2026-11-18"
     },
     {
       "name": "Try Devin vending machine",
@@ -342,7 +342,7 @@
           "url": "https://www.trydevin.ai/"
         }
       ],
-      "updated_on": "2026-11-19"
+      "updated_on": "2026-11-18"
     },
     {
       "name": "GymClass",
@@ -353,7 +353,7 @@
           "url": "https://seed.horacioh.com/writing/how-i-built-a-full-booking-system-as-a-side-project-with-devin-as-my-engineering-partner"
         }
       ],
-      "updated_on": "2026-11-19"
+      "updated_on": "2026-11-18"
     },
     {
       "name": "Spraycash",
@@ -416,7 +416,7 @@
           "url": "https://devin.ai/customers/nubank"
         }
       ],
-      "updated_on": "2026-11-19"
+      "updated_on": "2026-11-18"
     },
     {
       "company": "Wayfair",
@@ -428,7 +428,7 @@
           "url": "https://devin.ai/customers/wayfair"
         }
       ],
-      "updated_on": "2026-11-19"
+      "updated_on": "2026-11-18"
     },
     {
       "company": "The Access Group",
@@ -440,7 +440,7 @@
           "url": "https://devin.ai/customers/access-group"
         }
       ],
-      "updated_on": "2026-11-19"
+      "updated_on": "2026-11-18"
     },
     {
       "company": "EBANX",
@@ -452,7 +452,7 @@
           "url": "https://devin.ai/customers/ebanx"
         }
       ],
-      "updated_on": "2026-11-19"
+      "updated_on": "2026-11-18"
     },
     {
       "company": "Gumroad",
@@ -464,7 +464,7 @@
           "url": "https://devin.ai/customers/gumroad"
         }
       ],
-      "updated_on": "2026-11-19"
+      "updated_on": "2026-11-18"
     },
     {
       "company": "Finch",
@@ -488,7 +488,7 @@
           "url": "https://devin.ai/customers/comarch"
         }
       ],
-      "updated_on": "2026-11-19"
+      "updated_on": "2026-11-18"
     },
     {
       "company": "AngelList",
@@ -516,7 +516,7 @@
           "url": "https://devin.ai/customers/modal"
         }
       ],
-      "updated_on": "2026-11-19"
+      "updated_on": "2026-11-18"
     },
     {
       "company": "Reducto",
@@ -528,7 +528,7 @@
           "url": "https://devin.ai/customers/reducto"
         }
       ],
-      "updated_on": "2026-11-19"
+      "updated_on": "2026-11-18"
     },
     {
       "company": "Eight Sleep",
@@ -604,7 +604,7 @@
           "url": "https://devin.ai/customers/airbyte"
         }
       ],
-      "updated_on": "2026-11-19"
+      "updated_on": "2026-11-18"
     },
     {
       "company": "Litera",
@@ -628,7 +628,7 @@
           "url": "https://devin.ai/customers/ramp"
         }
       ],
-      "updated_on": "2026-11-19"
+      "updated_on": "2026-11-18"
     },
     {
       "company": "Linktree",
@@ -640,7 +640,7 @@
           "url": "https://devin.ai/customers/linktree"
         }
       ],
-      "updated_on": "2026-11-19"
+      "updated_on": "2026-11-18"
     },
     {
       "company": "Bilt",
@@ -668,7 +668,7 @@
           "url": "https://devin.ai/customers/rohlikgroup"
         }
       ],
-      "updated_on": "2026-11-19"
+      "updated_on": "2026-11-18"
     },
     {
       "company": "Crosby",
@@ -692,7 +692,7 @@
           "url": "https://devin.ai/customers/endava"
         }
       ],
-      "updated_on": "2026-11-19"
+      "updated_on": "2026-11-18"
     },
     {
       "company": "Tavrn",
@@ -716,7 +716,7 @@
           "url": "https://devin.ai/customers/evinova"
         }
       ],
-      "updated_on": "2026-11-19"
+      "updated_on": "2026-11-18"
     },
     {
       "company": "Compiled Health",
@@ -728,7 +728,7 @@
           "url": "https://devin.ai/customers/compiledhealth"
         }
       ],
-      "updated_on": "2026-11-19"
+      "updated_on": "2026-11-18"
     },
     {
       "company": "Común",
@@ -740,7 +740,7 @@
           "url": "https://devin.ai/customers/comun"
         }
       ],
-      "updated_on": "2026-11-19"
+      "updated_on": "2026-11-18"
     },
     {
       "company": "AHEAD",
@@ -752,7 +752,7 @@
           "url": "https://devin.ai/customers/ahead"
         }
       ],
-      "updated_on": "2026-11-19"
+      "updated_on": "2026-11-18"
     },
     {
       "company": "The Citation Group",
@@ -764,7 +764,7 @@
           "url": "https://devin.ai/customers/thecitationgroup"
         }
       ],
-      "updated_on": "2026-11-19"
+      "updated_on": "2026-11-18"
     },
     {
       "company": "Latent Health",
@@ -776,7 +776,7 @@
           "url": "https://devin.ai/customers/latent"
         }
       ],
-      "updated_on": "2026-11-19"
+      "updated_on": "2026-11-18"
     },
     {
       "company": "Crossmint",
@@ -788,7 +788,7 @@
           "url": "https://devin.ai/customers/crossmint"
         }
       ],
-      "updated_on": "2026-11-19"
+      "updated_on": "2026-11-18"
     },
     {
       "company": "FE fundinfo",
@@ -800,7 +800,7 @@
           "url": "https://devin.ai/customers/fefundinfo"
         }
       ],
-      "updated_on": "2026-11-19"
+      "updated_on": "2026-11-18"
     },
     {
       "company": "GE Aerospace",
@@ -812,7 +812,7 @@
           "url": "https://devin.ai/customers/geaerospace"
         }
       ],
-      "updated_on": "2026-11-19"
+      "updated_on": "2026-11-18"
     },
     {
       "company": "Itaú",
@@ -860,7 +860,7 @@
           "url": "https://devin.ai/customers/basis"
         }
       ],
-      "updated_on": "2026-11-19"
+      "updated_on": "2026-11-18"
     },
     {
       "company": "Mercor",
@@ -940,7 +940,7 @@
           "url": "https://x.com/rox_ai/status/2110779380666617997"
         }
       ],
-      "updated_on": "2026-11-19"
+      "updated_on": "2026-11-18"
     },
     {
       "company": "Philips",

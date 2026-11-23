@@ -13,7 +13,7 @@
 
 <sub>Curated by [@darega0mae](https://x.com/darega0mae) · Sister tutorials: [build-with-devin](https://github.com/Till3005/build-with-devin) · [Add your project](CONTRIBUTING.md)</sub>
 
-<sub>**14** documented Bot deployments · **45** enterprise case studies · **9** shipped products · **47** tools & integrations · **37** field reports</sub>
+<sub>**14** documented Bot deployments · **45** enterprise case studies · **9** shipped products · **47** tools & integrations · **38** field reports</sub>
 
 <sub>English · [简体中文](README.zh.md) · [日本語](README.ja.md) · [Português](README.pt.md)</sub>
 
