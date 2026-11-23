@@ -166,7 +166,7 @@ flowchart LR
 | [Reducto](https://devin.ai/customers/reducto) | Devin Oncall が一次対応 | エンジニアがページされることはほぼない |
 | [Eight Sleep](https://devin.ai/customers/eight-sleep) | 非エンジニア含む全社的な Devin | **出荷量 8 倍**；サポートマネージャーが 1 時間未満で E2E パイプライン+ダッシュボードを構築；利益予測モデルは約 1 週間の反復で月次バックテスト誤差 10% 以内 |
 | [Exa](https://devin.ai/customers/exa) | エンドツーエンド出荷；リポジトリは完全にクラウドでブート可能 | エンジニアがローカルにコードを引かず本番へ；複数週のセッションがテストシステム契約を **~30–40 PR** に展開；新しいエンジニアはローカル環境を一度も構築していない |
-| [RV Tech](https://devin.ai/customers/rvtech) | Rivian × VW JV、ソフトウェア定義車両 | テスト速度 10 倍 |
+| [RV Tech](https://devin.ai/customers/rvtech) | Rivian × VW JV、ソフトウェア定義車両 | **テスト生成 10 倍**（モジュール化 Playbook で日産 1–2 → 10–15 件）；スケジュール式故障トリアージが月約 4,000 チケットで **2,000–4,000 エンジニア時間**を回収；並列エージェントが 52 チケットを **15 分未満**で分類（[HIL/SIL 導入の教訓](https://cognition.com/blog/how-to-automate-failure-triages-and-10x-test-generation-what-weve-learned-deploying-ai-across-hilsil-workflows)、ベンダー公表値）|
 | [Melius](https://devin.ai/customers/melius) | クラウドセッションが主インターフェース；朝の automation が 7 日以上停滞の PR を掃除・テスト修正・人にメンション | **1 日 ~100 PR**；8 人のチームが「100 人規模として機能」|
 | [Hamming](https://devin.ai/customers/hamming) | 「Devinable」タスクフレームワーク——有界+明確な仕様+客観評価；エージェント向けにコードベース最適化（OOP より関数型、eval 駆動） | **総コード量の 25%**、人間エンジニア 2 人と並ぶトップ貢献者 |
 | [Airbyte](https://devin.ai/customers/airbyte) | コネクタ保守 | 700 以上のコネクタを稼働維持 |
@@ -200,7 +200,7 @@ flowchart LR
 | [FE fundinfo](https://devin.ai/customers/fefundinfo) | 1,800 リポジトリ自動化 | テスト生成 + セキュリティ修正で即座に 10% のキャパシティ増 |
 | [GE Aerospace](https://devin.ai/customers/geaerospace) | 制約チームのストーリー処理量 | 3 ヶ月でユーザーストーリー出力 ~2 倍 |
 
-その他の公開記録：Citi（40,000 人の開発者展開、技術ベンダー支出 30% 削減）、Mercedes-Benz、Cognizant、Infosys との提携、そして **McKinsey × Cognition アライアンス**（11/16——McKinsey がプロジェクト選定とベースラインを助言、Devin が実装。Cognition は米 G-SIB 8 行中 6 行、米大手医療保険 6 社中 3 社が顧客と主張、[発表](https://devin.ai/blog/cognition-mckinsey-alliance)）—— [顧客索引](https://devin.ai/customers)を参照。
+その他の公開記録：Citi（40,000 人の開発者展開、技術ベンダー支出 30% 削減）、Mercedes-Benz、Cognizant、Infosys との提携、**AWS 戦略的連携協定**（9 月——Devin が AWS Marketplace 経由で購入可能に + Agent Toolkit + 並列マイグレーション/セキュリティ対応用の専用 VPC、[記事](https://devin.ai/blog/aws-sca)）、そして **McKinsey × Cognition アライアンス**（11/16——McKinsey がプロジェクト選定とベースラインを助言、Devin が実装。Cognition は米 G-SIB 8 行中 6 行、米大手医療保険 6 社中 3 社が顧客と主張、[発表](https://devin.ai/blog/cognition-mckinsey-alliance)）—— [顧客索引](https://devin.ai/customers)を参照。
 
 <p align="right"><a href="#readme">back to top</a></p>
 
@@ -365,6 +365,11 @@ Devin *で*作られたものではなく、Devin の*ために*コミュニテ�
 - [CognitionAI/devin-vuln-fixes](https://github.com/cognitionai/devin-vuln-fixes) —— 実 CVE を修正する公式エージェントスキル（GitLab CVSS 10.0、PHP/Node RCE）：読み取り専用棚卸 → 承認ゲート → 確認済みターゲットパッチ → before/after テスト → リポジトリごとに 1 つの焦点 PR
 - [CognitionAI/team-marketplace-template](https://github.com/CognitionAI/team-marketplace-template) —— 組織管理型プラグインエコシステムの公式テンプレート：1 つのリポジトリでチーム共有プラグインを管理し、Devin Web アプリから全員に配布。必須/任意プラグインのパターン付き
 - [Devin for Databricks Migrations](https://devin.ai/blog/devin-for-databricks-migrations) —— Databricks と共同構築した公式移行サービス（11 月 19 日）：レガシー DWH コードを変換し、顧客ワークスペースでテスト、カットオーバー前に全ソースを照合 —— Databricks Marketplace 提供
+- [Devin Security の Threats](https://devin.ai/blog/nginx2root-java4shell-threats) —— 新規公表 CVE（NGINX2Root、Java4Shell）を全リポジトリでスキャン＆パッチ（11/18）
+- [Devin Review 2.0](https://devin.ai/blog/devin-review-2) —— PR あたりのレビューコストが 8 月以降 **82%** 減、全 PR にかけられる価格に（11/5）
+- [Devin Teams プラン](https://devin.ai/blog/devin-teams-plan) —— 全シートに Desktop + SWE-2 無料セッション + SSO + 標準 BAA（11/12）
+- [階層型予算](https://devin.ai/blog/hierarchical-budgets) —— 企業 ACU 予算を部門リーダーに委任し、サブチーム/プロジェクト/ユーザーごとに上限設定（11/2）
+- FrontierCode 2.0 のモデルラインアップ：**Claude Fable 5.2** 49.1% でトップ（[記事](https://devin.ai/blog/claude-fable-5-2)）；**Gemini 4 Neon** 46.2%——Opus 5.5 に約 1 ポイント差でコストは約 1/3（[記事](https://devin.ai/blog/gemini-4-neon)）；Gemini 4 [Carbon 40.0%](https://devin.ai/blog/gemini-4-carbon) / [Hydrogen 38.2%](https://devin.ai/blog/gemini-4-hydrogen)；[Claude Mythos 5.2](https://devin.ai/blog/claude-mythos-5-2-security) はフロンティアサイバー権限を持つ Devin Security 顧客向け
 - [Devin で Modal 上のカスタムモデルを学習・デプロイ](https://gist.github.com/dabit3/866caaab49a4a5371ae01655fecad34b) —— Cognition エンジニア Nader Dabit の実働テンプレート
 - [Devin for Startups](https://devin.ai/startups) —— 適格チーム向け最大 $65k クレジット。[Devin for Gaming](https://talofagames.com/devin-for-gaming/) —— Talofa × Cognition の 3 週間スタジオコホート。対面ワークショップとクレジット賞。**[poke.com/bots](https://poke.com/bots)** —— 期間限定実験（11/18 開始）：Poke にテキストでアイデアを送り、クレジットに値する理由を説得すれば無料の Devin Bot を獲得 —— 10,000 アカウント、各最大 $10,000（Nader Dabit によると総額 ~$1 億）、$200/月の Max 要件を回避可能。これまでに報告された最高の交渉額は $1,887（[walden_yan](https://x.com/walden_yan/status/2123326058644828366)、[報道](https://news.sulat.com/2026/11/19/devin-bots-giveaway/)）。LP に書かれていない細則：**iMessage/Apple Messages 限定**（Android 登録者は後から弾かれる）、Poke と合意した額がバックエンドに拒否される事例が多発、スパム対策で一時停止後に招待リンク復帰（[コミュニティ記録](https://linux.do/t/topic/3206201)、zh）
 - [Devin Automations クイックスタート](https://www.youtube.com/watch?v=6xxKtIpgOyE) —— Bots が土台とする、イベント/スケジュールトリガー型エージェント設定の公式ビデオ

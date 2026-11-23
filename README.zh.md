@@ -166,7 +166,7 @@ flowchart LR
 | [Reducto](https://devin.ai/customers/reducto) | Devin Oncall 当一线响应 | 工程师几乎不再被 page |
 | [Eight Sleep](https://devin.ai/customers/eight-sleep) | 全公司 Devin（含非工程师） | **交付量 8×**；客服经理 1 小时内自建端到端 pipeline+看板；利润预测模型迭代约一周后月度回测误差 <10% |
 | [Exa](https://devin.ai/customers/exa) | 端到端交付；仓库做成完全云端可自举 | 工程师本地不拉代码也能上生产；一个多周会话把测试系统契约滚过 **~30–40 个 PR**；新工程师从没配过本地环境 |
-| [RV Tech](https://devin.ai/customers/rvtech) | Rivian × VW 合资，软件定义汽车 | 测试速度 10× |
+| [RV Tech](https://devin.ai/customers/rvtech) | Rivian × VW 合资，软件定义汽车 | **测试生成 10×**（模块化 Playbook 日产 1–2 → 10–15 个）；定时故障分类流水线每月在约 4,000 个工单上省回 **2,000–4,000 工程小时**；并行 agent 15 分钟内分类 52 个工单（[HIL/SIL 部署复盘](https://cognition.com/blog/how-to-automate-failure-triages-and-10x-test-generation-what-weve-learned-deploying-ai-across-hilsil-workflows)，厂商口径）|
 | [Melius](https://devin.ai/customers/melius) | 以云端会话为主界面；每日 automation 清扫停滞超 7 天的 PR、修测试、@人 | **~100 PR/天**；8 人团队「干出 100 人的活」|
 | [Hamming](https://devin.ai/customers/hamming) | 「Devinable」任务框架——有界+规格清晰+客观评估；代码库为 agent 优化（函数式>OOP、eval 驱动） | **占总代码量 25%**，与两位人类工程师并列第一贡献者 |
 | [Airbyte](https://devin.ai/customers/airbyte) | 连接器维护 | 维持 700+ 连接器运行 |
@@ -200,7 +200,7 @@ flowchart LR
 | [FE fundinfo](https://devin.ai/customers/fefundinfo) | 1,800 仓库自动化 | 靠测试生成 + 安全修复立刻多出 10% 产能 |
 | [GE Aerospace](https://devin.ai/customers/geaerospace) | 受限团队的 story 吞吐 | 三个月内 user-story 产出 ~2× |
 
-其他公开记录的：Citi（40,000 名开发者铺开，技术供应商支出降 30%）、Mercedes-Benz、Cognizant 和 Infosys 合作、以及 **McKinsey × Cognition 联盟**（11/16——McKinsey 提供项目筛选与基线咨询，Devin 干活；Cognition 称 8 家美国 G-SIB 中 6 家、前 6 大医保商中 3 家是客户，[公告](https://devin.ai/blog/cognition-mckinsey-alliance)）—— 见[客户索引](https://devin.ai/customers)。
+其他公开记录的：Citi（40,000 名开发者铺开，技术供应商支出降 30%）、Mercedes-Benz、Cognizant 和 Infosys 合作、**AWS 战略合作协议**（9 月——Devin 可经 AWS Marketplace 采购 + Agent Toolkit + 专用 VPC 跑并行迁移与安全积压，[文](https://devin.ai/blog/aws-sca)）、以及 **McKinsey × Cognition 联盟**（11/16——McKinsey 提供项目筛选与基线咨询，Devin 干活；Cognition 称 8 家美国 G-SIB 中 6 家、前 6 大医保商中 3 家是客户，[公告](https://devin.ai/blog/cognition-mckinsey-alliance)）—— 见[客户索引](https://devin.ai/customers)。
 
 <p align="right"><a href="#readme">back to top</a></p>
 
@@ -365,6 +365,11 @@ flowchart LR
 - [CognitionAI/devin-vuln-fixes](https://github.com/cognitionai/devin-vuln-fixes) —— 官方 agent 技能，修复真实 CVE（GitLab CVSS 10.0、PHP/Node RCE）：只读盘点 → 审批门 → 确认目标 → 前后测试 → 每仓库一个聚焦 PR
 - [CognitionAI/team-marketplace-template](https://github.com/CognitionAI/team-marketplace-template) —— 官方"组织插件生态"模板：一个仓库托管团队共享插件，从 Devin 网页端分发给全员，支持必选/可选插件
 - [Devin for Databricks Migrations](https://devin.ai/blog/devin-for-databricks-migrations) —— 与 Databricks 共建的官方迁移服务（11 月 19 日）：转换遗留数仓代码、在客户工作区测试、割接前逐源对账——已上架 Databricks Marketplace
+- [Devin Security 的 Threats](https://devin.ai/blog/nginx2root-java4shell-threats) —— 面向新披露 CVE（NGINX2Root、Java4Shell）的全仓扫描与修复（11/18）
+- [Devin Review 2.0](https://devin.ai/blog/devin-review-2) —— 单个 PR 评审成本自 8 月起降 **82%**，便宜到每个 PR 都能跑（11/5）
+- [Devin Teams 方案](https://devin.ai/blog/devin-teams-plan) —— 每席位含 Desktop + SWE-2 免费会话 + SSO + 标准 BAA（11/12）
+- [分层预算](https://devin.ai/blog/hierarchical-budgets) —— 企业 ACU 预算下发给部门负责人，再按子团队/项目/用户设限（11/2）
+- FrontierCode 2.0 模型线：**Claude Fable 5.2** 49.1% 居首（[文](https://devin.ai/blog/claude-fable-5-2)）；**Gemini 4 Neon** 46.2%——落后 Opus 5.5 约 1 分、成本约 ⅓（[文](https://devin.ai/blog/gemini-4-neon)）；Gemini 4 [Carbon 40.0%](https://devin.ai/blog/gemini-4-carbon) / [Hydrogen 38.2%](https://devin.ai/blog/gemini-4-hydrogen)；[Claude Mythos 5.2](https://devin.ai/blog/claude-mythos-5-2-security) 面向有前沿网络模型权限的 Devin Security 客户
 - [用 Devin 在 Modal 上训练并部署自定义模型](https://gist.github.com/dabit3/866caaab49a4a5371ae01655fecad34b) —— Cognition 工程师 Nader Dabit 的可运行模板
 - [Devin for Startups](https://devin.ai/startups) —— 合格团队最高 $65k credits；[Devin for Gaming](https://talofagames.com/devin-for-gaming/) —— Talofa × Cognition 三周工作室 cohort，含线下工作坊和 credit 奖励；**[poke.com/bots](https://poke.com/bots)** —— 限时实验（11/18 起）：给 Poke 发短信说出你想建的东西、说明为什么值这些 credits，就能拿一个免费 Devin Bot —— 共 10,000 个账号、每席最高 $10,000（Nader Dabit 称总额 ~$1 亿），绕过 $200/月的 Max 门槛；目前已报出的最高谈判结果是 $1,887（[walden_yan](https://x.com/walden_yan/status/2123326058644828366)、[报道](https://news.sulat.com/2026/11/19/devin-bots-giveaway/)）。落地页没写的细则：**仅限 iMessage/Apple Messages**（安卓注册完才被拒），Poke 谈好的价格常被后端拒付，实验还因反垃圾短暂关停后才恢复邀请链接（[社区实录](https://linux.do/t/topic/3206201)）
 - [Devin Automations QuickStart](https://www.youtube.com/watch?v=6xxKtIpgOyE) —— 官方视频：事件/定时触发 agent 配置，Bots 的底层机制

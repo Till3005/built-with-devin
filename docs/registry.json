@@ -557,14 +557,18 @@
     {
       "company": "RV Tech",
       "deployment": "Rivian × VW JV, software-defined vehicles",
-      "result": "10× testing velocity",
+      "result": "10× test generation (1–2 → 10–15 tests/day via modular Playbooks); scheduled failure-triage pipeline reclaimed 2,000–4,000 eng-hours/month across ~4,000 tickets; parallel agents triaged 52 tickets in <15 min (HIL/SIL lessons, vendor-published)",
       "sources": [
         {
           "text": "RV Tech",
           "url": "https://devin.ai/customers/rvtech"
+        },
+        {
+          "text": "HIL/SIL lessons",
+          "url": "https://cognition.com/blog/how-to-automate-failure-triages-and-10x-test-generation-what-weve-learned-deploying-ai-across-hilsil-workflows"
         }
       ],
-      "updated_on": "2026-11-19"
+      "updated_on": "2026-11-23"
     },
     {
       "company": "Melius",

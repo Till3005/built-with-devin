@@ -4,7 +4,14 @@
   <title>Built with Devin — registry updates</title>
   <link>https://till3005.github.io/built-with-devin/</link>
   <description>New entries indexed in the built-with-devin registry.</description>
-  <lastBuildDate>Sun, 22 Nov 2026 12:37:54 +0000</lastBuildDate>
+  <lastBuildDate>Mon, 23 Nov 2026 00:41:59 +0000</lastBuildDate>
+  <item>
+    <title>Indexed: RV Tech</title>
+    <link>https://till3005.github.io/built-with-devin/#enterprise</link>
+    <guid isPermaLink="false">enterprise:RV Tech</guid>
+    <pubDate>Mon, 23 Nov 2026 00:00:00 +0000</pubDate>
+    <description>Rivian × VW JV, software-defined vehicles</description>
+  </item>
   <item>
     <title>Indexed: SupaSEO</title>
     <link>https://till3005.github.io/built-with-devin/#products</link>
@@ -172,13 +179,6 @@
     <guid isPermaLink="false">bot:AutoResearch loop</guid>
     <pubDate>Thu, 19 Nov 2026 00:00:00 +0000</pubDate>
     <description>Decagon — An inference research lab</description>
-  </item>
-  <item>
-    <title>Indexed: Frankie's org</title>
-    <link>https://till3005.github.io/built-with-devin/#deployments</link>
-    <guid isPermaLink="false">bot:Frankie's org</guid>
-    <pubDate>Thu, 19 Nov 2026 00:00:00 +0000</pubDate>
-    <description>Mark Fenner (community) — Personal agent fleet</description>
   </item>
 </channel>
 </rss>
