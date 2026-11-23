@@ -12,7 +12,7 @@
 <link rel="alternate" hreflang="zh" href="https://till3005.github.io/built-with-devin/guides/zh/bots-202-scheduled-sentinel.html">
 <link rel="alternate" hreflang="x-default" href="https://till3005.github.io/built-with-devin/guides/bots-202-scheduled-sentinel.html">
 <link rel="alternate" type="application/rss+xml" title="built-with-devin feed" href="../feed.xml">
-<script type="application/ld+json">{"@context": "https://schema.org", "@type": "TechArticle", "headline": "Guide 3 — Scheduled-sentinel Bot", "description": "a Bot that owns a recurring quality check — runs it on a schedule, triages failures, traces them to the cause, and ships fixes.", "inLanguage": "en", "url": "https://till3005.github.io/built-with-devin/guides/bots-202-scheduled-sentinel.html", "isPartOf": {"@type": "Course", "name": "build-with-devin", "url": "https://till3005.github.io/built-with-devin/guides/"}, "dateModified": "2026-11-19"}</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "TechArticle", "headline": "Guide 3 — Scheduled-sentinel Bot", "description": "a Bot that owns a recurring quality check — runs it on a schedule, triages failures, traces them to the cause, and ships fixes.", "inLanguage": "en", "url": "https://till3005.github.io/built-with-devin/guides/bots-202-scheduled-sentinel.html", "isPartOf": {"@type": "Course", "name": "build-with-devin", "url": "https://till3005.github.io/built-with-devin/guides/"}, "dateModified": "2026-11-18"}</script>
 <link rel="icon" href="../assets/brand/Devin_Symbol.svg" type="image/svg+xml">
 <link rel="stylesheet" href="../assets/site.css">
 <link rel="stylesheet" href="../assets/guides.css">
@@ -45,7 +45,7 @@
 <main>
 <article class="guide wrap" id="guide">
   <p class="guide-crumb"><a href="index.html">← Guides</a> · <a href="ja/bots-202-scheduled-sentinel.html">日本語</a> · <a href="pt/bots-202-scheduled-sentinel.html">Português</a> · <a href="zh/bots-202-scheduled-sentinel.html">中文</a></p>
-<p class="guide-meta">Updated 2026-11-19</p>
+<p class="guide-meta">Updated 2026-11-18</p>
 <details class="toc" open><summary>On this page</summary><ol><li class="d2"><a href="#the-pattern">The pattern</a></li><li class="d2"><a href="#prerequisites">Prerequisites</a></li><li class="d2"><a href="#step-1-the-outcome-prompt">Step 1 — The outcome prompt</a></li><li class="d2"><a href="#step-2-schedule-it">Step 2 — Schedule it</a></li><li class="d2"><a href="#step-3-realistic-conditions-matter">Step 3 — Realistic conditions matter</a></li><li class="d2"><a href="#step-4-noise-discipline">Step 4 — Noise discipline</a></li><li class="d2"><a href="#step-5-evidence-in-every-fix">Step 5 — Evidence in every fix</a></li><li class="d2"><a href="#verify-it">Verify it</a></li><li class="d2"><a href="#pitfalls">Pitfalls</a></li><li class="d2"><a href="#knowledge-check">Knowledge check</a></li><li class="d2"><a href="#sources">Sources</a></li></ol></details>
 <h1>Guide 3 — Scheduled-sentinel Bot</h1>
 <p><strong>Goal:</strong> a Bot that owns a recurring quality check — runs it on a schedule, triages failures, traces them to the cause, and ships fixes.
