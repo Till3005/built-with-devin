@@ -13,9 +13,9 @@
       "name": "Android Bot",
       "owner": "Cognition",
       "owns": "Devin's Android app, end to end",
-      "results": "Prompted \"your job is to product manage the android app\" on Sep 28, 2026 — filed its own tickets, ran a Devin session per ticket, shipped to Google Play open beta in 44 days: 1,134 PRs merged, 344,651 lines of Kotlin, 2,841 screenshot tests. Its human sent 183 messages total — 22 days of complete silence — and 88% of PRs were self-merged. Now owns Android/iOS feature parity.",
+      "results": "Prompted \"your job is to product manage the android app\" on Sep 28, 2026 — filed its own tickets, ran a Devin session per ticket, shipped to Google Play open beta in 44 days: 1,134 PRs merged, 344,651 lines of Kotlin, 2,841 screenshot tests. Its human sent 183 messages total — 22 days of complete silence — and 88% of PRs were self-merged. GA'd Nov 23 at full iOS parity — shipped and still maintained with zero Android engineers, ever.",
       "sources": [],
-      "updated_on": "2026-11-19"
+      "updated_on": "2026-11-24"
     },
     {
       "name": "Layout Bot",

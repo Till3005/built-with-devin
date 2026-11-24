@@ -4,7 +4,14 @@
   <title>Built with Devin — registry updates</title>
   <link>https://till3005.github.io/built-with-devin/</link>
   <description>New entries indexed in the built-with-devin registry.</description>
-  <lastBuildDate>Tue, 24 Nov 2026 00:39:58 +0000</lastBuildDate>
+  <lastBuildDate>Tue, 24 Nov 2026 12:43:05 +0000</lastBuildDate>
+  <item>
+    <title>Indexed: Android Bot</title>
+    <link>https://till3005.github.io/built-with-devin/#deployments</link>
+    <guid isPermaLink="false">bot:Android Bot</guid>
+    <pubDate>Tue, 24 Nov 2026 00:00:00 +0000</pubDate>
+    <description>Cognition — Devin's Android app, end to end</description>
+  </item>
   <item>
     <title>Indexed: Exa agent island</title>
     <link>https://till3005.github.io/built-with-devin/#deployments</link>
@@ -151,13 +158,6 @@
     <guid isPermaLink="false">enterprise:Philips</guid>
     <pubDate>Fri, 20 Nov 2026 00:00:00 +0000</pubDate>
     <description>Code Scans early tester — Digital Computational Pathology, Enterprise Informatics</description>
-  </item>
-  <item>
-    <title>Indexed: Android Bot</title>
-    <link>https://till3005.github.io/built-with-devin/#deployments</link>
-    <guid isPermaLink="false">bot:Android Bot</guid>
-    <pubDate>Thu, 19 Nov 2026 00:00:00 +0000</pubDate>
-    <description>Cognition — Devin's Android app, end to end</description>
   </item>
   <item>
     <title>Indexed: Layout Bot</title>
