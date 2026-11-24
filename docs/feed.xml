@@ -4,7 +4,21 @@
   <title>Built with Devin — registry updates</title>
   <link>https://till3005.github.io/built-with-devin/</link>
   <description>New entries indexed in the built-with-devin registry.</description>
-  <lastBuildDate>Mon, 23 Nov 2026 17:14:08 +0000</lastBuildDate>
+  <lastBuildDate>Tue, 24 Nov 2026 00:39:58 +0000</lastBuildDate>
+  <item>
+    <title>Indexed: Exa agent island</title>
+    <link>https://till3005.github.io/built-with-devin/#deployments</link>
+    <guid isPermaLink="false">bot:Exa agent island</guid>
+    <pubDate>Tue, 24 Nov 2026 00:00:00 +0000</pubDate>
+    <description>Exa AI Labs — Training runs + CI across the software stack</description>
+  </item>
+  <item>
+    <title>Indexed: Exa</title>
+    <link>https://till3005.github.io/built-with-devin/#enterprise</link>
+    <guid isPermaLink="false">enterprise:Exa</guid>
+    <pubDate>Tue, 24 Nov 2026 00:00:00 +0000</pubDate>
+    <description>End-to-end shipping; repos made fully cloud-bootstrappable</description>
+  </item>
   <item>
     <title>Indexed: Manim Maintainer Bot</title>
     <link>https://till3005.github.io/built-with-devin/#deployments</link>
@@ -97,13 +111,6 @@
     <description>Devin across the company incl. non-engineers</description>
   </item>
   <item>
-    <title>Indexed: Exa</title>
-    <link>https://till3005.github.io/built-with-devin/#enterprise</link>
-    <guid isPermaLink="false">enterprise:Exa</guid>
-    <pubDate>Fri, 20 Nov 2026 00:00:00 +0000</pubDate>
-    <description>End-to-end shipping; repos made fully cloud-bootstrappable</description>
-  </item>
-  <item>
     <title>Indexed: Melius</title>
     <link>https://till3005.github.io/built-with-devin/#enterprise</link>
     <guid isPermaLink="false">enterprise:Melius</guid>
@@ -146,39 +153,32 @@
     <description>Code Scans early tester — Digital Computational Pathology, Enterprise Informatics</description>
   </item>
   <item>
-    <title>Indexed: Rewards Chief-of-Staff</title>
+    <title>Indexed: Android Bot</title>
     <link>https://till3005.github.io/built-with-devin/#deployments</link>
-    <guid isPermaLink="false">bot:Rewards Chief-of-Staff</guid>
+    <guid isPermaLink="false">bot:Android Bot</guid>
     <pubDate>Thu, 19 Nov 2026 00:00:00 +0000</pubDate>
-    <description>Avinash (Cognition, MENA) — Daily standup + rewards for a personal bot fleet</description>
+    <description>Cognition — Devin's Android app, end to end</description>
   </item>
   <item>
-    <title>Indexed: Personal data Bots</title>
+    <title>Indexed: Layout Bot</title>
     <link>https://till3005.github.io/built-with-devin/#deployments</link>
-    <guid isPermaLink="false">bot:Personal data Bots</guid>
+    <guid isPermaLink="false">bot:Layout Bot</guid>
     <pubDate>Thu, 19 Nov 2026 00:00:00 +0000</pubDate>
-    <description>Bryan Johnson — Health synthesis + family updates</description>
+    <description>Cognition — Layout-shift regression on the Devin web app</description>
   </item>
   <item>
-    <title>Indexed: Tennis data Bots</title>
+    <title>Indexed: Super Jenny</title>
     <link>https://till3005.github.io/built-with-devin/#deployments</link>
-    <guid isPermaLink="false">bot:Tennis data Bots</guid>
+    <guid isPermaLink="false">bot:Super Jenny</guid>
     <pubDate>Thu, 19 Nov 2026 00:00:00 +0000</pubDate>
-    <description>Venus Williams — Pro-tennis preparation and match data</description>
+    <description>Jenny Xu (community) — An entire mobile game studio</description>
   </item>
   <item>
-    <title>Indexed: Bilt</title>
-    <link>https://till3005.github.io/built-with-devin/#enterprise</link>
-    <guid isPermaLink="false">enterprise:Bilt</guid>
+    <title>Indexed: dabit3's fleet</title>
+    <link>https://till3005.github.io/built-with-devin/#deployments</link>
+    <guid isPermaLink="false">bot:dabit3's fleet</guid>
     <pubDate>Thu, 19 Nov 2026 00:00:00 +0000</pubDate>
-    <description>Org-wide rollout</description>
-  </item>
-  <item>
-    <title>Indexed: Itaú</title>
-    <link>https://till3005.github.io/built-with-devin/#enterprise</link>
-    <guid isPermaLink="false">enterprise:Itaú</guid>
-    <pubDate>Thu, 19 Nov 2026 00:00:00 +0000</pubDate>
-    <description>Devin across the full SDLC at Brazil's largest bank</description>
+    <description>Nader Dabit (Cognition DevRel) — A personal 5-bot org + a game studio</description>
   </item>
 </channel>
 </rss>

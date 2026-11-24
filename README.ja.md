@@ -13,7 +13,7 @@
 
 <sub>Curated by [@darega0mae](https://x.com/darega0mae) · 姉妹チュートリアル：[build-with-devin](https://github.com/Till3005/build-with-devin) · [プロジェクトを追加](CONTRIBUTING.md)</sub>
 
-<sub>**15** 件の実証済み Bot 導入 · **45** 件のエンタープライズ事例 · **9** 件の公開プロダクト · **47** 件のツール・統合 · **38** 件の実践レポート</sub>
+<sub>**16** 件の実証済み Bot 導入 · **45** 件のエンタープライズ事例 · **9** 件の公開プロダクト · **47** 件のツール・統合 · **38** 件の実践レポート</sub>
 
 <sub>[English](README.md) · [简体中文](README.zh.md) · 日本語 · [Português](README.pt.md)</sub>
 
@@ -69,6 +69,7 @@ flowchart LR
 | **パーソナルデータ Bot** | Bryan Johnson | 健康データ統合 + 家族への報告 | 1 つの Bot が数年分のバイオメトリクスと脳スキャンデータを 1 つの読み物に統合。もう 1 つが母親に毎日の近況をテキスト送信。（[投稿](https://x.com/bryan_johnson/status/2122814114976383406)） |
 | **テニスデータ Bot** | Venus Williams | プロテニスの準備 + 試合データ分析 | グランドスラムシングルス 7 度の優勝者が Devin Bots でプロテニスの準備を分析——対戦相手の戦法、湿度・温度に応じたラケット調整、試合データ分析、食事と休息の管理。（[Cognition 動画](https://x.com/cognition/status/2123093354196140285)、[@walden_yan](https://x.com/walden_yan/status/2123105884125671605)） |
 | **Manim メンテナー Bot** | Grant Sanderson（3Blue1Brown）| Manim リポジトリの issue 事前トリアージ | 数学教育チャンネルの作者が、3Blue1Brown の全動画を支えるオープンソース・アニメーションエンジンの保守を Devin Bot に委託——**96.6k stars、7,936 forks、月 25 万ダウンロード**——Bot が issue を処理し、本人は数学に専念。（[Cognition 動画](https://x.com/cognition/status/2123813355538239878)） |
+| **Exa「agent 島」フリート** | Exa AI Labs | ソフトウェアスタック全体の訓練ラン + CI | エンジニアが訓練実行管理と CI ワークフローを Devin Bots に委譲し、「ウォークラフト風 agent 島」ビューで監視——「散歩に行って、Devin Bots に任せよう」。（[Devin Central](https://devincentral.com/news/editorial-exa-adopts-devin-bots-across-its-software-stack-using-a-warc)；Cognition 11/19 発表） |
 
 ### 実証済みのパターン
 
@@ -353,6 +354,7 @@ Devin *で*作られたものではなく、Devin の*ために*コミュニテ�
 - **[Devin Apps——タイ語の深掘り](https://dev.to/sarantoon/devin-apps-ekhruuengmuuephaayainbnekhruuengkhlaawdkhngedwin-4j8h)** —— 初のタイ語分析（11/18）：「Devin のマシンでホスト」の実態——セッション課金、最終リクエスト 5 分後にスリープ、単一 VM の適用範囲（高トラフィックではなく内部ツール向け）、発表が圧縮した secrets/token の注意点（TH）。
 - **[AI Native Operators——Devin Bots ガイド](https://ainativeoperators.ai/blog/devin-bots-guide)** —— ドキュメントベースのセットアップガイド（11/17）。価値は見本の outcome prompt：入力・環境・証拠・自分に残す決定・明示的な NG リストまで名指しで書く型——最初の Bot にそのまま盗める。
 - **[Devin's Dinner](https://x.com/MattSchrage/status/2121016484155548124)** —— Matt Schrage の招待制ニューヨークディナーシリーズ。Devin を使うファウンダーとエンジニア向け。
+- **[Bloomberg——Cognition が $75B 評価で ~$2B 調整交渉中](https://devincentral.com/news/editorial-cognition-in-talks-to-raise-2-billion-at-75-billion-valuatio)** —— 11/21 報道：Bots ローンチの 1 週間後、Devin 親会社が新ラウンドを交渉。評価額は ~$48B から上昇、既存投資家が参加（via Devin Central）。
 - **[V2EX — Devin GUI が他社 CLI を指揮](https://www.v2ex.com/t/1258858)** — poke.com/bots で無料 Bot（$50 クレジット + $200 Max 1ヶ月）を得た中文ユーザーが、Devin Desktop を指揮役に gemini/codex/claude の 3 CLI と Devin Bot + Poke SMS を束ね「携帯から数通の SMS で処理」。引用の +280–300% 高速化はエージェントの自己申告推定で実測値ではない（中文、11/22）。
 
 <p align="right"><a href="#readme">back to top</a></p>

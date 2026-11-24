@@ -13,7 +13,7 @@
 
 <sub>Curated by [@darega0mae](https://x.com/darega0mae) · Sister tutorials: [build-with-devin](https://github.com/Till3005/build-with-devin) · [Add your project](CONTRIBUTING.md)</sub>
 
-<sub>**15** documented Bot deployments · **45** enterprise case studies · **9** shipped products · **47** tools & integrations · **38** field reports</sub>
+<sub>**16** documented Bot deployments · **45** enterprise case studies · **9** shipped products · **47** tools & integrations · **38** field reports</sub>
 
 <sub>English · [简体中文](README.zh.md) · [日本語](README.ja.md) · [Português](README.pt.md)</sub>
 
@@ -69,6 +69,7 @@ flowchart LR
 | **Personal data Bots** | Bryan Johnson | Health synthesis + family updates | One Bot synthesizes years of biometric and brain-scan data into a single readout; another texts his mother a daily update on how he's doing. ([post](https://x.com/bryan_johnson/status/2122814114976383406)) |
 | **Tennis data Bots** | Venus Williams | Pro-tennis preparation and match data | The seven-time Grand Slam singles champion uses Devin Bots to make sense of pro-tennis prep — opponent plays, racket tuning for humidity and temperature, match analysis, meals and rest. ([Cognition video](https://x.com/cognition/status/2123093354196140285), [@walden_yan](https://x.com/walden_yan/status/2123105884125671605)) |
 | **Manim Maintainer Bot** | Grant Sanderson (3Blue1Brown) | Preemptive issue triage on the Manim repo | The math-education channel's author handed maintenance of the open-source animation engine behind every 3Blue1Brown video — **96.6k stars, 7,936 forks, 250k downloads/month** — to a Devin Bot, so the issues get addressed while he stays on the math. ([Cognition video](https://x.com/cognition/status/2123813355538239878)) |
+| **Exa agent island** | Exa AI Labs | Training runs + CI across the software stack | Engineers hand training-run management and CI workflows to Devin Bots, monitored on a "Warcraft-style agent island" view — "go for a walk, and let Devin Bots cook" ([Devin Central](https://devincentral.com/news/editorial-exa-adopts-devin-bots-across-its-software-stack-using-a-warc); Cognition announcement Nov 19) |
 
 ### Documented patterns
 
@@ -353,6 +354,7 @@ Documented real-world usage.
 - **[Devin Apps — a Thai analysis](https://dev.to/sarantoon/devin-apps-ekhruuengmuuephaayainbnekhruuengkhlaawdkhngedwin-4j8h)** — First Thai-language deep read (Nov 18): what hosting on Devin's own machine actually means — session-priced billing, machines sleep 5 min after last request, single-VM scope (internal tools, not high-traffic), and the secrets/token caveats the launch post compresses (TH).
 - **[AI Native Operators — Devin Bots guide](https://ainativeoperators.ai/blog/devin-bots-guide)** — Docs-grounded setup guide (Nov 17) whose value is the example outcome-prompt: names input, environment, evidence, the decisions that stay yours, and the explicit no-go list — a template worth stealing for your first Bot.
 - **[Devin's Dinner](https://x.com/MattSchrage/status/2121016484155548124)** — Matt Schrage's invite-only NYC dinner series for founders and engineers working with Devin.
+- **[Bloomberg — Cognition weighing a ~$2B raise at $75B](https://devincentral.com/news/editorial-cognition-in-talks-to-raise-2-billion-at-75-billion-valuatio)** — Reported Nov 21: a week after the Bots launch, the company behind Devin is in talks for a round repricing it from the ~$48B mark, with existing investors participating (via Devin Central).
 - **[V2EX — Devin GUI orchestrating rival CLIs](https://www.v2ex.com/t/1258858)** — A Chinese operator got a free Bot via poke.com/bots ($50 credits + a $200 Max month), then runs Devin Desktop as the conductor over gemini/codex/claude CLIs plus a Devin Bot reachable via Poke SMS — 'all handled from the phone'. The quoted +280–300% speedup is the agent's own estimate, not a measurement (CN, Nov 22).
 
 <p align="right"><a href="#readme">back to top</a></p>

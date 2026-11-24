@@ -13,7 +13,7 @@
 
 <sub>维护者 [@darega0mae](https://x.com/darega0mae) · 姊妹教程库：[build-with-devin](https://github.com/Till3005/build-with-devin) · [收录你的项目](CONTRIBUTING.md)</sub>
 
-<sub>**15** 个有据可查的 Bot 部署 · **45** 个企业案例 · **9** 个已发布产品 · **47** 个工具与集成 · **38** 篇实战报告</sub>
+<sub>**16** 个有据可查的 Bot 部署 · **45** 个企业案例 · **9** 个已发布产品 · **47** 个工具与集成 · **38** 篇实战报告</sub>
 
 <sub>[English](README.md) · 简体中文 · [日本語](README.ja.md) · [Português](README.pt.md)</sub>
 
@@ -69,6 +69,7 @@ flowchart LR
 | **个人数据 Bot** | Bryan Johnson | 健康数据综合 + 给家人汇报 | 一个 Bot 把多年的生物指标和脑扫描数据综合成单一读数；另一个每天给他母亲发一条他的近况短信。（[帖子](https://x.com/bryan_johnson/status/2122814114976383406)） |
 | **网球数据 Bot** | Venus Williams | 职业网球备战 + 比赛数据分析 | 七届大满贯单打冠军用 Devin Bots 打理职业网球备战——研究对手打法、按温湿度调球拍、比赛数据分析、饮食和休息安排。（[Cognition 视频](https://x.com/cognition/status/2123093354196140285)、[@walden_yan](https://x.com/walden_yan/status/2123105884125671605)） |
 | **Manim 维护 Bot** | Grant Sanderson（3Blue1Brown）| Manim 仓库 issue 预检 | 数学科普频道主理人把每支 3Blue1Brown 视频背后的开源动画引擎交给 Devin Bot 维护——**96.6k stars、7,936 forks、月下载 25 万**——Bot 处理 issue，他专心做数学。（[Cognition 视频](https://x.com/cognition/status/2123813355538239878)） |
+| **Exa「agent 岛」舰队** | Exa AI Labs | 全软件栈的训练任务 + CI | 工程师把训练任务管理和 CI 工作流交给 Devin Bots，用「魔兽风 agent 岛」视图盯盘——「去散个步，让 Devin Bots 干活」。（[Devin Central](https://devincentral.com/news/editorial-exa-adopts-devin-bots-across-its-software-stack-using-a-warc)；Cognition 11/19 官宣） |
 
 ### 有据可查的模式
 
@@ -353,6 +354,7 @@ flowchart LR
 - **[Devin Apps 泰语深度解析](https://dev.to/sarantoon/devin-apps-ekhruuengmuuephaayainbnekhruuengkhlaawdkhngedwin-4j8h)** —— 首篇泰语深读（11/18）：把「跑在 Devin 自己机器上」拆开——按 session 计费、无请求 5 分钟后休眠、单 VM 边界（内部工具而非高流量生产）、以及官方发布稿一笔带过的 secrets/token 注意事项（TH）。
 - **[AI Native Operators——Devin Bots 上手指南](https://ainativeoperators.ai/blog/devin-bots-guide)** —— 基于文档的搭建指南（11/17），最有价值的是那条示例 outcome prompt：写清输入、环境、证据、留给你的决策和明确的禁区清单——第一个 Bot 可以直接抄。
 - **[Devin's Dinner](https://x.com/MattSchrage/status/2121016484155548124)** —— Matt Schrage 在纽约的邀请制晚宴系列，面向用 Devin 的创始人和工程师。
+- **[Bloomberg——Cognition 洽谈以 $75B 估值融资 ~$2B](https://devincentral.com/news/editorial-cognition-in-talks-to-raise-2-billion-at-75-billion-valuatio)** —— 11/21 报道：Bots 发布一周后，Devin 母公司洽谈新一轮，估值从 ~$48B 抬到 $75B，老股东参投（via Devin Central）。
 - **[V2EX——Devin GUI 主控三家 CLI](https://www.v2ex.com/t/1258858)** —— 中文用户经 poke.com/bots 活动拿到免费 Bot（$50 额度 + 一个月 $200 Max），让 Devin Desktop 作主控同时管 gemini/codex/claude 三个 CLI，再接 Devin Bot 与 Poke 短信入口——「手机上发几条短信就处理完」。其中 +280–300% 提速是 agent 自报估算，非实测数据（11/22）。
 
 <p align="right"><a href="#readme">back to top</a></p>

@@ -13,7 +13,7 @@
 
 <sub>Curado por [@darega0mae](https://x.com/darega0mae) · Tutoriais irmãos: [build-with-devin](https://github.com/Till3005/build-with-devin) · [Adicione seu projeto](CONTRIBUTING.md)</sub>
 
-<sub>**15** implantações de Bot documentadas · **45** casos corporativos · **9** produtos lançados · **47** ferramentas e integrações · **38** relatos de campo</sub>
+<sub>**16** implantações de Bot documentadas · **45** casos corporativos · **9** produtos lançados · **47** ferramentas e integrações · **38** relatos de campo</sub>
 
 <sub>[English](README.md) · [简体中文](README.zh.md) · [日本語](README.ja.md) · Português</sub>
 
@@ -69,6 +69,7 @@ flowchart LR
 | **Bots de dados pessoais** | Bryan Johnson | Síntese de saúde + atualizações à família | Um Bot sintetiza anos de dados biométricos e de exames cerebrais num único relatório; outro manda à mãe dele um resumo diário de como ele está. ([post](https://x.com/bryan_johnson/status/2122814114976383406)) |
 | **Bots de dados de tênis** | Venus Williams | Preparação de tênis profissional + dados de jogo | A heptacampeã de Grand Slam usa Devin Bots para organizar a preparação no circuito — jogos das adversárias, ajuste de raquetes por umidade e temperatura, análise de partidas, refeições e descanso. ([vídeo da Cognition](https://x.com/cognition/status/2123093354196140285), [@walden_yan](https://x.com/walden_yan/status/2123105884125671605)) |
 | **Bot mantenedor do Manim** | Grant Sanderson (3Blue1Brown) | Triagem preventiva de issues no repositório Manim | O autor do canal de matemática delegou a manutenção do motor de animação open-source por trás de todos os vídeos do 3Blue1Brown a um Devin Bot — **96,6 mil stars, 7.936 forks, 250 mil downloads/mês** — os issues ficam com o Bot enquanto ele foca na matemática. ([vídeo da Cognition](https://x.com/cognition/status/2123813355538239878)) |
+| **Ilha de agentes da Exa** | Exa AI Labs | Runs de treino + CI em toda a stack | Engenheiros delegam gestão de runs de treino e workflows de CI a Devin Bots, monitorados numa visão "ilha de agentes estilo Warcraft" — "vá caminhar e deixe os Devin Bots cozinharem" ([Devin Central](https://devincentral.com/news/editorial-exa-adopts-devin-bots-across-its-software-stack-using-a-warc); anúncio da Cognition em 19/11) |
 
 ### Padrões documentados
 
@@ -353,6 +354,7 @@ Uso real documentado.
 - **[Devin Apps — análise em tailandês](https://dev.to/sarantoon/devin-apps-ekhruuengmuuephaayainbnekhruuengkhlaawdkhngedwin-4j8h)** — Primeira leitura profunda em tailandês (18/11): o que "hospedar na máquina do próprio Devin" significa — cobrança por sessão, máquina dorme 5 min após o último request, escopo de VM única (ferramentas internas, não tráfego alto) e as ressalvas de secrets/tokens que o anúncio comprime (TH).
 - **[AI Native Operators — guia Devin Bots](https://ainativeoperators.ai/blog/devin-bots-guide)** — Guia de setup baseado na documentação (17/11) cujo valor é o outcome-prompt de exemplo: nomeia entrada, ambiente, evidência, as decisões que ficam com você e a lista explícita de proibições — um template para roubar no seu primeiro Bot.
 - **[Devin's Dinner](https://x.com/MattSchrage/status/2121016484155548124)** — Série de jantares em NYC do Matt Schrage, só com convite, para founders e engenheiros que trabalham com Devin.
+- **[Bloomberg — Cognition negocia rodada de ~$2B a $75B](https://devincentral.com/news/editorial-cognition-in-talks-to-raise-2-billion-at-75-billion-valuatio)** — Reportado em 21/11: uma semana após o lançamento dos Bots, a empresa por trás do Devin negocia uma rodada que reprecifica a companhia de ~$48B, com investidores existentes participando (via Devin Central).
 - **[V2EX — Devin GUI orquestrando CLIs rivais](https://www.v2ex.com/t/1258858)** — Um usuário chinês conseguiu um Bot grátis via poke.com/bots ($50 + um mês de Max de $200) e usa o Devin Desktop como maestro de CLIs gemini/codex/claude + Devin Bot via SMS do Poke — 'tudo resolvido pelo celular'. O ganho de +280–300% citado é estimativa do próprio agente, não medição (CN, 22/11).
 
 <p align="right"><a href="#readme">back to top</a></p>
