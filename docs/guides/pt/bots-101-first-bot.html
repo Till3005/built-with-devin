@@ -39,13 +39,14 @@
       <button class="mode-btn on" data-mode="build" role="tab" aria-selected="true" onclick="location.href='../../index.html#build'">Build</button>
       <span class="mode-pill" aria-hidden="true"></span>
     </div>
+    <button id="theme-toggle" aria-label="Toggle theme"></button>
     <a class="cta" href="https://github.com/Till3005/build-with-devin/blob/main/guides/pt/bots-101-first-bot.md">GitHub</a>
   </div>
 </div></nav>
 <main>
 <article class="guide wrap" id="guide">
   <p class="guide-crumb"><a href="index.html">← Guias</a> · <a href="../bots-101-first-bot.html">English</a> · <a href="../ja/bots-101-first-bot.html">日本語</a> · <a href="../zh/bots-101-first-bot.html">中文</a></p>
-<p class="guide-meta">Atualizado 2026-11-24</p>
+<div class="guide-meta"><span class="meta-chip">Comece aqui</span><span class="meta-chip">Atualizado 2026-11-24</span></div>
 <details class="toc" open><summary>Nesta página</summary><ol><li class="d2"><a href="#o-que-é-um-bot">O que é um Bot</a></li><li class="d2"><a href="#passo-1-criar">Passo 1 — Criar</a></li><li class="d2"><a href="#passo-2-atribuir-o-resultado">Passo 2 — Atribuir o resultado</a></li><li class="d3"><a href="#uma-primeira-atribuição-limitada">Uma primeira atribuição limitada</a></li><li class="d2"><a href="#passo-3-trabalhar-com-ele">Passo 3 — Trabalhar com ele</a></li><li class="d2"><a href="#passo-4-direcionar-pela-memória-não-por-microgestão">Passo 4 — Direcionar pela memória, não por microgestão</a></li><li class="d2"><a href="#antes-de-compartilhar-acesso-e-uso">Antes de compartilhar — acesso e uso</a></li><li class="d2"><a href="#passo-5-colocar-onde-você-trabalha">Passo 5 — Colocar onde você trabalha</a></li><li class="d2"><a href="#passo-6-agendamentos-e-modos">Passo 6 — Agendamentos e modos</a></li><li class="d2"><a href="#ciclo-de-vida">Ciclo de vida</a></li><li class="d2"><a href="#checklist-de-verificação">Checklist de verificação</a></li><li class="d2"><a href="#armadilhas">Armadilhas</a></li><li class="d2"><a href="#teste-de-conhecimento">Teste de conhecimento</a></li><li class="d2"><a href="#fontes">Fontes</a></li></ol></details>
 <h1>Guia 1 — Seu primeiro Bot</h1>
 <p><strong>Objetivo:</strong> criar um Devin Bot que assume um resultado e aprender as seis mecânicas nas quais todos os guias seguintes se apoiam.
@@ -231,11 +232,11 @@ and any decision you need from me.
 <p>Apenas o criador e papéis com Manage Bots veem Archive/Delete. Em planos Enterprise, <code>Use Bots</code> / <code>Manage Bots</code> / <code>Manage Bots across the enterprise</code> são permissões separadas em papéis personalizados.</p>
 <h2 id="checklist-de-verificação">Checklist de verificação<a class="hlink" href="#checklist-de-verificação" aria-hidden="true">#</a></h2>
 <ul>
-<li>[ ] Bot criado e nomeado; prompt de resultado enviado no chat</li>
-<li>[ ] Bot iniciou pelo menos uma sessão filha sem ser pedido duas vezes</li>
-<li>[ ] Uma decisão/PR/pedido de permissão apareceu em <strong>Needs you</strong> e você resolveu</li>
-<li>[ ] Uma correção que você deu no chat aparece como arquivo de memória em Settings → Memory</li>
-<li>[ ] (Opcional) Bot alcançável via @-menção no Slack</li>
+<li><label><input type="checkbox"> Bot criado e nomeado; prompt de resultado enviado no chat</label></li>
+<li><label><input type="checkbox"> Bot iniciou pelo menos uma sessão filha sem ser pedido duas vezes</label></li>
+<li><label><input type="checkbox"> Uma decisão/PR/pedido de permissão apareceu em <strong>Needs you</strong> e você resolveu</label></li>
+<li><label><input type="checkbox"> Uma correção que você deu no chat aparece como arquivo de memória em Settings → Memory</label></li>
+<li><label><input type="checkbox" data-optional="true"> (Opcional) Bot alcançável via @-menção no Slack</label></li>
 </ul>
 <h2 id="armadilhas">Armadilhas<a class="hlink" href="#armadilhas" aria-hidden="true">#</a></h2>
 <ul>
@@ -269,5 +270,6 @@ and any decision you need from me.
 <script src="../../assets/theme.js"></script>
 <script src="../../assets/i18n.js"></script>
 <script src="../../assets/i18n-runtime.js"></script>
+<script src="../../assets/guides.js"></script>
 </body>
 </html>

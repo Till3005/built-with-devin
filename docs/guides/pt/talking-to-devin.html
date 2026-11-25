@@ -39,13 +39,14 @@
       <button class="mode-btn on" data-mode="build" role="tab" aria-selected="true" onclick="location.href='../../index.html#build'">Build</button>
       <span class="mode-pill" aria-hidden="true"></span>
     </div>
+    <button id="theme-toggle" aria-label="Toggle theme"></button>
     <a class="cta" href="https://github.com/Till3005/build-with-devin/blob/main/guides/pt/talking-to-devin.md">GitHub</a>
   </div>
 </div></nav>
 <main>
 <article class="guide wrap" id="guide">
   <p class="guide-crumb"><a href="index.html">← Guias</a> · <a href="../talking-to-devin.html">English</a> · <a href="../ja/talking-to-devin.html">日本語</a> · <a href="../zh/talking-to-devin.html">中文</a></p>
-<p class="guide-meta">Atualizado 2026-11-24</p>
+<div class="guide-meta"><span class="meta-chip">Comece aqui</span><span class="meta-chip">Atualizado 2026-11-24</span></div>
 <details class="toc" open><summary>Nesta página</summary><ol><li class="d2"><a href="#por-que-este-guia-vem-primeiro">Por que este guia vem primeiro</a></li><li class="d2"><a href="#as-quatro-regras-que-sustentam-tudo">As quatro regras que sustentam tudo</a></li><li class="d2"><a href="#o-brief-de-referência">O brief de referência</a></li><li class="d2"><a href="#defesa-o-que-fica-com-você">Defesa: o que fica com você</a></li><li class="d2"><a href="#de-instruir-para-delegar-posse">De instruir para delegar posse</a></li><li class="d2"><a href="#passo-a-passo-real-gravado-no-devin-cli-v3000-14-swe-2-flash-medium">Passo a passo real — gravado no Devin CLI v3000.14 (swe-2-flash-medium)</a></li><li class="d2"><a href="#verifique">Verifique</a></li><li class="d2"><a href="#armadilhas">Armadilhas</a></li><li class="d2"><a href="#cheque-de-conhecimento">Cheque de conhecimento</a></li><li class="d2"><a href="#fontes">Fontes</a></li></ol></details>
 <h1>Guia 18 — Falando com Devin: a doutrina do prompt</h1>
 <p><strong>Objetivo:</strong> Escrever instruções que Devin não pode interpretar errado — a linha entre uma sessão que entrega e uma que vagueia.
@@ -98,9 +99,9 @@
 <em>6. Depois de /exit — a dica <code>devin -r</code> e o <code>git status</code> provando que a cerca segurou: dois arquivos modificados, nenhum commit novo</em></p>
 <h2 id="verifique">Verifique<a class="hlink" href="#verifique" aria-hidden="true">#</a></h2>
 <ul>
-<li>[ ] Dada uma tarefa real do seu backlog, você escreve em menos de 10 minutos um brief com: repo/arquivos nomeados, padrão de referência, check de sucesso explícito e limite declarado.</li>
-<li>[ ] A sessão resultante termina sem uma pergunta no meio do caminho que você chamaria de óbvia.</li>
-<li>[ ] Devin verificou o próprio trabalho antes do PR — porque você pediu no brief.</li>
+<li><label><input type="checkbox"> Dada uma tarefa real do seu backlog, você escreve em menos de 10 minutos um brief com: repo/arquivos nomeados, padrão de referência, check de sucesso explícito e limite declarado.</label></li>
+<li><label><input type="checkbox"> A sessão resultante termina sem uma pergunta no meio do caminho que você chamaria de óbvia.</label></li>
+<li><label><input type="checkbox"> Devin verificou o próprio trabalho antes do PR — porque você pediu no brief.</label></li>
 </ul>
 <h2 id="armadilhas">Armadilhas<a class="hlink" href="#armadilhas" aria-hidden="true">#</a></h2>
 <ul>
@@ -130,5 +131,6 @@
 <script src="../../assets/theme.js"></script>
 <script src="../../assets/i18n.js"></script>
 <script src="../../assets/i18n-runtime.js"></script>
+<script src="../../assets/guides.js"></script>
 </body>
 </html>

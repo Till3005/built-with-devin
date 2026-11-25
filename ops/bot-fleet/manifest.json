@@ -1,0 +1,138 @@
+{
+  "version": 1,
+  "fleet": "bwd-lean-four",
+  "repos": {
+    "registry": "Till3005/built-with-devin",
+    "curriculum": "Till3005/build-with-devin"
+  },
+  "budget": {
+    "max_concurrent_child_sessions": 2,
+    "scout_runs_per_week": 3,
+    "requires_human_approval_for": [
+      "curriculum restructuring",
+      "external posting",
+      "permission expansion",
+      "expensive reproduction runs",
+      "publishing weakly supported claims",
+      "sensitive-data handling"
+    ]
+  },
+  "bots": [
+    {
+      "id": "bwd-editor",
+      "name": "BWD Editor-in-Chief",
+      "prompt": "prompts/editor-in-chief.md",
+      "owns": "editorial quality, release rhythm, and cross-repo arbitration",
+      "repos": [
+        "Till3005/built-with-devin",
+        "Till3005/build-with-devin"
+      ],
+      "cadence": {
+        "weekly_release_pass": true,
+        "event_driven": [
+          "ci_failure",
+          "blocked_pr",
+          "owner_request"
+        ]
+      },
+      "write_scope": [
+        "triage comments",
+        "release checklists",
+        "small editorial pull requests"
+      ],
+      "may_not_do": [
+        "restructure the curriculum without approval",
+        "post externally",
+        "expand bot permissions",
+        "merge pull requests with failing or incomplete checks",
+        "merge pull requests outside its owned scope"
+      ]
+    },
+    {
+      "id": "bwd-scout",
+      "name": "BWD Source Scout",
+      "prompt": "prompts/source-scout.md",
+      "owns": "official and community source discovery",
+      "repos": [
+        "Till3005/built-with-devin",
+        "Till3005/build-with-devin"
+      ],
+      "cadence": {
+        "scheduled_runs_per_week": 3,
+        "event_driven": [
+          "owner_request"
+        ]
+      },
+      "write_scope": [
+        "structured candidate intake reports"
+      ],
+      "may_not_do": [
+        "edit registry entries directly",
+        "invent missing facts",
+        "treat marketing claims as verified evidence",
+        "merge pull requests with failing or incomplete checks",
+        "merge pull requests outside its owned scope"
+      ]
+    },
+    {
+      "id": "bwd-registry",
+      "name": "BWD Registry Maintainer",
+      "prompt": "prompts/registry-maintainer.md",
+      "owns": "registry accuracy, source verification, and generated artifacts",
+      "repos": [
+        "Till3005/built-with-devin"
+      ],
+      "cadence": {
+        "weekly_consistency_pass": true,
+        "event_driven": [
+          "verified_candidate",
+          "broken_source",
+          "ci_failure"
+        ]
+      },
+      "write_scope": [
+        "registry entry pull requests",
+        "link fix pull requests",
+        "generated docs artifacts"
+      ],
+      "may_not_do": [
+        "publish unsupported entries",
+        "change inclusion policy without approval",
+        "merge pull requests with failing or incomplete checks",
+        "merge pull requests outside its owned scope"
+      ]
+    },
+    {
+      "id": "bwd-growth",
+      "name": "BWD Growth Ops",
+      "prompt": "prompts/growth-ops.md",
+      "owns": "build-in-public operations, distribution drafts, and Ambassador evidence",
+      "repos": [
+        "Till3005/build-with-devin",
+        "Till3005/built-with-devin"
+      ],
+      "cadence": {
+        "weekly_approval_packet": true,
+        "event_driven": [
+          "verified_evidence_merged",
+          "official_interaction",
+          "owner_request"
+        ]
+      },
+      "write_scope": [
+        "article and social drafts",
+        "video or recording scripts",
+        "distribution plans",
+        "ambassador evidence reports"
+      ],
+      "may_not_do": [
+        "post externally",
+        "impersonate Cognition or imply official affiliation",
+        "publish unverified or weakly supported claims",
+        "expose private or sensitive information",
+        "merge pull requests with failing or incomplete checks",
+        "merge pull requests outside its owned scope"
+      ]
+    }
+  ]
+}

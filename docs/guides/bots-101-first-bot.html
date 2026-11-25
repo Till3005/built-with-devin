@@ -39,13 +39,14 @@
       <button class="mode-btn on" data-mode="build" role="tab" aria-selected="true" onclick="location.href='../index.html#build'">Build</button>
       <span class="mode-pill" aria-hidden="true"></span>
     </div>
+    <button id="theme-toggle" aria-label="Toggle theme"></button>
     <a class="cta" href="https://github.com/Till3005/build-with-devin/blob/main/guides/bots-101-first-bot.md">GitHub</a>
   </div>
 </div></nav>
 <main>
 <article class="guide wrap" id="guide">
   <p class="guide-crumb"><a href="index.html">← Guides</a> · <a href="ja/bots-101-first-bot.html">日本語</a> · <a href="pt/bots-101-first-bot.html">Português</a> · <a href="zh/bots-101-first-bot.html">中文</a></p>
-<p class="guide-meta">Updated 2026-11-24</p>
+<div class="guide-meta"><span class="meta-chip">Start here</span><span class="meta-chip">Updated 2026-11-24</span></div>
 <details class="toc" open><summary>On this page</summary><ol><li class="d2"><a href="#what-a-bot-is">What a Bot is</a></li><li class="d2"><a href="#step-1-create-it">Step 1 — Create it</a></li><li class="d2"><a href="#step-2-assign-the-outcome">Step 2 — Assign the outcome</a></li><li class="d3"><a href="#a-bounded-first-assignment">A bounded first assignment</a></li><li class="d2"><a href="#step-3-work-with-it">Step 3 — Work with it</a></li><li class="d2"><a href="#step-4-steer-through-memory-not-micromanagement">Step 4 — Steer through memory, not micromanagement</a></li><li class="d2"><a href="#before-you-share-it-access-and-usage">Before you share it — access and usage</a></li><li class="d2"><a href="#step-5-put-it-where-you-work">Step 5 — Put it where you work</a></li><li class="d2"><a href="#step-6-schedules-and-modes">Step 6 — Schedules and modes</a></li><li class="d2"><a href="#lifecycle">Lifecycle</a></li><li class="d2"><a href="#verify-it">Verify it</a></li><li class="d2"><a href="#pitfalls">Pitfalls</a></li><li class="d2"><a href="#knowledge-check">Knowledge check</a></li><li class="d2"><a href="#sources">Sources</a></li></ol></details>
 <h1>Guide 1 — Your first Bot</h1>
 <p><strong>Goal:</strong> create a Devin Bot that owns an outcome, and learn the six mechanics every later guide builds on.
@@ -231,11 +232,11 @@ and any decision you need from me.
 <p>Only the creator and roles with Manage Bots see Archive/Delete. On Enterprise plans, <code>Use Bots</code> / <code>Manage Bots</code> / <code>Manage Bots across the enterprise</code> are separate permissions in custom roles.</p>
 <h2 id="verify-it">Verify it<a class="hlink" href="#verify-it" aria-hidden="true">#</a></h2>
 <ul>
-<li>[ ] Bot created and named; outcome prompt sent in chat</li>
-<li>[ ] Bot started at least one child session without being asked twice</li>
-<li>[ ] A decision/PR/permission request appeared in <strong>Needs you</strong> and you resolved it</li>
-<li>[ ] One correction you gave in chat shows up as a memory file under Settings → Memory</li>
-<li>[ ] (Optional) Bot reachable via @-mention in Slack</li>
+<li><label><input type="checkbox"> Bot created and named; outcome prompt sent in chat</label></li>
+<li><label><input type="checkbox"> Bot started at least one child session without being asked twice</label></li>
+<li><label><input type="checkbox"> A decision/PR/permission request appeared in <strong>Needs you</strong> and you resolved it</label></li>
+<li><label><input type="checkbox"> One correction you gave in chat shows up as a memory file under Settings → Memory</label></li>
+<li><label><input type="checkbox" data-optional="true"> (Optional) Bot reachable via @-mention in Slack</label></li>
 </ul>
 <h2 id="pitfalls">Pitfalls<a class="hlink" href="#pitfalls" aria-hidden="true">#</a></h2>
 <ul>
@@ -264,5 +265,6 @@ and any decision you need from me.
 <script src="../assets/theme.js"></script>
 <script src="../assets/i18n.js"></script>
 <script src="../assets/i18n-runtime.js"></script>
+<script src="../assets/guides.js"></script>
 </body>
 </html>

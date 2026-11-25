@@ -12,7 +12,7 @@
 <link rel="alternate" hreflang="zh" href="https://till3005.github.io/built-with-devin/guides/zh/pt/devin-cli.html">
 <link rel="alternate" hreflang="x-default" href="https://till3005.github.io/built-with-devin/guides/pt/devin-cli.html">
 <link rel="alternate" type="application/rss+xml" title="built-with-devin feed" href="../../feed.xml">
-<script type="application/ld+json">{"@context": "https://schema.org", "@type": "TechArticle", "headline": "Guia 12 — Devin CLI & extensibilidade", "description": "o Devin de terminal local — rode o agente na sua máquina, passe trabalho para o Devin Cloud e estenda-o com skills, rules, plugins, hooks e subagents.", "inLanguage": "pt", "url": "https://till3005.github.io/built-with-devin/guides/pt/devin-cli.html", "isPartOf": {"@type": "Course", "name": "build-with-devin", "url": "https://till3005.github.io/built-with-devin/guides/"}, "dateModified": "2026-11-20"}</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "TechArticle", "headline": "Guia 12 — Devin CLI & extensibilidade", "description": "o Devin de terminal local — rode o agente na sua máquina, passe trabalho para o Devin Cloud e estenda-o com skills, rules, plugins, hooks e subagents.", "inLanguage": "pt", "url": "https://till3005.github.io/built-with-devin/guides/pt/devin-cli.html", "isPartOf": {"@type": "Course", "name": "build-with-devin", "url": "https://till3005.github.io/built-with-devin/guides/"}, "dateModified": "2026-11-25"}</script>
 <link rel="icon" href="../../assets/brand/Devin_Symbol.svg" type="image/svg+xml">
 <link rel="stylesheet" href="../../assets/site.css">
 <link rel="stylesheet" href="../../assets/guides.css">
@@ -39,13 +39,14 @@
       <button class="mode-btn on" data-mode="build" role="tab" aria-selected="true" onclick="location.href='../../index.html#build'">Build</button>
       <span class="mode-pill" aria-hidden="true"></span>
     </div>
+    <button id="theme-toggle" aria-label="Toggle theme"></button>
     <a class="cta" href="https://github.com/Till3005/build-with-devin/blob/main/guides/pt/devin-cli.md">GitHub</a>
   </div>
 </div></nav>
 <main>
 <article class="guide wrap" id="guide">
   <p class="guide-crumb"><a href="index.html">← Guias</a> · <a href="../devin-cli.html">English</a> · <a href="../ja/devin-cli.html">日本語</a> · <a href="../zh/devin-cli.html">中文</a></p>
-<p class="guide-meta">Atualizado 2026-11-20</p>
+<div class="guide-meta"><span class="meta-chip">Intermediário</span><span class="meta-chip">Atualizado 2026-11-25</span></div>
 <details class="toc" open><summary>Nesta página</summary><ol><li class="d2"><a href="#o-que-é">O que é</a></li><li class="d2"><a href="#as-peças-que-importam">As peças que importam</a></li><li class="d2"><a href="#o-stack-de-extensibilidade">O stack de extensibilidade</a></li><li class="d2"><a href="#três-workflows-que-valem-copiar">Três workflows que valem copiar</a></li><li class="d2"><a href="#passo-a-passo-gravado-no-devin-cli-v3000-14">Passo a passo — gravado no Devin CLI v3000.14</a></li><li class="d2"><a href="#checklist-de-verificação">Checklist de verificação</a></li><li class="d2"><a href="#armadilhas">Armadilhas</a></li><li class="d2"><a href="#teste-de-conhecimento">Teste de conhecimento</a></li><li class="d2"><a href="#fontes">Fontes</a></li></ol></details>
 <h1>Guia 12 — Devin CLI &amp; extensibilidade</h1>
 <p><strong>Objetivo:</strong> o Devin de terminal local — rode o agente na sua máquina, passe trabalho para o Devin Cloud e estenda-o com skills, rules, plugins, hooks e subagents.
@@ -55,9 +56,9 @@
 <p>O Devin CLI é um agente de código que vive no seu terminal e se conecta ao Devin Cloud. Dois modos de trabalho, e o poder está em mover entre eles:</p>
 <ul>
 <li><strong>Local</strong> — edita seu repo checked-out na sua máquina</li>
-<li><strong>Cloud</strong> — <code>devin --cloud</code> cria/dirige/retoma sessões na nuvem; <code>/handoff</code> manda uma tarefa local para um Devin na nuvem, <code>/pickup</code> traz uma sessão cloud de volta para sua máquina (<code>/open</code> abre no web app ou no Devin Desktop)</li>
+<li><strong>Cloud</strong> — <code>devin --cloud</code> cria, orienta e retoma sessões na nuvem. Use <code>/handoff</code> na sessão local para enviar a tarefa ao Devin Cloud. Na sessão na nuvem, dentro da CLI, o mesmo comando busca a branch do PR, muda o checkout para ela e inicia uma sessão local nessa branch. (<code>/open</code> abre a sessão no web app ou no Devin Desktop.)</li>
 </ul>
-<pre><code class="language-text">repo local ──/handoff──► sessão Devin Cloud ──/pickup──► repo local
+<pre><code class="language-text">repo local ──/handoff──► sessão Devin Cloud ──/handoff──► repo local
      ▲                          │
      └──── devin ssh / forward (inspecionar a VM) ────┘
 </code></pre>
@@ -133,7 +134,7 @@
 </table>
 <p><strong>Caminho de importação:</strong> <code>read_config_from</code> importa settings de Cursor, Windsurf, Claude Code, Copilot, Codex, Kiro, OpenCode, Zed — migração é uma flag, não uma reescrita.</p>
 <h2 id="três-workflows-que-valem-copiar">Três workflows que valem copiar<a class="hlink" href="#três-workflows-que-valem-copiar" aria-hidden="true">#</a></h2>
-<p><strong>1. Local → fan-out na cloud.</strong> Comece uma tarefa localmente, bata nos limites, <code>/handoff</code> para uma sessão cloud que continua na própria máquina — traga o trabalho de volta com <code>/pickup</code>.</p>
+<p><strong>1. Local → fan-out na cloud.</strong> Comece a tarefa localmente. Quando precisar da nuvem, use <code>/handoff</code> para que ela continue na máquina do Devin. Assim que a sessão na nuvem tiver um PR, abra ou retome a sessão na CLI e rode <code>/handoff</code> nela para continuar localmente na branch do PR.</p>
 <p><strong>2. Skills como memória.</strong> Transforme qualquer procedimento repetido (o skill de migração do Guia 11, um runbook de hotfix, um corte de release) num <code>SKILL.md</code> — os docs do CLI notam alimentar <em>transcrições de sessões bem-sucedidas</em> de volta em skills para fechar lacunas. Plugins empacotam e compartilham para o time todo.</p>
 <p><strong>3. Guardrails via hooks.</strong> Hook <code>PreToolUse</code> que bloqueia padrões <code>rm -rf</code> ou força review em migrações — a fiscalização vive no hook, não no comportamento esperado do modelo.</p>
 <h2 id="passo-a-passo-gravado-no-devin-cli-v3000-14">Passo a passo — gravado no Devin CLI v3000.14<a class="hlink" href="#passo-a-passo-gravado-no-devin-cli-v3000-14" aria-hidden="true">#</a></h2>
@@ -168,10 +169,10 @@ Keep it under 10 lines.
 </code></pre>
 <h2 id="checklist-de-verificação">Checklist de verificação<a class="hlink" href="#checklist-de-verificação" aria-hidden="true">#</a></h2>
 <ul>
-<li>[ ] <code>devin</code> roda uma sessão local; <code>devin --cloud</code> lista/cria sessões cloud</li>
-<li>[ ] Uma tarefa enviada por <code>/handoff</code> completou na nuvem e voltou para sua máquina via <code>/pickup</code></li>
-<li>[ ] Um <code>SKILL.md</code> invocado por slash command rodou seu procedimento</li>
-<li>[ ] (Enterprise) o team marketplace serve seu plugin a outro membro</li>
+<li><label><input type="checkbox"> <code>devin</code> roda uma sessão local; <code>devin --cloud</code> lista/cria sessões cloud</label></li>
+<li><label><input type="checkbox"> Uma tarefa enviada à nuvem com <code>/handoff</code> gerou um PR; rodar <code>/handoff</code> nessa sessão na nuvem fez checkout da branch do PR e iniciou uma sessão local</label></li>
+<li><label><input type="checkbox"> Um <code>SKILL.md</code> invocado por slash command rodou seu procedimento</label></li>
+<li><label><input type="checkbox"> (Enterprise) o team marketplace serve seu plugin a outro membro</label></li>
 </ul>
 <h2 id="armadilhas">Armadilhas<a class="hlink" href="#armadilhas" aria-hidden="true">#</a></h2>
 <ul>
@@ -198,5 +199,6 @@ Keep it under 10 lines.
 <script src="../../assets/theme.js"></script>
 <script src="../../assets/i18n.js"></script>
 <script src="../../assets/i18n-runtime.js"></script>
+<script src="../../assets/guides.js"></script>
 </body>
 </html>

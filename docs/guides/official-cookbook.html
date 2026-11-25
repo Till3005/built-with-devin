@@ -39,13 +39,14 @@
       <button class="mode-btn on" data-mode="build" role="tab" aria-selected="true" onclick="location.href='../index.html#build'">Build</button>
       <span class="mode-pill" aria-hidden="true"></span>
     </div>
+    <button id="theme-toggle" aria-label="Toggle theme"></button>
     <a class="cta" href="https://github.com/Till3005/build-with-devin/blob/main/guides/official-cookbook.md">GitHub</a>
   </div>
 </div></nav>
 <main>
 <article class="guide wrap" id="guide">
   <p class="guide-crumb"><a href="index.html">← Guides</a> · <a href="ja/official-cookbook.html">日本語</a> · <a href="pt/official-cookbook.html">Português</a> · <a href="zh/official-cookbook.html">中文</a></p>
-<p class="guide-meta">Updated 2026-11-19</p>
+<div class="guide-meta"><span class="meta-chip">Start here</span><span class="meta-chip">Updated 2026-11-19</span></div>
 <details class="toc" open><summary>On this page</summary><ol><li class="d2"><a href="#the-one-rule-behind-all-of-it">The one rule behind all of it</a></li><li class="d2"><a href="#the-recipe-catalog">The recipe catalog</a></li><li class="d3"><a href="#incidents-production-health">Incidents &amp;amp; production health</a></li><li class="d3"><a href="#scheduled-hygiene-the-highest-roi-page-in-the-docs">Scheduled hygiene (the highest-ROI page in the docs)</a></li><li class="d3"><a href="#code-quality">Code quality</a></li><li class="d3"><a href="#migrations-feature-work">Migrations &amp;amp; feature work</a></li><li class="d3"><a href="#project-management-data">Project management &amp;amp; data</a></li><li class="d3"><a href="#getting-better-at-devin-itself-devin-optimization">Getting better at Devin itself (&quot;Devin Optimization&quot;)</a></li><li class="d2"><a href="#how-to-use-this-cookbook">How to use this cookbook</a></li><li class="d2"><a href="#walkthrough-one-recipe-run-for-real-on-devin-cli-v3000-14-swe-2-flash-medium">Walkthrough — one recipe run for real, on Devin CLI v3000.14 (swe-2-flash-medium)</a></li><li class="d2"><a href="#verify-it">Verify it</a></li><li class="d2"><a href="#pitfalls">Pitfalls</a></li><li class="d2"><a href="#knowledge-check">Knowledge check</a></li><li class="d2"><a href="#sources">Sources</a></li></ol></details>
 <h1>Guide 13 — The official use-case cookbook</h1>
 <p><strong>Goal:</strong> the proven usage patterns from Cognition's own docs, organized as a cookbook — what to slice for Devin, and 40+ documented recipes with prompts to copy.
@@ -324,8 +325,8 @@
 <em>6. Verified after /exit — <code>Ran 16 tests ... OK</code>, changes stay uncommitted as instructed</em></p>
 <h2 id="verify-it">Verify it<a class="hlink" href="#verify-it" aria-hidden="true">#</a></h2>
 <ul>
-<li>[ ] One hygiene recipe is running on a schedule and produced its first PR/report</li>
-<li>[ ] Its output is frozen as a skill, playbook, or Bot — not living in someone's head</li>
+<li><label><input type="checkbox"> One hygiene recipe is running on a schedule and produced its first PR/report</label></li>
+<li><label><input type="checkbox"> Its output is frozen as a skill, playbook, or Bot — not living in someone's head</label></li>
 </ul>
 <h2 id="pitfalls">Pitfalls<a class="hlink" href="#pitfalls" aria-hidden="true">#</a></h2>
 <ul>
@@ -353,5 +354,6 @@
 <script src="../assets/theme.js"></script>
 <script src="../assets/i18n.js"></script>
 <script src="../assets/i18n-runtime.js"></script>
+<script src="../assets/guides.js"></script>
 </body>
 </html>

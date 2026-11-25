@@ -39,13 +39,14 @@
       <button class="mode-btn on" data-mode="build" role="tab" aria-selected="true" onclick="location.href='../../index.html#build'">Build</button>
       <span class="mode-pill" aria-hidden="true"></span>
     </div>
+    <button id="theme-toggle" aria-label="Toggle theme"></button>
     <a class="cta" href="https://github.com/Till3005/build-with-devin/blob/main/guides/pt/devin-apps.md">GitHub</a>
   </div>
 </div></nav>
 <main>
 <article class="guide wrap" id="guide">
   <p class="guide-crumb"><a href="index.html">← Guias</a> · <a href="../devin-apps.html">English</a> · <a href="../ja/devin-apps.html">日本語</a> · <a href="../zh/devin-apps.html">中文</a></p>
-<p class="guide-meta">Atualizado 2026-11-24</p>
+<div class="guide-meta"><span class="meta-chip">Comece aqui</span><span class="meta-chip">Atualizado 2026-11-24</span></div>
 <details class="toc" open><summary>Nesta página</summary><ol><li class="d2"><a href="#o-que-é">O que é</a></li><li class="d2"><a href="#construir-uma">Construir uma</a></li><li class="d2"><a href="#loop-de-atualização">Loop de atualização</a></li><li class="d2"><a href="#como-rodam-as-partes-que-importam">Como rodam (as partes que importam)</a></li><li class="d2"><a href="#os-três-usos-comprovados">Os três usos comprovados</a></li><li class="d2"><a href="#checklist-de-verificação">Checklist de verificação</a></li><li class="d2"><a href="#armadilhas">Armadilhas</a></li><li class="d2"><a href="#teste-de-conhecimento">Teste de conhecimento</a></li><li class="d2"><a href="#fontes">Fontes</a></li></ol></details>
 <h1>Guia 10 — Devin Apps: ferramentas ao vivo a partir de um chat</h1>
 <p><strong>Objetivo:</strong> descrever uma ferramenta interna, dashboard ou cópia de staging — o Devin a constrói e serve numa URL estável que sua equipe abre fazendo sign-in.
@@ -96,9 +97,9 @@
 </table>
 <h2 id="checklist-de-verificação">Checklist de verificação<a class="hlink" href="#checklist-de-verificação" aria-hidden="true">#</a></h2>
 <ul>
-<li>[ ] A App carrega na sua URL estável depois de a máquina dormir (espere cold start de alguns segundos)</li>
-<li>[ ] Uma mudança por edit-in-session produziu nova versão na mesma URL</li>
-<li>[ ] O escopo de compartilhamento está certo: um colega sem acesso é barrado no sign-in</li>
+<li><label><input type="checkbox"> A App carrega na sua URL estável depois de a máquina dormir (espere cold start de alguns segundos)</label></li>
+<li><label><input type="checkbox"> Uma mudança por edit-in-session produziu nova versão na mesma URL</label></li>
+<li><label><input type="checkbox"> O escopo de compartilhamento está certo: um colega sem acesso é barrado no sign-in</label></li>
 </ul>
 <h2 id="armadilhas">Armadilhas<a class="hlink" href="#armadilhas" aria-hidden="true">#</a></h2>
 <ul>
@@ -117,13 +118,14 @@
 <li><a href="https://lightmind24.blogspot.com/2026/11/devin-apps-tutorial-build-private.html">Tutorial de Devin Apps — app interno privado por prompt</a> — o walkthrough de terceiros mais completo: o que vai no primeiro prompt, como os Apps herdam seu design system, onde o Apps deixa de ser a ferramenta certa</li>
 <li>Relacionado: <a href="automations-101-event-driven.html">Guia 6 — Automações orientadas a eventos</a> para refresh agendado</li>
 </ul>
-<section class="related"><h3>Mesmo estágio — Estágio 1 · Operar</h3><p><a href="bot-outcome-prompts.html">Prompts de resultado para Bots, dissecados</a> · <a href="automations-101-event-driven.html">Guia 6 — Automações orientadas a eventos</a> · <a href="playbooks-and-knowledge.html">Guia 9 — Playbooks &amp; knowledge: codificando as convenções da sua org</a> · <a href="skills-and-plugins.html">Guia 17 — Skills e plugins: a camada de empacotamento pós-playbook</a> · <a href="design-with-devin.html">Guia 8 — Design &amp; trabalho visual</a></p></section>
-<nav class="guide-pager"><a class="pg-prev" href="skills-and-plugins.html"><span class="pg-dir">← Anterior</span><span class="pg-t">Guia 17 — Skills e plugins: a camada de empacotamento pós-playbook</span></a><a class="pg-next" href="design-with-devin.html"><span class="pg-dir">Próximo →</span><span class="pg-t">Guia 8 — Design &amp; trabalho visual</span></a></nav>
+<section class="related"><h3>Mesmo estágio — Estágio 1 · Operar</h3><p><a href="bot-outcome-prompts.html">Prompts de resultado para Bots, dissecados</a> · <a href="automations-101-event-driven.html">Guia 6 — Automações orientadas a eventos</a> · <a href="playbooks-and-knowledge.html">Guia 9 — Playbooks &amp; knowledge: codificando as convenções da sua org</a> · <a href="skills-and-plugins.html">Guia 16 — Skills e plugins: a camada de empacotamento pós-playbook</a> · <a href="design-with-devin.html">Guia 8 — Design &amp; trabalho visual</a></p></section>
+<nav class="guide-pager"><a class="pg-prev" href="skills-and-plugins.html"><span class="pg-dir">← Anterior</span><span class="pg-t">Guia 16 — Skills e plugins: a camada de empacotamento pós-playbook</span></a><a class="pg-next" href="design-with-devin.html"><span class="pg-dir">Próximo →</span><span class="pg-t">Guia 8 — Design &amp; trabalho visual</span></a></nav>
 </article>
 <footer><div class="wrap foot-base"><span data-i18n="foot.note">Unofficial community project — not affiliated with Cognition AI.</span><span><a href="../../index.html">built-with-devin</a> · <a href="https://github.com/Till3005/build-with-devin">build-with-devin</a></span></div></footer>
 </main>
 <script src="../../assets/theme.js"></script>
 <script src="../../assets/i18n.js"></script>
 <script src="../../assets/i18n-runtime.js"></script>
+<script src="../../assets/guides.js"></script>
 </body>
 </html>

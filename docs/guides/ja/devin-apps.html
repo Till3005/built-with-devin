@@ -39,13 +39,14 @@
       <button class="mode-btn on" data-mode="build" role="tab" aria-selected="true" onclick="location.href='../../index.html#build'">Build</button>
       <span class="mode-pill" aria-hidden="true"></span>
     </div>
+    <button id="theme-toggle" aria-label="Toggle theme"></button>
     <a class="cta" href="https://github.com/Till3005/build-with-devin/blob/main/guides/ja/devin-apps.md">GitHub</a>
   </div>
 </div></nav>
 <main>
 <article class="guide wrap" id="guide">
   <p class="guide-crumb"><a href="index.html">← ガイド</a> · <a href="../devin-apps.html">English</a> · <a href="../pt/devin-apps.html">Português</a> · <a href="../zh/devin-apps.html">中文</a></p>
-<p class="guide-meta">更新 2026-11-24</p>
+<div class="guide-meta"><span class="meta-chip">ここから</span><span class="meta-chip">更新 2026-11-24</span></div>
 <details class="toc" open><summary>このページの目次</summary><ol><li class="d2"><a href="#概要">概要</a></li><li class="d2"><a href="#作り方">作り方</a></li><li class="d2"><a href="#更新ループ">更新ループ</a></li><li class="d2"><a href="#動作の仕組み-重要な部分">動作の仕組み（重要な部分）</a></li><li class="d2"><a href="#実証済みの-3-つの用途">実証済みの 3 つの用途</a></li><li class="d2"><a href="#検証チェックリスト">検証チェックリスト</a></li><li class="d2"><a href="#落とし穴">落とし穴</a></li><li class="d2"><a href="#理解度チェック">理解度チェック</a></li><li class="d2"><a href="#出典">出典</a></li></ol></details>
 <h1>ガイド 10 — Devin Apps：チャットから実働ツールを出荷する</h1>
 <p><strong>目標：</strong> 社内ツール、ダッシュボード、ステージングコピーを説明する——Devin が構築し、チームがサインインして開ける安定 URL で提供する。
@@ -96,9 +97,9 @@
 </table>
 <h2 id="検証チェックリスト">検証チェックリスト<a class="hlink" href="#検証チェックリスト" aria-hidden="true">#</a></h2>
 <ul>
-<li>[ ] マシンがスリープした後も App が安定 URL で読み込める（数秒のコールドスタートは想定内）</li>
-<li>[ ] Edit in session の変更が同じ URL に新バージョンを生んだ</li>
-<li>[ ] 共有スコープが正しい：アクセス権のないチームメイトがサインインで止められる</li>
+<li><label><input type="checkbox"> マシンがスリープした後も App が安定 URL で読み込める（数秒のコールドスタートは想定内）</label></li>
+<li><label><input type="checkbox"> Edit in session の変更が同じ URL に新バージョンを生んだ</label></li>
+<li><label><input type="checkbox"> 共有スコープが正しい：アクセス権のないチームメイトがサインインで止められる</label></li>
 </ul>
 <h2 id="落とし穴">落とし穴<a class="hlink" href="#落とし穴" aria-hidden="true">#</a></h2>
 <ul>
@@ -117,13 +118,14 @@
 <li><a href="https://lightmind24.blogspot.com/2026/11/devin-apps-tutorial-build-private.html">Devin Apps チュートリアル — プロンプトでプライベート内部アプリを作る</a> —— サードパーティ製で最も完全なウォークスルー：最初のプロンプトに入れるべきもの、デザインシステムの継承、Apps が適さなくなる境界</li>
 <li>関連：<a href="automations-101-event-driven.html">ガイド 6 — イベント駆動の自動化</a> 定期更新用</li>
 </ul>
-<section class="related"><h3>同じステージ — ステージ1 · 運用</h3><p><a href="bot-outcome-prompts.html">Bot 成果プロンプト、解剖</a> · <a href="automations-101-event-driven.html">ガイド 6 — イベント駆動の自動化</a> · <a href="playbooks-and-knowledge.html">ガイド 9 — プレイブックとナレッジ：組織の規約をエンコードする</a> · <a href="skills-and-plugins.html">ガイド 17 — Skills と plugins：playbook の次のパッケージング層</a> · <a href="design-with-devin.html">ガイド 8 — デザインとビジュアルワーク</a></p></section>
-<nav class="guide-pager"><a class="pg-prev" href="skills-and-plugins.html"><span class="pg-dir">← 前へ</span><span class="pg-t">ガイド 17 — Skills と plugins：playbook の次のパッケージング層</span></a><a class="pg-next" href="design-with-devin.html"><span class="pg-dir">次へ →</span><span class="pg-t">ガイド 8 — デザインとビジュアルワーク</span></a></nav>
+<section class="related"><h3>同じステージ — ステージ1 · 運用</h3><p><a href="bot-outcome-prompts.html">Bot 成果プロンプト、解剖</a> · <a href="automations-101-event-driven.html">ガイド 6 — イベント駆動の自動化</a> · <a href="playbooks-and-knowledge.html">ガイド 9 — プレイブックとナレッジ：組織の規約をエンコードする</a> · <a href="skills-and-plugins.html">ガイド 16 — Skills と plugins：playbook の次のパッケージング層</a> · <a href="design-with-devin.html">ガイド 8 — デザインとビジュアルワーク</a></p></section>
+<nav class="guide-pager"><a class="pg-prev" href="skills-and-plugins.html"><span class="pg-dir">← 前へ</span><span class="pg-t">ガイド 16 — Skills と plugins：playbook の次のパッケージング層</span></a><a class="pg-next" href="design-with-devin.html"><span class="pg-dir">次へ →</span><span class="pg-t">ガイド 8 — デザインとビジュアルワーク</span></a></nav>
 </article>
 <footer><div class="wrap foot-base"><span data-i18n="foot.note">Unofficial community project — not affiliated with Cognition AI.</span><span><a href="../../index.html">built-with-devin</a> · <a href="https://github.com/Till3005/build-with-devin">build-with-devin</a></span></div></footer>
 </main>
 <script src="../../assets/theme.js"></script>
 <script src="../../assets/i18n.js"></script>
 <script src="../../assets/i18n-runtime.js"></script>
+<script src="../../assets/guides.js"></script>
 </body>
 </html>

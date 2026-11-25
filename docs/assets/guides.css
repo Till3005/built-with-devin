@@ -78,3 +78,104 @@
 .related p{font-size:14px;line-height:1.8;margin:0}
 
 .row-media{display:inline-block;margin-left:8px;padding:0 7px;border-radius:10px;font-size:11px;line-height:18px;color:var(--acc,#4da3ff);border:1px solid currentColor;vertical-align:2px;white-space:nowrap}
+
+/* ── curriculum education layer ─────────────────────────────
+   Keeps the original Cognition-inspired hairline system, adding
+   course structure, progress feedback, and mobile learning affordances. */
+.guide:has(.curriculum-index){max-width:1080px;padding-top:86px}
+.curriculum-index{min-width:0}
+.curriculum-hero{padding:22px 0 38px}
+.curriculum-hero .eyebrow{margin-bottom:12px}
+.curriculum-hero h1{font:500 clamp(2.55rem,7.2vw,4.8rem)/.98 var(--sans);letter-spacing:-.052em;max-width:11ch;margin:0 0 18px}
+.curriculum-hero .lede{font:400 16px/1.5 var(--sans);color:var(--mut);max-width:48ch;margin:0 0 28px}
+.start-panel{display:grid;grid-template-columns:1fr auto;gap:18px;align-items:center;border-top:1px solid var(--line);border-bottom:1px solid var(--line);padding:19px 0;margin:0 0 30px}
+.start-panel small{display:block;font:400 11px var(--mono);letter-spacing:.05em;text-transform:uppercase;color:var(--mut);margin-bottom:7px}
+.start-panel strong{display:block;font:500 16px/1.3 var(--sans);letter-spacing:-.01em}
+.start-panel span:not(.row-num){display:block;font-size:13px;line-height:1.45;color:var(--mut);margin-top:4px;max-width:56ch}
+.start-panel>a{display:inline-flex;align-items:center;height:36px;padding:0 15px;border-radius:999px;background:var(--fg);color:var(--bg);font:500 13px var(--sans);text-decoration:none;white-space:nowrap}
+.curriculum-stats{margin-top:0;border-top:1px solid var(--line)}
+.curriculum-stats .stat{padding:20px 18px 20px 0}
+.curriculum-stats .stat b{font-size:27px}
+.stage-map-wrap{padding:10px 0 44px}
+.stage-map-wrap>h2{font:500 25px/1.1 var(--sans);letter-spacing:-.03em;margin:0 0 17px}
+.stage-map{display:grid;grid-template-columns:repeat(4,1fr);border-top:1px solid var(--line)}
+.stage-cell{display:block;min-width:0;padding:17px 14px 18px 0;border-bottom:1px solid var(--line);text-decoration:none}
+.stage-cell+ .stage-cell{border-left:1px solid var(--line2);padding-left:14px}
+.stage-cell small{display:block;font:400 10px var(--mono);letter-spacing:.055em;text-transform:uppercase;color:var(--mut)}
+.stage-cell strong{display:block;font:500 14px/1.25 var(--sans);letter-spacing:-.01em;margin-top:7px}
+.stage-cell span{display:block;font-size:12px;color:var(--mut);margin-top:4px}
+.stage-cell p{font-size:12px;line-height:1.48;color:var(--mut);margin:8px 0 0}
+.stage-cell:hover strong{color:var(--acc)}
+.catalog-block{padding:0 0 30px}
+.stage-chips{display:flex;gap:8px;overflow-x:auto;padding:2px 0 16px;scrollbar-width:none}
+.stage-chips::-webkit-scrollbar{display:none}
+.stage-chip{flex:0 0 auto;border:1px solid var(--line);border-radius:999px;background:transparent;color:var(--mut);font:500 12px var(--sans);padding:6px 11px;cursor:pointer}
+.stage-chip.on{color:var(--fg);background:var(--soft)}
+.stage-chip:focus-visible,.row:focus-visible,.stage-cell:focus-visible,.start-panel a:focus-visible{outline:2px solid var(--acc);outline-offset:3px}
+.filter-empty{border-left:2px solid var(--acc);padding:9px 0 9px 14px;color:var(--mut);font-size:13px;margin:4px 0 18px}
+.row-main{display:block;min-width:0}
+.row-title{display:block}
+.row-desc{display:block}
+.rows .row{transition:background .18s ease,box-shadow .18s ease}
+.rows .row:hover{background:color-mix(in srgb,var(--wash) 72%,transparent);box-shadow:inset 2px 0 var(--acc)}
+.rows .row:hover .row-title{text-decoration:none}
+.row-num{padding-top:2px}
+.stage-h{font:500 23px/1.1 var(--sans);letter-spacing:-.025em;margin:38px 0 6px;color:var(--fg)}
+.stage-blurb{font-style:normal;font-size:14px;line-height:1.5;color:var(--mut);opacity:1;margin:0 0 12px;max-width:62ch}
+
+/* guide lesson framing */
+.guide h1{font:500 clamp(2rem,5.2vw,3.1rem)/1.06 var(--sans);letter-spacing:-.04em;max-width:15ch}
+.guide-meta{display:flex;flex-wrap:wrap;gap:7px;margin:-4px 0 24px;font:400 12px var(--mono);color:var(--mut)}
+.meta-chip{border:1px solid var(--line);border-radius:999px;padding:4px 8px}
+.lesson-goal{border-top:1px solid var(--line);border-bottom:1px solid var(--line);padding:15px 0;margin:22px 0 28px;font-size:16px;line-height:1.6}
+.lesson-goal strong{font:400 11px var(--mono);letter-spacing:.05em;text-transform:uppercase;color:var(--mut);display:block;margin-bottom:5px}
+.check-progress{display:inline-flex;align-items:center;border:1px solid var(--line);border-radius:999px;padding:3px 8px;font:400 11px var(--mono);color:var(--mut);margin:0 0 8px}
+.guide li:has(> input[type=checkbox]){display:flex;align-items:flex-start;gap:9px;margin-left:-22px;padding:6px 0;border-bottom:1px solid var(--line2)}
+.guide li:has(> input[type=checkbox]) input{margin:3px 0 0;width:16px;height:16px;flex:0 0 auto}
+.toc a.active{color:var(--fg);font-weight:500}
+.lessonbar{position:fixed;left:0;right:0;bottom:0;z-index:40;background:color-mix(in srgb,var(--bg) 94%,transparent);backdrop-filter:blur(14px);border-top:1px solid var(--line)}
+.lessonbar-inner{max-width:760px;margin:auto;padding:10px 18px calc(10px + env(safe-area-inset-bottom));display:flex;align-items:center;justify-content:space-between;gap:14px}
+.lessonbar span{min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;font:400 12px var(--mono);color:var(--mut)}
+.lessonbar a{flex:0 0 auto;display:inline-flex;align-items:center;height:32px;padding:0 13px;border-radius:999px;background:var(--fg);color:var(--bg);font:500 13px var(--sans);text-decoration:none}
+body.has-lessonbar footer{padding-bottom:64px}
+
+@media(max-width:760px){
+.guide:has(.curriculum-index){padding-top:70px}
+.curriculum-hero h1{font-size:clamp(2.45rem,12vw,3.6rem)}
+.start-panel{grid-template-columns:1fr;padding:17px 0}
+.start-panel>a{justify-self:start}
+.stage-map{grid-template-columns:1fr 1fr}
+.stage-cell+ .stage-cell{border-left:0;padding-left:0}
+.stage-cell:nth-child(even){border-left:1px solid var(--line2);padding-left:14px}
+.stage-cell{padding-right:10px}
+.rows .row:hover{background:transparent;box-shadow:none}
+.lessonbar-inner{padding-left:14px;padding-right:14px}
+}
+@media(prefers-reduced-motion:no-preference){
+.rows .row{transition:background .18s ease,box-shadow .18s ease,padding-left .18s ease}
+.rows .row:hover{padding-left:8px}
+}
+
+/* implementation hardening + final polish */
+.guide{padding-left:24px;padding-right:24px}
+.row[hidden]{display:none!important}
+.rows .row{color:inherit}
+.gfilter{min-height:44px;background:var(--panel);border-radius:12px;box-shadow:inset 0 0 0 1px transparent;transition:border-color .15s,box-shadow .15s}
+.gfilter:focus{border-color:var(--acc);box-shadow:0 0 0 3px color-mix(in srgb,var(--acc) 14%,transparent)}
+.stage-chip{min-height:34px;padding:7px 13px}
+.guide-crumb{flex-wrap:nowrap;overflow-x:auto;white-space:nowrap;scrollbar-width:none;-webkit-overflow-scrolling:touch}
+.guide-crumb::-webkit-scrollbar{display:none}
+.row-media{margin:4px 0 0 0}
+@media(max-width:640px){.guide{padding-left:18px;padding-right:18px}}
+[hidden]{display:none!important}
+.stage-cell,.stage-cell p,.stage-cell strong{text-decoration:none}
+.row.done .row-tag{color:rgb(var(--ok))}
+.row.done .row-tag:after{content:" ✓"}
+body.lesson-complete .check-progress{color:rgb(var(--ok));border-color:color-mix(in srgb,rgb(var(--ok)) 45%,transparent)}
+:root{--ok:6 118 71}
+[data-theme="dark"]{--ok:64 196 138}
+.guide li:has(> label > input[type=checkbox]){display:flex;align-items:flex-start;gap:9px;margin-left:-22px;padding:6px 0;border-bottom:1px solid var(--line2)}
+.guide li:has(> label > input[type=checkbox]) label{display:contents;cursor:pointer}
+.guide li:has(> label > input[type=checkbox]) input{margin:3px 0 0;width:16px;height:16px;flex:0 0 auto}
+
+.stage-cell{color:inherit}

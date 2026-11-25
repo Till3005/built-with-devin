@@ -39,13 +39,14 @@
       <button class="mode-btn on" data-mode="build" role="tab" aria-selected="true" onclick="location.href='../index.html#build'">Build</button>
       <span class="mode-pill" aria-hidden="true"></span>
     </div>
+    <button id="theme-toggle" aria-label="Toggle theme"></button>
     <a class="cta" href="https://github.com/Till3005/build-with-devin/blob/main/guides/bots-203-multi-bot-org.md">GitHub</a>
   </div>
 </div></nav>
 <main>
 <article class="guide wrap" id="guide">
   <p class="guide-crumb"><a href="index.html">← Guides</a> · <a href="ja/bots-203-multi-bot-org.html">日本語</a> · <a href="pt/bots-203-multi-bot-org.html">Português</a> · <a href="zh/bots-203-multi-bot-org.html">中文</a></p>
-<p class="guide-meta">Updated 2026-11-24</p>
+<div class="guide-meta"><span class="meta-chip">Advanced</span><span class="meta-chip">Updated 2026-11-24</span></div>
 <details class="toc" open><summary>On this page</summary><ol><li class="d2"><a href="#the-pattern">The pattern</a></li><li class="d2"><a href="#prerequisites">Prerequisites</a></li><li class="d2"><a href="#step-1-design-the-org-chart-first">Step 1 — Design the org chart first</a></li><li class="d2"><a href="#step-2-create-the-specialists">Step 2 — Create the specialists</a></li><li class="d2"><a href="#step-3-wire-grants">Step 3 — Wire grants</a></li><li class="d2"><a href="#step-4-the-roll-up-thread">Step 4 — The roll-up thread</a></li><li class="d2"><a href="#step-5-cadence-the-org-s-heartbeat">Step 5 — Cadence = the org&#x27;s heartbeat</a></li><li class="d2"><a href="#step-6-inter-bot-protocol-botspeak">Step 6 — Inter-bot protocol (BotSpeak)</a></li><li class="d2"><a href="#verify-it">Verify it</a></li><li class="d2"><a href="#pitfalls">Pitfalls</a></li><li class="d2"><a href="#knowledge-check">Knowledge check</a></li><li class="d2"><a href="#sources">Sources</a></li></ol></details>
 <h1>Guide 4 — Multi-Bot organization</h1>
 <p><strong>Goal:</strong> a hierarchy of Bots that runs an entire business unit — one orchestrator delegating to specialist Bots, one human deciding through a single daily thread.
@@ -190,11 +191,11 @@ replies as decisions and relay them.
 <p>Six days after switching: decisions made by Bots without her <strong>12×'d</strong>, repeated asks −50%, inter-bot clarifying posts −12%. The protocol exists because token waste isn't the real cost — <em>attention</em> waste is: shorter bot-to-bot messages mean the human's one thread stays readable.</p>
 <h2 id="verify-it">Verify it<a class="hlink" href="#verify-it" aria-hidden="true">#</a></h2>
 <ul>
-<li>[ ] Every specialist Bot has a scoped outcome prompt and active grants</li>
-<li>[ ] The orchestrator posts the consolidated decision thread on schedule</li>
-<li>[ ] A decision you answered via emoji got relayed and resolved by the right specialist</li>
-<li>[ ] A cross-Bot handoff completed end-to-end (find → fix → verify → report)</li>
-<li>[ ] Total human messages today &lt; number of merged PRs</li>
+<li><label><input type="checkbox"> Every specialist Bot has a scoped outcome prompt and active grants</label></li>
+<li><label><input type="checkbox"> The orchestrator posts the consolidated decision thread on schedule</label></li>
+<li><label><input type="checkbox"> A decision you answered via emoji got relayed and resolved by the right specialist</label></li>
+<li><label><input type="checkbox"> A cross-Bot handoff completed end-to-end (find → fix → verify → report)</label></li>
+<li><label><input type="checkbox"> Total human messages today &lt; number of merged PRs</label></li>
 </ul>
 <h2 id="pitfalls">Pitfalls<a class="hlink" href="#pitfalls" aria-hidden="true">#</a></h2>
 <ul>
@@ -225,5 +226,6 @@ replies as decisions and relay them.
 <script src="../assets/theme.js"></script>
 <script src="../assets/i18n.js"></script>
 <script src="../assets/i18n-runtime.js"></script>
+<script src="../assets/guides.js"></script>
 </body>
 </html>

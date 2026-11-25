@@ -39,13 +39,14 @@
       <button class="mode-btn on" data-mode="build" role="tab" aria-selected="true" onclick="location.href='../../index.html#build'">Build</button>
       <span class="mode-pill" aria-hidden="true"></span>
     </div>
+    <button id="theme-toggle" aria-label="Toggle theme"></button>
     <a class="cta" href="https://github.com/Till3005/build-with-devin/blob/main/guides/ja/automations-101-event-driven.md">GitHub</a>
   </div>
 </div></nav>
 <main>
 <article class="guide wrap" id="guide">
   <p class="guide-crumb"><a href="index.html">← ガイド</a> · <a href="../automations-101-event-driven.html">English</a> · <a href="../pt/automations-101-event-driven.html">Português</a> · <a href="../zh/automations-101-event-driven.html">中文</a></p>
-<p class="guide-meta">更新 2026-11-20</p>
+<div class="guide-meta"><span class="meta-chip">ここから</span><span class="meta-chip">更新 2026-11-20</span></div>
 <details class="toc" open><summary>このページの目次</summary><ol><li class="d2"><a href="#構造">構造</a></li><li class="d2"><a href="#トリガーカタログ">トリガーカタログ</a></li><li class="d2"><a href="#レシピ-1-任意の-issue-で-devin">レシピ 1 — 任意の issue で /devin</a></li><li class="d2"><a href="#レシピ-2-ci-失敗の自己修復">レシピ 2 — CI 失敗の自己修復</a></li><li class="d2"><a href="#レシピ-3-定期スイープ">レシピ 3 — 定期スイープ</a></li><li class="d2"><a href="#アクション種別の選び方">アクション種別の選び方</a></li><li class="d2"><a href="#作り方">作り方</a></li><li class="d2"><a href="#実録ウォークスルー-automation-を実際に作成・発火・検証-devin-desktop-v3-14-pro-プラン-で収録">実録ウォークスルー — automation を実際に作成・発火・検証、Devin Desktop v3.14（Pro プラン）で収録</a></li><li class="d2"><a href="#検証チェックリスト">検証チェックリスト</a></li><li class="d2"><a href="#落とし穴">落とし穴</a></li><li class="d2"><a href="#理解度チェック">理解度チェック</a></li><li class="d2"><a href="#出典">出典</a></li></ol></details>
 <h1>ガイド 6 — イベント駆動の自動化</h1>
 <p><strong>目標：</strong> 外部イベント——Slack、Teams、GitHub、Linear、Jira、PagerDuty、cron、webhook——を、自分で起動する Devin セッションに配線する。
@@ -230,9 +231,9 @@ Action:    Start session: &quot;Sweep yesterday's Sentry issues in
 <em>8. 検証された出力 — 今週の 103 コミットを分類した本物の changelog、artifact として配信</em></p>
 <h2 id="検証チェックリスト">検証チェックリスト<a class="hlink" href="#検証チェックリスト" aria-hidden="true">#</a></h2>
 <ul>
-<li>[ ] トリガーを手動で一度発火（<code>/devin test</code> とコメント、または失敗コミットを push）し、イベントペイロード付きでセッションが始まるのを確認した</li>
-<li>[ ] マッチしないイベント（違うラベル、違うチャンネル）が何も起こさない</li>
-<li>[ ] アクションの出力が期待した場所に着地した（PR、Slack スレッド、チケット）</li>
+<li><label><input type="checkbox"> トリガーを手動で一度発火（<code>/devin test</code> とコメント、または失敗コミットを push）し、イベントペイロード付きでセッションが始まるのを確認した</label></li>
+<li><label><input type="checkbox"> マッチしないイベント（違うラベル、違うチャンネル）が何も起こさない</label></li>
+<li><label><input type="checkbox"> アクションの出力が期待した場所に着地した（PR、Slack スレッド、チケット）</label></li>
 </ul>
 <h2 id="落とし穴">落とし穴<a class="hlink" href="#落とし穴" aria-hidden="true">#</a></h2>
 <ul>
@@ -252,7 +253,7 @@ Action:    Start session: &quot;Sweep yesterday's Sentry issues in
 <li><a href="https://www.youtube.com/watch?v=6xxKtIpgOyE">Devin Automations QuickStart（動画）</a></li>
 <li>関連：<a href="bots-202-scheduled-sentinel.html">ガイド 3 — 定期監視 Bot</a> cron の上に Bot の判断を載せる</li>
 </ul>
-<section class="related"><h3>同じステージ — ステージ1 · 運用</h3><p><a href="bot-outcome-prompts.html">Bot 成果プロンプト、解剖</a> · <a href="playbooks-and-knowledge.html">ガイド 9 — プレイブックとナレッジ：組織の規約をエンコードする</a> · <a href="skills-and-plugins.html">ガイド 17 — Skills と plugins：playbook の次のパッケージング層</a> · <a href="devin-apps.html">ガイド 10 — Devin Apps：チャットから実働ツールを出荷する</a> · <a href="design-with-devin.html">ガイド 8 — デザインとビジュアルワーク</a></p></section>
+<section class="related"><h3>同じステージ — ステージ1 · 運用</h3><p><a href="bot-outcome-prompts.html">Bot 成果プロンプト、解剖</a> · <a href="playbooks-and-knowledge.html">ガイド 9 — プレイブックとナレッジ：組織の規約をエンコードする</a> · <a href="skills-and-plugins.html">ガイド 16 — Skills と plugins：playbook の次のパッケージング層</a> · <a href="devin-apps.html">ガイド 10 — Devin Apps：チャットから実働ツールを出荷する</a> · <a href="design-with-devin.html">ガイド 8 — デザインとビジュアルワーク</a></p></section>
 <nav class="guide-pager"><a class="pg-prev" href="bot-outcome-prompts.html"><span class="pg-dir">← 前へ</span><span class="pg-t">Bot 成果プロンプト、解剖</span></a><a class="pg-next" href="playbooks-and-knowledge.html"><span class="pg-dir">次へ →</span><span class="pg-t">ガイド 9 — プレイブックとナレッジ：組織の規約をエンコードする</span></a></nav>
 </article>
 <footer><div class="wrap foot-base"><span data-i18n="foot.note">Unofficial community project — not affiliated with Cognition AI.</span><span><a href="../../index.html">built-with-devin</a> · <a href="https://github.com/Till3005/build-with-devin">build-with-devin</a></span></div></footer>
@@ -260,5 +261,6 @@ Action:    Start session: &quot;Sweep yesterday's Sentry issues in
 <script src="../../assets/theme.js"></script>
 <script src="../../assets/i18n.js"></script>
 <script src="../../assets/i18n-runtime.js"></script>
+<script src="../../assets/guides.js"></script>
 </body>
 </html>

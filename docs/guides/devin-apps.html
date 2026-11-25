@@ -39,13 +39,14 @@
       <button class="mode-btn on" data-mode="build" role="tab" aria-selected="true" onclick="location.href='../index.html#build'">Build</button>
       <span class="mode-pill" aria-hidden="true"></span>
     </div>
+    <button id="theme-toggle" aria-label="Toggle theme"></button>
     <a class="cta" href="https://github.com/Till3005/build-with-devin/blob/main/guides/devin-apps.md">GitHub</a>
   </div>
 </div></nav>
 <main>
 <article class="guide wrap" id="guide">
   <p class="guide-crumb"><a href="index.html">← Guides</a> · <a href="ja/devin-apps.html">日本語</a> · <a href="pt/devin-apps.html">Português</a> · <a href="zh/devin-apps.html">中文</a></p>
-<p class="guide-meta">Updated 2026-11-24</p>
+<div class="guide-meta"><span class="meta-chip">Start here</span><span class="meta-chip">Updated 2026-11-24</span></div>
 <details class="toc" open><summary>On this page</summary><ol><li class="d2"><a href="#what-it-is">What it is</a></li><li class="d2"><a href="#build-one">Build one</a></li><li class="d2"><a href="#update-loop">Update loop</a></li><li class="d2"><a href="#how-they-run-the-parts-that-matter">How they run (the parts that matter)</a></li><li class="d2"><a href="#the-three-proven-uses">The three proven uses</a></li><li class="d2"><a href="#verify-it">Verify it</a></li><li class="d2"><a href="#pitfalls">Pitfalls</a></li><li class="d2"><a href="#knowledge-check">Knowledge check</a></li><li class="d2"><a href="#sources">Sources</a></li></ol></details>
 <h1>Guide 10 — Devin Apps: ship live tools from a chat</h1>
 <p><strong>Goal:</strong> describe an internal tool, dashboard, or staging copy — Devin builds it and serves it at a stable URL your team opens by signing in.
@@ -96,9 +97,9 @@
 </table>
 <h2 id="verify-it">Verify it<a class="hlink" href="#verify-it" aria-hidden="true">#</a></h2>
 <ul>
-<li>[ ] App loads at its stable URL after the machine slept (expect a few-second cold start)</li>
-<li>[ ] An edit-in-session change produced a new version at the same URL</li>
-<li>[ ] Share scope is right: a teammate without access is stopped at sign-in</li>
+<li><label><input type="checkbox"> App loads at its stable URL after the machine slept (expect a few-second cold start)</label></li>
+<li><label><input type="checkbox"> An edit-in-session change produced a new version at the same URL</label></li>
+<li><label><input type="checkbox"> Share scope is right: a teammate without access is stopped at sign-in</label></li>
 </ul>
 <h2 id="pitfalls">Pitfalls<a class="hlink" href="#pitfalls" aria-hidden="true">#</a></h2>
 <ul>
@@ -117,13 +118,14 @@
 <li><a href="https://lightmind24.blogspot.com/2026/11/devin-apps-tutorial-build-private.html">Devin Apps tutorial — build a private internal app by prompt</a> — the most complete third-party walkthrough: what belongs in the first prompt, how Apps pick up your design system, where Apps stops being the right tool</li>
 <li>Related: <a href="automations-101-event-driven.html">Guide 6 — Event-driven automations</a> for scheduled refresh</li>
 </ul>
-<section class="related"><h3>Same stage — Stage 1 · Operate</h3><p><a href="bot-outcome-prompts.html">Bot outcome prompts, dissected</a> · <a href="automations-101-event-driven.html">Guide 6 — Event-driven automations</a> · <a href="playbooks-and-knowledge.html">Guide 9 — Playbooks &amp; knowledge: encoding your org&#x27;s conventions</a> · <a href="skills-and-plugins.html">Guide 17 — Skills &amp; plugins: the post-playbook packaging layer</a> · <a href="design-with-devin.html">Guide 8 — Design &amp; visual work</a></p></section>
-<nav class="guide-pager"><a class="pg-prev" href="skills-and-plugins.html"><span class="pg-dir">← Previous</span><span class="pg-t">Guide 17 — Skills &amp; plugins: the post-playbook packaging layer</span></a><a class="pg-next" href="design-with-devin.html"><span class="pg-dir">Next →</span><span class="pg-t">Guide 8 — Design &amp; visual work</span></a></nav>
+<section class="related"><h3>Same stage — Stage 1 · Operate</h3><p><a href="bot-outcome-prompts.html">Bot outcome prompts, dissected</a> · <a href="automations-101-event-driven.html">Guide 6 — Event-driven automations</a> · <a href="playbooks-and-knowledge.html">Guide 9 — Playbooks &amp; knowledge: encoding your org&#x27;s conventions</a> · <a href="skills-and-plugins.html">Guide 16 — Skills &amp; plugins: the post-playbook packaging layer</a> · <a href="design-with-devin.html">Guide 8 — Design &amp; visual work</a></p></section>
+<nav class="guide-pager"><a class="pg-prev" href="skills-and-plugins.html"><span class="pg-dir">← Previous</span><span class="pg-t">Guide 16 — Skills &amp; plugins: the post-playbook packaging layer</span></a><a class="pg-next" href="design-with-devin.html"><span class="pg-dir">Next →</span><span class="pg-t">Guide 8 — Design &amp; visual work</span></a></nav>
 </article>
 <footer><div class="wrap foot-base"><span data-i18n="foot.note">Unofficial community project — not affiliated with Cognition AI.</span><span><a href="../index.html">built-with-devin</a> · <a href="https://github.com/Till3005/build-with-devin">build-with-devin</a></span></div></footer>
 </main>
 <script src="../assets/theme.js"></script>
 <script src="../assets/i18n.js"></script>
 <script src="../assets/i18n-runtime.js"></script>
+<script src="../assets/guides.js"></script>
 </body>
 </html>

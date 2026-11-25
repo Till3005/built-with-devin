@@ -12,7 +12,7 @@
 <link rel="alternate" hreflang="zh" href="https://till3005.github.io/built-with-devin/guides/zh/bot-outcome-prompts.html">
 <link rel="alternate" hreflang="x-default" href="https://till3005.github.io/built-with-devin/guides/bot-outcome-prompts.html">
 <link rel="alternate" type="application/rss+xml" title="built-with-devin feed" href="../feed.xml">
-<script type="application/ld+json">{"@context": "https://schema.org", "@type": "TechArticle", "headline": "Bot outcome prompts, dissected", "description": "write outcome prompts the way the documented deployments actually did — ownership of an area, not a task list.", "inLanguage": "en", "url": "https://till3005.github.io/built-with-devin/guides/bot-outcome-prompts.html", "isPartOf": {"@type": "Course", "name": "build-with-devin", "url": "https://till3005.github.io/built-with-devin/guides/"}, "dateModified": "2026-11-24"}</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "TechArticle", "headline": "Bot outcome prompts, dissected", "description": "write outcome prompts the way the documented deployments actually did — ownership of an area, not a task list.", "inLanguage": "en", "url": "https://till3005.github.io/built-with-devin/guides/bot-outcome-prompts.html", "isPartOf": {"@type": "Course", "name": "build-with-devin", "url": "https://till3005.github.io/built-with-devin/guides/"}, "dateModified": "2026-11-25"}</script>
 <link rel="icon" href="../assets/brand/Devin_Symbol.svg" type="image/svg+xml">
 <link rel="stylesheet" href="../assets/site.css">
 <link rel="stylesheet" href="../assets/guides.css">
@@ -39,17 +39,19 @@
       <button class="mode-btn on" data-mode="build" role="tab" aria-selected="true" onclick="location.href='../index.html#build'">Build</button>
       <span class="mode-pill" aria-hidden="true"></span>
     </div>
+    <button id="theme-toggle" aria-label="Toggle theme"></button>
     <a class="cta" href="https://github.com/Till3005/build-with-devin/blob/main/guides/bot-outcome-prompts.md">GitHub</a>
   </div>
 </div></nav>
 <main>
 <article class="guide wrap" id="guide">
   <p class="guide-crumb"><a href="index.html">← Guides</a> · <a href="ja/bot-outcome-prompts.html">日本語</a> · <a href="pt/bot-outcome-prompts.html">Português</a> · <a href="zh/bot-outcome-prompts.html">中文</a></p>
-<p class="guide-meta">Updated 2026-11-24</p>
+<div class="guide-meta"><span class="meta-chip">Reference</span><span class="meta-chip">Updated 2026-11-25</span></div>
 <details class="toc" open><summary>On this page</summary><ol><li class="d2"><a href="#the-exemplar">The exemplar</a></li><li class="d2"><a href="#the-anatomy-of-a-working-outcome-prompt">The anatomy of a working outcome prompt</a></li><li class="d2"><a href="#patterns-from-the-official-template-marketplace">Patterns from the official template marketplace</a></li><li class="d2"><a href="#multi-bot-orgs-prompts-that-grant-authority">Multi-bot orgs: prompts that grant authority</a></li><li class="d2"><a href="#anti-patterns">Anti-patterns</a></li><li class="d2"><a href="#drafting-yours-the-three-line-test">Drafting yours — the three-line test</a></li><li class="d2"><a href="#verify-it">Verify it</a></li><li class="d2"><a href="#pitfalls">Pitfalls</a></li><li class="d2"><a href="#knowledge-check">Knowledge check</a></li><li class="d2"><a href="#walkthrough-outcome-vs-task-side-by-side-on-devin-cli-v3000-14-swe-2-flash-medium">Walkthrough — outcome vs task, side by side, on Devin CLI v3000.14 (swe-2-flash-medium)</a></li><li class="d2"><a href="#sources">Sources</a></li></ol></details>
 <h1>Bot outcome prompts, dissected</h1>
 <p><strong>Goal:</strong> write outcome prompts the way the documented deployments actually did — ownership of an area, not a task list.
-<strong>Level:</strong> intermediate · <strong>Time:</strong> 20 min to draft, a week to calibrate</p>
+<strong>Level:</strong> intermediate · <strong>Time:</strong> 20 min to draft, a week to calibrate
+<strong>Source:</strong> <a href="https://devin.ai/blog/introducing-devin-bots">Introducing Devin Bots</a> + <a href="https://docs.devin.ai/work-with-devin/bots">Bots docs</a> + deployment reports in <a href="https://github.com/Till3005/built-with-devin#documented-deployments">built-with-devin</a></p>
 <p>Every public bot deployment that produced big numbers started with a short prompt assigning an <em>outcome</em>. This guide collects the real ones and reverse-engineers why they work.</p>
 <h2 id="the-exemplar">The exemplar<a class="hlink" href="#the-exemplar" aria-hidden="true">#</a></h2>
 <blockquote>
@@ -115,9 +117,9 @@
 <p>If a stranger couldn't check line 2's truth from outside, tighten it.</p>
 <h2 id="verify-it">Verify it<a class="hlink" href="#verify-it" aria-hidden="true">#</a></h2>
 <ul>
-<li>[ ] Take a real backlog item from your repo and rewrite it as an outcome prompt — surface, verifiable state, standing behavior</li>
-<li>[ ] Show it to someone who doesn't know the codebase: could they tell from outside when the Bot is "winning"?</li>
-<li>[ ] The Bot's first reply should be a plan or clarifying questions about scope — if it asks "what do you want me to do first," the prompt didn't assign ownership</li>
+<li><label><input type="checkbox"> Take a real backlog item from your repo and rewrite it as an outcome prompt — surface, verifiable state, standing behavior</label></li>
+<li><label><input type="checkbox"> Show it to someone who doesn't know the codebase: could they tell from outside when the Bot is "winning"?</label></li>
+<li><label><input type="checkbox"> The Bot's first reply should be a plan or clarifying questions about scope — if it asks "what do you want me to do first," the prompt didn't assign ownership</label></li>
 </ul>
 <h2 id="pitfalls">Pitfalls<a class="hlink" href="#pitfalls" aria-hidden="true">#</a></h2>
 <ul>
@@ -156,7 +158,7 @@
 <li><a href="https://devin.ai/blog/introducing-devin-bots">Introducing Devin Bots</a> · <a href="https://docs.devin.ai/work-with-devin/bots">Bots docs</a> · <a href="https://devin.ai/bots/templates">Template marketplace</a></li>
 <li>Deployment reports linked in <a href="https://github.com/Till3005/built-with-devin#documented-deployments">built-with-devin</a></li>
 </ul>
-<section class="related"><h3>Same stage — Stage 1 · Operate</h3><p><a href="automations-101-event-driven.html">Guide 6 — Event-driven automations</a> · <a href="playbooks-and-knowledge.html">Guide 9 — Playbooks &amp; knowledge: encoding your org&#x27;s conventions</a> · <a href="skills-and-plugins.html">Guide 17 — Skills &amp; plugins: the post-playbook packaging layer</a> · <a href="devin-apps.html">Guide 10 — Devin Apps: ship live tools from a chat</a> · <a href="design-with-devin.html">Guide 8 — Design &amp; visual work</a></p></section>
+<section class="related"><h3>Same stage — Stage 1 · Operate</h3><p><a href="automations-101-event-driven.html">Guide 6 — Event-driven automations</a> · <a href="playbooks-and-knowledge.html">Guide 9 — Playbooks &amp; knowledge: encoding your org&#x27;s conventions</a> · <a href="skills-and-plugins.html">Guide 16 — Skills &amp; plugins: the post-playbook packaging layer</a> · <a href="devin-apps.html">Guide 10 — Devin Apps: ship live tools from a chat</a> · <a href="design-with-devin.html">Guide 8 — Design &amp; visual work</a></p></section>
 <nav class="guide-pager"><a class="pg-prev" href="official-cookbook.html"><span class="pg-dir">← Previous</span><span class="pg-t">Guide 13 — The official use-case cookbook</span></a><a class="pg-next" href="automations-101-event-driven.html"><span class="pg-dir">Next →</span><span class="pg-t">Guide 6 — Event-driven automations</span></a></nav>
 </article>
 <footer><div class="wrap foot-base"><span data-i18n="foot.note">Unofficial community project — not affiliated with Cognition AI.</span><span><a href="../index.html">built-with-devin</a> · <a href="https://github.com/Till3005/build-with-devin">build-with-devin</a></span></div></footer>
@@ -164,5 +166,6 @@
 <script src="../assets/theme.js"></script>
 <script src="../assets/i18n.js"></script>
 <script src="../assets/i18n-runtime.js"></script>
+<script src="../assets/guides.js"></script>
 </body>
 </html>

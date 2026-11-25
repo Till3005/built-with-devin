@@ -39,13 +39,14 @@
       <button class="mode-btn on" data-mode="build" role="tab" aria-selected="true" onclick="location.href='../index.html#build'">Build</button>
       <span class="mode-pill" aria-hidden="true"></span>
     </div>
+    <button id="theme-toggle" aria-label="Toggle theme"></button>
     <a class="cta" href="https://github.com/Till3005/build-with-devin/blob/main/guides/automations-101-event-driven.md">GitHub</a>
   </div>
 </div></nav>
 <main>
 <article class="guide wrap" id="guide">
   <p class="guide-crumb"><a href="index.html">← Guides</a> · <a href="ja/automations-101-event-driven.html">日本語</a> · <a href="pt/automations-101-event-driven.html">Português</a> · <a href="zh/automations-101-event-driven.html">中文</a></p>
-<p class="guide-meta">Updated 2026-11-20</p>
+<div class="guide-meta"><span class="meta-chip">Start here</span><span class="meta-chip">Updated 2026-11-20</span></div>
 <details class="toc" open><summary>On this page</summary><ol><li class="d2"><a href="#the-anatomy">The anatomy</a></li><li class="d2"><a href="#trigger-catalog">Trigger catalog</a></li><li class="d2"><a href="#recipe-1-devin-on-any-issue">Recipe 1 — /devin on any issue</a></li><li class="d2"><a href="#recipe-2-ci-failure-self-repair">Recipe 2 — CI failure self-repair</a></li><li class="d2"><a href="#recipe-3-scheduled-sweep">Recipe 3 — Scheduled sweep</a></li><li class="d2"><a href="#action-types-choosing-between-them">Action types, choosing between them</a></li><li class="d2"><a href="#build-it">Build it</a></li><li class="d2"><a href="#walkthrough-an-automation-built-fired-and-verified-on-devin-desktop-v3-14-pro-plan">Walkthrough — an automation built, fired and verified on Devin Desktop v3.14 (Pro plan)</a></li><li class="d2"><a href="#verify-it">Verify it</a></li><li class="d2"><a href="#pitfalls">Pitfalls</a></li><li class="d2"><a href="#knowledge-check">Knowledge check</a></li><li class="d2"><a href="#sources">Sources</a></li></ol></details>
 <h1>Guide 6 — Event-driven automations</h1>
 <p><strong>Goal:</strong> wire external events — Slack, Teams, GitHub, Linear, Jira, PagerDuty, cron, webhooks — to Devin sessions that start themselves.
@@ -230,9 +231,9 @@ Action:    Start session: &quot;Sweep yesterday's Sentry issues in
 <em>8. The verified output — a real categorized changelog of the week's 103 commits, delivered as an artifact</em></p>
 <h2 id="verify-it">Verify it<a class="hlink" href="#verify-it" aria-hidden="true">#</a></h2>
 <ul>
-<li>[ ] Fire the trigger manually once (comment <code>/devin test</code>, or push a failing commit) and watch a session start with the event payload</li>
-<li>[ ] A non-matching event (wrong label, wrong channel) does nothing</li>
-<li>[ ] The action's output lands where you expected (PR, Slack thread, ticket)</li>
+<li><label><input type="checkbox"> Fire the trigger manually once (comment <code>/devin test</code>, or push a failing commit) and watch a session start with the event payload</label></li>
+<li><label><input type="checkbox"> A non-matching event (wrong label, wrong channel) does nothing</label></li>
+<li><label><input type="checkbox"> The action's output lands where you expected (PR, Slack thread, ticket)</label></li>
 </ul>
 <h2 id="pitfalls">Pitfalls<a class="hlink" href="#pitfalls" aria-hidden="true">#</a></h2>
 <ul>
@@ -252,7 +253,7 @@ Action:    Start session: &quot;Sweep yesterday's Sentry issues in
 <li><a href="https://www.youtube.com/watch?v=6xxKtIpgOyE">Devin Automations QuickStart (video)</a></li>
 <li>Related: <a href="bots-202-scheduled-sentinel.html">Guide 3 — Scheduled-sentinel Bot</a> for adding Bot judgment on top of a cron</li>
 </ul>
-<section class="related"><h3>Same stage — Stage 1 · Operate</h3><p><a href="bot-outcome-prompts.html">Bot outcome prompts, dissected</a> · <a href="playbooks-and-knowledge.html">Guide 9 — Playbooks &amp; knowledge: encoding your org&#x27;s conventions</a> · <a href="skills-and-plugins.html">Guide 17 — Skills &amp; plugins: the post-playbook packaging layer</a> · <a href="devin-apps.html">Guide 10 — Devin Apps: ship live tools from a chat</a> · <a href="design-with-devin.html">Guide 8 — Design &amp; visual work</a></p></section>
+<section class="related"><h3>Same stage — Stage 1 · Operate</h3><p><a href="bot-outcome-prompts.html">Bot outcome prompts, dissected</a> · <a href="playbooks-and-knowledge.html">Guide 9 — Playbooks &amp; knowledge: encoding your org&#x27;s conventions</a> · <a href="skills-and-plugins.html">Guide 16 — Skills &amp; plugins: the post-playbook packaging layer</a> · <a href="devin-apps.html">Guide 10 — Devin Apps: ship live tools from a chat</a> · <a href="design-with-devin.html">Guide 8 — Design &amp; visual work</a></p></section>
 <nav class="guide-pager"><a class="pg-prev" href="bot-outcome-prompts.html"><span class="pg-dir">← Previous</span><span class="pg-t">Bot outcome prompts, dissected</span></a><a class="pg-next" href="playbooks-and-knowledge.html"><span class="pg-dir">Next →</span><span class="pg-t">Guide 9 — Playbooks &amp; knowledge: encoding your org&#x27;s conventions</span></a></nav>
 </article>
 <footer><div class="wrap foot-base"><span data-i18n="foot.note">Unofficial community project — not affiliated with Cognition AI.</span><span><a href="../index.html">built-with-devin</a> · <a href="https://github.com/Till3005/build-with-devin">build-with-devin</a></span></div></footer>
@@ -260,5 +261,6 @@ Action:    Start session: &quot;Sweep yesterday's Sentry issues in
 <script src="../assets/theme.js"></script>
 <script src="../assets/i18n.js"></script>
 <script src="../assets/i18n-runtime.js"></script>
+<script src="../assets/guides.js"></script>
 </body>
 </html>

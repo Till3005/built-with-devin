@@ -39,13 +39,14 @@
       <button class="mode-btn on" data-mode="build" role="tab" aria-selected="true" onclick="location.href='../../index.html#build'">Build</button>
       <span class="mode-pill" aria-hidden="true"></span>
     </div>
+    <button id="theme-toggle" aria-label="Toggle theme"></button>
     <a class="cta" href="https://github.com/Till3005/build-with-devin/blob/main/guides/pt/bots-202-scheduled-sentinel.md">GitHub</a>
   </div>
 </div></nav>
 <main>
 <article class="guide wrap" id="guide">
   <p class="guide-crumb"><a href="index.html">← Guias</a> · <a href="../bots-202-scheduled-sentinel.html">English</a> · <a href="../ja/bots-202-scheduled-sentinel.html">日本語</a> · <a href="../zh/bots-202-scheduled-sentinel.html">中文</a></p>
-<p class="guide-meta">Atualizado 2026-11-24</p>
+<div class="guide-meta"><span class="meta-chip">Intermediário</span><span class="meta-chip">Atualizado 2026-11-24</span></div>
 <details class="toc" open><summary>Nesta página</summary><ol><li class="d2"><a href="#o-padrão">O padrão</a></li><li class="d2"><a href="#pré-requisitos">Pré-requisitos</a></li><li class="d2"><a href="#passo-1-o-prompt-de-resultado">Passo 1 — O prompt de resultado</a></li><li class="d2"><a href="#passo-2-agendar">Passo 2 — Agendar</a></li><li class="d2"><a href="#passo-3-condições-realistas-importam">Passo 3 — Condições realistas importam</a></li><li class="d2"><a href="#passo-4-disciplina-de-ruído">Passo 4 — Disciplina de ruído</a></li><li class="d2"><a href="#passo-5-evidência-em-cada-correção">Passo 5 — Evidência em cada correção</a></li><li class="d2"><a href="#checklist-de-verificação">Checklist de verificação</a></li><li class="d2"><a href="#armadilhas">Armadilhas</a></li><li class="d2"><a href="#teste-de-conhecimento">Teste de conhecimento</a></li><li class="d2"><a href="#fontes">Fontes</a></li></ol></details>
 <h1>Guia 3 — Bot sentinela agendado</h1>
 <p><strong>Objetivo:</strong> um Bot dono de uma checagem de qualidade recorrente — roda no horário, tria falhas, rastreia até a causa e envia correções.
@@ -133,10 +134,10 @@ that introduced it, and open a fix PR with before/after evidence.
 </table>
 <h2 id="checklist-de-verificação">Checklist de verificação<a class="hlink" href="#checklist-de-verificação" aria-hidden="true">#</a></h2>
 <ul>
-<li>[ ] Automação existe e dispara no cron definido (Settings → Automations mostra execuções)</li>
-<li>[ ] Uma regressão semeada produz um PR de correção com evidência antes/depois</li>
-<li>[ ] Uma execução flaky produz uma reexecução, não uma correção</li>
-<li>[ ] A própria checagem é mantida — quando o app mudou embaixo dela, o Bot atualizou a checagem</li>
+<li><label><input type="checkbox"> Automação existe e dispara no cron definido (Settings → Automations mostra execuções)</label></li>
+<li><label><input type="checkbox"> Uma regressão semeada produz um PR de correção com evidência antes/depois</label></li>
+<li><label><input type="checkbox"> Uma execução flaky produz uma reexecução, não uma correção</label></li>
+<li><label><input type="checkbox"> A própria checagem é mantida — quando o app mudou embaixo dela, o Bot atualizou a checagem</label></li>
 </ul>
 <h2 id="armadilhas">Armadilhas<a class="hlink" href="#armadilhas" aria-hidden="true">#</a></h2>
 <ul>
@@ -164,5 +165,6 @@ that introduced it, and open a fix PR with before/after evidence.
 <script src="../../assets/theme.js"></script>
 <script src="../../assets/i18n.js"></script>
 <script src="../../assets/i18n-runtime.js"></script>
+<script src="../../assets/guides.js"></script>
 </body>
 </html>

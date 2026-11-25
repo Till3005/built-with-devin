@@ -39,13 +39,14 @@
       <button class="mode-btn on" data-mode="build" role="tab" aria-selected="true" onclick="location.href='../index.html#build'">Build</button>
       <span class="mode-pill" aria-hidden="true"></span>
     </div>
+    <button id="theme-toggle" aria-label="Toggle theme"></button>
     <a class="cta" href="https://github.com/Till3005/build-with-devin/blob/main/guides/bots-201-product-owner.md">GitHub</a>
   </div>
 </div></nav>
 <main>
 <article class="guide wrap" id="guide">
   <p class="guide-crumb"><a href="index.html">← Guides</a> · <a href="ja/bots-201-product-owner.html">日本語</a> · <a href="pt/bots-201-product-owner.html">Português</a> · <a href="zh/bots-201-product-owner.html">中文</a></p>
-<p class="guide-meta">Updated 2026-11-18</p>
+<div class="guide-meta"><span class="meta-chip">Intermediate</span><span class="meta-chip">Updated 2026-11-18</span></div>
 <details class="toc" open><summary>On this page</summary><ol><li class="d2"><a href="#the-pattern">The pattern</a></li><li class="d2"><a href="#prerequisites">Prerequisites</a></li><li class="d2"><a href="#step-1-the-outcome-prompt">Step 1 — The outcome prompt</a></li><li class="d2"><a href="#step-2-phase-one-unblock-don-t-build">Step 2 — Phase one: unblock, don&#x27;t build</a></li><li class="d2"><a href="#step-3-the-working-loop">Step 3 — The working loop</a></li><li class="d2"><a href="#step-4-your-job-as-its-executive">Step 4 — Your job as its executive</a></li><li class="d2"><a href="#steady-state">Steady state</a></li><li class="d2"><a href="#verify-it">Verify it</a></li><li class="d2"><a href="#pitfalls">Pitfalls</a></li><li class="d2"><a href="#knowledge-check">Knowledge check</a></li><li class="d2"><a href="#sources">Sources</a></li></ol></details>
 <h1>Guide 2 — Product-owner Bot</h1>
 <p><strong>Goal:</strong> a Bot that product-manages an entire app surface — files its own tickets, builds them, merges, and reports daily.
@@ -115,11 +116,11 @@ what needs a human. Include a screen recording of visible changes.
 </ul>
 <h2 id="verify-it">Verify it<a class="hlink" href="#verify-it" aria-hidden="true">#</a></h2>
 <ul>
-<li>[ ] Bot's first act was a blocker audit, not a PR</li>
-<li>[ ] It files and works its own ticket queue without being asked</li>
-<li>[ ] PRs are small and carry proof (tests, screenshots, recordings)</li>
-<li>[ ] Daily report posts to Slack with visible evidence</li>
-<li>[ ] You went a full day sending zero messages and PRs still merged</li>
+<li><label><input type="checkbox"> Bot's first act was a blocker audit, not a PR</label></li>
+<li><label><input type="checkbox"> It files and works its own ticket queue without being asked</label></li>
+<li><label><input type="checkbox"> PRs are small and carry proof (tests, screenshots, recordings)</label></li>
+<li><label><input type="checkbox"> Daily report posts to Slack with visible evidence</label></li>
+<li><label><input type="checkbox"> You went a full day sending zero messages and PRs still merged</label></li>
 </ul>
 <h2 id="pitfalls">Pitfalls<a class="hlink" href="#pitfalls" aria-hidden="true">#</a></h2>
 <ul>
@@ -147,5 +148,6 @@ what needs a human. Include a screen recording of visible changes.
 <script src="../assets/theme.js"></script>
 <script src="../assets/i18n.js"></script>
 <script src="../assets/i18n-runtime.js"></script>
+<script src="../assets/guides.js"></script>
 </body>
 </html>

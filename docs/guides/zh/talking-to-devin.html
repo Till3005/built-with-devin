@@ -39,13 +39,14 @@
       <button class="mode-btn on" data-mode="build" role="tab" aria-selected="true" onclick="location.href='../../index.html#build'">Build</button>
       <span class="mode-pill" aria-hidden="true"></span>
     </div>
+    <button id="theme-toggle" aria-label="Toggle theme"></button>
     <a class="cta" href="https://github.com/Till3005/build-with-devin/blob/main/guides/zh/talking-to-devin.md">GitHub</a>
   </div>
 </div></nav>
 <main>
 <article class="guide wrap" id="guide">
   <p class="guide-crumb"><a href="index.html">← 指南</a> · <a href="../talking-to-devin.html">English</a> · <a href="../ja/talking-to-devin.html">日本語</a> · <a href="../pt/talking-to-devin.html">Português</a></p>
-<p class="guide-meta">更新于 2026-11-24</p>
+<div class="guide-meta"><span class="meta-chip">从这里开始</span><span class="meta-chip">更新于 2026-11-24</span></div>
 <details class="toc" open><summary>本页目录</summary><ol><li class="d2"><a href="#为什么这篇排第一">为什么这篇排第一</a></li><li class="d2"><a href="#撑起其他一切的四条规则">撑起其他一切的四条规则</a></li><li class="d2"><a href="#官方示范指令的解剖">官方示范指令的解剖</a></li><li class="d2"><a href="#防线的另一边-什么留给自已">防线的另一边：什么留给自已</a></li><li class="d2"><a href="#从-指令-到-所有权">从&quot;指令&quot;到&quot;所有权&quot;</a></li><li class="d2"><a href="#实录演示-录于-devin-cli-v3000-14-swe-2-flash-medium">实录演示 —— 录于 Devin CLI v3000.14（swe-2-flash-medium）</a></li><li class="d2"><a href="#验证一下">验证一下</a></li><li class="d2"><a href="#坑">坑</a></li><li class="d2"><a href="#自测">自测</a></li><li class="d2"><a href="#来源">来源</a></li></ol></details>
 <h1>指南 18 — 跟 Devin 说话：提示词基本法</h1>
 <p><strong>目标：</strong> 写出 Devin 不可能误读的指令——会话能交付与会话会跑偏的分水岭。
@@ -98,9 +99,9 @@
 <em>6. /exit 后——<code>devin -r</code> 恢复提示，<code>git status</code> 证明边界守住了：两个文件被改、零新提交</em></p>
 <h2 id="验证一下">验证一下<a class="hlink" href="#验证一下" aria-hidden="true">#</a></h2>
 <ul>
-<li>[ ] 拿你 backlog 里的一个真实任务，你能在 10 分钟内写出含：点名的仓库/文件、参考模式、明确的验收检查、声明的边界的指令。</li>
-<li>[ ] 产出的会话没有中途问你一个"显而易见"的问题。</li>
-<li>[ ] Devin 在开 PR 前自己验证了——因为你在指令里要求了。</li>
+<li><label><input type="checkbox"> 拿你 backlog 里的一个真实任务，你能在 10 分钟内写出含：点名的仓库/文件、参考模式、明确的验收检查、声明的边界的指令。</label></li>
+<li><label><input type="checkbox"> 产出的会话没有中途问你一个"显而易见"的问题。</label></li>
+<li><label><input type="checkbox"> Devin 在开 PR 前自己验证了——因为你在指令里要求了。</label></li>
 </ul>
 <h2 id="坑">坑<a class="hlink" href="#坑" aria-hidden="true">#</a></h2>
 <ul>
@@ -130,5 +131,6 @@
 <script src="../../assets/theme.js"></script>
 <script src="../../assets/i18n.js"></script>
 <script src="../../assets/i18n-runtime.js"></script>
+<script src="../../assets/guides.js"></script>
 </body>
 </html>

@@ -39,13 +39,14 @@
       <button class="mode-btn on" data-mode="build" role="tab" aria-selected="true" onclick="location.href='../../index.html#build'">Build</button>
       <span class="mode-pill" aria-hidden="true"></span>
     </div>
+    <button id="theme-toggle" aria-label="Toggle theme"></button>
     <a class="cta" href="https://github.com/Till3005/build-with-devin/blob/main/guides/zh/community-field-reports.md">GitHub</a>
   </div>
 </div></nav>
 <main>
 <article class="guide wrap" id="guide">
   <p class="guide-crumb"><a href="index.html">← 指南</a> · <a href="../community-field-reports.html">English</a> · <a href="../ja/community-field-reports.html">日本語</a> · <a href="../pt/community-field-reports.html">Português</a></p>
-<p class="guide-meta">更新于 2026-11-24</p>
+<div class="guide-meta"><span class="meta-chip">从这里开始</span><span class="meta-chip">更新于 2026-11-24</span></div>
 <details class="toc" open><summary>本页目录</summary><ol><li class="d2"><a href="#每篇报告都在重复的模式">每篇报告都在重复的模式</a></li><li class="d2"><a href="#有据可查的成功场景">有据可查的成功场景</a></li><li class="d2"><a href="#有据可查的失败场景">有据可查的失败场景</a></li><li class="d2"><a href="#实名团队部署-社区-带数字">实名团队部署（社区、带数字）</a></li><li class="d2"><a href="#bots-时代-第一批回执-2026-年-11-月">Bots 时代——第一批回执（2026 年 11 月）</a></li><li class="d2"><a href="#蒸馏出的教训">蒸馏出的教训</a></li><li class="d2"><a href="#scott-wu-的内部-top-5-来自-lenny-s-访谈">Scott Wu 的内部 top-5（来自 Lenny&#x27;s 访谈）</a></li><li class="d2"><a href="#深读-抄什么-防什么">深读——抄什么、防什么</a></li><li class="d2"><a href="#验证">验证</a></li><li class="d2"><a href="#常见陷阱">常见陷阱</a></li><li class="d2"><a href="#自检">自检</a></li><li class="d2"><a href="#sources">Sources</a></li></ol></details>
 <h1>指南 14 — 社区实战报告</h1>
 <p><strong>目标：</strong> 工程师把 Devin 用在真实工作上后实际学到了什么——包括失败。蒸馏自已发表的 hands-on 记录，好评和恶评都有。
@@ -179,8 +180,8 @@
 <p><strong>Ryan Carson 的一人舰队。</strong> Untangle 的独立创始人以 ~$20k/月同时跑 ~15 个 Devin agent——调度不用仪表盘，用文件夹系统加一张写着 P0 的纸，因为那个规模下真正的瓶颈是<em>他的</em>注意力，不是 agent 吞吐。两个 playbook 撑起整个运营：「Watchdog」盯每个律所账号，一个人顶替整个客户成功团队；「LAN PR」每天合 ~40 个 PR——review 回路 + 视频走查 + auto-merge，没有 QA 审阅人。抄法：扩展的单位是「每个面一份命名 playbook」，不是更多 agent。防什么：他几乎全面弃用本地 agent——长回路归云 agent；唯一保留的例外是用 Codex 跑范围卡死的设计稿实现。</p>
 <h2 id="验证">验证<a class="hlink" href="#验证" aria-hidden="true">#</a></h2>
 <ul>
-<li>[ ] 挑一篇和你技术栈最接近的报告，去读原文而不是这份蒸馏——那个数字放回上下文里还成立吗？</li>
-<li>[ ] 写下你敢赌钱复现到自己团队的一条教训；说不出来就换一篇</li>
+<li><label><input type="checkbox"> 挑一篇和你技术栈最接近的报告，去读原文而不是这份蒸馏——那个数字放回上下文里还成立吗？</label></li>
+<li><label><input type="checkbox"> 写下你敢赌钱复现到自己团队的一条教训；说不出来就换一篇</label></li>
 </ul>
 <h2 id="常见陷阱">常见陷阱<a class="hlink" href="#常见陷阱" aria-hidden="true">#</a></h2>
 <ul>
@@ -230,5 +231,6 @@
 <script src="../../assets/theme.js"></script>
 <script src="../../assets/i18n.js"></script>
 <script src="../../assets/i18n-runtime.js"></script>
+<script src="../../assets/guides.js"></script>
 </body>
 </html>

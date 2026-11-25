@@ -39,13 +39,14 @@
       <button class="mode-btn on" data-mode="build" role="tab" aria-selected="true" onclick="location.href='../../index.html#build'">Build</button>
       <span class="mode-pill" aria-hidden="true"></span>
     </div>
+    <button id="theme-toggle" aria-label="Toggle theme"></button>
     <a class="cta" href="https://github.com/Till3005/build-with-devin/blob/main/guides/zh/bots-101-first-bot.md">GitHub</a>
   </div>
 </div></nav>
 <main>
 <article class="guide wrap" id="guide">
   <p class="guide-crumb"><a href="index.html">← 指南</a> · <a href="../bots-101-first-bot.html">English</a> · <a href="../ja/bots-101-first-bot.html">日本語</a> · <a href="../pt/bots-101-first-bot.html">Português</a></p>
-<p class="guide-meta">更新于 2026-11-24</p>
+<div class="guide-meta"><span class="meta-chip">从这里开始</span><span class="meta-chip">更新于 2026-11-24</span></div>
 <details class="toc" open><summary>本页目录</summary><ol><li class="d2"><a href="#bot-是什么">Bot 是什么</a></li><li class="d2"><a href="#第-1-步-创建">第 1 步 — 创建</a></li><li class="d2"><a href="#第-2-步-指派结果">第 2 步 — 指派结果</a></li><li class="d3"><a href="#有界的第一个任务">有界的第一个任务</a></li><li class="d2"><a href="#第-3-步-与它协作">第 3 步 — 与它协作</a></li><li class="d2"><a href="#第-4-步-用记忆掌舵-别微操">第 4 步 — 用记忆掌舵，别微操</a></li><li class="d2"><a href="#共享之前-权限与用量">共享之前——权限与用量</a></li><li class="d2"><a href="#第-5-步-放到你工作的地方">第 5 步 — 放到你工作的地方</a></li><li class="d2"><a href="#第-6-步-排程与模式">第 6 步 — 排程与模式</a></li><li class="d2"><a href="#生命周期">生命周期</a></li><li class="d2"><a href="#verify-it">Verify it</a></li><li class="d2"><a href="#坑">坑</a></li><li class="d2"><a href="#自检">自检</a></li><li class="d2"><a href="#sources">Sources</a></li></ol></details>
 <h1>指南 1 — 你的第一个 Bot</h1>
 <p><strong>目标：</strong> 创建一个拥有结果的 Devin Bot，并学会后面每篇指南都要用的六个机制。
@@ -231,11 +232,11 @@ and any decision you need from me.
 <p>只有创建者和带 Manage Bots 权限的角色能看到 Archive/Delete。企业版里 <code>Use Bots</code> / <code>Manage Bots</code> / <code>Manage Bots across the enterprise</code> 是自定义角色里的独立权限。</p>
 <h2 id="verify-it">Verify it<a class="hlink" href="#verify-it" aria-hidden="true">#</a></h2>
 <ul>
-<li>[ ] Bot 已创建并命名；outcome prompt 已在聊天里发出</li>
-<li>[ ] Bot 没有被催第二次就启动了至少一个子会话</li>
-<li>[ ] <strong>Needs you</strong> 里出现了决策/PR/权限请求且你已处理</li>
-<li>[ ] 你在聊天里给的一条纠正出现在 Settings → Memory 的记忆文件里</li>
-<li>[ ]（可选）Slack 里 @ 它能够得到响应</li>
+<li><label><input type="checkbox"> Bot 已创建并命名；outcome prompt 已在聊天里发出</label></li>
+<li><label><input type="checkbox"> Bot 没有被催第二次就启动了至少一个子会话</label></li>
+<li><label><input type="checkbox"> <strong>Needs you</strong> 里出现了决策/PR/权限请求且你已处理</label></li>
+<li><label><input type="checkbox"> 你在聊天里给的一条纠正出现在 Settings → Memory 的记忆文件里</label></li>
+<li><label><input type="checkbox"> （可选）Slack 里 @ 它能够得到响应</label></li>
 </ul>
 <h2 id="坑">坑<a class="hlink" href="#坑" aria-hidden="true">#</a></h2>
 <ul>
@@ -264,5 +265,6 @@ and any decision you need from me.
 <script src="../../assets/theme.js"></script>
 <script src="../../assets/i18n.js"></script>
 <script src="../../assets/i18n-runtime.js"></script>
+<script src="../../assets/guides.js"></script>
 </body>
 </html>

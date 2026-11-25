@@ -12,7 +12,7 @@
 <link rel="alternate" hreflang="zh" href="https://till3005.github.io/built-with-devin/guides/zh/pt/bot-outcome-prompts.html">
 <link rel="alternate" hreflang="x-default" href="https://till3005.github.io/built-with-devin/guides/pt/bot-outcome-prompts.html">
 <link rel="alternate" type="application/rss+xml" title="built-with-devin feed" href="../../feed.xml">
-<script type="application/ld+json">{"@context": "https://schema.org", "@type": "TechArticle", "headline": "Prompts de resultado para Bots, dissecados", "description": "escrever prompts de resultado do jeito que as implantações documentadas realmente fizeram — propriedade de uma área, não uma lista de tarefas.", "inLanguage": "pt", "url": "https://till3005.github.io/built-with-devin/guides/pt/bot-outcome-prompts.html", "isPartOf": {"@type": "Course", "name": "build-with-devin", "url": "https://till3005.github.io/built-with-devin/guides/"}, "dateModified": "2026-11-24"}</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "TechArticle", "headline": "Prompts de resultado para Bots, dissecados", "description": "escrever prompts de resultado do jeito que as implantações documentadas realmente fizeram — propriedade de uma área, não uma lista de tarefas.", "inLanguage": "pt", "url": "https://till3005.github.io/built-with-devin/guides/pt/bot-outcome-prompts.html", "isPartOf": {"@type": "Course", "name": "build-with-devin", "url": "https://till3005.github.io/built-with-devin/guides/"}, "dateModified": "2026-11-25"}</script>
 <link rel="icon" href="../../assets/brand/Devin_Symbol.svg" type="image/svg+xml">
 <link rel="stylesheet" href="../../assets/site.css">
 <link rel="stylesheet" href="../../assets/guides.css">
@@ -39,17 +39,19 @@
       <button class="mode-btn on" data-mode="build" role="tab" aria-selected="true" onclick="location.href='../../index.html#build'">Build</button>
       <span class="mode-pill" aria-hidden="true"></span>
     </div>
+    <button id="theme-toggle" aria-label="Toggle theme"></button>
     <a class="cta" href="https://github.com/Till3005/build-with-devin/blob/main/guides/pt/bot-outcome-prompts.md">GitHub</a>
   </div>
 </div></nav>
 <main>
 <article class="guide wrap" id="guide">
   <p class="guide-crumb"><a href="index.html">← Guias</a> · <a href="../bot-outcome-prompts.html">English</a> · <a href="../ja/bot-outcome-prompts.html">日本語</a> · <a href="../zh/bot-outcome-prompts.html">中文</a></p>
-<p class="guide-meta">Atualizado 2026-11-24</p>
+<div class="guide-meta"><span class="meta-chip">Referência</span><span class="meta-chip">Atualizado 2026-11-25</span></div>
 <details class="toc" open><summary>Nesta página</summary><ol><li class="d2"><a href="#o-exemplar">O exemplar</a></li><li class="d2"><a href="#a-anatomia-de-um-prompt-de-resultado-que-funciona">A anatomia de um prompt de resultado que funciona</a></li><li class="d2"><a href="#padrões-do-marketplace-oficial-de-templates">Padrões do marketplace oficial de templates</a></li><li class="d2"><a href="#orgs-multi-bot-prompts-que-concedem-autoridade">Orgs multi-bot: prompts que concedem autoridade</a></li><li class="d2"><a href="#anti-padrões">Anti-padrões</a></li><li class="d2"><a href="#redigindo-o-seu-o-teste-das-três-linhas">Redigindo o seu — o teste das três linhas</a></li><li class="d2"><a href="#checklist-de-verificação">Checklist de verificação</a></li><li class="d2"><a href="#armadilhas">Armadilhas</a></li><li class="d2"><a href="#teste-de-conhecimento">Teste de conhecimento</a></li><li class="d2"><a href="#demonstração-prompt-de-resultado-vs-prompt-de-tarefa-lado-a-lado-no-devin-cli-v3000-14-swe-2-flash-medium">Demonstração — prompt de resultado vs prompt de tarefa, lado a lado, no Devin CLI v3000.14 (swe-2-flash-medium)</a></li><li class="d2"><a href="#fontes">Fontes</a></li></ol></details>
 <h1>Prompts de resultado para Bots, dissecados</h1>
 <p><strong>Objetivo:</strong> escrever prompts de resultado do jeito que as implantações documentadas realmente fizeram — propriedade de uma área, não uma lista de tarefas.
-<strong>Nível:</strong> intermediário · <strong>Tempo:</strong> 20 min para rascunhar, uma semana para calibrar</p>
+<strong>Nível:</strong> intermediário · <strong>Tempo:</strong> 20 min para rascunhar, uma semana para calibrar
+<strong>Fonte:</strong> <a href="https://devin.ai/blog/introducing-devin-bots">Introducing Devin Bots</a> + <a href="https://docs.devin.ai/work-with-devin/bots">documentação de Bots</a> + relatórios de implantação em <a href="https://github.com/Till3005/built-with-devin#documented-deployments">built-with-devin</a></p>
 <p>Toda implantação pública de bot que produziu números grandes começou com um prompt curto atribuindo um <em>resultado</em>. Este guia coleta os reais e faz engenharia reversa do porquê funcionam.</p>
 <h2 id="o-exemplar">O exemplar<a class="hlink" href="#o-exemplar" aria-hidden="true">#</a></h2>
 <blockquote>
@@ -115,9 +117,9 @@
 <p>Se um estranho não conseguisse checar a verdade da linha 2 de fora, aperte-a.</p>
 <h2 id="checklist-de-verificação">Checklist de verificação<a class="hlink" href="#checklist-de-verificação" aria-hidden="true">#</a></h2>
 <ul>
-<li>[ ] Pegue um item real do backlog do seu repo e reescreva como prompt de resultado — superfície, estado verificável, comportamento permanente</li>
-<li>[ ] Mostre a alguém que não conhece o codebase: conseguiria dizer de fora quando o Bot está "vencendo"?</li>
-<li>[ ] A primeira resposta do Bot deve ser um plano ou perguntas de esclarecimento sobre escopo — se perguntar "o que você quer que eu faça primeiro", o prompt não atribuiu propriedade</li>
+<li><label><input type="checkbox"> Pegue um item real do backlog do seu repo e reescreva como prompt de resultado — superfície, estado verificável, comportamento permanente</label></li>
+<li><label><input type="checkbox"> Mostre a alguém que não conhece o codebase: conseguiria dizer de fora quando o Bot está "vencendo"?</label></li>
+<li><label><input type="checkbox"> A primeira resposta do Bot deve ser um plano ou perguntas de esclarecimento sobre escopo — se perguntar "o que você quer que eu faça primeiro", o prompt não atribuiu propriedade</label></li>
 </ul>
 <h2 id="armadilhas">Armadilhas<a class="hlink" href="#armadilhas" aria-hidden="true">#</a></h2>
 <ul>
@@ -156,7 +158,7 @@
 <li><a href="https://devin.ai/blog/introducing-devin-bots">Introducing Devin Bots</a> · <a href="https://docs.devin.ai/work-with-devin/bots">Docs de Bots</a> · <a href="https://devin.ai/bots/templates">Marketplace de templates</a></li>
 <li>Relatos de implantação ligados no <a href="https://github.com/Till3005/built-with-devin#documented-deployments">built-with-devin</a></li>
 </ul>
-<section class="related"><h3>Mesmo estágio — Estágio 1 · Operar</h3><p><a href="automations-101-event-driven.html">Guia 6 — Automações orientadas a eventos</a> · <a href="playbooks-and-knowledge.html">Guia 9 — Playbooks &amp; knowledge: codificando as convenções da sua org</a> · <a href="skills-and-plugins.html">Guia 17 — Skills e plugins: a camada de empacotamento pós-playbook</a> · <a href="devin-apps.html">Guia 10 — Devin Apps: ferramentas ao vivo a partir de um chat</a> · <a href="design-with-devin.html">Guia 8 — Design &amp; trabalho visual</a></p></section>
+<section class="related"><h3>Mesmo estágio — Estágio 1 · Operar</h3><p><a href="automations-101-event-driven.html">Guia 6 — Automações orientadas a eventos</a> · <a href="playbooks-and-knowledge.html">Guia 9 — Playbooks &amp; knowledge: codificando as convenções da sua org</a> · <a href="skills-and-plugins.html">Guia 16 — Skills e plugins: a camada de empacotamento pós-playbook</a> · <a href="devin-apps.html">Guia 10 — Devin Apps: ferramentas ao vivo a partir de um chat</a> · <a href="design-with-devin.html">Guia 8 — Design &amp; trabalho visual</a></p></section>
 <nav class="guide-pager"><a class="pg-prev" href="official-cookbook.html"><span class="pg-dir">← Anterior</span><span class="pg-t">Guia 13 — O cookbook oficial de casos de uso</span></a><a class="pg-next" href="automations-101-event-driven.html"><span class="pg-dir">Próximo →</span><span class="pg-t">Guia 6 — Automações orientadas a eventos</span></a></nav>
 </article>
 <footer><div class="wrap foot-base"><span data-i18n="foot.note">Unofficial community project — not affiliated with Cognition AI.</span><span><a href="../../index.html">built-with-devin</a> · <a href="https://github.com/Till3005/build-with-devin">build-with-devin</a></span></div></footer>
@@ -164,5 +166,6 @@
 <script src="../../assets/theme.js"></script>
 <script src="../../assets/i18n.js"></script>
 <script src="../../assets/i18n-runtime.js"></script>
+<script src="../../assets/guides.js"></script>
 </body>
 </html>
