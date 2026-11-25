@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Guia 17 — Skills e plugins: a camada de empacotamento pós-playbook — build-with-devin guides</title>
+<title>Guia 16 — Skills e plugins: a camada de empacotamento pós-playbook — build-with-devin guides</title>
 <meta name="description" content="codificar os procedimentos repetíveis da sua org como SKILL.md para que toda sessão e Bot os siga — e empacotar/compartilhar entre repositórios com plugins.">
 <link rel="canonical" href="https://till3005.github.io/built-with-devin/guides/pt/skills-and-plugins.html">
 <link rel="alternate" hreflang="en" href="https://till3005.github.io/built-with-devin/guides/pt/skills-and-plugins.html">
@@ -12,12 +12,12 @@
 <link rel="alternate" hreflang="zh" href="https://till3005.github.io/built-with-devin/guides/zh/pt/skills-and-plugins.html">
 <link rel="alternate" hreflang="x-default" href="https://till3005.github.io/built-with-devin/guides/pt/skills-and-plugins.html">
 <link rel="alternate" type="application/rss+xml" title="built-with-devin feed" href="../../feed.xml">
-<script type="application/ld+json">{"@context": "https://schema.org", "@type": "TechArticle", "headline": "Guia 17 — Skills e plugins: a camada de empacotamento pós-playbook", "description": "codificar os procedimentos repetíveis da sua org como SKILL.md para que toda sessão e Bot os siga — e empacotar/compartilhar entre repositórios com plugins.", "inLanguage": "pt", "url": "https://till3005.github.io/built-with-devin/guides/pt/skills-and-plugins.html", "isPartOf": {"@type": "Course", "name": "build-with-devin", "url": "https://till3005.github.io/built-with-devin/guides/"}, "dateModified": "2026-11-19"}</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "TechArticle", "headline": "Guia 16 — Skills e plugins: a camada de empacotamento pós-playbook", "description": "codificar os procedimentos repetíveis da sua org como SKILL.md para que toda sessão e Bot os siga — e empacotar/compartilhar entre repositórios com plugins.", "inLanguage": "pt", "url": "https://till3005.github.io/built-with-devin/guides/pt/skills-and-plugins.html", "isPartOf": {"@type": "Course", "name": "build-with-devin", "url": "https://till3005.github.io/built-with-devin/guides/"}, "dateModified": "2026-11-19"}</script>
 <link rel="icon" href="../../assets/brand/Devin_Symbol.svg" type="image/svg+xml">
 <link rel="stylesheet" href="../../assets/site.css">
 <link rel="stylesheet" href="../../assets/guides.css">
 
-<meta property="og:title" content="Guia 17 — Skills e plugins: a camada de empacotamento pós-playbook">
+<meta property="og:title" content="Guia 16 — Skills e plugins: a camada de empacotamento pós-playbook">
 <meta property="og:description" content="codificar os procedimentos repetíveis da sua org como SKILL.md para que toda sessão e Bot os siga — e empacotar/compartilhar entre repositórios com plugins.">
 <meta property="og:type" content="article">
 <meta property="og:url" content="https://till3005.github.io/built-with-devin/guides/pt/skills-and-plugins.html">
@@ -47,7 +47,7 @@
   <p class="guide-crumb"><a href="index.html">← Guias</a> · <a href="../skills-and-plugins.html">English</a> · <a href="../ja/skills-and-plugins.html">日本語</a> · <a href="../zh/skills-and-plugins.html">中文</a></p>
 <p class="guide-meta">Atualizado 2026-11-19</p>
 <details class="toc" open><summary>Nesta página</summary><ol><li class="d2"><a href="#por-que-skills-são-a-camada-que-importa-agora">Por que skills são a camada que importa agora</a></li><li class="d2"><a href="#passo-1-onde-os-skills-ficam">Passo 1 — Onde os skills ficam</a></li><li class="d2"><a href="#passo-2-o-contrato-do-skill-md">Passo 2 — O contrato do SKILL.md</a></li><li class="d2"><a href="#passo-3-três-caminhos-de-invocação">Passo 3 — Três caminhos de invocação</a></li><li class="d2"><a href="#passo-4-crescendo-a-biblioteca">Passo 4 — Crescendo a biblioteca</a></li><li class="d2"><a href="#passo-a-passo-real-uma-skill-de-repositório-invocada-de-verdade-no-devin-cli-v3000-14-swe-2-flash-medium">Passo a passo real — uma skill de repositório invocada de verdade, no Devin CLI v3000.14 (swe-2-flash-medium)</a></li><li class="d2"><a href="#checklist-de-verificação">Checklist de verificação</a></li><li class="d2"><a href="#armadilhas">Armadilhas</a></li><li class="d2"><a href="#teste-de-conhecimento">Teste de conhecimento</a></li><li class="d2"><a href="#fontes">Fontes</a></li></ol></details>
-<h1>Guia 17 — Skills e plugins: a camada de empacotamento pós-playbook</h1>
+<h1>Guia 16 — Skills e plugins: a camada de empacotamento pós-playbook</h1>
 <p><strong>Objetivo:</strong> codificar os procedimentos repetíveis da sua org como <code>SKILL.md</code> para que toda sessão e Bot os siga — e empacotar/compartilhar entre repositórios com plugins.
 <strong>Nível:</strong> intermediário · a camada que substituiu os playbooks
 <strong>Fontes:</strong> <a href="https://docs.devin.ai/product-guides/skills">docs.devin.ai/product-guides/skills</a> · <a href="https://docs.devin.ai/release-notes/overview">release notes</a> · complementa o <a href="playbooks-and-knowledge.html">Guia 9</a></p>

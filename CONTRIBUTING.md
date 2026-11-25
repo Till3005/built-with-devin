@@ -36,3 +36,7 @@ Maintained is preferred; complete-and-quiet is fine; abandoned stubs get pruned.
 - Mark unofficial projects clearly — nothing should imply Cognition endorsement.
 - Dead links and abandoned entries get pruned periodically.
 - After editing `README.md`, run `python3 tools/sync.py` — it recomputes the stats line across all six language READMEs and the site, and checks link parity. CI fails on drift.
+
+## Maintainer automation
+
+The lean Devin Bot fleet that maintains this registry and the sister curriculum is defined in [`ops/bot-fleet/`](ops/bot-fleet/). The fleet uses pull requests; it does not publish directly to `main`.

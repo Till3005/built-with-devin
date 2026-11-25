@@ -12,7 +12,7 @@
 <link rel="alternate" hreflang="zh" href="https://till3005.github.io/built-with-devin/guides/zh/ja/bot-outcome-prompts.html">
 <link rel="alternate" hreflang="x-default" href="https://till3005.github.io/built-with-devin/guides/ja/bot-outcome-prompts.html">
 <link rel="alternate" type="application/rss+xml" title="built-with-devin feed" href="../../feed.xml">
-<script type="application/ld+json">{"@context": "https://schema.org", "@type": "TechArticle", "headline": "Bot 成果プロンプト、解剖", "description": "文書化された導入が実際にやったように成果プロンプトを書く——タスクリストではなく領域の所有。", "inLanguage": "ja", "url": "https://till3005.github.io/built-with-devin/guides/ja/bot-outcome-prompts.html", "isPartOf": {"@type": "Course", "name": "build-with-devin", "url": "https://till3005.github.io/built-with-devin/guides/"}, "dateModified": "2026-11-20"}</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "TechArticle", "headline": "Bot 成果プロンプト、解剖", "description": "文書化された導入が実際にやったように成果プロンプトを書く——タスクリストではなく領域の所有。", "inLanguage": "ja", "url": "https://till3005.github.io/built-with-devin/guides/ja/bot-outcome-prompts.html", "isPartOf": {"@type": "Course", "name": "build-with-devin", "url": "https://till3005.github.io/built-with-devin/guides/"}, "dateModified": "2026-11-24"}</script>
 <link rel="icon" href="../../assets/brand/Devin_Symbol.svg" type="image/svg+xml">
 <link rel="stylesheet" href="../../assets/site.css">
 <link rel="stylesheet" href="../../assets/guides.css">
@@ -45,11 +45,12 @@
 <main>
 <article class="guide wrap" id="guide">
   <p class="guide-crumb"><a href="index.html">← ガイド</a> · <a href="../bot-outcome-prompts.html">English</a> · <a href="../pt/bot-outcome-prompts.html">Português</a> · <a href="../zh/bot-outcome-prompts.html">中文</a></p>
-<p class="guide-meta">更新 2026-11-20</p>
+<p class="guide-meta">更新 2026-11-24</p>
 <details class="toc" open><summary>このページの目次</summary><ol><li class="d2"><a href="#模範例">模範例</a></li><li class="d2"><a href="#機能する成果プロンプトの構造">機能する成果プロンプトの構造</a></li><li class="d2"><a href="#公式テンプレートマーケットプレイスのパターン">公式テンプレートマーケットプレイスのパターン</a></li><li class="d2"><a href="#マルチ-bot-組織-権限を与えるプロンプト">マルチ Bot 組織：権限を与えるプロンプト</a></li><li class="d2"><a href="#アンチパターン">アンチパターン</a></li><li class="d2"><a href="#あなたのものを起草-3-行テスト">あなたのものを起草——3 行テスト</a></li><li class="d2"><a href="#検証チェックリスト">検証チェックリスト</a></li><li class="d2"><a href="#落とし穴">落とし穴</a></li><li class="d2"><a href="#理解度チェック">理解度チェック</a></li><li class="d2"><a href="#実録-outcome-プロンプト-vs-タスク-プロンプト-devin-cli-v3000-14-swe-2-flash-medium-で実演">実録 —— outcome プロンプト vs タスク プロンプト、Devin CLI v3000.14（swe-2-flash-medium）で実演</a></li><li class="d2"><a href="#出典">出典</a></li></ol></details>
 <h1>Bot 成果プロンプト、解剖</h1>
 <p><strong>目標：</strong> 文書化された導入が実際にやったように成果プロンプトを書く——タスクリストではなく領域の所有。
-<strong>レベル：</strong> 中級 · <strong>所要時間：</strong> 草案 20 分、調整に 1 週間</p>
+<strong>レベル：</strong> 中級 · <strong>所要時間：</strong> 草案 20 分、調整に 1 週間
+<strong>出典：</strong> <a href="https://devin.ai/blog/introducing-devin-bots">Devin Bots 発表</a> + <a href="https://docs.devin.ai/work-with-devin/bots">Bots 公式ドキュメント</a> + <a href="https://github.com/Till3005/built-with-devin#documented-deployments">built-with-devin</a> の導入レポート</p>
 <p>大きな数値を出した公開 Bot 導入はすべて、<em>成果</em>を割り当てる短いプロンプトから始まった。このガイドは実物を集め、なぜ機能するのかを逆工学する。</p>
 <h2 id="模範例">模範例<a class="hlink" href="#模範例" aria-hidden="true">#</a></h2>
 <blockquote>
@@ -156,7 +157,7 @@
 <li><a href="https://devin.ai/blog/introducing-devin-bots">Introducing Devin Bots</a> · <a href="https://docs.devin.ai/work-with-devin/bots">Bots ドキュメント</a> · <a href="https://devin.ai/bots/templates">テンプレートマーケットプレイス</a></li>
 <li><a href="https://github.com/Till3005/built-with-devin#documented-deployments">built-with-devin</a> にリンクされた導入レポート</li>
 </ul>
-<section class="related"><h3>同じステージ — ステージ1 · 運用</h3><p><a href="automations-101-event-driven.html">ガイド 6 — イベント駆動の自動化</a> · <a href="playbooks-and-knowledge.html">ガイド 9 — プレイブックとナレッジ：組織の規約をエンコードする</a> · <a href="skills-and-plugins.html">ガイド 17 — Skills と plugins：playbook の次のパッケージング層</a> · <a href="devin-apps.html">ガイド 10 — Devin Apps：チャットから実働ツールを出荷する</a> · <a href="design-with-devin.html">ガイド 8 — デザインとビジュアルワーク</a></p></section>
+<section class="related"><h3>同じステージ — ステージ1 · 運用</h3><p><a href="automations-101-event-driven.html">ガイド 6 — イベント駆動の自動化</a> · <a href="playbooks-and-knowledge.html">ガイド 9 — プレイブックとナレッジ：組織の規約をエンコードする</a> · <a href="skills-and-plugins.html">ガイド 16 — Skills と plugins：playbook の次のパッケージング層</a> · <a href="devin-apps.html">ガイド 10 — Devin Apps：チャットから実働ツールを出荷する</a> · <a href="design-with-devin.html">ガイド 8 — デザインとビジュアルワーク</a></p></section>
 <nav class="guide-pager"><a class="pg-prev" href="official-cookbook.html"><span class="pg-dir">← 前へ</span><span class="pg-t">ガイド 13 — 公式ユースケース・クックブック</span></a><a class="pg-next" href="automations-101-event-driven.html"><span class="pg-dir">次へ →</span><span class="pg-t">ガイド 6 — イベント駆動の自動化</span></a></nav>
 </article>
 <footer><div class="wrap foot-base"><span data-i18n="foot.note">Unofficial community project — not affiliated with Cognition AI.</span><span><a href="../../index.html">built-with-devin</a> · <a href="https://github.com/Till3005/build-with-devin">build-with-devin</a></span></div></footer>

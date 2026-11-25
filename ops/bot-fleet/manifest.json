@@ -1,0 +1,129 @@
+{
+  "version": 1,
+  "fleet": "bwd-lean-four",
+  "repos": {
+    "registry": "Till3005/built-with-devin",
+    "curriculum": "Till3005/build-with-devin"
+  },
+  "budget": {
+    "max_concurrent_child_sessions": 2,
+    "scout_runs_per_week": 3,
+    "requires_human_approval_for": [
+      "curriculum restructuring",
+      "external posting",
+      "permission expansion",
+      "expensive reproduction runs",
+      "publishing weakly supported claims"
+    ]
+  },
+  "bots": [
+    {
+      "id": "bwd-editor",
+      "name": "BWD Editor-in-Chief",
+      "prompt": "prompts/editor-in-chief.md",
+      "owns": "editorial quality, release rhythm, and cross-repo arbitration",
+      "repos": [
+        "Till3005/built-with-devin",
+        "Till3005/build-with-devin"
+      ],
+      "cadence": {
+        "weekly_release_pass": true,
+        "event_driven": [
+          "ci_failure",
+          "blocked_pr",
+          "owner_request"
+        ]
+      },
+      "write_scope": [
+        "triage comments",
+        "release checklists",
+        "small editorial pull requests"
+      ],
+      "may_not_do": [
+        "restructure the curriculum without approval",
+        "post externally",
+        "expand bot permissions",
+        "merge pull requests"
+      ]
+    },
+    {
+      "id": "bwd-scout",
+      "name": "BWD Source Scout",
+      "prompt": "prompts/source-scout.md",
+      "owns": "official and community source discovery",
+      "repos": [
+        "Till3005/built-with-devin"
+      ],
+      "cadence": {
+        "scheduled_runs_per_week": 3,
+        "event_driven": [
+          "owner_request"
+        ]
+      },
+      "write_scope": [
+        "structured candidate intake reports"
+      ],
+      "may_not_do": [
+        "edit registry entries directly",
+        "invent missing facts",
+        "treat marketing claims as verified evidence"
+      ]
+    },
+    {
+      "id": "bwd-registry",
+      "name": "BWD Registry Maintainer",
+      "prompt": "prompts/registry-maintainer.md",
+      "owns": "registry accuracy, source verification, and generated artifacts",
+      "repos": [
+        "Till3005/built-with-devin"
+      ],
+      "cadence": {
+        "weekly_consistency_pass": true,
+        "event_driven": [
+          "verified_candidate",
+          "broken_source",
+          "ci_failure"
+        ]
+      },
+      "write_scope": [
+        "registry entry pull requests",
+        "link fix pull requests",
+        "generated docs artifacts"
+      ],
+      "may_not_do": [
+        "publish unsupported entries",
+        "change inclusion policy without approval",
+        "merge pull requests"
+      ]
+    },
+    {
+      "id": "bwd-curriculum",
+      "name": "BWD Curriculum Architect",
+      "prompt": "prompts/curriculum-architect.md",
+      "owns": "curriculum coverage, guide quality, and learning-path integrity",
+      "repos": [
+        "Till3005/build-with-devin",
+        "Till3005/built-with-devin"
+      ],
+      "cadence": {
+        "weekly_coverage_pass": true,
+        "event_driven": [
+          "official_docs_change",
+          "new_verified_registry_entry",
+          "guide_pr"
+        ]
+      },
+      "write_scope": [
+        "coverage matrix updates",
+        "small factual guide corrections",
+        "clearly scoped curriculum gap notes"
+      ],
+      "may_not_do": [
+        "renumber guides without approval",
+        "rewrite stages without approval",
+        "run expensive reproduction loops without approval",
+        "merge pull requests"
+      ]
+    }
+  ]
+}
