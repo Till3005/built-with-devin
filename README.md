@@ -13,7 +13,7 @@
 
 <sub>Curated by [@darega0mae](https://x.com/darega0mae) · Sister tutorials: [build-with-devin](https://github.com/Till3005/build-with-devin) · [Add your project](CONTRIBUTING.md)</sub>
 
-<sub>**16** documented Bot deployments · **45** enterprise case studies · **9** shipped products · **47** tools & integrations · **39** field reports</sub>
+<sub>**17** documented Bot deployments · **45** enterprise case studies · **9** shipped products · **47** tools & integrations · **39** field reports</sub>
 
 <sub>English · [简体中文](README.zh.md) · [日本語](README.ja.md) · [Português](README.pt.md)</sub>
 
@@ -70,6 +70,7 @@ flowchart LR
 | **Tennis data Bots** | Venus Williams | Pro-tennis preparation and match data | The seven-time Grand Slam singles champion uses Devin Bots to make sense of pro-tennis prep — opponent plays, racket tuning for humidity and temperature, match analysis, meals and rest. ([Cognition video](https://x.com/cognition/status/2123093354196140285), [@walden_yan](https://x.com/walden_yan/status/2123105884125671605)) |
 | **Manim Maintainer Bot** | Grant Sanderson (3Blue1Brown) | Preemptive issue triage on the Manim repo | The math-education channel's author handed maintenance of the open-source animation engine behind every 3Blue1Brown video — **96.6k stars, 7,936 forks, 250k downloads/month** — to a Devin Bot, so the issues get addressed while he stays on the math. ([Cognition video](https://x.com/cognition/status/2123813355538239878)) |
 | **Exa agent island** | Exa AI Labs | Training runs + CI across the software stack | Engineers hand training-run management and CI workflows to Devin Bots, monitored on a "Warcraft-style agent island" view — "go for a walk, and let Devin Bots cook" ([Devin Central](https://devincentral.com/news/editorial-exa-adopts-devin-bots-across-its-software-stack-using-a-warc); Cognition announcement Nov 19) |
+| **GTM Engineering fleet** | Cognition (Will Hunter) | Revenue workstreams: people/company data, signals, Salesforce, the GTM app, security | Each workstream owned by one shared bot — two teammates + the bot become a group chat instead of acting as "meat proxies" between separate sessions; one bot runs ~10 tasks in parallel and flags you when it needs you ("it feels like we're 10xing the team" — self-report). His primary bot is named **Ultron**. ([post](https://www.linkedin.com/posts/wlhunter_with-devin-bots-officially-out-and-a-couple-activity-7528555142300848128-56WF)) |
 
 ### Documented patterns
 
@@ -83,6 +84,7 @@ flowchart LR
 - **Bots with their own accounts** — DevRelBot ships tutorial videos by itself because it was provisioned like an employee: own computer, own Devin/GitHub/Linear accounts, own ElevenLabs key — it signs into Devin and records the real UI.
 - **Inter-bot protocol (BotSpeak)** — 20+ Bots generate 700+ messages/day; Jenny solved inbox collapse with a bot-to-bot shorthand (ACK codes, Simplified English, emoji receipts) and full prose only for the human — bot-made decisions 12×'d in 6 days.
 - **Reference-grounded swarms** — Harvey's lesson: when work can be checked against a reliable reference (real Word behavior), a small team can direct a large swarm safely.
+- **One shared bot per workstream** — teammates meet the bot in a group chat instead of relaying context between separate sessions; the bot becomes the workstream's front door and runs its own sessions and automations underneath (Cognition GTM, ~10 parallel tasks per bot).
 
 ### Reported results
 

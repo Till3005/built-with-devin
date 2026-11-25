@@ -13,7 +13,7 @@
 
 <sub>维护者 [@darega0mae](https://x.com/darega0mae) · 姊妹教程库：[build-with-devin](https://github.com/Till3005/build-with-devin) · [收录你的项目](CONTRIBUTING.md)</sub>
 
-<sub>**16** 个有据可查的 Bot 部署 · **45** 个企业案例 · **9** 个已发布产品 · **47** 个工具与集成 · **39** 篇实战报告</sub>
+<sub>**17** 个有据可查的 Bot 部署 · **45** 个企业案例 · **9** 个已发布产品 · **47** 个工具与集成 · **39** 篇实战报告</sub>
 
 <sub>[English](README.md) · 简体中文 · [日本語](README.ja.md) · [Português](README.pt.md)</sub>
 
@@ -70,6 +70,7 @@ flowchart LR
 | **网球数据 Bot** | Venus Williams | 职业网球备战 + 比赛数据分析 | 七届大满贯单打冠军用 Devin Bots 打理职业网球备战——研究对手打法、按温湿度调球拍、比赛数据分析、饮食和休息安排。（[Cognition 视频](https://x.com/cognition/status/2123093354196140285)、[@walden_yan](https://x.com/walden_yan/status/2123105884125671605)） |
 | **Manim 维护 Bot** | Grant Sanderson（3Blue1Brown）| Manim 仓库 issue 预检 | 数学科普频道主理人把每支 3Blue1Brown 视频背后的开源动画引擎交给 Devin Bot 维护——**96.6k stars、7,936 forks、月下载 25 万**——Bot 处理 issue，他专心做数学。（[Cognition 视频](https://x.com/cognition/status/2123813355538239878)） |
 | **Exa「agent 岛」舰队** | Exa AI Labs | 全软件栈的训练任务 + CI | 工程师把训练任务管理和 CI 工作流交给 Devin Bots，用「魔兽风 agent 岛」视图盯盘——「去散个步，让 Devin Bots 干活」。（[Devin Central](https://devincentral.com/news/editorial-exa-adopts-devin-bots-across-its-software-stack-using-a-warc)；Cognition 11/19 官宣） |
+| **GTM 工程舰队** | Cognition（Will Hunter） | 营收工作流：客户/公司数据、signals、Salesforce、GTM 应用、安全 | 每条工作流由一个共享 Bot 负责——两个同事 + Bot 成群聊，不再当人肉代理在各自会话间传话；一个 Bot 并行跑 ~10 个任务，需要你时主动叫人（自称「感觉团队在 10 倍化」）。他的主 Bot 起名 **Ultron**。（[帖子](https://www.linkedin.com/posts/wlhunter_with-devin-bots-officially-out-and-a-couple-activity-7528555142300848128-56WF)） |
 
 ### 有据可查的模式
 
@@ -83,6 +84,7 @@ flowchart LR
 - **有自己账号的 Bots** —— DevRelBot 能自己录教程视频，是因为它像员工一样被开了全套账号：自己的电脑、自己的 Devin/GitHub/Linear 账号、自己的 ElevenLabs 声纹 —— 它登录 Devin 录的是真实 UI。
 - **Bot 间通信协议（BotSpeak）** —— 20+ 个 Bot 每天产生 700+ 条消息；Jenny 用一套 bot 间简语（ACK 码、简化英语、emoji 回执）解决了收件箱崩溃，只有对人才用完整句子 —— 6 天内 bot 自主决策提升 12 倍。
 - **基准锚定的 swarm** —— Harvey 的教训：当工作能对照可靠基准验证时（真实 Word 行为），小团队可以安全地指挥大规模 swarm。
+- **一条工作流一个共享 Bot** —— 同事们在群聊里直接和 Bot 打交道，不再在各自会话间传话；Bot 成了这条工作流的门面，底下自己跑会话和自动化（Cognition GTM，每个 Bot 并行 ~10 个任务）。
 
 ### 公开结果
 

@@ -13,7 +13,7 @@
 
 <sub>Curated by [@darega0mae](https://x.com/darega0mae) · 姉妹チュートリアル：[build-with-devin](https://github.com/Till3005/build-with-devin) · [プロジェクトを追加](CONTRIBUTING.md)</sub>
 
-<sub>**16** 件の実証済み Bot 導入 · **45** 件のエンタープライズ事例 · **9** 件の公開プロダクト · **47** 件のツール・統合 · **39** 件の実践レポート</sub>
+<sub>**17** 件の実証済み Bot 導入 · **45** 件のエンタープライズ事例 · **9** 件の公開プロダクト · **47** 件のツール・統合 · **39** 件の実践レポート</sub>
 
 <sub>[English](README.md) · [简体中文](README.zh.md) · 日本語 · [Português](README.pt.md)</sub>
 
@@ -70,6 +70,7 @@ flowchart LR
 | **テニスデータ Bot** | Venus Williams | プロテニスの準備 + 試合データ分析 | グランドスラムシングルス 7 度の優勝者が Devin Bots でプロテニスの準備を分析——対戦相手の戦法、湿度・温度に応じたラケット調整、試合データ分析、食事と休息の管理。（[Cognition 動画](https://x.com/cognition/status/2123093354196140285)、[@walden_yan](https://x.com/walden_yan/status/2123105884125671605)） |
 | **Manim メンテナー Bot** | Grant Sanderson（3Blue1Brown）| Manim リポジトリの issue 事前トリアージ | 数学教育チャンネルの作者が、3Blue1Brown の全動画を支えるオープンソース・アニメーションエンジンの保守を Devin Bot に委託——**96.6k stars、7,936 forks、月 25 万ダウンロード**——Bot が issue を処理し、本人は数学に専念。（[Cognition 動画](https://x.com/cognition/status/2123813355538239878)） |
 | **Exa「agent 島」フリート** | Exa AI Labs | ソフトウェアスタック全体の訓練ラン + CI | エンジニアが訓練実行管理と CI ワークフローを Devin Bots に委譲し、「ウォークラフト風 agent 島」ビューで監視——「散歩に行って、Devin Bots に任せよう」。（[Devin Central](https://devincentral.com/news/editorial-exa-adopts-devin-bots-across-its-software-stack-using-a-warc)；Cognition 11/19 発表） |
+| **GTM エンジニアリング・フリート** | Cognition（Will Hunter） | 収益ワークストリーム：顧客/企業データ、シグナル、Salesforce、GTM アプリ、セキュリティ | 各ワークストリームを 1 つの共有 Bot が担当——チームメイト 2 人 + Bot がグループチャットになり、別々のセッション間で「肉のプロキシ」を演じる必要がなくなる。1 つの Bot が ~10 タスクを並列実行し、必要な時に呼び出す（自称「チームが 10 倍化している感覚」）。彼の主力 Bot の名は **Ultron**。（[投稿](https://www.linkedin.com/posts/wlhunter_with-devin-bots-officially-out-and-a-couple-activity-7528555142300848128-56WF)） |
 
 ### 実証済みのパターン
 
@@ -83,6 +84,7 @@ flowchart LR
 - **自分のアカウントを持つ Bot** —— DevRelBot が一人でチュートリアル動画を出荷できるのは、従業員同様にプロビジョニングされているから：専用コンピュータ、専用 Devin/GitHub/Linear アカウント、専用 ElevenLabs キー —— Devin にログインして実際の UI を録画する。
 - **Bot 間プロトコル（BotSpeak）** —— 20+ の Bot が 1 日 700+ 件のメッセージを生成。Jenny は bot 間速記（ACK コード、簡易英語、絵文字レシート）で受信トレイ崩壊を解決し、完全な文章は人間のみに —— 6 日間で bot の自律判断が 12 倍に。
 - **参照グラウンデッド・スウォーム** —— Harvey の教訓：信頼できる参照（実際の Word 挙動）で検証できる仕事なら、小さなチームでも大きな swarm を安全に指揮できる。
+- **ワークストリームごとに 1 つの共有 Bot** —— チームメイトがグループチャットで Bot と直接やり取りし、別々のセッション間でコンテキストをリレーしない。Bot がそのワークストリームの窓口となり、配下で独自のセッションと自動化を回す（Cognition GTM、Bot あたり ~10 の並列タスク）。
 
 ### 公開された結果
 

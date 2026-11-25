@@ -13,7 +13,7 @@
 
 <sub>Curado por [@darega0mae](https://x.com/darega0mae) · Tutoriais irmãos: [build-with-devin](https://github.com/Till3005/build-with-devin) · [Adicione seu projeto](CONTRIBUTING.md)</sub>
 
-<sub>**16** implantações de Bot documentadas · **45** casos corporativos · **9** produtos lançados · **47** ferramentas e integrações · **39** relatos de campo</sub>
+<sub>**17** implantações de Bot documentadas · **45** casos corporativos · **9** produtos lançados · **47** ferramentas e integrações · **39** relatos de campo</sub>
 
 <sub>[English](README.md) · [简体中文](README.zh.md) · [日本語](README.ja.md) · Português</sub>
 
@@ -70,6 +70,7 @@ flowchart LR
 | **Bots de dados de tênis** | Venus Williams | Preparação de tênis profissional + dados de jogo | A heptacampeã de Grand Slam usa Devin Bots para organizar a preparação no circuito — jogos das adversárias, ajuste de raquetes por umidade e temperatura, análise de partidas, refeições e descanso. ([vídeo da Cognition](https://x.com/cognition/status/2123093354196140285), [@walden_yan](https://x.com/walden_yan/status/2123105884125671605)) |
 | **Bot mantenedor do Manim** | Grant Sanderson (3Blue1Brown) | Triagem preventiva de issues no repositório Manim | O autor do canal de matemática delegou a manutenção do motor de animação open-source por trás de todos os vídeos do 3Blue1Brown a um Devin Bot — **96,6 mil stars, 7.936 forks, 250 mil downloads/mês** — os issues ficam com o Bot enquanto ele foca na matemática. ([vídeo da Cognition](https://x.com/cognition/status/2123813355538239878)) |
 | **Ilha de agentes da Exa** | Exa AI Labs | Runs de treino + CI em toda a stack | Engenheiros delegam gestão de runs de treino e workflows de CI a Devin Bots, monitorados numa visão "ilha de agentes estilo Warcraft" — "vá caminhar e deixe os Devin Bots cozinharem" ([Devin Central](https://devincentral.com/news/editorial-exa-adopts-devin-bots-across-its-software-stack-using-a-warc); anúncio da Cognition em 19/11) |
+| **Frota de GTM Engineering** | Cognition (Will Hunter) | Workstreams de receita: dados de pessoas/empresas, sinais, Salesforce, o app GTM, segurança | Cada workstream tem um bot compartilhado — dois colegas + o bot viram um group chat em vez de servir de "proxies de carne" entre sessões separadas; um bot roda ~10 tarefas em paralelo e te chama quando precisa ("parece que estamos 10xando o time" — autorrelato). O bot principal dele se chama **Ultron**. ([post](https://www.linkedin.com/posts/wlhunter_with-devin-bots-officially-out-and-a-couple-activity-7528555142300848128-56WF)) |
 
 ### Padrões documentados
 
@@ -83,6 +84,7 @@ flowchart LR
 - **Bots com contas próprias** — o DevRelBot entrega vídeos tutoriais sozinho porque foi provisionado como um funcionário: computador próprio, contas próprias em Devin/GitHub/Linear, chave própria na ElevenLabs — ele faz login no Devin e grava a UI real.
 - **Protocolo inter-bot (BotSpeak)** — 20+ Bots geram 700+ mensagens/dia; Jenny resolveu o colapso da caixa de entrada com uma taquigrafia bot-a-bot (códigos ACK, inglês simplificado, recibos emoji) e prosa completa só para o humano — decisões autônomas dos bots 12× em 6 dias.
 - **Swarms ancorados em referência** — a lição da Harvey: quando o trabalho pode ser checado contra uma referência confiável (o comportamento real do Word), um time pequeno pode dirigir um swarm grande com segurança.
+- **Um bot compartilhado por workstream** — colegas falam com o bot num group chat em vez de retransmitir contexto entre sessões separadas; o bot vira a porta de entrada do workstream e roda suas próprias sessões e automações por baixo (Cognition GTM, ~10 tarefas paralelas por bot).
 
 ### Resultados reportados
 

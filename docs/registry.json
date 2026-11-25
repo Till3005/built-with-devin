@@ -3,7 +3,7 @@
   "generated_from": "https://github.com/Till3005/built-with-devin/blob/main/README.md",
   "license": "CC0-1.0",
   "counts": {
-    "bot_deployments": 16,
+    "bot_deployments": 17,
     "bot_templates": 18,
     "products": 9,
     "enterprise_cases": 45
@@ -222,6 +222,19 @@
         }
       ],
       "updated_on": "2026-11-24"
+    },
+    {
+      "name": "GTM Engineering fleet",
+      "owner": "Cognition (Will Hunter)",
+      "owns": "Revenue workstreams: people/company data, signals, Salesforce, the GTM app, security",
+      "results": "Each workstream owned by one shared bot — two teammates + the bot become a group chat instead of acting as \"meat proxies\" between separate sessions; one bot runs ~10 tasks in parallel and flags you when it needs you (\"it feels like we're 10xing the team\" — self-report). His primary bot is named Ultron. (post)",
+      "sources": [
+        {
+          "text": "post",
+          "url": "https://www.linkedin.com/posts/wlhunter_with-devin-bots-officially-out-and-a-couple-activity-7528555142300848128-56WF"
+        }
+      ],
+      "updated_on": "2026-11-25"
     }
   ],
   "bot_templates": [
