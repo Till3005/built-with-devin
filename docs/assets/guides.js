@@ -53,6 +53,8 @@
         event.preventDefault();
         targetChip.click();
         document.querySelector(".catalog-block")?.scrollIntoView({ block: "start" });
+        const target = rows.find(row => !row.hidden) || filter;
+        target?.focus({ preventScroll: true });
       });
     });
     filter?.addEventListener("input", applyFilter);
