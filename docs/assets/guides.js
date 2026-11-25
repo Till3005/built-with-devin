@@ -45,6 +45,15 @@
       chips.forEach(item => item.classList.toggle("on", item === chip));
       applyFilter();
     }));
+    document.querySelectorAll('.stage-cell[href^="#stage-"]').forEach(cell => {
+      cell.addEventListener("click", event => {
+        const targetChip = chips.find(chip => chip.dataset.stageFilter === cell.getAttribute("href").slice(1));
+        if (!targetChip) return;
+        event.preventDefault();
+        targetChip.click();
+        document.querySelector(".catalog-block")?.scrollIntoView({ block: "start" });
+      });
+    });
     filter?.addEventListener("input", applyFilter);
     document.addEventListener("keydown", event => {
       if (event.key === "/" && filter && !/input|textarea/i.test(document.activeElement.tagName)) {
