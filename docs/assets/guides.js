@@ -57,7 +57,7 @@
       try {
         const path = new URL(row.getAttribute("href"), location.href).pathname;
         const saved = JSON.parse(localStorage.getItem(progressKey(path)) || "null");
-        if (Array.isArray(saved) && saved.length && saved.every(Boolean)) row.classList.add("done");
+        if ((saved && saved.complete === true) || (Array.isArray(saved) && saved.length && saved.every(Boolean))) row.classList.add("done");
       } catch (_) {}
     });
 
@@ -72,7 +72,10 @@
       if (checks.length) {
         const key = progressKey(location.pathname);
         let saved = [];
-        try { saved = JSON.parse(localStorage.getItem(key) || "[]"); } catch (_) {}
+        try {
+          const raw = JSON.parse(localStorage.getItem(key) || "[]");
+          saved = Array.isArray(raw) ? raw : (Array.isArray(raw?.state) ? raw.state : []);
+        } catch (_) {}
         checks.forEach((input, index) => { input.checked = saved[index] === true; });
 
         const counter = document.createElement("span");
@@ -81,9 +84,12 @@
         firstList?.before(counter);
         const update = () => {
           const state = checks.map(input => input.checked);
-          counter.textContent = `${state.filter(Boolean).length}/${state.length}`;
-          try { localStorage.setItem(key, JSON.stringify(state)); } catch (_) {}
-          if (state.every(Boolean)) document.body.classList.add("lesson-complete");
+          const required = checks.filter(input => input.dataset.optional !== "true");
+          const requiredState = required.map(input => input.checked);
+          counter.textContent = `${requiredState.filter(Boolean).length}/${requiredState.length}`;
+          const complete = requiredState.length > 0 && requiredState.every(Boolean);
+          try { localStorage.setItem(key, JSON.stringify({ state, complete })); } catch (_) {}
+          if (complete) document.body.classList.add("lesson-complete");
           else document.body.classList.remove("lesson-complete");
         };
         checks.forEach(input => input.addEventListener("change", update));
