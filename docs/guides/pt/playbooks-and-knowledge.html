@@ -136,12 +136,12 @@
 <h2 id="demonstração-conhecimento-que-pega-no-devin-cli-v3000-14-swe-2-flash-medium">Demonstração — conhecimento que pega, no Devin CLI v3000.14 (swe-2-flash-medium)<a class="hlink" href="#demonstração-conhecimento-que-pega-no-devin-cli-v3000-14-swe-2-flash-medium" aria-hidden="true">#</a></h2>
 <p>Playbooks de organização vivem na nuvem, mas a tese central deste guia — <em>escreva a convenção uma vez e toda sessão a segue</em> — é testável localmente. <code>devin rules</code> lê contexto sempre ativo de <code>.windsurf/rules/*.md</code>. Mineramos três "correções passadas" em <code>house-rules.md</code> — testes com unittest (nunca pytest), nunca commitar, reutilizar <code>total()</code> para matemática de itens — e abrimos uma sessão nova pedindo só a feature.</p>
 <p><strong>Vídeo (30 s, sem som):</strong> o arquivo de regras → sessão sem lembretes → as três regras obedecidas.</p>
-<p><a href="{B}/walkthrough.mp4"><img alt="Arquivo de regras, um pedido sem dicas, todas as regras seguidas" src="{B}/walkthrough-poster.webp" /></a></p>
-<p><img alt="1. As regras mineradas e o prompt cru — &quot;Add a line_total(items) function … Write a test for it too.&quot;" src="{B}/step1-rules-and-prompt.webp" />
+<p><a href="https://till3005.github.io/built-with-devin/assets/guides/playbooks-and-knowledge/walkthrough.mp4"><img alt="Arquivo de regras, um pedido sem dicas, todas as regras seguidas" src="https://till3005.github.io/built-with-devin/assets/guides/playbooks-and-knowledge/walkthrough-poster.webp" /></a></p>
+<p><img alt="1. As regras mineradas e o prompt cru — &quot;Add a line_total(items) function … Write a test for it too.&quot;" src="https://till3005.github.io/built-with-devin/assets/guides/playbooks-and-knowledge/step1-rules-and-prompt.webp" />
 <em>1. Três regras commitadas; o prompt não menciona convenções</em></p>
-<p><img alt="2. Ele reutilizou total(), rodou python3 -m unittest (não pytest), 3 testes passaram" src="{B}/step2-rules-obeyed.webp" />
+<p><img alt="2. Ele reutilizou total(), rodou python3 -m unittest (não pytest), 3 testes passaram" src="https://till3005.github.io/built-with-devin/assets/guides/playbooks-and-knowledge/step2-rules-obeyed.webp" />
 <em>2. Todas as regras seguidas sem um único lembrete — é a camada de conhecimento funcionando</em></p>
-<p><img alt="3. Após /exit — M orders.py, M tests/test_orders.py, e git log mostra só o commit inicial" src="{B}/step3-no-commits.webp" />
+<p><img alt="3. Após /exit — M orders.py, M tests/test_orders.py, e git log mostra só o commit inicial" src="https://till3005.github.io/built-with-devin/assets/guides/playbooks-and-knowledge/step3-no-commits.webp" />
 <em>3. Até "nunca commitar" foi respeitado — verificado no git, não no relatório</em></p>
 <h2 id="fontes">Fontes<a class="hlink" href="#fontes" aria-hidden="true">#</a></h2>
 <ul>

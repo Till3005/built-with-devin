@@ -50,7 +50,7 @@
 <h1>Guia 11 — Migrações em escala</h1>
 <p><strong>Objetivo:</strong> rodar uma migração grande (linguagem, framework, banco de dados, dependência, arquitetura) como centenas de PRs pequenos verificados em vez de uma reescrita heroica.
 <strong>Nível:</strong> intermediário → avançado
-<strong>Fontes:</strong> <a href="https://docs.devin.ai/use-cases/best-practices.html">Best Practices</a> · <a href="https://docs.devin.ai/use-cases/migration-modernization.html">Migration &amp; Modernization</a> · exemplos de migração: <a href="https://docs.devin.ai/use-cases/examples/java-upgrades.html">Java upgrades</a>, <a href="https://docs.devin.ai/use-cases/examples/cobol-modernization.html">COBOL</a>, <a href="https://docs.devin.ai/use-cases/examples/sas-to-pyspark.html">SAS→PySpark</a>, <a href="https://docs.devin.ai/use-cases/examples/javascript-to-typescript.html">JS→TS</a>, <a href="https://docs.devin.ai/use-cases/examples/nosql-to-sql.html">NoSQL→SQL</a> · caso Nubank</p>
+<strong>Fontes:</strong> <a href="https://docs.devin.ai/use-cases/best-practices.md">Best Practices</a> · <a href="https://docs.devin.ai/use-cases/migration-modernization.md">Migration &amp; Modernization</a> · exemplos de migração: <a href="https://docs.devin.ai/use-cases/examples/java-upgrades.md">Java upgrades</a>, <a href="https://docs.devin.ai/use-cases/examples/cobol-modernization.md">COBOL</a>, <a href="https://docs.devin.ai/use-cases/examples/sas-to-pyspark.md">SAS→PySpark</a>, <a href="https://docs.devin.ai/use-cases/examples/javascript-to-typescript.md">JS→TS</a>, <a href="https://docs.devin.ai/use-cases/examples/nosql-to-sql.md">NoSQL→SQL</a> · caso Nubank</p>
 <h2 id="o-playbook-oficial">O playbook oficial<a class="hlink" href="#o-playbook-oficial" aria-hidden="true">#</a></h2>
 <p>Os docs do próprio Devin são diretos sobre o que escala: <strong>wide &amp; shallow</strong> vence <strong>tall &amp; deep</strong>. Uma migração é o trabalho wide-and-shallow canônico — a mesma pequena transformação aplicada a centenas de unidades independentes.</p>
 <pre><code class="language-text">migração ──► fatiar em unidades isoladas (&lt;90 min cada)
@@ -145,20 +145,20 @@
 <h2 id="demonstração-o-loop-de-migração-executado-em-série-no-devin-cli-v3000-14-swe-2-flash-medium">Demonstração — o loop de migração executado em série, no Devin CLI v3000.14 (swe-2-flash-medium)<a class="hlink" href="#demonstração-o-loop-de-migração-executado-em-série-no-devin-cli-v3000-14-swe-2-flash-medium" aria-hidden="true">#</a></h2>
 <p>A parte de escala (centenas de sessões paralelas) precisa de cota de nuvem — o <em>loop</em> não, então rodamos serialmente na cota gratuita. <code>migrate-demo</code>: quatro CLIs em optparse (<code>greeter</code>, <code>calc</code>, <code>backup</code>, <code>report</code>), um teste de comportamento por ferramenta e a transformação escrita em <code>.devin/skills/optparse-to-argparse/SKILL.md</code>. Prompt: "migrate as independent slices … run the test suite, and only move to the next tool when it's green."</p>
 <p><strong>Vídeo (41 s, sem som):</strong> baseline → skill invocado → 4 fatias, suíte verde após cada uma → zero <code>optparse</code>.</p>
-<p><a href="{B}/walkthrough.mp4"><img alt="O loop de fatias completo — cada ferramenta migrada, suíte verde após cada uma, resumo fiel à receita" src="{B}/walkthrough-poster.webp" /></a></p>
-<p><img alt="1. Baseline — 4 ferramentas optparse, 7 testes de comportamento verdes" src="{B}/step1-baseline.webp" />
+<p><a href="https://till3005.github.io/built-with-devin/assets/guides/migrations-at-scale/walkthrough.mp4"><img alt="O loop de fatias completo — cada ferramenta migrada, suíte verde após cada uma, resumo fiel à receita" src="https://till3005.github.io/built-with-devin/assets/guides/migrations-at-scale/walkthrough-poster.webp" /></a></p>
+<p><img alt="1. Baseline — 4 ferramentas optparse, 7 testes de comportamento verdes" src="https://till3005.github.io/built-with-devin/assets/guides/migrations-at-scale/step1-baseline.webp" />
 <em>1. Baseline: 4 ferramentas em OptionParser, 7 testes, uma receita-skill commitada</em></p>
-<p><img alt="2. Skill invocado automaticamente de .devin/skills — primeiro lê todas as ferramentas e os testes" src="{B}/step2-skill-invoked.webp" />
+<p><img alt="2. Skill invocado automaticamente de .devin/skills — primeiro lê todas as ferramentas e os testes" src="https://till3005.github.io/built-with-devin/assets/guides/migrations-at-scale/step2-skill-invoked.webp" />
 <em>2. <code>Invoked skill optparse-to-argparse</code> — a receita dirige a execução</em></p>
-<p><img alt="3. O loop de fatias — &quot;Green. Now calc.py — it relies on rest for positional args, so parse_known_args preserves that shape.&quot;" src="{B}/step3-slice-loop.webp" />
+<p><img alt="3. O loop de fatias — &quot;Green. Now calc.py — it relies on rest for positional args, so parse_known_args preserves that shape.&quot;" src="https://till3005.github.io/built-with-devin/assets/guides/migrations-at-scale/step3-slice-loop.webp" />
 <em>3. Verificação por fatia; ele mesmo notou que calc.py precisa de <code>parse_known_args</code> para manter operandos posicionais</em></p>
-<p><img alt="4. Verificado após /exit — 4 arquivos migrados, +18/−18, nenhuma referência a optparse, nada commitado" src="{B}/step4-verify-diff.webp" />
+<p><img alt="4. Verificado após /exit — 4 arquivos migrados, +18/−18, nenhuma referência a optparse, nada commitado" src="https://till3005.github.io/built-with-devin/assets/guides/migrations-at-scale/step4-verify-diff.webp" />
 <em>4. Quatro diffs pequenos e verificados — a disciplina de fatias, sem a frota paralela</em></p>
 <h2 id="fontes">Fontes<a class="hlink" href="#fontes" aria-hidden="true">#</a></h2>
 <ul>
-<li><a href="https://docs.devin.ai/use-cases/best-practices.html">Best Practices — docs.devin.ai</a></li>
-<li><a href="https://docs.devin.ai/use-cases/migration-modernization.html">Migration &amp; Modernization + 5 playbooks de exemplo</a></li>
-<li><a href="https://docs.devin.ai/use-cases/gallery/index.html">Use-case gallery — Migrations</a></li>
+<li><a href="https://docs.devin.ai/use-cases/best-practices.md">Best Practices — docs.devin.ai</a></li>
+<li><a href="https://docs.devin.ai/use-cases/migration-modernization.md">Migration &amp; Modernization + 5 playbooks de exemplo</a></li>
+<li><a href="https://docs.devin.ai/use-cases/gallery/index.md">Use-case gallery — Migrations</a></li>
 <li><a href="https://cognition.com/blog/dotnet-migration-with-devin">Playbook de migração .NET da Cognition</a> — Ask Devin ranqueia controllers por contexto, sessões coordenadas portam em paralelo: meses → semanas (publicado pelo fornecedor)</li>
 <li>Relacionado: <a href="enterprise-playbook.html">Guia 7 — Rollout enterprise</a> (a Forma 1 é este guia em escala de org)</li>
 </ul>

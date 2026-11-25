@@ -136,12 +136,12 @@
 <h2 id="実録-定着するナレッジ-devin-cli-v3000-14-swe-2-flash-medium">実録 —— 定着するナレッジ、Devin CLI v3000.14（swe-2-flash-medium）<a class="hlink" href="#実録-定着するナレッジ-devin-cli-v3000-14-swe-2-flash-medium" aria-hidden="true">#</a></h2>
 <p>組織の playbook はクラウド側だが、本ガイドの核心——<em>規約を一度書けば全セッションが従う</em>——はローカルで検証できる。<code>devin rules</code> は <code>.windsurf/rules/*.md</code> を常時コンテキストとして読む。「過去の修正指示」3 件を <code>house-rules.md</code> に落とし（テストは unittest・pytest 禁止、コミット禁止、金額計算は <code>total()</code> 再利用）、新しいセッションで要件だけを伝えた。</p>
 <p><strong>動画（30 秒・無音）：</strong> ルールファイル → 何も言われていないセッション → 3 条すべて遵守。</p>
-<p><a href="{B}/walkthrough.mp4"><img alt="ハウスルール、ヒントなしの依頼、すべてのルール遵守" src="{B}/walkthrough-poster.webp" /></a></p>
-<p><img alt="1. 採掘したルールと素のプロンプト——「line_total(items) を追加して。テストも書いて」" src="{B}/step1-rules-and-prompt.webp" />
+<p><a href="https://till3005.github.io/built-with-devin/assets/guides/playbooks-and-knowledge/walkthrough.mp4"><img alt="ハウスルール、ヒントなしの依頼、すべてのルール遵守" src="https://till3005.github.io/built-with-devin/assets/guides/playbooks-and-knowledge/walkthrough-poster.webp" /></a></p>
+<p><img alt="1. 採掘したルールと素のプロンプト——「line_total(items) を追加して。テストも書いて」" src="https://till3005.github.io/built-with-devin/assets/guides/playbooks-and-knowledge/step1-rules-and-prompt.webp" />
 <em>1. ルール 3 条をコミット済み。プロンプトは規約に触れない</em></p>
-<p><img alt="2. total() を再利用し、python3 -m unittest（pytest ではなく）を実行、3 件全パス" src="{B}/step2-rules-obeyed.webp" />
+<p><img alt="2. total() を再利用し、python3 -m unittest（pytest ではなく）を実行、3 件全パス" src="https://till3005.github.io/built-with-devin/assets/guides/playbooks-and-knowledge/step2-rules-obeyed.webp" />
 <em>2. リマインドなしで全遵守——ナレッジ層の実働</em></p>
-<p><img alt="3. /exit 後——M orders.py、M tests/test_orders.py、git log には init コミットのみ" src="{B}/step3-no-commits.webp" />
+<p><img alt="3. /exit 後——M orders.py、M tests/test_orders.py、git log には init コミットのみ" src="https://till3005.github.io/built-with-devin/assets/guides/playbooks-and-knowledge/step3-no-commits.webp" />
 <em>3. 「コミット禁止」まで守られた——報告ではなく git で検証</em></p>
 <h2 id="出典">出典<a class="hlink" href="#出典" aria-hidden="true">#</a></h2>
 <ul>
