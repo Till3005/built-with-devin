@@ -69,7 +69,7 @@ def validate(data):
             errors.append(f"{label}: prompt must be a non-empty string")
         else:
             normalized_prompt = posixpath.normpath(prompt)
-            if posixpath.isabs(prompt) or normalized_prompt == ".." or normalized_prompt.startswith("../"):
+            if posixpath.isabs(prompt) or ".." in prompt.split("/"):
                 errors.append(f"{label}: prompt must stay inside ops/bot-fleet: {prompt}")
             elif not (FLEET / normalized_prompt).exists():
                 errors.append(f"{label}: missing prompt file {prompt}")
