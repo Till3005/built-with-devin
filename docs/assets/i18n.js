@@ -154,7 +154,7 @@ pt: {
 'd4.t':'“Phil” — uma equipe de agentes criou um editor compatível com Word','d4.d':'Gabe Pereyra relata mais de um milhão de linhas de código em três semanas.',
 'd5.t':'AutoResearch — um laboratório de pesquisa de inferência no Devin Cloud','d5.d':'Devin orquestrador + subagentes paralelos disputando hipóteses, verificados contra tráfego de produção reproduzido em GPUs Modal.',
 'd6.t':'Electra — uma colega nomeada que decide o que fazer','d6.d':'Escreve e testa código, atualiza ferramentas internas, mantém o time andando; um agente fiscal rodou um único thread por 20 dias.','d7.t':'Venus Williams — Bots de dados de tênis','d7.d':'A heptacampeã de Grand Slam delega a preparação no circuito aos Bots: jogos das rivais, ajuste de raquetes, análise de partidas.',
-'p1.d':'Empresas simuladas para treinar agentes — 74 sistemas fiéis aos fornecedores. 98% dos PRs mergeados escritos pelo Devin.','p7.d':'Rastreador de SEO local e citações em IA. O fundador Noah Zixin Zhang relata que os Devin Bots o construíram em 48 horas.',
+'p1.d':'Empresas simuladas para treinar agentes — 74 sistemas fiéis aos fornecedores. 98% dos PRs mergeados escritos pelo Devin.','p7.d':'Rastreador de SEO local e citações em IA. O fundador Noah Zixin Zhang <a href="https://x.com/noah_z_zhang/status/2124631768594563315">relata</a> que os Devin Bots o construíram em 48 horas.',
 'p2.d':'O deployer interno da Shopify clonado de um link do Slack até produção — inteiramente escrito pelo Devin.',
 'p3.d':'Devin Voice raspou avaliações para mapear a fronteira de Pareto de comida por localização.',
 'p4.d':'Fotos de bebê → sprites de jogo numa VM Mac, enviado ao TestFlight.',
