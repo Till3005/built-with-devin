@@ -4,7 +4,42 @@
   <title>Built with Devin — registry updates</title>
   <link>https://till3005.github.io/built-with-devin/</link>
   <description>New entries indexed in the built-with-devin registry.</description>
-  <lastBuildDate>Wed, 25 Nov 2026 00:42:19 +0000</lastBuildDate>
+  <lastBuildDate>Wed, 25 Nov 2026 15:46:13 +0000</lastBuildDate>
+  <item>
+    <title>Indexed: Android Bot</title>
+    <link>https://till3005.github.io/built-with-devin/#deployments</link>
+    <guid isPermaLink="false">bot:Android Bot</guid>
+    <pubDate>Wed, 25 Nov 2026 00:00:00 +0000</pubDate>
+    <description>Cognition — Devin's Android app, end to end</description>
+  </item>
+  <item>
+    <title>Indexed: Layout Bot</title>
+    <link>https://till3005.github.io/built-with-devin/#deployments</link>
+    <guid isPermaLink="false">bot:Layout Bot</guid>
+    <pubDate>Wed, 25 Nov 2026 00:00:00 +0000</pubDate>
+    <description>Cognition — Layout-shift regression on the Devin web app</description>
+  </item>
+  <item>
+    <title>Indexed: Super Jenny</title>
+    <link>https://till3005.github.io/built-with-devin/#deployments</link>
+    <guid isPermaLink="false">bot:Super Jenny</guid>
+    <pubDate>Wed, 25 Nov 2026 00:00:00 +0000</pubDate>
+    <description>Jenny Xu (community) — An entire mobile game studio</description>
+  </item>
+  <item>
+    <title>Indexed: Onboarding QA Bot</title>
+    <link>https://till3005.github.io/built-with-devin/#deployments</link>
+    <guid isPermaLink="false">bot:Onboarding QA Bot</guid>
+    <pubDate>Wed, 25 Nov 2026 00:00:00 +0000</pubDate>
+    <description>Cognition (Walden Yan) — QA of onboarding flows</description>
+  </item>
+  <item>
+    <title>Indexed: "Phil"</title>
+    <link>https://till3005.github.io/built-with-devin/#deployments</link>
+    <guid isPermaLink="false">bot:"Phil"</guid>
+    <pubDate>Wed, 25 Nov 2026 00:00:00 +0000</pubDate>
+    <description>Harvey — Collaborative Word-compatible editor engine</description>
+  </item>
   <item>
     <title>Indexed: GTM Engineering fleet</title>
     <link>https://till3005.github.io/built-with-devin/#deployments</link>
@@ -13,11 +48,18 @@
     <description>Cognition (Will Hunter) — Revenue workstreams: people/company data, signals, Salesforce, the GTM app, security</description>
   </item>
   <item>
-    <title>Indexed: Android Bot</title>
-    <link>https://till3005.github.io/built-with-devin/#deployments</link>
-    <guid isPermaLink="false">bot:Android Bot</guid>
-    <pubDate>Tue, 24 Nov 2026 00:00:00 +0000</pubDate>
-    <description>Cognition — Devin's Android app, end to end</description>
+    <title>Indexed: SupaSEO</title>
+    <link>https://till3005.github.io/built-with-devin/#products</link>
+    <guid isPermaLink="false">product:SupaSEO</guid>
+    <pubDate>Wed, 25 Nov 2026 00:00:00 +0000</pubDate>
+    <description>Noah Zixin Zhang's local SEO and AI-citation tracker. Zhang reports that Devin Bots built it in 48 hours.</description>
+  </item>
+  <item>
+    <title>Indexed: Zeb</title>
+    <link>https://till3005.github.io/built-with-devin/#enterprise</link>
+    <guid isPermaLink="false">enterprise:Zeb</guid>
+    <pubDate>Wed, 25 Nov 2026 00:00:00 +0000</pubDate>
+    <description>NetSuite→Databricks delivery partner</description>
   </item>
   <item>
     <title>Indexed: Exa agent island</title>
@@ -60,13 +102,6 @@
     <guid isPermaLink="false">template:Poke</guid>
     <pubDate>Mon, 23 Nov 2026 00:00:00 +0000</pubDate>
     <description>The Poke from your texts doing real engineering — fixes the bug, opens the PR, chases the review (the acquired startup, now a template)</description>
-  </item>
-  <item>
-    <title>Indexed: SupaSEO</title>
-    <link>https://till3005.github.io/built-with-devin/#products</link>
-    <guid isPermaLink="false">product:SupaSEO</guid>
-    <pubDate>Sat, 21 Nov 2026 00:00:00 +0000</pubDate>
-    <description>Noah Zixin Zhang's local SEO + AI-citation tracker (Google Maps/organic ranks plus whether ChatGPT/Perplexity cite you; BYOK scans, one-time $99 license): the app was built end-to-end by an 8-Bot fleet in ~48 hours — a Chief-of-Staff Bot routing work through a product-lead Bot to specialist Bots, ~951 commits, while the human handled only the landing page (launch post, giveaway/setup post).</description>
   </item>
   <item>
     <title>Indexed: AngelList</title>
@@ -144,41 +179,6 @@
     <guid isPermaLink="false">enterprise:Litera</guid>
     <pubDate>Fri, 20 Nov 2026 00:00:00 +0000</pubDate>
     <description>QE Evolution — specialized Devin agents embedded in scrum teams; "AI composers" role</description>
-  </item>
-  <item>
-    <title>Indexed: Crosby</title>
-    <link>https://till3005.github.io/built-with-devin/#enterprise</link>
-    <guid isPermaLink="false">enterprise:Crosby</guid>
-    <pubDate>Fri, 20 Nov 2026 00:00:00 +0000</pubDate>
-    <description>AI-native law firm; automation starts a session per Slack bug report + Sentry alert; lawyers' review feedback triaged/grouped by Devin</description>
-  </item>
-  <item>
-    <title>Indexed: Tavrn</title>
-    <link>https://till3005.github.io/built-with-devin/#enterprise</link>
-    <guid isPermaLink="false">enterprise:Tavrn</guid>
-    <pubDate>Fri, 20 Nov 2026 00:00:00 +0000</pubDate>
-    <description>Fleet dispatched from Slack across eng/ops/CS/sales inside a HIPAA tenant (SSO, scoped access); daily automation investigates failed quality-judge cases</description>
-  </item>
-  <item>
-    <title>Indexed: Philips</title>
-    <link>https://till3005.github.io/built-with-devin/#enterprise</link>
-    <guid isPermaLink="false">enterprise:Philips</guid>
-    <pubDate>Fri, 20 Nov 2026 00:00:00 +0000</pubDate>
-    <description>Code Scans early tester — Digital Computational Pathology, Enterprise Informatics</description>
-  </item>
-  <item>
-    <title>Indexed: Layout Bot</title>
-    <link>https://till3005.github.io/built-with-devin/#deployments</link>
-    <guid isPermaLink="false">bot:Layout Bot</guid>
-    <pubDate>Thu, 19 Nov 2026 00:00:00 +0000</pubDate>
-    <description>Cognition — Layout-shift regression on the Devin web app</description>
-  </item>
-  <item>
-    <title>Indexed: Super Jenny</title>
-    <link>https://till3005.github.io/built-with-devin/#deployments</link>
-    <guid isPermaLink="false">bot:Super Jenny</guid>
-    <pubDate>Thu, 19 Nov 2026 00:00:00 +0000</pubDate>
-    <description>Jenny Xu (community) — An entire mobile game studio</description>
   </item>
 </channel>
 </rss>

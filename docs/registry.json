@@ -13,34 +13,44 @@
       "name": "Android Bot",
       "owner": "Cognition",
       "owns": "Devin's Android app, end to end",
-      "results": "Prompted \"your job is to product manage the android app\" on Sep 28, 2026 — filed its own tickets, ran a Devin session per ticket, shipped to Google Play open beta in 44 days: 1,134 PRs merged, 344,651 lines of Kotlin, 2,841 screenshot tests. Its human sent 183 messages total — 22 days of complete silence — and 88% of PRs were self-merged. GA'd Nov 23 at full iOS parity — shipped and still maintained with zero Android engineers, ever.",
-      "sources": [],
-      "updated_on": "2026-11-24"
+      "results": "Cognition reports that the Bot built the app for Google Play open beta in 44 days, merging 1,134 PRs. (launch post)",
+      "sources": [
+        {
+          "text": "launch post",
+          "url": "https://devin.ai/blog/introducing-devin-bots"
+        }
+      ],
+      "updated_on": "2026-11-25"
     },
     {
       "name": "Layout Bot",
       "owner": "Cognition",
       "owns": "Layout-shift regression on the Devin web app",
-      "results": "Every 3 hours it builds production main, simulates first/repeat/delayed-request visits, traces regressions to the introducing PR, opens fixes with before/after videos. 159 PRs in 3 weeks; lag −70%.",
-      "sources": [],
-      "updated_on": "2026-11-19"
+      "results": "Cognition reports 159 merged PRs in three weeks and 70% lower lag. The Bot checks production every three hours and opens fixes with before/after video. (launch post)",
+      "sources": [
+        {
+          "text": "launch post",
+          "url": "https://devin.ai/blog/introducing-devin-bots"
+        }
+      ],
+      "updated_on": "2026-11-25"
     },
     {
       "name": "Super Jenny",
       "owner": "Jenny Xu (community)",
       "owns": "An entire mobile game studio",
-      "results": "~20 Bots (dev, Unity, releases, UI, iOS, Android, device testing) under one orchestrating Bot; the only human answers a consolidated Slack thread 4×/day with emoji. ~50 → 1,900 PRs/week, studio revenue 6×'d, shipping weekly. Published as community template SuperJennyStack. She then built BotSpeak — a token-saving bot-to-bot shorthand (ASD-STE100, ACK codes, emoji receipts; full prose only for the human): bot-made decisions 12×'d in 6 days. (Jenny's thread, BotSpeak post)",
+      "results": "Cognition reports that Jenny's studio went from about 50 to 1,900 PRs/week and shipped weekly. (launch post) Jenny reports that after adopting BotSpeak, bot-made decisions increased 12× in six days. (BotSpeak post)",
       "sources": [
         {
-          "text": "Jenny's thread",
-          "url": "https://x.com/xujennyc"
+          "text": "launch post",
+          "url": "https://devin.ai/blog/introducing-devin-bots"
         },
         {
           "text": "BotSpeak post",
           "url": "https://x.com/xujennyc/status/2123111543105868166"
         }
       ],
-      "updated_on": "2026-11-19"
+      "updated_on": "2026-11-25"
     },
     {
       "name": "dabit3's fleet",
@@ -58,28 +68,28 @@
     {
       "name": "Onboarding QA Bot",
       "owner": "Cognition (Walden Yan)",
-      "owns": "QA of 30+ onboarding flows, 24/7",
-      "results": "Maintains self-updating Playwright scripts, an agent job queue, and a live board view it built itself — \"found way more bugs than I would have had patience to discover.\" (@waldenyan)",
+      "owns": "QA of onboarding flows",
+      "results": "Walden Yan reports testing 30+ onboarding flows around the clock, using self-updating Playwright scripts, an agent job queue and a live board. (Walden Yan's post)",
       "sources": [
         {
-          "text": "@walden_yan",
-          "url": "https://x.com/walden_yan"
+          "text": "Walden Yan's post",
+          "url": "https://x.com/walden_yan/status/2122740859955454421"
         }
       ],
-      "updated_on": "2026-11-19"
+      "updated_on": "2026-11-25"
     },
     {
       "name": "\"Phil\"",
       "owner": "Harvey",
       "owns": "Collaborative Word-compatible editor engine",
-      "results": "~30 agents wrote 1M+ lines of Rust + TypeScript in 3 weeks, no human engineers — verified continuously against real Microsoft Word behavior and simulated lawyer negotiations; humans steer through memory + decision logs. (Gabe Pereyra)",
+      "results": "Gabe Pereyra reports that an all-agent team wrote over one million lines in three weeks for the Rust and TypeScript editor. (Gabe Pereyra's write-up)",
       "sources": [
         {
-          "text": "Gabe Pereyra",
-          "url": "https://x.com/gabepereyra"
+          "text": "Gabe Pereyra's write-up",
+          "url": "https://x.com/gabepereyra/status/2122756324173992166"
         }
       ],
-      "updated_on": "2026-11-19"
+      "updated_on": "2026-11-25"
     },
     {
       "name": "Shared bot fleet",
@@ -436,22 +446,18 @@
     },
     {
       "name": "SupaSEO",
-      "description": "Noah Zixin Zhang's local SEO + AI-citation tracker (Google Maps/organic ranks plus whether ChatGPT/Perplexity cite you; BYOK scans, one-time $99 license): the app was built end-to-end by an 8-Bot fleet in ~48 hours — a Chief-of-Staff Bot routing work through a product-lead Bot to specialist Bots, ~951 commits, while the human handled only the landing page (launch post, giveaway/setup post).",
+      "description": "Noah Zixin Zhang's local SEO and AI-citation tracker. Zhang reports that Devin Bots built it in 48 hours.",
       "sources": [
         {
           "text": "SupaSEO",
           "url": "https://supaseo.dev"
         },
         {
-          "text": "launch post",
-          "url": "https://x.com/noah_z_zhang/status/2124146220159377769"
-        },
-        {
-          "text": "giveaway/setup post",
-          "url": "https://x.com/noah_z_zhang/status/2124158990221259110"
+          "text": "reports",
+          "url": "https://x.com/noah_z_zhang/status/2124631768594563315"
         }
       ],
-      "updated_on": "2026-11-21"
+      "updated_on": "2026-11-25"
     }
   ],
   "enterprise_cases": [
@@ -938,14 +944,14 @@
     {
       "company": "Zeb",
       "deployment": "NetSuite→Databricks delivery partner",
-      "result": "A global investment-advisory client's 4-week migration delivered in 2.5 weeks; a Fortune 500 energy company migrated a 142-object platform to Unity Catalog in 8 days",
+      "result": "A global investment-advisory client's 4-week migration delivered in 2.5 weeks",
       "sources": [
         {
           "text": "Zeb",
           "url": "https://devin.ai/blog/devin-for-databricks-migrations"
         }
       ],
-      "updated_on": "2026-11-19"
+      "updated_on": "2026-11-25"
     },
     {
       "company": "Gamma",
@@ -1020,438 +1026,425 @@
     "https://aietalks.com/talks/40x-more-merged-prs-with-2-7x-the-engineers": {
       "ok": true,
       "status": 200,
-      "checked_at": "2026-11-21T13:53:02+00:00"
+      "checked_at": "2026-11-25T15:46:13+00:00"
+    },
+    "https://cognition.com/blog/how-to-automate-failure-triages-and-10x-test-generation-what-weve-learned-deploying-ai-across-hilsil-workflows": {
+      "ok": true,
+      "status": 200,
+      "checked_at": "2026-11-25T15:46:13+00:00"
     },
     "https://courtyard.io/blog/post/from-a-slack-link-to-production-in-under-48-hours-cloning-shopifys-quick-with-devin": {
       "ok": true,
       "status": 200,
-      "checked_at": "2026-11-21T13:53:02+00:00"
+      "checked_at": "2026-11-25T15:46:13+00:00"
     },
     "https://dev.to/ibrahimpima/designing-the-spraycash-ui-with-kimi-k3-in-devin-4l2f": {
       "ok": true,
       "status": 200,
-      "checked_at": "2026-11-21T13:53:02+00:00"
+      "checked_at": "2026-11-25T15:46:13+00:00"
     },
     "https://devin.ai/blog/devin-for-databricks-migrations": {
-      "ok": false,
-      "status": 0,
-      "checked_at": "2026-11-21T13:53:02+00:00",
-      "kind": "unreachable"
+      "ok": true,
+      "status": 200,
+      "checked_at": "2026-11-25T15:46:13+00:00"
     },
     "https://devin.ai/blog/introducing-code-scans": {
-      "ok": false,
-      "status": 0,
-      "checked_at": "2026-11-21T13:53:02+00:00",
-      "kind": "unreachable"
+      "ok": true,
+      "status": 200,
+      "checked_at": "2026-11-25T15:46:13+00:00"
+    },
+    "https://devin.ai/blog/introducing-devin-bots": {
+      "ok": true,
+      "status": 200,
+      "checked_at": "2026-11-25T15:46:13+00:00"
     },
     "https://devin.ai/bots": {
-      "ok": false,
-      "status": 0,
-      "checked_at": "2026-11-21T13:53:02+00:00",
-      "kind": "unreachable"
+      "ok": true,
+      "status": 200,
+      "checked_at": "2026-11-25T15:46:13+00:00"
     },
     "https://devin.ai/customers/access-group": {
-      "ok": false,
-      "status": 0,
-      "checked_at": "2026-11-21T13:53:02+00:00",
-      "kind": "unreachable"
+      "ok": true,
+      "status": 200,
+      "checked_at": "2026-11-25T15:46:13+00:00"
     },
     "https://devin.ai/customers/ahead": {
-      "ok": false,
-      "status": 0,
-      "checked_at": "2026-11-21T13:53:02+00:00",
-      "kind": "unreachable"
+      "ok": true,
+      "status": 200,
+      "checked_at": "2026-11-25T15:46:13+00:00"
     },
     "https://devin.ai/customers/airbyte": {
-      "ok": false,
-      "status": 0,
-      "checked_at": "2026-11-21T13:53:02+00:00",
-      "kind": "unreachable"
+      "ok": true,
+      "status": 200,
+      "checked_at": "2026-11-25T15:46:13+00:00"
     },
     "https://devin.ai/customers/angellist": {
-      "ok": false,
-      "status": 0,
-      "checked_at": "2026-11-21T13:53:02+00:00",
-      "kind": "unreachable"
+      "ok": true,
+      "status": 200,
+      "checked_at": "2026-11-25T15:46:13+00:00"
     },
     "https://devin.ai/customers/angellist-oncall": {
-      "ok": false,
-      "status": 0,
-      "checked_at": "2026-11-21T13:53:02+00:00",
-      "kind": "unreachable"
+      "ok": true,
+      "status": 200,
+      "checked_at": "2026-11-25T15:46:13+00:00"
     },
     "https://devin.ai/customers/basis": {
-      "ok": false,
-      "status": 0,
-      "checked_at": "2026-11-21T13:53:02+00:00",
-      "kind": "unreachable"
+      "ok": true,
+      "status": 200,
+      "checked_at": "2026-11-25T15:46:13+00:00"
     },
     "https://devin.ai/customers/bilt": {
-      "ok": false,
-      "status": 0,
-      "checked_at": "2026-11-21T13:53:02+00:00",
-      "kind": "unreachable"
+      "ok": true,
+      "status": 200,
+      "checked_at": "2026-11-25T15:46:13+00:00"
     },
     "https://devin.ai/customers/comarch": {
-      "ok": false,
-      "status": 0,
-      "checked_at": "2026-11-21T13:53:02+00:00",
-      "kind": "unreachable"
+      "ok": true,
+      "status": 200,
+      "checked_at": "2026-11-25T15:46:13+00:00"
     },
     "https://devin.ai/customers/compiledhealth": {
-      "ok": false,
-      "status": 0,
-      "checked_at": "2026-11-21T13:53:02+00:00",
-      "kind": "unreachable"
+      "ok": true,
+      "status": 200,
+      "checked_at": "2026-11-25T15:46:13+00:00"
     },
     "https://devin.ai/customers/comun": {
-      "ok": false,
-      "status": 0,
-      "checked_at": "2026-11-21T13:53:02+00:00",
-      "kind": "unreachable"
+      "ok": true,
+      "status": 200,
+      "checked_at": "2026-11-25T15:46:13+00:00"
     },
     "https://devin.ai/customers/crosby": {
-      "ok": false,
-      "status": 0,
-      "checked_at": "2026-11-21T13:53:02+00:00",
-      "kind": "unreachable"
+      "ok": true,
+      "status": 200,
+      "checked_at": "2026-11-25T15:46:13+00:00"
     },
     "https://devin.ai/customers/crossmint": {
-      "ok": false,
-      "status": 0,
-      "checked_at": "2026-11-21T13:53:02+00:00",
-      "kind": "unreachable"
+      "ok": true,
+      "status": 200,
+      "checked_at": "2026-11-25T15:46:13+00:00"
     },
     "https://devin.ai/customers/ebanx": {
-      "ok": false,
-      "status": 0,
-      "checked_at": "2026-11-21T13:53:02+00:00",
-      "kind": "unreachable"
+      "ok": true,
+      "status": 200,
+      "checked_at": "2026-11-25T15:46:13+00:00"
     },
     "https://devin.ai/customers/eight-sleep": {
-      "ok": false,
-      "status": 0,
-      "checked_at": "2026-11-21T13:53:02+00:00",
-      "kind": "unreachable"
+      "ok": true,
+      "status": 200,
+      "checked_at": "2026-11-25T15:46:13+00:00"
     },
     "https://devin.ai/customers/endava": {
-      "ok": false,
-      "status": 0,
-      "checked_at": "2026-11-21T13:53:02+00:00",
-      "kind": "unreachable"
+      "ok": true,
+      "status": 200,
+      "checked_at": "2026-11-25T15:46:13+00:00"
     },
     "https://devin.ai/customers/eon": {
-      "ok": false,
-      "status": 0,
-      "checked_at": "2026-11-21T13:53:02+00:00",
-      "kind": "unreachable"
+      "ok": true,
+      "status": 200,
+      "checked_at": "2026-11-25T15:46:13+00:00"
     },
     "https://devin.ai/customers/evinova": {
-      "ok": false,
-      "status": 0,
-      "checked_at": "2026-11-21T13:53:02+00:00",
-      "kind": "unreachable"
+      "ok": true,
+      "status": 200,
+      "checked_at": "2026-11-25T15:46:13+00:00"
     },
     "https://devin.ai/customers/exa": {
-      "ok": false,
-      "status": 0,
-      "checked_at": "2026-11-21T13:53:02+00:00",
-      "kind": "unreachable"
+      "ok": true,
+      "status": 200,
+      "checked_at": "2026-11-25T15:46:13+00:00"
     },
     "https://devin.ai/customers/fefundinfo": {
-      "ok": false,
-      "status": 0,
-      "checked_at": "2026-11-21T13:53:02+00:00",
-      "kind": "unreachable"
+      "ok": true,
+      "status": 200,
+      "checked_at": "2026-11-25T15:46:13+00:00"
     },
     "https://devin.ai/customers/finch": {
-      "ok": false,
-      "status": 0,
-      "checked_at": "2026-11-21T13:53:02+00:00",
-      "kind": "unreachable"
+      "ok": true,
+      "status": 200,
+      "checked_at": "2026-11-25T15:46:13+00:00"
     },
     "https://devin.ai/customers/geaerospace": {
-      "ok": false,
-      "status": 0,
-      "checked_at": "2026-11-21T13:53:02+00:00",
-      "kind": "unreachable"
+      "ok": true,
+      "status": 200,
+      "checked_at": "2026-11-25T15:46:13+00:00"
     },
     "https://devin.ai/customers/gumroad": {
-      "ok": false,
-      "status": 0,
-      "checked_at": "2026-11-21T13:53:02+00:00",
-      "kind": "unreachable"
+      "ok": true,
+      "status": 200,
+      "checked_at": "2026-11-25T15:46:13+00:00"
     },
     "https://devin.ai/customers/hamming": {
-      "ok": false,
-      "status": 0,
-      "checked_at": "2026-11-21T13:53:02+00:00",
-      "kind": "unreachable"
+      "ok": true,
+      "status": 200,
+      "checked_at": "2026-11-25T15:46:13+00:00"
     },
     "https://devin.ai/customers/hippo": {
-      "ok": false,
-      "status": 0,
-      "checked_at": "2026-11-21T13:53:02+00:00",
-      "kind": "unreachable"
+      "ok": true,
+      "status": 200,
+      "checked_at": "2026-11-25T15:46:13+00:00"
     },
     "https://devin.ai/customers/itau": {
-      "ok": false,
-      "status": 0,
-      "checked_at": "2026-11-21T13:53:02+00:00",
-      "kind": "unreachable"
+      "ok": true,
+      "status": 200,
+      "checked_at": "2026-11-25T15:46:13+00:00"
     },
     "https://devin.ai/customers/latent": {
-      "ok": false,
-      "status": 0,
-      "checked_at": "2026-11-21T13:53:02+00:00",
-      "kind": "unreachable"
+      "ok": true,
+      "status": 200,
+      "checked_at": "2026-11-25T15:46:13+00:00"
     },
     "https://devin.ai/customers/linktree": {
-      "ok": false,
-      "status": 0,
-      "checked_at": "2026-11-21T13:53:02+00:00",
-      "kind": "unreachable"
+      "ok": true,
+      "status": 200,
+      "checked_at": "2026-11-25T15:46:13+00:00"
     },
     "https://devin.ai/customers/litera": {
-      "ok": false,
-      "status": 0,
-      "checked_at": "2026-11-21T13:53:02+00:00",
-      "kind": "unreachable"
+      "ok": true,
+      "status": 200,
+      "checked_at": "2026-11-25T15:46:13+00:00"
     },
     "https://devin.ai/customers/melius": {
-      "ok": false,
-      "status": 0,
-      "checked_at": "2026-11-21T13:53:02+00:00",
-      "kind": "unreachable"
+      "ok": true,
+      "status": 200,
+      "checked_at": "2026-11-25T15:46:13+00:00"
     },
     "https://devin.ai/customers/mercor": {
-      "ok": false,
-      "status": 0,
-      "checked_at": "2026-11-21T13:53:02+00:00",
-      "kind": "unreachable"
+      "ok": true,
+      "status": 200,
+      "checked_at": "2026-11-25T15:46:13+00:00"
     },
     "https://devin.ai/customers/modal": {
-      "ok": false,
-      "status": 0,
-      "checked_at": "2026-11-21T13:53:02+00:00",
-      "kind": "unreachable"
+      "ok": true,
+      "status": 200,
+      "checked_at": "2026-11-25T15:46:13+00:00"
     },
     "https://devin.ai/customers/nubank": {
-      "ok": false,
-      "status": 0,
-      "checked_at": "2026-11-21T13:53:02+00:00",
-      "kind": "unreachable"
+      "ok": true,
+      "status": 200,
+      "checked_at": "2026-11-25T15:46:13+00:00"
     },
     "https://devin.ai/customers/ramp": {
-      "ok": false,
-      "status": 0,
-      "checked_at": "2026-11-21T13:53:02+00:00",
-      "kind": "unreachable"
+      "ok": true,
+      "status": 200,
+      "checked_at": "2026-11-25T15:46:13+00:00"
     },
     "https://devin.ai/customers/reducto": {
-      "ok": false,
-      "status": 0,
-      "checked_at": "2026-11-21T13:53:02+00:00",
-      "kind": "unreachable"
+      "ok": true,
+      "status": 200,
+      "checked_at": "2026-11-25T15:46:13+00:00"
     },
     "https://devin.ai/customers/ripple": {
-      "ok": false,
-      "status": 0,
-      "checked_at": "2026-11-21T13:53:02+00:00",
-      "kind": "unreachable"
+      "ok": true,
+      "status": 200,
+      "checked_at": "2026-11-25T15:46:13+00:00"
     },
     "https://devin.ai/customers/rohlikgroup": {
-      "ok": false,
-      "status": 0,
-      "checked_at": "2026-11-21T13:53:02+00:00",
-      "kind": "unreachable"
+      "ok": true,
+      "status": 200,
+      "checked_at": "2026-11-25T15:46:13+00:00"
     },
     "https://devin.ai/customers/rvtech": {
-      "ok": false,
-      "status": 0,
-      "checked_at": "2026-11-21T13:53:02+00:00",
-      "kind": "unreachable"
+      "ok": true,
+      "status": 200,
+      "checked_at": "2026-11-25T15:46:13+00:00"
     },
     "https://devin.ai/customers/tavrn": {
-      "ok": false,
-      "status": 0,
-      "checked_at": "2026-11-21T13:53:02+00:00",
-      "kind": "unreachable"
+      "ok": true,
+      "status": 200,
+      "checked_at": "2026-11-25T15:46:13+00:00"
     },
     "https://devin.ai/customers/thecitationgroup": {
-      "ok": false,
-      "status": 0,
-      "checked_at": "2026-11-21T13:53:02+00:00",
-      "kind": "unreachable"
+      "ok": true,
+      "status": 200,
+      "checked_at": "2026-11-25T15:46:13+00:00"
     },
     "https://devin.ai/customers/wayfair": {
-      "ok": false,
-      "status": 0,
-      "checked_at": "2026-11-21T13:53:02+00:00",
-      "kind": "unreachable"
+      "ok": true,
+      "status": 200,
+      "checked_at": "2026-11-25T15:46:13+00:00"
     },
     "https://devin.ai/customers/wpp-enterprise-solutions": {
-      "ok": false,
-      "status": 0,
-      "checked_at": "2026-11-21T13:53:02+00:00",
-      "kind": "unreachable"
+      "ok": true,
+      "status": 200,
+      "checked_at": "2026-11-25T15:46:13+00:00"
+    },
+    "https://devincentral.com/news/editorial-exa-adopts-devin-bots-across-its-software-stack-using-a-warc": {
+      "ok": true,
+      "status": 200,
+      "checked_at": "2026-11-25T15:46:13+00:00"
     },
     "https://github.com/dabit3/vending-machine": {
       "ok": true,
       "status": 200,
-      "checked_at": "2026-11-21T13:53:02+00:00"
+      "checked_at": "2026-11-25T15:46:13+00:00"
     },
     "https://github.com/fozagtx/spraycash": {
       "ok": true,
       "status": 200,
-      "checked_at": "2026-11-21T13:53:02+00:00"
+      "checked_at": "2026-11-25T15:46:13+00:00"
     },
     "https://news.cognizant.com/2026-09-23-Cognizant-and-Cognition-put-autonomous-AI-engineering-into-production-at-Odyssey-Logistics,-with-a-37-percent-net-cost-saving": {
       "ok": true,
       "status": 200,
-      "checked_at": "2026-11-21T13:53:02+00:00"
+      "checked_at": "2026-11-25T15:46:13+00:00"
     },
     "https://news.sulat.com/2026/11/18/devin-bots/": {
       "ok": true,
       "status": 200,
-      "checked_at": "2026-11-21T13:53:02+00:00"
+      "checked_at": "2026-11-25T15:46:13+00:00"
     },
     "https://ravtheman.medium.com/im-17-and-for-one-month-devin-was-my-entire-engineering-team-here-s-everything-i-learned-183d59099384": {
-      "ok": true,
-      "status": 200,
-      "checked_at": "2026-11-21T13:53:02+00:00"
+      "ok": false,
+      "status": 403,
+      "checked_at": "2026-11-25T15:46:13+00:00",
+      "kind": "waf_blocked"
     },
     "https://research.gamma.app/2026/11/pptx-import": {
       "ok": true,
       "status": 200,
-      "checked_at": "2026-11-21T13:53:02+00:00"
+      "checked_at": "2026-11-25T15:46:13+00:00"
     },
     "https://research.gamma.app/2026/11/template-factory": {
       "ok": true,
       "status": 200,
-      "checked_at": "2026-11-21T13:53:02+00:00"
+      "checked_at": "2026-11-25T15:46:13+00:00"
     },
     "https://samyok.com/frontierfood/": {
       "ok": true,
       "status": 200,
-      "checked_at": "2026-11-21T13:53:02+00:00"
+      "checked_at": "2026-11-25T15:46:13+00:00"
     },
     "https://seed.horacioh.com/writing/how-i-built-a-full-booking-system-as-a-side-project-with-devin-as-my-engineering-partner": {
       "ok": true,
       "status": 200,
-      "checked_at": "2026-11-21T13:53:02+00:00"
+      "checked_at": "2026-11-25T15:46:13+00:00"
     },
     "https://spraycash.onrender.com": {
       "ok": true,
       "status": 200,
-      "checked_at": "2026-11-21T13:53:02+00:00"
+      "checked_at": "2026-11-25T15:46:13+00:00"
+    },
+    "https://supaseo.dev": {
+      "ok": true,
+      "status": 200,
+      "checked_at": "2026-11-25T15:46:13+00:00"
+    },
+    "https://www.linkedin.com/posts/wlhunter_with-devin-bots-officially-out-and-a-couple-activity-7528555142300848128-56WF": {
+      "ok": true,
+      "status": 200,
+      "checked_at": "2026-11-25T15:46:13+00:00"
     },
     "https://www.rox.com/articles/living-evals-an-eval-suite-that-grows-from-production": {
       "ok": true,
       "status": 200,
-      "checked_at": "2026-11-21T13:53:02+00:00"
+      "checked_at": "2026-11-25T15:46:13+00:00"
     },
     "https://www.trydevin.ai/": {
       "ok": true,
       "status": 200,
-      "checked_at": "2026-11-21T13:53:02+00:00"
+      "checked_at": "2026-11-25T15:46:13+00:00"
     },
     "https://x.com/0xtigs/status/2122742784176034056": {
       "ok": true,
       "status": 200,
-      "checked_at": "2026-11-21T13:53:02+00:00"
+      "checked_at": "2026-11-25T15:46:13+00:00"
     },
     "https://x.com/DecagonAI/article/2115511110120120437": {
       "ok": true,
       "status": 200,
-      "checked_at": "2026-11-21T13:53:02+00:00"
+      "checked_at": "2026-11-25T15:46:13+00:00"
     },
     "https://x.com/bryan_johnson/status/2122814114976383406": {
       "ok": true,
       "status": 200,
-      "checked_at": "2026-11-21T13:53:02+00:00"
+      "checked_at": "2026-11-25T15:46:13+00:00"
     },
     "https://x.com/cognition/status/2123093354196140285": {
       "ok": true,
       "status": 200,
-      "checked_at": "2026-11-21T13:53:02+00:00"
+      "checked_at": "2026-11-25T15:46:13+00:00"
+    },
+    "https://x.com/cognition/status/2123813355538239878": {
+      "ok": true,
+      "status": 200,
+      "checked_at": "2026-11-25T15:46:13+00:00"
     },
     "https://x.com/dabit3/status/2122755275182469515": {
       "ok": true,
       "status": 200,
-      "checked_at": "2026-11-21T13:53:02+00:00"
+      "checked_at": "2026-11-25T15:46:13+00:00"
     },
     "https://x.com/devindevelopers/status/2115601107581821172": {
       "ok": true,
       "status": 200,
-      "checked_at": "2026-11-21T13:53:02+00:00"
+      "checked_at": "2026-11-25T15:46:13+00:00"
     },
-    "https://x.com/gabepereyra": {
+    "https://x.com/gabepereyra/status/2122756324173992166": {
       "ok": true,
       "status": 200,
-      "checked_at": "2026-11-21T13:53:02+00:00"
+      "checked_at": "2026-11-25T15:46:13+00:00"
     },
     "https://x.com/markfenner/status/2122740244328145211": {
       "ok": true,
       "status": 200,
-      "checked_at": "2026-11-21T13:53:02+00:00"
+      "checked_at": "2026-11-25T15:46:13+00:00"
+    },
+    "https://x.com/noah_z_zhang/status/2124631768594563315": {
+      "ok": true,
+      "status": 200,
+      "checked_at": "2026-11-25T15:46:13+00:00"
     },
     "https://x.com/rox_ai/status/2110779380666617997": {
       "ok": true,
       "status": 200,
-      "checked_at": "2026-11-21T13:53:02+00:00"
+      "checked_at": "2026-11-25T15:46:13+00:00"
     },
     "https://x.com/russelljkaplan/status/2100280085999919555": {
       "ok": true,
       "status": 200,
-      "checked_at": "2026-11-21T13:53:02+00:00"
+      "checked_at": "2026-11-25T15:46:13+00:00"
     },
     "https://x.com/samyok/status/2098155977199743367": {
       "ok": true,
       "status": 200,
-      "checked_at": "2026-11-21T13:53:02+00:00"
+      "checked_at": "2026-11-25T15:46:13+00:00"
     },
     "https://x.com/trybasis/status/2113307030203089189": {
       "ok": true,
       "status": 200,
-      "checked_at": "2026-11-21T13:53:02+00:00"
+      "checked_at": "2026-11-25T15:46:13+00:00"
     },
     "https://x.com/trybasis/status/2120658137766100992": {
       "ok": true,
       "status": 200,
-      "checked_at": "2026-11-21T13:53:02+00:00"
+      "checked_at": "2026-11-25T15:46:13+00:00"
     },
     "https://x.com/tylerxdev/status/2122743518712287400": {
       "ok": true,
       "status": 200,
-      "checked_at": "2026-11-21T13:53:02+00:00"
+      "checked_at": "2026-11-25T15:46:13+00:00"
     },
-    "https://x.com/walden_yan": {
+    "https://x.com/walden_yan/status/2122740859955454421": {
       "ok": true,
       "status": 200,
-      "checked_at": "2026-11-21T13:53:02+00:00"
+      "checked_at": "2026-11-25T15:46:13+00:00"
     },
     "https://x.com/walden_yan/status/2123105884125671605": {
       "ok": true,
       "status": 200,
-      "checked_at": "2026-11-21T13:53:02+00:00"
-    },
-    "https://x.com/xujennyc": {
-      "ok": true,
-      "status": 200,
-      "checked_at": "2026-11-21T13:53:02+00:00"
+      "checked_at": "2026-11-25T15:46:13+00:00"
     },
     "https://x.com/xujennyc/status/2123111543105868166": {
       "ok": true,
       "status": 200,
-      "checked_at": "2026-11-21T13:53:02+00:00"
+      "checked_at": "2026-11-25T15:46:13+00:00"
     }
   },
   "source_checks_summary": {
-    "checked_at": "2026-11-21T13:53:02+00:00",
-    "total": 77,
+    "checked_at": "2026-11-25T15:46:13+00:00",
+    "total": 83,
     "broken": 0,
-    "unreachable": 44,
-    "waf_blocked": 0
+    "unreachable": 0,
+    "waf_blocked": 1
   }
 }

@@ -54,12 +54,12 @@ flowchart LR
 
 | Bot | オーナー | 担当領域 | 公開された結果 |
 | --- | --- | --- | --- |
-| **Android Bot** | Cognition | Devin の Android アプリをエンドツーエンドで | 2026 年 9 月 28 日に *"your job is to product manage the android app"* と指示 —— 自分でチケットを起票し、チケットごとに Devin セッションを実行。Google Play オープンベータまで **44 日**：1,134 PR マージ、Kotlin 344,651 行、2,841 のスクリーンショットテスト。人間が送ったのは**合計 183 通のみ** —— 22 日間完全な無干渉 —— **88% の PR は自己マージ**。**11/23 に GA、iOS と完全パリティ**——Android エンジニアゼロのまま出荷・保守を継続中。 |
-| **Layout Bot** | Cognition | Devin Web アプリのレイアウトシフト回帰 | 3 時間ごとに本番 `main` をビルドし、初回/リピート/遅延リクエストをシミュレート。回帰を起因 PR まで追跡し、before/after 動画つきで修正 PR を作成。**3 週間で 159 PR、カクつき −70%。** |
-| **Super Jenny** | Jenny Xu（コミュニティ） | モバイルゲームスタジオ全体 | ~20 の Bot（dev、Unity、リリース、UI、iOS、Android、実機テスト）を 1 つのオーケストレータ Bot が統括。唯一の人間は集約 Slack スレッドに 1 日 4 回**絵文字で**返答。週 50 → **1,900 PR**、スタジオ収益 6 倍、毎週リリース。コミュニティテンプレート **SuperJennyStack** として公開。その後 **BotSpeak** を構築 —— トークン節約型の bot 間速記（ASD-STE100、ACK コード、絵文字レシート；完全な文章は人間のみ）：6 日間で bot の自律判断が **12 倍**に。（[Jenny のスレッド](https://x.com/xujennyc)、[BotSpeak ポスト](https://x.com/xujennyc/status/2123111543105868166)） |
+| **Android Bot** | Cognition | Devin の Android アプリをエンドツーエンドで | Cognition の[発表記事](https://devin.ai/blog/introducing-devin-bots)によると、Bot は Google Play のオープンベータ版を **44 日**で開発し、**1,134 件の PR** をマージした。 |
+| **Layout Bot** | Cognition | Devin Web アプリのレイアウトシフト回帰 | Cognition の[発表記事](https://devin.ai/blog/introducing-devin-bots)によると、Bot は 3 時間ごとに本番環境を確認し、修正前後の動画付きで修正を提案する。**3 週間で 159 件の PR** がマージされ、遅延が **70% 減少**した。 |
+| **Super Jenny** | Jenny Xu（コミュニティ） | モバイルゲームスタジオ全体 | Cognition の[発表記事](https://devin.ai/blog/introducing-devin-bots)によると、Jenny のスタジオは毎週リリースし、週あたりの PR は **約 50 件から 1,900 件**に増加した。Jenny は [BotSpeak の投稿](https://x.com/xujennyc/status/2123111543105868166)で、導入後 **6 日で Bot による意思決定が 12 倍**になったと報告した。 |
 | **dabit3 のフリート** | Nader Dabit（Cognition DevRel） | 個人 5-Bot 組織 + ゲームスタジオ | **CTO** bot：全セッション/リポジトリを管理、VIP iMessage チャネルで SMS 経由ですべての bot に到達。**Auto(mation)Bot**：個人自動化を実行し、レイテンシ/効率改善を報告。**DevCommunityBot**：Sheets/Notion でアンバサダープログラムを運営、ミニデータ可視化アプリを構築。**DevRelBot**：ドキュメント + チュートリアル動画 —— *専用コンピュータ、専用 Devin/GitHub/Linear アカウント、ElevenLabs 音声クローンを持ち*、ブラウザを起動して実際の UI を録画。さらに **Windfable**：iPhone Duo 向け Unity iOS RPG、~10 の SuperJennyStack Bot がそれぞれ専用 macOS+Xcode+Unity を持ち、Duo の折りたたみ/展開モードを前後スクリーンショット + 実機映像でテスト。（[入門](https://x.com/dabit3/status/2122755275182469515)） |
-| **Onboarding QA Bot** | Cognition（Walden Yan） | 30 以上のオンボーディングフローの 24/7 QA | 自己更新する Playwright スクリプト、エージェントジョブキュー、自作のライブボードビューを維持 —— 「自分が発掘する忍耐力よりはるかに多くのバグを見つけた」。（[@walden_yan](https://x.com/walden_yan)） |
-| **"Phil"** | Harvey | 協調型 Word 互換エディタエンジン | ~30 のエージェントが **3 週間・人間エンジニアゼロ** で Rust + TypeScript 100 万行超を執筆 —— 実際の Microsoft Word の挙動と模擬弁護士交渉で継続検証。人間はメモリ + 決定ログで舵取り。（[Gabe Pereyra](https://x.com/gabepereyra)） |
+| **Onboarding QA Bot** | Cognition（Walden Yan） | オンボーディングフローの QA | Walden Yan は[投稿](https://x.com/walden_yan/status/2122740859955454421)で、自己更新型の Playwright スクリプト、ジョブキュー、ライブボードを使い、**30 以上のオンボーディングフロー**を常時テストしていると報告した。 |
+| **"Phil"** | Harvey | 協調型 Word 互換エディタエンジン | Gabe Pereyra は[記事](https://x.com/gabepereyra/status/2122756324173992166)で、エージェントだけのチームが Rust と TypeScript のエディター向けに **3 週間で 100 万行超**のコードを書いたと報告した。 |
 | **共有 Bot フリート** | Decagon | オンコール、DevEx 最適化、スレッドルーティング | ベータ期間中に Slack で 50+ の共有 Bot を運用。Chief of Staff Bot がスレッドの起動タイミングと方法を決定。（[@tylerxdev のスレッド](https://x.com/tylerxdev/status/2122743518712287400)） |
 | **AutoResearch ループ** | Decagon | 推論研究ラボ | 1 つの Devin がオーケストレート。サブエージェントが競合仮説を並列で追求。すべてのアイデアを Modal GPU 上の再生済み本番トラフィックで検証 —— **GPU あたりスループット最大 2.5 倍**（[詳細](https://x.com/DecagonAI/article/2115511110120120437)、[@devindevelopers](https://x.com/devindevelopers/status/2115601107581821172)）。 |
 | **Frankie の組織** | Mark Fenner（コミュニティ） | 個人エージェントフリート | 異なる役割を持つ 4 つの Bot を "Frankie, my Chief Agent" が調整し、集約レポートを持ち帰る（[解説](https://x.com/markfenner/status/2122740244328145211)）。 |
@@ -138,7 +138,7 @@ flowchart LR
 
 - **[Spraycash](https://spraycash.onrender.com)** —— ライブ中の決済エクスプローラーサイト。UI 全体が Devin チャット内でアートディレクト（Kimi K3）：全プロンプトは[ビルドログ](https://dev.to/ibrahimpima/designing-the-spraycash-ui-with-kimi-k3-in-devin-4l2f)に公開、コードは [fozagtx/spraycash](https://github.com/fozagtx/spraycash)。
 - **CosmosOS + NEXI** —— 高2の学生が Max で1ヶ月間に出した3点セット：CosmosOS——授業の合間に Devin が組み上げた自作 Linux ディストロ；NEXI——ローカルモデル群；そしてマルチエージェント IDE（[全記録](https://ravtheman.medium.com/im-17-and-for-one-month-devin-was-my-entire-engineering-team-here-s-everything-i-learned-183d59099384)）。
-- **[SupaSEO](https://supaseo.dev)** —— Noah Zixin Zhang のローカル SEO + AI 引用トラッカー（Google マップ/オーガニック順位に加え ChatGPT/Perplexity の引用可否を追跡。BYOK スキャン、買い切り $99）：アプリ本体は **8 Bot フリートが ~48 時間でエンドツーエンド構築**——Chief of Staff Bot がプロダクトリード Bot 経由で専門 Bot 群へルーティング、~951 コミット。人間はランディングページのみ担当（[ローンチ投稿](https://x.com/noah_z_zhang/status/2124146220159377769)、[ギブアウェイ/構成投稿](https://x.com/noah_z_zhang/status/2124158990221259110)）。
+- **[SupaSEO](https://supaseo.dev)** —— Noah Zixin Zhang のローカル SEO と AI 引用のトラッカー。Zhang は Devin Bots が **48 時間**で開発したと[報告](https://x.com/noah_z_zhang/status/2124631768594563315)した。
 
 *Devin で作った出荷済みプロダクトを知っていますか？[追加してください](CONTRIBUTING.md)。**
 
@@ -190,7 +190,7 @@ flowchart LR
 | [Basis](https://devin.ai/customers/basis) | 会計 AI スタートアップの長時間タスク向けクラウドエージェント | Slack でメンションした依頼が ~15 分で出荷、エンジニアは寝る前に ~10 件の Devin ジョブを投入 —— 「群を抜いて最高のクラウドエージェント基盤」（共同創業者） |
 | [Mercor](https://devin.ai/customers/mercor) | 24 時間稼働するエンジニア組織 | 評価額 100 億ドルのヒューマンインテリジェンス・ネットワークが Devin を 24/7 運用（公開事例ページ） |
 | [Hippo](https://devin.ai/customers/hippo) | 保険エンジニア組織への全面展開 | Cognition と提携：全米 50 州の保険ルールに耐えるプロダクトをエージェント的に構築・テスト（公開事例ページ） |
-| [Zeb](https://devin.ai/blog/devin-for-databricks-migrations) | NetSuite→Databricks のデリバリーパートナー | 世界的投資アドバイザリー企業の 4 週間案件を **2.5 週間で納品**、Fortune 500 エネルギー企業が 142 オブジェクトのプラットフォームを **8 日**で Unity Catalog へ移行 |
+| [Zeb](https://devin.ai/blog/devin-for-databricks-migrations) | NetSuite→Databricks のデリバリーパートナー | 世界的投資アドバイザリー企業の 4 週間案件を **2.5 週間で納品** |
 | [Gamma](https://research.gamma.app/2026/11/template-factory) | デザインテンプレート工場 + PowerPoint インポート再建 | 各チケットで Devin セッションを起ち、Gamma 独自のエージェントハーネス（build→render→critic ラウンド）を実行。数千テンプレート、1 件 2–4 時間。人の介入は 1 デッキ 10–15 回から **10 月に完全自律へ**。PPT インポートはエンジニア 3 名 + ~10 の Devin fixer 群で再建——**3,500+ マージ**。従来見積はエンジニア 5–10 名 × 1 年、数週間で完了（[インポート記事](https://research.gamma.app/2026/11/pptx-import)） |
 | [Odyssey Logistics](https://news.cognizant.com/2026-09-23-Cognizant-and-Cognition-put-autonomous-AI-engineering-into-production-at-Odyssey-Logistics,-with-a-37-percent-net-cost-saving) | レガシー Access/VBA フォーム → クラウドネイティブ OdysseyONE TMS。Cognizant の 7 人チームが納品、変更ごとに人が承認 | 従来型リビルド比 **37% の純コスト削減**、固定予算・短縮工期の中で。デリバリースループットは約 ⅓ 増。現在フェーズは本番稼働中（2026 年 9 月プレスリリース） |
 | **Rox** | Living Evals —— 週次 Devin が本番トレースを読み、完全コピーで障害を再生、eval PR をオープン | eval スイートが**実使用量の 72%**をカバー（手書きは 43–57%）（[記事](https://www.rox.com/articles/living-evals-an-eval-suite-that-grows-from-production)、[スレッド](https://x.com/rox_ai/status/2110779380666617997)） |

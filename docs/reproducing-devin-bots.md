@@ -32,7 +32,7 @@ Check-in pattern: `anything waiting on me?`
 - **Reporting:** daily Slack report with a screen recording of what changed.
 - **Human load:** ~1 message per 6 merged PRs; many days zero. Messages mostly answer human-judgment items (e.g. security review) — or set direction ("be more ambitious").
 - **Steady state:** the Bot keeps parity with the reference project and triages beta reports.
-- **Numbers:** 44 days, 1,134 PRs, 344k LOC Kotlin, 2,841 screenshot tests, 1,217 tickets.
+- **Numbers:** [Cognition reports](https://devin.ai/blog/introducing-devin-bots) 44 days and 1,134 merged PRs.
 
 ## Recipe 2 — Scheduled-check Bot (Layout Bot)
 
@@ -62,7 +62,7 @@ Remaining ~15 Bots cover development, Unity, UI, iOS, Android, analytics, etc.
 
 - **Reporting cadence:** SuperJenny collects every subordinate Bot's pending decisions into **one Slack thread, 4×/day**; the human answers with emoji.
 - **Mechanics:** create one Bot per job, grant the orchestrator read/message access to each, and instruct it to run the roll-up.
-- **Numbers:** ~50 → 1,900 PRs/week; weekly releases; 6× studio revenue. Shared as a **community template** in the Bot marketplace ("SuperJennyStack").
+- **Numbers:** [Cognition reports](https://devin.ai/blog/introducing-devin-bots) a rise from about 50 to 1,900 PRs per week, with weekly releases.
 - **Variant (official):** QA Bot finds bug → hands to Developer Bot via grant → Developer fixes → QA retests on staging → PM Bot reports status in channel.
 
 ## Recipe 4 — One-job Bots (official template patterns)
@@ -91,14 +91,14 @@ Each [official template](https://devin.ai/bots/templates) encodes one reproducib
 
 Named beta deployments (all reported Nov 17–18, 2026, day-one of launch):
 
-- **Harvey — "Phil"** ([@gabepereyra's X article](https://x.com/gabepereyra)) — Harvey's Assistant team ran a hierarchical team of ~30 agents that wrote a collaborative, Word-compatible editor engine in Rust + TypeScript (1M+ lines) in three weeks with no human engineers. Two reproduction lessons: (1) give the swarm a *reliable reference* — they checked continuously against real Microsoft Word behavior and simulated lawyer negotiations; (2) humans steer through the Bot's accumulated memory and decision logs, not by reading the code.
+- **Harvey — “Phil”** — [Gabe Pereyra reports](https://x.com/gabepereyra/status/2122756324173992166) that an all-agent team wrote over a million lines in three weeks for a collaborative, Word-compatible editor.
 - **Decagon — shared Bot fleet** ([@tylerxdev's thread](https://x.com/tylerxdev/status/2122743518712287400)) — 50+ shared Bots in Slack after a few weeks of early access: on-call, DevEx optimization, and a Chief of Staff Bot the team messages instead of managing threads by hand. Lesson: Bots are multiplayer — one shared Bot carries the team's accumulated context, which single-user sessions can't.
 - **Decagon — AutoResearch** ([full writeup](https://x.com/DecagonAI/article/2115511110120120437), [@devindevelopers](https://x.com/devindevelopers/status/2115601107581821172)) — one Devin orchestrates an inference research lab on Devin Cloud; subagents chase competing hypotheses in parallel and every idea is verified against replayed production traffic on Modal GPUs. Up to 2.5× more throughput per GPU. Lesson: give the loop a *measurable* reward (requests/sec/GPU inside a latency SLA) and let findings compound off the last verified baseline.
 - **Mark Fenner — "Frankie's org"** ([walkthrough](https://x.com/markfenner/status/2122740244328145211)) — an ambassador running four Bots with distinct jobs under a coordinating Chief Agent Bot that brings consolidated updates back. Lesson: even a solo operator can run the multi-Bot org shape — one coordinator is the single decision surface.
 - **Bryan Johnson — personal data Bots** ([post](https://x.com/bryan_johnson/status/2122814114976383406), [launch video](https://x.com/cognition/status/2122737511684587551)) — one Bot synthesizes years of biometric data (incl. brain scans) into a single health readout; another texts his mother a daily update on how he's doing. Lesson: Bots are not limited to codebases — "owning an outcome" extends to personal data pipelines and recurring outbound comms.
 - **Raijuna — "100 Days of Devin" build-log** ([day 1](https://www.raijuna.com/blog/devin-100-day-challenge-day-1)) — the first post-launch independent fleet operator: someone already shipping hundreds of PRs/day from his own agent factory ports it to ~15 Devin Bots. Early findings worth reproducing against: session tracking is the first thing that doesn't scale ("which one produced a PR? which one needs me?"), Bots' video QA beats screenshot QA, and setup alone consumed 18% of the weekly quota. Ongoing series — the closest thing to a public Bots SRE log.
 - **swyx — generalist trial** ([his summary](https://x.com/swyx/status/2122746401482592549), [technical notes](https://x.com/swyx/status/2122818291144229075)) — a week of handing over answer-engine optimization, QA, cross-platform app porting, personal admin automation, and video editing. His read: don't sell "AI employees"; sell the abstraction level above single tasks — managers that own outcomes. Note his architecture detail: each Bot keeps its own memory bank; cross-Bot knowledge sharing is not automatic.
-- **Noah Zixin Zhang — 8-Bot SaaS fleet** ([launch post](https://x.com/noah_z_zhang/status/2124146220159377769)) — a solo founder shipped a paid product (SupaSEO, local SEO + AI-citation tracker, $99 lifetime deal) in ~48 hours: a Chief-of-Staff Bot routed work through a product-lead Bot to specialist Bots (~951 commits), and the human only wrote the landing page. Two reproducible tips from his build notes: one *shared* Bot per discipline serves every project better than one Bot per project (memory compounds across them), and keep each Bot's scope granular — "don't let 1 bot do everything".
+- **Noah Zixin Zhang — SupaSEO** — The founder [reports](https://x.com/noah_z_zhang/status/2124631768594563315) that Devin Bots built his local SEO and AI-citation tracker in 48 hours.
 
 From the [launch video](https://x.com/cognition/status/2122737511684587551) and early-user reports ([daily.dev summary](https://daily.dev/posts/devin-bots-want-to-be-your-agent-manager-not-your-ai-employee-hhpjo94uh)):
 

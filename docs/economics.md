@@ -35,7 +35,7 @@ A running ledger of the *published, auditable* cost/return numbers — the thing
 | 20–40 bugs/alerts first-passed daily in ~5 min; Sentry noise −50% | [Crosby](https://devin.ai/customers/crosby) |
 | 25% of total code volume — tied top contributor | [Hamming](https://devin.ai/customers/hamming) |
 | **40× merged-PR throughput on 2.7× headcount** (>10×/engineer) | [Cognition internal](https://aietalks.com/talks/40x-more-merged-prs-with-2-7x-the-engineers) |
-| 4-week client migration delivered in 2.5 weeks; 142-object platform in 8 days | [Zeb](https://devin.ai/blog/devin-for-databricks-migrations) (NetSuite→Databricks delivery partner) |
+| 4-week client migration delivered in 2.5 weeks | [Zeb](https://devin.ai/blog/devin-for-databricks-migrations) (NetSuite→Databricks delivery partner) |
 
 ## The honest-ledger rule
 

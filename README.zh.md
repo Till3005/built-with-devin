@@ -54,12 +54,12 @@ flowchart LR
 
 | Bot | 属主 | 负责什么 | 公开数据 |
 | --- | --- | --- | --- |
-| **Android Bot** | Cognition | Devin 的安卓 App，端到端 | 2026 年 9 月 28 日收到 prompt *"your job is to product manage the android app"* —— 自己开工单、每单开一个 Devin session，**44 天**上线 Google Play 公测：合并 1,134 个 PR、344,651 行 Kotlin、2,841 个截图测试。人类全程只发了 **183 条消息** —— 其中 22 天零干预 —— **88% 的 PR 由它自己合并**。**11/23 正式 GA、与 iOS 完全对齐**——从零 Android 工程师到上线维护，全程只有它。 |
-| **Layout Bot** | Cognition | Devin web app 的布局偏移回归 | 每 3 小时构建生产 `main`，模拟首次/重复/延迟请求访问，把回归追溯到引入它的 PR，开出带前后对比视频的修复。**3 周 159 个 PR；卡顿 −70%。** |
-| **Super Jenny** | Jenny Xu（社区） | 一整个手游工作室 | ~20 个 Bot（dev、Unity、发布、UI、iOS、Android、真机测试）由一个编排 Bot 统领；唯一的人类每天用**表情**回 4 次汇总 Slack 帖。约 50 → **每周 1,900 个 PR**，工作室营收 6 倍，周更发布。已上架为社区模板 **SuperJennyStack**。她随后又做了 **BotSpeak** —— 省 token 的 bot 间简语（ASD-STE100、ACK 代号、emoji 回执；完整语句只留给人类）：6 天内 bot 自主决策 **12×**。（[Jenny 的推文](https://x.com/xujennyc)、[BotSpeak 帖](https://x.com/xujennyc/status/2123111543105868166)） |
+| **Android Bot** | Cognition | Devin 的安卓 App，端到端 | 据 Cognition 的[发布博客](https://devin.ai/blog/introducing-devin-bots)，该 Bot 在 **44 天**内构建了 Google Play 公测版，合并了 **1,134 个 PR**。 |
+| **Layout Bot** | Cognition | Devin web app 的布局偏移回归 | 据 Cognition 的[发布博客](https://devin.ai/blog/introducing-devin-bots)，该 Bot 每三小时检查生产环境，用修复前后的视频展示结果；三周合并了 **159 个 PR**，延迟降低了 **70%**。 |
+| **Super Jenny** | Jenny Xu（社区） | 一整个手游工作室 | 据 Cognition 的[发布博客](https://devin.ai/blog/introducing-devin-bots)，Jenny 的工作室每周 PR 数从约 **50 增至 1,900**，并保持每周发布。Jenny 在 [BotSpeak 帖子](https://x.com/xujennyc/status/2123111543105868166)中称，采用 BotSpeak 后六天内，Bot 自主做出的决定增至 **12 倍**。 |
 | **dabit3 的舰队** | Nader Dabit（Cognition DevRel） | 个人 5-Bot 组织 + 一个游戏工作室 | **CTO** bot：管全部会话/仓库，VIP iMessage 通道可短信直达每个 bot。**Auto(mation)Bot**：跑他的个人自动化，汇报延迟与效率建议。**DevCommunityBot**：在 Sheets/Notion 上运营大使计划，搭小型数据可视化应用。**DevRelBot**：文档 + 教程视频 —— *它有自己的电脑、自己的 Devin/GitHub/Linear 账号和 ElevenLabs 声纹克隆*，自己开浏览器录真实 UI。外加 **Windfable**：iPhone Duo 上的 Unity iOS RPG，~10 个 SuperJennyStack Bot 每人配专属 macOS+Xcode+Unity，测试折叠/展开双态并附前后截图 + 实机视频。（[入门长文](https://x.com/dabit3/status/2122755275182469515)） |
-| **Onboarding QA Bot** | Cognition（Walden Yan） | 30+ 条 onboarding 流程的 24/7 QA | 自维护 Playwright 脚本、agent 任务队列，以及它自己搭的实时看板 —— "找到的 bug 远超我有耐心去挖的数量"。（[@walden_yan](https://x.com/walden_yan)） |
-| **"Phil"** | Harvey | 协作式 Word 兼容编辑器引擎 | ~30 个 agent 用 **3 周、零人类工程师** 写出 100 万+ 行 Rust + TypeScript —— 全程对照真实 Microsoft Word 行为和模拟律师谈判验证；人类通过记忆 + 决策日志掌舵。（[Gabe Pereyra](https://x.com/gabepereyra)） |
+| **Onboarding QA Bot** | Cognition（Walden Yan） | 入门流程的 QA | Walden Yan 在[帖子](https://x.com/walden_yan/status/2122740859955454421)中称，他用自动更新的 Playwright 脚本、任务队列及实时看板全天候测试 **30 多条入门流程**。 |
+| **"Phil"** | Harvey | 协作式 Word 兼容编辑器引擎 | Gabe Pereyra 在[文章](https://x.com/gabepereyra/status/2122756324173992166)中称，全由 agent 组成的团队在 **三周**内为这个 Rust 和 TypeScript 编辑器写了 **100 多万行代码**。 |
 | **共享 Bot 舰队** | Decagon | on-call、DevEx 优化、讨论串路由 | beta 期间 Slack 里跑了 50+ 个共享 Bot；一个 Chief of Staff Bot 决定何时、如何开新讨论串。（[@tylerxdev 的推文](https://x.com/tylerxdev/status/2122743518712287400)） |
 | **AutoResearch 回路** | Decagon | 一个推理研究实验室 | 一个 Devin 当编排者；子 agent 并行追逐相互竞争的假设；每个想法都在 Modal GPU 上用回放的生产流量验证 —— **每 GPU 吞吐最高 2.5×**（[完整长文](https://x.com/DecagonAI/article/2115511110120120437)、[@devindevelopers](https://x.com/devindevelopers/status/2115601107581821172)）。 |
 | **Frankie 的组织** | Mark Fenner（社区） | 个人 agent 舰队 | 四个分工各异的 Bot，由 "Frankie, my Chief Agent" 协调并把汇总上报回来（[演示](https://x.com/markfenner/status/2122740244328145211)）。 |
@@ -138,7 +138,7 @@ flowchart LR
 
 - **[Spraycash](https://spraycash.onrender.com)** —— 一个在线收付款浏览器站点，整套 UI 在 Devin 聊天里逐条 art-direct 出来（Kimi K3）：每句 prompt 都公开在[构建记录](https://dev.to/ibrahimpima/designing-the-spraycash-ui-with-kimi-k3-in-devin-4l2f)，代码在 [fozagtx/spraycash](https://github.com/fozagtx/spraycash)。
 - **CosmosOS + NEXI** —— 一位高二学生在 Max 上一个月的出货三件套：CosmosOS——他自己命名的 Linux 发行版，上课期间由 Devin 构建；NEXI——一组本地模型；外加一个多 agent IDE（[完整自述](https://ravtheman.medium.com/im-17-and-for-one-month-devin-was-my-entire-engineering-team-here-s-everything-i-learned-183d59099384)）。
-- **[SupaSEO](https://supaseo.dev)** —— Noah Zixin Zhang 的本地 SEO + AI 引用追踪器（Google Maps/自然排名，外加 ChatGPT/Perplexity 有没有引用你；自带 key 按量扫描，一次性 $99）：整个 app 由一支 **8 个 Devin Bot 的舰队 ~48 小时端到端建成**——Chief of Staff Bot 把活路由给一个 product-lead Bot 再分派给专家 Bot，~951 个 commit，人类只写了落地页（[发布帖](https://x.com/noah_z_zhang/status/2124146220159377769)、[活动/搭建帖](https://x.com/noah_z_zhang/status/2124158990221259110)）。
+- **[SupaSEO](https://supaseo.dev)** —— Noah Zixin Zhang 的本地 SEO 和 AI 引用追踪器。Zhang [称](https://x.com/noah_z_zhang/status/2124631768594563315) Devin Bots 用 **48 小时**构建了该产品。
 
 *知道有 Devin 做出的已发布产品？[收录它](CONTRIBUTING.md)。**
 
@@ -190,7 +190,7 @@ flowchart LR
 | [Basis](https://devin.ai/customers/basis) | 会计 AI 创业公司的长任务云代理 | Slack 里 @ 的请求 ~15 分钟后交付；工程师睡前挂 ~10 个 Devin 任务——"目前最好的云代理基础设施"（联创） |
 | [Mercor](https://devin.ai/customers/mercor) | 全天候运转的工程组织 | 百亿美金估值的人力智能网络 24/7 跑 Devin（官方案例页） |
 | [Hippo](https://devin.ai/customers/hippo) | 保险工程组织全面铺开 | 与 Cognition 合作：用 agentic 构建/测试覆盖 50 州保险规则的产品（官方案例页） |
-| [Zeb](https://devin.ai/blog/devin-for-databricks-migrations) | NetSuite→Databricks 交付伙伴 | 一家全球投资咨询客户的 4 周迁移 **2.5 周交付**；一家财富 500 能源公司 8 天迁完 142 个对象到 Unity Catalog |
+| [Zeb](https://devin.ai/blog/devin-for-databricks-migrations) | NetSuite→Databricks 交付伙伴 | 一家全球投资咨询客户的 4 周迁移 **2.5 周交付** |
 | [Gamma](https://research.gamma.app/2026/11/template-factory) | 设计模板工厂 + PowerPoint 导入重建 | 每张工单开一个 Devin session，跑 Gamma 自研 agent harness（build→render→critic 评审轮）；数千模板、每个 2–4 小时，人工干预从每套 10–15 次降到 **10 月实现全自动**。PPT 导入由 3 名工程师 + ~10 个 Devin fixer 组成的舰队重建——**3,500+ 次合并**，原本按 5–10 名工程师 × 一年估算的活，几周做完（[导入复盘](https://research.gamma.app/2026/11/pptx-import)） |
 | [Odyssey Logistics](https://news.cognizant.com/2026-09-23-Cognizant-and-Cognition-put-autonomous-AI-engineering-into-production-at-Odyssey-Logistics,-with-a-37-percent-net-cost-saving) | 遗留 Access/VBA 表单 → 云原生 OdysseyONE TMS，由 7 人 Cognizant 团队交付、每次变更人工签核 | 相对传统重建 **净省 37% 成本**，且在固定预算与加速排期内；交付吞吐提升约 ⅓；当前阶段已上线（2026 年 9 月新闻稿） |
 | **Rox** | Living Evals —— 每周 Devin 读生产 trace，在完整副本中回放失败，开 eval PR | 评测集覆盖**真实用量的 72%**（手写只有 43–57%）（[全文](https://www.rox.com/articles/living-evals-an-eval-suite-that-grows-from-production)、[推文](https://x.com/rox_ai/status/2110779380666617997)） |
