@@ -140,18 +140,18 @@
 <li><strong>outcome 型：</strong> 「orders.py のテストカバレッジをあなたの担当領域とする。良い状態：total・apply_discount・shipping_fee の全分岐にテストがあり、python3 -m unittest -v が全緑。」</li>
 </ul>
 <p><strong>動画（64 秒・無音）：</strong> ベースライン → タスク実行 → +6 行 → outcome 実行 → 自ら分解したカバレッジマップ → +37 行。</p>
-<p><a href="{B}/walkthrough.mp4"><img alt="outcome 実行のレポート——13 テスト全緑、分岐カバレッジはエージェント自身が列挙" src="{B}/walkthrough-poster.webp" /></a></p>
-<p><img alt="1. ベースラインにタスク型プロンプト——テスト 2 件、項目を列挙するだけ" src="{B}/step1-task-prompt.webp" />
+<p><a href="https://till3005.github.io/built-with-devin/assets/guides/bot-outcome-prompts/walkthrough.mp4"><img alt="outcome 実行のレポート——13 テスト全緑、分岐カバレッジはエージェント自身が列挙" src="https://till3005.github.io/built-with-devin/assets/guides/bot-outcome-prompts/walkthrough-poster.webp" /></a></p>
+<p><img alt="1. ベースラインにタスク型プロンプト——テスト 2 件、項目を列挙するだけ" src="https://till3005.github.io/built-with-devin/assets/guides/bot-outcome-prompts/step1-task-prompt.webp" />
 <em>1. タスク型プロンプト——エージェントに渡したのは買い物リスト</em></p>
-<p><img alt="2. タスク実行完了——指定の 2 テストだけ追加、4 件全緑、「Nothing committed」、その後停止" src="{B}/step2-task-done.webp" />
+<p><img alt="2. タスク実行完了——指定の 2 テストだけ追加、4 件全緑、「Nothing committed」、その後停止" src="https://till3005.github.io/built-with-devin/assets/guides/bot-outcome-prompts/step2-task-done.webp" />
 <em>2. タスク型：リストを終えたら停止——オーナーではなくセッション</em></p>
-<p><img alt="3. 同一コピーに outcome 型プロンプト——役割・担当面・検証可能な状態。項目リストなし" src="{B}/step3-outcome-prompt.webp" />
+<p><img alt="3. 同一コピーに outcome 型プロンプト——役割・担当面・検証可能な状態。項目リストなし" src="https://till3005.github.io/built-with-devin/assets/guides/bot-outcome-prompts/step3-outcome-prompt.webp" />
 <em>3. outcome 型：役割 + 境界ある担当面 + 「良い状態」の定義——チェックリストなし</em></p>
-<p><img alt="4. outcome プロンプトが生んだ diff——全分岐をエージェントが自分で列挙" src="{B}/step4-outcome-diff.webp" />
+<p><img alt="4. outcome プロンプトが生んだ diff——全分岐をエージェントが自分で列挙" src="https://till3005.github.io/built-with-devin/assets/guides/bot-outcome-prompts/step4-outcome-diff.webp" />
 <em>4. どのテストを書くか教えていない——+39 行、分岐はすべて自己列挙</em></p>
-<p><img alt="5. レポートは「完了」ではなく「状態」——「All 13 tests pass. Branch coverage: …」" src="{B}/step5-coverage-report.webp" />
+<p><img alt="5. レポートは「完了」ではなく「状態」——「All 13 tests pass. Branch coverage: …」" src="https://till3005.github.io/built-with-devin/assets/guides/bot-outcome-prompts/step5-coverage-report.webp" />
 <em>5. 「良い状態」の定義に照らして検証し、カバレッジマップを報告</em></p>
-<p><img alt="6. 並べて比較——タスク型 +6 行、outcome 型 +37 行。同じモデル・同じリポジトリ" src="{B}/step6-side-by-side.webp" />
+<p><img alt="6. 並べて比較——タスク型 +6 行、outcome 型 +37 行。同じモデル・同じリポジトリ" src="https://till3005.github.io/built-with-devin/assets/guides/bot-outcome-prompts/step6-side-by-side.webp" />
 <em>6. 同モデル・同リポジトリ、違いはプロンプトの形だけ：+6 対 +37、テスト 4 対 13</em></p>
 <h2 id="出典">出典<a class="hlink" href="#出典" aria-hidden="true">#</a></h2>
 <ul>

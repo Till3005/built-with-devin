@@ -12,7 +12,7 @@
 <link rel="alternate" hreflang="zh" href="https://till3005.github.io/built-with-devin/guides/zh/zh/migrations-at-scale.html">
 <link rel="alternate" hreflang="x-default" href="https://till3005.github.io/built-with-devin/guides/zh/migrations-at-scale.html">
 <link rel="alternate" type="application/rss+xml" title="built-with-devin feed" href="../../feed.xml">
-<script type="application/ld+json">{"@context": "https://schema.org", "@type": "TechArticle", "headline": "指南 11 — 规模化迁移", "description": "把大型迁移（语言、框架、数据库、依赖、架构）跑成几百个已验证的小 PR，而不是一次英雄式重写。", "inLanguage": "zh", "url": "https://till3005.github.io/built-with-devin/guides/zh/migrations-at-scale.html", "isPartOf": {"@type": "Course", "name": "build-with-devin", "url": "https://till3005.github.io/built-with-devin/guides/"}, "dateModified": "2026-11-24"}</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "TechArticle", "headline": "指南 11 — 规模化迁移", "description": "把大型迁移（语言、框架、数据库、依赖、架构）跑成几百个已验证的小 PR，而不是一次英雄式重写。", "inLanguage": "zh", "url": "https://till3005.github.io/built-with-devin/guides/zh/migrations-at-scale.html", "isPartOf": {"@type": "Course", "name": "build-with-devin", "url": "https://till3005.github.io/built-with-devin/guides/"}, "dateModified": "2026-11-25"}</script>
 <link rel="icon" href="../../assets/brand/Devin_Symbol.svg" type="image/svg+xml">
 <link rel="stylesheet" href="../../assets/site.css">
 <link rel="stylesheet" href="../../assets/guides.css">
@@ -46,12 +46,12 @@
 <main>
 <article class="guide wrap" id="guide">
   <p class="guide-crumb"><a href="index.html">← 指南</a> · <a href="../migrations-at-scale.html">English</a> · <a href="../ja/migrations-at-scale.html">日本語</a> · <a href="../pt/migrations-at-scale.html">Português</a></p>
-<div class="guide-meta"><span class="meta-chip">进阶</span><span class="meta-chip">更新于 2026-11-24</span></div>
+<div class="guide-meta"><span class="meta-chip">进阶</span><span class="meta-chip">更新于 2026-11-25</span></div>
 <details class="toc" open><summary>本页目录</summary><ol><li class="d2"><a href="#官方-playbook">官方 playbook</a></li><li class="d2"><a href="#第-1-步-确认你的迁移够格">第 1 步 — 确认你的迁移够格</a></li><li class="d2"><a href="#第-2-步-切片">第 2 步 — 切片</a></li><li class="d2"><a href="#第-3-步-把变换写成-skill">第 3 步 — 把变换写成 skill</a></li><li class="d2"><a href="#第-4-步-并行会话">第 4 步 — 并行会话</a></li><li class="d2"><a href="#第-5-步-盯错误率-不盯进度条">第 5 步 — 盯错误率，不盯进度条</a></li><li class="d2"><a href="#verify-it">Verify it</a></li><li class="d2"><a href="#坑">坑</a></li><li class="d2"><a href="#自检">自检</a></li><li class="d2"><a href="#实录演示-迁移回路串行跑一遍-录于-devin-cli-v3000-14-swe-2-flash-medium">实录演示 —— 迁移回路串行跑一遍，录于 Devin CLI v3000.14（swe-2-flash-medium）</a></li><li class="d2"><a href="#sources">Sources</a></li></ol></details>
 <h1>指南 11 — 规模化迁移</h1>
 <p><strong>目标：</strong> 把大型迁移（语言、框架、数据库、依赖、架构）跑成几百个已验证的小 PR，而不是一次英雄式重写。
 <strong>级别：</strong> 中级 → 高级
-<strong>来源：</strong> <a href="https://docs.devin.ai/use-cases/best-practices.html">Best Practices</a> · <a href="https://docs.devin.ai/use-cases/migration-modernization.html">Migration &amp; Modernization</a> · 迁移示例：<a href="https://docs.devin.ai/use-cases/examples/java-upgrades.html">Java upgrades</a>、<a href="https://docs.devin.ai/use-cases/examples/cobol-modernization.html">COBOL</a>、<a href="https://docs.devin.ai/use-cases/examples/sas-to-pyspark.html">SAS→PySpark</a>、<a href="https://docs.devin.ai/use-cases/examples/javascript-to-typescript.html">JS→TS</a>、<a href="https://docs.devin.ai/use-cases/examples/nosql-to-sql.html">NoSQL→SQL</a> · Nubank 案例</p>
+<strong>来源：</strong> <a href="https://docs.devin.ai/use-cases/best-practices.md">Best Practices</a> · <a href="https://docs.devin.ai/use-cases/migration-modernization.md">Migration &amp; Modernization</a> · 迁移示例：<a href="https://docs.devin.ai/use-cases/examples/java-upgrades.md">Java upgrades</a>、<a href="https://docs.devin.ai/use-cases/examples/cobol-modernization.md">COBOL</a>、<a href="https://docs.devin.ai/use-cases/examples/sas-to-pyspark.md">SAS→PySpark</a>、<a href="https://docs.devin.ai/use-cases/examples/javascript-to-typescript.md">JS→TS</a>、<a href="https://docs.devin.ai/use-cases/examples/nosql-to-sql.md">NoSQL→SQL</a> · Nubank 案例</p>
 <h2 id="官方-playbook">官方 playbook<a class="hlink" href="#官方-playbook" aria-hidden="true">#</a></h2>
 <p>Devin 自己的文档对什么能扩展说得很直白：<strong>wide &amp; shallow</strong>（宽而浅）胜过 <strong>tall &amp; deep</strong>（高而深）。迁移就是典型的宽而浅工作——同一个小变换施加到几百个相互独立的单元上。</p>
 <pre><code class="language-text">migration ──► slice into isolated units (&lt;90 min each)
@@ -146,20 +146,20 @@
 <h2 id="实录演示-迁移回路串行跑一遍-录于-devin-cli-v3000-14-swe-2-flash-medium">实录演示 —— 迁移回路串行跑一遍，录于 Devin CLI v3000.14（swe-2-flash-medium）<a class="hlink" href="#实录演示-迁移回路串行跑一遍-录于-devin-cli-v3000-14-swe-2-flash-medium" aria-hidden="true">#</a></h2>
 <p>「几百个并行会话」那部分要云端额度，但<em>回路本身</em>不需要——所以用免费档串行演示。<code>migrate-demo</code>：4 个 optparse CLI（greeter/calc/backup/report），每个工具一个行为测试，变换配方写成 <code>.devin/skills/optparse-to-argparse/SKILL.md</code>。prompt：“按独立 slice 迁移……每迁一个工具跑测试，绿了才动下一个。”</p>
 <p><strong>视频（41 秒，无声）：</strong> 基线 → skill 被调用 → 4 片各绿 → optparse 残留为零。</p>
-<p><a href="{B}/walkthrough.mp4"><img alt="完整切片回路——每个工具迁完都跑测试，逐 skill 配方的收尾汇报" src="{B}/walkthrough-poster.webp" /></a></p>
-<p><img alt="1. 基线——4 个 optparse 工具，7 个行为测试全绿" src="{B}/step1-baseline.webp" />
+<p><a href="https://till3005.github.io/built-with-devin/assets/guides/migrations-at-scale/walkthrough.mp4"><img alt="完整切片回路——每个工具迁完都跑测试，逐 skill 配方的收尾汇报" src="https://till3005.github.io/built-with-devin/assets/guides/migrations-at-scale/walkthrough-poster.webp" /></a></p>
+<p><img alt="1. 基线——4 个 optparse 工具，7 个行为测试全绿" src="https://till3005.github.io/built-with-devin/assets/guides/migrations-at-scale/step1-baseline.webp" />
 <em>1. 基线：4 个 OptionParser 工具、7 个测试、一个已提交的 skill 配方</em></p>
-<p><img alt="2. skill 从 .devin/skills 自动调用——先读全部工具和测试文件再动手" src="{B}/step2-skill-invoked.webp" />
+<p><img alt="2. skill 从 .devin/skills 自动调用——先读全部工具和测试文件再动手" src="https://till3005.github.io/built-with-devin/assets/guides/migrations-at-scale/step2-skill-invoked.webp" />
 <em>2. <code>Invoked skill optparse-to-argparse</code>——配方驱动整轮</em></p>
-<p><img alt="3. 切片回路——“Green. Now calc.py——它靠 rest 读位置参数，所以用 parse_known_args 保持形状。”" src="{B}/step3-slice-loop.webp" />
+<p><img alt="3. 切片回路——“Green. Now calc.py——它靠 rest 读位置参数，所以用 parse_known_args 保持形状。”" src="https://till3005.github.io/built-with-devin/assets/guides/migrations-at-scale/step3-slice-loop.webp" />
 <em>3. 逐片验证；它甚至自己发现 calc.py 需要 <code>parse_known_args</code> 保位置参数</em></p>
-<p><img alt="4. /exit 后验证——4 个文件迁完，+18/−18，optparse 引用清零，零提交" src="{B}/step4-verify-diff.webp" />
+<p><img alt="4. /exit 后验证——4 个文件迁完，+18/−18，optparse 引用清零，零提交" src="https://till3005.github.io/built-with-devin/assets/guides/migrations-at-scale/step4-verify-diff.webp" />
 <em>4. 四个各自验证过的小 diff——这就是切片纪律，只是没有并行舰队</em></p>
 <h2 id="sources">Sources<a class="hlink" href="#sources" aria-hidden="true">#</a></h2>
 <ul>
-<li><a href="https://docs.devin.ai/use-cases/best-practices.html">Best Practices — docs.devin.ai</a></li>
-<li><a href="https://docs.devin.ai/use-cases/migration-modernization.html">Migration &amp; Modernization + 5 个示例 playbook</a></li>
-<li><a href="https://docs.devin.ai/use-cases/gallery/index.html">Use-case gallery — Migrations</a></li>
+<li><a href="https://docs.devin.ai/use-cases/best-practices.md">Best Practices — docs.devin.ai</a></li>
+<li><a href="https://docs.devin.ai/use-cases/migration-modernization.md">Migration &amp; Modernization + 5 个示例 playbook</a></li>
+<li><a href="https://docs.devin.ai/use-cases/gallery/index.md">Use-case gallery — Migrations</a></li>
 <li><a href="https://cognition.com/blog/dotnet-migration-with-devin">Cognition 的 .NET 迁移 playbook</a> —— Ask Devin 按上下文给 controller 排序，协调会话并行移植：月 → 周（厂商发布）</li>
 <li>相关：<a href="enterprise-playbook.html">第 7 篇 — 企业级铺开</a>（形态 1 就是本篇的组织级版本）</li>
 </ul>

@@ -140,18 +140,18 @@
 <li><strong>Outcome-shaped:</strong> "Your job is to own the test coverage of orders.py. Good looks like: every branch of total, apply_discount and shipping_fee has a test, and python3 -m unittest -v is all green."</li>
 </ul>
 <p><strong>Video (64 s, silent):</strong> baseline → task run → +6 lines → outcome run → self-decomposed coverage map → +37 lines.</p>
-<p><a href="{B}/walkthrough.mp4"><img alt="The outcome run's report — 13 tests green, branch coverage enumerated by the agent" src="{B}/walkthrough-poster.webp" /></a></p>
-<p><img alt="1. The task-shaped prompt on the baseline — 2 tests, named items only" src="{B}/step1-task-prompt.webp" />
+<p><a href="https://till3005.github.io/built-with-devin/assets/guides/bot-outcome-prompts/walkthrough.mp4"><img alt="The outcome run's report — 13 tests green, branch coverage enumerated by the agent" src="https://till3005.github.io/built-with-devin/assets/guides/bot-outcome-prompts/walkthrough-poster.webp" /></a></p>
+<p><img alt="1. The task-shaped prompt on the baseline — 2 tests, named items only" src="https://till3005.github.io/built-with-devin/assets/guides/bot-outcome-prompts/step1-task-prompt.webp" />
 <em>1. Task-shaped prompt on the baseline — the agent is given a shopping list</em></p>
-<p><img alt="2. Task run finished — exactly the 2 named tests, 4 green, &quot;Nothing committed&quot;, then it idles" src="{B}/step2-task-done.webp" />
+<p><img alt="2. Task run finished — exactly the 2 named tests, 4 green, &quot;Nothing committed&quot;, then it idles" src="https://till3005.github.io/built-with-devin/assets/guides/bot-outcome-prompts/step2-task-done.webp" />
 <em>2. Task run: exactly the listed items, then it stops — a session, not an owner</em></p>
-<p><img alt="3. The outcome-shaped prompt on an identical copy — role, surface, verifiable state, no item list" src="{B}/step3-outcome-prompt.webp" />
+<p><img alt="3. The outcome-shaped prompt on an identical copy — role, surface, verifiable state, no item list" src="https://till3005.github.io/built-with-devin/assets/guides/bot-outcome-prompts/step3-outcome-prompt.webp" />
 <em>3. Outcome-shaped prompt: role + bounded surface + a definition of good — no checklist</em></p>
-<p><img alt="4. The diff the outcome prompt produced — the agent enumerated every branch itself" src="{B}/step4-outcome-diff.webp" />
+<p><img alt="4. The diff the outcome prompt produced — the agent enumerated every branch itself" src="https://till3005.github.io/built-with-devin/assets/guides/bot-outcome-prompts/step4-outcome-diff.webp" />
 <em>4. +39 lines written without being told which tests — it named every branch on its own</em></p>
-<p><img alt="5. The report is a state, not a checklist — &quot;All 13 tests pass. Branch coverage: …&quot;" src="{B}/step5-coverage-report.webp" />
+<p><img alt="5. The report is a state, not a checklist — &quot;All 13 tests pass. Branch coverage: …&quot;" src="https://till3005.github.io/built-with-devin/assets/guides/bot-outcome-prompts/step5-coverage-report.webp" />
 <em>5. It verifies against the stated definition of good and reports the coverage map</em></p>
-<p><img alt="6. Side by side — task prompt: +6 lines; outcome prompt: +37 lines. Same model, same repo" src="{B}/step6-side-by-side.webp" />
+<p><img alt="6. Side by side — task prompt: +6 lines; outcome prompt: +37 lines. Same model, same repo" src="https://till3005.github.io/built-with-devin/assets/guides/bot-outcome-prompts/step6-side-by-side.webp" />
 <em>6. Same model, same repo, different prompt shape: +6 vs +37 — and 4 vs 13 tests</em></p>
 <h2 id="sources">Sources<a class="hlink" href="#sources" aria-hidden="true">#</a></h2>
 <ul>

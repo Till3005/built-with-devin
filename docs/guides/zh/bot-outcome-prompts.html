@@ -140,18 +140,18 @@
 <li><strong>outcome 式：</strong> “你的职责是管好 orders.py 的测试覆盖。好的标准：total、apply_discount、shipping_fee 每个分支都有测试，且 python3 -m unittest -v 全绿。”</li>
 </ul>
 <p><strong>视频（64 秒，无声）：</strong> 基线 → 任务式跑 → +6 行 → outcome 式跑 → 自己分解出覆盖图 → +37 行。</p>
-<p><a href="{B}/walkthrough.mp4"><img alt="outcome 会话的汇报——13 个测试全绿，覆盖图是 agent 自己列的" src="{B}/walkthrough-poster.webp" /></a></p>
-<p><img alt="1. 基线上输入任务式 prompt——2 个测试，只点名条目" src="{B}/step1-task-prompt.webp" />
+<p><a href="https://till3005.github.io/built-with-devin/assets/guides/bot-outcome-prompts/walkthrough.mp4"><img alt="outcome 会话的汇报——13 个测试全绿，覆盖图是 agent 自己列的" src="https://till3005.github.io/built-with-devin/assets/guides/bot-outcome-prompts/walkthrough-poster.webp" /></a></p>
+<p><img alt="1. 基线上输入任务式 prompt——2 个测试，只点名条目" src="https://till3005.github.io/built-with-devin/assets/guides/bot-outcome-prompts/step1-task-prompt.webp" />
 <em>1. 基线上的任务式 prompt——给 agent 的是一张购物清单</em></p>
-<p><img alt="2. 任务式跑完——恰好加了点名的 2 个测试、4 个全绿、“Nothing committed”，然后停住" src="{B}/step2-task-done.webp" />
+<p><img alt="2. 任务式跑完——恰好加了点名的 2 个测试、4 个全绿、“Nothing committed”，然后停住" src="https://till3005.github.io/built-with-devin/assets/guides/bot-outcome-prompts/step2-task-done.webp" />
 <em>2. 任务式：做完清单就停——这是个会话，不是个 owner</em></p>
-<p><img alt="3. 相同副本上输入 outcome 式 prompt——角色、界面边界、可验证状态，没有任务清单" src="{B}/step3-outcome-prompt.webp" />
+<p><img alt="3. 相同副本上输入 outcome 式 prompt——角色、界面边界、可验证状态，没有任务清单" src="https://till3005.github.io/built-with-devin/assets/guides/bot-outcome-prompts/step3-outcome-prompt.webp" />
 <em>3. outcome 式：角色 + 有边界的管辖面 + “好”的定义——不给清单</em></p>
-<p><img alt="4. outcome prompt 产出的 diff——每个分支都是 agent 自己枚举的" src="{B}/step4-outcome-diff.webp" />
+<p><img alt="4. outcome prompt 产出的 diff——每个分支都是 agent 自己枚举的" src="https://till3005.github.io/built-with-devin/assets/guides/bot-outcome-prompts/step4-outcome-diff.webp" />
 <em>4. 没人告诉它写哪些测试——+39 行，分支全是它自己列的</em></p>
-<p><img alt="5. 汇报的是一个“状态”而不是“做完了”——“All 13 tests pass. Branch coverage: …”" src="{B}/step5-coverage-report.webp" />
+<p><img alt="5. 汇报的是一个“状态”而不是“做完了”——“All 13 tests pass. Branch coverage: …”" src="https://till3005.github.io/built-with-devin/assets/guides/bot-outcome-prompts/step5-coverage-report.webp" />
 <em>5. 它对着“好”的定义自检，汇报的是覆盖图</em></p>
-<p><img alt="6. 并排对比——任务式 +6 行；outcome 式 +37 行。同一模型、同一仓库" src="{B}/step6-side-by-side.webp" />
+<p><img alt="6. 并排对比——任务式 +6 行；outcome 式 +37 行。同一模型、同一仓库" src="https://till3005.github.io/built-with-devin/assets/guides/bot-outcome-prompts/step6-side-by-side.webp" />
 <em>6. 同模型同仓库，只差 prompt 形状：+6 对 +37，4 个测试对 13 个</em></p>
 <h2 id="sources">Sources<a class="hlink" href="#sources" aria-hidden="true">#</a></h2>
 <ul>

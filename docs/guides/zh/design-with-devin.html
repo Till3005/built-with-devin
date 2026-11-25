@@ -12,7 +12,7 @@
 <link rel="alternate" hreflang="zh" href="https://till3005.github.io/built-with-devin/guides/zh/zh/design-with-devin.html">
 <link rel="alternate" hreflang="x-default" href="https://till3005.github.io/built-with-devin/guides/zh/design-with-devin.html">
 <link rel="alternate" type="application/rss+xml" title="built-with-devin feed" href="../../feed.xml">
-<script type="application/ld+json">{"@context": "https://schema.org", "@type": "TechArticle", "headline": "指南 8 — 设计与视觉工作", "description": "把 Devin 当你的美术指导 + 实现者，纯靠对话完成生产级视觉设计——生成图像、动画系统、字体排印。", "inLanguage": "zh", "url": "https://till3005.github.io/built-with-devin/guides/zh/design-with-devin.html", "isPartOf": {"@type": "Course", "name": "build-with-devin", "url": "https://till3005.github.io/built-with-devin/guides/"}, "dateModified": "2026-11-20"}</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "TechArticle", "headline": "指南 8 — 设计与视觉工作", "description": "把 Devin 当你的美术指导 + 实现者，纯靠对话完成生产级视觉设计——生成图像、动画系统、字体排印。", "inLanguage": "zh", "url": "https://till3005.github.io/built-with-devin/guides/zh/design-with-devin.html", "isPartOf": {"@type": "Course", "name": "build-with-devin", "url": "https://till3005.github.io/built-with-devin/guides/"}, "dateModified": "2026-11-25"}</script>
 <link rel="icon" href="../../assets/brand/Devin_Symbol.svg" type="image/svg+xml">
 <link rel="stylesheet" href="../../assets/site.css">
 <link rel="stylesheet" href="../../assets/guides.css">
@@ -46,7 +46,7 @@
 <main>
 <article class="guide wrap" id="guide">
   <p class="guide-crumb"><a href="index.html">← 指南</a> · <a href="../design-with-devin.html">English</a> · <a href="../ja/design-with-devin.html">日本語</a> · <a href="../pt/design-with-devin.html">Português</a></p>
-<div class="guide-meta"><span class="meta-chip">进阶</span><span class="meta-chip">更新于 2026-11-20</span></div>
+<div class="guide-meta"><span class="meta-chip">进阶</span><span class="meta-chip">更新于 2026-11-25</span></div>
 <details class="toc" open><summary>本页目录</summary><ol><li class="d2"><a href="#模式">模式</a></li><li class="d2"><a href="#第-1-步-像创意总监一样下-brief">第 1 步 — 像创意总监一样下 brief</a></li><li class="d2"><a href="#第-2-步-先锁字体体系-再动像素">第 2 步 — 先锁字体体系，再动像素</a></li><li class="d2"><a href="#第-3-步-在会话内生成图像">第 3 步 — 在会话内生成图像</a></li><li class="d2"><a href="#第-4-步-用机制写动画-不用形容词">第 4 步 — 用机制写动画，不用形容词</a></li><li class="d2"><a href="#第-5-步-批评回路才是手艺">第 5 步 — 批评回路才是手艺</a></li><li class="d2"><a href="#verify-it">Verify it</a></li><li class="d2"><a href="#坑">坑</a></li><li class="d2"><a href="#自检">自检</a></li><li class="d2"><a href="#实录演示-用机制下-brief-靠-critique-精修-录于-devin-cli-v3000-14-swe-2-flash-medium">实录演示 —— 用机制下 brief，靠 critique 精修，录于 Devin CLI v3000.14（swe-2-flash-medium）</a></li><li class="d2"><a href="#sources">Sources</a></li></ol></details>
 <h1>指南 8 — 设计与视觉工作</h1>
 <p><strong>目标：</strong> 把 Devin 当你的美术指导 + 实现者，纯靠对话完成生产级视觉设计——生成图像、动画系统、字体排印。
@@ -124,16 +124,16 @@ Nothing else uses another size.
 <h2 id="实录演示-用机制下-brief-靠-critique-精修-录于-devin-cli-v3000-14-swe-2-flash-medium">实录演示 —— 用机制下 brief，靠 critique 精修，录于 Devin CLI v3000.14（swe-2-flash-medium）<a class="hlink" href="#实录演示-用机制下-brief-靠-critique-精修-录于-devin-cli-v3000-14-swe-2-flash-medium" aria-hidden="true">#</a></h2>
 <p>一个裸 fintech 页面（<code>index.html</code>，默认字体）+ 一段 Spraycash 式机制 brief（hex 色板、<code>stroke-dashoffset</code> 1.4s 画环、40/60/90s 三层云、三字体比例）+ 一轮带精确数值的 critique——两轮都在同一个会话里完成。</p>
 <p><strong>视频（61 秒，无声）：</strong> 裸页 → 机制 brief → 实现 → 渲染 hero → critique → 精修渲染。</p>
-<p><a href="{B}/walkthrough.mp4"><img alt="从裸 HTML 到设计完成的 hero——brief、渲染、critique、再渲染" src="{B}/walkthrough-poster.webp" /></a></p>
-<p><img alt="1. 起点——纯 HTML，默认样式" src="{B}/step1-bare-page.webp" />
+<p><a href="https://till3005.github.io/built-with-devin/assets/guides/design-with-devin/walkthrough.mp4"><img alt="从裸 HTML 到设计完成的 hero——brief、渲染、critique、再渲染" src="https://till3005.github.io/built-with-devin/assets/guides/design-with-devin/walkthrough-poster.webp" /></a></p>
+<p><img alt="1. 起点——纯 HTML，默认样式" src="https://till3005.github.io/built-with-devin/assets/guides/design-with-devin/step1-bare-page.webp" />
 <em>1. 之前：三行文案一个按钮，仅此而已</em></p>
-<p><img alt="2. 实现汇报——每个机制都具名：dashoffset 1131→203.6 / 1.4s、40/60/90s 云层、56/28/16 字阶" src="{B}/step2-brief-applied.webp" />
+<p><img alt="2. 实现汇报——每个机制都具名：dashoffset 1131→203.6 / 1.4s、40/60/90s 云层、56/28/16 字阶" src="https://till3005.github.io/built-with-devin/assets/guides/design-with-devin/step2-brief-applied.webp" />
 <em>2. brief 里的数值原样落进代码——还自己加了 prefers-reduced-motion 兜底</em></p>
-<p><img alt="3. 首次渲染——navy hero、82% 画环、漂移云层、等宽数字" src="{B}/step3-first-render.webp" />
+<p><img alt="3. 首次渲染——navy hero、82% 画环、漂移云层、等宽数字" src="https://till3005.github.io/built-with-devin/assets/guides/design-with-devin/step3-first-render.webp" />
 <em>3. 第一轮产出——是真 CSS/SVG，不是效果图</em></p>
-<p><img alt="4. critique 落地——云层压到 12% 透明度、环色收到 #3ECF8E、数字区距 48px；它还主动指出 CTA 仍用旧绿" src="{B}/step4-critique-applied.webp" />
+<p><img alt="4. critique 落地——云层压到 12% 透明度、环色收到 #3ECF8E、数字区距 48px；它还主动指出 CTA 仍用旧绿" src="https://till3005.github.io/built-with-devin/assets/guides/design-with-devin/step4-critique-applied.webp" />
 <em>4. 手艺活在 critique 里：精确数值进、精确 diff 出——还抓住了我们没提的错配</em></p>
-<p><img alt="5. 最终渲染——同结构，沉稳平衡" src="{B}/step5-final-render.webp" />
+<p><img alt="5. 最终渲染——同结构，沉稳平衡" src="https://till3005.github.io/built-with-devin/assets/guides/design-with-devin/step5-final-render.webp" />
 <em>5. 第二轮产出——迭代是一句话，不是一张工单</em></p>
 <h2 id="sources">Sources<a class="hlink" href="#sources" aria-hidden="true">#</a></h2>
 <ul>
