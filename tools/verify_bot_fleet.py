@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 """Validate the lean Bot fleet manifest and prompt files."""
 import json
+import posixpath
 import sys
 from pathlib import Path
 
@@ -34,7 +35,15 @@ def validate(data):
     if not isinstance(bots, list) or not bots:
         return ["manifest must contain a non-empty bots list"]
 
-    ids = [bot.get("id") for bot in bots if isinstance(bot, dict)]
+    ids = []
+    for position, bot in enumerate(bots, start=1):
+        if not isinstance(bot, dict):
+            continue
+        bot_id = bot.get("id")
+        if not isinstance(bot_id, str) or not bot_id:
+            errors.append(f"bot entry {position}: id must be a non-empty string")
+        else:
+            ids.append(bot_id)
     if len(ids) != len(set(ids)):
         errors.append("duplicate bot ids")
     if set(ids) != set(EXPECTED_BOTS):
@@ -58,10 +67,14 @@ def validate(data):
         prompt = bot.get("prompt")
         if not isinstance(prompt, str) or not prompt:
             errors.append(f"{label}: prompt must be a non-empty string")
-        elif not (FLEET / prompt).exists():
-            errors.append(f"{label}: missing prompt file {prompt}")
         else:
-            prompts.append((label, prompt))
+            normalized_prompt = posixpath.normpath(prompt)
+            if posixpath.isabs(prompt) or normalized_prompt == ".." or normalized_prompt.startswith("../"):
+                errors.append(f"{label}: prompt must stay inside ops/bot-fleet: {prompt}")
+            elif not (FLEET / normalized_prompt).exists():
+                errors.append(f"{label}: missing prompt file {prompt}")
+            else:
+                prompts.append((label, normalized_prompt))
 
         repos = bot.get("repos", [])
         if not isinstance(repos, list):
@@ -92,13 +105,17 @@ def validate(data):
         errors.append("budget.scout_runs_per_week must be a positive integer")
     scout = next((bot for bot in bots if isinstance(bot, dict) and bot.get("id") == "bwd-scout"), None)
     if scout:
-        scheduled = scout.get("cadence", {}).get("scheduled_runs_per_week")
-        if not isinstance(scheduled, int) or scheduled < 1:
-            errors.append("bwd-scout: scheduled_runs_per_week must be a positive integer")
-        elif isinstance(scout_budget, int) and scheduled > scout_budget:
-            errors.append(
-                f"bwd-scout: scheduled_runs_per_week {scheduled} exceeds budget {scout_budget}"
-            )
+        cadence = scout.get("cadence")
+        if not isinstance(cadence, dict):
+            errors.append("bwd-scout: cadence must be an object")
+        else:
+            scheduled = cadence.get("scheduled_runs_per_week")
+            if not isinstance(scheduled, int) or scheduled < 1:
+                errors.append("bwd-scout: scheduled_runs_per_week must be a positive integer")
+            elif isinstance(scout_budget, int) and scheduled > scout_budget:
+                errors.append(
+                    f"bwd-scout: scheduled_runs_per_week {scheduled} exceeds budget {scout_budget}"
+                )
 
     return errors
 
