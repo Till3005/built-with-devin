@@ -8,3 +8,6 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - run: python3 tools/sync.py
+      - run: python3 tools/check_links.py
+      - run: python3 -m pip install markdown==3.9
+      - run: python3 -m unittest discover -s tools

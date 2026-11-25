@@ -15,6 +15,7 @@ Run:  python3 tools/build_guides.py   (from the repo root)
 """
 import re, sys, json, html as html_, subprocess
 from pathlib import Path
+from urllib.parse import unquote, urlsplit
 import markdown
 
 ROOT = Path(__file__).resolve().parent.parent
@@ -205,19 +206,29 @@ def related_html(stem: str, lang: str, stages: list, titles: dict) -> str:
     return ""
 
 
+def rewrite_guide_links(body: str, md_path: Path, lang: str) -> str:
+    def fix(m):
+        target = m.group(2)
+        parts = urlsplit(target)
+        if parts.scheme or parts.netloc or parts.path.startswith("/") or not parts.path.endswith(".md"):
+            return m[0]
+        if lang == "en" and parts.path.startswith(("zh/", "ja/", "pt/")):
+            target = target[3:]
+            parts = urlsplit(target)
+        candidate = (md_path.parent / unquote(parts.path)).resolve()
+        if not candidate.is_relative_to(SRC.resolve()) or not candidate.is_file():
+            return m[0]
+        return m[1] + parts.path[:-3] + ".html" + target[len(parts.path):] + m[3]
+
+    return re.sub(r'(<a\b[^>]*?\shref=")([^"]+)(")', fix, body)
+
+
 def render(md_path: Path, out_path: Path, rel: str, lang: str, alt: str, mdsrc: str,
            crumb: str, pager: str = "", related: str = "", mirrors: list = None):
     text = md_path.read_text(encoding="utf-8")
-    # rewrite inter-guide .md links to local .html pages (zh links stay in zh/)
-    def fix(m):
-        target = m.group(2)
-        if lang == "en" and target.startswith(("zh/", "ja/", "pt/")):
-            target = target[3:]
-        target = re.sub(r"\.md$", ".html", target)
-        return m.group(1) + target + m.group(3)
-    text = re.sub(r"(\]\()([^)]+)(\))", fix, text)
     title = re.search(r"^# (.+)$", text, re.M).group(1)
     body = markdown.markdown(text, extensions=["tables", "fenced_code", "attr_list"])
+    body = rewrite_guide_links(body, md_path, lang)
     body, items = anchorize(body)
     toc = toc_html(items, lang)
     upd = last_updated(md_path)
