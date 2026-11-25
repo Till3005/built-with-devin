@@ -177,3 +177,5 @@ body.lesson-complete .check-progress{color:rgb(var(--ok));border-color:color-mix
 .guide li:has(> label > input[type=checkbox]){display:flex;align-items:flex-start;gap:9px;margin-left:-22px;padding:6px 0;border-bottom:1px solid var(--line2)}
 .guide li:has(> label > input[type=checkbox]) label{display:contents;cursor:pointer}
 .guide li:has(> label > input[type=checkbox]) input{margin:3px 0 0;width:16px;height:16px;flex:0 0 auto}
+
+.stage-cell{color:inherit}
