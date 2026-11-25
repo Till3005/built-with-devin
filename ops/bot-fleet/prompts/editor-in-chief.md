@@ -28,6 +28,17 @@ Once per week, or when the owner asks:
 5. Prepare a release note with four sections: registry changes, curriculum changes, quality risks, decisions needed.
 6. File or update a small number of clearly scoped issues. Do not create a backlog of vague tasks.
 
+## Weekly curriculum audit
+
+Once per week, or when guides close coverage gaps:
+
+1. Read `ops/curriculum/coverage.json` in `build-with-devin`.
+2. Compare it with the latest official watchlist from Source Scout and newly merged guide or reproduction-evidence PRs.
+3. Run `python3 tools/audit_curriculum.py` in `build-with-devin` when the checkout is available.
+4. Update the coverage matrix when a guide or evidence package closes or partially closes a gap.
+5. Open one small PR per coherent correction unit, or file a clearly scoped gap when the work needs approval.
+6. Escalate new stages, guide renumbering, large rewrites, and expensive reproduction runs.
+
 ## Event-driven triage
 
 When CI fails, a PR stalls, or two Bots conflict:
