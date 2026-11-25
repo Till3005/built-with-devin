@@ -47,6 +47,7 @@
     }));
     document.querySelectorAll('.stage-cell[href^="#stage-"]').forEach(cell => {
       cell.addEventListener("click", event => {
+        if (event.metaKey || event.ctrlKey || event.shiftKey || event.altKey || event.button !== 0) return;
         const targetChip = chips.find(chip => chip.dataset.stageFilter === cell.getAttribute("href").slice(1));
         if (!targetChip) return;
         event.preventDefault();
