@@ -39,13 +39,14 @@
       <button class="mode-btn on" data-mode="build" role="tab" aria-selected="true" onclick="location.href='../../index.html#build'">Build</button>
       <span class="mode-pill" aria-hidden="true"></span>
     </div>
+    <button id="theme-toggle" aria-label="Toggle theme"></button>
     <a class="cta" href="https://github.com/Till3005/build-with-devin/blob/main/guides/zh/skills-and-plugins.md">GitHub</a>
   </div>
 </div></nav>
 <main>
 <article class="guide wrap" id="guide">
   <p class="guide-crumb"><a href="index.html">← 指南</a> · <a href="../skills-and-plugins.html">English</a> · <a href="../ja/skills-and-plugins.html">日本語</a> · <a href="../pt/skills-and-plugins.html">Português</a></p>
-<p class="guide-meta">更新于 2026-11-25</p>
+<div class="guide-meta"><span class="meta-chip">中级</span><span class="meta-chip">更新于 2026-11-25</span></div>
 <details class="toc" open><summary>本页目录</summary><ol><li class="d2"><a href="#为什么-skills-是现在最重要的那一层">为什么 skills 是现在最重要的那一层</a></li><li class="d2"><a href="#第-1-步-skills-存放在哪">第 1 步 — skills 存放在哪</a></li><li class="d2"><a href="#第-2-步-skill-md-契约">第 2 步 — SKILL.md 契约</a></li><li class="d2"><a href="#第-3-步-三种调用路径">第 3 步 — 三种调用路径</a></li><li class="d2"><a href="#第-4-步-养大这个库">第 4 步 — 养大这个库</a></li><li class="d2"><a href="#实录演示-真调用一个-repo-skill-录于-devin-cli-v3000-14-swe-2-flash-medium">实录演示 —— 真调用一个 repo skill，录于 Devin CLI v3000.14（swe-2-flash-medium）</a></li><li class="d2"><a href="#验证清单">验证清单</a></li><li class="d2"><a href="#常见坑">常见坑</a></li><li class="d2"><a href="#理解度检查">理解度检查</a></li><li class="d2"><a href="#来源">来源</a></li></ol></details>
 <h1>指南 16 — Skills 与 plugins：playbook 之后的封装层</h1>
 <p><strong>目标：</strong> 把组织里可重复的流程编码成 <code>SKILL.md</code> 文件，让每个会话和 Bot 都按它执行——并用 plugins 跨仓库打包分享。
@@ -147,10 +148,10 @@ permissions:
 <em>5. 结果：全覆盖——每个分支都有交代，正是 SKILL.md 要求的报告</em></p>
 <h2 id="验证清单">验证清单<a class="hlink" href="#验证清单" aria-hidden="true">#</a></h2>
 <ul>
-<li>[ ] 新会话能按名字列出你的 skill（启动时载入 name + description）</li>
-<li>[ ] <code>@skills:&lt;name&gt;</code> 逐字执行该流程，参数正常替换</li>
-<li>[ ] <code>triggers:["user"]</code> 的 skill 绝不自动触发</li>
-<li>[ ] plugin 装的 skill 在仓库 clone 完成前就可用</li>
+<li><input type="checkbox" aria-label="验证步骤"> 新会话能按名字列出你的 skill（启动时载入 name + description）</li>
+<li><input type="checkbox" aria-label="验证步骤"> <code>@skills:&lt;name&gt;</code> 逐字执行该流程，参数正常替换</li>
+<li><input type="checkbox" aria-label="验证步骤"> <code>triggers:["user"]</code> 的 skill 绝不自动触发</li>
+<li><input type="checkbox" aria-label="验证步骤"> plugin 装的 skill 在仓库 clone 完成前就可用</li>
 </ul>
 <h2 id="常见坑">常见坑<a class="hlink" href="#常见坑" aria-hidden="true">#</a></h2>
 <ul>
@@ -179,5 +180,6 @@ permissions:
 <script src="../../assets/theme.js"></script>
 <script src="../../assets/i18n.js"></script>
 <script src="../../assets/i18n-runtime.js"></script>
+<script src="../../assets/guides.js"></script>
 </body>
 </html>

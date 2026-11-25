@@ -39,13 +39,14 @@
       <button class="mode-btn on" data-mode="build" role="tab" aria-selected="true" onclick="location.href='../../index.html#build'">Build</button>
       <span class="mode-pill" aria-hidden="true"></span>
     </div>
+    <button id="theme-toggle" aria-label="Toggle theme"></button>
     <a class="cta" href="https://github.com/Till3005/build-with-devin/blob/main/guides/zh/official-cookbook.md">GitHub</a>
   </div>
 </div></nav>
 <main>
 <article class="guide wrap" id="guide">
   <p class="guide-crumb"><a href="index.html">← 指南</a> · <a href="../official-cookbook.html">English</a> · <a href="../ja/official-cookbook.html">日本語</a> · <a href="../pt/official-cookbook.html">Português</a></p>
-<p class="guide-meta">更新于 2026-11-19</p>
+<div class="guide-meta"><span class="meta-chip">从这里开始</span><span class="meta-chip">更新于 2026-11-19</span></div>
 <details class="toc" open><summary>本页目录</summary><ol><li class="d2"><a href="#统领一切的那条规则">统领一切的那条规则</a></li><li class="d2"><a href="#食谱目录">食谱目录</a></li><li class="d3"><a href="#事故与生产健康">事故与生产健康</a></li><li class="d3"><a href="#定时卫生-文档里-roi-最高的一页">定时卫生（文档里 ROI 最高的一页）</a></li><li class="d3"><a href="#代码质量">代码质量</a></li><li class="d3"><a href="#迁移与功能开发">迁移与功能开发</a></li><li class="d3"><a href="#项目管理与数据">项目管理与数据</a></li><li class="d3"><a href="#让-devin-自己变更好-devin-optimization">让 Devin 自己变更好（&quot;Devin Optimization&quot;）</a></li><li class="d2"><a href="#怎么用这本食谱">怎么用这本食谱</a></li><li class="d2"><a href="#实录演示-一条食谱真跑一遍-录于-devin-cli-v3000-14-swe-2-flash-medium">实录演示 —— 一条食谱真跑一遍，录于 Devin CLI v3000.14（swe-2-flash-medium）</a></li><li class="d2"><a href="#验证">验证</a></li><li class="d2"><a href="#常见陷阱">常见陷阱</a></li><li class="d2"><a href="#自检">自检</a></li><li class="d2"><a href="#sources">Sources</a></li></ol></details>
 <h1>指南 13 — 官方用例食谱</h1>
 <p><strong>目标：</strong> Cognition 官方文档里已验证的用法模式，整理成食谱——什么活该切给 Devin，以及 40+ 个带可复制 prompt 的文档化配方。
@@ -324,8 +325,8 @@
 <em>6. /exit 后验证——<code>Ran 16 tests ... OK</code>，改动按指令未提交</em></p>
 <h2 id="验证">验证<a class="hlink" href="#验证" aria-hidden="true">#</a></h2>
 <ul>
-<li>[ ] 有一个卫生循环 recipe 在按计划运行，并产出了第一个 PR/报告</li>
-<li>[ ] 它的产出物已固化成 skill、playbook 或 Bot——不活在某个人的脑子里</li>
+<li><input type="checkbox" aria-label="验证步骤"> 有一个卫生循环 recipe 在按计划运行，并产出了第一个 PR/报告</li>
+<li><input type="checkbox" aria-label="验证步骤"> 它的产出物已固化成 skill、playbook 或 Bot——不活在某个人的脑子里</li>
 </ul>
 <h2 id="常见陷阱">常见陷阱<a class="hlink" href="#常见陷阱" aria-hidden="true">#</a></h2>
 <ul>
@@ -353,5 +354,6 @@
 <script src="../../assets/theme.js"></script>
 <script src="../../assets/i18n.js"></script>
 <script src="../../assets/i18n-runtime.js"></script>
+<script src="../../assets/guides.js"></script>
 </body>
 </html>

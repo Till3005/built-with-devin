@@ -39,13 +39,14 @@
       <button class="mode-btn on" data-mode="build" role="tab" aria-selected="true" onclick="location.href='../../index.html#build'">Build</button>
       <span class="mode-pill" aria-hidden="true"></span>
     </div>
+    <button id="theme-toggle" aria-label="Toggle theme"></button>
     <a class="cta" href="https://github.com/Till3005/build-with-devin/blob/main/guides/zh/playbooks-and-knowledge.md">GitHub</a>
   </div>
 </div></nav>
 <main>
 <article class="guide wrap" id="guide">
   <p class="guide-crumb"><a href="index.html">← 指南</a> · <a href="../playbooks-and-knowledge.html">English</a> · <a href="../ja/playbooks-and-knowledge.html">日本語</a> · <a href="../pt/playbooks-and-knowledge.html">Português</a></p>
-<p class="guide-meta">更新于 2026-11-20</p>
+<div class="guide-meta"><span class="meta-chip">进阶</span><span class="meta-chip">更新于 2026-11-20</span></div>
 <details class="toc" open><summary>本页目录</summary><ol><li class="d2"><a href="#为什么这一层决定一切">为什么这一层决定一切</a></li><li class="d2"><a href="#第-1-步-从你自己的纠正里挖">第 1 步 — 从你自己的纠正里挖</a></li><li class="d2"><a href="#第-2-步-写钉得住的知识条目">第 2 步 — 写钉得住的知识条目</a></li><li class="d2"><a href="#第-3-步-给可重复工作写-playbook">第 3 步 — 给可重复工作写 playbook</a></li><li class="d2"><a href="#第-4-步-喂给-bot">第 4 步 — 喂给 Bot</a></li><li class="d2"><a href="#第-5-步-纠正回路">第 5 步 — 纠正回路</a></li><li class="d2"><a href="#verify-it">Verify it</a></li><li class="d2"><a href="#坑">坑</a></li><li class="d2"><a href="#自检">自检</a></li><li class="d2"><a href="#实录演示-写得下来的约定才管用-录于-devin-cli-v3000-14-swe-2-flash-medium">实录演示 —— 写得下来的约定才管用，录于 Devin CLI v3000.14（swe-2-flash-medium）</a></li><li class="d2"><a href="#sources">Sources</a></li></ol></details>
 <h1>指南 9 — Playbooks 与知识层：把组织约定写成代码</h1>
 <p><strong>目标：</strong> 把你最强工程师脑子里默认的东西写下来，让 Devin 会话和 Bot 在组织规模上可靠——写成 playbooks（可重复流程）和 knowledge（常驻上下文）。
@@ -117,9 +118,9 @@
 <p>Devin Coach（官方 Bot 模板）就是为这个生的——每周汇报 Devin 在哪里卡住，并每次提一个修复：一条 note、一个 skill、或一项配置改动。</p>
 <h2 id="verify-it">Verify it<a class="hlink" href="#verify-it" aria-hidden="true">#</a></h2>
 <ul>
-<li>[ ] 一个新会话在你的 repo 上零提问知识层已覆盖的问题</li>
-<li>[ ] 你给 Bot 的上一条纠正出现在它的记忆文件里</li>
-<li>[ ] 两个不同会话跑同一个 playbook 产出同样形态的结果</li>
+<li><input type="checkbox" aria-label="验证步骤"> 一个新会话在你的 repo 上零提问知识层已覆盖的问题</li>
+<li><input type="checkbox" aria-label="验证步骤"> 你给 Bot 的上一条纠正出现在它的记忆文件里</li>
+<li><input type="checkbox" aria-label="验证步骤"> 两个不同会话跑同一个 playbook 产出同样形态的结果</li>
 </ul>
 <h2 id="坑">坑<a class="hlink" href="#坑" aria-hidden="true">#</a></h2>
 <ul>
@@ -156,5 +157,6 @@
 <script src="../../assets/theme.js"></script>
 <script src="../../assets/i18n.js"></script>
 <script src="../../assets/i18n-runtime.js"></script>
+<script src="../../assets/guides.js"></script>
 </body>
 </html>

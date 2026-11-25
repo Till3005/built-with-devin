@@ -39,13 +39,14 @@
       <button class="mode-btn on" data-mode="build" role="tab" aria-selected="true" onclick="location.href='../../index.html#build'">Build</button>
       <span class="mode-pill" aria-hidden="true"></span>
     </div>
+    <button id="theme-toggle" aria-label="Toggle theme"></button>
     <a class="cta" href="https://github.com/Till3005/build-with-devin/blob/main/guides/pt/community-field-reports.md">GitHub</a>
   </div>
 </div></nav>
 <main>
 <article class="guide wrap" id="guide">
   <p class="guide-crumb"><a href="index.html">← Guias</a> · <a href="../community-field-reports.html">English</a> · <a href="../ja/community-field-reports.html">日本語</a> · <a href="../zh/community-field-reports.html">中文</a></p>
-<p class="guide-meta">Atualizado 2026-11-24</p>
+<div class="guide-meta"><span class="meta-chip">Comece aqui</span><span class="meta-chip">Atualizado 2026-11-24</span></div>
 <details class="toc" open><summary>Nesta página</summary><ol><li class="d2"><a href="#o-padrão-que-se-repete-em-todo-relato">O padrão que se repete em todo relato</a></li><li class="d2"><a href="#onde-o-devin-venceu-documentado">Onde o Devin venceu, documentado</a></li><li class="d2"><a href="#onde-falhou-documentado">Onde falhou, documentado</a></li><li class="d2"><a href="#implantações-de-times-nomeados-comunidade-com-números">Implantações de times nomeados (comunidade, com números)</a></li><li class="d2"><a href="#a-era-dos-bots-primeiros-recibos-nov-2026">A era dos Bots — primeiros recibos (nov/2026)</a></li><li class="d2"><a href="#as-lições-destiladas">As lições destiladas</a></li><li class="d2"><a href="#o-top-5-interno-de-scott-wu-da-entrevista-do-lenny-s">O top-5 interno de Scott Wu (da entrevista do Lenny&#x27;s)</a></li><li class="d2"><a href="#análises-a-fundo-o-que-copiar-o-que-observar">Análises a fundo — o que copiar, o que observar</a></li><li class="d2"><a href="#checklist-de-verificação">Checklist de verificação</a></li><li class="d2"><a href="#armadilhas">Armadilhas</a></li><li class="d2"><a href="#teste-de-conhecimento">Teste de conhecimento</a></li><li class="d2"><a href="#fontes">Fontes</a></li></ol></details>
 <h1>Guia 14 — Relatos de campo da comunidade</h1>
 <p><strong>Objetivo:</strong> o que engenheiros que rodaram o Devin em trabalho real aprenderam — incluindo as falhas. Destilado de relatos hands-on publicados, tanto elogiosos quanto hostis.
@@ -179,8 +180,8 @@
 <p><strong>A frota de um homem só de Ryan Carson.</strong> O fundador solo da Untangle roda ~15 agentes Devin simultâneos a ~$20k/mês — coordenados não por um dashboard mas por um sistema de pastas mais uma lista de P0s em papel, porque nessa escala o gargalo é a atenção <em>dele</em>, não o throughput dos agentes. Dois playbooks sustentam a operação: "Watchdog" monitora toda conta de escritório de advocacia para que uma pessoa cubra o customer success, e "LAN PR" fecha ~40 PRs/dia — loop de review, walkthrough em vídeo, auto-merge — sem revisor de QA. Copie: a unidade de escala é um playbook nomeado por superfície, não mais agentes. Atenção: ele largou os agentes locais quase por completo — o loop longo é dos agentes cloud; a exceção mantida é o Codex em builds de design-spec bem delimitados.</p>
 <h2 id="checklist-de-verificação">Checklist de verificação<a class="hlink" href="#checklist-de-verificação" aria-hidden="true">#</a></h2>
 <ul>
-<li>[ ] Escolha o relato mais próximo do seu stack e releia o original, não a destilação — o número ainda se sustenta em contexto?</li>
-<li>[ ] Anote a única lição na qual você apostaria dinheiro reproduzindo na sua org; se não conseguir nomeá-la, escolha outro relato</li>
+<li><input type="checkbox" aria-label="passo de verificação"> Escolha o relato mais próximo do seu stack e releia o original, não a destilação — o número ainda se sustenta em contexto?</li>
+<li><input type="checkbox" aria-label="passo de verificação"> Anote a única lição na qual você apostaria dinheiro reproduzindo na sua org; se não conseguir nomeá-la, escolha outro relato</li>
 </ul>
 <h2 id="armadilhas">Armadilhas<a class="hlink" href="#armadilhas" aria-hidden="true">#</a></h2>
 <ul>
@@ -229,5 +230,6 @@
 <script src="../../assets/theme.js"></script>
 <script src="../../assets/i18n.js"></script>
 <script src="../../assets/i18n-runtime.js"></script>
+<script src="../../assets/guides.js"></script>
 </body>
 </html>

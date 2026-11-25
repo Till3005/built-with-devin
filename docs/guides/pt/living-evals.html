@@ -39,13 +39,14 @@
       <button class="mode-btn on" data-mode="build" role="tab" aria-selected="true" onclick="location.href='../../index.html#build'">Build</button>
       <span class="mode-pill" aria-hidden="true"></span>
     </div>
+    <button id="theme-toggle" aria-label="Toggle theme"></button>
     <a class="cta" href="https://github.com/Till3005/build-with-devin/blob/main/guides/pt/living-evals.md">GitHub</a>
   </div>
 </div></nav>
 <main>
 <article class="guide wrap" id="guide">
   <p class="guide-crumb"><a href="index.html">← Guias</a> · <a href="../living-evals.html">English</a> · <a href="../ja/living-evals.html">日本語</a> · <a href="../zh/living-evals.html">中文</a></p>
-<p class="guide-meta">Atualizado 2026-11-18</p>
+<div class="guide-meta"><span class="meta-chip">Avançado</span><span class="meta-chip">Atualizado 2026-11-18</span></div>
 <details class="toc" open><summary>Nesta página</summary><ol><li class="d2"><a href="#o-padrão">O padrão</a></li><li class="d2"><a href="#pré-requisitos">Pré-requisitos</a></li><li class="d2"><a href="#passo-1-torne-um-trace-replayable-à-mão">Passo 1 — Torne um trace replayable à mão</a></li><li class="d2"><a href="#passo-2-congele-como-eval-não-como-bug-report">Passo 2 — Congele como eval, não como bug report</a></li><li class="d2"><a href="#passo-3-agrupe-por-comportamento-antes-de-escalar">Passo 3 — Agrupe por comportamento antes de escalar</a></li><li class="d2"><a href="#passo-4-encode-o-procedimento-inteiro-como-um-skill">Passo 4 — Encode o procedimento inteiro como um skill</a></li><li class="d2"><a href="#passo-5-agende-semanalmente">Passo 5 — Agende semanalmente</a></li><li class="d2"><a href="#checklist-de-verificação">Checklist de verificação</a></li><li class="d2"><a href="#armadilhas">Armadilhas</a></li><li class="d2"><a href="#teste-de-conhecimento">Teste de conhecimento</a></li><li class="d2"><a href="#fontes">Fontes</a></li></ol></details>
 <h1>Guia 15 — Living evals a partir de traces de produção</h1>
 <p><strong>Objetivo:</strong> uma suíte de evals para <em>seu</em> agente que se escreve sozinha — um Devin agendado que lê conversas reais de produção, reconstrói cada falha numa cópia completa do seu sistema e abre PRs que adicionam a falha como teste de regressão.
@@ -83,10 +84,10 @@ humano revisa o PR, não a escrita do eval
 <p>Automação cron (Guia 6): puxar os traces da semana → agrupar → para cada comportamento sub-coberto rodar o loop → abrir um PR com os novos evals. Humanos revisam o PR; o Devin é dono da suíte.</p>
 <h2 id="checklist-de-verificação">Checklist de verificação<a class="hlink" href="#checklist-de-verificação" aria-hidden="true">#</a></h2>
 <ul>
-<li>[ ] Uma falha real de produção replaya deterministicamente no seu preview env — mesmo request do usuário, mesmo resultado ruim</li>
-<li>[ ] O arquivo de eval está no seu repo, roda na CI e falha no comportamento antigo / passa na correção</li>
-<li>[ ] A cobertura é medida contra o <em>mix de tráfego de produção</em>, não seus palpites — reporte como os 72% da Rox</li>
-<li>[ ] Um eval ruim foi corrigido editando o skill, não o eval</li>
+<li><input type="checkbox" aria-label="passo de verificação"> Uma falha real de produção replaya deterministicamente no seu preview env — mesmo request do usuário, mesmo resultado ruim</li>
+<li><input type="checkbox" aria-label="passo de verificação"> O arquivo de eval está no seu repo, roda na CI e falha no comportamento antigo / passa na correção</li>
+<li><input type="checkbox" aria-label="passo de verificação"> A cobertura é medida contra o <em>mix de tráfego de produção</em>, não seus palpites — reporte como os 72% da Rox</li>
+<li><input type="checkbox" aria-label="passo de verificação"> Um eval ruim foi corrigido editando o skill, não o eval</li>
 </ul>
 <h2 id="armadilhas">Armadilhas<a class="hlink" href="#armadilhas" aria-hidden="true">#</a></h2>
 <ul>
@@ -114,5 +115,6 @@ humano revisa o PR, não a escrita do eval
 <script src="../../assets/theme.js"></script>
 <script src="../../assets/i18n.js"></script>
 <script src="../../assets/i18n-runtime.js"></script>
+<script src="../../assets/guides.js"></script>
 </body>
 </html>

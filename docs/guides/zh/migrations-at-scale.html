@@ -39,13 +39,14 @@
       <button class="mode-btn on" data-mode="build" role="tab" aria-selected="true" onclick="location.href='../../index.html#build'">Build</button>
       <span class="mode-pill" aria-hidden="true"></span>
     </div>
+    <button id="theme-toggle" aria-label="Toggle theme"></button>
     <a class="cta" href="https://github.com/Till3005/build-with-devin/blob/main/guides/zh/migrations-at-scale.md">GitHub</a>
   </div>
 </div></nav>
 <main>
 <article class="guide wrap" id="guide">
   <p class="guide-crumb"><a href="index.html">← 指南</a> · <a href="../migrations-at-scale.html">English</a> · <a href="../ja/migrations-at-scale.html">日本語</a> · <a href="../pt/migrations-at-scale.html">Português</a></p>
-<p class="guide-meta">更新于 2026-11-24</p>
+<div class="guide-meta"><span class="meta-chip">进阶</span><span class="meta-chip">更新于 2026-11-24</span></div>
 <details class="toc" open><summary>本页目录</summary><ol><li class="d2"><a href="#官方-playbook">官方 playbook</a></li><li class="d2"><a href="#第-1-步-确认你的迁移够格">第 1 步 — 确认你的迁移够格</a></li><li class="d2"><a href="#第-2-步-切片">第 2 步 — 切片</a></li><li class="d2"><a href="#第-3-步-把变换写成-skill">第 3 步 — 把变换写成 skill</a></li><li class="d2"><a href="#第-4-步-并行会话">第 4 步 — 并行会话</a></li><li class="d2"><a href="#第-5-步-盯错误率-不盯进度条">第 5 步 — 盯错误率，不盯进度条</a></li><li class="d2"><a href="#verify-it">Verify it</a></li><li class="d2"><a href="#坑">坑</a></li><li class="d2"><a href="#自检">自检</a></li><li class="d2"><a href="#实录演示-迁移回路串行跑一遍-录于-devin-cli-v3000-14-swe-2-flash-medium">实录演示 —— 迁移回路串行跑一遍，录于 Devin CLI v3000.14（swe-2-flash-medium）</a></li><li class="d2"><a href="#sources">Sources</a></li></ol></details>
 <h1>指南 11 — 规模化迁移</h1>
 <p><strong>目标：</strong> 把大型迁移（语言、框架、数据库、依赖、架构）跑成几百个已验证的小 PR，而不是一次英雄式重写。
@@ -125,10 +126,10 @@
 </ul>
 <h2 id="verify-it">Verify it<a class="hlink" href="#verify-it" aria-hidden="true">#</a></h2>
 <ul>
-<li>[ ] 每片 ~90 分钟内完成且可独立合并</li>
-<li>[ ] 验证失败的片产出修复或被标记的工单——绝不静默合入</li>
-<li>[ ] skill 在前 20 片上可度量地变好（每片人工纠正减少）</li>
-<li>[ ] 进度可数：已迁 N/M 片、通过率可见</li>
+<li><input type="checkbox" aria-label="验证步骤"> 每片 ~90 分钟内完成且可独立合并</li>
+<li><input type="checkbox" aria-label="验证步骤"> 验证失败的片产出修复或被标记的工单——绝不静默合入</li>
+<li><input type="checkbox" aria-label="验证步骤"> skill 在前 20 片上可度量地变好（每片人工纠正减少）</li>
+<li><input type="checkbox" aria-label="验证步骤"> 进度可数：已迁 N/M 片、通过率可见</li>
 </ul>
 <h2 id="坑">坑<a class="hlink" href="#坑" aria-hidden="true">#</a></h2>
 <ul>
@@ -170,5 +171,6 @@
 <script src="../../assets/theme.js"></script>
 <script src="../../assets/i18n.js"></script>
 <script src="../../assets/i18n-runtime.js"></script>
+<script src="../../assets/guides.js"></script>
 </body>
 </html>

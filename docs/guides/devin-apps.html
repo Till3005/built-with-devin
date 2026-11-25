@@ -39,13 +39,14 @@
       <button class="mode-btn on" data-mode="build" role="tab" aria-selected="true" onclick="location.href='../index.html#build'">Build</button>
       <span class="mode-pill" aria-hidden="true"></span>
     </div>
+    <button id="theme-toggle" aria-label="Toggle theme"></button>
     <a class="cta" href="https://github.com/Till3005/build-with-devin/blob/main/guides/devin-apps.md">GitHub</a>
   </div>
 </div></nav>
 <main>
 <article class="guide wrap" id="guide">
   <p class="guide-crumb"><a href="index.html">← Guides</a> · <a href="ja/devin-apps.html">日本語</a> · <a href="pt/devin-apps.html">Português</a> · <a href="zh/devin-apps.html">中文</a></p>
-<p class="guide-meta">Updated 2026-11-24</p>
+<div class="guide-meta"><span class="meta-chip">Start here</span><span class="meta-chip">Updated 2026-11-24</span></div>
 <details class="toc" open><summary>On this page</summary><ol><li class="d2"><a href="#what-it-is">What it is</a></li><li class="d2"><a href="#build-one">Build one</a></li><li class="d2"><a href="#update-loop">Update loop</a></li><li class="d2"><a href="#how-they-run-the-parts-that-matter">How they run (the parts that matter)</a></li><li class="d2"><a href="#the-three-proven-uses">The three proven uses</a></li><li class="d2"><a href="#verify-it">Verify it</a></li><li class="d2"><a href="#pitfalls">Pitfalls</a></li><li class="d2"><a href="#knowledge-check">Knowledge check</a></li><li class="d2"><a href="#sources">Sources</a></li></ol></details>
 <h1>Guide 10 — Devin Apps: ship live tools from a chat</h1>
 <p><strong>Goal:</strong> describe an internal tool, dashboard, or staging copy — Devin builds it and serves it at a stable URL your team opens by signing in.
@@ -96,9 +97,9 @@
 </table>
 <h2 id="verify-it">Verify it<a class="hlink" href="#verify-it" aria-hidden="true">#</a></h2>
 <ul>
-<li>[ ] App loads at its stable URL after the machine slept (expect a few-second cold start)</li>
-<li>[ ] An edit-in-session change produced a new version at the same URL</li>
-<li>[ ] Share scope is right: a teammate without access is stopped at sign-in</li>
+<li><input type="checkbox" aria-label="verification step"> App loads at its stable URL after the machine slept (expect a few-second cold start)</li>
+<li><input type="checkbox" aria-label="verification step"> An edit-in-session change produced a new version at the same URL</li>
+<li><input type="checkbox" aria-label="verification step"> Share scope is right: a teammate without access is stopped at sign-in</li>
 </ul>
 <h2 id="pitfalls">Pitfalls<a class="hlink" href="#pitfalls" aria-hidden="true">#</a></h2>
 <ul>
@@ -125,5 +126,6 @@
 <script src="../assets/theme.js"></script>
 <script src="../assets/i18n.js"></script>
 <script src="../assets/i18n-runtime.js"></script>
+<script src="../assets/guides.js"></script>
 </body>
 </html>

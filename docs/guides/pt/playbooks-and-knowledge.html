@@ -39,13 +39,14 @@
       <button class="mode-btn on" data-mode="build" role="tab" aria-selected="true" onclick="location.href='../../index.html#build'">Build</button>
       <span class="mode-pill" aria-hidden="true"></span>
     </div>
+    <button id="theme-toggle" aria-label="Toggle theme"></button>
     <a class="cta" href="https://github.com/Till3005/build-with-devin/blob/main/guides/pt/playbooks-and-knowledge.md">GitHub</a>
   </div>
 </div></nav>
 <main>
 <article class="guide wrap" id="guide">
   <p class="guide-crumb"><a href="index.html">← Guias</a> · <a href="../playbooks-and-knowledge.html">English</a> · <a href="../ja/playbooks-and-knowledge.html">日本語</a> · <a href="../zh/playbooks-and-knowledge.html">中文</a></p>
-<p class="guide-meta">Atualizado 2026-11-20</p>
+<div class="guide-meta"><span class="meta-chip">Intermediário</span><span class="meta-chip">Atualizado 2026-11-20</span></div>
 <details class="toc" open><summary>Nesta página</summary><ol><li class="d2"><a href="#por-que-esta-camada-decide-tudo">Por que esta camada decide tudo</a></li><li class="d2"><a href="#passo-1-minere-suas-próprias-correções">Passo 1 — Minere suas próprias correções</a></li><li class="d2"><a href="#passo-2-escreva-entradas-de-knowledge-que-pegam">Passo 2 — Escreva entradas de knowledge que pegam</a></li><li class="d2"><a href="#passo-3-playbooks-para-trabalho-repetível">Passo 3 — Playbooks para trabalho repetível</a></li><li class="d2"><a href="#passo-4-alimentando-bots">Passo 4 — Alimentando Bots</a></li><li class="d2"><a href="#passo-5-o-loop-de-correção">Passo 5 — O loop de correção</a></li><li class="d2"><a href="#checklist-de-verificação">Checklist de verificação</a></li><li class="d2"><a href="#armadilhas">Armadilhas</a></li><li class="d2"><a href="#teste-de-conhecimento">Teste de conhecimento</a></li><li class="d2"><a href="#demonstração-conhecimento-que-pega-no-devin-cli-v3000-14-swe-2-flash-medium">Demonstração — conhecimento que pega, no Devin CLI v3000.14 (swe-2-flash-medium)</a></li><li class="d2"><a href="#fontes">Fontes</a></li></ol></details>
 <h1>Guia 9 — Playbooks &amp; knowledge: codificando as convenções da sua org</h1>
 <p><strong>Objetivo:</strong> tornar sessões e Bots Devin confiáveis em escala de organização, escrevendo o que seus melhores engenheiros presumem — como playbooks (procedimentos repetíveis) e knowledge (contexto permanente).
@@ -117,9 +118,9 @@
 <p>O Devin Coach (um template oficial de Bot) existe exatamente para isso — reporta semanalmente onde o Devin travou e propõe uma correção por vez: uma nota, um skill ou uma mudança de setup.</p>
 <h2 id="checklist-de-verificação">Checklist de verificação<a class="hlink" href="#checklist-de-verificação" aria-hidden="true">#</a></h2>
 <ul>
-<li>[ ] Uma sessão nova no seu repo faz zero perguntas que seu knowledge já responde</li>
-<li>[ ] A última correção que você deu a um Bot aparece nos arquivos de memória dele</li>
-<li>[ ] Duas sessões diferentes rodam o mesmo playbook e produzem resultado da mesma forma</li>
+<li><input type="checkbox" aria-label="passo de verificação"> Uma sessão nova no seu repo faz zero perguntas que seu knowledge já responde</li>
+<li><input type="checkbox" aria-label="passo de verificação"> A última correção que você deu a um Bot aparece nos arquivos de memória dele</li>
+<li><input type="checkbox" aria-label="passo de verificação"> Duas sessões diferentes rodam o mesmo playbook e produzem resultado da mesma forma</li>
 </ul>
 <h2 id="armadilhas">Armadilhas<a class="hlink" href="#armadilhas" aria-hidden="true">#</a></h2>
 <ul>
@@ -156,5 +157,6 @@
 <script src="../../assets/theme.js"></script>
 <script src="../../assets/i18n.js"></script>
 <script src="../../assets/i18n-runtime.js"></script>
+<script src="../../assets/guides.js"></script>
 </body>
 </html>

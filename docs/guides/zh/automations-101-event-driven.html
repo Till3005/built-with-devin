@@ -39,13 +39,14 @@
       <button class="mode-btn on" data-mode="build" role="tab" aria-selected="true" onclick="location.href='../../index.html#build'">Build</button>
       <span class="mode-pill" aria-hidden="true"></span>
     </div>
+    <button id="theme-toggle" aria-label="Toggle theme"></button>
     <a class="cta" href="https://github.com/Till3005/build-with-devin/blob/main/guides/zh/automations-101-event-driven.md">GitHub</a>
   </div>
 </div></nav>
 <main>
 <article class="guide wrap" id="guide">
   <p class="guide-crumb"><a href="index.html">← 指南</a> · <a href="../automations-101-event-driven.html">English</a> · <a href="../ja/automations-101-event-driven.html">日本語</a> · <a href="../pt/automations-101-event-driven.html">Português</a></p>
-<p class="guide-meta">更新于 2026-11-20</p>
+<div class="guide-meta"><span class="meta-chip">从这里开始</span><span class="meta-chip">更新于 2026-11-20</span></div>
 <details class="toc" open><summary>本页目录</summary><ol><li class="d2"><a href="#解剖">解剖</a></li><li class="d2"><a href="#触发器目录">触发器目录</a></li><li class="d2"><a href="#配方-1-任意-issue-上-devin">配方 1 — 任意 issue 上 /devin</a></li><li class="d2"><a href="#配方-2-ci-失败自修复">配方 2 — CI 失败自修复</a></li><li class="d2"><a href="#配方-3-定时清扫">配方 3 — 定时清扫</a></li><li class="d2"><a href="#动作类型怎么选">动作类型怎么选</a></li><li class="d2"><a href="#动手建">动手建</a></li><li class="d2"><a href="#实录演示-真建-真触发-真验证一个-automation-录于-devin-desktop-v3-14-pro-方案">实录演示 —— 真建、真触发、真验证一个 automation，录于 Devin Desktop v3.14（Pro 方案）</a></li><li class="d2"><a href="#verify-it">Verify it</a></li><li class="d2"><a href="#自检">自检</a></li><li class="d2"><a href="#常见陷阱">常见陷阱</a></li><li class="d2"><a href="#sources">Sources</a></li></ol></details>
 <h1>指南 6 — 事件驱动的 Automations</h1>
 <p><strong>目标：</strong> 把外部事件——Slack、Teams、GitHub、Linear、Jira、PagerDuty、cron、webhook——接到会自己启动的 Devin 会话上。
@@ -230,9 +231,9 @@ Action:    Start session: &quot;Sweep yesterday's Sentry issues in
 <em>8. 验证过的产出——一份真把本周 103 个 commit 分类的 changelog，以 artifact 交付</em></p>
 <h2 id="verify-it">Verify it<a class="hlink" href="#verify-it" aria-hidden="true">#</a></h2>
 <ul>
-<li>[ ] 手动触发一次（评论 <code>/devin test</code> 或推一个失败 commit），看到会话带着事件载荷启动</li>
-<li>[ ] 不匹配的事件（错 label、错频道）什么都不发生</li>
-<li>[ ] 动作产出落在你预期的位置（PR、Slack thread、工单）</li>
+<li><input type="checkbox" aria-label="验证步骤"> 手动触发一次（评论 <code>/devin test</code> 或推一个失败 commit），看到会话带着事件载荷启动</li>
+<li><input type="checkbox" aria-label="验证步骤"> 不匹配的事件（错 label、错频道）什么都不发生</li>
+<li><input type="checkbox" aria-label="验证步骤"> 动作产出落在你预期的位置（PR、Slack thread、工单）</li>
 </ul>
 <h2 id="自检">自检<a class="hlink" href="#自检" aria-hidden="true">#</a></h2>
 <ol>
@@ -260,5 +261,6 @@ Action:    Start session: &quot;Sweep yesterday's Sentry issues in
 <script src="../../assets/theme.js"></script>
 <script src="../../assets/i18n.js"></script>
 <script src="../../assets/i18n-runtime.js"></script>
+<script src="../../assets/guides.js"></script>
 </body>
 </html>

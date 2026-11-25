@@ -39,13 +39,14 @@
       <button class="mode-btn on" data-mode="build" role="tab" aria-selected="true" onclick="location.href='../../index.html#build'">Build</button>
       <span class="mode-pill" aria-hidden="true"></span>
     </div>
+    <button id="theme-toggle" aria-label="Toggle theme"></button>
     <a class="cta" href="https://github.com/Till3005/build-with-devin/blob/main/guides/ja/playbooks-and-knowledge.md">GitHub</a>
   </div>
 </div></nav>
 <main>
 <article class="guide wrap" id="guide">
   <p class="guide-crumb"><a href="index.html">← ガイド</a> · <a href="../playbooks-and-knowledge.html">English</a> · <a href="../pt/playbooks-and-knowledge.html">Português</a> · <a href="../zh/playbooks-and-knowledge.html">中文</a></p>
-<p class="guide-meta">更新 2026-11-20</p>
+<div class="guide-meta"><span class="meta-chip">中級</span><span class="meta-chip">更新 2026-11-20</span></div>
 <details class="toc" open><summary>このページの目次</summary><ol><li class="d2"><a href="#なぜこの層がすべてを決めるのか">なぜこの層がすべてを決めるのか</a></li><li class="d2"><a href="#ステップ-1-自分の修正を掘り起こす">ステップ 1 — 自分の修正を掘り起こす</a></li><li class="d2"><a href="#ステップ-2-残るナレッジ項目を書く">ステップ 2 — 残るナレッジ項目を書く</a></li><li class="d2"><a href="#ステップ-3-再現可能な作業のプレイブック化">ステップ 3 — 再現可能な作業のプレイブック化</a></li><li class="d2"><a href="#ステップ-4-bot-への供給">ステップ 4 — Bot への供給</a></li><li class="d2"><a href="#ステップ-5-修正ループ">ステップ 5 — 修正ループ</a></li><li class="d2"><a href="#検証チェックリスト">検証チェックリスト</a></li><li class="d2"><a href="#落とし穴">落とし穴</a></li><li class="d2"><a href="#理解度チェック">理解度チェック</a></li><li class="d2"><a href="#実録-定着するナレッジ-devin-cli-v3000-14-swe-2-flash-medium">実録 —— 定着するナレッジ、Devin CLI v3000.14（swe-2-flash-medium）</a></li><li class="d2"><a href="#出典">出典</a></li></ol></details>
 <h1>ガイド 9 — プレイブックとナレッジ：組織の規約をエンコードする</h1>
 <p><strong>目標：</strong> 最高のエンジニアが当たり前と思っていることを書き下し——プレイブック（再現可能な手順）とナレッジ（恒常コンテキスト）として——Devin セッションと Bot を組織スケールで信頼できるものにする。
@@ -117,9 +118,9 @@
 <p>まさにこのための公式 Bot テンプレート Devin Coach がある——Devin がどこで詰まったかを週次報告し、毎回 1 つの修正案（メモ、スキル、セットアップ変更）を提示する。</p>
 <h2 id="検証チェックリスト">検証チェックリスト<a class="hlink" href="#検証チェックリスト" aria-hidden="true">#</a></h2>
 <ul>
-<li>[ ] あなたのリポジトリでの新規セッションが、ナレッジに答えのある質問をゼロ件尋ねる</li>
-<li>[ ] Bot に与えた直近の修正がそのメモリファイルに現れている</li>
-<li>[ ] 異なる 2 つのセッションが同じプレイブックを実行し、同じ形の結果を出す</li>
+<li><input type="checkbox" aria-label="検証ステップ"> あなたのリポジトリでの新規セッションが、ナレッジに答えのある質問をゼロ件尋ねる</li>
+<li><input type="checkbox" aria-label="検証ステップ"> Bot に与えた直近の修正がそのメモリファイルに現れている</li>
+<li><input type="checkbox" aria-label="検証ステップ"> 異なる 2 つのセッションが同じプレイブックを実行し、同じ形の結果を出す</li>
 </ul>
 <h2 id="落とし穴">落とし穴<a class="hlink" href="#落とし穴" aria-hidden="true">#</a></h2>
 <ul>
@@ -156,5 +157,6 @@
 <script src="../../assets/theme.js"></script>
 <script src="../../assets/i18n.js"></script>
 <script src="../../assets/i18n-runtime.js"></script>
+<script src="../../assets/guides.js"></script>
 </body>
 </html>

@@ -39,13 +39,14 @@
       <button class="mode-btn on" data-mode="build" role="tab" aria-selected="true" onclick="location.href='../../index.html#build'">Build</button>
       <span class="mode-pill" aria-hidden="true"></span>
     </div>
+    <button id="theme-toggle" aria-label="Toggle theme"></button>
     <a class="cta" href="https://github.com/Till3005/build-with-devin/blob/main/guides/zh/design-with-devin.md">GitHub</a>
   </div>
 </div></nav>
 <main>
 <article class="guide wrap" id="guide">
   <p class="guide-crumb"><a href="index.html">← 指南</a> · <a href="../design-with-devin.html">English</a> · <a href="../ja/design-with-devin.html">日本語</a> · <a href="../pt/design-with-devin.html">Português</a></p>
-<p class="guide-meta">更新于 2026-11-20</p>
+<div class="guide-meta"><span class="meta-chip">进阶</span><span class="meta-chip">更新于 2026-11-20</span></div>
 <details class="toc" open><summary>本页目录</summary><ol><li class="d2"><a href="#模式">模式</a></li><li class="d2"><a href="#第-1-步-像创意总监一样下-brief">第 1 步 — 像创意总监一样下 brief</a></li><li class="d2"><a href="#第-2-步-先锁字体体系-再动像素">第 2 步 — 先锁字体体系，再动像素</a></li><li class="d2"><a href="#第-3-步-在会话内生成图像">第 3 步 — 在会话内生成图像</a></li><li class="d2"><a href="#第-4-步-用机制写动画-不用形容词">第 4 步 — 用机制写动画，不用形容词</a></li><li class="d2"><a href="#第-5-步-批评回路才是手艺">第 5 步 — 批评回路才是手艺</a></li><li class="d2"><a href="#verify-it">Verify it</a></li><li class="d2"><a href="#坑">坑</a></li><li class="d2"><a href="#自检">自检</a></li><li class="d2"><a href="#实录演示-用机制下-brief-靠-critique-精修-录于-devin-cli-v3000-14-swe-2-flash-medium">实录演示 —— 用机制下 brief，靠 critique 精修，录于 Devin CLI v3000.14（swe-2-flash-medium）</a></li><li class="d2"><a href="#sources">Sources</a></li></ol></details>
 <h1>指南 8 — 设计与视觉工作</h1>
 <p><strong>目标：</strong> 把 Devin 当你的美术指导 + 实现者，纯靠对话完成生产级视觉设计——生成图像、动画系统、字体排印。
@@ -103,10 +104,10 @@ Nothing else uses another size.
 <p>实录的真正教训：质量来自<em>迭代</em>——"the ring draws too fast"、"clouds read as noise, drop opacity 30%"、"mono font on the numbers"。每个视觉锚点预算 3–5 轮批评。Devin 把整页留在上下文里；每一轮是一条消息，不是一张工单。</p>
 <h2 id="verify-it">Verify it<a class="hlink" href="#verify-it" aria-hidden="true">#</a></h2>
 <ul>
-<li>[ ] 页面渲染<em>零</em>图库素材——全部生成或手写</li>
-<li>[ ] 每个动画在 CSS 里都是有名有值的机制</li>
-<li>[ ] 一套字体体系、一套字号阶梯——没有游离字号</li>
-<li>[ ] 3+ 种视口宽度下无破版、无裁切</li>
+<li><input type="checkbox" aria-label="验证步骤"> 页面渲染<em>零</em>图库素材——全部生成或手写</li>
+<li><input type="checkbox" aria-label="验证步骤"> 每个动画在 CSS 里都是有名有值的机制</li>
+<li><input type="checkbox" aria-label="验证步骤"> 一套字体体系、一套字号阶梯——没有游离字号</li>
+<li><input type="checkbox" aria-label="验证步骤"> 3+ 种视口宽度下无破版、无裁切</li>
 </ul>
 <h2 id="坑">坑<a class="hlink" href="#坑" aria-hidden="true">#</a></h2>
 <ul>
@@ -147,5 +148,6 @@ Nothing else uses another size.
 <script src="../../assets/theme.js"></script>
 <script src="../../assets/i18n.js"></script>
 <script src="../../assets/i18n-runtime.js"></script>
+<script src="../../assets/guides.js"></script>
 </body>
 </html>

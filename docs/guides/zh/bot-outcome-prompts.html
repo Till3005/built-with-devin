@@ -39,13 +39,14 @@
       <button class="mode-btn on" data-mode="build" role="tab" aria-selected="true" onclick="location.href='../../index.html#build'">Build</button>
       <span class="mode-pill" aria-hidden="true"></span>
     </div>
+    <button id="theme-toggle" aria-label="Toggle theme"></button>
     <a class="cta" href="https://github.com/Till3005/build-with-devin/blob/main/guides/zh/bot-outcome-prompts.md">GitHub</a>
   </div>
 </div></nav>
 <main>
 <article class="guide wrap" id="guide">
   <p class="guide-crumb"><a href="index.html">← 指南</a> · <a href="../bot-outcome-prompts.html">English</a> · <a href="../ja/bot-outcome-prompts.html">日本語</a> · <a href="../pt/bot-outcome-prompts.html">Português</a></p>
-<p class="guide-meta">更新于 2026-11-25</p>
+<div class="guide-meta"><span class="meta-chip">参考</span><span class="meta-chip">更新于 2026-11-25</span></div>
 <details class="toc" open><summary>本页目录</summary><ol><li class="d2"><a href="#范本">范本</a></li><li class="d2"><a href="#有效-outcome-prompt-的解剖">有效 outcome prompt 的解剖</a></li><li class="d2"><a href="#官方模板市场的句式">官方模板市场的句式</a></li><li class="d2"><a href="#多-bot-组织-带授权的-prompt">多 bot 组织：带授权的 prompt</a></li><li class="d2"><a href="#反模式">反模式</a></li><li class="d2"><a href="#起草你自己的-三行测试">起草你自己的——三行测试</a></li><li class="d2"><a href="#验证">验证</a></li><li class="d2"><a href="#常见陷阱">常见陷阱</a></li><li class="d2"><a href="#自检">自检</a></li><li class="d2"><a href="#实录演示-outcome-prompt-与-task-prompt-正面对比-录于-devin-cli-v3000-14-swe-2-flash-medium">实录演示 —— outcome prompt 与 task prompt 正面对比，录于 Devin CLI v3000.14（swe-2-flash-medium）</a></li><li class="d2"><a href="#sources">Sources</a></li></ol></details>
 <h1>Bot outcome prompts，逐句拆解</h1>
 <p><strong>目标：</strong> 按已公开部署的真实写法写 outcome prompt——授予一个领域的所有权，而不是派任务清单。
@@ -116,9 +117,9 @@
 <p>如果一个陌生人无法从外部核验第 2 行的真伪，就收紧它。</p>
 <h2 id="验证">验证<a class="hlink" href="#验证" aria-hidden="true">#</a></h2>
 <ul>
-<li>[ ] 从你仓库挑一个真实 backlog 项，改写成 outcome prompt——边界、可验证状态、常驻行为</li>
-<li>[ ] 拿给不熟悉代码库的人看：他能否从外部判断这个 Bot「做得好」？</li>
-<li>[ ] Bot 的第一条回复应该是计划或关于边界的澄清问题——如果它问「你想让我先做什么」，说明 prompt 没有赋予所有权</li>
+<li><input type="checkbox" aria-label="验证步骤"> 从你仓库挑一个真实 backlog 项，改写成 outcome prompt——边界、可验证状态、常驻行为</li>
+<li><input type="checkbox" aria-label="验证步骤"> 拿给不熟悉代码库的人看：他能否从外部判断这个 Bot「做得好」？</li>
+<li><input type="checkbox" aria-label="验证步骤"> Bot 的第一条回复应该是计划或关于边界的澄清问题——如果它问「你想让我先做什么」，说明 prompt 没有赋予所有权</li>
 </ul>
 <h2 id="常见陷阱">常见陷阱<a class="hlink" href="#常见陷阱" aria-hidden="true">#</a></h2>
 <ul>
@@ -165,5 +166,6 @@
 <script src="../../assets/theme.js"></script>
 <script src="../../assets/i18n.js"></script>
 <script src="../../assets/i18n-runtime.js"></script>
+<script src="../../assets/guides.js"></script>
 </body>
 </html>

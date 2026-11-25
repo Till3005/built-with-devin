@@ -39,13 +39,14 @@
       <button class="mode-btn on" data-mode="build" role="tab" aria-selected="true" onclick="location.href='../index.html#build'">Build</button>
       <span class="mode-pill" aria-hidden="true"></span>
     </div>
+    <button id="theme-toggle" aria-label="Toggle theme"></button>
     <a class="cta" href="https://github.com/Till3005/build-with-devin/blob/main/guides/living-evals.md">GitHub</a>
   </div>
 </div></nav>
 <main>
 <article class="guide wrap" id="guide">
   <p class="guide-crumb"><a href="index.html">← Guides</a> · <a href="ja/living-evals.html">日本語</a> · <a href="pt/living-evals.html">Português</a> · <a href="zh/living-evals.html">中文</a></p>
-<p class="guide-meta">Updated 2026-11-18</p>
+<div class="guide-meta"><span class="meta-chip">Advanced</span><span class="meta-chip">Updated 2026-11-18</span></div>
 <details class="toc" open><summary>On this page</summary><ol><li class="d2"><a href="#the-pattern">The pattern</a></li><li class="d2"><a href="#prerequisites">Prerequisites</a></li><li class="d2"><a href="#step-1-make-one-trace-replayable-by-hand">Step 1 — Make one trace replayable by hand</a></li><li class="d2"><a href="#step-2-freeze-it-as-an-eval-not-a-bug-report">Step 2 — Freeze it as an eval, not a bug report</a></li><li class="d2"><a href="#step-3-group-by-behavior-before-scaling">Step 3 — Group by behavior before scaling</a></li><li class="d2"><a href="#step-4-encode-the-whole-procedure-as-a-skill">Step 4 — Encode the whole procedure as a skill</a></li><li class="d2"><a href="#step-5-schedule-it-weekly">Step 5 — Schedule it weekly</a></li><li class="d2"><a href="#verify-it">Verify it</a></li><li class="d2"><a href="#pitfalls">Pitfalls</a></li><li class="d2"><a href="#knowledge-check">Knowledge check</a></li><li class="d2"><a href="#sources">Sources</a></li></ol></details>
 <h1>Guide 15 — Living evals from production traces</h1>
 <p><strong>Goal:</strong> an eval suite for <em>your</em> agent that writes itself — a scheduled Devin that reads real production conversations, rebuilds each failure in a full copy of your system, and opens PRs that add the failure as a regression test.
@@ -83,10 +84,10 @@ human reviews the PR, not the eval-writing
 <p>Cron automation (Guide 6): pull the week's traces → group → for each under-covered behavior run the loop → open one PR with the new evals. Humans review the PR; Devin owns the suite.</p>
 <h2 id="verify-it">Verify it<a class="hlink" href="#verify-it" aria-hidden="true">#</a></h2>
 <ul>
-<li>[ ] A real production failure replays deterministically in your preview env — same user request, same bad outcome</li>
-<li>[ ] The eval file is in your repo, runs in CI, and fails on the old behavior / passes on the fix</li>
-<li>[ ] Coverage is measured against <em>production traffic mix</em>, not your guesses — report it like Rox's 72%</li>
-<li>[ ] A bad eval got fixed by editing the skill, not the eval</li>
+<li><input type="checkbox" aria-label="verification step"> A real production failure replays deterministically in your preview env — same user request, same bad outcome</li>
+<li><input type="checkbox" aria-label="verification step"> The eval file is in your repo, runs in CI, and fails on the old behavior / passes on the fix</li>
+<li><input type="checkbox" aria-label="verification step"> Coverage is measured against <em>production traffic mix</em>, not your guesses — report it like Rox's 72%</li>
+<li><input type="checkbox" aria-label="verification step"> A bad eval got fixed by editing the skill, not the eval</li>
 </ul>
 <h2 id="pitfalls">Pitfalls<a class="hlink" href="#pitfalls" aria-hidden="true">#</a></h2>
 <ul>
@@ -114,5 +115,6 @@ human reviews the PR, not the eval-writing
 <script src="../assets/theme.js"></script>
 <script src="../assets/i18n.js"></script>
 <script src="../assets/i18n-runtime.js"></script>
+<script src="../assets/guides.js"></script>
 </body>
 </html>

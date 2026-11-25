@@ -39,13 +39,14 @@
       <button class="mode-btn on" data-mode="build" role="tab" aria-selected="true" onclick="location.href='../../index.html#build'">Build</button>
       <span class="mode-pill" aria-hidden="true"></span>
     </div>
+    <button id="theme-toggle" aria-label="Toggle theme"></button>
     <a class="cta" href="https://github.com/Till3005/build-with-devin/blob/main/guides/zh/bots-204-reference-grounded-swarm.md">GitHub</a>
   </div>
 </div></nav>
 <main>
 <article class="guide wrap" id="guide">
   <p class="guide-crumb"><a href="index.html">← 指南</a> · <a href="../bots-204-reference-grounded-swarm.html">English</a> · <a href="../ja/bots-204-reference-grounded-swarm.html">日本語</a> · <a href="../pt/bots-204-reference-grounded-swarm.html">Português</a></p>
-<p class="guide-meta">更新于 2026-11-18</p>
+<div class="guide-meta"><span class="meta-chip">高级</span><span class="meta-chip">更新于 2026-11-18</span></div>
 <details class="toc" open><summary>本页目录</summary><ol><li class="d2"><a href="#模式">模式</a></li><li class="d2"><a href="#何时用">何时用</a></li><li class="d2"><a href="#第-1-步-先锁定基准">第 1 步 — 先锁定基准</a></li><li class="d2"><a href="#第-2-步-拆成各有归属的切片">第 2 步 — 拆成各有归属的切片</a></li><li class="d2"><a href="#第-3-步-人类在代码之上掌舵">第 3 步 — 人类在代码之上掌舵</a></li><li class="d2"><a href="#第-4-步-顶层叠加对抗验证">第 4 步 — 顶层叠加对抗验证</a></li><li class="d2"><a href="#verify-it">Verify it</a></li><li class="d2"><a href="#坑">坑</a></li><li class="d2"><a href="#自检">自检</a></li><li class="d2"><a href="#sources">Sources</a></li></ol></details>
 <h1>指南 5 — 参考基准锚定的 swarm</h1>
 <p><strong>目标：</strong> 指挥一个 agent swarm 写出大型且<em>可验证</em>的系统——正确性持续对照可信基准检验，而不是对照感觉。
@@ -114,10 +115,10 @@ code looks done.
 <p>Harvey 叠了第二层检查：<strong>模拟律师谈判</strong>——真实使用场景，抓一致性套件漏掉的东西。你的等价物：基准 diff 之上的场景层——真实工作流、对抗输入、fuzzing。基准检查抓<em>错</em>，场景检查抓<em>脆</em>。</p>
 <h2 id="verify-it">Verify it<a class="hlink" href="#verify-it" aria-hidden="true">#</a></h2>
 <ul>
-<li>[ ] 存在自动化基准检查，且对每个变更运行</li>
-<li>[ ] 每个 agent 的验收标准是"基准通过"，永远不是"代码写了"</li>
-<li>[ ] 不读代码就能从日志/记忆回答"swarm 决定了什么、为什么"</li>
-<li>[ ] 故意弄坏的模块被基准检查抓住，而不是被你抓住</li>
+<li><input type="checkbox" aria-label="验证步骤"> 存在自动化基准检查，且对每个变更运行</li>
+<li><input type="checkbox" aria-label="验证步骤"> 每个 agent 的验收标准是"基准通过"，永远不是"代码写了"</li>
+<li><input type="checkbox" aria-label="验证步骤"> 不读代码就能从日志/记忆回答"swarm 决定了什么、为什么"</li>
+<li><input type="checkbox" aria-label="验证步骤"> 故意弄坏的模块被基准检查抓住，而不是被你抓住</li>
 </ul>
 <h2 id="坑">坑<a class="hlink" href="#坑" aria-hidden="true">#</a></h2>
 <ul>
@@ -145,5 +146,6 @@ code looks done.
 <script src="../../assets/theme.js"></script>
 <script src="../../assets/i18n.js"></script>
 <script src="../../assets/i18n-runtime.js"></script>
+<script src="../../assets/guides.js"></script>
 </body>
 </html>

@@ -39,13 +39,14 @@
       <button class="mode-btn on" data-mode="build" role="tab" aria-selected="true" onclick="location.href='../index.html#build'">Build</button>
       <span class="mode-pill" aria-hidden="true"></span>
     </div>
+    <button id="theme-toggle" aria-label="Toggle theme"></button>
     <a class="cta" href="https://github.com/Till3005/build-with-devin/blob/main/guides/bot-outcome-prompts.md">GitHub</a>
   </div>
 </div></nav>
 <main>
 <article class="guide wrap" id="guide">
   <p class="guide-crumb"><a href="index.html">← Guides</a> · <a href="ja/bot-outcome-prompts.html">日本語</a> · <a href="pt/bot-outcome-prompts.html">Português</a> · <a href="zh/bot-outcome-prompts.html">中文</a></p>
-<p class="guide-meta">Updated 2026-11-25</p>
+<div class="guide-meta"><span class="meta-chip">Reference</span><span class="meta-chip">Updated 2026-11-25</span></div>
 <details class="toc" open><summary>On this page</summary><ol><li class="d2"><a href="#the-exemplar">The exemplar</a></li><li class="d2"><a href="#the-anatomy-of-a-working-outcome-prompt">The anatomy of a working outcome prompt</a></li><li class="d2"><a href="#patterns-from-the-official-template-marketplace">Patterns from the official template marketplace</a></li><li class="d2"><a href="#multi-bot-orgs-prompts-that-grant-authority">Multi-bot orgs: prompts that grant authority</a></li><li class="d2"><a href="#anti-patterns">Anti-patterns</a></li><li class="d2"><a href="#drafting-yours-the-three-line-test">Drafting yours — the three-line test</a></li><li class="d2"><a href="#verify-it">Verify it</a></li><li class="d2"><a href="#pitfalls">Pitfalls</a></li><li class="d2"><a href="#knowledge-check">Knowledge check</a></li><li class="d2"><a href="#walkthrough-outcome-vs-task-side-by-side-on-devin-cli-v3000-14-swe-2-flash-medium">Walkthrough — outcome vs task, side by side, on Devin CLI v3000.14 (swe-2-flash-medium)</a></li><li class="d2"><a href="#sources">Sources</a></li></ol></details>
 <h1>Bot outcome prompts, dissected</h1>
 <p><strong>Goal:</strong> write outcome prompts the way the documented deployments actually did — ownership of an area, not a task list.
@@ -116,9 +117,9 @@
 <p>If a stranger couldn't check line 2's truth from outside, tighten it.</p>
 <h2 id="verify-it">Verify it<a class="hlink" href="#verify-it" aria-hidden="true">#</a></h2>
 <ul>
-<li>[ ] Take a real backlog item from your repo and rewrite it as an outcome prompt — surface, verifiable state, standing behavior</li>
-<li>[ ] Show it to someone who doesn't know the codebase: could they tell from outside when the Bot is "winning"?</li>
-<li>[ ] The Bot's first reply should be a plan or clarifying questions about scope — if it asks "what do you want me to do first," the prompt didn't assign ownership</li>
+<li><input type="checkbox" aria-label="verification step"> Take a real backlog item from your repo and rewrite it as an outcome prompt — surface, verifiable state, standing behavior</li>
+<li><input type="checkbox" aria-label="verification step"> Show it to someone who doesn't know the codebase: could they tell from outside when the Bot is "winning"?</li>
+<li><input type="checkbox" aria-label="verification step"> The Bot's first reply should be a plan or clarifying questions about scope — if it asks "what do you want me to do first," the prompt didn't assign ownership</li>
 </ul>
 <h2 id="pitfalls">Pitfalls<a class="hlink" href="#pitfalls" aria-hidden="true">#</a></h2>
 <ul>
@@ -165,5 +166,6 @@
 <script src="../assets/theme.js"></script>
 <script src="../assets/i18n.js"></script>
 <script src="../assets/i18n-runtime.js"></script>
+<script src="../assets/guides.js"></script>
 </body>
 </html>
