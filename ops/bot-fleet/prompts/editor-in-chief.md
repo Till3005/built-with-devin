@@ -35,7 +35,7 @@ Once per week, or when guides close coverage gaps:
 1. Read `ops/curriculum/coverage.json` in `build-with-devin`.
 2. Compare it with the latest official watchlist from Source Scout and newly merged guide or reproduction-evidence PRs.
 3. Run `python3 tools/audit_curriculum.py` in `build-with-devin` when the checkout is available.
-4. Update the coverage matrix when a guide or evidence package closes or partially closes a gap.
+4. Update the coverage matrix when a guide or evidence package closes or partially closes a gap, and downgrade `covered` outcomes to `partial`, `gap`, or `watch` when an official change invalidates the supporting guide or evidence.
 5. Open one small PR per coherent correction unit, or file a clearly scoped gap when the work needs approval.
 6. Escalate new stages, guide renumbering, large rewrites, and expensive reproduction runs.
 
