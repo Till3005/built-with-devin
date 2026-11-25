@@ -12,7 +12,7 @@
 <link rel="alternate" hreflang="zh" href="https://till3005.github.io/built-with-devin/guides/zh/zh/skills-and-plugins.html">
 <link rel="alternate" hreflang="x-default" href="https://till3005.github.io/built-with-devin/guides/zh/skills-and-plugins.html">
 <link rel="alternate" type="application/rss+xml" title="built-with-devin feed" href="../../feed.xml">
-<script type="application/ld+json">{"@context": "https://schema.org", "@type": "TechArticle", "headline": "指南 16 — Skills 与 plugins：playbook 之后的封装层", "description": "把组织里可重复的流程编码成 SKILL.md 文件，让每个会话和 Bot 都按它执行——并用 plugins 跨仓库打包分享。", "inLanguage": "zh", "url": "https://till3005.github.io/built-with-devin/guides/zh/skills-and-plugins.html", "isPartOf": {"@type": "Course", "name": "build-with-devin", "url": "https://till3005.github.io/built-with-devin/guides/"}, "dateModified": "2026-11-19"}</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "TechArticle", "headline": "指南 16 — Skills 与 plugins：playbook 之后的封装层", "description": "把组织里可重复的流程编码成 SKILL.md 文件，让每个会话和 Bot 都按它执行——并用 plugins 跨仓库打包分享。", "inLanguage": "zh", "url": "https://till3005.github.io/built-with-devin/guides/zh/skills-and-plugins.html", "isPartOf": {"@type": "Course", "name": "build-with-devin", "url": "https://till3005.github.io/built-with-devin/guides/"}, "dateModified": "2026-11-25"}</script>
 <link rel="icon" href="../../assets/brand/Devin_Symbol.svg" type="image/svg+xml">
 <link rel="stylesheet" href="../../assets/site.css">
 <link rel="stylesheet" href="../../assets/guides.css">
@@ -45,7 +45,7 @@
 <main>
 <article class="guide wrap" id="guide">
   <p class="guide-crumb"><a href="index.html">← 指南</a> · <a href="../skills-and-plugins.html">English</a> · <a href="../ja/skills-and-plugins.html">日本語</a> · <a href="../pt/skills-and-plugins.html">Português</a></p>
-<p class="guide-meta">更新于 2026-11-19</p>
+<p class="guide-meta">更新于 2026-11-25</p>
 <details class="toc" open><summary>本页目录</summary><ol><li class="d2"><a href="#为什么-skills-是现在最重要的那一层">为什么 skills 是现在最重要的那一层</a></li><li class="d2"><a href="#第-1-步-skills-存放在哪">第 1 步 — skills 存放在哪</a></li><li class="d2"><a href="#第-2-步-skill-md-契约">第 2 步 — SKILL.md 契约</a></li><li class="d2"><a href="#第-3-步-三种调用路径">第 3 步 — 三种调用路径</a></li><li class="d2"><a href="#第-4-步-养大这个库">第 4 步 — 养大这个库</a></li><li class="d2"><a href="#实录演示-真调用一个-repo-skill-录于-devin-cli-v3000-14-swe-2-flash-medium">实录演示 —— 真调用一个 repo skill，录于 Devin CLI v3000.14（swe-2-flash-medium）</a></li><li class="d2"><a href="#验证清单">验证清单</a></li><li class="d2"><a href="#常见坑">常见坑</a></li><li class="d2"><a href="#理解度检查">理解度检查</a></li><li class="d2"><a href="#来源">来源</a></li></ol></details>
 <h1>指南 16 — Skills 与 plugins：playbook 之后的封装层</h1>
 <p><strong>目标：</strong> 把组织里可重复的流程编码成 <code>SKILL.md</code> 文件，让每个会话和 Bot 都按它执行——并用 plugins 跨仓库打包分享。
