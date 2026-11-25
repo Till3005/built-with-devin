@@ -84,10 +84,10 @@
 <p>cron automation（指南 6）：拉本周 traces → 分组 → 对每个覆盖不足的行为跑循环 → 开一个 PR 装新 eval。人 review PR；Devin 拥有整个评测集。</p>
 <h2 id="verify-it">Verify it<a class="hlink" href="#verify-it" aria-hidden="true">#</a></h2>
 <ul>
-<li><input type="checkbox" aria-label="验证步骤"> 一个真实生产失败在 preview env 里可确定性回放——同一用户请求，同一坏结果</li>
-<li><input type="checkbox" aria-label="验证步骤"> eval 文件在仓库里、跑在 CI 上、旧行为红新行为绿</li>
-<li><input type="checkbox" aria-label="验证步骤"> 覆盖率按<em>生产流量结构</em>测，而不是按你的猜测——像 Rox 的 72% 那样报出来</li>
-<li><input type="checkbox" aria-label="验证步骤"> 一条坏 eval 是通过改 skill 修好的，不是改 eval</li>
+<li><label><input type="checkbox"> 一个真实生产失败在 preview env 里可确定性回放——同一用户请求，同一坏结果</label></li>
+<li><label><input type="checkbox"> eval 文件在仓库里、跑在 CI 上、旧行为红新行为绿</label></li>
+<li><label><input type="checkbox"> 覆盖率按<em>生产流量结构</em>测，而不是按你的猜测——像 Rox 的 72% 那样报出来</label></li>
+<li><label><input type="checkbox"> 一条坏 eval 是通过改 skill 修好的，不是改 eval</label></li>
 </ul>
 <h2 id="常见陷阱">常见陷阱<a class="hlink" href="#常见陷阱" aria-hidden="true">#</a></h2>
 <ul>

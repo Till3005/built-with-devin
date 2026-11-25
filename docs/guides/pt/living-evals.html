@@ -84,10 +84,10 @@ humano revisa o PR, não a escrita do eval
 <p>Automação cron (Guia 6): puxar os traces da semana → agrupar → para cada comportamento sub-coberto rodar o loop → abrir um PR com os novos evals. Humanos revisam o PR; o Devin é dono da suíte.</p>
 <h2 id="checklist-de-verificação">Checklist de verificação<a class="hlink" href="#checklist-de-verificação" aria-hidden="true">#</a></h2>
 <ul>
-<li><input type="checkbox" aria-label="passo de verificação"> Uma falha real de produção replaya deterministicamente no seu preview env — mesmo request do usuário, mesmo resultado ruim</li>
-<li><input type="checkbox" aria-label="passo de verificação"> O arquivo de eval está no seu repo, roda na CI e falha no comportamento antigo / passa na correção</li>
-<li><input type="checkbox" aria-label="passo de verificação"> A cobertura é medida contra o <em>mix de tráfego de produção</em>, não seus palpites — reporte como os 72% da Rox</li>
-<li><input type="checkbox" aria-label="passo de verificação"> Um eval ruim foi corrigido editando o skill, não o eval</li>
+<li><label><input type="checkbox"> Uma falha real de produção replaya deterministicamente no seu preview env — mesmo request do usuário, mesmo resultado ruim</label></li>
+<li><label><input type="checkbox"> O arquivo de eval está no seu repo, roda na CI e falha no comportamento antigo / passa na correção</label></li>
+<li><label><input type="checkbox"> A cobertura é medida contra o <em>mix de tráfego de produção</em>, não seus palpites — reporte como os 72% da Rox</label></li>
+<li><label><input type="checkbox"> Um eval ruim foi corrigido editando o skill, não o eval</label></li>
 </ul>
 <h2 id="armadilhas">Armadilhas<a class="hlink" href="#armadilhas" aria-hidden="true">#</a></h2>
 <ul>

@@ -174,3 +174,6 @@ body.has-lessonbar footer{padding-bottom:64px}
 body.lesson-complete .check-progress{color:rgb(var(--ok));border-color:color-mix(in srgb,rgb(var(--ok)) 45%,transparent)}
 :root{--ok:6 118 71}
 [data-theme="dark"]{--ok:64 196 138}
+.guide li:has(> label > input[type=checkbox]){display:flex;align-items:flex-start;gap:9px;margin-left:-22px;padding:6px 0;border-bottom:1px solid var(--line2)}
+.guide li:has(> label > input[type=checkbox]) label{display:contents;cursor:pointer}
+.guide li:has(> label > input[type=checkbox]) input{margin:3px 0 0;width:16px;height:16px;flex:0 0 auto}

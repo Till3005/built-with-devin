@@ -84,10 +84,10 @@
 <p>cron 自動化（ガイド 6）：その週のトレースを取得 → グルーピング → カバー不足の各行動でループを実行 → 新 eval 入りの PR を 1 件開く。人間がレビューするのは PR；Devin がスイートを所有する。</p>
 <h2 id="検証チェックリスト">検証チェックリスト<a class="hlink" href="#検証チェックリスト" aria-hidden="true">#</a></h2>
 <ul>
-<li><input type="checkbox" aria-label="検証ステップ"> 実際の本番障害がプレビュー環境で決定的にリプレイできる——同じユーザーリクエスト、同じ悪い結果</li>
-<li><input type="checkbox" aria-label="検証ステップ"> eval ファイルがリポジトリにあり、CI で走り、旧挙動で失敗し修正で通る</li>
-<li><input type="checkbox" aria-label="検証ステップ"> カバレッジが推測ではなく<em>本番トラフィック構成</em>に対して測定されている——Rox の 72% のように報告する</li>
-<li><input type="checkbox" aria-label="検証ステップ"> 悪い eval が eval ではなくスキルの編集で直された</li>
+<li><label><input type="checkbox"> 実際の本番障害がプレビュー環境で決定的にリプレイできる——同じユーザーリクエスト、同じ悪い結果</label></li>
+<li><label><input type="checkbox"> eval ファイルがリポジトリにあり、CI で走り、旧挙動で失敗し修正で通る</label></li>
+<li><label><input type="checkbox"> カバレッジが推測ではなく<em>本番トラフィック構成</em>に対して測定されている——Rox の 72% のように報告する</label></li>
+<li><label><input type="checkbox"> 悪い eval が eval ではなくスキルの編集で直された</label></li>
 </ul>
 <h2 id="落とし穴">落とし穴<a class="hlink" href="#落とし穴" aria-hidden="true">#</a></h2>
 <ul>

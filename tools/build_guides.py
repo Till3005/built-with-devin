@@ -247,9 +247,15 @@ def render(md_path: Path, out_path: Path, rel: str, lang: str, alt: str, mdsrc: 
     text = re.sub(r"(\]\()([^)]+)(\))", fix, text)
     title = re.search(r"^# (.+)$", text, re.M).group(1)
     body = markdown.markdown(text, extensions=["tables", "fenced_code", "attr_list"])
-    verify_label = VERIFY_STEP_LABEL[lang]
-    body = re.sub(r"<li>\[ \]\s*", f'<li><input type="checkbox" aria-label="{verify_label}"> ', body)
-    body = re.sub(r"<li>\[x\]\s*", f'<li><input type="checkbox" checked aria-label="{verify_label}"> ', body, flags=re.I)
+    def checkbox_item(match, checked: bool = False) -> str:
+        inner = match.group(1)
+        plain = re.sub(r"<[^>]+>", "", inner).strip()
+        optional = ' data-optional="true"' if re.match(r"\((optional|opcional|可选|オプション)\)", plain, re.I) else ""
+        state = " checked" if checked else ""
+        return f'<li><label><input type="checkbox"{state}{optional}> {inner}</label></li>'
+
+    body = re.sub(r"<li>\[ \]\s*(.*?)</li>", lambda m: checkbox_item(m), body)
+    body = re.sub(r"<li>\[x\]\s*(.*?)</li>", lambda m: checkbox_item(m, checked=True), body, flags=re.I)
     body, items = anchorize(body)
     toc = toc_html(items, lang)
     upd = last_updated(md_path)

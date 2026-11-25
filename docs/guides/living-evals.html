@@ -84,10 +84,10 @@ human reviews the PR, not the eval-writing
 <p>Cron automation (Guide 6): pull the week's traces → group → for each under-covered behavior run the loop → open one PR with the new evals. Humans review the PR; Devin owns the suite.</p>
 <h2 id="verify-it">Verify it<a class="hlink" href="#verify-it" aria-hidden="true">#</a></h2>
 <ul>
-<li><input type="checkbox" aria-label="verification step"> A real production failure replays deterministically in your preview env — same user request, same bad outcome</li>
-<li><input type="checkbox" aria-label="verification step"> The eval file is in your repo, runs in CI, and fails on the old behavior / passes on the fix</li>
-<li><input type="checkbox" aria-label="verification step"> Coverage is measured against <em>production traffic mix</em>, not your guesses — report it like Rox's 72%</li>
-<li><input type="checkbox" aria-label="verification step"> A bad eval got fixed by editing the skill, not the eval</li>
+<li><label><input type="checkbox"> A real production failure replays deterministically in your preview env — same user request, same bad outcome</label></li>
+<li><label><input type="checkbox"> The eval file is in your repo, runs in CI, and fails on the old behavior / passes on the fix</label></li>
+<li><label><input type="checkbox"> Coverage is measured against <em>production traffic mix</em>, not your guesses — report it like Rox's 72%</label></li>
+<li><label><input type="checkbox"> A bad eval got fixed by editing the skill, not the eval</label></li>
 </ul>
 <h2 id="pitfalls">Pitfalls<a class="hlink" href="#pitfalls" aria-hidden="true">#</a></h2>
 <ul>
