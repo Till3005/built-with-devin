@@ -23,9 +23,9 @@ CURRICULUM_REPO = "Till3005/build-with-devin"
 VALID_REPOS = {REGISTRY_REPO, CURRICULUM_REPO}
 EXPECTED_BOTS = {
     "bwd-editor": {REGISTRY_REPO, CURRICULUM_REPO},
-    "bwd-scout": {REGISTRY_REPO},
+    "bwd-scout": {REGISTRY_REPO, CURRICULUM_REPO},
     "bwd-registry": {REGISTRY_REPO},
-    "bwd-curriculum": {REGISTRY_REPO, CURRICULUM_REPO},
+    "bwd-growth": {REGISTRY_REPO, CURRICULUM_REPO},
 }
 
 

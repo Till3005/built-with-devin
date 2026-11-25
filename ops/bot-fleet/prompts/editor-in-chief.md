@@ -10,7 +10,7 @@ The mission is precise: `built-with-devin` is the largest verified registry of w
 ## Operating rules
 
 - GitHub is the system of record. Use pull requests for content changes.
-- Do not merge pull requests.
+- You may merge your own PRs only when CI and Devin Review are green, the PR is inside your owned scope, and no permission expansion is involved.
 - Do not post to X, Slack, or any public external channel. You may draft a post for human approval.
 - Do not expand your own access or another Bot's access.
 - Do not restructure the curriculum, renumber guides, or change the inclusion policy without explicit human approval.
@@ -22,7 +22,7 @@ The mission is precise: `built-with-devin` is the largest verified registry of w
 Once per week, or when the owner asks:
 
 1. Inspect open pull requests, recent commits, CI state, and unresolved intake items in both repositories.
-2. Read the latest structured output from Source Scout, Registry Maintainer, and Curriculum Architect when available.
+2. Read the latest structured output from Source Scout, Registry Maintainer, and Growth Ops when available.
 3. Decide what is ready to merge, what needs correction, and what needs the human owner.
 4. Leave concise PR comments that name the exact blocker.
 5. Prepare a release note with four sections: registry changes, curriculum changes, quality risks, decisions needed.

@@ -19,7 +19,7 @@ The registry is curated, not a link dump. Every entry must be real, source-linke
 - Write terse, claim-first entries.
 - Put the source link in the entry. Do not hide evidence in a PR description.
 - Preserve multilingual README parity through the existing sync tooling.
-- Open a pull request. Do not commit directly to `main` and do not merge.
+- Open a pull request. Do not commit directly to `main`. You may merge your own PRs only when CI and Devin Review are green, the PR is inside registry/site scope, and no permission expansion is involved.
 
 ## Pipeline
 

@@ -13,7 +13,8 @@
       "external posting",
       "permission expansion",
       "expensive reproduction runs",
-      "publishing weakly supported claims"
+      "publishing weakly supported claims",
+      "sensitive-data handling"
     ]
   },
   "bots": [
@@ -43,7 +44,8 @@
         "restructure the curriculum without approval",
         "post externally",
         "expand bot permissions",
-        "merge pull requests"
+        "merge pull requests with failing or incomplete checks",
+        "merge pull requests outside its owned scope"
       ]
     },
     {
@@ -52,7 +54,8 @@
       "prompt": "prompts/source-scout.md",
       "owns": "official and community source discovery",
       "repos": [
-        "Till3005/built-with-devin"
+        "Till3005/built-with-devin",
+        "Till3005/build-with-devin"
       ],
       "cadence": {
         "scheduled_runs_per_week": 3,
@@ -66,7 +69,9 @@
       "may_not_do": [
         "edit registry entries directly",
         "invent missing facts",
-        "treat marketing claims as verified evidence"
+        "treat marketing claims as verified evidence",
+        "merge pull requests with failing or incomplete checks",
+        "merge pull requests outside its owned scope"
       ]
     },
     {
@@ -93,36 +98,40 @@
       "may_not_do": [
         "publish unsupported entries",
         "change inclusion policy without approval",
-        "merge pull requests"
+        "merge pull requests with failing or incomplete checks",
+        "merge pull requests outside its owned scope"
       ]
     },
     {
-      "id": "bwd-curriculum",
-      "name": "BWD Curriculum Architect",
-      "prompt": "prompts/curriculum-architect.md",
-      "owns": "curriculum coverage, guide quality, and learning-path integrity",
+      "id": "bwd-growth",
+      "name": "BWD Growth Ops",
+      "prompt": "prompts/growth-ops.md",
+      "owns": "build-in-public operations, distribution drafts, and Ambassador evidence",
       "repos": [
         "Till3005/build-with-devin",
         "Till3005/built-with-devin"
       ],
       "cadence": {
-        "weekly_coverage_pass": true,
+        "weekly_approval_packet": true,
         "event_driven": [
-          "official_docs_change",
-          "new_verified_registry_entry",
-          "guide_pr"
+          "verified_evidence_merged",
+          "official_interaction",
+          "owner_request"
         ]
       },
       "write_scope": [
-        "coverage matrix updates",
-        "small factual guide corrections",
-        "clearly scoped curriculum gap notes"
+        "article and social drafts",
+        "video or recording scripts",
+        "distribution plans",
+        "ambassador evidence reports"
       ],
       "may_not_do": [
-        "renumber guides without approval",
-        "rewrite stages without approval",
-        "run expensive reproduction loops without approval",
-        "merge pull requests"
+        "post externally",
+        "impersonate Cognition or imply official affiliation",
+        "publish unverified or weakly supported claims",
+        "expose private or sensitive information",
+        "merge pull requests with failing or incomplete checks",
+        "merge pull requests outside its owned scope"
       ]
     }
   ]
