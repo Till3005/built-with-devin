@@ -68,7 +68,10 @@
     if(isGuidePage()){
       if(lang===pageLang()){ mark(lang); return; }
       const link=document.querySelector(`.guide-crumb a[data-lang-link="${lang}"]`);
-      if(link) location.href=link.href;
+      if(link){
+        localStorage.setItem('bwd-lang',lang);
+        location.href=link.href;
+      }
       return;
     }
     apply(lang);
