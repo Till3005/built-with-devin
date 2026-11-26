@@ -12,7 +12,7 @@
 <link rel="alternate" hreflang="zh" href="https://till3005.github.io/built-with-devin/guides/zh/bots-204-reference-grounded-swarm.html">
 <link rel="alternate" hreflang="x-default" href="https://till3005.github.io/built-with-devin/guides/bots-204-reference-grounded-swarm.html">
 <link rel="alternate" type="application/rss+xml" title="built-with-devin feed" href="../../feed.xml">
-<script type="application/ld+json">{"@context": "https://schema.org", "@type": "TechArticle", "headline": "指南 5 — 参考基准锚定的 swarm", "description": "指挥一个 agent swarm 写出大型且可验证的系统——正确性持续对照可信基准检验，而不是对照感觉。", "inLanguage": "zh", "url": "https://till3005.github.io/built-with-devin/guides/zh/bots-204-reference-grounded-swarm.html", "isPartOf": {"@type": "Course", "name": "build-with-devin", "url": "https://till3005.github.io/built-with-devin/guides/"}, "dateModified": "2026-11-18"}</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "TechArticle", "headline": "指南 5 — 参考基准锚定的 swarm", "description": "指挥一个 agent swarm 写出大型且可验证的系统——正确性持续对照可信基准检验，而不是对照感觉。", "inLanguage": "zh", "url": "https://till3005.github.io/built-with-devin/guides/zh/bots-204-reference-grounded-swarm.html", "isPartOf": {"@type": "Course", "name": "build-with-devin", "url": "https://till3005.github.io/built-with-devin/guides/"}, "dateModified": "2026-11-26"}</script>
 <link rel="icon" href="../../assets/brand/Devin_Symbol.svg" type="image/svg+xml">
 <link rel="stylesheet" href="../../assets/site.css">
 <link rel="stylesheet" href="../../assets/guides.css">
@@ -45,13 +45,13 @@
 <main>
 <article class="guide wrap" id="guide">
   <p class="guide-crumb"><a href="index.html">← 指南</a> · <a data-lang-link="en" href="../bots-204-reference-grounded-swarm.html">English</a> · <a data-lang-link="ja" href="../ja/bots-204-reference-grounded-swarm.html">日本語</a> · <a data-lang-link="pt" href="../pt/bots-204-reference-grounded-swarm.html">Português</a></p>
-<p class="guide-meta">更新于 2026-11-18</p>
+<p class="guide-meta">更新于 2026-11-26</p>
 <details class="toc" open><summary>本页目录</summary><ol><li class="d2"><a href="#模式">模式</a></li><li class="d2"><a href="#何时用">何时用</a></li><li class="d2"><a href="#第-1-步-先锁定基准">第 1 步 — 先锁定基准</a></li><li class="d2"><a href="#第-2-步-拆成各有归属的切片">第 2 步 — 拆成各有归属的切片</a></li><li class="d2"><a href="#第-3-步-人类在代码之上掌舵">第 3 步 — 人类在代码之上掌舵</a></li><li class="d2"><a href="#第-4-步-顶层叠加对抗验证">第 4 步 — 顶层叠加对抗验证</a></li><li class="d2"><a href="#verify-it">Verify it</a></li><li class="d2"><a href="#坑">坑</a></li><li class="d2"><a href="#自检">自检</a></li><li class="d2"><a href="#sources">Sources</a></li></ol></details>
 <h1>指南 5 — 参考基准锚定的 swarm</h1>
 <p><strong>目标：</strong> 指挥一个 agent swarm 写出大型且<em>可验证</em>的系统——正确性持续对照可信基准检验，而不是对照感觉。
 <strong>级别：</strong> 高级
-<strong>出处部署：</strong> Harvey 的 <strong>"Phil"</strong>——~30 个 agent 写出协作式、Word 兼容的编辑器引擎（Rust + TypeScript）：<strong>3 周 100 万+ 行，零人类工程师</strong>。持续对照真实 Microsoft Word 行为和模拟律师谈判验证。人类通过记忆 + 决策日志掌舵，从不读代码。
-<strong>来源：</strong> Gabe Pereyra 的发布实录（<a href="https://x.com/gabepereyra">via @gabepereyra</a>）· <a href="https://devin.ai/blog/introducing-devin-bots">launch post</a></p>
+<strong>出处部署：</strong> Harvey 的 <strong>"Phil"</strong>——据 Gabe Pereyra 的第一手实录，~30 个 agent 写出协作式、Word 兼容的编辑器引擎（Rust + TypeScript）：<strong>3 周 100 万+ 行，零人类工程师</strong>。持续对照真实 Microsoft Word 行为和模拟律师谈判验证。人类通过记忆 + 决策日志掌舵，从不读代码。
+<strong>来源：</strong> Gabe Pereyra 的发布实录（<a href="https://x.com/gabepereyra/status/2122756324173992166">直接帖子</a>）· <a href="https://devin.ai/blog/introducing-devin-bots">launch post</a></p>
 <h2 id="模式">模式<a class="hlink" href="#模式" aria-hidden="true">#</a></h2>
 <p>swarm 失败的原因是没人能判断输出对不对。Phil 成功是因为每一行都能对照一个<strong>真值基准</strong>检验：真实的 Microsoft Word。agent 团队的工作是<em>对齐</em>——一个客观的、可持续检验的目标——而不是<em>发明</em>。</p>
 <pre><code class="language-text">   reference system (truth)
@@ -133,7 +133,7 @@ code looks done.
 </ol>
 <h2 id="sources">Sources<a class="hlink" href="#sources" aria-hidden="true">#</a></h2>
 <ul>
-<li><a href="https://x.com/gabepereyra">@gabepereyra</a> — Harvey Phil 实录：~30 agent、1M+ 行、Word 基准验证、律师模拟</li>
+<li><a href="https://x.com/gabepereyra/status/2122756324173992166">Gabe Pereyra 直接帖子</a>——Harvey Phil 实录：~30 agent、1M+ 行、Word 基准验证、律师模拟</li>
 <li><a href="https://devin.ai/blog/introducing-devin-bots">Introducing Devin Bots</a></li>
 <li>相关：<a href="bots-203-multi-bot-org.html">第 4 篇 — 多 Bot 组织</a>（同一套层级，不同目的：运营 vs 构建）</li>
 </ul>

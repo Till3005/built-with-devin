@@ -12,7 +12,7 @@
 <link rel="alternate" hreflang="zh" href="https://till3005.github.io/built-with-devin/guides/zh/bot-outcome-prompts.html">
 <link rel="alternate" hreflang="x-default" href="https://till3005.github.io/built-with-devin/guides/bot-outcome-prompts.html">
 <link rel="alternate" type="application/rss+xml" title="built-with-devin feed" href="../../feed.xml">
-<script type="application/ld+json">{"@context": "https://schema.org", "@type": "TechArticle", "headline": "Bot outcome prompts，逐句拆解", "description": "按已公开部署的真实写法写 outcome prompt——授予一个领域的所有权，而不是派任务清单。", "inLanguage": "zh", "url": "https://till3005.github.io/built-with-devin/guides/zh/bot-outcome-prompts.html", "isPartOf": {"@type": "Course", "name": "build-with-devin", "url": "https://till3005.github.io/built-with-devin/guides/"}, "dateModified": "2026-11-25"}</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "TechArticle", "headline": "Bot outcome prompts，逐句拆解", "description": "按已公开部署的真实写法写 outcome prompt——授予一个领域的所有权，而不是派任务清单。", "inLanguage": "zh", "url": "https://till3005.github.io/built-with-devin/guides/zh/bot-outcome-prompts.html", "isPartOf": {"@type": "Course", "name": "build-with-devin", "url": "https://till3005.github.io/built-with-devin/guides/"}, "dateModified": "2026-11-26"}</script>
 <link rel="icon" href="../../assets/brand/Devin_Symbol.svg" type="image/svg+xml">
 <link rel="stylesheet" href="../../assets/site.css">
 <link rel="stylesheet" href="../../assets/guides.css">
@@ -45,7 +45,7 @@
 <main>
 <article class="guide wrap" id="guide">
   <p class="guide-crumb"><a href="index.html">← 指南</a> · <a data-lang-link="en" href="../bot-outcome-prompts.html">English</a> · <a data-lang-link="ja" href="../ja/bot-outcome-prompts.html">日本語</a> · <a data-lang-link="pt" href="../pt/bot-outcome-prompts.html">Português</a></p>
-<p class="guide-meta">更新于 2026-11-25</p>
+<p class="guide-meta">更新于 2026-11-26</p>
 <details class="toc" open><summary>本页目录</summary><ol><li class="d2"><a href="#范本">范本</a></li><li class="d2"><a href="#有效-outcome-prompt-的解剖">有效 outcome prompt 的解剖</a></li><li class="d2"><a href="#官方模板市场的句式">官方模板市场的句式</a></li><li class="d2"><a href="#多-bot-组织-带授权的-prompt">多 bot 组织：带授权的 prompt</a></li><li class="d2"><a href="#反模式">反模式</a></li><li class="d2"><a href="#起草你自己的-三行测试">起草你自己的——三行测试</a></li><li class="d2"><a href="#验证">验证</a></li><li class="d2"><a href="#常见陷阱">常见陷阱</a></li><li class="d2"><a href="#自检">自检</a></li><li class="d2"><a href="#实录演示-outcome-prompt-与-task-prompt-正面对比-录于-devin-cli-v3000-14-swe-2-flash-medium">实录演示 —— outcome prompt 与 task prompt 正面对比，录于 Devin CLI v3000.14（swe-2-flash-medium）</a></li><li class="d2"><a href="#sources">Sources</a></li></ol></details>
 <h1>Bot outcome prompts，逐句拆解</h1>
 <p><strong>目标：</strong> 按已公开部署的真实写法写 outcome prompt——授予一个领域的所有权，而不是派任务清单。
@@ -103,7 +103,7 @@
 <li><strong>任务形 prompt。</strong> "Fix these 12 issues"——bot 干完就闲置；你得到的是一个 session，不是 bot。</li>
 <li><strong>不可验证的结果。</strong> "Make the app better"——没有自检手段，bot 唯一的出口就是 Needs-you 刷屏。</li>
 <li><strong>看不见的域。</strong> 如果结果需要 bot 接触不到的系统（够不着的 staging、读不了的仪表盘），它会卡住或编造进度。给它那个面，或者缩小结果。</li>
-<li><strong>没有合并授权故事。</strong> 88% 的自合并率存在的前提是 CI 和评审门已按自动合并配置好。写明规则："merge when CI is green and diff &lt; N lines"或"always open as draft for human review"。</li>
+<li><strong>没有合并授权故事。</strong> 自动合并权限成立的前提是 CI 和评审门已按自动合并配置好。写明规则："merge when CI is green and diff &lt; N lines"或"always open as draft for human review"。</li>
 </ul>
 <h2 id="起草你自己的-三行测试">起草你自己的——三行测试<a class="hlink" href="#起草你自己的-三行测试" aria-hidden="true">#</a></h2>
 <p>一条好的 outcome prompt 依次回答：</p>
