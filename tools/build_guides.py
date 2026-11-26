@@ -72,7 +72,7 @@ PAGE = """<!DOCTYPE html>
 {related}
 {pager}
 </article>
-<footer><div class="wrap foot-base"><span data-i18n="foot.note">Unofficial community project — not affiliated with Cognition AI.</span><span><a href="{rel}index.html">built-with-devin</a> · <a href="https://github.com/Till3005/build-with-devin">build-with-devin</a></span></div></footer>
+<footer><div class="wrap foot-base"><span data-i18n="foot.note">{foot_note}</span><span><a href="{rel}index.html">built-with-devin</a> · <a href="https://github.com/Till3005/build-with-devin">build-with-devin</a></span></div></footer>
 </main>
 <script src="{rel}assets/theme.js"></script>
 <script src="{rel}assets/i18n.js"></script>
@@ -84,6 +84,10 @@ PAGE = """<!DOCTYPE html>
 LANG_LABEL = {"en": "English", "zh": "中文", "ja": "日本語", "pt": "Português"}
 GUIDES_LABEL = {"en": "Guides", "zh": "指南", "ja": "ガイド", "pt": "Guias"}
 UPDATED_LABEL = {"en": "Updated", "zh": "更新于", "ja": "更新", "pt": "Atualizado"}
+FOOT_NOTE = {"en": "Unofficial community project — not affiliated with Cognition AI.",
+             "zh": "非官方社区项目——与 Cognition AI 无关。",
+             "ja": "非公式コミュニティプロジェクト——Cognition AI とは無関係。",
+             "pt": "Projeto comunitário não oficial — sem afiliação com a Cognition AI."}
 TOC_LABEL = {"en": "On this page", "zh": "本页目录", "ja": "このページの目次", "pt": "Nesta página"}
 PAGER_LABEL = {"en": ("← Previous", "Next →"), "zh": ("← 上一篇", "下一篇 →"),
                "ja": ("← 前へ", "次へ →"), "pt": ("← Anterior", "Próximo →")}
@@ -244,7 +248,7 @@ def render(md_path: Path, out_path: Path, rel: str, lang: str, alt: str, mdsrc: 
     out_path.write_text(PAGE.format(
         lang=lang, etitle=html_.escape(title, quote=True), edesc=html_.escape(desc, quote=True),
         rel=rel, body=body, alt=alt, mdsrc=mdsrc, page=page, pager=pager,
-        crumb=crumb, meta=meta, toc=toc, guides_label=GUIDES_LABEL[lang],
+        crumb=crumb, meta=meta, toc=toc, guides_label=GUIDES_LABEL[lang], foot_note=FOOT_NOTE[lang],
         ogimage=ogimage, canonical=canonical, hreflang=hreflang_block(out_path.name, langs),
         jsonld=jsonld_guide(title, desc, lang, upd, canonical), related=related), encoding="utf-8")
     return title
@@ -375,7 +379,7 @@ def main():
             pager="", crumb=f"{rel}index.html", related="",
             canonical=canonical, hreflang=hreflang_block("index.html", langs),
             jsonld=jsonld_index(l, canonical, order, lt),
-            meta="", toc="", guides_label="built-with-devin"), encoding="utf-8")
+            meta="", toc="", guides_label="built-with-devin", foot_note=FOOT_NOTE[l]), encoding="utf-8")
 
     print(f"rendered {len(en_files)} guides × {1 + len(lang_dirs)} languages + {1 + len(lang_dirs)} indexes → docs/guides/")
 

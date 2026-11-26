@@ -1,32 +1,41 @@
 // Language runtime: applies I18N dict to [data-i18n] nodes; persists choice.
 (function(){
   const initialDocumentLang=document.documentElement.lang||'en';
+  const LANG_TAGS={zh:'zh-CN',ja:'ja',pt:'pt-BR',en:'en'};
+  function tagTranslated(el,lang){
+    if(lang==='en') el.removeAttribute('lang');
+    else el.setAttribute('lang',LANG_TAGS[lang]||lang);
+  }
   const SUPPORTED=['en','zh','ja','pt'];
   const NAMES={en:'EN',zh:'中文',ja:'日本語',pt:'PT'};
   function cur(){ const l=localStorage.getItem('bwd-lang')||'en'; return SUPPORTED.includes(l)?l:'en'; }
   function apply(lang){
     const dict=I18N[lang]||{};
     const isGuidePage=!!document.querySelector('article.guide');
-    document.documentElement.lang=isGuidePage?initialDocumentLang:({zh:'zh-CN',ja:'ja',pt:'pt-BR',en:'en'}[lang]||lang);
+    document.documentElement.lang=isGuidePage?initialDocumentLang:(LANG_TAGS[lang]||lang);
     document.querySelectorAll('[data-i18n]').forEach(el=>{
       const k=el.dataset.i18n;
       if(!(k in dict)) return;  // en fallback: restore original? store orig once
       if(!el.dataset.orig) el.dataset.orig=el.innerHTML;
       el.innerHTML=dict[k];
+      tagTranslated(el,lang);
     });
     document.querySelectorAll('[data-i18n-placeholder]').forEach(el=>{
       const k=el.dataset.i18nPlaceholder;
       if(!el.dataset.origAttr) el.dataset.origAttr=el.getAttribute('placeholder')||'';
       el.setAttribute('placeholder', (dict[k]!==undefined)?dict[k]:el.dataset.origAttr);
+      if(dict[k]!==undefined) tagTranslated(el,lang);
     });
     document.querySelectorAll('[data-i18n-html]').forEach(el=>{
       const k=el.dataset.i18nHtml||el.getAttribute('data-i18n-html');
       if(!el.dataset.orig) el.dataset.orig=el.innerHTML;
       el.innerHTML=(dict[k]!==undefined)?dict[k]:el.dataset.orig;
+      if(dict[k]!==undefined) tagTranslated(el,lang);
     });
     // restore untouched originals when switching back to en
     if(lang==='en'){
-      document.querySelectorAll('[data-i18n],[data-i18n-html]').forEach(el=>{ if(el.dataset.orig) el.innerHTML=el.dataset.orig; });
+      document.querySelectorAll('[data-i18n],[data-i18n-html]').forEach(el=>{ if(el.dataset.orig) el.innerHTML=el.dataset.orig; el.removeAttribute('lang'); });
+      document.querySelectorAll('[data-i18n-placeholder]').forEach(el=>el.removeAttribute('lang'));
     }
     // point guide links at the localized mirror (guides/<lang>/...)
     document.querySelectorAll('a[href^="guides/"]').forEach(a=>{
