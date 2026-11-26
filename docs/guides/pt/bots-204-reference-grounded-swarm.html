@@ -12,7 +12,7 @@
 <link rel="alternate" hreflang="zh" href="https://till3005.github.io/built-with-devin/guides/zh/bots-204-reference-grounded-swarm.html">
 <link rel="alternate" hreflang="x-default" href="https://till3005.github.io/built-with-devin/guides/bots-204-reference-grounded-swarm.html">
 <link rel="alternate" type="application/rss+xml" title="built-with-devin feed" href="../../feed.xml">
-<script type="application/ld+json">{"@context": "https://schema.org", "@type": "TechArticle", "headline": "Guia 5 — Enxame ancorado em referência", "description": "dirigir um enxame de agentes para escrever um sistema grande e verificável — onde a correção é checada continuamente contra uma referência confiável, não contra", "inLanguage": "pt", "url": "https://till3005.github.io/built-with-devin/guides/pt/bots-204-reference-grounded-swarm.html", "isPartOf": {"@type": "Course", "name": "build-with-devin", "url": "https://till3005.github.io/built-with-devin/guides/"}, "dateModified": "2026-11-18"}</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "TechArticle", "headline": "Guia 5 — Enxame ancorado em referência", "description": "dirigir um enxame de agentes para escrever um sistema grande e verificável — onde a correção é checada continuamente contra uma referência confiável, não contra", "inLanguage": "pt", "url": "https://till3005.github.io/built-with-devin/guides/pt/bots-204-reference-grounded-swarm.html", "isPartOf": {"@type": "Course", "name": "build-with-devin", "url": "https://till3005.github.io/built-with-devin/guides/"}, "dateModified": "2026-11-26"}</script>
 <link rel="icon" href="../../assets/brand/Devin_Symbol.svg" type="image/svg+xml">
 <link rel="stylesheet" href="../../assets/site.css">
 <link rel="stylesheet" href="../../assets/guides.css">
@@ -45,13 +45,13 @@
 <main>
 <article class="guide wrap" id="guide">
   <p class="guide-crumb"><a href="index.html">← Guias</a> · <a data-lang-link="en" href="../bots-204-reference-grounded-swarm.html">English</a> · <a data-lang-link="ja" href="../ja/bots-204-reference-grounded-swarm.html">日本語</a> · <a data-lang-link="zh" href="../zh/bots-204-reference-grounded-swarm.html">中文</a></p>
-<p class="guide-meta">Atualizado 2026-11-18</p>
+<p class="guide-meta">Atualizado 2026-11-26</p>
 <details class="toc" open><summary>Nesta página</summary><ol><li class="d2"><a href="#o-padrão">O padrão</a></li><li class="d2"><a href="#quando-usar">Quando usar</a></li><li class="d2"><a href="#passo-1-garanta-a-referência-primeiro">Passo 1 — Garanta a referência primeiro</a></li><li class="d2"><a href="#passo-2-decomponha-em-fatias-possuídas">Passo 2 — Decomponha em fatias possuídas</a></li><li class="d2"><a href="#passo-3-humanos-direcionam-acima-do-código">Passo 3 — Humanos direcionam acima do código</a></li><li class="d2"><a href="#passo-4-validação-adversarial-por-cima">Passo 4 — Validação adversarial por cima</a></li><li class="d2"><a href="#checklist-de-verificação">Checklist de verificação</a></li><li class="d2"><a href="#armadilhas">Armadilhas</a></li><li class="d2"><a href="#teste-de-conhecimento">Teste de conhecimento</a></li><li class="d2"><a href="#fontes">Fontes</a></li></ol></details>
 <h1>Guia 5 — Enxame ancorado em referência</h1>
 <p><strong>Objetivo:</strong> dirigir um enxame de agentes para escrever um sistema grande e <em>verificável</em> — onde a correção é checada continuamente contra uma referência confiável, não contra impressões.
 <strong>Nível:</strong> avançado
-<strong>Implantação de origem:</strong> o <strong>"Phil"</strong> da Harvey — ~30 agentes escreveram um motor de editor colaborativo compatível com Word em Rust + TypeScript: <strong>1M+ linhas em 3 semanas, zero engenheiros humanos</strong>. Verificado continuamente contra o comportamento real do Microsoft Word e negociações de advogados simuladas. Humanos direcionaram via memória + logs de decisão, nunca lendo código.
-<strong>Fontes:</strong> relato de lançamento de Gabe Pereyra (<a href="https://x.com/gabepereyra">via @gabepereyra</a>) · <a href="https://devin.ai/blog/introducing-devin-bots">post de lançamento</a></p>
+<strong>Implantação de origem:</strong> o <strong>"Phil"</strong> da Harvey — segundo o relato direto de Gabe Pereyra, ~30 agentes escreveram um motor de editor colaborativo compatível com Word em Rust + TypeScript: <strong>1M+ linhas em 3 semanas, zero engenheiros humanos</strong>. Verificado continuamente contra o comportamento real do Microsoft Word e negociações de advogados simuladas. Humanos direcionaram via memória + logs de decisão, nunca lendo código.
+<strong>Fontes:</strong> relato de lançamento de Gabe Pereyra (<a href="https://x.com/gabepereyra/status/2122756324173992166">post direto</a>) · <a href="https://devin.ai/blog/introducing-devin-bots">post de lançamento</a></p>
 <h2 id="o-padrão">O padrão<a class="hlink" href="#o-padrão" aria-hidden="true">#</a></h2>
 <p>Um enxame falha quando ninguém consegue dizer se a saída está certa. O Phil funcionou porque cada linha podia ser checada contra uma <strong>referência de verdade</strong>: o Microsoft Word real. O trabalho do time de agentes era <em>igualar</em> — um alvo objetivo e continuamente verificável — não <em>inventar</em>.</p>
 <pre><code class="language-text">   sistema de referência (verdade)
@@ -133,7 +133,7 @@ code looks done.
 </ol>
 <h2 id="fontes">Fontes<a class="hlink" href="#fontes" aria-hidden="true">#</a></h2>
 <ul>
-<li><a href="https://x.com/gabepereyra">@gabepereyra</a> — relato do Phil da Harvey: ~30 agentes, 1M+ LOC, verificação por referência ao Word, simulações de advogados</li>
+<li><a href="https://x.com/gabepereyra/status/2122756324173992166">Post direto de Gabe Pereyra</a> — relato do Phil da Harvey: ~30 agentes, 1M+ LOC, verificação por referência ao Word, simulações de advogados</li>
 <li><a href="https://devin.ai/blog/introducing-devin-bots">Introducing Devin Bots</a></li>
 <li>Relacionado: <a href="bots-203-multi-bot-org.html">Guia 4 — Organização multi-Bot</a> (mesma hierarquia, propósito diferente: operação vs. construção)</li>
 </ul>

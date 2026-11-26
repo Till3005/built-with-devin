@@ -12,7 +12,7 @@
 <link rel="alternate" hreflang="zh" href="https://till3005.github.io/built-with-devin/guides/zh/bots-203-multi-bot-org.html">
 <link rel="alternate" hreflang="x-default" href="https://till3005.github.io/built-with-devin/guides/bots-203-multi-bot-org.html">
 <link rel="alternate" type="application/rss+xml" title="built-with-devin feed" href="../../feed.xml">
-<script type="application/ld+json">{"@context": "https://schema.org", "@type": "TechArticle", "headline": "ガイド 4 — マルチ Bot 組織", "description": "事業部門全体を運営する Bot 階層——スペシャリスト Bot に委任するオーケストレーター 1 体と、日次スレッド 1 本で決裁する人間 1 人。", "inLanguage": "ja", "url": "https://till3005.github.io/built-with-devin/guides/ja/bots-203-multi-bot-org.html", "isPartOf": {"@type": "Course", "name": "build-with-devin", "url": "https://till3005.github.io/built-with-devin/guides/"}, "dateModified": "2026-11-24"}</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "TechArticle", "headline": "ガイド 4 — マルチ Bot 組織", "description": "事業部門全体を運営する Bot 階層——スペシャリスト Bot に委任するオーケストレーター 1 体と、日次スレッド 1 本で決裁する人間 1 人。", "inLanguage": "ja", "url": "https://till3005.github.io/built-with-devin/guides/ja/bots-203-multi-bot-org.html", "isPartOf": {"@type": "Course", "name": "build-with-devin", "url": "https://till3005.github.io/built-with-devin/guides/"}, "dateModified": "2026-11-26"}</script>
 <link rel="icon" href="../../assets/brand/Devin_Symbol.svg" type="image/svg+xml">
 <link rel="stylesheet" href="../../assets/site.css">
 <link rel="stylesheet" href="../../assets/guides.css">
@@ -45,13 +45,13 @@
 <main>
 <article class="guide wrap" id="guide">
   <p class="guide-crumb"><a href="index.html">← ガイド</a> · <a data-lang-link="en" href="../bots-203-multi-bot-org.html">English</a> · <a data-lang-link="pt" href="../pt/bots-203-multi-bot-org.html">Português</a> · <a data-lang-link="zh" href="../zh/bots-203-multi-bot-org.html">中文</a></p>
-<p class="guide-meta">更新 2026-11-24</p>
+<p class="guide-meta">更新 2026-11-26</p>
 <details class="toc" open><summary>このページの目次</summary><ol><li class="d2"><a href="#パターン">パターン</a></li><li class="d2"><a href="#前提条件">前提条件</a></li><li class="d2"><a href="#ステップ-1-まず組織図を設計する">ステップ 1 — まず組織図を設計する</a></li><li class="d2"><a href="#ステップ-2-スペシャリストを作成する">ステップ 2 — スペシャリストを作成する</a></li><li class="d2"><a href="#ステップ-3-grant-を配線する">ステップ 3 — grant を配線する</a></li><li class="d2"><a href="#ステップ-4-集約スレッド">ステップ 4 — 集約スレッド</a></li><li class="d2"><a href="#ステップ-5-ケイデンス-組織の心拍">ステップ 5 — ケイデンス = 組織の心拍</a></li><li class="d2"><a href="#ステップ-6-bot-間プロトコル-botspeak">ステップ 6 — Bot 間プロトコル（BotSpeak）</a></li><li class="d2"><a href="#検証チェックリスト">検証チェックリスト</a></li><li class="d2"><a href="#落とし穴">落とし穴</a></li><li class="d2"><a href="#理解度チェック">理解度チェック</a></li><li class="d2"><a href="#出典">出典</a></li></ol></details>
 <h1>ガイド 4 — マルチ Bot 組織</h1>
 <p><strong>目標：</strong> 事業部門全体を運営する Bot 階層——スペシャリスト Bot に委任するオーケストレーター 1 体と、日次スレッド 1 本で決裁する人間 1 人。
 <strong>レベル：</strong> 上級
-<strong>出典となる導入事例：</strong> Jenny Xu の <strong>SuperJennyStack</strong>——モバイルゲームスタジオを運営する約 20 の Bot。週 約50 → <strong>1,900 PR</strong>、週次リリース、スタジオ収益 6 倍。<a href="https://devin.ai/bots/templates">Bot マーケットプレイス</a>にコミュニティテンプレートとして公開済み。公式の <strong>bot 間 grant ハンドオフ</strong>（QA → Developer → 再テスト → PM レポート）も同じ機構を小規模で使っている。
-<strong>出典：</strong> Jenny Xu の公開スタック（<a href="https://x.com/cognition/status/2122737511684587551">ローンチ報道経由</a>）· <a href="https://docs.devin.ai/work-with-devin/bots">Bots ドキュメント</a> · <a href="https://x.com/xujennyc/status/2123111543105868166">BotSpeak 記事</a></p>
+<strong>出典となる導入事例：</strong> Jenny Xu の <strong>SuperJennyStack</strong>——モバイルゲームスタジオを運営する約 20 の Bot。公式ローンチ記事は週 約50 → <strong>1,900 PR</strong>と週次リリースを裏付け、スタジオ収益 6 倍は Xu 自身の申告。<a href="https://devin.ai/bots/templates">Bot マーケットプレイス</a>にコミュニティテンプレートとして公開済み。公式の <strong>bot 間 grant ハンドオフ</strong>（QA → Developer → 再テスト → PM レポート）も同じ機構を小規模で使っている。
+<strong>出典：</strong> <a href="https://www.linkedin.com/posts/xujennyc_i-used-to-have-50-prs-a-week-now-i-have-activity-7528501881103601665-TXX5">Jenny Xu の一次投稿</a> · <a href="https://x.com/cognition/status/2122737511684587551">ローンチ報道</a> · <a href="https://docs.devin.ai/work-with-devin/bots">Bots ドキュメント</a> · <a href="https://x.com/xujennyc/status/2123111543105868166">BotSpeak 記事</a></p>
 <h2 id="パターン">パターン<a class="hlink" href="#パターン" aria-hidden="true">#</a></h2>
 <p>何でもできる Bot を 1 体作るな——小さな会社を作れ：</p>
 <pre><code class="language-text">                    ┌─────────────┐
@@ -64,7 +64,6 @@
   （何を）  （作る）   （検証）  （出荷）      （ユーザー）
 </code></pre>
 <p>人間は CEO：オーケストレーターが全部下 Bot の未決事項を <strong>Slack スレッド 1 本に 1 日 4 回</strong>集約し、絵文字で回答する。</p>
-<p>この形の最小の実証版が実製品を出している：Noah Zixin Zhang が <strong>Chief-of-Staff → プロダクトリード → スペシャリスト</strong> の約 8 Bot チェーンで <a href="https://supaseo.dev">SupaSEO</a> を約 48 時間でエンドツーエンド構築（約 951 commits；人間が書いたのはランディングページのみ）。彼の 2 つのフィールドノートはどの規模でも通用する：<strong>プロジェクト横断の共有スペシャリスト Bot は、プロジェクトごとの個別 Bot に勝る</strong>——そしてプロンプトは粒度を保つ。組織図はブリーフの代わりにならない。</p>
 <h2 id="前提条件">前提条件<a class="hlink" href="#前提条件" aria-hidden="true">#</a></h2>
 <ul>
 <li>ガイド 1 完了——Bot の作成と指示ができる</li>
@@ -213,6 +212,8 @@ replies as decisions and relay them.
 <h2 id="出典">出典<a class="hlink" href="#出典" aria-hidden="true">#</a></h2>
 <ul>
 <li><a href="https://devin.ai/blog/introducing-devin-bots">Introducing Devin Bots</a> — SuperJennyStack の数値、grant ハンドオフの亜種</li>
+<li><a href="https://www.linkedin.com/posts/xujennyc_i-used-to-have-50-prs-a-week-now-i-have-activity-7528501881103601665-TXX5">Jenny Xu の一次投稿</a> — 自己申告の収益 6 倍と運用詳細</li>
+<li><a href="https://x.com/xujennyc/status/2123111543105868166">BotSpeak 記事</a> — Bot 間プロトコルと注意力効果の数値</li>
 <li><a href="https://devin.ai/bots/templates">Bot マーケットプレイス</a> — SuperJennyStack コミュニティテンプレート + 公式テンプレート 18 種</li>
 <li><a href="https://docs.devin.ai/work-with-devin/bots">Bots ドキュメント</a> — grants、メモリ、<a href="https://docs.devin.ai/work-with-devin/bots/access-and-security">アクセスとセキュリティ</a></li>
 <li>関連：<a href="bots-204-reference-grounded-swarm.html">ガイド 5 — 参照基盤スウォーム</a> <em>運用</em>ではなく<em>執筆</em>するスウォーム向け</li>

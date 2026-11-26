@@ -12,7 +12,7 @@
 <link rel="alternate" hreflang="zh" href="https://till3005.github.io/built-with-devin/guides/zh/bots-203-multi-bot-org.html">
 <link rel="alternate" hreflang="x-default" href="https://till3005.github.io/built-with-devin/guides/bots-203-multi-bot-org.html">
 <link rel="alternate" type="application/rss+xml" title="built-with-devin feed" href="../../feed.xml">
-<script type="application/ld+json">{"@context": "https://schema.org", "@type": "TechArticle", "headline": "Guia 4 — Organização multi-Bot", "description": "uma hierarquia de Bots que roda uma unidade de negócio inteira — um orquestrador delegando para Bots especialistas, um humano decidindo por uma única thread diá", "inLanguage": "pt", "url": "https://till3005.github.io/built-with-devin/guides/pt/bots-203-multi-bot-org.html", "isPartOf": {"@type": "Course", "name": "build-with-devin", "url": "https://till3005.github.io/built-with-devin/guides/"}, "dateModified": "2026-11-24"}</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "TechArticle", "headline": "Guia 4 — Organização multi-Bot", "description": "uma hierarquia de Bots que roda uma unidade de negócio inteira — um orquestrador delegando para Bots especialistas, um humano decidindo por uma única thread diá", "inLanguage": "pt", "url": "https://till3005.github.io/built-with-devin/guides/pt/bots-203-multi-bot-org.html", "isPartOf": {"@type": "Course", "name": "build-with-devin", "url": "https://till3005.github.io/built-with-devin/guides/"}, "dateModified": "2026-11-26"}</script>
 <link rel="icon" href="../../assets/brand/Devin_Symbol.svg" type="image/svg+xml">
 <link rel="stylesheet" href="../../assets/site.css">
 <link rel="stylesheet" href="../../assets/guides.css">
@@ -45,13 +45,13 @@
 <main>
 <article class="guide wrap" id="guide">
   <p class="guide-crumb"><a href="index.html">← Guias</a> · <a data-lang-link="en" href="../bots-203-multi-bot-org.html">English</a> · <a data-lang-link="ja" href="../ja/bots-203-multi-bot-org.html">日本語</a> · <a data-lang-link="zh" href="../zh/bots-203-multi-bot-org.html">中文</a></p>
-<p class="guide-meta">Atualizado 2026-11-24</p>
+<p class="guide-meta">Atualizado 2026-11-26</p>
 <details class="toc" open><summary>Nesta página</summary><ol><li class="d2"><a href="#o-padrão">O padrão</a></li><li class="d2"><a href="#pré-requisitos">Pré-requisitos</a></li><li class="d2"><a href="#passo-1-desenhe-o-organograma-primeiro">Passo 1 — Desenhe o organograma primeiro</a></li><li class="d2"><a href="#passo-2-crie-os-especialistas">Passo 2 — Crie os especialistas</a></li><li class="d2"><a href="#passo-3-ligue-os-grants">Passo 3 — Ligue os grants</a></li><li class="d2"><a href="#passo-4-a-thread-consolidada">Passo 4 — A thread consolidada</a></li><li class="d2"><a href="#passo-5-cadência-o-batimento-da-org">Passo 5 — Cadência = o batimento da org</a></li><li class="d2"><a href="#passo-6-protocolo-inter-bot-botspeak">Passo 6 — Protocolo inter-bot (BotSpeak)</a></li><li class="d2"><a href="#checklist-de-verificação">Checklist de verificação</a></li><li class="d2"><a href="#armadilhas">Armadilhas</a></li><li class="d2"><a href="#teste-de-conhecimento">Teste de conhecimento</a></li><li class="d2"><a href="#fontes">Fontes</a></li></ol></details>
 <h1>Guia 4 — Organização multi-Bot</h1>
 <p><strong>Objetivo:</strong> uma hierarquia de Bots que roda uma unidade de negócio inteira — um orquestrador delegando para Bots especialistas, um humano decidindo por uma única thread diária.
 <strong>Nível:</strong> avançado
-<strong>Implantação de origem:</strong> o <strong>SuperJennyStack</strong> de Jenny Xu — ~20 Bots rodando um estúdio de jogos mobile. ~50 → <strong>1.900 PRs/semana</strong>, releases semanais, receita do estúdio 6×. Publicado como template comunitário no <a href="https://devin.ai/bots/templates">Bot marketplace</a>. O <strong>handoff por grant bot-para-bot</strong> oficial (QA → Developer → reteste → relatório do PM) usa a mesma mecânica em escala menor.
-<strong>Fontes:</strong> stack publicado de Jenny Xu (<a href="https://x.com/cognition/status/2122737511684587551">via cobertura do lançamento</a>) · <a href="https://docs.devin.ai/work-with-devin/bots">docs de Bots</a> · <a href="https://x.com/xujennyc/status/2123111543105868166">post do BotSpeak</a></p>
+<strong>Implantação de origem:</strong> o <strong>SuperJennyStack</strong> de Jenny Xu — ~20 Bots rodando um estúdio de jogos mobile. ~50 → <strong>1.900 PRs/semana</strong>, releases semanais e <strong>receita 6× do estúdio</strong>, todos autorrelatados. Publicado como template comunitário no <a href="https://devin.ai/bots/templates">Bot marketplace</a>. O <strong>handoff por grant bot-para-bot</strong> oficial (QA → Developer → reteste → relatório do PM) usa a mesma mecânica em escala menor.
+<strong>Fontes:</strong> <a href="https://www.linkedin.com/posts/xujennyc_i-used-to-have-50-prs-a-week-now-i-have-activity-7528501881103601665-TXX5">post primário de Jenny Xu</a> · <a href="https://x.com/cognition/status/2122737511684587551">cobertura do lançamento</a> · <a href="https://docs.devin.ai/work-with-devin/bots">docs de Bots</a> · <a href="https://x.com/xujennyc/status/2123111543105868166">post do BotSpeak</a></p>
 <h2 id="o-padrão">O padrão<a class="hlink" href="#o-padrão" aria-hidden="true">#</a></h2>
 <p>Não construa um Bot que faz tudo — construa uma pequena empresa:</p>
 <pre><code class="language-text">                    ┌─────────────┐
@@ -64,7 +64,6 @@
   (o quê)  (constrói)(verifica)(envia)      (usuários)
 </code></pre>
 <p>O humano é o CEO: o orquestrador coleta todas as decisões pendentes dos Bots subordinados em <strong>uma thread de Slack, 4×/dia</strong>, respondida com emoji.</p>
-<p>A menor versão documentada dessa forma já entregou produto real: Noah Zixin Zhang rodou uma cadeia <strong>Chief-of-Staff → líder de produto → especialistas</strong> de ~8 Bots que construiu o <a href="https://supaseo.dev">SupaSEO</a> de ponta a ponta em ~48h (~951 commits; o humano escreveu só a landing page). As duas notas de campo dele valem em qualquer escala: <strong>um Bot especialista compartilhado entre projetos vence um por projeto</strong>, e os prompts continuam granulares — o organograma não substitui o brief.</p>
 <h2 id="pré-requisitos">Pré-requisitos<a class="hlink" href="#pré-requisitos" aria-hidden="true">#</a></h2>
 <ul>
 <li>Guia 1 feito — você sabe criar e instruir um Bot</li>
@@ -213,6 +212,8 @@ replies as decisions and relay them.
 <h2 id="fontes">Fontes<a class="hlink" href="#fontes" aria-hidden="true">#</a></h2>
 <ul>
 <li><a href="https://devin.ai/blog/introducing-devin-bots">Introducing Devin Bots</a> — números do SuperJennyStack, variante grant-handoff</li>
+<li><a href="https://www.linkedin.com/posts/xujennyc_i-used-to-have-50-prs-a-week-now-i-have-activity-7528501881103601665-TXX5">Post primário de Jenny Xu</a> — receita 6× autorrelatada e detalhes operacionais</li>
+<li><a href="https://x.com/xujennyc/status/2123111543105868166">Post do BotSpeak</a> — protocolo inter-Bot e efeitos medidos de atenção</li>
 <li><a href="https://devin.ai/bots/templates">Bot marketplace</a> — template comunitário SuperJennyStack + 18 templates oficiais</li>
 <li><a href="https://docs.devin.ai/work-with-devin/bots">Docs de Bots</a> — grants, memória, <a href="https://docs.devin.ai/work-with-devin/bots/access-and-security">acesso e segurança</a></li>
 <li>Relacionado: <a href="bots-204-reference-grounded-swarm.html">Guia 5 — Enxame ancorado em referência</a> para enxames que <em>escrevem</em> em vez de <em>operar</em></li>

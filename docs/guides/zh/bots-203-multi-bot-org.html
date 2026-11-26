@@ -12,7 +12,7 @@
 <link rel="alternate" hreflang="zh" href="https://till3005.github.io/built-with-devin/guides/zh/bots-203-multi-bot-org.html">
 <link rel="alternate" hreflang="x-default" href="https://till3005.github.io/built-with-devin/guides/bots-203-multi-bot-org.html">
 <link rel="alternate" type="application/rss+xml" title="built-with-devin feed" href="../../feed.xml">
-<script type="application/ld+json">{"@context": "https://schema.org", "@type": "TechArticle", "headline": "指南 4 — 多 Bot 组织", "description": "一个跑整个业务单元的 Bot 层级——一个编排者向专家 Bot 委派，一个人类通过单一每日 thread 做决策。", "inLanguage": "zh", "url": "https://till3005.github.io/built-with-devin/guides/zh/bots-203-multi-bot-org.html", "isPartOf": {"@type": "Course", "name": "build-with-devin", "url": "https://till3005.github.io/built-with-devin/guides/"}, "dateModified": "2026-11-24"}</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "TechArticle", "headline": "指南 4 — 多 Bot 组织", "description": "一个跑整个业务单元的 Bot 层级——一个编排者向专家 Bot 委派，一个人类通过单一每日 thread 做决策。", "inLanguage": "zh", "url": "https://till3005.github.io/built-with-devin/guides/zh/bots-203-multi-bot-org.html", "isPartOf": {"@type": "Course", "name": "build-with-devin", "url": "https://till3005.github.io/built-with-devin/guides/"}, "dateModified": "2026-11-26"}</script>
 <link rel="icon" href="../../assets/brand/Devin_Symbol.svg" type="image/svg+xml">
 <link rel="stylesheet" href="../../assets/site.css">
 <link rel="stylesheet" href="../../assets/guides.css">
@@ -45,13 +45,13 @@
 <main>
 <article class="guide wrap" id="guide">
   <p class="guide-crumb"><a href="index.html">← 指南</a> · <a data-lang-link="en" href="../bots-203-multi-bot-org.html">English</a> · <a data-lang-link="ja" href="../ja/bots-203-multi-bot-org.html">日本語</a> · <a data-lang-link="pt" href="../pt/bots-203-multi-bot-org.html">Português</a></p>
-<p class="guide-meta">更新于 2026-11-24</p>
+<p class="guide-meta">更新于 2026-11-26</p>
 <details class="toc" open><summary>本页目录</summary><ol><li class="d2"><a href="#模式">模式</a></li><li class="d2"><a href="#前置条件">前置条件</a></li><li class="d2"><a href="#第-1-步-先画组织架构">第 1 步 — 先画组织架构</a></li><li class="d2"><a href="#第-2-步-建专家-bot">第 2 步 — 建专家 Bot</a></li><li class="d2"><a href="#第-3-步-接-grants">第 3 步 — 接 grants</a></li><li class="d2"><a href="#第-4-步-汇总-thread">第 4 步 — 汇总 thread</a></li><li class="d2"><a href="#第-5-步-节奏-组织的心跳">第 5 步 — 节奏 = 组织的心跳</a></li><li class="d2"><a href="#第-6-步-bot-间协议-botspeak">第 6 步 — Bot 间协议（BotSpeak）</a></li><li class="d2"><a href="#verify-it">Verify it</a></li><li class="d2"><a href="#坑">坑</a></li><li class="d2"><a href="#自检">自检</a></li><li class="d2"><a href="#sources">Sources</a></li></ol></details>
 <h1>指南 4 — 多 Bot 组织</h1>
 <p><strong>目标：</strong> 一个跑整个业务单元的 Bot 层级——一个编排者向专家 Bot 委派，一个人类通过单一每日 thread 做决策。
 <strong>级别：</strong> 高级
-<strong>出处部署：</strong> Jenny Xu 的 <strong>SuperJennyStack</strong>——~20 个 Bot 运营一家手游工作室。~50 → <strong>1,900 PR/周</strong>，每周发版，工作室收入 ×6。已作为社区模板上架 <a href="https://devin.ai/bots/templates">Bot 市场</a>。官方的 <strong>bot 间 grant 交接</strong>（QA → Developer → 复测 → PM 汇报）用的是同一套机制、更小规模。
-<strong>来源：</strong> Jenny Xu 公开的栈（<a href="https://x.com/cognition/status/2122737511684587551">via 发布报道</a>）· <a href="https://docs.devin.ai/work-with-devin/bots">Bots docs</a></p>
+<strong>出处部署：</strong> Jenny Xu 的 <strong>SuperJennyStack</strong>——~20 个 Bot 运营一家手游工作室。官方发布文记录 ~50 → <strong>1,900 PR/周</strong>和每周发版；收入 ×6 是 Xu 另行自报。已作为社区模板上架 <a href="https://devin.ai/bots/templates">Bot 市场</a>。官方的 <strong>bot 间 grant 交接</strong>（QA → Developer → 复测 → PM 汇报）用的是同一套机制、更小规模。
+<strong>来源：</strong> <a href="https://www.linkedin.com/posts/xujennyc_i-used-to-have-50-prs-a-week-now-i-have-activity-7528501881103601665-TXX5">Jenny Xu 的第一手帖子</a> · <a href="https://x.com/cognition/status/2122737511684587551">发布报道</a> · <a href="https://docs.devin.ai/work-with-devin/bots">Bots docs</a></p>
 <h2 id="模式">模式<a class="hlink" href="#模式" aria-hidden="true">#</a></h2>
 <p>别建一个什么都会的 Bot——建一家小公司：</p>
 <pre><code class="language-text">                    ┌─────────────┐
@@ -64,7 +64,6 @@
   (what)   (build)   (verify) (ship)        (users)
 </code></pre>
 <p>人类是 CEO：编排者把每个下级 Bot 的待决事项收进<strong>一个 Slack thread，每天 4 次</strong>，用 emoji 回答。</p>
-<p>这个形态最小的有据版本已经出了真产品：Noah Zixin Zhang 用 <strong>Chief-of-Staff → 产品负责 Bot → 专家 Bot</strong> 的约 8 Bot 链路，~48 小时端到端建成 <a href="https://supaseo.dev">SupaSEO</a>（~951 commits；人类只写了落地页）。他的两条实战笔记在任何规模都适用：<strong>一个跨项目共享的专家 Bot 胜过每项目各建一个</strong>，且提示词保持细粒度——组织架构替代不了简报。</p>
 <h2 id="前置条件">前置条件<a class="hlink" href="#前置条件" aria-hidden="true">#</a></h2>
 <ul>
 <li>完成第 1 篇——会创建和指挥 Bot</li>
@@ -214,6 +213,8 @@ replies as decisions and relay them.
 <h2 id="sources">Sources<a class="hlink" href="#sources" aria-hidden="true">#</a></h2>
 <ul>
 <li><a href="https://devin.ai/blog/introducing-devin-bots">Introducing Devin Bots</a> — SuperJennyStack 数字、grant 交接变体</li>
+<li><a href="https://www.linkedin.com/posts/xujennyc_i-used-to-have-50-prs-a-week-now-i-have-activity-7528501881103601665-TXX5">Jenny Xu 第一手帖子</a>——自报收入 ×6 与运营细节</li>
+<li><a href="https://x.com/xujennyc/status/2123111543105868166">BotSpeak post</a>——Bot 间协议及注意力效果数据</li>
 <li><a href="https://devin.ai/bots/templates">Bot marketplace</a> — SuperJennyStack 社区模板 + 18 个官方模板</li>
 <li><a href="https://docs.devin.ai/work-with-devin/bots">Bots docs</a> — grants、memory、<a href="https://docs.devin.ai/work-with-devin/bots/access-and-security">access &amp; security</a></li>
 <li>相关：<a href="bots-204-reference-grounded-swarm.html">第 5 篇 — 参考基准锚定的 swarm</a>（<em>构建</em>而非<em>运营</em>的 swarm）</li>

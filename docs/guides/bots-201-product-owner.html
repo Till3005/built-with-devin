@@ -12,7 +12,7 @@
 <link rel="alternate" hreflang="zh" href="https://till3005.github.io/built-with-devin/guides/zh/bots-201-product-owner.html">
 <link rel="alternate" hreflang="x-default" href="https://till3005.github.io/built-with-devin/guides/bots-201-product-owner.html">
 <link rel="alternate" type="application/rss+xml" title="built-with-devin feed" href="../feed.xml">
-<script type="application/ld+json">{"@context": "https://schema.org", "@type": "TechArticle", "headline": "Guide 2 — Product-owner Bot", "description": "a Bot that product-manages an entire app surface — files its own tickets, builds them, merges, and reports daily.", "inLanguage": "en", "url": "https://till3005.github.io/built-with-devin/guides/bots-201-product-owner.html", "isPartOf": {"@type": "Course", "name": "build-with-devin", "url": "https://till3005.github.io/built-with-devin/guides/"}, "dateModified": "2026-11-18"}</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "TechArticle", "headline": "Guide 2 — Product-owner Bot", "description": "a Bot that product-manages an entire app surface — files its own tickets, builds them, merges, and reports daily.", "inLanguage": "en", "url": "https://till3005.github.io/built-with-devin/guides/bots-201-product-owner.html", "isPartOf": {"@type": "Course", "name": "build-with-devin", "url": "https://till3005.github.io/built-with-devin/guides/"}, "dateModified": "2026-11-26"}</script>
 <link rel="icon" href="../assets/brand/Devin_Symbol.svg" type="image/svg+xml">
 <link rel="stylesheet" href="../assets/site.css">
 <link rel="stylesheet" href="../assets/guides.css">
@@ -45,13 +45,13 @@
 <main>
 <article class="guide wrap" id="guide">
   <p class="guide-crumb"><a href="index.html">← Guides</a> · <a data-lang-link="ja" href="ja/bots-201-product-owner.html">日本語</a> · <a data-lang-link="pt" href="pt/bots-201-product-owner.html">Português</a> · <a data-lang-link="zh" href="zh/bots-201-product-owner.html">中文</a></p>
-<p class="guide-meta">Updated 2026-11-18</p>
+<p class="guide-meta">Updated 2026-11-26</p>
 <details class="toc" open><summary>On this page</summary><ol><li class="d2"><a href="#the-pattern">The pattern</a></li><li class="d2"><a href="#prerequisites">Prerequisites</a></li><li class="d2"><a href="#step-1-the-outcome-prompt">Step 1 — The outcome prompt</a></li><li class="d2"><a href="#step-2-phase-one-unblock-don-t-build">Step 2 — Phase one: unblock, don&#x27;t build</a></li><li class="d2"><a href="#step-3-the-working-loop">Step 3 — The working loop</a></li><li class="d2"><a href="#step-4-your-job-as-its-executive">Step 4 — Your job as its executive</a></li><li class="d2"><a href="#steady-state">Steady state</a></li><li class="d2"><a href="#verify-it">Verify it</a></li><li class="d2"><a href="#pitfalls">Pitfalls</a></li><li class="d2"><a href="#knowledge-check">Knowledge check</a></li><li class="d2"><a href="#sources">Sources</a></li></ol></details>
 <h1>Guide 2 — Product-owner Bot</h1>
 <p><strong>Goal:</strong> a Bot that product-manages an entire app surface — files its own tickets, builds them, merges, and reports daily.
 <strong>Level:</strong> intermediate · <strong>Human load after setup:</strong> ~1 message per 6 merged PRs
-<strong>Source deployment:</strong> Cognition's <strong>Android Bot</strong> — shipped the Devin Android app to Google Play open beta in <strong>44 days</strong>: 1,134 merged PRs, 344,651 lines of Kotlin, 2,841 screenshot tests, 1,217 tickets. Its human sent <strong>183 messages total</strong> (22 days of silence), and <strong>88% of PRs were self-merged</strong>. It now owns Android/iOS feature parity.
-<strong>Sources:</strong> <a href="https://devin.ai/blog/introducing-devin-bots">launch post</a> · <a href="https://fortune.com/2026/11/17/exclusive-cognition-bets-on-devin-bots-coding-agents-in-challenge-to-anthropics-duet-and-openais-dots/">Fortune</a> · Russell Kaplan's dogfooding notes</p>
+<strong>Source deployment:</strong> Cognition's <strong>Android Bot</strong> — shipped the Devin Android app to Google Play open beta in <strong>44 days</strong>: 1,134 merged PRs, 344,651 lines of Kotlin, 2,841 screenshot tests, 1,217 tickets. Its human sent <strong>183 messages total</strong> (22 days of silence). It now owns ongoing Android development and updates the app as iOS features land.
+<strong>Sources:</strong> <a href="https://devin.ai/blog/introducing-devin-bots">launch post</a> · <a href="https://fortune.com/2026/11/17/exclusive-cognition-bets-on-devin-bots-coding-agents-in-challenge-to-anthropics-duet-and-openais-dots/">Fortune</a></p>
 <h2 id="the-pattern">The pattern<a class="hlink" href="#the-pattern" aria-hidden="true">#</a></h2>
 <p>One Bot owns a <em>surface</em> — an app, a site, a service — the way a PM owns it: it decides what to build, turns that into tickets, runs a session per ticket, and keeps the surface alive indefinitely. The human acts as the executive it reports to.</p>
 <pre><code class="language-text">Bot ──► files tickets ──► session per ticket ──► PR ──► CI + Devin Review ──► merge
@@ -129,14 +129,16 @@ what needs a human. Include a screen recording of visible changes.
 </ul>
 <h2 id="knowledge-check">Knowledge check<a class="hlink" href="#knowledge-check" aria-hidden="true">#</a></h2>
 <ol>
-<li>Android Bot merged 88% of its own PRs — what made self-merge safe enough to allow? <em>(Verification existed: 2,841 screenshot tests plus review gates; ownership worked because 'done' was machine-checkable.)</em></li>
+<li>Android Bot merged PRs itself — what made that safe enough to allow? <em>(Only PRs that passed CI and Devin Review merged; 2,841 screenshot tests made 'done' machine-checkable, and ambiguous judgment escalated to the human.)</em></li>
 <li>Why file tickets instead of just prompting sessions directly? <em>(Tickets create an auditable queue the Bot triages by priority — and the human reviews one queue, not 50 sessions.)</em></li>
 <li>What does '22 days of silence' tell you about the control model? <em>(Escalation-by-exception works only when the Bot's definition of done is verifiable; silence is the feature, not neglect.)</em></li>
 </ol>
 <h2 id="sources">Sources<a class="hlink" href="#sources" aria-hidden="true">#</a></h2>
 <ul>
 <li><a href="https://devin.ai/blog/introducing-devin-bots">Introducing Devin Bots</a> — Android Bot numbers and prompt</li>
-<li><a href="https://fortune.com/2026/11/17/exclusive-cognition-bets-on-devin-bots-coding-agents-in-challenge-to-anthropics-duet-and-openais-dots/">Fortune exclusive</a> — 183 messages, 88% self-merge, dogfooding notes</li>
+<li><a href="https://fortune.com/2026/11/17/exclusive-cognition-bets-on-devin-bots-coding-agents-in-challenge-to-anthropics-duet-and-openais-dots/">Fortune exclusive</a> — independent launch reporting on Bots, access controls, and the operating model</li>
+<li><a href="https://x.com/russelljkaplan/status/2122771093920653493">Russell Kaplan on Android/iOS parity</a> — maintained at parity with zero Android engineers</li>
+<li><a href="https://x.com/russelljkaplan/status/2122803486198988970">Russell Kaplan on regression catching</a> — Android Bot catching an iOS/web-side regression</li>
 <li>Related: <a href="bots-203-multi-bot-org.html">Guide 4 — Multi-Bot organization</a> when one surface becomes a business</li>
 </ul>
 <section class="related"><h3>Same stage — Stage 2 · Scale</h3><p><a href="bots-202-scheduled-sentinel.html">Guide 3 — Scheduled-sentinel Bot</a> · <a href="bots-203-multi-bot-org.html">Guide 4 — Multi-Bot organization</a> · <a href="bots-204-reference-grounded-swarm.html">Guide 5 — Reference-grounded swarm</a> · <a href="migrations-at-scale.html">Guide 11 — Migrations at scale</a> · <a href="living-evals.html">Guide 15 — Living evals from production traces</a> · <a href="enterprise-playbook.html">Guide 7 — Enterprise rollout patterns</a> · <a href="dynamic-workflows.html">Guide 20 — Dynamic Workflows</a> · <a href="security-profiles-cloud-oidc.html">Guide 21 — Security Profiles &amp; Cloud OIDC</a></p></section>

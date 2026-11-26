@@ -12,7 +12,7 @@
 <link rel="alternate" hreflang="zh" href="https://till3005.github.io/built-with-devin/guides/zh/bots-201-product-owner.html">
 <link rel="alternate" hreflang="x-default" href="https://till3005.github.io/built-with-devin/guides/bots-201-product-owner.html">
 <link rel="alternate" type="application/rss+xml" title="built-with-devin feed" href="../../feed.xml">
-<script type="application/ld+json">{"@context": "https://schema.org", "@type": "TechArticle", "headline": "Guia 2 — Bot product-owner", "description": "um Bot que gere um produto inteiro — abre os próprios tickets, os constrói, mergeia e reporta diariamente.", "inLanguage": "pt", "url": "https://till3005.github.io/built-with-devin/guides/pt/bots-201-product-owner.html", "isPartOf": {"@type": "Course", "name": "build-with-devin", "url": "https://till3005.github.io/built-with-devin/guides/"}, "dateModified": "2026-11-18"}</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "TechArticle", "headline": "Guia 2 — Bot product-owner", "description": "um Bot que gere um produto inteiro — abre os próprios tickets, os constrói, mergeia e reporta diariamente.", "inLanguage": "pt", "url": "https://till3005.github.io/built-with-devin/guides/pt/bots-201-product-owner.html", "isPartOf": {"@type": "Course", "name": "build-with-devin", "url": "https://till3005.github.io/built-with-devin/guides/"}, "dateModified": "2026-11-26"}</script>
 <link rel="icon" href="../../assets/brand/Devin_Symbol.svg" type="image/svg+xml">
 <link rel="stylesheet" href="../../assets/site.css">
 <link rel="stylesheet" href="../../assets/guides.css">
@@ -45,13 +45,13 @@
 <main>
 <article class="guide wrap" id="guide">
   <p class="guide-crumb"><a href="index.html">← Guias</a> · <a data-lang-link="en" href="../bots-201-product-owner.html">English</a> · <a data-lang-link="ja" href="../ja/bots-201-product-owner.html">日本語</a> · <a data-lang-link="zh" href="../zh/bots-201-product-owner.html">中文</a></p>
-<p class="guide-meta">Atualizado 2026-11-18</p>
+<p class="guide-meta">Atualizado 2026-11-26</p>
 <details class="toc" open><summary>Nesta página</summary><ol><li class="d2"><a href="#o-padrão">O padrão</a></li><li class="d2"><a href="#pré-requisitos">Pré-requisitos</a></li><li class="d2"><a href="#passo-1-o-prompt-de-resultado">Passo 1 — O prompt de resultado</a></li><li class="d2"><a href="#passo-2-fase-um-desbloquear-não-construir">Passo 2 — Fase um: desbloquear, não construir</a></li><li class="d2"><a href="#passo-3-o-loop-de-trabalho">Passo 3 — O loop de trabalho</a></li><li class="d2"><a href="#passo-4-seu-papel-como-executivo">Passo 4 — Seu papel como executivo</a></li><li class="d2"><a href="#estado-estacionário">Estado estacionário</a></li><li class="d2"><a href="#checklist-de-verificação">Checklist de verificação</a></li><li class="d2"><a href="#armadilhas">Armadilhas</a></li><li class="d2"><a href="#teste-de-conhecimento">Teste de conhecimento</a></li><li class="d2"><a href="#fontes">Fontes</a></li></ol></details>
 <h1>Guia 2 — Bot product-owner</h1>
 <p><strong>Objetivo:</strong> um Bot que gere um produto inteiro — abre os próprios tickets, os constrói, mergeia e reporta diariamente.
 <strong>Nível:</strong> intermediário · <strong>Carga humana após setup:</strong> ~1 mensagem a cada 6 PRs mergeados
-<strong>Implantação de origem:</strong> o <strong>Android Bot</strong> da Cognition — lançou o app Android do Devin no beta aberto do Google Play em <strong>44 dias</strong>: 1.134 PRs mergeados, 344.651 linhas de Kotlin, 2.841 testes de screenshot, 1.217 tickets. Seu humano enviou <strong>183 mensagens no total</strong> (22 dias de silêncio) e <strong>88% dos PRs foram auto-mergeados</strong>. Hoje é dono da paridade de features Android/iOS.
-<strong>Fontes:</strong> <a href="https://devin.ai/blog/introducing-devin-bots">post de lançamento</a> · <a href="https://fortune.com/2026/11/17/exclusive-cognition-bets-on-devin-bots-coding-agents-in-challenge-to-anthropics-duet-and-openais-dots/">Fortune</a> · notas de dogfooding de Russell Kaplan</p>
+<strong>Implantação de origem:</strong> o <strong>Android Bot</strong> da Cognition — lançou o app Android do Devin no beta aberto do Google Play em <strong>44 dias</strong>: 1.134 PRs mergeados, 344.651 linhas de Kotlin, 2.841 testes de screenshot, 1.217 tickets. Seu humano enviou <strong>183 mensagens no total</strong> (22 dias de silêncio). Hoje é dono do desenvolvimento contínuo do Android e atualiza o app conforme novas features chegam ao iOS.
+<strong>Fontes:</strong> <a href="https://devin.ai/blog/introducing-devin-bots">post de lançamento</a> · <a href="https://fortune.com/2026/11/17/exclusive-cognition-bets-on-devin-bots-coding-agents-in-challenge-to-anthropics-duet-and-openais-dots/">Fortune</a></p>
 <h2 id="o-padrão">O padrão<a class="hlink" href="#o-padrão" aria-hidden="true">#</a></h2>
 <p>Um Bot é dono de uma <em>superfície</em> — um app, um site, um serviço — como um PM a possuiria: decide o que construir, transforma isso em tickets, roda uma sessão por ticket e mantém a superfície viva indefinidamente. O humano atua como o executivo a quem ele se reporta.</p>
 <pre><code class="language-text">Bot ──► abre tickets ──► sessão por ticket ──► PR ──► CI + Devin Review ──► merge
@@ -129,14 +129,16 @@ what needs a human. Include a screen recording of visible changes.
 </ul>
 <h2 id="teste-de-conhecimento">Teste de conhecimento<a class="hlink" href="#teste-de-conhecimento" aria-hidden="true">#</a></h2>
 <ol>
-<li>O Android Bot mergeou 88% dos próprios PRs — o que tornou o auto-merge seguro o bastante? <em>(Havia verificação: 2.841 testes de screenshot mais gates de review; a propriedade funcionou porque "pronto" era verificável por máquina.)</em></li>
+<li>O Android Bot mergeou os próprios PRs — o que tornou isso seguro o bastante? <em>(Somente PRs aprovados em CI e Devin Review eram mergeados; 2.841 testes de screenshot tornaram "pronto" verificável por máquina, e decisões ambíguas escalavam para o humano.)</em></li>
 <li>Por que abrir tickets em vez de só disparar sessões direto? <em>(Tickets criam uma fila auditável que o Bot tria por prioridade — e o humano revisa uma fila, não 50 sessões.)</em></li>
 <li>O que "22 dias de silêncio" diz sobre o modelo de controle? <em>(Escalonamento-por-exceção só funciona quando a definição de pronto do Bot é verificável; o silêncio é a feature, não negligência.)</em></li>
 </ol>
 <h2 id="fontes">Fontes<a class="hlink" href="#fontes" aria-hidden="true">#</a></h2>
 <ul>
 <li><a href="https://devin.ai/blog/introducing-devin-bots">Introducing Devin Bots</a> — números e prompt do Android Bot</li>
-<li><a href="https://fortune.com/2026/11/17/exclusive-cognition-bets-on-devin-bots-coding-agents-in-challenge-to-anthropics-duet-and-openais-dots/">Exclusivo Fortune</a> — 183 mensagens, 88% auto-merge, notas de dogfooding</li>
+<li><a href="https://fortune.com/2026/11/17/exclusive-cognition-bets-on-devin-bots-coding-agents-in-challenge-to-anthropics-duet-and-openais-dots/">Exclusivo Fortune</a> — cobertura independente do lançamento sobre Bots, controles de acesso e modelo operacional</li>
+<li><a href="https://x.com/russelljkaplan/status/2122771093920653493">Russell Kaplan sobre paridade Android/iOS</a> — paridade mantida sem engenheiros Android</li>
+<li><a href="https://x.com/russelljkaplan/status/2122803486198988970">Russell Kaplan sobre captura de regressões</a> — Android Bot detectando regressão no lado iOS/web</li>
 <li>Relacionado: <a href="bots-203-multi-bot-org.html">Guia 4 — Organização multi-Bot</a> quando uma superfície vira um negócio</li>
 </ul>
 <section class="related"><h3>Mesmo estágio — Estágio 2 · Escalar</h3><p><a href="bots-202-scheduled-sentinel.html">Guia 3 — Bot sentinela agendado</a> · <a href="bots-203-multi-bot-org.html">Guia 4 — Organização multi-Bot</a> · <a href="bots-204-reference-grounded-swarm.html">Guia 5 — Enxame ancorado em referência</a> · <a href="migrations-at-scale.html">Guia 11 — Migrações em escala</a> · <a href="living-evals.html">Guia 15 — Living evals a partir de traces de produção</a> · <a href="enterprise-playbook.html">Guia 7 — Padrões de rollout enterprise</a> · <a href="dynamic-workflows.html">Guia 20 — Dynamic Workflows</a> · <a href="security-profiles-cloud-oidc.html">Guia 21 — Security Profiles e Cloud OIDC</a></p></section>

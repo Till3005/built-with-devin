@@ -12,7 +12,7 @@
 <link rel="alternate" hreflang="zh" href="https://till3005.github.io/built-with-devin/guides/zh/community-field-reports.html">
 <link rel="alternate" hreflang="x-default" href="https://till3005.github.io/built-with-devin/guides/community-field-reports.html">
 <link rel="alternate" type="application/rss+xml" title="built-with-devin feed" href="../../feed.xml">
-<script type="application/ld+json">{"@context": "https://schema.org", "@type": "TechArticle", "headline": "指南 14 — 社区实战报告", "description": "工程师把 Devin 用在真实工作上后实际学到了什么——包括失败。蒸馏自已发表的 hands-on 记录，好评和恶评都有。", "inLanguage": "zh", "url": "https://till3005.github.io/built-with-devin/guides/zh/community-field-reports.html", "isPartOf": {"@type": "Course", "name": "build-with-devin", "url": "https://till3005.github.io/built-with-devin/guides/"}, "dateModified": "2026-11-24"}</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "TechArticle", "headline": "指南 14 — 社区实战报告", "description": "工程师把 Devin 用在真实工作上后实际学到了什么——包括失败。蒸馏自已发表的 hands-on 记录，好评和恶评都有。", "inLanguage": "zh", "url": "https://till3005.github.io/built-with-devin/guides/zh/community-field-reports.html", "isPartOf": {"@type": "Course", "name": "build-with-devin", "url": "https://till3005.github.io/built-with-devin/guides/"}, "dateModified": "2026-11-26"}</script>
 <link rel="icon" href="../../assets/brand/Devin_Symbol.svg" type="image/svg+xml">
 <link rel="stylesheet" href="../../assets/site.css">
 <link rel="stylesheet" href="../../assets/guides.css">
@@ -45,7 +45,7 @@
 <main>
 <article class="guide wrap" id="guide">
   <p class="guide-crumb"><a href="index.html">← 指南</a> · <a data-lang-link="en" href="../community-field-reports.html">English</a> · <a data-lang-link="ja" href="../ja/community-field-reports.html">日本語</a> · <a data-lang-link="pt" href="../pt/community-field-reports.html">Português</a></p>
-<p class="guide-meta">更新于 2026-11-24</p>
+<p class="guide-meta">更新于 2026-11-26</p>
 <details class="toc" open><summary>本页目录</summary><ol><li class="d2"><a href="#每篇报告都在重复的模式">每篇报告都在重复的模式</a></li><li class="d2"><a href="#有据可查的成功场景">有据可查的成功场景</a></li><li class="d2"><a href="#有据可查的失败场景">有据可查的失败场景</a></li><li class="d2"><a href="#实名团队部署-社区-带数字">实名团队部署（社区、带数字）</a></li><li class="d2"><a href="#bots-时代-第一批回执-2026-年-11-月">Bots 时代——第一批回执（2026 年 11 月）</a></li><li class="d2"><a href="#蒸馏出的教训">蒸馏出的教训</a></li><li class="d2"><a href="#scott-wu-的内部-top-5-来自-lenny-s-访谈">Scott Wu 的内部 top-5（来自 Lenny&#x27;s 访谈）</a></li><li class="d2"><a href="#深读-抄什么-防什么">深读——抄什么、防什么</a></li><li class="d2"><a href="#验证">验证</a></li><li class="d2"><a href="#常见陷阱">常见陷阱</a></li><li class="d2"><a href="#自检">自检</a></li><li class="d2"><a href="#sources">Sources</a></li></ol></details>
 <h1>指南 14 — 社区实战报告</h1>
 <p><strong>目标：</strong> 工程师把 Devin 用在真实工作上后实际学到了什么——包括失败。蒸馏自已发表的 hands-on 记录，好评和恶评都有。
@@ -150,11 +150,10 @@
 <li>他们的 ROI 分布：高的在 PR 预评审（<code>devin-review</code> 标签 → Actions → API Playbook，每次 ~1–2 ACU）、定期库升级风险评估、以及喂了<em>相似既有 PR</em> 的遗留代码活；低的在大范围重构和小到不值得的任务。</li>
 </ul>
 <h2 id="bots-时代-第一批回执-2026-年-11-月">Bots 时代——第一批回执（2026 年 11 月）<a class="hlink" href="#bots-时代-第一批回执-2026-年-11-月" aria-hidden="true">#</a></h2>
-<p>发布后的报告还薄，但值得盯着——三份都是自述，无独立基准：</p>
+<p>发布后的报告还薄，但值得盯着——两份都是自述，无独立基准：</p>
 <ul>
 <li><strong>swyx 的一周</strong>——把一个 Devin Bots 组织交给了 AEO、QA、跨平台移植、个人事务和视频剪辑；搬离了本地 worktree。结论：<em>"你要的不是 'AI 员工'，而是对结果负责的 agent 管理者。"</em> 他自己标注的保留意见：与 Cognition 有关联、无质量指标——从业者报告，不是基准（<a href="https://x.com/swyx/status/2122746401482592549">帖子</a>）。</li>
 <li><strong>raijuna 的 100 天</strong>——自家 agent 工厂的运营者把工厂移植到 Bots。Day 1：~15 个 Bot 上线，仅搭建就烧掉每周额度 18%，对 UX 的诚实抱怨（会话追踪扛不住舰队规模）。Day 2：GPT 模型上 Bot 几分钟就丢上下文（他的保留：可能是模型问题），一周没了 33%——<em>目前"还比不过开源自建"</em>（<a href="https://www.raijuna.com/blog/devin-100-day-challenge-day-1">Day 1</a>、<a href="https://www.raijuna.com/blog/devin-100-day-challenge-day-2">Day 2</a>）。</li>
-<li><strong>SupaSEO</strong>——目前最干净的可交付物：8 Bot 的 Chief-of-Staff→负责→专家链 ~48 小时建成一个收费 SaaS（本地 SEO + AI 引用追踪，$99），~951 commits；人类只写落地页。他的可复现技巧：专家 Bot 跨项目共享、提示词细粒度（<a href="https://x.com/noah_z_zhang/status/2124146220159377769">发布串</a>）。</li>
 </ul>
 <h2 id="蒸馏出的教训">蒸馏出的教训<a class="hlink" href="#蒸馏出的教训" aria-hidden="true">#</a></h2>
 <ol>
