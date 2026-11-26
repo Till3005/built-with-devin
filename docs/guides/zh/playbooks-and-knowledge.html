@@ -12,7 +12,7 @@
 <link rel="alternate" hreflang="zh" href="https://till3005.github.io/built-with-devin/guides/zh/playbooks-and-knowledge.html">
 <link rel="alternate" hreflang="x-default" href="https://till3005.github.io/built-with-devin/guides/playbooks-and-knowledge.html">
 <link rel="alternate" type="application/rss+xml" title="built-with-devin feed" href="../../feed.xml">
-<script type="application/ld+json">{"@context": "https://schema.org", "@type": "TechArticle", "headline": "指南 9 — Playbooks 与知识层：把组织约定写成代码", "description": "把你最强工程师脑子里默认的东西写下来，让 Devin 会话和 Bot 在组织规模上可靠——写成 playbooks（可重复流程）和 knowledge（常驻上下文）。", "inLanguage": "zh", "url": "https://till3005.github.io/built-with-devin/guides/zh/playbooks-and-knowledge.html", "isPartOf": {"@type": "Course", "name": "build-with-devin", "url": "https://till3005.github.io/built-with-devin/guides/"}, "dateModified": "2026-11-25"}</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "TechArticle", "headline": "指南 9 — Playbooks 与知识层：把组织约定写成代码", "description": "把你最强工程师脑子里默认的东西写下来，让 Devin 会话和 Bot 在组织规模上可靠——写成 playbooks（可重复流程）和 knowledge（常驻上下文）。", "inLanguage": "zh", "url": "https://till3005.github.io/built-with-devin/guides/zh/playbooks-and-knowledge.html", "isPartOf": {"@type": "Course", "name": "build-with-devin", "url": "https://till3005.github.io/built-with-devin/guides/"}, "dateModified": "2026-11-26"}</script>
 <link rel="icon" href="../../assets/brand/Devin_Symbol.svg" type="image/svg+xml">
 <link rel="stylesheet" href="../../assets/site.css">
 <link rel="stylesheet" href="../../assets/guides.css">
@@ -45,8 +45,8 @@
 <main>
 <article class="guide wrap" id="guide">
   <p class="guide-crumb"><a href="index.html">← 指南</a> · <a data-lang-link="en" href="../playbooks-and-knowledge.html">English</a> · <a data-lang-link="ja" href="../ja/playbooks-and-knowledge.html">日本語</a> · <a data-lang-link="pt" href="../pt/playbooks-and-knowledge.html">Português</a></p>
-<p class="guide-meta">更新于 2026-11-25</p>
-<details class="toc" open><summary>本页目录</summary><ol><li class="d2"><a href="#为什么这一层决定一切">为什么这一层决定一切</a></li><li class="d2"><a href="#第-1-步-从你自己的纠正里挖">第 1 步 — 从你自己的纠正里挖</a></li><li class="d2"><a href="#第-2-步-写钉得住的知识条目">第 2 步 — 写钉得住的知识条目</a></li><li class="d2"><a href="#第-3-步-给可重复工作写-playbook">第 3 步 — 给可重复工作写 playbook</a></li><li class="d2"><a href="#第-4-步-喂给-bot">第 4 步 — 喂给 Bot</a></li><li class="d2"><a href="#第-5-步-纠正回路">第 5 步 — 纠正回路</a></li><li class="d2"><a href="#verify-it">Verify it</a></li><li class="d2"><a href="#坑">坑</a></li><li class="d2"><a href="#自检">自检</a></li><li class="d2"><a href="#实录演示-写得下来的约定才管用-录于-devin-cli-v3000-14-swe-2-flash-medium">实录演示 —— 写得下来的约定才管用，录于 Devin CLI v3000.14（swe-2-flash-medium）</a></li><li class="d2"><a href="#sources">Sources</a></li></ol></details>
+<p class="guide-meta">更新于 2026-11-26</p>
+<details class="toc" open><summary>本页目录</summary><ol><li class="d2"><a href="#为什么这一层决定一切">为什么这一层决定一切</a></li><li class="d2"><a href="#第-1-步-从你自己的纠正里挖">第 1 步 — 从你自己的纠正里挖</a></li><li class="d2"><a href="#第-2-步-写钉得住的知识条目">第 2 步 — 写钉得住的知识条目</a></li><li class="d2"><a href="#第-3-步-给可重复工作写-playbook">第 3 步 — 给可重复工作写 playbook</a></li><li class="d2"><a href="#第-4-步-喂给-bot">第 4 步 — 喂给 Bot</a></li><li class="d2"><a href="#第-5-步-纠正回路">第 5 步 — 纠正回路</a></li><li class="d2"><a href="#memory-dreaming-与纠正回路">Memory、Dreaming 与纠正回路</a></li><li class="d2"><a href="#verify-it">Verify it</a></li><li class="d2"><a href="#坑">坑</a></li><li class="d2"><a href="#自检">自检</a></li><li class="d2"><a href="#实录演示-写得下来的约定才管用-录于-devin-cli-v3000-14-swe-2-flash-medium">实录演示 —— 写得下来的约定才管用，录于 Devin CLI v3000.14（swe-2-flash-medium）</a></li><li class="d2"><a href="#sources">Sources</a></li></ol></details>
 <h1>指南 9 — Playbooks 与知识层：把组织约定写成代码</h1>
 <p><strong>目标：</strong> 把你最强工程师脑子里默认的东西写下来，让 Devin 会话和 Bot 在组织规模上可靠——写成 playbooks（可重复流程）和 knowledge（常驻上下文）。
 <strong>级别：</strong> 中级 · 每个大型公开部署共享的那一层
@@ -115,6 +115,41 @@
 <li>每周复核：把 Bot 记忆里反复出现的条目晋升为组织知识；删掉一个月没人触发的条目</li>
 </ol>
 <p>Devin Coach（官方 Bot 模板）就是为这个生的——每周汇报 Devin 在哪里卡住，并每次提一个修复：一条 note、一个 skill、或一项配置改动。</p>
+<h2 id="memory-dreaming-与纠正回路">Memory、Dreaming 与纠正回路<a class="hlink" href="#memory-dreaming-与纠正回路" aria-hidden="true">#</a></h2>
+<p>Devin Memory 不是 knowledge 或 playbook 的替代品；它是位于它们下方的捕获层。个人 memory 对组织内的每个用户私有，存成 Git-backed drive 中的 Markdown notes。你纠正 Devin 时，它可以自动保存规则；<strong>Dreaming</strong> 是大约每天一次的后台会话，负责合并重叠、删除陈旧 notes，并补抓原始工作中漏掉的教训。</p>
+<p>有意识地分层：</p>
+<table>
+<thead>
+<tr>
+<th>层</th>
+<th>所有者</th>
+<th>用来放什么</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Personal memory</td>
+<td>Devin 为单个用户维护</td>
+<td>偏好、纠正、会话里学到的项目坑</td>
+</tr>
+<tr>
+<td>Bot memory</td>
+<td>Bot，对使用者共享</td>
+<td>某个 Bot 的长期 outcome 所需的长期教训</td>
+</tr>
+<tr>
+<td>Knowledge / rules</td>
+<td>团队</td>
+<td>应被明确治理和 review 的组织级约定</td>
+</tr>
+<tr>
+<td>Playbooks / skills</td>
+<td>团队</td>
+<td>可重复执行的程序</td>
+</tr>
+</tbody>
+</table>
+<p>由 automation 启动的 session 不读写个人 memory。Memory 和 Dreaming 可在 <strong>Customize → Memory</strong> 关闭；组织和 enterprise 管理员也可以在设置里锁定可用性。个人/Bot memory 中反复出现的教训，只有经过人工 review 后才提升为 org knowledge——memory 负责快速捕获，knowledge 才是被治理的层。</p>
 <h2 id="verify-it">Verify it<a class="hlink" href="#verify-it" aria-hidden="true">#</a></h2>
 <ul>
 <li>[ ] 一个新会话在你的 repo 上零提问知识层已覆盖的问题</li>
@@ -147,6 +182,7 @@
 <ul>
 <li><a href="https://docs.devin.ai">docs.devin.ai</a> — knowledge、playbooks、Bot instructions/memory</li>
 <li>相关：<a href="enterprise-playbook.html">第 7 篇 — 企业级铺开模式</a>（这一层是大多数铺开跳过的一步）</li>
+<li><a href="https://docs.devin.ai/product-guides/memory">Devin Memory and Dreaming</a> — Git-backed memory drive、Dreaming、automation 排除、管理员控制</li>
 </ul>
 <section class="related"><h3>同阶段 — 一阶 · 运转</h3><p><a href="bot-outcome-prompts.html">Bot outcome prompts，逐句拆解</a> · <a href="automations-101-event-driven.html">指南 6 — 事件驱动的 Automations</a> · <a href="skills-and-plugins.html">指南 17 — Skills 与 plugins：playbook 之后的封装层</a> · <a href="devin-apps.html">指南 10 — Devin Apps：从聊天里交付一个活工具</a> · <a href="design-with-devin.html">指南 8 — 设计与视觉工作</a></p></section>
 <nav class="guide-pager"><a class="pg-prev" href="automations-101-event-driven.html"><span class="pg-dir">← 上一篇</span><span class="pg-t">指南 6 — 事件驱动的 Automations</span></a><a class="pg-next" href="skills-and-plugins.html"><span class="pg-dir">下一篇 →</span><span class="pg-t">指南 17 — Skills 与 plugins：playbook 之后的封装层</span></a></nav>

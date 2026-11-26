@@ -12,7 +12,7 @@
 <link rel="alternate" hreflang="zh" href="https://till3005.github.io/built-with-devin/guides/zh/the-session-loop.html">
 <link rel="alternate" hreflang="x-default" href="https://till3005.github.io/built-with-devin/guides/the-session-loop.html">
 <link rel="alternate" type="application/rss+xml" title="built-with-devin feed" href="../../feed.xml">
-<script type="application/ld+json">{"@context": "https://schema.org", "@type": "TechArticle", "headline": "指南 19 — 会话全环：研究、委托、审查，以及成本", "description": "跑通 Devin 全环——写简报前先用索引理解代码库，委托一个有边界的会话，让独立审查过一遍 PR，再读 Session Insights 让下一环更便宜。", "inLanguage": "zh", "url": "https://till3005.github.io/built-with-devin/guides/zh/the-session-loop.html", "isPartOf": {"@type": "Course", "name": "build-with-devin", "url": "https://till3005.github.io/built-with-devin/guides/"}, "dateModified": "2026-11-25"}</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "TechArticle", "headline": "指南 19 — 会话全环：研究、委托、审查，以及成本", "description": "跑通 Devin 全环——写简报前先用索引理解代码库，委托一个有边界的会话，让独立审查过一遍 PR，再读 Session Insights 让下一环更便宜。", "inLanguage": "zh", "url": "https://till3005.github.io/built-with-devin/guides/zh/the-session-loop.html", "isPartOf": {"@type": "Course", "name": "build-with-devin", "url": "https://till3005.github.io/built-with-devin/guides/"}, "dateModified": "2026-11-26"}</script>
 <link rel="icon" href="../../assets/brand/Devin_Symbol.svg" type="image/svg+xml">
 <link rel="stylesheet" href="../../assets/site.css">
 <link rel="stylesheet" href="../../assets/guides.css">
@@ -45,8 +45,8 @@
 <main>
 <article class="guide wrap" id="guide">
   <p class="guide-crumb"><a href="index.html">← 指南</a> · <a data-lang-link="en" href="../the-session-loop.html">English</a> · <a data-lang-link="ja" href="../ja/the-session-loop.html">日本語</a> · <a data-lang-link="pt" href="../pt/the-session-loop.html">Português</a></p>
-<p class="guide-meta">更新于 2026-11-25</p>
-<details class="toc" open><summary>本页目录</summary><ol><li class="d2"><a href="#大多数人只做了一半的环">大多数人只做了一半的环</a></li><li class="d2"><a href="#理解-在烧第一个-acu-之前用-deepwiki-和-ask-devin">理解：在烧第一个 ACU 之前用 DeepWiki 和 Ask Devin</a></li><li class="d2"><a href="#委托-你已经会的那一步">委托——你已经会的那一步</a></li><li class="d2"><a href="#审查-每个-pr-上的第二个-agent">审查：每个 PR 上的第二个 agent</a></li><li class="d2"><a href="#复盘-session-insights-和-acu-计费器">复盘：Session Insights 和 ACU 计费器</a></li><li class="d2"><a href="#验收清单">验收清单</a></li><li class="d2"><a href="#常见坑">常见坑</a></li><li class="d2"><a href="#自测">自测</a></li><li class="d2"><a href="#来源">来源</a></li></ol></details>
+<p class="guide-meta">更新于 2026-11-26</p>
+<details class="toc" open><summary>本页目录</summary><ol><li class="d2"><a href="#大多数人只做了一半的环">大多数人只做了一半的环</a></li><li class="d2"><a href="#理解-在烧第一个-acu-之前用-deepwiki-和-ask-devin">理解：在烧第一个 ACU 之前用 DeepWiki 和 Ask Devin</a></li><li class="d2"><a href="#委托-你已经会的那一步">委托——你已经会的那一步</a></li><li class="d2"><a href="#选择委托入口">选择委托入口</a></li><li class="d2"><a href="#审查-每个-pr-上的第二个-agent">审查：每个 PR 上的第二个 agent</a></li><li class="d2"><a href="#复盘-session-insights-和-acu-计费器">复盘：Session Insights 和 ACU 计费器</a></li><li class="d2"><a href="#验收清单">验收清单</a></li><li class="d2"><a href="#常见坑">常见坑</a></li><li class="d2"><a href="#自测">自测</a></li><li class="d2"><a href="#来源">来源</a></li></ol></details>
 <h1>指南 19 — 会话全环：研究、委托、审查，以及成本</h1>
 <p><strong>目标：</strong> 跑通 Devin 全环——写简报前先用索引理解代码库，委托一个有边界的会话，让独立审查过一遍 PR，再读 Session Insights 让下一环更便宜。
 <strong>级别：</strong> 入门（与<a href="talking-to-devin.html">指南 18</a> 配套）
@@ -74,6 +74,12 @@
 <p>这里的回报是双份的：基于索引事实写出的简报既更精确<em>又</em>更短。</p>
 <h2 id="委托-你已经会的那一步">委托——你已经会的那一步<a class="hlink" href="#委托-你已经会的那一步" aria-hidden="true">#</a></h2>
 <p>把 Ask Devin 生成的提示词（或你按<a href="talking-to-devin.html">指南 18</a> 写的简报）作为一个有边界的会话交出去。变化只在于简报已经知道一切：文件、模式、验收检查、边界。</p>
+<h2 id="选择委托入口">选择委托入口<a class="hlink" href="#选择委托入口" aria-hidden="true">#</a></h2>
+<ul>
+<li><strong>一个有界任务：</strong>默认开普通 scoped session。</li>
+<li><strong>周期性或事件触发的工作：</strong>做成 automation，然后右键它的列表行，先用一次 <strong>Run now</strong>，再信任触发器。如果某个 org secret 给 Preflight check 供能，删除它之前 Secrets 页面会显示哪些 automation 依赖它——先重新绑定，再轮换删除。</li>
+<li><strong>一个大改动：</strong>让 Devin 做 <strong>stacked PR series</strong>，不要塞成一个巨 PR。stack 自下而上排序；每层只显示自己的 diff，合并某一层会原子地落掉它下面所有 open PR。stack 只支持 GitHub.com，包含 2–100 个 PR，且不能用 GitHub 常规 merge 流程。适合 schema → service → UI 这种刻意分层，不适合“碰巧一个分支叠在另一个分支上”。</li>
+</ul>
 <h2 id="审查-每个-pr-上的第二个-agent">审查：每个 PR 上的第二个 agent<a class="hlink" href="#审查-每个-pr-上的第二个-agent" aria-hidden="true">#</a></h2>
 <p><strong>Devin Review</strong> 是独立审查者，不是会话自评的重播：</p>
 <ul>
@@ -117,6 +123,8 @@
 <li><a href="https://docs.devin.ai/work-with-devin/devin-review">Devin Review</a>——<code>/devin review</code>、自动审查、<a href="https://devin.ai/blog/devin-review-2">Review 2.0 降价</a></li>
 <li><a href="https://docs.devin.ai/product-guides/session-insights">Session Insights</a>——XS–XL 分档、ACU/消息指标、API</li>
 <li>下一条：<a href="talking-to-devin.html">指南 18 — 和 Devin 说话</a> 如果还没读 · <a href="playbooks-and-knowledge.html">指南 9 — Playbooks</a> 把改好的简报固化下来</li>
+<li><a href="https://docs.devin.ai/work-with-devin/stacked-prs">Stacked PRs docs</a> — GitHub 自下而上的有序 stack、原子合并、限制</li>
+<li><a href="https://docs.devin.ai/release-notes/overview">Release notes — 2026-11-23</a> — automation <code>Run now</code> 与 Preflight secret 依赖警告</li>
 </ul>
 <section class="related"><h3>同阶段 — 零阶 · 起步</h3><p><a href="talking-to-devin.html">指南 18 — 跟 Devin 说话：提示词基本法</a> · <a href="devin-desktop.html">指南 17 — Devin Desktop</a> · <a href="devin-cli.html">指南 12 — Devin CLI 与可扩展性</a> · <a href="bots-101-first-bot.html">指南 1 — 你的第一个 Bot</a> · <a href="official-cookbook.html">指南 13 — 官方用例食谱</a></p></section>
 <nav class="guide-pager"><a class="pg-prev" href="talking-to-devin.html"><span class="pg-dir">← 上一篇</span><span class="pg-t">指南 18 — 跟 Devin 说话：提示词基本法</span></a><a class="pg-next" href="devin-desktop.html"><span class="pg-dir">下一篇 →</span><span class="pg-t">指南 17 — Devin Desktop</span></a></nav>

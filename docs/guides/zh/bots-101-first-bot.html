@@ -12,7 +12,7 @@
 <link rel="alternate" hreflang="zh" href="https://till3005.github.io/built-with-devin/guides/zh/bots-101-first-bot.html">
 <link rel="alternate" hreflang="x-default" href="https://till3005.github.io/built-with-devin/guides/bots-101-first-bot.html">
 <link rel="alternate" type="application/rss+xml" title="built-with-devin feed" href="../../feed.xml">
-<script type="application/ld+json">{"@context": "https://schema.org", "@type": "TechArticle", "headline": "指南 1 — 你的第一个 Bot", "description": "创建一个拥有结果的 Devin Bot，并学会后面每篇指南都要用的六个机制。", "inLanguage": "zh", "url": "https://till3005.github.io/built-with-devin/guides/zh/bots-101-first-bot.html", "isPartOf": {"@type": "Course", "name": "build-with-devin", "url": "https://till3005.github.io/built-with-devin/guides/"}, "dateModified": "2026-11-24"}</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "TechArticle", "headline": "指南 1 — 你的第一个 Bot", "description": "创建一个拥有结果的 Devin Bot，并学会后面每篇指南都要用的六个机制。", "inLanguage": "zh", "url": "https://till3005.github.io/built-with-devin/guides/zh/bots-101-first-bot.html", "isPartOf": {"@type": "Course", "name": "build-with-devin", "url": "https://till3005.github.io/built-with-devin/guides/"}, "dateModified": "2026-11-26"}</script>
 <link rel="icon" href="../../assets/brand/Devin_Symbol.svg" type="image/svg+xml">
 <link rel="stylesheet" href="../../assets/site.css">
 <link rel="stylesheet" href="../../assets/guides.css">
@@ -45,7 +45,7 @@
 <main>
 <article class="guide wrap" id="guide">
   <p class="guide-crumb"><a href="index.html">← 指南</a> · <a data-lang-link="en" href="../bots-101-first-bot.html">English</a> · <a data-lang-link="ja" href="../ja/bots-101-first-bot.html">日本語</a> · <a data-lang-link="pt" href="../pt/bots-101-first-bot.html">Português</a></p>
-<p class="guide-meta">更新于 2026-11-24</p>
+<p class="guide-meta">更新于 2026-11-26</p>
 <details class="toc" open><summary>本页目录</summary><ol><li class="d2"><a href="#bot-是什么">Bot 是什么</a></li><li class="d2"><a href="#第-1-步-创建">第 1 步 — 创建</a></li><li class="d2"><a href="#第-2-步-指派结果">第 2 步 — 指派结果</a></li><li class="d3"><a href="#有界的第一个任务">有界的第一个任务</a></li><li class="d2"><a href="#第-3-步-与它协作">第 3 步 — 与它协作</a></li><li class="d2"><a href="#第-4-步-用记忆掌舵-别微操">第 4 步 — 用记忆掌舵，别微操</a></li><li class="d2"><a href="#共享之前-权限与用量">共享之前——权限与用量</a></li><li class="d2"><a href="#第-5-步-放到你工作的地方">第 5 步 — 放到你工作的地方</a></li><li class="d2"><a href="#第-6-步-排程与模式">第 6 步 — 排程与模式</a></li><li class="d2"><a href="#生命周期">生命周期</a></li><li class="d2"><a href="#verify-it">Verify it</a></li><li class="d2"><a href="#坑">坑</a></li><li class="d2"><a href="#自检">自检</a></li><li class="d2"><a href="#sources">Sources</a></li></ol></details>
 <h1>指南 1 — 你的第一个 Bot</h1>
 <p><strong>目标：</strong> 创建一个拥有结果的 Devin Bot，并学会后面每篇指南都要用的六个机制。
@@ -186,6 +186,7 @@ and any decision you need from me.
 <li><strong>Instructions</strong>（Settings → General）：你的常驻规则——Bot 跑的每个会话启动时都会读。持久策略放这里，不放聊天。</li>
 <li><strong>Memory</strong>（Settings → Memory）：Bot 自己写的文件——偏好、纠正、项目事实。要改它的记忆，直接在聊天里说（"remember: we deploy via Cloud Run, never bare VMs"）。能用这个 Bot 的人都能读它的记忆——共享 Bot 的记忆按共享对待。</li>
 </ul>
+<p>个人 memory 和 Bot memory 是两层。你的个人 memory 在每个组织内只属于你；Bot memory 属于 Bot，能用这个 Bot 的人都能看到。Devin 把个人 memory 存成 Git-backed memory drive 里的 Markdown notes，并由大约每天一次的 <strong>Dreaming</strong> 会话合并陈旧或重叠条目。由 automation 启动的 session 不读写你的个人 memory；Bot session 仍会使用 Bot 自己的 memory。你可以在 <strong>Customize → Memory</strong> 关闭个人 memory 或 Dreaming；组织和 enterprise 管理员也能在设置里锁定 memory 可用性。</p>
 <p>可扩展的模式：纠正 Bot 一次，让它把纠正写进记忆，之后每个会话都继承。Cognition 就靠这个循环每周合并 2,000+ PR。</p>
 <h2 id="共享之前-权限与用量">共享之前——权限与用量<a class="hlink" href="#共享之前-权限与用量" aria-hidden="true">#</a></h2>
 <p>发布帖不会讲但文档写明了两件事：</p>
@@ -255,6 +256,7 @@ and any decision you need from me.
 <li><a href="https://devin.ai/blog/introducing-devin-bots">Introducing Devin Bots</a> —— 发布帖，Android Bot 的原话 prompt</li>
 <li><a href="https://ainativeoperators.ai/blog/devin-bots-guide">AI Native Operators — Devin Bots: give an agent a job to own</a> —— 社区实战指南；上面的有界首个任务和权限/用量提醒出自此</li>
 <li>上一篇：<a href="talking-to-devin.html">指南 18 — 跟 Devin 说话</a>（outcome prompt 底下的基本法）· 下一篇：<a href="bots-201-product-owner.html">第 2 篇 — 产品所有制 Bot</a> · 另见：<a href="the-session-loop.html">指南 19 — 会话全环</a>（研究 → 委托 → 审查 → 复盘）</li>
+<li><a href="https://docs.devin.ai/product-guides/memory">Devin Memory and Dreaming</a> — 个人 memory vs Bot memory、每日 Dreaming、管理员控制</li>
 </ul>
 <section class="related"><h3>同阶段 — 零阶 · 起步</h3><p><a href="talking-to-devin.html">指南 18 — 跟 Devin 说话：提示词基本法</a> · <a href="the-session-loop.html">指南 19 — 会话全环：研究、委托、审查，以及成本</a> · <a href="devin-desktop.html">指南 17 — Devin Desktop</a> · <a href="devin-cli.html">指南 12 — Devin CLI 与可扩展性</a> · <a href="official-cookbook.html">指南 13 — 官方用例食谱</a></p></section>
 <nav class="guide-pager"><a class="pg-prev" href="devin-cli.html"><span class="pg-dir">← 上一篇</span><span class="pg-t">指南 12 — Devin CLI 与可扩展性</span></a><a class="pg-next" href="official-cookbook.html"><span class="pg-dir">下一篇 →</span><span class="pg-t">指南 13 — 官方用例食谱</span></a></nav>

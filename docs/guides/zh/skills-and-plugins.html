@@ -12,7 +12,7 @@
 <link rel="alternate" hreflang="zh" href="https://till3005.github.io/built-with-devin/guides/zh/skills-and-plugins.html">
 <link rel="alternate" hreflang="x-default" href="https://till3005.github.io/built-with-devin/guides/skills-and-plugins.html">
 <link rel="alternate" type="application/rss+xml" title="built-with-devin feed" href="../../feed.xml">
-<script type="application/ld+json">{"@context": "https://schema.org", "@type": "TechArticle", "headline": "指南 17 — Skills 与 plugins：playbook 之后的封装层", "description": "把组织里可重复的流程编码成 SKILL.md 文件，让每个会话和 Bot 都按它执行——并用 plugins 跨仓库打包分享。", "inLanguage": "zh", "url": "https://till3005.github.io/built-with-devin/guides/zh/skills-and-plugins.html", "isPartOf": {"@type": "Course", "name": "build-with-devin", "url": "https://till3005.github.io/built-with-devin/guides/"}, "dateModified": "2026-11-19"}</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "TechArticle", "headline": "指南 17 — Skills 与 plugins：playbook 之后的封装层", "description": "把组织里可重复的流程编码成 SKILL.md 文件，让每个会话和 Bot 都按它执行——并用 plugins 跨仓库打包分享。", "inLanguage": "zh", "url": "https://till3005.github.io/built-with-devin/guides/zh/skills-and-plugins.html", "isPartOf": {"@type": "Course", "name": "build-with-devin", "url": "https://till3005.github.io/built-with-devin/guides/"}, "dateModified": "2026-11-26"}</script>
 <link rel="icon" href="../../assets/brand/Devin_Symbol.svg" type="image/svg+xml">
 <link rel="stylesheet" href="../../assets/site.css">
 <link rel="stylesheet" href="../../assets/guides.css">
@@ -45,8 +45,8 @@
 <main>
 <article class="guide wrap" id="guide">
   <p class="guide-crumb"><a href="index.html">← 指南</a> · <a data-lang-link="en" href="../skills-and-plugins.html">English</a> · <a data-lang-link="ja" href="../ja/skills-and-plugins.html">日本語</a> · <a data-lang-link="pt" href="../pt/skills-and-plugins.html">Português</a></p>
-<p class="guide-meta">更新于 2026-11-19</p>
-<details class="toc" open><summary>本页目录</summary><ol><li class="d2"><a href="#为什么-skills-是现在最重要的那一层">为什么 skills 是现在最重要的那一层</a></li><li class="d2"><a href="#第-1-步-skills-存放在哪">第 1 步 — skills 存放在哪</a></li><li class="d2"><a href="#第-2-步-skill-md-契约">第 2 步 — SKILL.md 契约</a></li><li class="d2"><a href="#第-3-步-三种调用路径">第 3 步 — 三种调用路径</a></li><li class="d2"><a href="#第-4-步-养大这个库">第 4 步 — 养大这个库</a></li><li class="d2"><a href="#实录演示-真调用一个-repo-skill-录于-devin-cli-v3000-14-swe-2-flash-medium">实录演示 —— 真调用一个 repo skill，录于 Devin CLI v3000.14（swe-2-flash-medium）</a></li><li class="d2"><a href="#验证清单">验证清单</a></li><li class="d2"><a href="#常见坑">常见坑</a></li><li class="d2"><a href="#理解度检查">理解度检查</a></li><li class="d2"><a href="#来源">来源</a></li></ol></details>
+<p class="guide-meta">更新于 2026-11-26</p>
+<details class="toc" open><summary>本页目录</summary><ol><li class="d2"><a href="#为什么-skills-是现在最重要的那一层">为什么 skills 是现在最重要的那一层</a></li><li class="d2"><a href="#第-1-步-skills-存放在哪">第 1 步 — skills 存放在哪</a></li><li class="d2"><a href="#第-2-步-skill-md-契约">第 2 步 — SKILL.md 契约</a></li><li class="d2"><a href="#第-3-步-三种调用路径">第 3 步 — 三种调用路径</a></li><li class="d2"><a href="#第-4-步-养大这个库">第 4 步 — 养大这个库</a></li><li class="d2"><a href="#实录演示-真调用一个-repo-skill-录于-devin-cli-v3000-14-swe-2-flash-medium">实录演示 —— 真调用一个 repo skill，录于 Devin CLI v3000.14（swe-2-flash-medium）</a></li><li class="d2"><a href="#治理-plugins-与-mcp-访问">治理 plugins 与 MCP 访问</a></li><li class="d2"><a href="#验证清单">验证清单</a></li><li class="d2"><a href="#常见坑">常见坑</a></li><li class="d2"><a href="#理解度检查">理解度检查</a></li><li class="d2"><a href="#来源">来源</a></li></ol></details>
 <h1>指南 17 — Skills 与 plugins：playbook 之后的封装层</h1>
 <p><strong>目标：</strong> 把组织里可重复的流程编码成 <code>SKILL.md</code> 文件，让每个会话和 Bot 都按它执行——并用 plugins 跨仓库打包分享。
 <strong>级别：</strong> 中级 · 取代 playbook 的那一层
@@ -145,6 +145,13 @@ permissions:
 <em>4. 流程按原文执行——<code>python3 -m unittest -v</code>，再读 app.py、orders.py 和两个测试文件</em></p>
 <p><img alt="5. 结果：全覆盖——逐函数表列出每个分支；未改文件、零提交" src="https://till3005.github.io/built-with-devin/assets/guides/skills-and-plugins/step5-full-coverage.webp" />
 <em>5. 结果：全覆盖——每个分支都有交代，正是 SKILL.md 要求的报告</em></p>
+<h2 id="治理-plugins-与-mcp-访问">治理 plugins 与 MCP 访问<a class="hlink" href="#治理-plugins-与-mcp-访问" aria-hidden="true">#</a></h2>
+<ul>
+<li><strong>Offered 和 Required 是管理员选择。</strong>组织和 enterprise 管理员可以把 marketplace plugin 标成 <strong>Offered</strong>，而不是 <strong>Required</strong>。Required plugin 是托管基线的一部分；Offered plugin 由成员自行选择。不要把便利合集设成 Required——它会扩大每个成员都要继承的托管基线。</li>
+<li><strong>用最窄的 MCP 批准范围。</strong>MCP 工具批准卡现在提供 <strong>Allow for this session</strong>。当任务需要反复调用某个工具、但权限应随会话结束时，优先选它；更宽的范围只留给已经审计过的工具。</li>
+<li><strong>API key 放在 secrets。</strong>API-key marketplace MCP server 的空白 header 会绑定到 secret，未使用的 secret 会被标记。不要把原始 key 写进 plugin 配置、prompt 或聊天。</li>
+<li><strong>Automatic 不等于未认证。</strong>新建 custom MCP server 默认选中 <strong>Automatic</strong> authentication。把它接入生产权限前，先确认 server 实际协商出的认证方式。</li>
+</ul>
 <h2 id="验证清单">验证清单<a class="hlink" href="#验证清单" aria-hidden="true">#</a></h2>
 <ul>
 <li>[ ] 新会话能按名字列出你的 skill（启动时载入 name + description）</li>
@@ -170,6 +177,7 @@ permissions:
 <li><a href="https://docs.devin.ai/product-guides/skills">Devin Skills 文档</a> — 文件格式、发现路径、frontmatter</li>
 <li><a href="https://docs.devin.ai/release-notes/overview">Release notes</a> — playbooks→Skills 迁移、Customize 页</li>
 <li>相关：<a href="playbooks-and-knowledge.html">指南 9 — Playbooks &amp; knowledge</a>（skills 旁边的上下文层）</li>
+<li><a href="https://docs.devin.ai/release-notes/overview">Release notes — 2026-11-23</a> — Offered plugins、会话级 MCP 批准、secret 绑定 API-key header、Automatic auth 默认值</li>
 </ul>
 <section class="related"><h3>同阶段 — 一阶 · 运转</h3><p><a href="bot-outcome-prompts.html">Bot outcome prompts，逐句拆解</a> · <a href="automations-101-event-driven.html">指南 6 — 事件驱动的 Automations</a> · <a href="playbooks-and-knowledge.html">指南 9 — Playbooks 与知识层：把组织约定写成代码</a> · <a href="devin-apps.html">指南 10 — Devin Apps：从聊天里交付一个活工具</a> · <a href="design-with-devin.html">指南 8 — 设计与视觉工作</a></p></section>
 <nav class="guide-pager"><a class="pg-prev" href="playbooks-and-knowledge.html"><span class="pg-dir">← 上一篇</span><span class="pg-t">指南 9 — Playbooks 与知识层：把组织约定写成代码</span></a><a class="pg-next" href="devin-apps.html"><span class="pg-dir">下一篇 →</span><span class="pg-t">指南 10 — Devin Apps：从聊天里交付一个活工具</span></a></nav>

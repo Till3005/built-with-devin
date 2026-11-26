@@ -12,7 +12,7 @@
 <link rel="alternate" hreflang="zh" href="https://till3005.github.io/built-with-devin/guides/zh/playbooks-and-knowledge.html">
 <link rel="alternate" hreflang="x-default" href="https://till3005.github.io/built-with-devin/guides/playbooks-and-knowledge.html">
 <link rel="alternate" type="application/rss+xml" title="built-with-devin feed" href="../feed.xml">
-<script type="application/ld+json">{"@context": "https://schema.org", "@type": "TechArticle", "headline": "Guide 9 — Playbooks & knowledge: encoding your org's conventions", "description": "make Devin sessions and Bots reliable at org scale by writing down what your best engineers assume — as playbooks repeatable procedures and knowledge standing c", "inLanguage": "en", "url": "https://till3005.github.io/built-with-devin/guides/playbooks-and-knowledge.html", "isPartOf": {"@type": "Course", "name": "build-with-devin", "url": "https://till3005.github.io/built-with-devin/guides/"}, "dateModified": "2026-11-25"}</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "TechArticle", "headline": "Guide 9 — Playbooks & knowledge: encoding your org's conventions", "description": "make Devin sessions and Bots reliable at org scale by writing down what your best engineers assume — as playbooks repeatable procedures and knowledge standing c", "inLanguage": "en", "url": "https://till3005.github.io/built-with-devin/guides/playbooks-and-knowledge.html", "isPartOf": {"@type": "Course", "name": "build-with-devin", "url": "https://till3005.github.io/built-with-devin/guides/"}, "dateModified": "2026-11-26"}</script>
 <link rel="icon" href="../assets/brand/Devin_Symbol.svg" type="image/svg+xml">
 <link rel="stylesheet" href="../assets/site.css">
 <link rel="stylesheet" href="../assets/guides.css">
@@ -45,8 +45,8 @@
 <main>
 <article class="guide wrap" id="guide">
   <p class="guide-crumb"><a href="index.html">← Guides</a> · <a data-lang-link="ja" href="ja/playbooks-and-knowledge.html">日本語</a> · <a data-lang-link="pt" href="pt/playbooks-and-knowledge.html">Português</a> · <a data-lang-link="zh" href="zh/playbooks-and-knowledge.html">中文</a></p>
-<p class="guide-meta">Updated 2026-11-25</p>
-<details class="toc" open><summary>On this page</summary><ol><li class="d2"><a href="#why-this-layer-decides-everything">Why this layer decides everything</a></li><li class="d2"><a href="#step-1-mine-your-own-corrections">Step 1 — Mine your own corrections</a></li><li class="d2"><a href="#step-2-write-knowledge-entries-that-stick">Step 2 — Write knowledge entries that stick</a></li><li class="d2"><a href="#step-3-playbooks-for-repeatable-work">Step 3 — Playbooks for repeatable work</a></li><li class="d2"><a href="#step-4-feeding-bots">Step 4 — Feeding Bots</a></li><li class="d2"><a href="#step-5-the-correction-loop">Step 5 — The correction loop</a></li><li class="d2"><a href="#verify-it">Verify it</a></li><li class="d2"><a href="#pitfalls">Pitfalls</a></li><li class="d2"><a href="#knowledge-check">Knowledge check</a></li><li class="d2"><a href="#walkthrough-knowledge-that-sticks-on-devin-cli-v3000-14-swe-2-flash-medium">Walkthrough — knowledge that sticks, on Devin CLI v3000.14 (swe-2-flash-medium)</a></li><li class="d2"><a href="#sources">Sources</a></li></ol></details>
+<p class="guide-meta">Updated 2026-11-26</p>
+<details class="toc" open><summary>On this page</summary><ol><li class="d2"><a href="#why-this-layer-decides-everything">Why this layer decides everything</a></li><li class="d2"><a href="#step-1-mine-your-own-corrections">Step 1 — Mine your own corrections</a></li><li class="d2"><a href="#step-2-write-knowledge-entries-that-stick">Step 2 — Write knowledge entries that stick</a></li><li class="d2"><a href="#step-3-playbooks-for-repeatable-work">Step 3 — Playbooks for repeatable work</a></li><li class="d2"><a href="#step-4-feeding-bots">Step 4 — Feeding Bots</a></li><li class="d2"><a href="#step-5-the-correction-loop">Step 5 — The correction loop</a></li><li class="d2"><a href="#memory-dreaming-and-the-correction-loop">Memory, Dreaming, and the correction loop</a></li><li class="d2"><a href="#verify-it">Verify it</a></li><li class="d2"><a href="#pitfalls">Pitfalls</a></li><li class="d2"><a href="#knowledge-check">Knowledge check</a></li><li class="d2"><a href="#walkthrough-knowledge-that-sticks-on-devin-cli-v3000-14-swe-2-flash-medium">Walkthrough — knowledge that sticks, on Devin CLI v3000.14 (swe-2-flash-medium)</a></li><li class="d2"><a href="#sources">Sources</a></li></ol></details>
 <h1>Guide 9 — Playbooks &amp; knowledge: encoding your org's conventions</h1>
 <p><strong>Goal:</strong> make Devin sessions and Bots reliable at org scale by writing down what your best engineers assume — as playbooks (repeatable procedures) and knowledge (standing context).
 <strong>Level:</strong> intermediate · the layer every big published deployment shares
@@ -115,6 +115,41 @@
 <li>Weekly review: promote repeated Bot-memory items into org knowledge; delete entries nobody's triggered in a month</li>
 </ol>
 <p>Devin Coach (an official Bot template) exists for exactly this — it reports weekly where Devin got stuck and proposes one fix each time: a note, a skill, or a setup change.</p>
+<h2 id="memory-dreaming-and-the-correction-loop">Memory, Dreaming, and the correction loop<a class="hlink" href="#memory-dreaming-and-the-correction-loop" aria-hidden="true">#</a></h2>
+<p>Devin Memory is not a replacement for knowledge or playbooks; it is the capture layer underneath them. Personal memory is private to each user in an organization and is stored as Markdown notes in a Git-backed drive. When you correct Devin, it can save the rule automatically; <strong>Dreaming</strong> is a roughly daily background session that consolidates overlap, removes stale notes, and surfaces lessons missed during the original work.</p>
+<p>Use the layers deliberately:</p>
+<table>
+<thead>
+<tr>
+<th>Layer</th>
+<th>Owner</th>
+<th>Use it for</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Personal memory</td>
+<td>Devin for one user</td>
+<td>Preferences, corrections, project gotchas learned in sessions</td>
+</tr>
+<tr>
+<td>Bot memory</td>
+<td>The Bot, shared with its users</td>
+<td>Standing lessons for one Bot's outcome</td>
+</tr>
+<tr>
+<td>Knowledge / rules</td>
+<td>Your team</td>
+<td>Org-wide conventions that should be deliberate and reviewed</td>
+</tr>
+<tr>
+<td>Playbooks / skills</td>
+<td>Your team</td>
+<td>Repeatable procedures</td>
+</tr>
+</tbody>
+</table>
+<p>Automation-started sessions do not read or write personal memory. Memory and Dreaming can be turned off under <strong>Customize → Memory</strong>; organization and enterprise admins can also lock availability in settings. Promote repeated personal/Bot-memory lessons into org knowledge only after a human review — memory captures quickly, but knowledge is the governed layer.</p>
 <h2 id="verify-it">Verify it<a class="hlink" href="#verify-it" aria-hidden="true">#</a></h2>
 <ul>
 <li>[ ] A fresh session on your repo asks zero questions your knowledge already answers</li>
@@ -147,6 +182,7 @@
 <ul>
 <li><a href="https://docs.devin.ai">docs.devin.ai</a> — knowledge, playbooks, Bot instructions/memory</li>
 <li>Related: <a href="enterprise-playbook.html">Guide 7 — Enterprise rollout patterns</a> (this layer is the step most rollouts skip)</li>
+<li><a href="https://docs.devin.ai/product-guides/memory">Devin Memory and Dreaming</a> — Git-backed memory drive, Dreaming, automation exclusion, admin controls</li>
 </ul>
 <section class="related"><h3>Same stage — Stage 1 · Operate</h3><p><a href="bot-outcome-prompts.html">Bot outcome prompts, dissected</a> · <a href="automations-101-event-driven.html">Guide 6 — Event-driven automations</a> · <a href="skills-and-plugins.html">Guide 17 — Skills &amp; plugins: the post-playbook packaging layer</a> · <a href="devin-apps.html">Guide 10 — Devin Apps: ship live tools from a chat</a> · <a href="design-with-devin.html">Guide 8 — Design &amp; visual work</a></p></section>
 <nav class="guide-pager"><a class="pg-prev" href="automations-101-event-driven.html"><span class="pg-dir">← Previous</span><span class="pg-t">Guide 6 — Event-driven automations</span></a><a class="pg-next" href="skills-and-plugins.html"><span class="pg-dir">Next →</span><span class="pg-t">Guide 17 — Skills &amp; plugins: the post-playbook packaging layer</span></a></nav>

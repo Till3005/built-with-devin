@@ -12,7 +12,7 @@
 <link rel="alternate" hreflang="zh" href="https://till3005.github.io/built-with-devin/guides/zh/the-session-loop.html">
 <link rel="alternate" hreflang="x-default" href="https://till3005.github.io/built-with-devin/guides/the-session-loop.html">
 <link rel="alternate" type="application/rss+xml" title="built-with-devin feed" href="../../feed.xml">
-<script type="application/ld+json">{"@context": "https://schema.org", "@type": "TechArticle", "headline": "ガイド 19 — セッションの全ループ：リサーチ、委任、レビュー、そしてコスト", "description": "Devin の全ループを端から端まで回す——ブリーフを書く前にインデックスでコードベースを理解し、スコープされたセッションを委任し、独立レビューを PR に通し、Session Insights を読んで次のループを安くする。", "inLanguage": "ja", "url": "https://till3005.github.io/built-with-devin/guides/ja/the-session-loop.html", "isPartOf": {"@type": "Course", "name": "build-with-devin", "url": "https://till3005.github.io/built-with-devin/guides/"}, "dateModified": "2026-11-25"}</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "TechArticle", "headline": "ガイド 19 — セッションの全ループ：リサーチ、委任、レビュー、そしてコスト", "description": "Devin の全ループを端から端まで回す——ブリーフを書く前にインデックスでコードベースを理解し、スコープされたセッションを委任し、独立レビューを PR に通し、Session Insights を読んで次のループを安くする。", "inLanguage": "ja", "url": "https://till3005.github.io/built-with-devin/guides/ja/the-session-loop.html", "isPartOf": {"@type": "Course", "name": "build-with-devin", "url": "https://till3005.github.io/built-with-devin/guides/"}, "dateModified": "2026-11-26"}</script>
 <link rel="icon" href="../../assets/brand/Devin_Symbol.svg" type="image/svg+xml">
 <link rel="stylesheet" href="../../assets/site.css">
 <link rel="stylesheet" href="../../assets/guides.css">
@@ -45,8 +45,8 @@
 <main>
 <article class="guide wrap" id="guide">
   <p class="guide-crumb"><a href="index.html">← ガイド</a> · <a data-lang-link="en" href="../the-session-loop.html">English</a> · <a data-lang-link="pt" href="../pt/the-session-loop.html">Português</a> · <a data-lang-link="zh" href="../zh/the-session-loop.html">中文</a></p>
-<p class="guide-meta">更新 2026-11-25</p>
-<details class="toc" open><summary>このページの目次</summary><ol><li class="d2"><a href="#大半の人が半分しか回さないループ">大半の人が半分しか回さないループ</a></li><li class="d2"><a href="#理解-最初の-acu-を使う前に-deepwiki-と-ask-devin">理解：最初の ACU を使う前に DeepWiki と Ask Devin</a></li><li class="d2"><a href="#委任-もう知っているステップ">委任——もう知っているステップ</a></li><li class="d2"><a href="#レビュー-すべての-pr-に第二のエージェント">レビュー：すべての PR に第二のエージェント</a></li><li class="d2"><a href="#学習-session-insights-と-acu-メーター">学習：Session Insights と ACU メーター</a></li><li class="d2"><a href="#確認リスト">確認リスト</a></li><li class="d2"><a href="#落とし穴">落とし穴</a></li><li class="d2"><a href="#理解度チェック">理解度チェック</a></li><li class="d2"><a href="#出典">出典</a></li></ol></details>
+<p class="guide-meta">更新 2026-11-26</p>
+<details class="toc" open><summary>このページの目次</summary><ol><li class="d2"><a href="#大半の人が半分しか回さないループ">大半の人が半分しか回さないループ</a></li><li class="d2"><a href="#理解-最初の-acu-を使う前に-deepwiki-と-ask-devin">理解：最初の ACU を使う前に DeepWiki と Ask Devin</a></li><li class="d2"><a href="#委任-もう知っているステップ">委任——もう知っているステップ</a></li><li class="d2"><a href="#委任インターフェースを選ぶ">委任インターフェースを選ぶ</a></li><li class="d2"><a href="#レビュー-すべての-pr-に第二のエージェント">レビュー：すべての PR に第二のエージェント</a></li><li class="d2"><a href="#学習-session-insights-と-acu-メーター">学習：Session Insights と ACU メーター</a></li><li class="d2"><a href="#確認リスト">確認リスト</a></li><li class="d2"><a href="#落とし穴">落とし穴</a></li><li class="d2"><a href="#理解度チェック">理解度チェック</a></li><li class="d2"><a href="#出典">出典</a></li></ol></details>
 <h1>ガイド 19 — セッションの全ループ：リサーチ、委任、レビュー、そしてコスト</h1>
 <p><strong>目標：</strong> Devin の全ループを端から端まで回す——ブリーフを書く前にインデックスでコードベースを理解し、スコープされたセッションを委任し、独立レビューを PR に通し、Session Insights を読んで次のループを安くする。
 <strong>レベル：</strong> 入門（<a href="talking-to-devin.html">ガイド 18</a> とペア）
@@ -74,6 +74,12 @@
 <p>リターンは二重だ：インデックスの事実で書かれたブリーフは、より具体的<em>かつ</em>短くなる。</p>
 <h2 id="委任-もう知っているステップ">委任——もう知っているステップ<a class="hlink" href="#委任-もう知っているステップ" aria-hidden="true">#</a></h2>
 <p>Ask Devin が生成したプロンプト（または<a href="talking-to-devin.html">ガイド 18</a> 通りに書いたブリーフ）をスコープされたセッションとして渡す。変わるのは、ブリーフがすべてを知っていることだけ：ファイル、パターン、検証チェック、境界。</p>
+<h2 id="委任インターフェースを選ぶ">委任インターフェースを選ぶ<a class="hlink" href="#委任インターフェースを選ぶ" aria-hidden="true">#</a></h2>
+<ul>
+<li><strong>境界のある1件のタスク：</strong>通常の scoped session が既定。</li>
+<li><strong>定期またはイベント起点の作業：</strong>automation にし、trigger を信用する前に一覧行の右クリックから <strong>Run now</strong> を一度実行する。org secret が Preflight check を支えている場合、削除前に Secrets ページが依存する automation を表示する——先に再バインドしてからローテーションする。</li>
+<li><strong>大きな1つの変更：</strong>モノリシック PR ではなく <strong>stacked PR series</strong> を Devin に頼む。stack は下から上へ順序付けられ、各レイヤーには自分の diff だけが出る。あるレイヤーをマージすると、その下の open PR もすべてアトミックに入る。stack は GitHub.com のみ対応で、2–100 件の PR を持ち、GitHub の通常 merge フローは使えない。schema → service → UI のような意図的な層には使うが、たまたま branch が別 branch の上に乗っただけのものには使わない。</li>
+</ul>
 <h2 id="レビュー-すべての-pr-に第二のエージェント">レビュー：すべての PR に第二のエージェント<a class="hlink" href="#レビュー-すべての-pr-に第二のエージェント" aria-hidden="true">#</a></h2>
 <p><strong>Devin Review</strong> は独立したレビュアーであり、セッションの自己評価の再演ではない：</p>
 <ul>
@@ -117,6 +123,8 @@
 <li><a href="https://docs.devin.ai/work-with-devin/devin-review">Devin Review</a>——<code>/devin review</code>、自動レビュー、<a href="https://devin.ai/blog/devin-review-2">Review 2.0 のコスト削減</a></li>
 <li><a href="https://docs.devin.ai/product-guides/session-insights">Session Insights</a>——XS–XL サイズ分け、ACU/メッセージ指標、API</li>
 <li>次へ：<a href="talking-to-devin.html">ガイド 18 — Devin との話し方</a> をまだなら · <a href="playbooks-and-knowledge.html">ガイド 9 — Playbooks</a> で改善したブリーフを永続化</li>
+<li><a href="https://docs.devin.ai/work-with-devin/stacked-prs">Stacked PRs docs</a> — GitHub の bottom-up stack、atomic merge、制限</li>
+<li><a href="https://docs.devin.ai/release-notes/overview">Release notes — 2026-11-23</a> — automation の <code>Run now</code> と Preflight secret 依存警告</li>
 </ul>
 <section class="related"><h3>同じステージ — ステージ0 · 基礎</h3><p><a href="talking-to-devin.html">ガイド 18 — Devin への伝え方：プロンプトの教義</a> · <a href="devin-desktop.html">ガイド 17 — Devin Desktop</a> · <a href="devin-cli.html">ガイド 12 — Devin CLI と拡張性</a> · <a href="bots-101-first-bot.html">ガイド 1 — 初めての Bot</a> · <a href="official-cookbook.html">ガイド 13 — 公式ユースケース・クックブック</a></p></section>
 <nav class="guide-pager"><a class="pg-prev" href="talking-to-devin.html"><span class="pg-dir">← 前へ</span><span class="pg-t">ガイド 18 — Devin への伝え方：プロンプトの教義</span></a><a class="pg-next" href="devin-desktop.html"><span class="pg-dir">次へ →</span><span class="pg-t">ガイド 17 — Devin Desktop</span></a></nav>
