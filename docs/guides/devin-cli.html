@@ -12,7 +12,7 @@
 <link rel="alternate" hreflang="zh" href="https://till3005.github.io/built-with-devin/guides/zh/devin-cli.html">
 <link rel="alternate" hreflang="x-default" href="https://till3005.github.io/built-with-devin/guides/devin-cli.html">
 <link rel="alternate" type="application/rss+xml" title="built-with-devin feed" href="../feed.xml">
-<script type="application/ld+json">{"@context": "https://schema.org", "@type": "TechArticle", "headline": "Guide 12 — Devin CLI & extensibility", "description": "the local-terminal Devin — run the agent on your machine, hand work to Devin Cloud, and extend it with skills, rules, plugins, hooks, and subagents.", "inLanguage": "en", "url": "https://till3005.github.io/built-with-devin/guides/devin-cli.html", "isPartOf": {"@type": "Course", "name": "build-with-devin", "url": "https://till3005.github.io/built-with-devin/guides/"}, "dateModified": "2026-11-20"}</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "TechArticle", "headline": "Guide 12 — Devin CLI & extensibility", "description": "the local-terminal Devin — run the agent on your machine, hand work to Devin Cloud, and extend it with skills, rules, plugins, hooks, and subagents.", "inLanguage": "en", "url": "https://till3005.github.io/built-with-devin/guides/devin-cli.html", "isPartOf": {"@type": "Course", "name": "build-with-devin", "url": "https://till3005.github.io/built-with-devin/guides/"}, "dateModified": "2026-11-25"}</script>
 <link rel="icon" href="../assets/brand/Devin_Symbol.svg" type="image/svg+xml">
 <link rel="stylesheet" href="../assets/site.css">
 <link rel="stylesheet" href="../assets/guides.css">
@@ -45,7 +45,7 @@
 <main>
 <article class="guide wrap" id="guide">
   <p class="guide-crumb"><a href="index.html">← Guides</a> · <a href="ja/devin-cli.html">日本語</a> · <a href="pt/devin-cli.html">Português</a> · <a href="zh/devin-cli.html">中文</a></p>
-<p class="guide-meta">Updated 2026-11-20</p>
+<p class="guide-meta">Updated 2026-11-25</p>
 <details class="toc" open><summary>On this page</summary><ol><li class="d2"><a href="#what-it-is">What it is</a></li><li class="d2"><a href="#the-pieces-that-matter">The pieces that matter</a></li><li class="d2"><a href="#the-extensibility-stack">The extensibility stack</a></li><li class="d2"><a href="#three-workflows-worth-copying">Three workflows worth copying</a></li><li class="d2"><a href="#walkthrough-recorded-on-devin-cli-v3000-14">Walkthrough — recorded on Devin CLI v3000.14</a></li><li class="d2"><a href="#verify-it">Verify it</a></li><li class="d2"><a href="#pitfalls">Pitfalls</a></li><li class="d2"><a href="#knowledge-check">Knowledge check</a></li><li class="d2"><a href="#sources">Sources</a></li></ol></details>
 <h1>Guide 12 — Devin CLI &amp; extensibility</h1>
 <p><strong>Goal:</strong> the local-terminal Devin — run the agent on your machine, hand work to Devin Cloud, and extend it with skills, rules, plugins, hooks, and subagents.
@@ -55,9 +55,9 @@
 <p>Devin CLI is a coding agent that lives in your terminal and connects to Devin Cloud. Two working modes, and the power is in moving between them:</p>
 <ul>
 <li><strong>Local</strong> — it edits your checked-out repo on your machine</li>
-<li><strong>Cloud</strong> — <code>devin --cloud</code> creates/steers/resumes cloud sessions; <code>/handoff</code> sends a local task to a cloud Devin, <code>/pickup</code> pulls a cloud session back to your machine (<code>/open</code> opens it in the web app or Devin Desktop)</li>
+<li><strong>Cloud</strong> — <code>devin --cloud</code> creates/steers/resumes cloud sessions. Run <code>/handoff</code> in a local session to send the task to Devin Cloud. Run it in the cloud session in the CLI to fetch its PR branch, switch your checkout to that branch, and start a local session on it. (<code>/open</code> opens the session in the web app or Devin Desktop.)</li>
 </ul>
-<pre><code class="language-text">local repo ──/handoff──► Devin Cloud session ──/pickup──► local repo
+<pre><code class="language-text">local repo ──/handoff──► Devin Cloud session ──/handoff──► local repo
      ▲                        │
      └──── devin ssh / forward (inspect its VM) ────┘
 </code></pre>
@@ -133,7 +133,7 @@
 </table>
 <p><strong>Import path:</strong> <code>read_config_from</code> imports settings from Cursor, Windsurf, Claude Code, Copilot, Codex, Kiro, OpenCode, Zed — migration is one flag, not a rewrite.</p>
 <h2 id="three-workflows-worth-copying">Three workflows worth copying<a class="hlink" href="#three-workflows-worth-copying" aria-hidden="true">#</a></h2>
-<p><strong>1. Local → cloud fan-out.</strong> Start a task locally, hit its limits, <code>/handoff</code> to a cloud session that keeps going on its own machine — pull the work back to your machine with <code>/pickup</code>.</p>
+<p><strong>1. Local → cloud fan-out.</strong> Start a task locally. When it needs the cloud, run <code>/handoff</code> to keep it going on Devin's machine. Once the cloud session has a PR, open or resume that session in the CLI and run <code>/handoff</code> there to continue locally on its PR branch.</p>
 <p><strong>2. Skills as memory.</strong> Turn any repeated procedure (Guide 11's migration skill, a hotfix runbook, a release cut) into a <code>SKILL.md</code> — the CLI docs note feeding <em>successful session transcripts</em> back into skills to close gaps. Plugins package and share them to the whole team.</p>
 <p><strong>3. Guardrails via hooks.</strong> <code>PreToolUse</code> hook that blocks <code>rm -rf</code> patterns or forces review on migrations — enforcement lives in the hook, not in hoped-for model behavior.</p>
 <h2 id="walkthrough-recorded-on-devin-cli-v3000-14">Walkthrough — recorded on Devin CLI v3000.14<a class="hlink" href="#walkthrough-recorded-on-devin-cli-v3000-14" aria-hidden="true">#</a></h2>
@@ -169,7 +169,7 @@ Keep it under 10 lines.
 <h2 id="verify-it">Verify it<a class="hlink" href="#verify-it" aria-hidden="true">#</a></h2>
 <ul>
 <li>[ ] <code>devin</code> runs a local session; <code>devin --cloud</code> lists/creates cloud sessions</li>
-<li>[ ] A <code>/handoff</code>'d task completed in the cloud and the session came back to your machine via <code>/pickup</code></li>
+<li>[ ] A task sent to the cloud with <code>/handoff</code> produced a PR; running <code>/handoff</code> in that cloud session checked out the PR branch and started a local session</li>
 <li>[ ] A <code>SKILL.md</code> invoked by slash command ran your procedure</li>
 <li>[ ] (Enterprise) team marketplace serves your plugin to another member</li>
 </ul>

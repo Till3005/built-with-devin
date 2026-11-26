@@ -12,7 +12,7 @@
 <link rel="alternate" hreflang="zh" href="https://till3005.github.io/built-with-devin/guides/zh/the-session-loop.html">
 <link rel="alternate" hreflang="x-default" href="https://till3005.github.io/built-with-devin/guides/the-session-loop.html">
 <link rel="alternate" type="application/rss+xml" title="built-with-devin feed" href="../feed.xml">
-<script type="application/ld+json">{"@context": "https://schema.org", "@type": "TechArticle", "headline": "Guide 19 — The session loop: research, delegate, review, and what it costs", "description": "Run the full Devin loop end to end — understand the codebase before you brief, delegate a scoped session, get an independent review on the PR, and read Session ", "inLanguage": "en", "url": "https://till3005.github.io/built-with-devin/guides/the-session-loop.html", "isPartOf": {"@type": "Course", "name": "build-with-devin", "url": "https://till3005.github.io/built-with-devin/guides/"}, "dateModified": "2026-11-24"}</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "TechArticle", "headline": "Guide 19 — The session loop: research, delegate, review, and what it costs", "description": "Run the full Devin loop end to end — understand the codebase before you brief, delegate a scoped session, get an independent review on the PR, and read Session ", "inLanguage": "en", "url": "https://till3005.github.io/built-with-devin/guides/the-session-loop.html", "isPartOf": {"@type": "Course", "name": "build-with-devin", "url": "https://till3005.github.io/built-with-devin/guides/"}, "dateModified": "2026-11-25"}</script>
 <link rel="icon" href="../assets/brand/Devin_Symbol.svg" type="image/svg+xml">
 <link rel="stylesheet" href="../assets/site.css">
 <link rel="stylesheet" href="../assets/guides.css">
@@ -45,7 +45,7 @@
 <main>
 <article class="guide wrap" id="guide">
   <p class="guide-crumb"><a href="index.html">← Guides</a> · <a href="ja/the-session-loop.html">日本語</a> · <a href="pt/the-session-loop.html">Português</a> · <a href="zh/the-session-loop.html">中文</a></p>
-<p class="guide-meta">Updated 2026-11-24</p>
+<p class="guide-meta">Updated 2026-11-25</p>
 <details class="toc" open><summary>On this page</summary><ol><li class="d2"><a href="#the-loop-most-people-skip-half-of">The loop most people skip half of</a></li><li class="d2"><a href="#understand-deepwiki-and-ask-devin-before-you-spend-an-acu">Understand: DeepWiki and Ask Devin before you spend an ACU</a></li><li class="d2"><a href="#delegate-the-step-you-already-know">Delegate — the step you already know</a></li><li class="d2"><a href="#review-a-second-agent-on-every-pr">Review: a second agent on every PR</a></li><li class="d2"><a href="#learn-session-insights-and-the-acu-meter">Learn: Session Insights and the ACU meter</a></li><li class="d2"><a href="#verify-it">Verify it</a></li><li class="d2"><a href="#pitfalls">Pitfalls</a></li><li class="d2"><a href="#knowledge-check">Knowledge check</a></li><li class="d2"><a href="#sources">Sources</a></li></ol></details>
 <h1>Guide 19 — The session loop: research, delegate, review, and what it costs</h1>
 <p><strong>Goal:</strong> Run the full Devin loop end to end — understand the codebase before you brief, delegate a scoped session, get an independent review on the PR, and read Session Insights so the next loop is cheaper.
@@ -84,9 +84,9 @@
 <h2 id="learn-session-insights-and-the-acu-meter">Learn: Session Insights and the ACU meter<a class="hlink" href="#learn-session-insights-and-the-acu-meter" aria-hidden="true">#</a></h2>
 <p>Every completed session gets a <strong>Session Insights</strong> read (menu <strong>⋯ → Session insights</strong>, free):</p>
 <ul>
-<li><strong>Session size chip</strong> — XS–XL classification auto-generated at teardown; L/XL sessions get a full analysis automatically, smaller ones on demand.</li>
+<li><strong>Session size chip</strong> — XS–XL classification based on how much usage the session consumes, not how many messages you send. L/XL sessions get a full analysis automatically, smaller ones on demand.</li>
 <li><strong>ACU usage</strong> (or on-demand dollars on quota plans) — compare similar tasks to spot sessions that burned compute on retries and dead ends.</li>
-<li><strong>User messages</strong> — a high count means the brief lacked context; each message is a course correction you could have written upfront.</li>
+<li><strong>User messages</strong> — a separate metric. A high count can signal frequent course corrections and suggest what context to include upfront.</li>
 <li>The analysis recommends concrete improvements — tighter prompts, missing knowledge, wrong scope. The goal stated in Cloud 103 is the right one: <em>make every session cheaper than the last.</em></li>
 </ul>
 <p>Cost hygiene that shows up in every field report: scope sessions narrowly, kill idle ones (thinking and waiting both bill), and check quota before kicking off a fleet — the 100 Days operator burned <strong>33% of his weekly quota in two days</strong> of Bot setup (<a href="community-field-reports.html">field reports</a>). Community-reported caveat on Bots specifically: wiring your <em>own</em> model key into a Bot's child sessions does <strong>not</strong> stop the plan's weekly quota from draining — the Bot's own reasoning plus cloud compute still bill to the plan (<a href="https://linux.do/t/topic/3225152">linux.do report</a>, zh).</p>
@@ -108,7 +108,7 @@
 <ol>
 <li><em>Why start a session from Ask Devin instead of the Devin sidebar?</em> Because Plan mode grounds the prompt in indexed code — the where-to-start, the existing pattern, and the checkable surface all come from the repo itself, so the session opens with the context you'd otherwise type or discover mid-run.</li>
 <li><em>The session's own report says the work is done and tested. Why run Devin Review?</em> Independence. The session graded its own homework; Review is a different agent reading the diff with fresh context — same reason a teammate's PR doesn't get self-approved.</li>
-<li><em>ACUs are flat and a session came in at XL. What do you check first?</em> User-messages count in Session Insights — a large session driven by many small corrections is a briefing problem, not a task-size problem. Split or re-brief before assuming the work was just big.</li>
+<li><em>A session came in at XL. What do you check first?</em> Look at its usage and check the Issue Timeline in Session Insights for repeated errors or retries. Many user messages can suggest that the brief needed more context, but they don't affect the size rating.</li>
 </ol>
 <h2 id="sources">Sources<a class="hlink" href="#sources" aria-hidden="true">#</a></h2>
 <ul>

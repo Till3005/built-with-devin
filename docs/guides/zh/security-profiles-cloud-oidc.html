@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>指南 21 — Security Profiles 与 Cloud OIDC — build-with-devin guides</title>
+<meta name="description" content="用两层机制给 Devin 最小权限访问：可复用的 Security Profiles 限制 session 能接触和操作什么；Cloud OIDC 用短期 workload identity 替代长期云凭证。">
+<link rel="canonical" href="https://till3005.github.io/built-with-devin/guides/zh/security-profiles-cloud-oidc.html">
+<link rel="alternate" hreflang="en" href="https://till3005.github.io/built-with-devin/guides/zh/security-profiles-cloud-oidc.html">
+<link rel="alternate" hreflang="ja" href="https://till3005.github.io/built-with-devin/guides/ja/zh/security-profiles-cloud-oidc.html">
+<link rel="alternate" hreflang="pt" href="https://till3005.github.io/built-with-devin/guides/pt/zh/security-profiles-cloud-oidc.html">
+<link rel="alternate" hreflang="zh" href="https://till3005.github.io/built-with-devin/guides/zh/zh/security-profiles-cloud-oidc.html">
+<link rel="alternate" hreflang="x-default" href="https://till3005.github.io/built-with-devin/guides/zh/security-profiles-cloud-oidc.html">
+<link rel="alternate" type="application/rss+xml" title="built-with-devin feed" href="../../feed.xml">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "TechArticle", "headline": "指南 21 — Security Profiles 与 Cloud OIDC", "description": "用两层机制给 Devin 最小权限访问：可复用的 Security Profiles 限制 session 能接触和操作什么；Cloud OIDC 用短期 workload identity 替代长期云凭证。", "inLanguage": "zh", "url": "https://till3005.github.io/built-with-devin/guides/zh/security-profiles-cloud-oidc.html", "isPartOf": {"@type": "Course", "name": "build-with-devin", "url": "https://till3005.github.io/built-with-devin/guides/"}, "dateModified": "2026-11-26"}</script>
+<link rel="icon" href="../../assets/brand/Devin_Symbol.svg" type="image/svg+xml">
+<link rel="stylesheet" href="../../assets/site.css">
+<link rel="stylesheet" href="../../assets/guides.css">
+
+<meta property="og:title" content="指南 21 — Security Profiles 与 Cloud OIDC">
+<meta property="og:description" content="用两层机制给 Devin 最小权限访问：可复用的 Security Profiles 限制 session 能接触和操作什么；Cloud OIDC 用短期 workload identity 替代长期云凭证。">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://till3005.github.io/built-with-devin/guides/zh/security-profiles-cloud-oidc.html">
+<meta property="og:image" content="https://till3005.github.io/built-with-devin/assets/img/og-build.png?v=3">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://till3005.github.io/built-with-devin/assets/img/og-build.png?v=3">
+</head>
+<body>
+<a class="skip" href="#guide">Skip to content</a>
+<nav><div class="wrap nav-inner">
+  <div class="nav-left">
+    <a class="brand" href="../../index.html" aria-label="Built with Devin">
+      <span class="brand-text">built<strong>-with-</strong></span><img class="brand-mark" src="../../assets/brand/Devin_Primary_Logo.svg" alt="Devin" height="16"><span class="unofficial-chip">unofficial</span>
+    </a>
+  </div>
+  <div class="nav-side">
+    <div class="mode-toggle" role="tablist" aria-label="Site section">
+      <button class="mode-btn" data-mode="built" role="tab" aria-selected="false" onclick="location.href='../../index.html'">Built</button>
+      <button class="mode-btn on" data-mode="build" role="tab" aria-selected="true" onclick="location.href='../../index.html#build'">Build</button>
+      <span class="mode-pill" aria-hidden="true"></span>
+    </div>
+    <a class="cta" href="https://github.com/Till3005/build-with-devin/blob/main/guides/zh/security-profiles-cloud-oidc.md">GitHub</a>
+  </div>
+</div></nav>
+<main>
+<article class="guide wrap" id="guide">
+  <p class="guide-crumb"><a href="index.html">← 指南</a> · <a href="../security-profiles-cloud-oidc.html">English</a> · <a href="../ja/security-profiles-cloud-oidc.html">日本語</a> · <a href="../pt/security-profiles-cloud-oidc.html">Português</a></p>
+<p class="guide-meta">更新于 2026-11-26</p>
+<details class="toc" open><summary>本页目录</summary><ol><li class="d2"><a href="#两层心智模型">两层心智模型</a></li><li class="d2"><a href="#security-profile-能限制什么">Security Profile 能限制什么</a></li><li class="d2"><a href="#profile-绑定到哪里">Profile 绑定到哪里</a></li><li class="d2"><a href="#recommended-与-mandatory">Recommended 与 mandatory</a></li><li class="d2"><a href="#cloud-oidc-改变了什么">Cloud OIDC 改变了什么</a></li><li class="d2"><a href="#先设计访问模型">先设计访问模型</a></li><li class="d2"><a href="#构建第一个-security-profile">构建第一个 Security Profile</a></li><li class="d3"><a href="#正向和反向测试">正向和反向测试</a></li><li class="d2"><a href="#automations-与-snapshot-builds">Automations 与 snapshot builds</a></li><li class="d2"><a href="#outposts-警告">Outposts 警告</a></li><li class="d2"><a href="#配置-cloud-oidc">配置 Cloud OIDC</a></li><li class="d2"><a href="#编写最小权限-trust-policies">编写最小权限 trust policies</a></li><li class="d2"><a href="#verify-it">Verify it</a></li><li class="d2"><a href="#常见坑">常见坑</a></li><li class="d2"><a href="#练习">练习</a></li><li class="d2"><a href="#capstone">Capstone</a></li><li class="d2"><a href="#knowledge-check">Knowledge check</a></li><li class="d2"><a href="#sources">Sources</a></li><li class="d2"><a href="#changelog">Changelog</a></li></ol></details>
+<h1>指南 21 — Security Profiles 与 Cloud OIDC</h1>
+<p><strong>目标：</strong> 用两层机制给 Devin 最小权限访问：可复用的 Security Profiles 限制 session 能接触和操作什么；Cloud OIDC 用短期 workload identity 替代长期云凭证。
+<strong>难度：</strong> 高级 / 管理员 · <strong>时间：</strong> 第一个受治理 profile 约 45–90 分钟；云服务配置取决于你的 provider
+<strong>来源：</strong> <a href="https://docs.devin.ai/product-guides/security-profiles">Security Profiles 官方文档</a> · <a href="https://docs.devin.ai/product-guides/oidc">Cloud OIDC 官方文档</a> · 官方文档已于 2026-11-26 核验</p>
+<blockquote>
+<p><strong>证据状态：</strong> 本指南基于官方来源，但尚未在真实云 provider 上独立复现。验证部分区分了能在 Devin 内完成的检查和需要 AWS/GCP/Vault/管理员资源的检查。</p>
+</blockquote>
+<h2 id="两层心智模型">两层心智模型<a class="hlink" href="#两层心智模型" aria-hidden="true">#</a></h2>
+<p>Security Profiles 和 Cloud OIDC 解决的是不同问题：</p>
+<table>
+<thead>
+<tr>
+<th>层</th>
+<th>回答的问题</th>
+<th>机制</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Security Profile</td>
+<td>这个 Devin session 可以接触或操作什么？</td>
+<td>网络 allowlist、MCP allowlist、Devin MCP read-only、git access level、移除 GitHub CLI token</td>
+</tr>
+<tr>
+<td>Cloud OIDC</td>
+<td>这个 session 如何向云服务证明自己是谁？</td>
+<td>由 Devin 签发的短期 identity token，由云服务验证并换成临时、有限权限凭证</td>
+</tr>
+</tbody>
+</table>
+<p>两者应该一起用。Profile 可以阻止 session 接触或操作不该碰的系统；OIDC 则在访问确实合法时，避免存放云端密钥。</p>
+<p>Security Profiles 和 <strong>Devin Security</strong>（漏洞扫描产品面）不是一回事。Profile 不会配置安全扫描。</p>
+<h2 id="security-profile-能限制什么">Security Profile 能限制什么<a class="hlink" href="#security-profile-能限制什么" aria-hidden="true">#</a></h2>
+<p>Profile 是一组可选限制的命名集合。它只约束自己显式配置的设置。</p>
+<table>
+<thead>
+<tr>
+<th>限制</th>
+<th>控制内容</th>
+<th>关键细节</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Network policy</td>
+<td>session 机器允许访问的 outbound destinations</td>
+<td>hostname 支持 <code>*</code> wildcard；支持 IPv4/IPv6 CIDR</td>
+</tr>
+<tr>
+<td>MCP access</td>
+<td>session 可以使用哪些已安装 MCP servers</td>
+<td>独立于 network policy；被允许的 MCP servers 自动可达</td>
+</tr>
+<tr>
+<td>Devin MCP access</td>
+<td>内置 Devin 管理工具是否可写</td>
+<td>read-only 仍可 list/inspect，但不能创建 sessions 或编辑 knowledge 等写操作</td>
+</tr>
+<tr>
+<td>Git access</td>
+<td>只能 clone/fetch，还是完整 push/PR 能力</td>
+<td>read-only 会阻止 push 和创建 PR</td>
+</tr>
+<tr>
+<td>GitHub CLI token</td>
+<td>机器上是否携带可直接调用 GitHub API 的 <code>gh</code> token</td>
+<td>保留它要求 full git access；若设置 network policy，还必须允许 <code>api.github.com</code></td>
+</tr>
+</tbody>
+</table>
+<p>Devin 自身运行必需的目的地（例如连接仓库使用的 git proxy）会自动允许。</p>
+<h2 id="profile-绑定到哪里">Profile 绑定到哪里<a class="hlink" href="#profile-绑定到哪里" aria-hidden="true">#</a></h2>
+<p>Profile 通过层级绑定生效。更具体的绑定优先，除非上层有 mandatory profile 形成底线：</p>
+<ol>
+<li>Enterprise default</li>
+<li>Organization default</li>
+<li>Automations default</li>
+<li>特定 automation</li>
+<li>单个 session</li>
+<li>Bot security profile（作用于该 Bot 启动的 sessions）</li>
+</ol>
+<p>每一层都可以选择 inherit、pin 一个 profile，或显式选择 no profile。Child sessions 遵循和 parent 相同的治理链，所以不能通过委派工作绕过限制。</p>
+<p>运行中的 session 会在 boot 或 wake 时解析自己的 profile。编辑 profile 或 binding 不会 retroactively 改变已经运行的 session；它会立即影响新 session，并在现有 session 下次 resume 时生效。</p>
+<h2 id="recommended-与-mandatory">Recommended 与 mandatory<a class="hlink" href="#recommended-与-mandatory" aria-hidden="true">#</a></h2>
+<p>rollout 初期用 <strong>recommended</strong>。Recommended profile 是默认值，下层可以替换或 opt out。</p>
+<p>当你理解 allowlist 后，再切换到 <strong>mandatory</strong>。Mandatory profile 是底线：</p>
+<ul>
+<li>下层的 “no profile” 会被忽略。</li>
+<li>下层 profile 只能收紧，不能放宽。</li>
+<li>Network 和 MCP allowlists 取交集。</li>
+<li>Git access 取最低级别。</li>
+<li>任一侧要求 read-only，Devin MCP 就是 read-only。</li>
+<li>任一侧移除 GitHub CLI token，token 就被移除。</li>
+<li>即使 session 中临时批准新的 network access，也会被 mandatory policy 夹住。</li>
+</ul>
+<p>所以，mandatory 是企业级边界的正确 primitive；recommended 是团队级 rollout 的正确 primitive。</p>
+<h2 id="cloud-oidc-改变了什么">Cloud OIDC 改变了什么<a class="hlink" href="#cloud-oidc-改变了什么" aria-hidden="true">#</a></h2>
+<p>没有 OIDC 时，session 要访问 AWS、GCP、Vault、JFrog、Databricks 或内部 API，通常需要保存 key 或 token。使用 OIDC 后：</p>
+<ol>
+<li>每个 Devin session 自动获得由 Devin 签发的短期 identity token。</li>
+<li>你的云或服务根据 Devin 的公共 OIDC issuer 验证 token。</li>
+<li>服务把 token 换成临时、有限范围的凭证。</li>
+<li>token 自动过期；没有静态凭证需要轮换或吊销。</li>
+</ol>
+<p>Token 可以携带 <code>org_id</code>、<code>account_id</code>、<code>devin_id</code>、<code>devin_trigger</code>、<code>requesting_user_id</code>、<code>requesting_user_email</code>、<code>service_user_id</code> 等 claims。因此 trust policy 可以授权给整个组织、特定用户，甚至特定 session。</p>
+<p>Issuer 默认是 <code>https://app.devin.ai</code>；企业自定义域名部署时，issuer 是那个自定义 Devin URL。</p>
+<h2 id="先设计访问模型">先设计访问模型<a class="hlink" href="#先设计访问模型" aria-hidden="true">#</a></h2>
+<p>不要先写 YAML。先写清信任边界：</p>
+<ul>
+<li>哪些 sessions 或 automations 真的需要云访问</li>
+<li>需要哪个 provider、project/account</li>
+<li>需要 read-only 还是 write access</li>
+<li>合法需要哪些 network destinations</li>
+<li>应该使用哪些 MCP servers</li>
+<li>是否应该创建 child sessions 或管理 Devin resources</li>
+<li>是否需要超出普通 git 操作的 GitHub API 访问</li>
+</ul>
+<p>然后按真实工作类型创建小 profile，而不是给所有人一个巨大的 profile。</p>
+<p>可参考的起始 profiles：</p>
+<table>
+<thead>
+<tr>
+<th>Profile</th>
+<th>典型用途</th>
+<th>建议姿态</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>research-readonly</code></td>
+<td>证据收集、文档、只读 review</td>
+<td>网络限于所需 docs/repos，git read-only，Devin MCP read-only，无 <code>gh</code> token</td>
+</tr>
+<tr>
+<td><code>automation-pr-writer</code></td>
+<td>CI 修复、依赖更新、卫生循环</td>
+<td>网络限于 repo/package APIs，full git，无无关 MCP，只有必要时保留 <code>gh</code></td>
+</tr>
+<tr>
+<td><code>cloud-operator</code></td>
+<td>基础设施检查或受控操作</td>
+<td>网络收窄到 cloud endpoints，启用 OIDC，云角色严格收窄，不给宽泛 MCP</td>
+</tr>
+<tr>
+<td><code>incident-hotfix</code></td>
+<td>人工监督的事故响应</td>
+<td>限时使用，full git，只允许事故相关 network/MCP，merge/deploy 前必须人工 review</td>
+</tr>
+</tbody>
+</table>
+<h2 id="构建第一个-security-profile">构建第一个 Security Profile<a class="hlink" href="#构建第一个-security-profile" aria-hidden="true">#</a></h2>
+<p>你需要专门的 <strong>Manage security profiles</strong> 权限。Organization admins 默认有组织级权限；enterprise admins 默认有企业级权限。两者都可以通过 custom roles 委派。</p>
+<ol>
+<li>组织级 profile 进入 <strong>Settings → Customization → Security profiles</strong>；企业级 profile 进入 <strong>Enterprise settings → Devin → Security profiles</strong>。</li>
+<li>创建命名窄而明确的 profile，例如 <code>automation-pr-writer</code>，不要叫 <code>default-secure</code>。</li>
+<li>只配置你理解的限制。</li>
+<li>初期保持 <strong>recommended</strong>。</li>
+<li>绑定为 organization default，或 pin 到一个低风险 automation。</li>
+<li>扩大 rollout 前测试正向和反向访问。</li>
+<li>随时间收紧；只有合法 destinations 和 workflows 都覆盖后，才切换为 mandatory。</li>
+</ol>
+<h3 id="正向和反向测试">正向和反向测试<a class="hlink" href="#正向和反向测试" aria-hidden="true">#</a></h3>
+<p>正向测试证明允许的工作仍能进行：</p>
+<ul>
+<li>clone/fetch 目标仓库</li>
+<li>安装目标 package 或访问目标 API</li>
+<li>使用被允许的 MCP server</li>
+<li>在预期 full git 时推送 branch</li>
+</ul>
+<p>反向测试证明边界确实存在：</p>
+<ul>
+<li>不允许的 domain 失败</li>
+<li>不允许的 MCP server 不可用</li>
+<li>read-only git 不能 push</li>
+<li>read-only 模式下 Devin MCP 写操作失败</li>
+<li>token 被移除后，直接 <code>gh api</code> 调用失败</li>
+</ul>
+<p>两类都要记录。“session 启动了”不是安全验证。</p>
+<h2 id="automations-与-snapshot-builds">Automations 与 snapshot builds<a class="hlink" href="#automations-与-snapshot-builds" aria-hidden="true">#</a></h2>
+<p>Automations 可以携带自己的 network policy 和 MCP 选择，但它们只是 restriction-only layers。Automation 永远不能放宽 governing profile；session 只得到 automation 和 profile 两边都允许的内容。</p>
+<p>Snapshot builds 不同：只有 profile 的 network policy 会作用于 builds 和 blueprint author sessions。MCP、git access、GitHub CLI 限制不适用。因为 builds 常需要 session 不需要的 package registries，应使用单独的 <strong>Default profile for snapshot builds</strong> 设置，而不是放宽 session profiles。</p>
+<h2 id="outposts-警告">Outposts 警告<a class="hlink" href="#outposts-警告" aria-hidden="true">#</a></h2>
+<p>在 Devin 管理的 VM 上，Devin 在机器层执行 network policy。在 Outposts 上，执行责任在你的基础设施。</p>
+<p>Devin 会把每个排队 session 的有效 network policy 通过 Outposts API 发布为 <code>spec.network_policy</code>。你的 orchestrator 必须用 egress proxy、Kubernetes <code>NetworkPolicy</code>、VM firewall rules 或等价控制执行它。否则，“mandatory” 网络边界在 outpost 基础设施上并不是真正的硬边界。</p>
+<p>session 被排队或重新排队时要重新读取 <code>spec.network_policy</code>；不要假设它不变。</p>
+<h2 id="配置-cloud-oidc">配置 Cloud OIDC<a class="hlink" href="#配置-cloud-oidc" aria-hidden="true">#</a></h2>
+<p>Cloud OIDC 需要两边都配置：</p>
+<ul>
+<li>云服务必须信任 Devin issuer，并定义哪些 token claims 可以代入哪个 role 或 identity</li>
+<li>Devin environment blueprint 必须安装对应 setup action</li>
+</ul>
+<p>把相关 action 加入 <code>initialize</code>：</p>
+<table>
+<thead>
+<tr>
+<th>服务</th>
+<th>Blueprint action</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>AWS</td>
+<td><code>github.com/CognitionAI/actions/setup-aws-oidc@main</code></td>
+</tr>
+<tr>
+<td>GCP</td>
+<td><code>github.com/CognitionAI/actions/setup-gcp-oidc@main</code></td>
+</tr>
+<tr>
+<td>Vault</td>
+<td><code>github.com/CognitionAI/actions/setup-vault-oidc@main</code></td>
+</tr>
+<tr>
+<td>JFrog</td>
+<td><code>github.com/CognitionAI/actions/setup-jfrog-oidc@main</code></td>
+</tr>
+<tr>
+<td>自定义服务</td>
+<td><code>github.com/CognitionAI/actions/setup-devin-oidc@main</code></td>
+</tr>
+</tbody>
+</table>
+<p>AWS 示例：</p>
+<pre><code class="language-yaml">initialize:
+  - uses: github.com/CognitionAI/actions/setup-aws-oidc@main
+    with:
+      role-arn: &quot;arn:aws:iam::123456789012:role/devin-sessions&quot;
+      region: &quot;us-east-1&quot;
+</code></pre>
+<p>GCP 示例：</p>
+<pre><code class="language-yaml">initialize:
+  - uses: github.com/CognitionAI/actions/setup-gcp-oidc@main
+    with:
+      workload-identity-provider: &quot;projects/123456789/locations/global/workloadIdentityPools/devin/providers/devin-oidc&quot;
+      service-account: &quot;devin@my-project.iam.gserviceaccount.com&quot;
+      project: &quot;my-project&quot;
+</code></pre>
+<p>自定义服务可以为服务接受的 audience 请求 token：</p>
+<pre><code class="language-bash">devin-oidc token --audience my-api --subject-keys &quot;org_id&quot;
+</code></pre>
+<p>你的服务要在正确 issuer 下，根据 Devin 发布在 <code>/.well-known/jwks.json</code> 的 JWKS 验证 token。</p>
+<h2 id="编写最小权限-trust-policies">编写最小权限 trust policies<a class="hlink" href="#编写最小权限-trust-policies" aria-hidden="true">#</a></h2>
+<p>优先使用窄 claims 和窄 roles：</p>
+<ul>
+<li>组织级 automation identity 使用 <code>org_id</code>。</li>
+<li>只允许特定发起人时，加上 <code>requesting_user_email</code> 或 <code>service_user_id</code>。</li>
+<li><code>devin_id</code> 只用于严格收窄的一次性或调试访问；对可复用 automation 通常太窄。</li>
+<li>assumed role 只给这项工作所需权限。</li>
+<li>分开 read-only 和 write-capable roles，不要把一个 role 放宽。</li>
+</ul>
+<p>使用 OIDC 后，云审计日志更有价值，因为操作可以归因到具体 Devin session 和 requesting user，而不是共享静态 key。</p>
+<h2 id="verify-it">Verify it<a class="hlink" href="#verify-it" aria-hidden="true">#</a></h2>
+<p>Devin 侧检查：</p>
+<ul>
+<li>[ ] 测试 session 解析到预期 profile。</li>
+<li>[ ] 被允许的 network、MCP、git、Devin MCP 操作仍可执行。</li>
+<li>[ ] 每个已配置类别中，至少一个不允许的操作失败。</li>
+<li>[ ] 确认 profile 或 binding 编辑影响的是新 session 或 resume 后的 session，而不是假设它会改变正在运行的 session。</li>
+<li>[ ] automation 触发的 sessions 继承了 automation 和 profile 限制的预期交集。</li>
+</ul>
+<p>云侧检查（当你控制 provider 时）：</p>
+<ul>
+<li>[ ] <code>aws sts get-caller-identity</code> 或对应 provider 命令在没有存储 key 的情况下成功。</li>
+<li>[ ] 代入的 identity 是预期的最小权限 role/service account。</li>
+<li>[ ] 云审计日志显示你预期的 Devin session/user identity claims。</li>
+<li>[ ] 错误 audience 或 trust subject 的 token 被拒绝。</li>
+<li>[ ] Devin secrets 或环境中没有长期云凭证。</li>
+</ul>
+<h2 id="常见坑">常见坑<a class="hlink" href="#常见坑" aria-hidden="true">#</a></h2>
+<ul>
+<li><strong>把 profile 当扫描器。</strong> 它是访问控制边界，不是漏洞检测。</li>
+<li><strong>第一个 profile 就 mandatory。</strong> 你会在理解合法 destinations 前阻断真实工作。</li>
+<li><strong>一个巨大 profile。</strong> 按工作形状划分的 profile 才可审计；通用 profile 会变成无意义妥协。</li>
+<li><strong>忘记 <code>api.github.com</code>。</strong> 如果设置 network policy 却不允许 <code>api.github.com</code>，profile 不能保留 GitHub CLI token。</li>
+<li><strong>假设运行中的 session 立即更新。</strong> 它在 boot/wake 时解析 profile。</li>
+<li><strong>假设 Outposts 会自己执行。</strong> operator 必须在 Devin 管理之外的基础设施执行 <code>spec.network_policy</code>。</li>
+<li><strong>用了 OIDC 却不收窄云 trust。</strong> 无 key 不等于安全，如果 role 很宽或 trust policy 接受范围太大。</li>
+<li><strong>旧静态 key 仍保留。</strong> 只有移除或禁用静态 keys，OIDC 才真正降低凭证风险。</li>
+</ul>
+<h2 id="练习">练习<a class="hlink" href="#练习" aria-hidden="true">#</a></h2>
+<ol>
+<li>给依赖更新 automation 写一份 profile 规格：network destinations、git access、MCP 需求，以及是否需要 <code>gh</code>。</li>
+<li>为这个 profile 的每项限制写一个正向测试和一个反向测试。</li>
+<li>给一个项目的只读访问设计 cloud trust policy。哪些 token claims 足够，哪些太窄？</li>
+<li>解释 mandatory enterprise profile 和更严格的 organization profile 如何取交集。</li>
+</ol>
+<h2 id="capstone">Capstone<a class="hlink" href="#capstone" aria-hidden="true">#</a></h2>
+<p>为一个低风险仓库维护任务构建受治理 automation 路径：创建 recommended profile，pin 到 automation，验证正向/反向行为；如条件允许，再给一个云只读操作配置 OIDC，并记录确切证据。只有完成这些后，才提出是否切换为 mandatory。</p>
+<h2 id="knowledge-check">Knowledge check<a class="hlink" href="#knowledge-check" aria-hidden="true">#</a></h2>
+<ol>
+<li>为什么 Security Profiles 和 OIDC 是互补而不是替代？<em>（Profiles 限制 session 能接触或操作什么；OIDC 在不存长期凭证的情况下向服务证明 session 身份。）</em></li>
+<li>为什么从 recommended enforcement 开始？<em>（它让你观察合法访问需求，避免在 allowlist 完整前阻断团队。）</em></li>
+<li>为什么 child-session 委派不能绕过 profile？<em>（children 继承 parent 的同一治理链。）</em></li>
+<li>为什么 OIDC 提高可审计性？<em>（云日志可以把操作归因到 session、organization 和 requesting-user claims，而不是共享静态 key。）</em></li>
+</ol>
+<h2 id="sources">Sources<a class="hlink" href="#sources" aria-hidden="true">#</a></h2>
+<ul>
+<li><a href="https://docs.devin.ai/product-guides/security-profiles">Security Profiles — 官方文档</a></li>
+<li><a href="https://docs.devin.ai/product-guides/oidc">Cloud Authentication with OIDC — 官方文档</a></li>
+<li><a href="https://docs.devin.ai/api-reference/v3/security-profiles/list-organizations-security-profiles">Security Profiles API — 官方 reference</a></li>
+<li><a href="https://github.com/CognitionAI/actions">CognitionAI actions repository</a></li>
+<li><a href="https://docs.devin.ai/cloud/outposts/overview">Devin Outposts overview</a></li>
+</ul>
+<h2 id="changelog">Changelog<a class="hlink" href="#changelog" aria-hidden="true">#</a></h2>
+<ul>
+<li>2026-11-26 — 根据官方文档创建初版。云 provider 复现证据仍待补；验证命令已给出，但尚未在这里独立执行。</li>
+</ul>
+<section class="related"><h3>同阶段 — 二阶 · 规模化</h3><p><a href="bots-201-product-owner.html">指南 2 — 产品所有制 Bot</a> · <a href="bots-202-scheduled-sentinel.html">指南 3 — 定时哨兵 Bot</a> · <a href="bots-203-multi-bot-org.html">指南 4 — 多 Bot 组织</a> · <a href="bots-204-reference-grounded-swarm.html">指南 5 — 参考基准锚定的 swarm</a> · <a href="migrations-at-scale.html">指南 11 — 规模化迁移</a> · <a href="living-evals.html">指南 15 — 生产 trace 驱动的&quot;活&quot;评测集</a> · <a href="enterprise-playbook.html">指南 7 — 企业级铺开模式</a> · <a href="dynamic-workflows.html">指南 20 — Dynamic Workflows</a></p></section>
+<nav class="guide-pager"><a class="pg-prev" href="dynamic-workflows.html"><span class="pg-dir">← 上一篇</span><span class="pg-t">指南 20 — Dynamic Workflows</span></a><a class="pg-next" href="community-field-reports.html"><span class="pg-dir">下一篇 →</span><span class="pg-t">指南 14 — 社区实战报告</span></a></nav>
+</article>
+<footer><div class="wrap foot-base"><span data-i18n="foot.note">Unofficial community project — not affiliated with Cognition AI.</span><span><a href="../../index.html">built-with-devin</a> · <a href="https://github.com/Till3005/build-with-devin">build-with-devin</a></span></div></footer>
+</main>
+<script src="../../assets/theme.js"></script>
+<script src="../../assets/i18n.js"></script>
+<script src="../../assets/i18n-runtime.js"></script>
+</body>
+</html>

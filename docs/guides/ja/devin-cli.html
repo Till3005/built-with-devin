@@ -12,7 +12,7 @@
 <link rel="alternate" hreflang="zh" href="https://till3005.github.io/built-with-devin/guides/zh/ja/devin-cli.html">
 <link rel="alternate" hreflang="x-default" href="https://till3005.github.io/built-with-devin/guides/ja/devin-cli.html">
 <link rel="alternate" type="application/rss+xml" title="built-with-devin feed" href="../../feed.xml">
-<script type="application/ld+json">{"@context": "https://schema.org", "@type": "TechArticle", "headline": "ガイド 12 — Devin CLI と拡張性", "description": "ローカルターミナルの Devin——エージェントをあなたのマシンで実行し、作業を Devin Cloud に渡し、スキル・ルール・プラグイン・フック・サブエージェントで拡張する。", "inLanguage": "ja", "url": "https://till3005.github.io/built-with-devin/guides/ja/devin-cli.html", "isPartOf": {"@type": "Course", "name": "build-with-devin", "url": "https://till3005.github.io/built-with-devin/guides/"}, "dateModified": "2026-11-20"}</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "TechArticle", "headline": "ガイド 12 — Devin CLI と拡張性", "description": "ローカルターミナルの Devin——エージェントをあなたのマシンで実行し、作業を Devin Cloud に渡し、スキル・ルール・プラグイン・フック・サブエージェントで拡張する。", "inLanguage": "ja", "url": "https://till3005.github.io/built-with-devin/guides/ja/devin-cli.html", "isPartOf": {"@type": "Course", "name": "build-with-devin", "url": "https://till3005.github.io/built-with-devin/guides/"}, "dateModified": "2026-11-25"}</script>
 <link rel="icon" href="../../assets/brand/Devin_Symbol.svg" type="image/svg+xml">
 <link rel="stylesheet" href="../../assets/site.css">
 <link rel="stylesheet" href="../../assets/guides.css">
@@ -45,7 +45,7 @@
 <main>
 <article class="guide wrap" id="guide">
   <p class="guide-crumb"><a href="index.html">← ガイド</a> · <a href="../devin-cli.html">English</a> · <a href="../pt/devin-cli.html">Português</a> · <a href="../zh/devin-cli.html">中文</a></p>
-<p class="guide-meta">更新 2026-11-20</p>
+<p class="guide-meta">更新 2026-11-25</p>
 <details class="toc" open><summary>このページの目次</summary><ol><li class="d2"><a href="#概要">概要</a></li><li class="d2"><a href="#重要な部品">重要な部品</a></li><li class="d2"><a href="#拡張性スタック">拡張性スタック</a></li><li class="d2"><a href="#真似る価値のある-3-つのワークフロー">真似る価値のある 3 つのワークフロー</a></li><li class="d2"><a href="#実演-devin-cli-v3000-14-で録画">実演 —— Devin CLI v3000.14 で録画</a></li><li class="d2"><a href="#検証チェックリスト">検証チェックリスト</a></li><li class="d2"><a href="#落とし穴">落とし穴</a></li><li class="d2"><a href="#理解度チェック">理解度チェック</a></li><li class="d2"><a href="#出典">出典</a></li></ol></details>
 <h1>ガイド 12 — Devin CLI と拡張性</h1>
 <p><strong>目標：</strong> ローカルターミナルの Devin——エージェントをあなたのマシンで実行し、作業を Devin Cloud に渡し、スキル・ルール・プラグイン・フック・サブエージェントで拡張する。
@@ -55,9 +55,9 @@
 <p>Devin CLI はターミナルに住み Devin Cloud に接続するコーディングエージェント。2 つの動作モードがあり、力はその往復にある：</p>
 <ul>
 <li><strong>ローカル</strong> —— チェックアウト済みのリポジトリをあなたのマシン上で編集</li>
-<li><strong>クラウド</strong> —— <code>devin --cloud</code> でクラウドセッションを作成/操縦/再開；<code>/handoff</code> でローカルのタスクをクラウド Devin に送り、<code>/pickup</code> でクラウドセッションを手元に引き戻す（<code>/open</code> は Web アプリか Devin Desktop で開く）</li>
+<li><strong>クラウド</strong> —— <code>devin --cloud</code> でクラウドセッションを作成・操作・再開する。ローカルセッションで <code>/handoff</code> を実行すると、タスクを Devin Cloud に引き継げる。CLI で開いたクラウドセッション内で <code>/handoff</code> を実行すると、その PR のブランチを取得して切り替え、そのブランチでローカルセッションを開始する（<code>/open</code> は Web アプリか Devin Desktop でセッションを開く）。</li>
 </ul>
-<pre><code class="language-text">ローカルリポジトリ ──/handoff──► Devin Cloud セッション ──/pickup──► ローカルリポジトリ
+<pre><code class="language-text">ローカルリポジトリ ──/handoff──► Devin Cloud セッション ──/handoff──► ローカルリポジトリ
      ▲                                │
      └──── devin ssh / forward（VM 内を検査）────┘
 </code></pre>
@@ -133,7 +133,7 @@
 </table>
 <p><strong>インポート経路：</strong> <code>read_config_from</code> で Cursor、Windsurf、Claude Code、Copilot、Codex、Kiro、OpenCode、Zed の設定を取り込める——移行は書き直しではなくフラグ一つ。</p>
 <h2 id="真似る価値のある-3-つのワークフロー">真似る価値のある 3 つのワークフロー<a class="hlink" href="#真似る価値のある-3-つのワークフロー" aria-hidden="true">#</a></h2>
-<p><strong>1. ローカル → クラウドへの展開。</strong> タスクをローカルで始め、限界に当たったら <code>/handoff</code> で専用マシン上のクラウドセッションに継続させ、作業は <code>/pickup</code> で手元に引き戻す。</p>
+<p><strong>1. ローカル → クラウドへの展開。</strong> タスクはローカルで始め、クラウドが必要になったら <code>/handoff</code> で Devin のマシンに引き継ぐ。PR ができたら、CLI でそのクラウドセッションを開くか再開し、そこで <code>/handoff</code> を実行して PR のブランチで作業を続ける。</p>
 <p><strong>2. メモリとしてのスキル。</strong> 繰り返す手順（ガイド 11 の移行スキル、緊急修正ランブック、リリースカット）を <code>SKILL.md</code> にする——CLI ドキュメントは<em>成功したセッションの記録</em>をスキルに還流させて隙間を埋めることを推奨。プラグインがパッケージ化してチーム全体に共有する。</p>
 <p><strong>3. フックによるガードレール。</strong> <code>rm -rf</code> パターンをブロックしたりマイグレーションにレビューを強制したりする <code>PreToolUse</code> フック——強制は期待されるモデル挙動ではなくフックに住む。</p>
 <h2 id="実演-devin-cli-v3000-14-で録画">実演 —— Devin CLI v3000.14 で録画<a class="hlink" href="#実演-devin-cli-v3000-14-で録画" aria-hidden="true">#</a></h2>
@@ -169,7 +169,7 @@ Keep it under 10 lines.
 <h2 id="検証チェックリスト">検証チェックリスト<a class="hlink" href="#検証チェックリスト" aria-hidden="true">#</a></h2>
 <ul>
 <li>[ ] <code>devin</code> でローカルセッションが動き、<code>devin --cloud</code> でクラウドセッションを一覧/作成できる</li>
-<li>[ ] <code>/handoff</code> したタスクがクラウドで完了し、<code>/pickup</code> で手元に戻ってきた</li>
+<li>[ ] <code>/handoff</code> でクラウドに送ったタスクから PR が作成され、そのクラウドセッション内で <code>/handoff</code> を実行すると、PR のブランチに切り替わってローカルセッションが始まった</li>
 <li>[ ] スラッシュコマンドで呼んだ <code>SKILL.md</code> があなたの手順を実行した</li>
 <li>[ ] （Enterprise）チームマーケットプレイスがあなたのプラグインを別メンバーに配れた</li>
 </ul>
