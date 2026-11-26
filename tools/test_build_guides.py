@@ -27,7 +27,7 @@ class GuideLinkTests(unittest.TestCase):
             )
             page = out / "ja" / "example.html"
             with patch.multiple(build_guides, SRC=src, OUT=out, last_updated=lambda _: ""):
-                build_guides.render(source, page, "../../", "ja", "", "ja/example.md", "index.html")
+                build_guides.render(source, page, "../../", "ja", "", "ja/example.md", "index.html", mirrors=["ja"])
             html = page.read_text(encoding="utf-8")
             for target in (
                 "other.html?mode=test#verify",
@@ -37,6 +37,10 @@ class GuideLinkTests(unittest.TestCase):
             ):
                 with self.subTest(target=target):
                     self.assertIn(f'href="{target}"', html)
+
+            self.assertIn('hreflang="en" href="https://till3005.github.io/built-with-devin/guides/example.html"', html)
+            self.assertIn('hreflang="ja" href="https://till3005.github.io/built-with-devin/guides/ja/example.html"', html)
+            self.assertNotIn('/guides/ja/ja/', html)
 
 
 if __name__ == "__main__":

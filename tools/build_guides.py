@@ -245,7 +245,7 @@ def render(md_path: Path, out_path: Path, rel: str, lang: str, alt: str, mdsrc: 
         lang=lang, etitle=html_.escape(title, quote=True), edesc=html_.escape(desc, quote=True),
         rel=rel, body=body, alt=alt, mdsrc=mdsrc, page=page, pager=pager,
         crumb=crumb, meta=meta, toc=toc, guides_label=GUIDES_LABEL[lang],
-        ogimage=ogimage, canonical=canonical, hreflang=hreflang_block(page, langs),
+        ogimage=ogimage, canonical=canonical, hreflang=hreflang_block(out_path.name, langs),
         jsonld=jsonld_guide(title, desc, lang, upd, canonical), related=related), encoding="utf-8")
     return title
 
