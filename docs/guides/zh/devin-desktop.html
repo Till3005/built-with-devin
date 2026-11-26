@@ -12,7 +12,7 @@
 <link rel="alternate" hreflang="zh" href="https://till3005.github.io/built-with-devin/guides/zh/devin-desktop.html">
 <link rel="alternate" hreflang="x-default" href="https://till3005.github.io/built-with-devin/guides/devin-desktop.html">
 <link rel="alternate" type="application/rss+xml" title="built-with-devin feed" href="../../feed.xml">
-<script type="application/ld+json">{"@context": "https://schema.org", "@type": "TechArticle", "headline": "指南 17 — Devin Desktop", "description": "面向 agent 的原生编辑器——Devin 的所有面集中在一个窗口：云会话、本地会话（Devin Local）、Bots，外加一个完整的 IDE。", "inLanguage": "zh", "url": "https://till3005.github.io/built-with-devin/guides/zh/devin-desktop.html", "isPartOf": {"@type": "Course", "name": "build-with-devin", "url": "https://till3005.github.io/built-with-devin/guides/"}, "dateModified": "2026-11-24"}</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "TechArticle", "headline": "指南 17 — Devin Desktop", "description": "面向 agent 的原生编辑器——Devin 的所有面集中在一个窗口：云会话、本地会话（Devin Local）、Bots，外加一个完整的 IDE。", "inLanguage": "zh", "url": "https://till3005.github.io/built-with-devin/guides/zh/devin-desktop.html", "isPartOf": {"@type": "Course", "name": "build-with-devin", "url": "https://till3005.github.io/built-with-devin/guides/"}, "dateModified": "2026-11-26"}</script>
 <link rel="icon" href="../../assets/brand/Devin_Symbol.svg" type="image/svg+xml">
 <link rel="stylesheet" href="../../assets/site.css">
 <link rel="stylesheet" href="../../assets/guides.css">
@@ -45,8 +45,8 @@
 <main>
 <article class="guide wrap" id="guide">
   <p class="guide-crumb"><a href="index.html">← 指南</a> · <a data-lang-link="en" href="../devin-desktop.html">English</a> · <a data-lang-link="ja" href="../ja/devin-desktop.html">日本語</a> · <a data-lang-link="pt" href="../pt/devin-desktop.html">Português</a></p>
-<p class="guide-meta">更新于 2026-11-24</p>
-<details class="toc" open><summary>本页目录</summary><ol><li class="d2"><a href="#它是什么">它是什么</a></li><li class="d2"><a href="#agent-command-center">Agent Command Center</a></li><li class="d2"><a href="#devin-local-daemon-变化">Devin Local —— daemon 变化</a></li><li class="d2"><a href="#ide-模式">IDE 模式</a></li><li class="d2"><a href="#两个值得抄的工作流">两个值得抄的工作流</a></li><li class="d2"><a href="#实录演示-录于-devin-desktop-v3-14-30825">实录演示 —— 录于 Devin Desktop v3.14.30825</a></li><li class="d2"><a href="#验证它">验证它</a></li><li class="d2"><a href="#坑">坑</a></li><li class="d2"><a href="#自测">自测</a></li><li class="d2"><a href="#来源">来源</a></li></ol></details>
+<p class="guide-meta">更新于 2026-11-26</p>
+<details class="toc" open><summary>本页目录</summary><ol><li class="d2"><a href="#它是什么">它是什么</a></li><li class="d2"><a href="#agent-command-center">Agent Command Center</a></li><li class="d2"><a href="#devin-local-daemon-变化">Devin Local —— daemon 变化</a></li><li class="d2"><a href="#local-hands-云会话伸手到你的机器">Local Hands —— 云会话伸手到你的机器</a></li><li class="d2"><a href="#ide-模式">IDE 模式</a></li><li class="d2"><a href="#模型说明-swe-2-1">模型说明 —— SWE-2.1</a></li><li class="d2"><a href="#两个值得抄的工作流">两个值得抄的工作流</a></li><li class="d2"><a href="#实录演示-录于-devin-desktop-v3-14-30825">实录演示 —— 录于 Devin Desktop v3.14.30825</a></li><li class="d2"><a href="#验证它">验证它</a></li><li class="d2"><a href="#坑">坑</a></li><li class="d2"><a href="#自测">自测</a></li><li class="d2"><a href="#来源">来源</a></li></ol></details>
 <h1>指南 17 — Devin Desktop</h1>
 <p><strong>目标：</strong> 面向 agent 的原生编辑器——Devin 的所有面集中在一个窗口：云会话、本地会话（Devin Local）、Bots，外加一个完整的 IDE。
 <strong>级别：</strong> 入门
@@ -85,6 +85,8 @@
 <li><strong>标签页</strong>（v3.13.4）：一个窗口里开多个会话和页面，每个标签有自己的前进/后退历史——当成你舰队的浏览器用。</li>
 <li><strong>会话头部 "..." 菜单</strong>：该会话的 MCP servers——按会话开关某一个、或重新授权。</li>
 <li><strong>Devin Review</strong>：PR 走查（diff、bug、测试录像）以页面形式开在同一个窗口——即<a href="the-session-loop.html">指南 19</a> 环路里的审查一环。</li>
+<li><strong>分屏面板</strong>（11 月 23 日）：<code>Option/Alt+点击</code> 会话链接可并排打开——对比两次运行，或一边盯长会话一边开新任务。</li>
+<li><strong><code>Cmd/Ctrl+K</code> 会话搜索</strong>：会话搜索已移入命令面板，Sessions 侧栏的内联搜索移除。</li>
 </ul>
 <h2 id="devin-local-daemon-变化">Devin Local —— daemon 变化<a class="hlink" href="#devin-local-daemon-变化" aria-hidden="true">#</a></h2>
 <p>自 v3.13.4（Desktop）/ v3000.13.4（CLI）起，本地会话跑在<strong>后台进程</strong>里，而不是开在启动它的窗口里：</p>
@@ -96,12 +98,23 @@
 <li><code>devin ls</code>、<code>devin -r</code>、<code>/resume</code> 打开<strong>会话监视器</strong>——按最近更新排序的会话列表，带状态、目录和消息数。</li>
 </ul>
 <p>实际后果：本地工作变成持久的了。开个长任务，合上电脑，从另一个客户端接回来——会话一直在跑。</p>
+<h2 id="local-hands-云会话伸手到你的机器">Local Hands —— 云会话伸手到你的机器<a class="hlink" href="#local-hands-云会话伸手到你的机器" aria-hidden="true">#</a></h2>
+<p>Local Hands 和 Devin Local 不是一回事。Devin Local 本身就是跑在你机器上的会话；Local Hands 则保留云会话和它的 VM，再给它一组经过你批准、在你电脑上执行的工具，用来访问文件、命令或 VPN 内资源。</p>
+<ul>
+<li>Desktop 里直接批准会话中的访问卡。</li>
+<li>Web 端按卡片提示运行 <code>devin connect</code>，并保持进程运行。</li>
+<li>若会话用 <code>devin --cloud</code> 启动，CLI 会自动连接你的机器。</li>
+<li>只有会话 owner 能连接机器；无人值守的定时会话、automation、service-user API 会话不能发起请求。</li>
+</ul>
+<p>Local Hands <strong>不是 Devin Connect</strong>（私有网络功能）。只在云 agent 需要本地状态时使用；每次文件复制和命令执行都按跨边界操作对待。</p>
 <h2 id="ide-模式">IDE 模式<a class="hlink" href="#ide-模式" aria-hidden="true">#</a></h2>
 <ul>
 <li>内嵌 IDE 用 <strong>Cmd/Ctrl+S</strong> 手动保存（不再自动保存）；未保存标签带个点。</li>
 <li>在 Devin Local 的浏览器预览里，<strong>点选一个页面元素或 console 输出会直接放进 composer</strong>——指着 bug 而不是描述 bug。</li>
 <li>Files 标签能预览 PDF、把 CSV/TSV 渲染成表格、播放媒体。</li>
 </ul>
+<h2 id="模型说明-swe-2-1">模型说明 —— SWE-2.1<a class="hlink" href="#模型说明-swe-2-1" aria-hidden="true">#</a></h2>
+<p>SWE-2.1 已在 Devin Desktop、Cloud、CLI 提供。Cognition 称 Desktop/CLI 到 2026 年 12 月 8 日免费，并以折扣价持续到 2027 年 1 月 30 日。<strong>SWE-2.1 Ultrafast</strong> 通过 Cerebras 以 10× token 速度提供同一模型；<strong>SWE-2.1 Cyber</strong> 正在进入 Devin Security，用更宽松的安全护栏支持防御性安全工作。公开 benchmark 数字按厂商自报处理，不当作独立验证。</p>
 <h2 id="两个值得抄的工作流">两个值得抄的工作流<a class="hlink" href="#两个值得抄的工作流" aria-hidden="true">#</a></h2>
 <p><strong>1. 本地 → 云端 → 本地。</strong> 在 Devin Local 干活，碰到瓶颈（需要组织工具、更大并行、比笔记本开着的时间还长），<code>/handoff</code> 到云端，review 完把 PR 拉回来。daemon 让两段都能断点续接。</p>
 <p><strong>2. 一个窗口，所有面。</strong> Command Center 看舰队全局，Local 处理手头这个 repo，Bot 负责你不想盯的产出——Desktop 是唯一让三者共享一个窗口的地方。</p>
@@ -152,7 +165,9 @@
 <h2 id="来源">来源<a class="hlink" href="#来源" aria-hidden="true">#</a></h2>
 <ul>
 <li><a href="https://docs.devin.ai/desktop/changelog">Devin Desktop changelog</a> —— v3.13.4（标签页、后台本地会话）、v3.14（Bots 进 Desktop、<code>DetectProxy</code> 策略）</li>
-<li><a href="https://docs.devin.ai/release-notes/2026">Devin release notes</a> —— 11 月 16 日：<em>Mark done</em> 取代 Archive、订阅侧栏、Phonebook</li>
+<li><a href="https://docs.devin.ai/release-notes/2026">Devin release notes</a> —— 11 月 16/23 日：<em>Mark done</em>、订阅侧栏、Phonebook、分屏、Cmd/Ctrl+K 会话搜索</li>
+<li><a href="https://docs.devin.ai/work-with-devin/local-hands">Local Hands 文档</a>——云会话经 Desktop、<code>devin connect</code> 或 <code>devin --cloud</code> 访问你的机器</li>
+<li><a href="https://cognition.ai/blog/swe-2-1">Introducing SWE-2.1</a>——可用性与厂商自报模型声明</li>
 <li><a href="https://docs.devin.ai/cli/changelog/stable">Devin CLI changelog</a> —— v3000.13.4：<code>devin daemon</code>、<code>--process-model</code>、会话监视器</li>
 <li>相关：<a href="devin-cli.html">指南 12 — Devin CLI 与可扩展性</a> · <a href="bots-101-first-bot.html">指南 1 — 你的第一个 Bot</a></li>
 </ul>

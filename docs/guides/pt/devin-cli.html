@@ -12,7 +12,7 @@
 <link rel="alternate" hreflang="zh" href="https://till3005.github.io/built-with-devin/guides/zh/devin-cli.html">
 <link rel="alternate" hreflang="x-default" href="https://till3005.github.io/built-with-devin/guides/devin-cli.html">
 <link rel="alternate" type="application/rss+xml" title="built-with-devin feed" href="../../feed.xml">
-<script type="application/ld+json">{"@context": "https://schema.org", "@type": "TechArticle", "headline": "Guia 12 — Devin CLI & extensibilidade", "description": "o Devin de terminal local — rode o agente na sua máquina, passe trabalho para o Devin Cloud e estenda-o com skills, rules, plugins, hooks e subagents.", "inLanguage": "pt", "url": "https://till3005.github.io/built-with-devin/guides/pt/devin-cli.html", "isPartOf": {"@type": "Course", "name": "build-with-devin", "url": "https://till3005.github.io/built-with-devin/guides/"}, "dateModified": "2026-11-25"}</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "TechArticle", "headline": "Guia 12 — Devin CLI & extensibilidade", "description": "o Devin de terminal local — rode o agente na sua máquina, passe trabalho para o Devin Cloud e estenda-o com skills, rules, plugins, hooks e subagents.", "inLanguage": "pt", "url": "https://till3005.github.io/built-with-devin/guides/pt/devin-cli.html", "isPartOf": {"@type": "Course", "name": "build-with-devin", "url": "https://till3005.github.io/built-with-devin/guides/"}, "dateModified": "2026-11-26"}</script>
 <link rel="icon" href="../../assets/brand/Devin_Symbol.svg" type="image/svg+xml">
 <link rel="stylesheet" href="../../assets/site.css">
 <link rel="stylesheet" href="../../assets/guides.css">
@@ -45,7 +45,7 @@
 <main>
 <article class="guide wrap" id="guide">
   <p class="guide-crumb"><a href="index.html">← Guias</a> · <a data-lang-link="en" href="../devin-cli.html">English</a> · <a data-lang-link="ja" href="../ja/devin-cli.html">日本語</a> · <a data-lang-link="zh" href="../zh/devin-cli.html">中文</a></p>
-<p class="guide-meta">Atualizado 2026-11-25</p>
+<p class="guide-meta">Atualizado 2026-11-26</p>
 <details class="toc" open><summary>Nesta página</summary><ol><li class="d2"><a href="#o-que-é">O que é</a></li><li class="d2"><a href="#as-peças-que-importam">As peças que importam</a></li><li class="d2"><a href="#o-stack-de-extensibilidade">O stack de extensibilidade</a></li><li class="d2"><a href="#três-workflows-que-valem-copiar">Três workflows que valem copiar</a></li><li class="d2"><a href="#passo-a-passo-gravado-no-devin-cli-v3000-14">Passo a passo — gravado no Devin CLI v3000.14</a></li><li class="d2"><a href="#checklist-de-verificação">Checklist de verificação</a></li><li class="d2"><a href="#armadilhas">Armadilhas</a></li><li class="d2"><a href="#teste-de-conhecimento">Teste de conhecimento</a></li><li class="d2"><a href="#fontes">Fontes</a></li></ol></details>
 <h1>Guia 12 — Devin CLI &amp; extensibilidade</h1>
 <p><strong>Objetivo:</strong> o Devin de terminal local — rode o agente na sua máquina, passe trabalho para o Devin Cloud e estenda-o com skills, rules, plugins, hooks e subagents.
@@ -55,7 +55,7 @@
 <p>O Devin CLI é um agente de código que vive no seu terminal e se conecta ao Devin Cloud. Dois modos de trabalho, e o poder está em mover entre eles:</p>
 <ul>
 <li><strong>Local</strong> — edita seu repo checked-out na sua máquina</li>
-<li><strong>Cloud</strong> — <code>devin --cloud</code> cria, orienta e retoma sessões na nuvem. Use <code>/handoff</code> na sessão local para enviar a tarefa ao Devin Cloud. Na sessão na nuvem, dentro da CLI, o mesmo comando busca a branch do PR, muda o checkout para ela e inicia uma sessão local nessa branch. (<code>/open</code> abre a sessão no web app ou no Devin Desktop.)</li>
+<li><strong>Cloud</strong> — <code>devin --cloud</code> cria, orienta e retoma sessões na nuvem. Use <code>/handoff</code> na sessão local para enviar a tarefa ao Devin Cloud. Na sessão na nuvem, dentro da CLI, o mesmo comando busca a branch do PR, muda o checkout para ela e inicia uma sessão local nessa branch. (<code>/open</code> abre a sessão no web app ou no Devin Desktop.) Uma sessão cloud iniciada assim também pode usar <a href="https://docs.devin.ai/work-with-devin/local-hands">Local Hands</a> para executar comandos/arquivos aprovados na sua máquina; como o CLI detém a conexão, ele conecta automaticamente quando a sessão pede acesso.</li>
 </ul>
 <pre><code class="language-text">repo local ──/handoff──► sessão Devin Cloud ──/handoff──► repo local
      ▲                          │
@@ -80,7 +80,7 @@
 </tr>
 <tr>
 <td>Models</td>
-<td>Adaptive routing escolhe o modelo por tarefa; Fusion emparelha um lead frontier + sidekick barato</td>
+<td>Adaptive routing escolhe o modelo por tarefa; Fusion emparelha um lead frontier + sidekick barato. SWE-2.1 está disponível em CLI/Desktop/Cloud; segundo a Cognition, é grátis no Desktop/CLI até 2026-12-08 e promocional até 2027-01-30</td>
 </tr>
 <tr>
 <td>Daemon</td>
@@ -188,6 +188,8 @@ Keep it under 10 lines.
 <h2 id="fontes">Fontes<a class="hlink" href="#fontes" aria-hidden="true">#</a></h2>
 <ul>
 <li><a href="https://docs.devin.ai/cli/index.md">Docs do Devin CLI</a> — quickstart, comandos, integração cloud, extensibilidade, ACP, modelos</li>
+<li><a href="https://docs.devin.ai/work-with-devin/local-hands">Docs de Local Hands</a> — sessões cloud usando sua máquina via CLI/Desktop</li>
+<li><a href="https://cognition.ai/blog/swe-2-1">Introducing SWE-2.1</a> — disponibilidade e claims de modelo autorrelatados</li>
 <li>Relacionado: <a href="playbooks-and-knowledge.html">Guia 9 — Playbooks &amp; knowledge</a> (mesma camada de convenções, org-wide)</li>
 </ul>
 <section class="related"><h3>Mesmo estágio — Estágio 0 · Fundamentos</h3><p><a href="talking-to-devin.html">Guia 18 — Falando com Devin: a doutrina do prompt</a> · <a href="the-session-loop.html">Guia 19 — O loop completo da sessão: pesquisar, delegar, revisar — e quanto custa</a> · <a href="devin-desktop.html">Guia 17 — Devin Desktop</a> · <a href="bots-101-first-bot.html">Guia 1 — Seu primeiro Bot</a> · <a href="official-cookbook.html">Guia 13 — O cookbook oficial de casos de uso</a></p></section>
