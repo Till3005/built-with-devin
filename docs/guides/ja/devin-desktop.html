@@ -12,7 +12,7 @@
 <link rel="alternate" hreflang="zh" href="https://till3005.github.io/built-with-devin/guides/zh/devin-desktop.html">
 <link rel="alternate" hreflang="x-default" href="https://till3005.github.io/built-with-devin/guides/devin-desktop.html">
 <link rel="alternate" type="application/rss+xml" title="built-with-devin feed" href="../../feed.xml">
-<script type="application/ld+json">{"@context": "https://schema.org", "@type": "TechArticle", "headline": "ガイド 17 — Devin Desktop", "description": "エージェントネイティブなエディタ——Devin の全サーフェスを1つのウィンドウに：クラウドセッション、ローカルセッション（Devin Local）、Bots、そして本物の IDE。", "inLanguage": "ja", "url": "https://till3005.github.io/built-with-devin/guides/ja/devin-desktop.html", "isPartOf": {"@type": "Course", "name": "build-with-devin", "url": "https://till3005.github.io/built-with-devin/guides/"}, "dateModified": "2026-11-24"}</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "TechArticle", "headline": "ガイド 17 — Devin Desktop", "description": "エージェントネイティブなエディタ——Devin の全サーフェスを1つのウィンドウに：クラウドセッション、ローカルセッション（Devin Local）、Bots、そして本物の IDE。", "inLanguage": "ja", "url": "https://till3005.github.io/built-with-devin/guides/ja/devin-desktop.html", "isPartOf": {"@type": "Course", "name": "build-with-devin", "url": "https://till3005.github.io/built-with-devin/guides/"}, "dateModified": "2026-11-26"}</script>
 <link rel="icon" href="../../assets/brand/Devin_Symbol.svg" type="image/svg+xml">
 <link rel="stylesheet" href="../../assets/site.css">
 <link rel="stylesheet" href="../../assets/guides.css">
@@ -45,8 +45,8 @@
 <main>
 <article class="guide wrap" id="guide">
   <p class="guide-crumb"><a href="index.html">← ガイド</a> · <a data-lang-link="en" href="../devin-desktop.html">English</a> · <a data-lang-link="pt" href="../pt/devin-desktop.html">Português</a> · <a data-lang-link="zh" href="../zh/devin-desktop.html">中文</a></p>
-<p class="guide-meta">更新 2026-11-24</p>
-<details class="toc" open><summary>このページの目次</summary><ol><li class="d2"><a href="#これは何か">これは何か</a></li><li class="d2"><a href="#agent-command-center">Agent Command Center</a></li><li class="d2"><a href="#devin-local-daemon-化">Devin Local —— daemon 化</a></li><li class="d2"><a href="#ide-モード">IDE モード</a></li><li class="d2"><a href="#真似る価値のあるワークフロー2つ">真似る価値のあるワークフロー2つ</a></li><li class="d2"><a href="#実録ウォークスルー-devin-desktop-v3-14-30825-で収録">実録ウォークスルー — Devin Desktop v3.14.30825 で収録</a></li><li class="d2"><a href="#検証">検証</a></li><li class="d2"><a href="#落とし穴">落とし穴</a></li><li class="d2"><a href="#理解度チェック">理解度チェック</a></li><li class="d2"><a href="#ソース">ソース</a></li></ol></details>
+<p class="guide-meta">更新 2026-11-26</p>
+<details class="toc" open><summary>このページの目次</summary><ol><li class="d2"><a href="#これは何か">これは何か</a></li><li class="d2"><a href="#agent-command-center">Agent Command Center</a></li><li class="d2"><a href="#devin-local-daemon-化">Devin Local —— daemon 化</a></li><li class="d2"><a href="#local-hands-クラウドセッションがあなたのマシンに届く">Local Hands —— クラウドセッションがあなたのマシンに届く</a></li><li class="d2"><a href="#ide-モード">IDE モード</a></li><li class="d2"><a href="#モデルメモ-swe-2-1">モデルメモ —— SWE-2.1</a></li><li class="d2"><a href="#真似る価値のあるワークフロー2つ">真似る価値のあるワークフロー2つ</a></li><li class="d2"><a href="#実録ウォークスルー-devin-desktop-v3-14-30825-で収録">実録ウォークスルー — Devin Desktop v3.14.30825 で収録</a></li><li class="d2"><a href="#検証">検証</a></li><li class="d2"><a href="#落とし穴">落とし穴</a></li><li class="d2"><a href="#理解度チェック">理解度チェック</a></li><li class="d2"><a href="#ソース">ソース</a></li></ol></details>
 <h1>ガイド 17 — Devin Desktop</h1>
 <p><strong>目標：</strong> エージェントネイティブなエディタ——Devin の全サーフェスを1つのウィンドウに：クラウドセッション、ローカルセッション（Devin Local）、Bots、そして本物の IDE。
 <strong>レベル：</strong> 入門
@@ -85,6 +85,8 @@
 <li><strong>タブ</strong>（v3.13.4）：1つのウィンドウで複数セッションとページを開け、各タブに独自の戻る/進む履歴——フリートのブラウザと考える。</li>
 <li><strong>セッションヘッダーの "..." メニュー</strong>：そのセッションの MCP servers——セッションごとに切替え・再認証。</li>
 <li><strong>Devin Review</strong>：PR ウォークスルー（diff、バグ、テスト録画）が同じウィンドウのページとして開く——<a href="the-session-loop.html">ガイド 19</a> のループにおけるレビュー工程。</li>
+<li><strong>分割ペイン</strong>（11/23）：<code>Option/Alt+click</code> でセッションリンクを並べて開く——2 つの実行を比較、または長時間セッションを監視しながら別件を開始。</li>
+<li><strong><code>Cmd/Ctrl+K</code> のセッション検索</strong>：セッション検索はコマンドパレットへ移動し、Sessions サイドバーのインライン検索は廃止。</li>
 </ul>
 <h2 id="devin-local-daemon-化">Devin Local —— daemon 化<a class="hlink" href="#devin-local-daemon-化" aria-hidden="true">#</a></h2>
 <p>v3.13.4（Desktop）/ v3000.13.4（CLI）以降、ローカルセッションは起動したウィンドウではなく<strong>バックグラウンドプロセス</strong>で動く：</p>
@@ -96,12 +98,23 @@
 <li><code>devin ls</code>、<code>devin -r</code>、<code>/resume</code> は<strong>セッションモニター</strong>を開く——最終更新順のセッション一覧にステータス・ディレクトリ・メッセージ数付き。</li>
 </ul>
 <p>実務上の帰結：ローカル作業が永続化した。長いタスクを始めてノートPCを閉じ、別クライアントから再接続できる——セッションは動き続けている。</p>
+<h2 id="local-hands-クラウドセッションがあなたのマシンに届く">Local Hands —— クラウドセッションがあなたのマシンに届く<a class="hlink" href="#local-hands-クラウドセッションがあなたのマシンに届く" aria-hidden="true">#</a></h2>
+<p>Local Hands は Devin Local とは別物。Devin Local はマシン上で動くセッション本体。Local Hands はクラウドセッションと VM を保ったまま、ファイル・コマンド・VPN 内リソースのために、承認済みツール一式をあなたのコンピュータへ追加する。</p>
+<ul>
+<li>Desktop ではセッションのアクセスカードを承認。</li>
+<li>Web アプリではカードに表示される <code>devin connect</code> を実行したままにする。</li>
+<li><code>devin --cloud</code> で始めたセッションなら CLI が自動接続。</li>
+<li>接続できるのはセッション所有者だけ。無人の scheduled session、automation、service-user の API session は要求できない。</li>
+</ul>
+<p>Local Hands は <strong>Devin Connect ではない</strong>（プライベートネットワーク機能）。クラウド agent がローカル状態を必要とする時だけ使い、ファイルコピーとコマンド実行は境界を越える操作として扱う。</p>
 <h2 id="ide-モード">IDE モード<a class="hlink" href="#ide-モード" aria-hidden="true">#</a></h2>
 <ul>
 <li>埋め込み IDE は <strong>Cmd/Ctrl+S</strong> で手動保存（自動保存は廃止）。未保存タブにはドットが付く。</li>
 <li>Devin Local のブラウザプレビューで<strong>ページ要素やコンソール出力を選ぶと composer に追加される</strong>——バグを説明せず、指し示す。</li>
 <li>Files タブは PDF をプレビュー、CSV/TSV を表として描画、メディアを再生する。</li>
 </ul>
+<h2 id="モデルメモ-swe-2-1">モデルメモ —— SWE-2.1<a class="hlink" href="#モデルメモ-swe-2-1" aria-hidden="true">#</a></h2>
+<p>SWE-2.1 は Devin Desktop、Cloud、CLI で利用可能。Cognition によると Desktop/CLI では 2026-12-08 まで無料、2027-01-30 まで割引価格。<strong>SWE-2.1 Ultrafast</strong> は Cerebras 経由で同一モデルを 10× の token 速度で提供。<strong>SWE-2.1 Cyber</strong> は防御的セキュリティ用途に向け、より permissive な safeguards で Devin Security に展開中。公開 benchmark はベンダー自報として扱い、独立検証と混同しない。</p>
 <h2 id="真似る価値のあるワークフロー2つ">真似る価値のあるワークフロー2つ<a class="hlink" href="#真似る価値のあるワークフロー2つ" aria-hidden="true">#</a></h2>
 <p><strong>1. ローカル → クラウド → ローカル。</strong> Devin Local で作業し、限界に達したら（組織ツールが必要、さらに並列化、ノートPCの稼働時間超過）<code>/handoff</code> でクラウドへ。PR をレビューして手元に戻す。daemon で両側とも再開できる。</p>
 <p><strong>2. 1つのウィンドウ、全サーフェス。</strong> Command Center でフリート全体、Local で手元の repo、Bot で見守りたくない成果——3つが同じウィンドウを共有するのは Desktop だけ。</p>
@@ -152,7 +165,9 @@
 <h2 id="ソース">ソース<a class="hlink" href="#ソース" aria-hidden="true">#</a></h2>
 <ul>
 <li><a href="https://docs.devin.ai/desktop/changelog">Devin Desktop changelog</a> —— v3.13.4（タブ、バックグラウンドローカルセッション）、v3.14（Desktop 内 Bots、<code>DetectProxy</code> ポリシー）</li>
-<li><a href="https://docs.devin.ai/release-notes/2026">Devin リリースノート</a> —— 11/16：<em>Mark done</em> が Archive を置換、購読サイドバー、Phonebook</li>
+<li><a href="https://docs.devin.ai/release-notes/2026">Devin リリースノート</a> —— 11/16・11/23：<em>Mark done</em>、購読サイドバー、Phonebook、分割ペイン、Cmd/Ctrl+K 検索</li>
+<li><a href="https://docs.devin.ai/work-with-devin/local-hands">Local Hands ドキュメント</a> — Desktop、<code>devin connect</code>、<code>devin --cloud</code> 経由のマシンアクセス</li>
+<li><a href="https://cognition.ai/blog/swe-2-1">Introducing SWE-2.1</a> — 提供形態とベンダー自報のモデル主張</li>
 <li><a href="https://docs.devin.ai/cli/changelog/stable">Devin CLI changelog</a> —— v3000.13.4：<code>devin daemon</code>、<code>--process-model</code>、セッションモニター</li>
 <li>関連：<a href="devin-cli.html">ガイド 12 — Devin CLI と拡張性</a> · <a href="bots-101-first-bot.html">ガイド 1 — 初めての Bot</a></li>
 </ul>

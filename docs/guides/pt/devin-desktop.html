@@ -12,7 +12,7 @@
 <link rel="alternate" hreflang="zh" href="https://till3005.github.io/built-with-devin/guides/zh/devin-desktop.html">
 <link rel="alternate" hreflang="x-default" href="https://till3005.github.io/built-with-devin/guides/devin-desktop.html">
 <link rel="alternate" type="application/rss+xml" title="built-with-devin feed" href="../../feed.xml">
-<script type="application/ld+json">{"@context": "https://schema.org", "@type": "TechArticle", "headline": "Guia 17 — Devin Desktop", "description": "o editor nativo de agentes — todas as superfícies do Devin numa janela: sessões cloud, sessões locais Devin Local, Bots e um IDE de verdade em volta.", "inLanguage": "pt", "url": "https://till3005.github.io/built-with-devin/guides/pt/devin-desktop.html", "isPartOf": {"@type": "Course", "name": "build-with-devin", "url": "https://till3005.github.io/built-with-devin/guides/"}, "dateModified": "2026-11-24"}</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "TechArticle", "headline": "Guia 17 — Devin Desktop", "description": "o editor nativo de agentes — todas as superfícies do Devin numa janela: sessões cloud, sessões locais Devin Local, Bots e um IDE de verdade em volta.", "inLanguage": "pt", "url": "https://till3005.github.io/built-with-devin/guides/pt/devin-desktop.html", "isPartOf": {"@type": "Course", "name": "build-with-devin", "url": "https://till3005.github.io/built-with-devin/guides/"}, "dateModified": "2026-11-26"}</script>
 <link rel="icon" href="../../assets/brand/Devin_Symbol.svg" type="image/svg+xml">
 <link rel="stylesheet" href="../../assets/site.css">
 <link rel="stylesheet" href="../../assets/guides.css">
@@ -45,8 +45,8 @@
 <main>
 <article class="guide wrap" id="guide">
   <p class="guide-crumb"><a href="index.html">← Guias</a> · <a data-lang-link="en" href="../devin-desktop.html">English</a> · <a data-lang-link="ja" href="../ja/devin-desktop.html">日本語</a> · <a data-lang-link="zh" href="../zh/devin-desktop.html">中文</a></p>
-<p class="guide-meta">Atualizado 2026-11-24</p>
-<details class="toc" open><summary>Nesta página</summary><ol><li class="d2"><a href="#o-que-é">O que é</a></li><li class="d2"><a href="#agent-command-center">Agent Command Center</a></li><li class="d2"><a href="#devin-local-a-mudança-do-daemon">Devin Local — a mudança do daemon</a></li><li class="d2"><a href="#modo-ide">Modo IDE</a></li><li class="d2"><a href="#dois-fluxos-que-valem-copiar">Dois fluxos que valem copiar</a></li><li class="d2"><a href="#passo-a-passo-real-gravado-no-devin-desktop-v3-14-30825">Passo a passo real — gravado no Devin Desktop v3.14.30825</a></li><li class="d2"><a href="#verifique">Verifique</a></li><li class="d2"><a href="#armadilhas">Armadilhas</a></li><li class="d2"><a href="#teste-rápido">Teste rápido</a></li><li class="d2"><a href="#fontes">Fontes</a></li></ol></details>
+<p class="guide-meta">Atualizado 2026-11-26</p>
+<details class="toc" open><summary>Nesta página</summary><ol><li class="d2"><a href="#o-que-é">O que é</a></li><li class="d2"><a href="#agent-command-center">Agent Command Center</a></li><li class="d2"><a href="#devin-local-a-mudança-do-daemon">Devin Local — a mudança do daemon</a></li><li class="d2"><a href="#local-hands-uma-sessão-cloud-alcança-sua-máquina">Local Hands — uma sessão cloud alcança sua máquina</a></li><li class="d2"><a href="#modo-ide">Modo IDE</a></li><li class="d2"><a href="#notas-de-modelo-swe-2-1">Notas de modelo — SWE-2.1</a></li><li class="d2"><a href="#dois-fluxos-que-valem-copiar">Dois fluxos que valem copiar</a></li><li class="d2"><a href="#passo-a-passo-real-gravado-no-devin-desktop-v3-14-30825">Passo a passo real — gravado no Devin Desktop v3.14.30825</a></li><li class="d2"><a href="#verifique">Verifique</a></li><li class="d2"><a href="#armadilhas">Armadilhas</a></li><li class="d2"><a href="#teste-rápido">Teste rápido</a></li><li class="d2"><a href="#fontes">Fontes</a></li></ol></details>
 <h1>Guia 17 — Devin Desktop</h1>
 <p><strong>Objetivo:</strong> o editor nativo de agentes — todas as superfícies do Devin numa janela: sessões cloud, sessões locais (Devin Local), Bots e um IDE de verdade em volta.
 <strong>Nível:</strong> comece aqui
@@ -85,6 +85,8 @@
 <li><strong>Abas</strong> (v3.13.4): várias sessões e páginas abertas numa janela, cada aba com histórico próprio de voltar/avançar — trate como o navegador da sua frota.</li>
 <li><strong>Menu "..." do cabeçalho da sessão</strong>: os MCP servers da sessão — liga/desliga um, ou reautentica, por sessão.</li>
 <li><strong>Devin Review</strong>: o walkthrough do PR (diff, bugs, gravação do teste) abre como página na mesma janela — a etapa de revisão do loop do <a href="the-session-loop.html">Guia 19</a>.</li>
+<li><strong>Paines lado a lado</strong> (23/11): <code>Option/Alt+clique</code> num link de sessão abre em split pane — compare duas execuções ou monitore uma sessão longa enquanto inicia outra.</li>
+<li><strong>Busca de sessões em <code>Cmd/Ctrl+K</code></strong>: a busca mudou para a command palette; a busca inline da barra Sessions foi removida.</li>
 </ul>
 <h2 id="devin-local-a-mudança-do-daemon">Devin Local — a mudança do daemon<a class="hlink" href="#devin-local-a-mudança-do-daemon" aria-hidden="true">#</a></h2>
 <p>Desde a v3.13.4 (Desktop) / v3000.13.4 (CLI), uma sessão local roda num <strong>processo em background</strong>, não dentro da janela que a iniciou:</p>
@@ -96,12 +98,23 @@
 <li><code>devin ls</code>, <code>devin -r</code> e <code>/resume</code> abrem um <strong>monitor de sessões</strong> — sessões por última atualização, com status, diretório e contagem de mensagens.</li>
 </ul>
 <p>Consequência prática: trabalho local agora é durável. Comece uma tarefa longa, feche o laptop, reconecte de outro cliente — a sessão continuou rodando.</p>
+<h2 id="local-hands-uma-sessão-cloud-alcança-sua-máquina">Local Hands — uma sessão cloud alcança sua máquina<a class="hlink" href="#local-hands-uma-sessão-cloud-alcança-sua-máquina" aria-hidden="true">#</a></h2>
+<p>Local Hands é diferente de Devin Local. Devin Local <em>é</em> uma sessão rodando na sua máquina; Local Hands mantém a sessão cloud e a VM dela, e adiciona um segundo conjunto de ferramentas aprovadas no seu computador para arquivos, comandos ou recursos atrás da VPN.</p>
+<ul>
+<li>No Desktop, aprove o cartão de acesso da sessão.</li>
+<li>No app web, rode o comando <code>devin connect</code> mostrado no cartão e deixe em execução.</li>
+<li>Se a sessão começou com <code>devin --cloud</code>, o CLI conecta sua máquina automaticamente.</li>
+<li>Só o dono da sessão pode conectar uma máquina; sessões agendadas sem humano, automations e sessões API de service user não podem pedir isso.</li>
+</ul>
+<p>Local Hands <strong>não é Devin Connect</strong> (o recurso de rede privada). Use quando o agente cloud precisa de estado local; trate cada cópia de arquivo e comando como travessia de fronteira.</p>
 <h2 id="modo-ide">Modo IDE<a class="hlink" href="#modo-ide" aria-hidden="true">#</a></h2>
 <ul>
 <li>O IDE embutido salva com <strong>Cmd/Ctrl+S</strong> (sem auto-save); abas não salvas mostram um ponto.</li>
 <li>No preview do navegador do Devin Local, <strong>selecionar um elemento da página ou saída do console adiciona ao composer</strong> — aponte o bug em vez de descrevê-lo.</li>
 <li>A aba Files pré-visualiza PDFs, renderiza CSV/TSV como tabelas e toca mídia.</li>
 </ul>
+<h2 id="notas-de-modelo-swe-2-1">Notas de modelo — SWE-2.1<a class="hlink" href="#notas-de-modelo-swe-2-1" aria-hidden="true">#</a></h2>
+<p>SWE-2.1 está disponível no Devin Desktop, Cloud e CLI. Segundo a Cognition, é grátis no Desktop/CLI até 8 de dezembro de 2026 e tem preço promocional até 30 de janeiro de 2027. <strong>SWE-2.1 Ultrafast</strong> serve o mesmo modelo a 10× velocidade de tokens via Cerebras; <strong>SWE-2.1 Cyber</strong> está sendo lançado no Devin Security com salvaguardas mais permissivas para trabalho defensivo. Trate os benchmarks publicados como autorrelato do fornecedor, não verificação independente.</p>
 <h2 id="dois-fluxos-que-valem-copiar">Dois fluxos que valem copiar<a class="hlink" href="#dois-fluxos-que-valem-copiar" aria-hidden="true">#</a></h2>
 <p><strong>1. Local → cloud → local.</strong> Trabalhe no Devin Local, bata no limite (precisa de ferramentas da org, mais paralelismo, mais tempo que o laptop fica aberto), <code>/handoff</code> pro cloud, revise o PR de volta em casa. O daemon torna as duas metades retomáveis.</p>
 <p><strong>2. Uma janela, todas as superfícies.</strong> Command Center para a visão da frota, Local para o repo em que você está, um Bot para o resultado que você não quer cuidar — Desktop é o único lugar onde os três dividem uma janela.</p>
@@ -152,7 +165,9 @@
 <h2 id="fontes">Fontes<a class="hlink" href="#fontes" aria-hidden="true">#</a></h2>
 <ul>
 <li><a href="https://docs.devin.ai/desktop/changelog">Changelog do Devin Desktop</a> — v3.13.4 (abas, sessões locais em background), v3.14 (Bots no Desktop, política <code>DetectProxy</code>)</li>
-<li><a href="https://docs.devin.ai/release-notes/2026">Release notes do Devin</a> — 16/11: <em>Mark done</em> substitui Archive, barra de assinaturas, Phonebook</li>
+<li><a href="https://docs.devin.ai/release-notes/2026">Release notes do Devin</a> — 16/23 de nov.: <em>Mark done</em>, barra de assinaturas, Phonebook, split panes, busca Cmd/Ctrl+K</li>
+<li><a href="https://docs.devin.ai/work-with-devin/local-hands">Docs de Local Hands</a> — acesso de sessão cloud à sua máquina via Desktop, <code>devin connect</code> ou <code>devin --cloud</code></li>
+<li><a href="https://cognition.ai/blog/swe-2-1">Introducing SWE-2.1</a> — disponibilidade e claims de modelo autorrelatados</li>
 <li><a href="https://docs.devin.ai/cli/changelog/stable">Changelog do Devin CLI</a> — v3000.13.4: <code>devin daemon</code>, <code>--process-model</code>, monitor de sessões</li>
 <li>Relacionado: <a href="devin-cli.html">Guia 12 — Devin CLI e extensibilidade</a> · <a href="bots-101-first-bot.html">Guia 1 — Seu primeiro Bot</a></li>
 </ul>

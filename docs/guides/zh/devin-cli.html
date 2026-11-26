@@ -12,7 +12,7 @@
 <link rel="alternate" hreflang="zh" href="https://till3005.github.io/built-with-devin/guides/zh/devin-cli.html">
 <link rel="alternate" hreflang="x-default" href="https://till3005.github.io/built-with-devin/guides/devin-cli.html">
 <link rel="alternate" type="application/rss+xml" title="built-with-devin feed" href="../../feed.xml">
-<script type="application/ld+json">{"@context": "https://schema.org", "@type": "TechArticle", "headline": "指南 12 — Devin CLI 与可扩展性", "description": "终端里的本地 Devin——在你机器上跑 agent、把活交给 Devin Cloud，并用 skills、rules、plugins、hooks、subagents 扩展它。", "inLanguage": "zh", "url": "https://till3005.github.io/built-with-devin/guides/zh/devin-cli.html", "isPartOf": {"@type": "Course", "name": "build-with-devin", "url": "https://till3005.github.io/built-with-devin/guides/"}, "dateModified": "2026-11-25"}</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "TechArticle", "headline": "指南 12 — Devin CLI 与可扩展性", "description": "终端里的本地 Devin——在你机器上跑 agent、把活交给 Devin Cloud，并用 skills、rules、plugins、hooks、subagents 扩展它。", "inLanguage": "zh", "url": "https://till3005.github.io/built-with-devin/guides/zh/devin-cli.html", "isPartOf": {"@type": "Course", "name": "build-with-devin", "url": "https://till3005.github.io/built-with-devin/guides/"}, "dateModified": "2026-11-26"}</script>
 <link rel="icon" href="../../assets/brand/Devin_Symbol.svg" type="image/svg+xml">
 <link rel="stylesheet" href="../../assets/site.css">
 <link rel="stylesheet" href="../../assets/guides.css">
@@ -45,7 +45,7 @@
 <main>
 <article class="guide wrap" id="guide">
   <p class="guide-crumb"><a href="index.html">← 指南</a> · <a data-lang-link="en" href="../devin-cli.html">English</a> · <a data-lang-link="ja" href="../ja/devin-cli.html">日本語</a> · <a data-lang-link="pt" href="../pt/devin-cli.html">Português</a></p>
-<p class="guide-meta">更新于 2026-11-25</p>
+<p class="guide-meta">更新于 2026-11-26</p>
 <details class="toc" open><summary>本页目录</summary><ol><li class="d2"><a href="#它是什么">它是什么</a></li><li class="d2"><a href="#关键组件">关键组件</a></li><li class="d2"><a href="#可扩展性栈">可扩展性栈</a></li><li class="d2"><a href="#三个值得抄的工作流">三个值得抄的工作流</a></li><li class="d2"><a href="#实录-录制于-devin-cli-v3000-14">实录 —— 录制于 Devin CLI v3000.14</a></li><li class="d2"><a href="#verify-it">Verify it</a></li><li class="d2"><a href="#坑">坑</a></li><li class="d2"><a href="#自检">自检</a></li><li class="d2"><a href="#sources">Sources</a></li></ol></details>
 <h1>指南 12 — Devin CLI 与可扩展性</h1>
 <p><strong>目标：</strong> 终端里的本地 Devin——在你机器上跑 agent、把活交给 Devin Cloud，并用 skills、rules、plugins、hooks、subagents 扩展它。
@@ -55,7 +55,7 @@
 <p>Devin CLI 是住在你终端里、连着 Devin Cloud 的编码 agent。两种工作模式，威力在两者之间移动：</p>
 <ul>
 <li><strong>本地</strong> —— 直接编辑你机器上已检出的 repo</li>
-<li><strong>云端</strong> —— <code>devin --cloud</code> 可创建、引导和恢复云端会话。在本地会话中运行 <code>/handoff</code>，可将任务交给 Devin Cloud；在 CLI 里的云端会话中运行同一命令，则会拉取该会话的 PR 分支、切换到该分支，并在其上启动本地会话（<code>/open</code> 会在网页端或 Devin Desktop 中打开会话）。</li>
+<li><strong>云端</strong> —— <code>devin --cloud</code> 可创建、引导和恢复云端会话。在本地会话中运行 <code>/handoff</code>，可将任务交给 Devin Cloud；在 CLI 里的云端会话中运行同一命令，则会拉取该会话的 PR 分支、切换到该分支，并在其上启动本地会话（<code>/open</code> 会在网页端或 Devin Desktop 中打开会话）。这样启动的云会话还可以通过 <a href="https://docs.devin.ai/work-with-devin/local-hands">Local Hands</a> 在你的机器上执行经批准的命令/文件操作；因为连接由 CLI 持有，会话请求访问时它会自动接入。</li>
 </ul>
 <pre><code class="language-text">local repo ──/handoff──► Devin Cloud session ──/handoff──► local repo
      ▲                        │
@@ -80,7 +80,7 @@
 </tr>
 <tr>
 <td>Models</td>
-<td>自适应路由按任务挑模型；Fusion 是前沿主力 + 廉价副手</td>
+<td>自适应路由按任务挑模型；Fusion 是前沿主力 + 廉价副手。SWE-2.1 已在 CLI/Desktop/Cloud 提供；Cognition 称 Desktop/CLI 到 2026-12-08 免费，折扣价到 2027-01-30</td>
 </tr>
 <tr>
 <td>ACP</td>
@@ -188,6 +188,8 @@ Keep it under 10 lines.
 <h2 id="sources">Sources<a class="hlink" href="#sources" aria-hidden="true">#</a></h2>
 <ul>
 <li><a href="https://docs.devin.ai/cli/index.md">Devin CLI docs</a> — quickstart、命令、云集成、可扩展性、ACP、模型</li>
+<li><a href="https://docs.devin.ai/work-with-devin/local-hands">Local Hands 文档</a>——云会话通过 CLI/Desktop 使用你的机器</li>
+<li><a href="https://cognition.ai/blog/swe-2-1">Introducing SWE-2.1</a>——可用性与厂商自报模型声明</li>
 <li>相关：<a href="playbooks-and-knowledge.html">第 9 篇 — Playbooks 与知识层</a>（同一套约定层，组织级）</li>
 </ul>
 <section class="related"><h3>同阶段 — 零阶 · 起步</h3><p><a href="talking-to-devin.html">指南 18 — 跟 Devin 说话：提示词基本法</a> · <a href="the-session-loop.html">指南 19 — 会话全环：研究、委托、审查，以及成本</a> · <a href="devin-desktop.html">指南 17 — Devin Desktop</a> · <a href="bots-101-first-bot.html">指南 1 — 你的第一个 Bot</a> · <a href="official-cookbook.html">指南 13 — 官方用例食谱</a></p></section>

@@ -12,7 +12,7 @@
 <link rel="alternate" hreflang="zh" href="https://till3005.github.io/built-with-devin/guides/zh/devin-cli.html">
 <link rel="alternate" hreflang="x-default" href="https://till3005.github.io/built-with-devin/guides/devin-cli.html">
 <link rel="alternate" type="application/rss+xml" title="built-with-devin feed" href="../../feed.xml">
-<script type="application/ld+json">{"@context": "https://schema.org", "@type": "TechArticle", "headline": "ガイド 12 — Devin CLI と拡張性", "description": "ローカルターミナルの Devin——エージェントをあなたのマシンで実行し、作業を Devin Cloud に渡し、スキル・ルール・プラグイン・フック・サブエージェントで拡張する。", "inLanguage": "ja", "url": "https://till3005.github.io/built-with-devin/guides/ja/devin-cli.html", "isPartOf": {"@type": "Course", "name": "build-with-devin", "url": "https://till3005.github.io/built-with-devin/guides/"}, "dateModified": "2026-11-25"}</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "TechArticle", "headline": "ガイド 12 — Devin CLI と拡張性", "description": "ローカルターミナルの Devin——エージェントをあなたのマシンで実行し、作業を Devin Cloud に渡し、スキル・ルール・プラグイン・フック・サブエージェントで拡張する。", "inLanguage": "ja", "url": "https://till3005.github.io/built-with-devin/guides/ja/devin-cli.html", "isPartOf": {"@type": "Course", "name": "build-with-devin", "url": "https://till3005.github.io/built-with-devin/guides/"}, "dateModified": "2026-11-26"}</script>
 <link rel="icon" href="../../assets/brand/Devin_Symbol.svg" type="image/svg+xml">
 <link rel="stylesheet" href="../../assets/site.css">
 <link rel="stylesheet" href="../../assets/guides.css">
@@ -45,7 +45,7 @@
 <main>
 <article class="guide wrap" id="guide">
   <p class="guide-crumb"><a href="index.html">← ガイド</a> · <a data-lang-link="en" href="../devin-cli.html">English</a> · <a data-lang-link="pt" href="../pt/devin-cli.html">Português</a> · <a data-lang-link="zh" href="../zh/devin-cli.html">中文</a></p>
-<p class="guide-meta">更新 2026-11-25</p>
+<p class="guide-meta">更新 2026-11-26</p>
 <details class="toc" open><summary>このページの目次</summary><ol><li class="d2"><a href="#概要">概要</a></li><li class="d2"><a href="#重要な部品">重要な部品</a></li><li class="d2"><a href="#拡張性スタック">拡張性スタック</a></li><li class="d2"><a href="#真似る価値のある-3-つのワークフロー">真似る価値のある 3 つのワークフロー</a></li><li class="d2"><a href="#実演-devin-cli-v3000-14-で録画">実演 —— Devin CLI v3000.14 で録画</a></li><li class="d2"><a href="#検証チェックリスト">検証チェックリスト</a></li><li class="d2"><a href="#落とし穴">落とし穴</a></li><li class="d2"><a href="#理解度チェック">理解度チェック</a></li><li class="d2"><a href="#出典">出典</a></li></ol></details>
 <h1>ガイド 12 — Devin CLI と拡張性</h1>
 <p><strong>目標：</strong> ローカルターミナルの Devin——エージェントをあなたのマシンで実行し、作業を Devin Cloud に渡し、スキル・ルール・プラグイン・フック・サブエージェントで拡張する。
@@ -55,7 +55,7 @@
 <p>Devin CLI はターミナルに住み Devin Cloud に接続するコーディングエージェント。2 つの動作モードがあり、力はその往復にある：</p>
 <ul>
 <li><strong>ローカル</strong> —— チェックアウト済みのリポジトリをあなたのマシン上で編集</li>
-<li><strong>クラウド</strong> —— <code>devin --cloud</code> でクラウドセッションを作成・操作・再開する。ローカルセッションで <code>/handoff</code> を実行すると、タスクを Devin Cloud に引き継げる。CLI で開いたクラウドセッション内で <code>/handoff</code> を実行すると、その PR のブランチを取得して切り替え、そのブランチでローカルセッションを開始する（<code>/open</code> は Web アプリか Devin Desktop でセッションを開く）。</li>
+<li><strong>クラウド</strong> —— <code>devin --cloud</code> でクラウドセッションを作成・操作・再開する。ローカルセッションで <code>/handoff</code> を実行すると、タスクを Devin Cloud に引き継げる。CLI で開いたクラウドセッション内で <code>/handoff</code> を実行すると、その PR のブランチを取得して切り替え、そのブランチでローカルセッションを開始する（<code>/open</code> は Web アプリか Devin Desktop でセッションを開く）。この方法で始めたクラウドセッションは <a href="https://docs.devin.ai/work-with-devin/local-hands">Local Hands</a> で承認済みコマンド/ファイル操作をあなたのマシン上で実行できる。CLI が接続を持つため、セッションが要求した時に自動で接続される。</li>
 </ul>
 <pre><code class="language-text">ローカルリポジトリ ──/handoff──► Devin Cloud セッション ──/handoff──► ローカルリポジトリ
      ▲                                │
@@ -80,7 +80,7 @@
 </tr>
 <tr>
 <td>モデル</td>
-<td>適応ルーティングがタスクごとにモデルを選択；Fusion はフロンティアリード + 安価なサイドキックのペア</td>
+<td>適応ルーティングがタスクごとにモデルを選択；Fusion はフロンティアリード + 安価なサイドキックのペア。SWE-2.1 は CLI/Desktop/Cloud で利用可能。Cognition によれば Desktop/CLI で 2026-12-08 まで無料、2027-01-30 まで割引</td>
 </tr>
 <tr>
 <td>ACP</td>
@@ -188,6 +188,8 @@ Keep it under 10 lines.
 <h2 id="出典">出典<a class="hlink" href="#出典" aria-hidden="true">#</a></h2>
 <ul>
 <li><a href="https://docs.devin.ai/cli/index.md">Devin CLI ドキュメント</a> — クイックスタート、コマンド、クラウド連携、拡張性、ACP、モデル</li>
+<li><a href="https://docs.devin.ai/work-with-devin/local-hands">Local Hands ドキュメント</a> — CLI/Desktop 経由でクラウドセッションがマシンを使用</li>
+<li><a href="https://cognition.ai/blog/swe-2-1">Introducing SWE-2.1</a> — 提供形態とベンダー自報のモデル主張</li>
 <li>関連：<a href="playbooks-and-knowledge.html">ガイド 9 — プレイブックとナレッジ</a>（同じ規約層の組織版）</li>
 </ul>
 <section class="related"><h3>同じステージ — ステージ0 · 基礎</h3><p><a href="talking-to-devin.html">ガイド 18 — Devin への伝え方：プロンプトの教義</a> · <a href="the-session-loop.html">ガイド 19 — セッションの全ループ：リサーチ、委任、レビュー、そしてコスト</a> · <a href="devin-desktop.html">ガイド 17 — Devin Desktop</a> · <a href="bots-101-first-bot.html">ガイド 1 — 初めての Bot</a> · <a href="official-cookbook.html">ガイド 13 — 公式ユースケース・クックブック</a></p></section>
