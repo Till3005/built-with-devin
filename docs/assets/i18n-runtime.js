@@ -1,11 +1,13 @@
 // Language runtime: applies I18N dict to [data-i18n] nodes; persists choice.
 (function(){
+  const initialDocumentLang=document.documentElement.lang||'en';
   const SUPPORTED=['en','zh','ja','pt'];
   const NAMES={en:'EN',zh:'中文',ja:'日本語',pt:'PT'};
   function cur(){ const l=localStorage.getItem('bwd-lang')||'en'; return SUPPORTED.includes(l)?l:'en'; }
   function apply(lang){
     const dict=I18N[lang]||{};
-    document.documentElement.lang={zh:'zh-CN',ja:'ja',pt:'pt-BR',en:'en'}[lang]||lang;
+    const isGuidePage=!!document.querySelector('article.guide');
+    document.documentElement.lang=isGuidePage?initialDocumentLang:({zh:'zh-CN',ja:'ja',pt:'pt-BR',en:'en'}[lang]||lang);
     document.querySelectorAll('[data-i18n]').forEach(el=>{
       const k=el.dataset.i18n;
       if(!(k in dict)) return;  // en fallback: restore original? store orig once
