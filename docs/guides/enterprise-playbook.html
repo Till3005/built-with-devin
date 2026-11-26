@@ -176,6 +176,7 @@
 </tbody>
 </table>
 <p><strong>How to copy:</strong> find the pipeline stage with the worst human cost (regression cycles, QA); assign it to a Bot or automation; measure the stage's cycle time before/after.</p>
+<p><strong>Self-hosted execution note.</strong> <a href="https://docs.devin.ai/cloud/outposts/overview">Devin Outposts</a> is the separate surface for running sessions on your own infrastructure. Treat it as an infrastructure decision, not a seventh rollout shape: your orchestrator must enforce the session network policy outside Devin-managed VMs.</p>
 <h2 id="anti-patterns-the-cases-imply">Anti-patterns the cases imply<a class="hlink" href="#anti-patterns-the-cases-imply" aria-hidden="true">#</a></h2>
 <ul>
 <li><strong>Tool, not colleague.</strong> The high-number deployments give Devin ownership (repos, surfaces, stages), not assignments — same lesson as Guides 1–5.</li>
