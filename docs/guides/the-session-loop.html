@@ -12,7 +12,7 @@
 <link rel="alternate" hreflang="zh" href="https://till3005.github.io/built-with-devin/guides/zh/the-session-loop.html">
 <link rel="alternate" hreflang="x-default" href="https://till3005.github.io/built-with-devin/guides/the-session-loop.html">
 <link rel="alternate" type="application/rss+xml" title="built-with-devin feed" href="../feed.xml">
-<script type="application/ld+json">{"@context": "https://schema.org", "@type": "TechArticle", "headline": "Guide 19 — The session loop: research, delegate, review, and what it costs", "description": "Run the full Devin loop end to end — understand the codebase before you brief, delegate a scoped session, get an independent review on the PR, and read Session ", "inLanguage": "en", "url": "https://till3005.github.io/built-with-devin/guides/the-session-loop.html", "isPartOf": {"@type": "Course", "name": "build-with-devin", "url": "https://till3005.github.io/built-with-devin/guides/"}, "dateModified": "2026-11-25"}</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "TechArticle", "headline": "Guide 19 — The session loop: research, delegate, review, and what it costs", "description": "Run the full Devin loop end to end — understand the codebase before you brief, delegate a scoped session, get an independent review on the PR, and read Session ", "inLanguage": "en", "url": "https://till3005.github.io/built-with-devin/guides/the-session-loop.html", "isPartOf": {"@type": "Course", "name": "build-with-devin", "url": "https://till3005.github.io/built-with-devin/guides/"}, "dateModified": "2026-11-26"}</script>
 <link rel="icon" href="../assets/brand/Devin_Symbol.svg" type="image/svg+xml">
 <link rel="stylesheet" href="../assets/site.css">
 <link rel="stylesheet" href="../assets/guides.css">
@@ -45,8 +45,8 @@
 <main>
 <article class="guide wrap" id="guide">
   <p class="guide-crumb"><a href="index.html">← Guides</a> · <a data-lang-link="ja" href="ja/the-session-loop.html">日本語</a> · <a data-lang-link="pt" href="pt/the-session-loop.html">Português</a> · <a data-lang-link="zh" href="zh/the-session-loop.html">中文</a></p>
-<p class="guide-meta">Updated 2026-11-25</p>
-<details class="toc" open><summary>On this page</summary><ol><li class="d2"><a href="#the-loop-most-people-skip-half-of">The loop most people skip half of</a></li><li class="d2"><a href="#understand-deepwiki-and-ask-devin-before-you-spend-an-acu">Understand: DeepWiki and Ask Devin before you spend an ACU</a></li><li class="d2"><a href="#delegate-the-step-you-already-know">Delegate — the step you already know</a></li><li class="d2"><a href="#review-a-second-agent-on-every-pr">Review: a second agent on every PR</a></li><li class="d2"><a href="#learn-session-insights-and-the-acu-meter">Learn: Session Insights and the ACU meter</a></li><li class="d2"><a href="#verify-it">Verify it</a></li><li class="d2"><a href="#pitfalls">Pitfalls</a></li><li class="d2"><a href="#knowledge-check">Knowledge check</a></li><li class="d2"><a href="#sources">Sources</a></li></ol></details>
+<p class="guide-meta">Updated 2026-11-26</p>
+<details class="toc" open><summary>On this page</summary><ol><li class="d2"><a href="#the-loop-most-people-skip-half-of">The loop most people skip half of</a></li><li class="d2"><a href="#understand-deepwiki-and-ask-devin-before-you-spend-an-acu">Understand: DeepWiki and Ask Devin before you spend an ACU</a></li><li class="d2"><a href="#delegate-the-step-you-already-know">Delegate — the step you already know</a></li><li class="d2"><a href="#choose-the-delegation-surface">Choose the delegation surface</a></li><li class="d2"><a href="#review-a-second-agent-on-every-pr">Review: a second agent on every PR</a></li><li class="d2"><a href="#learn-session-insights-and-the-acu-meter">Learn: Session Insights and the ACU meter</a></li><li class="d2"><a href="#verify-it">Verify it</a></li><li class="d2"><a href="#pitfalls">Pitfalls</a></li><li class="d2"><a href="#knowledge-check">Knowledge check</a></li><li class="d2"><a href="#sources">Sources</a></li></ol></details>
 <h1>Guide 19 — The session loop: research, delegate, review, and what it costs</h1>
 <p><strong>Goal:</strong> Run the full Devin loop end to end — understand the codebase before you brief, delegate a scoped session, get an independent review on the PR, and read Session Insights so the next loop is cheaper.
 <strong>Level:</strong> Start here (pairs with <a href="talking-to-devin.html">Guide 18</a>)
@@ -74,6 +74,12 @@
 <p>The doctrine pays off twice here: a brief informed by indexed facts is both more specific <em>and</em> shorter.</p>
 <h2 id="delegate-the-step-you-already-know">Delegate — the step you already know<a class="hlink" href="#delegate-the-step-you-already-know" aria-hidden="true">#</a></h2>
 <p>Hand off the Ask-Devin-generated prompt (or your own brief per <a href="talking-to-devin.html">Guide 18</a>) as a scoped session. Everything that changes is what the brief already knows: the files, the pattern, the check, the boundary.</p>
+<h2 id="choose-the-delegation-surface">Choose the delegation surface<a class="hlink" href="#choose-the-delegation-surface" aria-hidden="true">#</a></h2>
+<ul>
+<li><strong>One bounded task:</strong> a normal scoped session is the default.</li>
+<li><strong>Recurring or event-triggered work:</strong> make it an automation, then right-click its row and use <strong>Run now</strong> once before trusting the trigger. If an org secret powers a Preflight check, the Secrets page now warns which automations depend on it before deletion — rebind before rotating it away.</li>
+<li><strong>One large change:</strong> ask Devin for a <strong>stacked PR series</strong> instead of a monolith. A stack is ordered bottom-to-top; every layer shows only its own diff, and merging a layer atomically lands every open PR below it. Stacks are GitHub.com-only, contain 2–100 PRs, and do not use GitHub's regular merge flow. Use them for deliberate layers such as schema → service → UI, not merely because one branch happens to sit on another.</li>
+</ul>
 <h2 id="review-a-second-agent-on-every-pr">Review: a second agent on every PR<a class="hlink" href="#review-a-second-agent-on-every-pr" aria-hidden="true">#</a></h2>
 <p><strong>Devin Review</strong> is an independent reviewer, not a rerun of the session's own opinion:</p>
 <ul>
@@ -117,6 +123,8 @@
 <li><a href="https://docs.devin.ai/work-with-devin/devin-review">Devin Review</a> — <code>/devin review</code>, auto-review, <a href="https://devin.ai/blog/devin-review-2">Review 2.0 cost cut</a></li>
 <li><a href="https://docs.devin.ai/product-guides/session-insights">Session Insights</a> — XS–XL sizing, ACU/message metrics, API</li>
 <li>Next: <a href="talking-to-devin.html">Guide 18 — Talking to Devin</a> if you haven't · <a href="playbooks-and-knowledge.html">Guide 9 — Playbooks</a> to make the improved brief permanent</li>
+<li><a href="https://docs.devin.ai/work-with-devin/stacked-prs">Stacked PRs docs</a> — ordered bottom-up GitHub stacks, atomic merge, limitations</li>
+<li><a href="https://docs.devin.ai/release-notes/overview">Release notes — Nov 23, 2026</a> — automation <code>Run now</code> and Preflight secret dependency warnings</li>
 </ul>
 <section class="related"><h3>Same stage — Stage 0 · Foundations</h3><p><a href="talking-to-devin.html">Guide 18 — Talking to Devin: the prompting doctrine</a> · <a href="devin-desktop.html">Guide 17 — Devin Desktop</a> · <a href="devin-cli.html">Guide 12 — Devin CLI &amp; extensibility</a> · <a href="bots-101-first-bot.html">Guide 1 — Your first Bot</a> · <a href="official-cookbook.html">Guide 13 — The official use-case cookbook</a></p></section>
 <nav class="guide-pager"><a class="pg-prev" href="talking-to-devin.html"><span class="pg-dir">← Previous</span><span class="pg-t">Guide 18 — Talking to Devin: the prompting doctrine</span></a><a class="pg-next" href="devin-desktop.html"><span class="pg-dir">Next →</span><span class="pg-t">Guide 17 — Devin Desktop</span></a></nav>

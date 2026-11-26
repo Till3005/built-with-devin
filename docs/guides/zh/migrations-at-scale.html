@@ -12,7 +12,7 @@
 <link rel="alternate" hreflang="zh" href="https://till3005.github.io/built-with-devin/guides/zh/migrations-at-scale.html">
 <link rel="alternate" hreflang="x-default" href="https://till3005.github.io/built-with-devin/guides/migrations-at-scale.html">
 <link rel="alternate" type="application/rss+xml" title="built-with-devin feed" href="../../feed.xml">
-<script type="application/ld+json">{"@context": "https://schema.org", "@type": "TechArticle", "headline": "指南 11 — 规模化迁移", "description": "把大型迁移（语言、框架、数据库、依赖、架构）跑成几百个已验证的小 PR，而不是一次英雄式重写。", "inLanguage": "zh", "url": "https://till3005.github.io/built-with-devin/guides/zh/migrations-at-scale.html", "isPartOf": {"@type": "Course", "name": "build-with-devin", "url": "https://till3005.github.io/built-with-devin/guides/"}, "dateModified": "2026-11-25"}</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "TechArticle", "headline": "指南 11 — 规模化迁移", "description": "把大型迁移（语言、框架、数据库、依赖、架构）跑成几百个已验证的小 PR，而不是一次英雄式重写。", "inLanguage": "zh", "url": "https://till3005.github.io/built-with-devin/guides/zh/migrations-at-scale.html", "isPartOf": {"@type": "Course", "name": "build-with-devin", "url": "https://till3005.github.io/built-with-devin/guides/"}, "dateModified": "2026-11-26"}</script>
 <link rel="icon" href="../../assets/brand/Devin_Symbol.svg" type="image/svg+xml">
 <link rel="stylesheet" href="../../assets/site.css">
 <link rel="stylesheet" href="../../assets/guides.css">
@@ -45,8 +45,8 @@
 <main>
 <article class="guide wrap" id="guide">
   <p class="guide-crumb"><a href="index.html">← 指南</a> · <a data-lang-link="en" href="../migrations-at-scale.html">English</a> · <a data-lang-link="ja" href="../ja/migrations-at-scale.html">日本語</a> · <a data-lang-link="pt" href="../pt/migrations-at-scale.html">Português</a></p>
-<p class="guide-meta">更新于 2026-11-25</p>
-<details class="toc" open><summary>本页目录</summary><ol><li class="d2"><a href="#官方-playbook">官方 playbook</a></li><li class="d2"><a href="#第-1-步-确认你的迁移够格">第 1 步 — 确认你的迁移够格</a></li><li class="d2"><a href="#第-2-步-切片">第 2 步 — 切片</a></li><li class="d2"><a href="#第-3-步-把变换写成-skill">第 3 步 — 把变换写成 skill</a></li><li class="d2"><a href="#第-4-步-并行会话">第 4 步 — 并行会话</a></li><li class="d2"><a href="#第-5-步-盯错误率-不盯进度条">第 5 步 — 盯错误率，不盯进度条</a></li><li class="d2"><a href="#verify-it">Verify it</a></li><li class="d2"><a href="#坑">坑</a></li><li class="d2"><a href="#自检">自检</a></li><li class="d2"><a href="#实录演示-迁移回路串行跑一遍-录于-devin-cli-v3000-14-swe-2-flash-medium">实录演示 —— 迁移回路串行跑一遍，录于 Devin CLI v3000.14（swe-2-flash-medium）</a></li><li class="d2"><a href="#sources">Sources</a></li></ol></details>
+<p class="guide-meta">更新于 2026-11-26</p>
+<details class="toc" open><summary>本页目录</summary><ol><li class="d2"><a href="#官方-playbook">官方 playbook</a></li><li class="d2"><a href="#第-1-步-确认你的迁移够格">第 1 步 — 确认你的迁移够格</a></li><li class="d2"><a href="#第-2-步-切片">第 2 步 — 切片</a></li><li class="d2"><a href="#第-3-步-把变换写成-skill">第 3 步 — 把变换写成 skill</a></li><li class="d2"><a href="#第-4-步-并行会话">第 4 步 — 并行会话</a></li><li class="d2"><a href="#第-5-步-盯错误率-不盯进度条">第 5 步 — 盯错误率，不盯进度条</a></li><li class="d2"><a href="#什么时候迁移-diff-需要-stack">什么时候迁移 diff 需要 stack</a></li><li class="d2"><a href="#verify-it">Verify it</a></li><li class="d2"><a href="#坑">坑</a></li><li class="d2"><a href="#自检">自检</a></li><li class="d2"><a href="#实录演示-迁移回路串行跑一遍-录于-devin-cli-v3000-14-swe-2-flash-medium">实录演示 —— 迁移回路串行跑一遍，录于 Devin CLI v3000.14（swe-2-flash-medium）</a></li><li class="d2"><a href="#sources">Sources</a></li></ol></details>
 <h1>指南 11 — 规模化迁移</h1>
 <p><strong>目标：</strong> 把大型迁移（语言、框架、数据库、依赖、架构）跑成几百个已验证的小 PR，而不是一次英雄式重写。
 <strong>级别：</strong> 中级 → 高级
@@ -123,6 +123,9 @@
 <li>失败的片回灌进 skill（文档自己的回路：<em>"feed session links into Devin to patch the gaps"</em>——把会话链接喂给 Devin 修补缺口）</li>
 <li>片是隔离的所以合并顺序自由——利用它</li>
 </ul>
+<h2 id="什么时候迁移-diff-需要-stack">什么时候迁移 diff 需要 stack<a class="hlink" href="#什么时候迁移-diff-需要-stack" aria-hidden="true">#</a></h2>
+<p>当多个迁移切片构成同一条连贯依赖链时，不要把它们压成一个无法 review 的巨 diff。当一个连贯改动天然有层次——schema、转换机制、第一个迁移切片、清理——让 Devin 做 <strong>stacked PR series</strong>。每层都是压在下一层之上的小 PR；合并自下而上且原子完成，底层落地后 GitHub 会自动 retarget 剩余层。</p>
+<p>限制也很重要：stacked PRs <strong>只支持 GitHub.com</strong>，包含 2–100 个 PR，不能使用 GitHub 常规 merge 流程。彼此独立的常规迁移切片仍走普通并行 PR；只有必须按顺序落地的依赖层才用 stack。</p>
 <h2 id="verify-it">Verify it<a class="hlink" href="#verify-it" aria-hidden="true">#</a></h2>
 <ul>
 <li>[ ] 每片 ~90 分钟内完成且可独立合并</li>
@@ -161,6 +164,7 @@
 <li><a href="https://docs.devin.ai/use-cases/gallery/index.md">Use-case gallery — Migrations</a></li>
 <li><a href="https://cognition.com/blog/dotnet-migration-with-devin">Cognition 的 .NET 迁移 playbook</a> —— Ask Devin 按上下文给 controller 排序，协调会话并行移植：月 → 周（厂商发布）</li>
 <li>相关：<a href="enterprise-playbook.html">第 7 篇 — 企业级铺开</a>（形态 1 就是本篇的组织级版本）</li>
+<li><a href="https://docs.devin.ai/work-with-devin/stacked-prs">Stacked PRs docs</a> — 自下而上的原子 stack 及其 GitHub.com 限定</li>
 </ul>
 <section class="related"><h3>同阶段 — 二阶 · 规模化</h3><p><a href="bots-201-product-owner.html">指南 2 — 产品所有制 Bot</a> · <a href="bots-202-scheduled-sentinel.html">指南 3 — 定时哨兵 Bot</a> · <a href="bots-203-multi-bot-org.html">指南 4 — 多 Bot 组织</a> · <a href="bots-204-reference-grounded-swarm.html">指南 5 — 参考基准锚定的 swarm</a> · <a href="living-evals.html">指南 15 — 生产 trace 驱动的&quot;活&quot;评测集</a> · <a href="enterprise-playbook.html">指南 7 — 企业级铺开模式</a> · <a href="dynamic-workflows.html">指南 20 — Dynamic Workflows</a> · <a href="security-profiles-cloud-oidc.html">指南 21 — Security Profiles 与 Cloud OIDC</a></p></section>
 <nav class="guide-pager"><a class="pg-prev" href="bots-204-reference-grounded-swarm.html"><span class="pg-dir">← 上一篇</span><span class="pg-t">指南 5 — 参考基准锚定的 swarm</span></a><a class="pg-next" href="living-evals.html"><span class="pg-dir">下一篇 →</span><span class="pg-t">指南 15 — 生产 trace 驱动的&quot;活&quot;评测集</span></a></nav>

@@ -12,7 +12,7 @@
 <link rel="alternate" hreflang="zh" href="https://till3005.github.io/built-with-devin/guides/zh/bots-101-first-bot.html">
 <link rel="alternate" hreflang="x-default" href="https://till3005.github.io/built-with-devin/guides/bots-101-first-bot.html">
 <link rel="alternate" type="application/rss+xml" title="built-with-devin feed" href="../../feed.xml">
-<script type="application/ld+json">{"@context": "https://schema.org", "@type": "TechArticle", "headline": "Guia 1 — Seu primeiro Bot", "description": "criar um Devin Bot que assume um resultado e aprender as seis mecânicas nas quais todos os guias seguintes se apoiam.", "inLanguage": "pt", "url": "https://till3005.github.io/built-with-devin/guides/pt/bots-101-first-bot.html", "isPartOf": {"@type": "Course", "name": "build-with-devin", "url": "https://till3005.github.io/built-with-devin/guides/"}, "dateModified": "2026-11-24"}</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "TechArticle", "headline": "Guia 1 — Seu primeiro Bot", "description": "criar um Devin Bot que assume um resultado e aprender as seis mecânicas nas quais todos os guias seguintes se apoiam.", "inLanguage": "pt", "url": "https://till3005.github.io/built-with-devin/guides/pt/bots-101-first-bot.html", "isPartOf": {"@type": "Course", "name": "build-with-devin", "url": "https://till3005.github.io/built-with-devin/guides/"}, "dateModified": "2026-11-26"}</script>
 <link rel="icon" href="../../assets/brand/Devin_Symbol.svg" type="image/svg+xml">
 <link rel="stylesheet" href="../../assets/site.css">
 <link rel="stylesheet" href="../../assets/guides.css">
@@ -45,7 +45,7 @@
 <main>
 <article class="guide wrap" id="guide">
   <p class="guide-crumb"><a href="index.html">← Guias</a> · <a data-lang-link="en" href="../bots-101-first-bot.html">English</a> · <a data-lang-link="ja" href="../ja/bots-101-first-bot.html">日本語</a> · <a data-lang-link="zh" href="../zh/bots-101-first-bot.html">中文</a></p>
-<p class="guide-meta">Atualizado 2026-11-24</p>
+<p class="guide-meta">Atualizado 2026-11-26</p>
 <details class="toc" open><summary>Nesta página</summary><ol><li class="d2"><a href="#o-que-é-um-bot">O que é um Bot</a></li><li class="d2"><a href="#passo-1-criar">Passo 1 — Criar</a></li><li class="d2"><a href="#passo-2-atribuir-o-resultado">Passo 2 — Atribuir o resultado</a></li><li class="d3"><a href="#uma-primeira-atribuição-limitada">Uma primeira atribuição limitada</a></li><li class="d2"><a href="#passo-3-trabalhar-com-ele">Passo 3 — Trabalhar com ele</a></li><li class="d2"><a href="#passo-4-direcionar-pela-memória-não-por-microgestão">Passo 4 — Direcionar pela memória, não por microgestão</a></li><li class="d2"><a href="#antes-de-compartilhar-acesso-e-uso">Antes de compartilhar — acesso e uso</a></li><li class="d2"><a href="#passo-5-colocar-onde-você-trabalha">Passo 5 — Colocar onde você trabalha</a></li><li class="d2"><a href="#passo-6-agendamentos-e-modos">Passo 6 — Agendamentos e modos</a></li><li class="d2"><a href="#ciclo-de-vida">Ciclo de vida</a></li><li class="d2"><a href="#checklist-de-verificação">Checklist de verificação</a></li><li class="d2"><a href="#armadilhas">Armadilhas</a></li><li class="d2"><a href="#teste-de-conhecimento">Teste de conhecimento</a></li><li class="d2"><a href="#fontes">Fontes</a></li></ol></details>
 <h1>Guia 1 — Seu primeiro Bot</h1>
 <p><strong>Objetivo:</strong> criar um Devin Bot que assume um resultado e aprender as seis mecânicas nas quais todos os guias seguintes se apoiam.
@@ -186,6 +186,7 @@ and any decision you need from me.
 <li><strong>Instructions</strong> (Settings → General): suas regras permanentes — lidas no início de cada sessão que o Bot roda. Coloque política duradoura aqui, não no chat.</li>
 <li><strong>Memory</strong> (Settings → Memory): arquivos que o próprio Bot escreve — preferências, correções, fatos do projeto. Para mudar o que ele lembra, basta dizer no chat ("remember: we deploy via Cloud Run, never bare VMs"). Todo mundo que pode usar o Bot pode ler sua memória — trate a memória de um Bot compartilhado como compartilhada.</li>
 </ul>
+<p>Memória pessoal e memória de Bot são camadas diferentes. Sua memória pessoal é privada dentro de cada organização; a memória do Bot pertence ao Bot e fica visível para todos que podem usá-lo. Devin guarda a memória pessoal como notas Markdown em um memory drive versionado em Git, e uma sessão <strong>Dreaming</strong> aproximadamente diária consolida notas velhas ou sobrepostas. Sessões iniciadas por automações não leem nem escrevem sua memória pessoal; sessões de Bot ainda usam a memória do próprio Bot. Você pode desligar memória pessoal ou Dreaming em <strong>Customize → Memory</strong>, enquanto admins de organização e enterprise podem travar a disponibilidade nas configurações.</p>
 <p>O padrão que escala: corrija o Bot uma vez, deixe-o gravar a correção na memória, e toda sessão futura a herda. A Cognition mergeia mais de 2.000 PRs/semana nesse loop.</p>
 <h2 id="antes-de-compartilhar-acesso-e-uso">Antes de compartilhar — acesso e uso<a class="hlink" href="#antes-de-compartilhar-acesso-e-uso" aria-hidden="true">#</a></h2>
 <p>Duas coisas que os posts de lançamento pulam e a documentação explicita:</p>
@@ -260,6 +261,7 @@ and any decision you need from me.
 </li>
 <li><a href="https://devin.ai/blog/introducing-devin-bots">Introducing Devin Bots</a></li>
 <li>Próximo: <a href="bots-201-product-owner.html">Guia 2 — Bot product-owner</a> · Ver também: <a href="the-session-loop.html">Guia 19 — O loop da sessão</a> (pesquisar → delegar → revisar → aprender)</li>
+<li><a href="https://docs.devin.ai/product-guides/memory">Devin Memory and Dreaming</a> — memória pessoal vs Bot, Dreaming diário, controles de admin</li>
 </ul>
 <section class="related"><h3>Mesmo estágio — Estágio 0 · Fundamentos</h3><p><a href="talking-to-devin.html">Guia 18 — Falando com Devin: a doutrina do prompt</a> · <a href="the-session-loop.html">Guia 19 — O loop completo da sessão: pesquisar, delegar, revisar — e quanto custa</a> · <a href="devin-desktop.html">Guia 17 — Devin Desktop</a> · <a href="devin-cli.html">Guia 12 — Devin CLI &amp; extensibilidade</a> · <a href="official-cookbook.html">Guia 13 — O cookbook oficial de casos de uso</a></p></section>
 <nav class="guide-pager"><a class="pg-prev" href="devin-cli.html"><span class="pg-dir">← Anterior</span><span class="pg-t">Guia 12 — Devin CLI &amp; extensibilidade</span></a><a class="pg-next" href="official-cookbook.html"><span class="pg-dir">Próximo →</span><span class="pg-t">Guia 13 — O cookbook oficial de casos de uso</span></a></nav>

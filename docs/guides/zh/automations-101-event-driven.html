@@ -12,7 +12,7 @@
 <link rel="alternate" hreflang="zh" href="https://till3005.github.io/built-with-devin/guides/zh/automations-101-event-driven.html">
 <link rel="alternate" hreflang="x-default" href="https://till3005.github.io/built-with-devin/guides/automations-101-event-driven.html">
 <link rel="alternate" type="application/rss+xml" title="built-with-devin feed" href="../../feed.xml">
-<script type="application/ld+json">{"@context": "https://schema.org", "@type": "TechArticle", "headline": "指南 6 — 事件驱动的 Automations", "description": "把外部事件——Slack、Teams、GitHub、Linear、Jira、PagerDuty、cron、webhook——接到会自己启动的 Devin 会话上。", "inLanguage": "zh", "url": "https://till3005.github.io/built-with-devin/guides/zh/automations-101-event-driven.html", "isPartOf": {"@type": "Course", "name": "build-with-devin", "url": "https://till3005.github.io/built-with-devin/guides/"}, "dateModified": "2026-11-20"}</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "TechArticle", "headline": "指南 6 — 事件驱动的 Automations", "description": "把外部事件——Slack、Teams、GitHub、Linear、Jira、PagerDuty、cron、webhook——接到会自己启动的 Devin 会话上。", "inLanguage": "zh", "url": "https://till3005.github.io/built-with-devin/guides/zh/automations-101-event-driven.html", "isPartOf": {"@type": "Course", "name": "build-with-devin", "url": "https://till3005.github.io/built-with-devin/guides/"}, "dateModified": "2026-11-26"}</script>
 <link rel="icon" href="../../assets/brand/Devin_Symbol.svg" type="image/svg+xml">
 <link rel="stylesheet" href="../../assets/site.css">
 <link rel="stylesheet" href="../../assets/guides.css">
@@ -45,8 +45,8 @@
 <main>
 <article class="guide wrap" id="guide">
   <p class="guide-crumb"><a href="index.html">← 指南</a> · <a data-lang-link="en" href="../automations-101-event-driven.html">English</a> · <a data-lang-link="ja" href="../ja/automations-101-event-driven.html">日本語</a> · <a data-lang-link="pt" href="../pt/automations-101-event-driven.html">Português</a></p>
-<p class="guide-meta">更新于 2026-11-20</p>
-<details class="toc" open><summary>本页目录</summary><ol><li class="d2"><a href="#解剖">解剖</a></li><li class="d2"><a href="#触发器目录">触发器目录</a></li><li class="d2"><a href="#配方-1-任意-issue-上-devin">配方 1 — 任意 issue 上 /devin</a></li><li class="d2"><a href="#配方-2-ci-失败自修复">配方 2 — CI 失败自修复</a></li><li class="d2"><a href="#配方-3-定时清扫">配方 3 — 定时清扫</a></li><li class="d2"><a href="#动作类型怎么选">动作类型怎么选</a></li><li class="d2"><a href="#动手建">动手建</a></li><li class="d2"><a href="#实录演示-真建-真触发-真验证一个-automation-录于-devin-desktop-v3-14-pro-方案">实录演示 —— 真建、真触发、真验证一个 automation，录于 Devin Desktop v3.14（Pro 方案）</a></li><li class="d2"><a href="#verify-it">Verify it</a></li><li class="d2"><a href="#自检">自检</a></li><li class="d2"><a href="#常见陷阱">常见陷阱</a></li><li class="d2"><a href="#sources">Sources</a></li></ol></details>
+<p class="guide-meta">更新于 2026-11-26</p>
+<details class="toc" open><summary>本页目录</summary><ol><li class="d2"><a href="#解剖">解剖</a></li><li class="d2"><a href="#触发器目录">触发器目录</a></li><li class="d2"><a href="#配方-1-任意-issue-上-devin">配方 1 — 任意 issue 上 /devin</a></li><li class="d2"><a href="#配方-2-ci-失败自修复">配方 2 — CI 失败自修复</a></li><li class="d2"><a href="#配方-3-定时清扫">配方 3 — 定时清扫</a></li><li class="d2"><a href="#动作类型怎么选">动作类型怎么选</a></li><li class="d2"><a href="#动手建">动手建</a></li><li class="d2"><a href="#实录演示-真建-真触发-真验证一个-automation-录于-devin-desktop-v3-14-pro-方案">实录演示 —— 真建、真触发、真验证一个 automation，录于 Devin Desktop v3.14（Pro 方案）</a></li><li class="d2"><a href="#安全地运营它">安全地运营它</a></li><li class="d2"><a href="#verify-it">Verify it</a></li><li class="d2"><a href="#自检">自检</a></li><li class="d2"><a href="#常见陷阱">常见陷阱</a></li><li class="d2"><a href="#sources">Sources</a></li></ol></details>
 <h1>指南 6 — 事件驱动的 Automations</h1>
 <p><strong>目标：</strong> 把外部事件——Slack、Teams、GitHub、Linear、Jira、PagerDuty、cron、webhook——接到会自己启动的 Devin 会话上。
 <strong>级别：</strong> 入门（平台篇）· <strong>用时：</strong> ~20 分钟
@@ -228,6 +228,12 @@ Action:    Start session: &quot;Sweep yesterday's Sentry issues in
 <em>7. 一次如实的磕绊——子会话走 git 代理 clone 两次 403；修法是把 github.com 加进网络白名单 + 匿名 clone 兑底——automation 拉起的会话不会自动继承你本机 shell 的 git 权限</em></p>
 <p><img alt="8. 验证过的产出——一份真把本周 103 个 commit 分类的 changelog，以附件交付" src="https://till3005.github.io/built-with-devin/assets/guides/automations-101-event-driven/step8-report.webp" />
 <em>8. 验证过的产出——一份真把本周 103 个 commit 分类的 changelog，以 artifact 交付</em></p>
+<h2 id="安全地运营它">安全地运营它<a class="hlink" href="#安全地运营它" aria-hidden="true">#</a></h2>
+<ul>
+<li><strong>信任排程前先手动跑一遍。</strong>在 Automations 列表里右键一行，可以看到 <strong>Run now</strong>、<strong>Open in new tab</strong> 和 <strong>Copy link</strong>。在让 cron 或 webhook 无人值守运行前，先用 <strong>Run now</strong> 带一个无害 payload 跑一次；它会走同一条 action 路径，不必等下一次触发。</li>
+<li><strong>secret 可能是 automation 的依赖。</strong>删除 org secret 前，Secrets 页面会列出哪些 automation 的 Preflight check 正在使用它。先轮换或重新绑定这些检查；直接删除会把一次配置清理变成故障。</li>
+<li><strong>Preflight 是成本闸门，不是正确性证明。</strong>用它便宜地跳过无关事件；但即使 preflight 通过，破坏性动作仍要留在显式 review 后面。</li>
+</ul>
 <h2 id="verify-it">Verify it<a class="hlink" href="#verify-it" aria-hidden="true">#</a></h2>
 <ul>
 <li>[ ] 手动触发一次（评论 <code>/devin test</code> 或推一个失败 commit），看到会话带着事件载荷启动</li>
@@ -251,6 +257,7 @@ Action:    Start session: &quot;Sweep yesterday's Sentry issues in
 <li><a href="https://docs.devin.ai/product-guides/automations">Automations — docs</a></li>
 <li><a href="https://www.youtube.com/watch?v=6xxKtIpgOyE">Devin Automations QuickStart (video)</a></li>
 <li>相关：<a href="bots-202-scheduled-sentinel.html">第 3 篇 — 定时哨兵 Bot</a>（在 cron 之上加 Bot 判断）</li>
+<li><a href="https://docs.devin.ai/release-notes/overview">Release notes — 2026-11-23</a> — 右键 <code>Run now</code>；删除 secret 前提示 Preflight 依赖</li>
 </ul>
 <section class="related"><h3>同阶段 — 一阶 · 运转</h3><p><a href="bot-outcome-prompts.html">Bot outcome prompts，逐句拆解</a> · <a href="playbooks-and-knowledge.html">指南 9 — Playbooks 与知识层：把组织约定写成代码</a> · <a href="skills-and-plugins.html">指南 17 — Skills 与 plugins：playbook 之后的封装层</a> · <a href="devin-apps.html">指南 10 — Devin Apps：从聊天里交付一个活工具</a> · <a href="design-with-devin.html">指南 8 — 设计与视觉工作</a></p></section>
 <nav class="guide-pager"><a class="pg-prev" href="bot-outcome-prompts.html"><span class="pg-dir">← 上一篇</span><span class="pg-t">Bot outcome prompts，逐句拆解</span></a><a class="pg-next" href="playbooks-and-knowledge.html"><span class="pg-dir">下一篇 →</span><span class="pg-t">指南 9 — Playbooks 与知识层：把组织约定写成代码</span></a></nav>

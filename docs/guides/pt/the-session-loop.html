@@ -12,7 +12,7 @@
 <link rel="alternate" hreflang="zh" href="https://till3005.github.io/built-with-devin/guides/zh/the-session-loop.html">
 <link rel="alternate" hreflang="x-default" href="https://till3005.github.io/built-with-devin/guides/the-session-loop.html">
 <link rel="alternate" type="application/rss+xml" title="built-with-devin feed" href="../../feed.xml">
-<script type="application/ld+json">{"@context": "https://schema.org", "@type": "TechArticle", "headline": "Guia 19 — O loop completo da sessão: pesquisar, delegar, revisar — e quanto custa", "description": "Rodar o loop completo do Devin de ponta a ponta — entender a codebase via índice antes de escrever o brief, delegar uma sessão com escopo, passar uma revisão in", "inLanguage": "pt", "url": "https://till3005.github.io/built-with-devin/guides/pt/the-session-loop.html", "isPartOf": {"@type": "Course", "name": "build-with-devin", "url": "https://till3005.github.io/built-with-devin/guides/"}, "dateModified": "2026-11-25"}</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "TechArticle", "headline": "Guia 19 — O loop completo da sessão: pesquisar, delegar, revisar — e quanto custa", "description": "Rodar o loop completo do Devin de ponta a ponta — entender a codebase via índice antes de escrever o brief, delegar uma sessão com escopo, passar uma revisão in", "inLanguage": "pt", "url": "https://till3005.github.io/built-with-devin/guides/pt/the-session-loop.html", "isPartOf": {"@type": "Course", "name": "build-with-devin", "url": "https://till3005.github.io/built-with-devin/guides/"}, "dateModified": "2026-11-26"}</script>
 <link rel="icon" href="../../assets/brand/Devin_Symbol.svg" type="image/svg+xml">
 <link rel="stylesheet" href="../../assets/site.css">
 <link rel="stylesheet" href="../../assets/guides.css">
@@ -45,8 +45,8 @@
 <main>
 <article class="guide wrap" id="guide">
   <p class="guide-crumb"><a href="index.html">← Guias</a> · <a data-lang-link="en" href="../the-session-loop.html">English</a> · <a data-lang-link="ja" href="../ja/the-session-loop.html">日本語</a> · <a data-lang-link="zh" href="../zh/the-session-loop.html">中文</a></p>
-<p class="guide-meta">Atualizado 2026-11-25</p>
-<details class="toc" open><summary>Nesta página</summary><ol><li class="d2"><a href="#o-loop-que-a-maioria-só-roda-pela-metade">O loop que a maioria só roda pela metade</a></li><li class="d2"><a href="#entender-deepwiki-e-ask-devin-antes-de-gastar-o-primeiro-acu">Entender: DeepWiki e Ask Devin antes de gastar o primeiro ACU</a></li><li class="d2"><a href="#delegar-o-passo-que-você-já-conhece">Delegar — o passo que você já conhece</a></li><li class="d2"><a href="#revisar-um-segundo-agente-em-todo-pr">Revisar: um segundo agente em todo PR</a></li><li class="d2"><a href="#aprender-session-insights-e-o-medidor-de-acu">Aprender: Session Insights e o medidor de ACU</a></li><li class="d2"><a href="#checklist-de-verificação">Checklist de verificação</a></li><li class="d2"><a href="#armadilhas">Armadilhas</a></li><li class="d2"><a href="#teste-de-conhecimento">Teste de conhecimento</a></li><li class="d2"><a href="#fontes">Fontes</a></li></ol></details>
+<p class="guide-meta">Atualizado 2026-11-26</p>
+<details class="toc" open><summary>Nesta página</summary><ol><li class="d2"><a href="#o-loop-que-a-maioria-só-roda-pela-metade">O loop que a maioria só roda pela metade</a></li><li class="d2"><a href="#entender-deepwiki-e-ask-devin-antes-de-gastar-o-primeiro-acu">Entender: DeepWiki e Ask Devin antes de gastar o primeiro ACU</a></li><li class="d2"><a href="#delegar-o-passo-que-você-já-conhece">Delegar — o passo que você já conhece</a></li><li class="d2"><a href="#escolha-a-superfície-de-delegação">Escolha a superfície de delegação</a></li><li class="d2"><a href="#revisar-um-segundo-agente-em-todo-pr">Revisar: um segundo agente em todo PR</a></li><li class="d2"><a href="#aprender-session-insights-e-o-medidor-de-acu">Aprender: Session Insights e o medidor de ACU</a></li><li class="d2"><a href="#checklist-de-verificação">Checklist de verificação</a></li><li class="d2"><a href="#armadilhas">Armadilhas</a></li><li class="d2"><a href="#teste-de-conhecimento">Teste de conhecimento</a></li><li class="d2"><a href="#fontes">Fontes</a></li></ol></details>
 <h1>Guia 19 — O loop completo da sessão: pesquisar, delegar, revisar — e quanto custa</h1>
 <p><strong>Objetivo:</strong> Rodar o loop completo do Devin de ponta a ponta — entender a codebase via índice antes de escrever o brief, delegar uma sessão com escopo, passar uma revisão independente no PR e ler o Session Insights para o próximo loop sair mais barato.
 <strong>Nível:</strong> Inicial (par do <a href="talking-to-devin.html">Guia 18</a>)
@@ -74,6 +74,12 @@
 <p>O retorno é duplo: um brief informado por fatos indexados é mais específico <em>e</em> mais curto.</p>
 <h2 id="delegar-o-passo-que-você-já-conhece">Delegar — o passo que você já conhece<a class="hlink" href="#delegar-o-passo-que-você-já-conhece" aria-hidden="true">#</a></h2>
 <p>Entregue o prompt gerado pelo Ask Devin (ou seu próprio brief do <a href="talking-to-devin.html">Guia 18</a>) como uma sessão com escopo. O que muda é que o brief já sabe tudo: os arquivos, o padrão, o check, o limite.</p>
+<h2 id="escolha-a-superfície-de-delegação">Escolha a superfície de delegação<a class="hlink" href="#escolha-a-superfície-de-delegação" aria-hidden="true">#</a></h2>
+<ul>
+<li><strong>Uma tarefa delimitada:</strong> uma sessão normal com escopo é o padrão.</li>
+<li><strong>Trabalho recorrente ou disparado por evento:</strong> transforme em automação e use <strong>Run now</strong> no menu de contexto da linha antes de confiar no gatilho. Se um secret da organização alimenta um Preflight check, a página Secrets agora mostra quais automações dependem dele antes da exclusão — religue antes de rotacionar/remover.</li>
+<li><strong>Uma mudança grande:</strong> peça a Devin uma <strong>série de PRs empilhados</strong> em vez de um monólito. A stack é ordenada de baixo para cima; cada camada mostra apenas o próprio diff, e mergear uma camada aplica atomicamente todos os PRs abertos abaixo dela. Stacks só existem no GitHub.com, têm 2–100 PRs e não usam o fluxo normal de merge do GitHub. Use para camadas deliberadas como schema → serviço → UI, não apenas porque um branch ficou sobre outro.</li>
+</ul>
 <h2 id="revisar-um-segundo-agente-em-todo-pr">Revisar: um segundo agente em todo PR<a class="hlink" href="#revisar-um-segundo-agente-em-todo-pr" aria-hidden="true">#</a></h2>
 <p>O <strong>Devin Review</strong> é um revisor independente, não um replay da autoavaliação da sessão:</p>
 <ul>
@@ -117,6 +123,8 @@
 <li><a href="https://docs.devin.ai/work-with-devin/devin-review">Devin Review</a> — <code>/devin review</code>, auto-review, <a href="https://devin.ai/blog/devin-review-2">corte de custo do Review 2.0</a></li>
 <li><a href="https://docs.devin.ai/product-guides/session-insights">Session Insights</a> — dimensionamento XS–XL, métricas de ACU/mensagens, API</li>
 <li>Próximo: <a href="talking-to-devin.html">Guia 18 — Falando com o Devin</a> se ainda não leu · <a href="playbooks-and-knowledge.html">Guia 9 — Playbooks</a> para fixar o brief melhorado</li>
+<li><a href="https://docs.devin.ai/work-with-devin/stacked-prs">Stacked PRs docs</a> — stacks GitHub bottom-up, merge atômico, limitações</li>
+<li><a href="https://docs.devin.ai/release-notes/overview">Release notes — 23 nov 2026</a> — <code>Run now</code> em automações e aviso de dependência de secret em Preflight</li>
 </ul>
 <section class="related"><h3>Mesmo estágio — Estágio 0 · Fundamentos</h3><p><a href="talking-to-devin.html">Guia 18 — Falando com Devin: a doutrina do prompt</a> · <a href="devin-desktop.html">Guia 17 — Devin Desktop</a> · <a href="devin-cli.html">Guia 12 — Devin CLI &amp; extensibilidade</a> · <a href="bots-101-first-bot.html">Guia 1 — Seu primeiro Bot</a> · <a href="official-cookbook.html">Guia 13 — O cookbook oficial de casos de uso</a></p></section>
 <nav class="guide-pager"><a class="pg-prev" href="talking-to-devin.html"><span class="pg-dir">← Anterior</span><span class="pg-t">Guia 18 — Falando com Devin: a doutrina do prompt</span></a><a class="pg-next" href="devin-desktop.html"><span class="pg-dir">Próximo →</span><span class="pg-t">Guia 17 — Devin Desktop</span></a></nav>

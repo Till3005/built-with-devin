@@ -12,7 +12,7 @@
 <link rel="alternate" hreflang="zh" href="https://till3005.github.io/built-with-devin/guides/zh/skills-and-plugins.html">
 <link rel="alternate" hreflang="x-default" href="https://till3005.github.io/built-with-devin/guides/skills-and-plugins.html">
 <link rel="alternate" type="application/rss+xml" title="built-with-devin feed" href="../feed.xml">
-<script type="application/ld+json">{"@context": "https://schema.org", "@type": "TechArticle", "headline": "Guide 17 — Skills & plugins: the post-playbook packaging layer", "description": "encode your org's repeatable procedures as SKILL.md files so every session and Bot follows them — and package/share them across repos with plugins.", "inLanguage": "en", "url": "https://till3005.github.io/built-with-devin/guides/skills-and-plugins.html", "isPartOf": {"@type": "Course", "name": "build-with-devin", "url": "https://till3005.github.io/built-with-devin/guides/"}, "dateModified": "2026-11-19"}</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "TechArticle", "headline": "Guide 17 — Skills & plugins: the post-playbook packaging layer", "description": "encode your org's repeatable procedures as SKILL.md files so every session and Bot follows them — and package/share them across repos with plugins.", "inLanguage": "en", "url": "https://till3005.github.io/built-with-devin/guides/skills-and-plugins.html", "isPartOf": {"@type": "Course", "name": "build-with-devin", "url": "https://till3005.github.io/built-with-devin/guides/"}, "dateModified": "2026-11-26"}</script>
 <link rel="icon" href="../assets/brand/Devin_Symbol.svg" type="image/svg+xml">
 <link rel="stylesheet" href="../assets/site.css">
 <link rel="stylesheet" href="../assets/guides.css">
@@ -45,8 +45,8 @@
 <main>
 <article class="guide wrap" id="guide">
   <p class="guide-crumb"><a href="index.html">← Guides</a> · <a data-lang-link="ja" href="ja/skills-and-plugins.html">日本語</a> · <a data-lang-link="pt" href="pt/skills-and-plugins.html">Português</a> · <a data-lang-link="zh" href="zh/skills-and-plugins.html">中文</a></p>
-<p class="guide-meta">Updated 2026-11-19</p>
-<details class="toc" open><summary>On this page</summary><ol><li class="d2"><a href="#why-skills-are-the-layer-that-matters-now">Why skills are the layer that matters now</a></li><li class="d2"><a href="#step-1-where-skills-live">Step 1 — Where skills live</a></li><li class="d2"><a href="#step-2-the-skill-md-contract">Step 2 — The SKILL.md contract</a></li><li class="d2"><a href="#step-3-invocation-paths">Step 3 — Invocation paths</a></li><li class="d2"><a href="#step-4-growing-the-library">Step 4 — Growing the library</a></li><li class="d2"><a href="#walkthrough-a-repo-skill-invoked-for-real-on-devin-cli-v3000-14-swe-2-flash-medium">Walkthrough — a repo skill invoked for real, on Devin CLI v3000.14 (swe-2-flash-medium)</a></li><li class="d2"><a href="#verify-it">Verify it</a></li><li class="d2"><a href="#pitfalls">Pitfalls</a></li><li class="d2"><a href="#knowledge-check">Knowledge check</a></li><li class="d2"><a href="#sources">Sources</a></li></ol></details>
+<p class="guide-meta">Updated 2026-11-26</p>
+<details class="toc" open><summary>On this page</summary><ol><li class="d2"><a href="#why-skills-are-the-layer-that-matters-now">Why skills are the layer that matters now</a></li><li class="d2"><a href="#step-1-where-skills-live">Step 1 — Where skills live</a></li><li class="d2"><a href="#step-2-the-skill-md-contract">Step 2 — The SKILL.md contract</a></li><li class="d2"><a href="#step-3-invocation-paths">Step 3 — Invocation paths</a></li><li class="d2"><a href="#step-4-growing-the-library">Step 4 — Growing the library</a></li><li class="d2"><a href="#walkthrough-a-repo-skill-invoked-for-real-on-devin-cli-v3000-14-swe-2-flash-medium">Walkthrough — a repo skill invoked for real, on Devin CLI v3000.14 (swe-2-flash-medium)</a></li><li class="d2"><a href="#govern-plugins-and-mcp-access">Govern plugins and MCP access</a></li><li class="d2"><a href="#verify-it">Verify it</a></li><li class="d2"><a href="#pitfalls">Pitfalls</a></li><li class="d2"><a href="#knowledge-check">Knowledge check</a></li><li class="d2"><a href="#sources">Sources</a></li></ol></details>
 <h1>Guide 17 — Skills &amp; plugins: the post-playbook packaging layer</h1>
 <p><strong>Goal:</strong> encode your org's repeatable procedures as <code>SKILL.md</code> files so every session and Bot follows them — and package/share them across repos with plugins.
 <strong>Level:</strong> intermediate · the layer that replaced playbooks
@@ -145,6 +145,13 @@ permissions:
 <em>4. The procedure runs verbatim — <code>python3 -m unittest -v</code>, then reads app.py, orders.py, both test files</em></p>
 <p><img alt="5. Result: full coverage — per-function tables naming every branch; no files modified, no commits" src="https://till3005.github.io/built-with-devin/assets/guides/skills-and-plugins/step5-full-coverage.webp" />
 <em>5. Result: full coverage — every branch accounted for, exactly the report the SKILL.md asked for</em></p>
+<h2 id="govern-plugins-and-mcp-access">Govern plugins and MCP access<a class="hlink" href="#govern-plugins-and-mcp-access" aria-hidden="true">#</a></h2>
+<ul>
+<li><strong>Offered vs. Required is an admin choice.</strong> Org and enterprise admins can mark a marketplace plugin as <strong>Offered</strong> instead of <strong>Required</strong>. Required plugins are part of the managed baseline; Offered plugins are optional for members. Do not use Required for a convenience bundle — it expands the managed baseline for every member.</li>
+<li><strong>Use the narrowest MCP approval.</strong> MCP tool approval cards now include <strong>Allow for this session</strong>. Prefer it when the task needs a tool repeatedly but the permission should die with the session; reserve broader approval for tools you have already audited.</li>
+<li><strong>API keys belong in secrets.</strong> Blank headers on API-key marketplace MCP servers are bound to secrets, and unused secrets are flagged. Keep raw keys out of plugin config, prompts, and chat.</li>
+<li><strong>Automatic does not mean unauthenticated.</strong> New custom MCP servers start with <strong>Automatic</strong> authentication selected. Verify what the server actually negotiates before connecting it to production scopes.</li>
+</ul>
 <h2 id="verify-it">Verify it<a class="hlink" href="#verify-it" aria-hidden="true">#</a></h2>
 <ul>
 <li>[ ] A fresh session lists your skill by name (name + description load at start)</li>
@@ -170,6 +177,7 @@ permissions:
 <li><a href="https://docs.devin.ai/product-guides/skills">Devin Skills docs</a> — file format, discovery paths, frontmatter</li>
 <li><a href="https://docs.devin.ai/release-notes/overview">Release notes</a> — playbooks→Skills migration, Customize page</li>
 <li>Related: <a href="playbooks-and-knowledge.html">Guide 9 — Playbooks &amp; knowledge</a> (the context layer skills sit beside)</li>
+<li><a href="https://docs.devin.ai/release-notes/overview">Release notes — Nov 23, 2026</a> — Offered plugins, session-scoped MCP approval, secret-bound API-key headers, Automatic auth default</li>
 </ul>
 <section class="related"><h3>Same stage — Stage 1 · Operate</h3><p><a href="bot-outcome-prompts.html">Bot outcome prompts, dissected</a> · <a href="automations-101-event-driven.html">Guide 6 — Event-driven automations</a> · <a href="playbooks-and-knowledge.html">Guide 9 — Playbooks &amp; knowledge: encoding your org&#x27;s conventions</a> · <a href="devin-apps.html">Guide 10 — Devin Apps: ship live tools from a chat</a> · <a href="design-with-devin.html">Guide 8 — Design &amp; visual work</a></p></section>
 <nav class="guide-pager"><a class="pg-prev" href="playbooks-and-knowledge.html"><span class="pg-dir">← Previous</span><span class="pg-t">Guide 9 — Playbooks &amp; knowledge: encoding your org&#x27;s conventions</span></a><a class="pg-next" href="devin-apps.html"><span class="pg-dir">Next →</span><span class="pg-t">Guide 10 — Devin Apps: ship live tools from a chat</span></a></nav>
