@@ -6,13 +6,13 @@
 <title>Bot outcome prompts，逐句拆解 — build-with-devin guides</title>
 <meta name="description" content="按已公开部署的真实写法写 outcome prompt——授予一个领域的所有权，而不是派任务清单。">
 <link rel="canonical" href="https://till3005.github.io/built-with-devin/guides/zh/bot-outcome-prompts.html">
-<link rel="alternate" hreflang="en" href="https://till3005.github.io/built-with-devin/guides/zh/bot-outcome-prompts.html">
-<link rel="alternate" hreflang="ja" href="https://till3005.github.io/built-with-devin/guides/ja/zh/bot-outcome-prompts.html">
-<link rel="alternate" hreflang="pt" href="https://till3005.github.io/built-with-devin/guides/pt/zh/bot-outcome-prompts.html">
-<link rel="alternate" hreflang="zh" href="https://till3005.github.io/built-with-devin/guides/zh/zh/bot-outcome-prompts.html">
-<link rel="alternate" hreflang="x-default" href="https://till3005.github.io/built-with-devin/guides/zh/bot-outcome-prompts.html">
+<link rel="alternate" hreflang="en" href="https://till3005.github.io/built-with-devin/guides/bot-outcome-prompts.html">
+<link rel="alternate" hreflang="ja" href="https://till3005.github.io/built-with-devin/guides/ja/bot-outcome-prompts.html">
+<link rel="alternate" hreflang="pt" href="https://till3005.github.io/built-with-devin/guides/pt/bot-outcome-prompts.html">
+<link rel="alternate" hreflang="zh" href="https://till3005.github.io/built-with-devin/guides/zh/bot-outcome-prompts.html">
+<link rel="alternate" hreflang="x-default" href="https://till3005.github.io/built-with-devin/guides/bot-outcome-prompts.html">
 <link rel="alternate" type="application/rss+xml" title="built-with-devin feed" href="../../feed.xml">
-<script type="application/ld+json">{"@context": "https://schema.org", "@type": "TechArticle", "headline": "Bot outcome prompts，逐句拆解", "description": "按已公开部署的真实写法写 outcome prompt——授予一个领域的所有权，而不是派任务清单。", "inLanguage": "zh", "url": "https://till3005.github.io/built-with-devin/guides/zh/bot-outcome-prompts.html", "isPartOf": {"@type": "Course", "name": "build-with-devin", "url": "https://till3005.github.io/built-with-devin/guides/"}, "dateModified": "2026-11-24"}</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "TechArticle", "headline": "Bot outcome prompts，逐句拆解", "description": "按已公开部署的真实写法写 outcome prompt——授予一个领域的所有权，而不是派任务清单。", "inLanguage": "zh", "url": "https://till3005.github.io/built-with-devin/guides/zh/bot-outcome-prompts.html", "isPartOf": {"@type": "Course", "name": "build-with-devin", "url": "https://till3005.github.io/built-with-devin/guides/"}, "dateModified": "2026-11-25"}</script>
 <link rel="icon" href="../../assets/brand/Devin_Symbol.svg" type="image/svg+xml">
 <link rel="stylesheet" href="../../assets/site.css">
 <link rel="stylesheet" href="../../assets/guides.css">
@@ -44,8 +44,8 @@
 </div></nav>
 <main>
 <article class="guide wrap" id="guide">
-  <p class="guide-crumb"><a href="index.html">← 指南</a> · <a href="../bot-outcome-prompts.html">English</a> · <a href="../ja/bot-outcome-prompts.html">日本語</a> · <a href="../pt/bot-outcome-prompts.html">Português</a></p>
-<p class="guide-meta">更新于 2026-11-24</p>
+  <p class="guide-crumb"><a href="index.html">← 指南</a> · <a data-lang-link="en" href="../bot-outcome-prompts.html">English</a> · <a data-lang-link="ja" href="../ja/bot-outcome-prompts.html">日本語</a> · <a data-lang-link="pt" href="../pt/bot-outcome-prompts.html">Português</a></p>
+<p class="guide-meta">更新于 2026-11-25</p>
 <details class="toc" open><summary>本页目录</summary><ol><li class="d2"><a href="#范本">范本</a></li><li class="d2"><a href="#有效-outcome-prompt-的解剖">有效 outcome prompt 的解剖</a></li><li class="d2"><a href="#官方模板市场的句式">官方模板市场的句式</a></li><li class="d2"><a href="#多-bot-组织-带授权的-prompt">多 bot 组织：带授权的 prompt</a></li><li class="d2"><a href="#反模式">反模式</a></li><li class="d2"><a href="#起草你自己的-三行测试">起草你自己的——三行测试</a></li><li class="d2"><a href="#验证">验证</a></li><li class="d2"><a href="#常见陷阱">常见陷阱</a></li><li class="d2"><a href="#自检">自检</a></li><li class="d2"><a href="#实录演示-outcome-prompt-与-task-prompt-正面对比-录于-devin-cli-v3000-14-swe-2-flash-medium">实录演示 —— outcome prompt 与 task prompt 正面对比，录于 Devin CLI v3000.14（swe-2-flash-medium）</a></li><li class="d2"><a href="#sources">Sources</a></li></ol></details>
 <h1>Bot outcome prompts，逐句拆解</h1>
 <p><strong>目标：</strong> 按已公开部署的真实写法写 outcome prompt——授予一个领域的所有权，而不是派任务清单。
@@ -159,7 +159,7 @@
 <section class="related"><h3>同阶段 — 一阶 · 运转</h3><p><a href="automations-101-event-driven.html">指南 6 — 事件驱动的 Automations</a> · <a href="playbooks-and-knowledge.html">指南 9 — Playbooks 与知识层：把组织约定写成代码</a> · <a href="skills-and-plugins.html">指南 17 — Skills 与 plugins：playbook 之后的封装层</a> · <a href="devin-apps.html">指南 10 — Devin Apps：从聊天里交付一个活工具</a> · <a href="design-with-devin.html">指南 8 — 设计与视觉工作</a></p></section>
 <nav class="guide-pager"><a class="pg-prev" href="official-cookbook.html"><span class="pg-dir">← 上一篇</span><span class="pg-t">指南 13 — 官方用例食谱</span></a><a class="pg-next" href="automations-101-event-driven.html"><span class="pg-dir">下一篇 →</span><span class="pg-t">指南 6 — 事件驱动的 Automations</span></a></nav>
 </article>
-<footer><div class="wrap foot-base"><span data-i18n="foot.note">Unofficial community project — not affiliated with Cognition AI.</span><span><a href="../../index.html">built-with-devin</a> · <a href="https://github.com/Till3005/build-with-devin">build-with-devin</a></span></div></footer>
+<footer><div class="wrap foot-base"><span data-i18n="foot.note">非官方社区项目——与 Cognition AI 无关。</span><span><a href="../../index.html">built-with-devin</a> · <a href="https://github.com/Till3005/build-with-devin">build-with-devin</a></span></div></footer>
 </main>
 <script src="../../assets/theme.js"></script>
 <script src="../../assets/i18n.js"></script>

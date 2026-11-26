@@ -6,11 +6,11 @@
 <title>Guia 17 — Skills e plugins: a camada de empacotamento pós-playbook — build-with-devin guides</title>
 <meta name="description" content="codificar os procedimentos repetíveis da sua org como SKILL.md para que toda sessão e Bot os siga — e empacotar/compartilhar entre repositórios com plugins.">
 <link rel="canonical" href="https://till3005.github.io/built-with-devin/guides/pt/skills-and-plugins.html">
-<link rel="alternate" hreflang="en" href="https://till3005.github.io/built-with-devin/guides/pt/skills-and-plugins.html">
-<link rel="alternate" hreflang="ja" href="https://till3005.github.io/built-with-devin/guides/ja/pt/skills-and-plugins.html">
-<link rel="alternate" hreflang="pt" href="https://till3005.github.io/built-with-devin/guides/pt/pt/skills-and-plugins.html">
-<link rel="alternate" hreflang="zh" href="https://till3005.github.io/built-with-devin/guides/zh/pt/skills-and-plugins.html">
-<link rel="alternate" hreflang="x-default" href="https://till3005.github.io/built-with-devin/guides/pt/skills-and-plugins.html">
+<link rel="alternate" hreflang="en" href="https://till3005.github.io/built-with-devin/guides/skills-and-plugins.html">
+<link rel="alternate" hreflang="ja" href="https://till3005.github.io/built-with-devin/guides/ja/skills-and-plugins.html">
+<link rel="alternate" hreflang="pt" href="https://till3005.github.io/built-with-devin/guides/pt/skills-and-plugins.html">
+<link rel="alternate" hreflang="zh" href="https://till3005.github.io/built-with-devin/guides/zh/skills-and-plugins.html">
+<link rel="alternate" hreflang="x-default" href="https://till3005.github.io/built-with-devin/guides/skills-and-plugins.html">
 <link rel="alternate" type="application/rss+xml" title="built-with-devin feed" href="../../feed.xml">
 <script type="application/ld+json">{"@context": "https://schema.org", "@type": "TechArticle", "headline": "Guia 17 — Skills e plugins: a camada de empacotamento pós-playbook", "description": "codificar os procedimentos repetíveis da sua org como SKILL.md para que toda sessão e Bot os siga — e empacotar/compartilhar entre repositórios com plugins.", "inLanguage": "pt", "url": "https://till3005.github.io/built-with-devin/guides/pt/skills-and-plugins.html", "isPartOf": {"@type": "Course", "name": "build-with-devin", "url": "https://till3005.github.io/built-with-devin/guides/"}, "dateModified": "2026-11-19"}</script>
 <link rel="icon" href="../../assets/brand/Devin_Symbol.svg" type="image/svg+xml">
@@ -44,7 +44,7 @@
 </div></nav>
 <main>
 <article class="guide wrap" id="guide">
-  <p class="guide-crumb"><a href="index.html">← Guias</a> · <a href="../skills-and-plugins.html">English</a> · <a href="../ja/skills-and-plugins.html">日本語</a> · <a href="../zh/skills-and-plugins.html">中文</a></p>
+  <p class="guide-crumb"><a href="index.html">← Guias</a> · <a data-lang-link="en" href="../skills-and-plugins.html">English</a> · <a data-lang-link="ja" href="../ja/skills-and-plugins.html">日本語</a> · <a data-lang-link="zh" href="../zh/skills-and-plugins.html">中文</a></p>
 <p class="guide-meta">Atualizado 2026-11-19</p>
 <details class="toc" open><summary>Nesta página</summary><ol><li class="d2"><a href="#por-que-skills-são-a-camada-que-importa-agora">Por que skills são a camada que importa agora</a></li><li class="d2"><a href="#passo-1-onde-os-skills-ficam">Passo 1 — Onde os skills ficam</a></li><li class="d2"><a href="#passo-2-o-contrato-do-skill-md">Passo 2 — O contrato do SKILL.md</a></li><li class="d2"><a href="#passo-3-três-caminhos-de-invocação">Passo 3 — Três caminhos de invocação</a></li><li class="d2"><a href="#passo-4-crescendo-a-biblioteca">Passo 4 — Crescendo a biblioteca</a></li><li class="d2"><a href="#passo-a-passo-real-uma-skill-de-repositório-invocada-de-verdade-no-devin-cli-v3000-14-swe-2-flash-medium">Passo a passo real — uma skill de repositório invocada de verdade, no Devin CLI v3000.14 (swe-2-flash-medium)</a></li><li class="d2"><a href="#checklist-de-verificação">Checklist de verificação</a></li><li class="d2"><a href="#armadilhas">Armadilhas</a></li><li class="d2"><a href="#teste-de-conhecimento">Teste de conhecimento</a></li><li class="d2"><a href="#fontes">Fontes</a></li></ol></details>
 <h1>Guia 17 — Skills e plugins: a camada de empacotamento pós-playbook</h1>
@@ -174,7 +174,7 @@ permissions:
 <section class="related"><h3>Mesmo estágio — Estágio 1 · Operar</h3><p><a href="bot-outcome-prompts.html">Prompts de resultado para Bots, dissecados</a> · <a href="automations-101-event-driven.html">Guia 6 — Automações orientadas a eventos</a> · <a href="playbooks-and-knowledge.html">Guia 9 — Playbooks &amp; knowledge: codificando as convenções da sua org</a> · <a href="devin-apps.html">Guia 10 — Devin Apps: ferramentas ao vivo a partir de um chat</a> · <a href="design-with-devin.html">Guia 8 — Design &amp; trabalho visual</a></p></section>
 <nav class="guide-pager"><a class="pg-prev" href="playbooks-and-knowledge.html"><span class="pg-dir">← Anterior</span><span class="pg-t">Guia 9 — Playbooks &amp; knowledge: codificando as convenções da sua org</span></a><a class="pg-next" href="devin-apps.html"><span class="pg-dir">Próximo →</span><span class="pg-t">Guia 10 — Devin Apps: ferramentas ao vivo a partir de um chat</span></a></nav>
 </article>
-<footer><div class="wrap foot-base"><span data-i18n="foot.note">Unofficial community project — not affiliated with Cognition AI.</span><span><a href="../../index.html">built-with-devin</a> · <a href="https://github.com/Till3005/build-with-devin">build-with-devin</a></span></div></footer>
+<footer><div class="wrap foot-base"><span data-i18n="foot.note">Projeto comunitário não oficial — sem afiliação com a Cognition AI.</span><span><a href="../../index.html">built-with-devin</a> · <a href="https://github.com/Till3005/build-with-devin">build-with-devin</a></span></div></footer>
 </main>
 <script src="../../assets/theme.js"></script>
 <script src="../../assets/i18n.js"></script>

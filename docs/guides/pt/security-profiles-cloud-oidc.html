@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Guia 21 — Security Profiles e Cloud OIDC — build-with-devin guides</title>
+<meta name="description" content="dar à Devin acesso de menor privilégio em duas camadas: Security Profiles reutilizáveis que limitam o que sessões podem alcançar e operar, e Cloud OIDC que subs">
+<link rel="canonical" href="https://till3005.github.io/built-with-devin/guides/pt/security-profiles-cloud-oidc.html">
+<link rel="alternate" hreflang="en" href="https://till3005.github.io/built-with-devin/guides/security-profiles-cloud-oidc.html">
+<link rel="alternate" hreflang="ja" href="https://till3005.github.io/built-with-devin/guides/ja/security-profiles-cloud-oidc.html">
+<link rel="alternate" hreflang="pt" href="https://till3005.github.io/built-with-devin/guides/pt/security-profiles-cloud-oidc.html">
+<link rel="alternate" hreflang="zh" href="https://till3005.github.io/built-with-devin/guides/zh/security-profiles-cloud-oidc.html">
+<link rel="alternate" hreflang="x-default" href="https://till3005.github.io/built-with-devin/guides/security-profiles-cloud-oidc.html">
+<link rel="alternate" type="application/rss+xml" title="built-with-devin feed" href="../../feed.xml">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "TechArticle", "headline": "Guia 21 — Security Profiles e Cloud OIDC", "description": "dar à Devin acesso de menor privilégio em duas camadas: Security Profiles reutilizáveis que limitam o que sessões podem alcançar e operar, e Cloud OIDC que subs", "inLanguage": "pt", "url": "https://till3005.github.io/built-with-devin/guides/pt/security-profiles-cloud-oidc.html", "isPartOf": {"@type": "Course", "name": "build-with-devin", "url": "https://till3005.github.io/built-with-devin/guides/"}, "dateModified": "2026-11-26"}</script>
+<link rel="icon" href="../../assets/brand/Devin_Symbol.svg" type="image/svg+xml">
+<link rel="stylesheet" href="../../assets/site.css">
+<link rel="stylesheet" href="../../assets/guides.css">
+
+<meta property="og:title" content="Guia 21 — Security Profiles e Cloud OIDC">
+<meta property="og:description" content="dar à Devin acesso de menor privilégio em duas camadas: Security Profiles reutilizáveis que limitam o que sessões podem alcançar e operar, e Cloud OIDC que subs">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://till3005.github.io/built-with-devin/guides/pt/security-profiles-cloud-oidc.html">
+<meta property="og:image" content="https://till3005.github.io/built-with-devin/assets/img/og-build.png?v=3">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://till3005.github.io/built-with-devin/assets/img/og-build.png?v=3">
+</head>
+<body>
+<a class="skip" href="#guide">Skip to content</a>
+<nav><div class="wrap nav-inner">
+  <div class="nav-left">
+    <a class="brand" href="../../index.html" aria-label="Built with Devin">
+      <span class="brand-text">built<strong>-with-</strong></span><img class="brand-mark" src="../../assets/brand/Devin_Primary_Logo.svg" alt="Devin" height="16"><span class="unofficial-chip">unofficial</span>
+    </a>
+  </div>
+  <div class="nav-side">
+    <div class="mode-toggle" role="tablist" aria-label="Site section">
+      <button class="mode-btn" data-mode="built" role="tab" aria-selected="false" onclick="location.href='../../index.html'">Built</button>
+      <button class="mode-btn on" data-mode="build" role="tab" aria-selected="true" onclick="location.href='../../index.html#build'">Build</button>
+      <span class="mode-pill" aria-hidden="true"></span>
+    </div>
+    <a class="cta" href="https://github.com/Till3005/build-with-devin/blob/main/guides/pt/security-profiles-cloud-oidc.md">GitHub</a>
+  </div>
+</div></nav>
+<main>
+<article class="guide wrap" id="guide">
+  <p class="guide-crumb"><a href="index.html">← Guias</a> · <a data-lang-link="en" href="../security-profiles-cloud-oidc.html">English</a> · <a data-lang-link="ja" href="../ja/security-profiles-cloud-oidc.html">日本語</a> · <a data-lang-link="zh" href="../zh/security-profiles-cloud-oidc.html">中文</a></p>
+<p class="guide-meta">Atualizado 2026-11-26</p>
+<details class="toc" open><summary>Nesta página</summary><ol><li class="d2"><a href="#modelo-mental-de-duas-camadas">Modelo mental de duas camadas</a></li><li class="d2"><a href="#o-que-um-security-profile-pode-restringir">O que um Security Profile pode restringir</a></li><li class="d2"><a href="#onde-profiles-são-vinculados">Onde profiles são vinculados</a></li><li class="d2"><a href="#recommended-vs-mandatory">Recommended vs mandatory</a></li><li class="d2"><a href="#o-que-cloud-oidc-muda">O que Cloud OIDC muda</a></li><li class="d2"><a href="#desenhe-o-modelo-de-acesso-primeiro">Desenhe o modelo de acesso primeiro</a></li><li class="d2"><a href="#construa-um-primeiro-security-profile">Construa um primeiro Security Profile</a></li><li class="d3"><a href="#testes-positivos-e-negativos">Testes positivos e negativos</a></li><li class="d2"><a href="#automations-e-snapshot-builds">Automations e snapshot builds</a></li><li class="d2"><a href="#aviso-sobre-outposts">Aviso sobre Outposts</a></li><li class="d2"><a href="#configure-cloud-oidc">Configure Cloud OIDC</a></li><li class="d2"><a href="#escreva-trust-policies-de-menor-privilégio">Escreva trust policies de menor privilégio</a></li><li class="d2"><a href="#verify-it">Verify it</a></li><li class="d2"><a href="#armadilhas">Armadilhas</a></li><li class="d2"><a href="#exercícios">Exercícios</a></li><li class="d2"><a href="#capstone">Capstone</a></li><li class="d2"><a href="#knowledge-check">Knowledge check</a></li><li class="d2"><a href="#fontes">Fontes</a></li><li class="d2"><a href="#changelog">Changelog</a></li></ol></details>
+<h1>Guia 21 — Security Profiles e Cloud OIDC</h1>
+<p><strong>Objetivo:</strong> dar à Devin acesso de menor privilégio em duas camadas: Security Profiles reutilizáveis que limitam o que sessões podem alcançar e operar, e Cloud OIDC que substitui credenciais cloud de longa duração por workload identity de curta duração.
+<strong>Nível:</strong> avançado / administrador · <strong>Tempo:</strong> cerca de 45–90 minutos para um primeiro profile governado; a configuração cloud depende do provedor
+<strong>Fonte:</strong> <a href="https://docs.devin.ai/product-guides/security-profiles">documentação oficial de Security Profiles</a> · <a href="https://docs.devin.ai/product-guides/oidc">documentação oficial de Cloud OIDC</a> · documentação oficial verificada em 26 de novembro de 2026</p>
+<blockquote>
+<p><strong>Estado da evidência:</strong> este guia é baseado em fonte oficial, mas ainda não foi reproduzido independentemente contra um provedor cloud. A seção de verificação separa checks possíveis dentro da Devin de checks que exigem recursos de AWS/GCP/Vault/admin.</p>
+</blockquote>
+<h2 id="modelo-mental-de-duas-camadas">Modelo mental de duas camadas<a class="hlink" href="#modelo-mental-de-duas-camadas" aria-hidden="true">#</a></h2>
+<p>Security Profiles e Cloud OIDC resolvem problemas diferentes:</p>
+<table>
+<thead>
+<tr>
+<th>Camada</th>
+<th>Pergunta respondida</th>
+<th>Mecanismo</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Security Profile</td>
+<td>O que esta sessão Devin pode alcançar ou operar?</td>
+<td>Network allowlist, MCP allowlist, Devin MCP read-only, git access level, remoção do token do GitHub CLI</td>
+</tr>
+<tr>
+<td>Cloud OIDC</td>
+<td>Como esta sessão prova quem é para um serviço cloud?</td>
+<td>Identity token de curta duração emitido pela Devin, verificado pela cloud e trocado por credenciais temporárias e escopadas</td>
+</tr>
+</tbody>
+</table>
+<p>Use as duas juntas. Um profile pode impedir que uma sessão alcance ou opere sistemas que não deveria; OIDC remove a necessidade de armazenar chaves cloud quando o acesso é legítimo.</p>
+<p>Security Profiles são separados do <strong>Devin Security</strong>, a superfície de scanning de vulnerabilidades. Um profile não configura scan.</p>
+<h2 id="o-que-um-security-profile-pode-restringir">O que um Security Profile pode restringir<a class="hlink" href="#o-que-um-security-profile-pode-restringir" aria-hidden="true">#</a></h2>
+<p>Um profile é um conjunto nomeado de restrições opcionais. Ele só restringe as configurações que define.</p>
+<table>
+<thead>
+<tr>
+<th>Restrição</th>
+<th>O que controla</th>
+<th>Detalhe importante</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Network policy</td>
+<td>Destinos outbound permitidos a partir da máquina da sessão</td>
+<td>Hostnames aceitam wildcard <code>*</code>; IPv4/IPv6 CIDR são suportados</td>
+</tr>
+<tr>
+<td>MCP access</td>
+<td>Quais MCP servers instalados a sessão pode usar</td>
+<td>Independente da network policy; MCP servers permitidos ficam automaticamente alcançáveis</td>
+</tr>
+<tr>
+<td>Devin MCP access</td>
+<td>Se as ferramentas internas de gestão da Devin podem escrever</td>
+<td>Read-only ainda permite listar/inspecionar, mas bloqueia writes como criar sessões ou editar knowledge</td>
+</tr>
+<tr>
+<td>Git access</td>
+<td>Apenas clone/fetch ou capacidade completa de push/PR</td>
+<td>Read-only bloqueia pushes e criação de PRs</td>
+</tr>
+<tr>
+<td>GitHub CLI token</td>
+<td>Se a máquina carrega um token <code>gh</code> para chamadas diretas à API do GitHub</td>
+<td>Manter exige full git access e, quando há network policy, <code>api.github.com</code></td>
+</tr>
+</tbody>
+</table>
+<p>Destinos necessários para a própria Devin funcionar, como o git proxy dos repositórios conectados, são permitidos automaticamente.</p>
+<h2 id="onde-profiles-são-vinculados">Onde profiles são vinculados<a class="hlink" href="#onde-profiles-são-vinculados" aria-hidden="true">#</a></h2>
+<p>Profiles passam a valer por uma hierarquia. O binding mais específico vence, a menos que um profile mandatory superior imponha um piso:</p>
+<ol>
+<li>Enterprise default</li>
+<li>Organization default</li>
+<li>Automations default</li>
+<li>Automation específica</li>
+<li>Sessão individual</li>
+<li>Security profile do Bot, para sessões iniciadas por aquele Bot</li>
+</ol>
+<p>Em cada nível é possível herdar, fixar um profile ou escolher explicitamente nenhum profile. Child sessions seguem a mesma cadeia de governança do parent, então delegar trabalho não escapa das restrições.</p>
+<p>Uma sessão em execução resolve seu profile ao bootar ou acordar. Editar um profile ou binding não muda retroativamente uma sessão em execução; afeta novas sessões imediatamente e sessões existentes na próxima retomada.</p>
+<h2 id="recommended-vs-mandatory">Recommended vs mandatory<a class="hlink" href="#recommended-vs-mandatory" aria-hidden="true">#</a></h2>
+<p>Comece com <strong>recommended</strong> no rollout. Um profile recommended é um default que níveis inferiores podem substituir ou recusar.</p>
+<p>Mude para <strong>mandatory</strong> quando as allowlists forem compreendidas. Profiles mandatory são pisos:</p>
+<ul>
+<li>Escolhas “no profile” em níveis inferiores são ignoradas.</li>
+<li>Profiles inferiores só podem apertar restrições, nunca afrouxar.</li>
+<li>Network e MCP allowlists são intersectadas.</li>
+<li>Git access usa o nível mínimo.</li>
+<li>Devin MCP fica read-only se qualquer lado exigir read-only.</li>
+<li>O token do GitHub CLI é removido se qualquer lado o remover.</li>
+<li>Mesmo aprovações de rede feitas durante a sessão são limitadas pela policy mandatory.</li>
+</ul>
+<p>Assim, mandatory é o primitive correto para limites enterprise-wide, e recommended é o primitive correto para rollout por equipe.</p>
+<h2 id="o-que-cloud-oidc-muda">O que Cloud OIDC muda<a class="hlink" href="#o-que-cloud-oidc-muda" aria-hidden="true">#</a></h2>
+<p>Sem OIDC, uma sessão que precisa de AWS, GCP, Vault, JFrog, Databricks ou API interna normalmente depende de uma key ou token armazenado. Com OIDC:</p>
+<ol>
+<li>Cada sessão Devin recebe automaticamente um identity token curto assinado pela Devin.</li>
+<li>Sua cloud ou serviço verifica o token contra o OIDC issuer público da Devin.</li>
+<li>O serviço troca o token por credenciais temporárias e escopadas.</li>
+<li>O token expira automaticamente; não há nada estático para rotacionar ou revogar.</li>
+</ol>
+<p>Tokens podem carregar claims como <code>org_id</code>, <code>account_id</code>, <code>devin_id</code>, <code>devin_trigger</code>, <code>requesting_user_id</code>, <code>requesting_user_email</code> e <code>service_user_id</code>. Trust policies podem assim conceder acesso a uma organização inteira, a um usuário específico ou até a uma sessão específica.</p>
+<p>O issuer é <code>https://app.devin.ai</code>, exceto em deployments enterprise com domínio customizado, caso em que o issuer é a URL customizada da Devin.</p>
+<h2 id="desenhe-o-modelo-de-acesso-primeiro">Desenhe o modelo de acesso primeiro<a class="hlink" href="#desenhe-o-modelo-de-acesso-primeiro" aria-hidden="true">#</a></h2>
+<p>Não comece pelo YAML. Comece pelos trust boundaries.</p>
+<p>Escreva:</p>
+<ul>
+<li>quais sessões ou automations realmente precisam de acesso cloud</li>
+<li>qual provedor e project/account elas precisam</li>
+<li>se precisam de read-only ou write access</li>
+<li>quais network destinations são legítimos</li>
+<li>quais MCP servers devem usar</li>
+<li>se devem criar child sessions ou gerenciar recursos Devin</li>
+<li>se precisam de acesso direto à API do GitHub além das operações git normais</li>
+</ul>
+<p>Depois crie profiles pequenos para tipos reais de trabalho, não um profile gigante para todos.</p>
+<p>Profiles iniciais úteis:</p>
+<table>
+<thead>
+<tr>
+<th>Profile</th>
+<th>Uso típico</th>
+<th>Postura sugerida</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>research-readonly</code></td>
+<td>Coleta de evidência, docs, review read-only</td>
+<td>Network limitado a docs/repos necessários, git read-only, Devin MCP read-only, sem token <code>gh</code></td>
+</tr>
+<tr>
+<td><code>automation-pr-writer</code></td>
+<td>CI repair, dependency updates, hygiene loops</td>
+<td>Network para APIs de repo/packages, full git, sem MCP irrelevante, <code>gh</code> só se necessário</td>
+</tr>
+<tr>
+<td><code>cloud-operator</code></td>
+<td>Inspeção de infraestrutura ou operações controladas</td>
+<td>Network restrito a cloud endpoints, OIDC habilitado, role cloud estritamente escopada, sem MCP amplo</td>
+</tr>
+<tr>
+<td><code>incident-hotfix</code></td>
+<td>Incident response supervisionado</td>
+<td>Uso por tempo limitado, full git, apenas network/MCP do incidente, review humano antes de merge/deploy</td>
+</tr>
+</tbody>
+</table>
+<h2 id="construa-um-primeiro-security-profile">Construa um primeiro Security Profile<a class="hlink" href="#construa-um-primeiro-security-profile" aria-hidden="true">#</a></h2>
+<p>Você precisa da permissão dedicada <strong>Manage security profiles</strong>. Organization admins têm a permissão no nível da organização por padrão; enterprise admins têm no nível enterprise. Ambas podem ser delegadas por custom roles.</p>
+<ol>
+<li>Vá a <strong>Settings → Customization → Security profiles</strong> para profile de organização, ou <strong>Enterprise settings → Devin → Security profiles</strong> para profile enterprise.</li>
+<li>Crie um profile com nome estreito, como <code>automation-pr-writer</code>, não <code>default-secure</code>.</li>
+<li>Configure apenas as restrições que você entende.</li>
+<li>Mantenha <strong>recommended</strong> inicialmente.</li>
+<li>Vincule como organization default ou pin em uma automation de baixo risco.</li>
+<li>Teste acesso positivo e negativo antes de ampliar o rollout.</li>
+<li>Aperte com o tempo; mude para mandatory somente depois que destinos e workflows legítimos estiverem cobertos.</li>
+</ol>
+<h3 id="testes-positivos-e-negativos">Testes positivos e negativos<a class="hlink" href="#testes-positivos-e-negativos" aria-hidden="true">#</a></h3>
+<p>Testes positivos provam que o trabalho permitido ainda funciona:</p>
+<ul>
+<li>clone/fetch do repositório pretendido</li>
+<li>instalação do package ou acesso à API pretendida</li>
+<li>uso de um MCP server permitido</li>
+<li>push de branch quando full git é esperado</li>
+</ul>
+<p>Testes negativos provam que a fronteira existe:</p>
+<ul>
+<li>um domínio não permitido falha</li>
+<li>um MCP server não permitido fica indisponível</li>
+<li>git read-only não consegue push</li>
+<li>operações write do Devin MCP falham em read-only</li>
+<li>chamadas diretas <code>gh api</code> falham quando o token é removido</li>
+</ul>
+<p>Registre ambos. “A sessão iniciou” não é verificação de segurança.</p>
+<h2 id="automations-e-snapshot-builds">Automations e snapshot builds<a class="hlink" href="#automations-e-snapshot-builds" aria-hidden="true">#</a></h2>
+<p>Automations podem ter network policy e seleção MCP próprias, mas essas são camadas apenas restritivas. Uma automation nunca pode ampliar o profile governante; sessões recebem apenas o que automation e profile permitem.</p>
+<p>Snapshot builds são diferentes: apenas a network policy de um profile se aplica a builds e blueprint author sessions. Restrições de MCP, git access e GitHub CLI não se aplicam. Como builds frequentemente precisam de package registries que sessões não precisam, use a configuração separada <strong>Default profile for snapshot builds</strong> em vez de afrouxar profiles de sessão.</p>
+<h2 id="aviso-sobre-outposts">Aviso sobre Outposts<a class="hlink" href="#aviso-sobre-outposts" aria-hidden="true">#</a></h2>
+<p>Em VMs gerenciadas pela Devin, a Devin enforce network policy no nível da máquina. Em Outposts, sua infraestrutura faz o enforcement.</p>
+<p>A Devin publica a network policy efetiva de cada sessão enfileirada na Outposts API como <code>spec.network_policy</code>. Seu orchestrator deve enforce isso com egress proxy, Kubernetes <code>NetworkPolicy</code>, firewall de VM ou controle equivalente. Caso contrário, uma fronteira “mandatory” de rede não é realmente rígida na infraestrutura outpost.</p>
+<p>Releia <code>spec.network_policy</code> quando a sessão for enfileirada ou reenfileirada; não assuma que é estática.</p>
+<h2 id="configure-cloud-oidc">Configure Cloud OIDC<a class="hlink" href="#configure-cloud-oidc" aria-hidden="true">#</a></h2>
+<p>Cloud OIDC exige configuração dos dois lados:</p>
+<ul>
+<li>a cloud/serviço deve confiar no issuer da Devin e definir quais token claims podem assumir qual role ou identity</li>
+<li>o environment blueprint da Devin deve instalar a action correspondente</li>
+</ul>
+<p>Adicione a action relevante em <code>initialize</code>:</p>
+<table>
+<thead>
+<tr>
+<th>Serviço</th>
+<th>Blueprint action</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>AWS</td>
+<td><code>github.com/CognitionAI/actions/setup-aws-oidc@main</code></td>
+</tr>
+<tr>
+<td>GCP</td>
+<td><code>github.com/CognitionAI/actions/setup-gcp-oidc@main</code></td>
+</tr>
+<tr>
+<td>Vault</td>
+<td><code>github.com/CognitionAI/actions/setup-vault-oidc@main</code></td>
+</tr>
+<tr>
+<td>JFrog</td>
+<td><code>github.com/CognitionAI/actions/setup-jfrog-oidc@main</code></td>
+</tr>
+<tr>
+<td>Serviços customizados</td>
+<td><code>github.com/CognitionAI/actions/setup-devin-oidc@main</code></td>
+</tr>
+</tbody>
+</table>
+<p>Exemplo AWS:</p>
+<pre><code class="language-yaml">initialize:
+  - uses: github.com/CognitionAI/actions/setup-aws-oidc@main
+    with:
+      role-arn: &quot;arn:aws:iam::123456789012:role/devin-sessions&quot;
+      region: &quot;us-east-1&quot;
+</code></pre>
+<p>Exemplo GCP:</p>
+<pre><code class="language-yaml">initialize:
+  - uses: github.com/CognitionAI/actions/setup-gcp-oidc@main
+    with:
+      workload-identity-provider: &quot;projects/123456789/locations/global/workloadIdentityPools/devin/providers/devin-oidc&quot;
+      service-account: &quot;devin@my-project.iam.gserviceaccount.com&quot;
+      project: &quot;my-project&quot;
+</code></pre>
+<p>Para um serviço customizado, solicite um token para a audience aceita pelo serviço:</p>
+<pre><code class="language-bash">devin-oidc token --audience my-api --subject-keys &quot;org_id&quot;
+</code></pre>
+<p>Seu serviço verifica o token contra o JWKS publicado pela Devin em <code>/.well-known/jwks.json</code> sob o issuer correto.</p>
+<h2 id="escreva-trust-policies-de-menor-privilégio">Escreva trust policies de menor privilégio<a class="hlink" href="#escreva-trust-policies-de-menor-privilégio" aria-hidden="true">#</a></h2>
+<p>Prefira claims e roles estreitos:</p>
+<ul>
+<li>Use <code>org_id</code> para identidade de automation em toda a organização.</li>
+<li>Adicione <code>requesting_user_email</code> ou <code>service_user_id</code> quando apenas certos iniciadores devem receber acesso.</li>
+<li>Use <code>devin_id</code> apenas para acesso one-off ou debugging muito restrito; normalmente é estreito demais para automations reutilizáveis.</li>
+<li>Dê à role assumida apenas as permissões necessárias ao trabalho.</li>
+<li>Separe roles read-only e write-capable em vez de ampliar uma única role.</li>
+</ul>
+<p>Cloud audit logs ficam mais úteis com OIDC porque ações podem ser atribuídas a uma sessão Devin e usuário solicitante específicos, em vez de uma key estática compartilhada.</p>
+<h2 id="verify-it">Verify it<a class="hlink" href="#verify-it" aria-hidden="true">#</a></h2>
+<p>Checks no lado Devin:</p>
+<ul>
+<li>[ ] Uma sessão de teste resolve o profile pretendido.</li>
+<li>[ ] Operações permitidas de network, MCP, git e Devin MCP ainda funcionam.</li>
+<li>[ ] Pelo menos uma operação não permitida em cada categoria configurada falha.</li>
+<li>[ ] Foi confirmado que edição de profile/binding afeta sessões novas ou retomadas, não uma sessão já em execução.</li>
+<li>[ ] Sessões disparadas por automation herdam a interseção esperada das restrições da automation e do profile.</li>
+</ul>
+<p>Checks no lado cloud, quando você controla o provedor:</p>
+<ul>
+<li>[ ] <code>aws sts get-caller-identity</code> ou comando equivalente funciona sem key armazenada.</li>
+<li>[ ] A identity assumida é a role/service account de menor privilégio pretendida.</li>
+<li>[ ] Cloud audit logs mostram os claims de sessão/usuário Devin esperados.</li>
+<li>[ ] Um token com audience ou trust subject errado é rejeitado.</li>
+<li>[ ] Não há credencial cloud de longa duração em secrets ou ambiente da Devin.</li>
+</ul>
+<h2 id="armadilhas">Armadilhas<a class="hlink" href="#armadilhas" aria-hidden="true">#</a></h2>
+<ul>
+<li><strong>Tratar profile como scan.</strong> É um envelope de controle de acesso, não detecção de vulnerabilidades.</li>
+<li><strong>Tornar o primeiro profile mandatory.</strong> Você bloqueará trabalho legítimo antes de entender os destinos necessários.</li>
+<li><strong>Um profile gigante.</strong> Profiles por tipo de trabalho são auditáveis; um universal vira compromisso sem sentido.</li>
+<li><strong>Esquecer <code>api.github.com</code>.</strong> Sob network policy, um profile não pode manter o token do GitHub CLI sem permitir <code>api.github.com</code>.</li>
+<li><strong>Assumir que sessões em execução atualizam imediatamente.</strong> Elas resolvem profile no boot/wake.</li>
+<li><strong>Assumir que Outposts se enforce sozinho.</strong> O operador deve enforce <code>spec.network_policy</code> fora da infraestrutura gerenciada pela Devin.</li>
+<li><strong>Usar OIDC sem estreitar trust cloud.</strong> Keyless não significa seguro se a role for ampla ou a trust policy aceitar demais.</li>
+<li><strong>Deixar keys estáticas antigas.</strong> OIDC só reduz risco de credenciais se as keys estáticas forem removidas ou desativadas.</li>
+</ul>
+<h2 id="exercícios">Exercícios<a class="hlink" href="#exercícios" aria-hidden="true">#</a></h2>
+<ol>
+<li>Escreva uma especificação de profile para uma automation de dependency update. Inclua network destinations, git access, necessidades MCP e se <code>gh</code> é necessário.</li>
+<li>Escreva um teste positivo e um negativo para cada restrição desse profile.</li>
+<li>Desenhe uma cloud trust policy para acesso read-only a um projeto. Quais token claims são suficientes e quais são estreitos demais?</li>
+<li>Explique como um mandatory enterprise profile e um organization profile mais restrito se intersectam.</li>
+</ol>
+<h2 id="capstone">Capstone<a class="hlink" href="#capstone" aria-hidden="true">#</a></h2>
+<p>Construa um caminho de automation governado para uma tarefa de manutenção de repo de baixo risco: crie um profile recommended, pin na automation, verifique comportamento positivo/negativo, configure OIDC para uma operação cloud read-only se disponível e documente a evidência exata. Só então proponha se o profile deve virar mandatory.</p>
+<h2 id="knowledge-check">Knowledge check<a class="hlink" href="#knowledge-check" aria-hidden="true">#</a></h2>
+<ol>
+<li>Por que Security Profiles e OIDC são complementares, não alternativas? <em>(Profiles restringem o que uma sessão pode alcançar ou operar; OIDC prova identidade da sessão a um serviço sem armazenar credenciais longas.)</em></li>
+<li>Por que começar com enforcement recommended? <em>(Ele permite observar necessidades legítimas de acesso e evita bloquear equipes antes das allowlists estarem completas.)</em></li>
+<li>Por que delegação para child sessions não escapa de um profile? <em>(Children herdam a mesma cadeia governante do parent.)</em></li>
+<li>Por que OIDC melhora auditabilidade? <em>(Logs cloud podem atribuir ações a claims de sessão, organização e usuário solicitante, em vez de uma key estática compartilhada.)</em></li>
+</ol>
+<h2 id="fontes">Fontes<a class="hlink" href="#fontes" aria-hidden="true">#</a></h2>
+<ul>
+<li><a href="https://docs.devin.ai/product-guides/security-profiles">Security Profiles — documentação oficial</a></li>
+<li><a href="https://docs.devin.ai/product-guides/oidc">Cloud Authentication with OIDC — documentação oficial</a></li>
+<li><a href="https://docs.devin.ai/api-reference/v3/security-profiles/list-organizations-security-profiles">Security Profiles API — referência oficial</a></li>
+<li><a href="https://github.com/CognitionAI/actions">CognitionAI actions repository</a></li>
+<li><a href="https://docs.devin.ai/cloud/outposts/overview">Devin Outposts overview</a></li>
+</ul>
+<h2 id="changelog">Changelog<a class="hlink" href="#changelog" aria-hidden="true">#</a></h2>
+<ul>
+<li>2026-11-26 — Versão inicial baseada na documentação oficial. Evidência de reprodução em provedor cloud pendente; os comandos de verificação estão incluídos, mas ainda não foram executados independentemente aqui.</li>
+</ul>
+<section class="related"><h3>Mesmo estágio — Estágio 2 · Escalar</h3><p><a href="bots-201-product-owner.html">Guia 2 — Bot product-owner</a> · <a href="bots-202-scheduled-sentinel.html">Guia 3 — Bot sentinela agendado</a> · <a href="bots-203-multi-bot-org.html">Guia 4 — Organização multi-Bot</a> · <a href="bots-204-reference-grounded-swarm.html">Guia 5 — Enxame ancorado em referência</a> · <a href="migrations-at-scale.html">Guia 11 — Migrações em escala</a> · <a href="living-evals.html">Guia 15 — Living evals a partir de traces de produção</a> · <a href="enterprise-playbook.html">Guia 7 — Padrões de rollout enterprise</a> · <a href="dynamic-workflows.html">Guia 20 — Dynamic Workflows</a></p></section>
+<nav class="guide-pager"><a class="pg-prev" href="dynamic-workflows.html"><span class="pg-dir">← Anterior</span><span class="pg-t">Guia 20 — Dynamic Workflows</span></a><a class="pg-next" href="community-field-reports.html"><span class="pg-dir">Próximo →</span><span class="pg-t">Guia 14 — Relatos de campo da comunidade</span></a></nav>
+</article>
+<footer><div class="wrap foot-base"><span data-i18n="foot.note">Projeto comunitário não oficial — sem afiliação com a Cognition AI.</span><span><a href="../../index.html">built-with-devin</a> · <a href="https://github.com/Till3005/build-with-devin">build-with-devin</a></span></div></footer>
+</main>
+<script src="../../assets/theme.js"></script>
+<script src="../../assets/i18n.js"></script>
+<script src="../../assets/i18n-runtime.js"></script>
+</body>
+</html>

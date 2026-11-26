@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>指南 20 — Dynamic Workflows — build-with-devin guides</title>
+<meta name="description" content="用一个确定性的 Python 脚本编排多个 Devin sessions——把独立工作扇出，把结构化结果传给后续阶段，在中断后恢复运行，并始终看清 ACU 成本。">
+<link rel="canonical" href="https://till3005.github.io/built-with-devin/guides/zh/dynamic-workflows.html">
+<link rel="alternate" hreflang="en" href="https://till3005.github.io/built-with-devin/guides/dynamic-workflows.html">
+<link rel="alternate" hreflang="ja" href="https://till3005.github.io/built-with-devin/guides/ja/dynamic-workflows.html">
+<link rel="alternate" hreflang="pt" href="https://till3005.github.io/built-with-devin/guides/pt/dynamic-workflows.html">
+<link rel="alternate" hreflang="zh" href="https://till3005.github.io/built-with-devin/guides/zh/dynamic-workflows.html">
+<link rel="alternate" hreflang="x-default" href="https://till3005.github.io/built-with-devin/guides/dynamic-workflows.html">
+<link rel="alternate" type="application/rss+xml" title="built-with-devin feed" href="../../feed.xml">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "TechArticle", "headline": "指南 20 — Dynamic Workflows", "description": "用一个确定性的 Python 脚本编排多个 Devin sessions——把独立工作扇出，把结构化结果传给后续阶段，在中断后恢复运行，并始终看清 ACU 成本。", "inLanguage": "zh", "url": "https://till3005.github.io/built-with-devin/guides/zh/dynamic-workflows.html", "isPartOf": {"@type": "Course", "name": "build-with-devin", "url": "https://till3005.github.io/built-with-devin/guides/"}, "dateModified": "2026-11-26"}</script>
+<link rel="icon" href="../../assets/brand/Devin_Symbol.svg" type="image/svg+xml">
+<link rel="stylesheet" href="../../assets/site.css">
+<link rel="stylesheet" href="../../assets/guides.css">
+
+<meta property="og:title" content="指南 20 — Dynamic Workflows">
+<meta property="og:description" content="用一个确定性的 Python 脚本编排多个 Devin sessions——把独立工作扇出，把结构化结果传给后续阶段，在中断后恢复运行，并始终看清 ACU 成本。">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://till3005.github.io/built-with-devin/guides/zh/dynamic-workflows.html">
+<meta property="og:image" content="https://till3005.github.io/built-with-devin/assets/img/og-build.png?v=3">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://till3005.github.io/built-with-devin/assets/img/og-build.png?v=3">
+</head>
+<body>
+<a class="skip" href="#guide">Skip to content</a>
+<nav><div class="wrap nav-inner">
+  <div class="nav-left">
+    <a class="brand" href="../../index.html" aria-label="Built with Devin">
+      <span class="brand-text">built<strong>-with-</strong></span><img class="brand-mark" src="../../assets/brand/Devin_Primary_Logo.svg" alt="Devin" height="16"><span class="unofficial-chip">unofficial</span>
+    </a>
+  </div>
+  <div class="nav-side">
+    <div class="mode-toggle" role="tablist" aria-label="Site section">
+      <button class="mode-btn" data-mode="built" role="tab" aria-selected="false" onclick="location.href='../../index.html'">Built</button>
+      <button class="mode-btn on" data-mode="build" role="tab" aria-selected="true" onclick="location.href='../../index.html#build'">Build</button>
+      <span class="mode-pill" aria-hidden="true"></span>
+    </div>
+    <a class="cta" href="https://github.com/Till3005/build-with-devin/blob/main/guides/zh/dynamic-workflows.md">GitHub</a>
+  </div>
+</div></nav>
+<main>
+<article class="guide wrap" id="guide">
+  <p class="guide-crumb"><a href="index.html">← 指南</a> · <a data-lang-link="en" href="../dynamic-workflows.html">English</a> · <a data-lang-link="ja" href="../ja/dynamic-workflows.html">日本語</a> · <a data-lang-link="pt" href="../pt/dynamic-workflows.html">Português</a></p>
+<p class="guide-meta">更新于 2026-11-26</p>
+<details class="toc" open><summary>本页目录</summary><ol><li class="d2"><a href="#什么时候用">什么时候用</a></li><li class="d2"><a href="#心智模型">心智模型</a></li><li class="d2"><a href="#编写契约">编写契约</a></li><li class="d2"><a href="#确定性是-resume-的代价">确定性是 resume 的代价</a></li><li class="d2"><a href="#agent-在哪里运行">Agent 在哪里运行</a></li><li class="d2"><a href="#构建第一个安全-workflow">构建第一个安全 workflow</a></li><li class="d3"><a href="#0-选择收窄的单元">0. 选择收窄的单元</a></li><li class="d3"><a href="#1-写结果-不写脚本">1. 写结果，不写脚本</a></li><li class="d3"><a href="#2-批准前审查生成的脚本">2. 批准前审查生成的脚本</a></li><li class="d3"><a href="#3-运行-观察-正确停止">3. 运行、观察、正确停止</a></li><li class="d3"><a href="#4-只有在保持确定性后才恢复">4. 只有在保持确定性后才恢复</a></li><li class="d3"><a href="#5-保存已验证的-workflow">5. 保存已验证的 workflow</a></li><li class="d2"><a href="#成本控制">成本控制</a></li><li class="d2"><a href="#verify-it">Verify it</a></li><li class="d2"><a href="#常见坑">常见坑</a></li><li class="d2"><a href="#练习">练习</a></li><li class="d2"><a href="#capstone">Capstone</a></li><li class="d2"><a href="#knowledge-check">Knowledge check</a></li><li class="d2"><a href="#sources">Sources</a></li><li class="d2"><a href="#changelog">Changelog</a></li></ol></details>
+<h1>指南 20 — Dynamic Workflows</h1>
+<p><strong>目标：</strong> 用一个确定性的 Python 脚本编排多个 Devin sessions——把独立工作扇出，把结构化结果传给后续阶段，在中断后恢复运行，并始终看清 ACU 成本。
+<strong>难度：</strong> 高级 · <strong>时间：</strong> 设计第一次运行约 35 分钟；实际成本取决于 agent 数量
+<strong>来源：</strong> <a href="https://docs.devin.ai/work-with-devin/dynamic-workflows">Dynamic Workflows 官方文档</a> · 官方文档已于 2026-11-26 核验</p>
+<blockquote>
+<p><strong>证据状态：</strong> 这是一篇基于官方来源的操作指南，尚未做独立复现。真实 workflow 会启动多个 Devin sessions，可能消耗大量 ACU，所以下面的复现练习故意收窄，并应经过批准。</p>
+</blockquote>
+<h2 id="什么时候用">什么时候用<a class="hlink" href="#什么时候用" aria-hidden="true">#</a></h2>
+<p>当工作本身有真实结构时，使用 dynamic workflow：</p>
+<ul>
+<li><strong>宽扇出 + 汇总步骤</strong>——大约 5 个或更多相互独立的文件、模块、接口、工单或候选方案，每个都需要判断或验证，最后还要合并、去重或做推荐。</li>
+<li><strong>分阶段流水线</strong>——后续阶段消费前一阶段的结构化输出，例如 <em>audit → fix → verify</em>。</li>
+<li><strong>受控循环</strong>——重复 run/fix/check，直到达到一个可测量的停止条件。</li>
+</ul>
+<p>以下情况<strong>不要</strong>用：</p>
+<ul>
+<li>codemod、linter autofix、生成器或 shell 循环已经能机械完成。</li>
+<li>只需要一两个独立 session，而且它们之间没有数据流动。</li>
+<li>工作通过共享状态紧耦合，或者本来就很小、很顺序。</li>
+</ul>
+<p>Workflow 不是“更多 AI”。它是把编排写成代码：脚本决定哪些 agent 运行、按什么顺序运行、收到什么 prompt，以及什么结构化数据继续向后传。</p>
+<h2 id="心智模型">心智模型<a class="hlink" href="#心智模型" aria-hidden="true">#</a></h2>
+<pre><code class="language-text">你描述结果
+        ↓
+Devin 编写 workflow.py
+        ↓
+脚本用 prompt + JSON Schema 调用 agent(...)
+        ↓
+每个 agent 返回结构化输出
+        ↓
+后续 prompt 由前面的输出构造
+        ↓
+运行被记录，可以恢复
+</code></pre>
+<p>Workflow 在后台运行时，编排 session 仍然可以交互。workflow 面板会显示阶段、agent 和实时状态；你可以打开单个 agent session、要求进度摘要，或停止运行。</p>
+<p>企业账号可能需要管理员先在 <strong>Enterprise Settings → Devin</strong> 下启用 <strong>Dynamic workflows</strong>，否则企业内任何组织都不能使用。</p>
+<h2 id="编写契约">编写契约<a class="hlink" href="#编写契约" aria-hidden="true">#</a></h2>
+<p>脚本由 Devin 写，但你在批准运行前应该像审查生产代码一样审查它。</p>
+<table>
+<thead>
+<tr>
+<th>Primitive</th>
+<th>用途</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>register_workflow(meta)</code></td>
+<td>在 agent 运行前声明名称、描述和阶段</td>
+</tr>
+<tr>
+<td><code>agent(prompt, phase=..., schema=...)</code></td>
+<td>运行一个 agent，并返回符合 JSON Schema 的 dict</td>
+</tr>
+<tr>
+<td><code>pipeline(items, stage1, stage2, ...)</code></td>
+<td>让每个 item 独立流经各阶段，阶段之间没有屏障</td>
+</tr>
+<tr>
+<td><code>parallel([...])</code></td>
+<td>并发运行 async callables 并等待全部结果；只用于确实需要所有结果的阶段，如合并或去重</td>
+</tr>
+<tr>
+<td><code>log("message")</code></td>
+<td>写入运行期间可见的进度信息</td>
+</tr>
+</tbody>
+</table>
+<p>Schema 设计规则：</p>
+<ol>
+<li>保持小、扁平、明确。</li>
+<li>返回标识符和证据，而不是长篇散文——branch 名、文件路径、数量、状态、单行发现。</li>
+<li>不需要下游工作时，返回 <code>None</code> 或显式失败状态。</li>
+<li>不把 secret 放进 prompt 或 schema。</li>
+<li>把 agent 输出当作进入下一个 prompt 的不可信输入；先验证，再行动。</li>
+</ol>
+<h2 id="确定性是-resume-的代价">确定性是 resume 的代价<a class="hlink" href="#确定性是-resume-的代价" aria-hidden="true">#</a></h2>
+<p>恢复 workflow 时会从头重新执行脚本。已完成的 <code>agent()</code> 调用会回放记录输出；未完成或失败的调用会重新运行。这只有在脚本每次发出相同调用时才成立。</p>
+<p>因此，workflow 逻辑和 prompt 不能依赖：</p>
+<ul>
+<li>当前时间或日期</li>
+<li>随机数或生成的 ID</li>
+<li>环境变量</li>
+<li>文件系统状态</li>
+<li>网络响应</li>
+</ul>
+<p>任何需要观察外部世界的事情都应该放进 <code>agent()</code> 调用。脚本只消费已记录的输出。</p>
+<p>两个直接后果：</p>
+<ul>
+<li>修改 prompt 会重新运行该 agent 以及它下游的所有工作。</li>
+<li>中断或超时的运行可以用 run ID 恢复；默认和最大运行预算都是 7 天。</li>
+</ul>
+<h2 id="agent-在哪里运行">Agent 在哪里运行<a class="hlink" href="#agent-在哪里运行" aria-hidden="true">#</a></h2>
+<table>
+<thead>
+<tr>
+<th>模式</th>
+<th>什么时候用</th>
+<th>交接方式</th>
+<th>主要风险</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Separate VM（默认）</td>
+<td>agent 需要隔离机器或正常 repo 环境</td>
+<td>通过 git branch 推送/读取</td>
+<td>每个 agent 的 setup 和成本更高</td>
+</tr>
+<tr>
+<td>Shared VM</td>
+<td>agent 必须读取或修改当前工作树</td>
+<td>共享文件系统</td>
+<td>CPU/内存竞争和写入冲突</td>
+</tr>
+</tbody>
+</table>
+<p>对 shared-VM 扇出，必须给并行写作者严格不重叠的文件或目录。对 separate-VM pipeline，要把 branch 名放进结构化输出。</p>
+<p>也可以把高容量、低判断强度的阶段（例如分类）固定到更便宜的 Devin mode。</p>
+<h2 id="构建第一个安全-workflow">构建第一个安全 workflow<a class="hlink" href="#构建第一个安全-workflow" aria-hidden="true">#</a></h2>
+<p>第一次不要指向整个仓库。选一个足够证明模式、又小到负担得起的切片。</p>
+<h3 id="0-选择收窄的单元">0. 选择收窄的单元<a class="hlink" href="#0-选择收窄的单元" aria-hidden="true">#</a></h3>
+<p>好的第一批切片：</p>
+<ul>
+<li>3 个组件的无障碍审计</li>
+<li>一个目录里的 SQL 查询分页问题</li>
+<li>5 个开放工单的去重和严重性分诊</li>
+<li>3 个迁移单元，各自独立 branch</li>
+</ul>
+<p>坏的第一批切片：</p>
+<ul>
+<li>“审计整个 monorepo”</li>
+<li>“修掉所有 flaky tests”</li>
+<li>“永远审查每个文件”</li>
+</ul>
+<h3 id="1-写结果-不写脚本">1. 写结果，不写脚本<a class="hlink" href="#1-写结果-不写脚本" aria-hidden="true">#</a></h3>
+<p>示例，改编自官方 migration 模式：</p>
+<pre><code class="language-text">Use a workflow to audit the auth, billing, and search modules for missing
+pagination and N+1 query patterns. Run one analysis agent per module.
+For each confirmed issue, run a fix agent on its own branch and verify the
+fix with an EXPLAIN plan before and after. Roll up the confirmed fixes,
+skipped items, and anything needing human review.
+</code></pre>
+<p>注意这个 prompt 包含了什么：范围、并行单元、阶段、验证方式和汇总形态。</p>
+<h3 id="2-批准前审查生成的脚本">2. 批准前审查生成的脚本<a class="hlink" href="#2-批准前审查生成的脚本" aria-hidden="true">#</a></h3>
+<p>逐项检查：</p>
+<ul>
+<li><code>register_workflow()</code> 在 agent 前调用。</li>
+<li>每个 <code>agent()</code> 都有 schema。</li>
+<li>agent 数量由明确列表限制，而不是无界爬取。</li>
+<li>失败行为明确：重试、带状态跳过、使用默认值，或让运行失败。</li>
+<li>脚本是确定性的。</li>
+<li>separate-VM agents 通过 branch 交接代码；shared-VM agents 不会互相覆盖。</li>
+<li>最终汇总包含证据和未解决项，而不是只写 “done”。</li>
+</ul>
+<p>运行默认自动批准。如果希望每次运行前都有检查点，关闭 <strong>Settings → Preferences → Auto-approve workflows</strong>。</p>
+<h3 id="3-运行-观察-正确停止">3. 运行、观察、正确停止<a class="hlink" href="#3-运行-观察-正确停止" aria-hidden="true">#</a></h3>
+<p>运行中：</p>
+<ul>
+<li>在 workflow 面板看阶段和 agent 状态。</li>
+<li>打开一个 agent session，检查它的 prompt 和 schema 是否符合意图。</li>
+<li>向编排 session 要进度摘要，不要手动打断每个 agent。</li>
+<li>如果设计错了，停止运行。停止会取消脚本并让剩余 child sessions 睡眠；已完成结果仍保留记录。</li>
+</ul>
+<h3 id="4-只有在保持确定性后才恢复">4. 只有在保持确定性后才恢复<a class="hlink" href="#4-只有在保持确定性后才恢复" aria-hidden="true">#</a></h3>
+<p>如果运行中断，用同一个脚本和 run ID 恢复。如果修改了 prompt，要理解被修改的 agent 及其下游都会变成新工作。</p>
+<h3 id="5-保存已验证的-workflow">5. 保存已验证的 workflow<a class="hlink" href="#5-保存已验证的-workflow" aria-hidden="true">#</a></h3>
+<p>workflow 跑通后，让 Devin 把它保存成 repo skill：<code>workflow.py</code> 放在描述何时使用的 <code>SKILL.md</code> 旁边。一次性编排由此变成可复用的组织能力。</p>
+<h2 id="成本控制">成本控制<a class="hlink" href="#成本控制" aria-hidden="true">#</a></h2>
+<p>每个 workflow agent 都是一个 Devin session。成本同时随扇出宽度和 session 深度增长。</p>
+<p>按这个顺序做：</p>
+<ol>
+<li>用 3 个 item 做原型。</li>
+<li>在 workflow 面板查看每个 agent 的 ACU 用量。</li>
+<li>扩大规模前先估算完整运行成本。</li>
+<li>分类/抽取阶段使用更便宜的 mode。</li>
+<li>把昂贵判断留给更少、更靠后的阶段。</li>
+<li>给循环设置硬停止条件。</li>
+</ol>
+<p>循环必须有写清楚的退出条件，例如“连续 3 次通过”或“本轮没有修出新东西”。否则 workflow 可能持续消耗预算，产生技术上真实但无用的进展。</p>
+<h2 id="verify-it">Verify it<a class="hlink" href="#verify-it" aria-hidden="true">#</a></h2>
+<p>第一次复现只有全部满足以下条件才有效：</p>
+<ul>
+<li>[ ] workflow 在 3–5 个单元的有界切片上运行，而不是整个 repo。</li>
+<li>[ ] workflow 面板显示了阶段和单个 agent 状态。</li>
+<li>[ ] 至少一个下游 prompt 明确消费了上游 agent 的结构化输出。</li>
+<li>[ ] 打开并检查过一个 agent session。</li>
+<li>[ ] 最终汇总区分了已验证结果、跳过项、失败项和需要人工审查的项。</li>
+<li>[ ] 记录了每个 agent 和整个运行的 ACU 用量。</li>
+<li>[ ] 如果中断或主动停止，运行能正确恢复；否则记录了不能恢复的原因。</li>
+</ul>
+<h2 id="常见坑">常见坑<a class="hlink" href="#常见坑" aria-hidden="true">#</a></h2>
+<ul>
+<li><strong>用 agent 做机械工作。</strong> 如果脚本可以确定性转换代码，就把脚本当工具，agent 只负责判断。</li>
+<li><strong>Schema 返回散文。</strong> 长文本很难被下游消费；返回紧凑的结构化事实。</li>
+<li><strong>隐藏时间依赖。</strong> 脚本里的“今天”、时间戳、随机 ID 或实时网络检查会破坏 replay 语义。</li>
+<li><strong>Shared-VM 写入冲突。</strong> 两个 agent 编辑同一个文件不是并行，而是在制造 merge conflict。</li>
+<li><strong>无界扇出。</strong> 在 workflow 内发现更多工作的 crawl 可能让成本爆炸。要么限制发现，要么把它变成上游人工批准的输入。</li>
+<li><strong>没有失败契约。</strong> 运行前就决定失败 agent 是跳过、重试、阻塞该 item，还是让整个运行失败。</li>
+<li><strong>过早复用。</strong> 在真实切片上成功运行并理解成本前，不要把 workflow 保存成 skill。</li>
+</ul>
+<h2 id="练习">练习<a class="hlink" href="#练习" aria-hidden="true">#</a></h2>
+<ol>
+<li>找一个仓库里的重复审查任务。写出 workflow prompt，然后在要求 Devin 运行前列出确切的扇出 items。</li>
+<li>为 <em>audit → fix</em> 设计两阶段 schema。除路径或 branch 名外，每个字段控制在 120 字符以内。</li>
+<li>给定一个失败 agent，写出三种失败策略并选择一种。说明汇总里应该显示什么。</li>
+<li>用 3-item 原型估算 50-item 扇出的成本。什么证据能让这个估算成立？</li>
+</ol>
+<h2 id="capstone">Capstone<a class="hlink" href="#capstone" aria-hidden="true">#</a></h2>
+<p>构建一个 workflow：按书面标准审计 5 个文件或模块，在独立 branch 上修复确认的问题，用最窄的真实检查验证每个修复，并输出最终证据表。第二次成功运行后，才把它保存为 skill。</p>
+<h2 id="knowledge-check">Knowledge check<a class="hlink" href="#knowledge-check" aria-hidden="true">#</a></h2>
+<ol>
+<li>为什么 workflow prompt 不能用“今天”和随机 ID？<em>（恢复运行时会重新执行脚本；输入变化会改变 agent 调用身份，破坏确定性 replay。）</em></li>
+<li>为什么 <code>parallel()</code> 不是默认组合 primitive？<em>（多数 pipeline 应该按 item 流动；<code>parallel()</code> 会形成屏障，只适用于确实需要所有结果的阶段。）</em></li>
+<li>最安全的第一次扇出规模是什么？<em>（约 3–5 个单元的有界切片——足够证明编排，又足够小以便测量成本和检查行为。）</em></li>
+<li>什么时候 workflow 值得变成 skill？<em>（在真实工作上成功、成本和失败行为已知、并且很可能复用之后。）</em></li>
+</ol>
+<h2 id="sources">Sources<a class="hlink" href="#sources" aria-hidden="true">#</a></h2>
+<ul>
+<li><a href="https://docs.devin.ai/work-with-devin/dynamic-workflows">Dynamic Workflows — 官方文档</a></li>
+<li><a href="https://docs.devin.ai/work-with-devin/advanced-capabilities">Advanced capabilities — managed Devins</a></li>
+<li><a href="https://docs.devin.ai/product-guides/skills">Skills — 官方文档</a></li>
+<li><a href="https://docs.devin.ai/work-with-devin/devin-mcp">Devin MCP — 官方文档</a></li>
+</ul>
+<h2 id="changelog">Changelog<a class="hlink" href="#changelog" aria-hidden="true">#</a></h2>
+<ul>
+<li>2026-11-26 — 根据官方文档创建初版。独立复现证据仍待补；在记录真实运行前，不要把练习视为已验证。</li>
+</ul>
+<section class="related"><h3>同阶段 — 二阶 · 规模化</h3><p><a href="bots-201-product-owner.html">指南 2 — 产品所有制 Bot</a> · <a href="bots-202-scheduled-sentinel.html">指南 3 — 定时哨兵 Bot</a> · <a href="bots-203-multi-bot-org.html">指南 4 — 多 Bot 组织</a> · <a href="bots-204-reference-grounded-swarm.html">指南 5 — 参考基准锚定的 swarm</a> · <a href="migrations-at-scale.html">指南 11 — 规模化迁移</a> · <a href="living-evals.html">指南 15 — 生产 trace 驱动的&quot;活&quot;评测集</a> · <a href="enterprise-playbook.html">指南 7 — 企业级铺开模式</a> · <a href="security-profiles-cloud-oidc.html">指南 21 — Security Profiles 与 Cloud OIDC</a></p></section>
+<nav class="guide-pager"><a class="pg-prev" href="enterprise-playbook.html"><span class="pg-dir">← 上一篇</span><span class="pg-t">指南 7 — 企业级铺开模式</span></a><a class="pg-next" href="security-profiles-cloud-oidc.html"><span class="pg-dir">下一篇 →</span><span class="pg-t">指南 21 — Security Profiles 与 Cloud OIDC</span></a></nav>
+</article>
+<footer><div class="wrap foot-base"><span data-i18n="foot.note">非官方社区项目——与 Cognition AI 无关。</span><span><a href="../../index.html">built-with-devin</a> · <a href="https://github.com/Till3005/build-with-devin">build-with-devin</a></span></div></footer>
+</main>
+<script src="../../assets/theme.js"></script>
+<script src="../../assets/i18n.js"></script>
+<script src="../../assets/i18n-runtime.js"></script>
+</body>
+</html>

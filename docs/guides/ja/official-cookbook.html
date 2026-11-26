@@ -6,11 +6,11 @@
 <title>ガイド 13 — 公式ユースケース・クックブック — build-with-devin guides</title>
 <meta name="description" content="Cognition 公式ドキュメントで実証済みの使用パターンをクックブックとして整理 — Devin に切り分けるべき仕事とは何か、そしてプロンプト付きでコピーできる 40 以上の文書化レシピ。">
 <link rel="canonical" href="https://till3005.github.io/built-with-devin/guides/ja/official-cookbook.html">
-<link rel="alternate" hreflang="en" href="https://till3005.github.io/built-with-devin/guides/ja/official-cookbook.html">
-<link rel="alternate" hreflang="ja" href="https://till3005.github.io/built-with-devin/guides/ja/ja/official-cookbook.html">
-<link rel="alternate" hreflang="pt" href="https://till3005.github.io/built-with-devin/guides/pt/ja/official-cookbook.html">
-<link rel="alternate" hreflang="zh" href="https://till3005.github.io/built-with-devin/guides/zh/ja/official-cookbook.html">
-<link rel="alternate" hreflang="x-default" href="https://till3005.github.io/built-with-devin/guides/ja/official-cookbook.html">
+<link rel="alternate" hreflang="en" href="https://till3005.github.io/built-with-devin/guides/official-cookbook.html">
+<link rel="alternate" hreflang="ja" href="https://till3005.github.io/built-with-devin/guides/ja/official-cookbook.html">
+<link rel="alternate" hreflang="pt" href="https://till3005.github.io/built-with-devin/guides/pt/official-cookbook.html">
+<link rel="alternate" hreflang="zh" href="https://till3005.github.io/built-with-devin/guides/zh/official-cookbook.html">
+<link rel="alternate" hreflang="x-default" href="https://till3005.github.io/built-with-devin/guides/official-cookbook.html">
 <link rel="alternate" type="application/rss+xml" title="built-with-devin feed" href="../../feed.xml">
 <script type="application/ld+json">{"@context": "https://schema.org", "@type": "TechArticle", "headline": "ガイド 13 — 公式ユースケース・クックブック", "description": "Cognition 公式ドキュメントで実証済みの使用パターンをクックブックとして整理 — Devin に切り分けるべき仕事とは何か、そしてプロンプト付きでコピーできる 40 以上の文書化レシピ。", "inLanguage": "ja", "url": "https://till3005.github.io/built-with-devin/guides/ja/official-cookbook.html", "isPartOf": {"@type": "Course", "name": "build-with-devin", "url": "https://till3005.github.io/built-with-devin/guides/"}, "dateModified": "2026-11-19"}</script>
 <link rel="icon" href="../../assets/brand/Devin_Symbol.svg" type="image/svg+xml">
@@ -44,7 +44,7 @@
 </div></nav>
 <main>
 <article class="guide wrap" id="guide">
-  <p class="guide-crumb"><a href="index.html">← ガイド</a> · <a href="../official-cookbook.html">English</a> · <a href="../pt/official-cookbook.html">Português</a> · <a href="../zh/official-cookbook.html">中文</a></p>
+  <p class="guide-crumb"><a href="index.html">← ガイド</a> · <a data-lang-link="en" href="../official-cookbook.html">English</a> · <a data-lang-link="pt" href="../pt/official-cookbook.html">Português</a> · <a data-lang-link="zh" href="../zh/official-cookbook.html">中文</a></p>
 <p class="guide-meta">更新 2026-11-19</p>
 <details class="toc" open><summary>このページの目次</summary><ol><li class="d2"><a href="#すべてを貫く唯一のルール">すべてを貫く唯一のルール</a></li><li class="d2"><a href="#レシピカタログ">レシピカタログ</a></li><li class="d3"><a href="#インシデント-本番健全性">インシデント &amp;amp; 本番健全性</a></li><li class="d3"><a href="#定期ハイジーン-ドキュメントで最も-roi-の高いページ">定期ハイジーン(ドキュメントで最も ROI の高いページ)</a></li><li class="d3"><a href="#コード品質">コード品質</a></li><li class="d3"><a href="#マイグレーション-機能開発">マイグレーション &amp;amp; 機能開発</a></li><li class="d3"><a href="#プロジェクト管理-データ">プロジェクト管理 &amp;amp; データ</a></li><li class="d3"><a href="#devin-自体の上達-devin-optimization">Devin 自体の上達(&quot;Devin Optimization&quot;)</a></li><li class="d2"><a href="#このクックブックの使い方">このクックブックの使い方</a></li><li class="d2"><a href="#実録ウォークスルー-レシピを1本実演-devin-cli-v3000-14-swe-2-flash-medium-で収録">実録ウォークスルー — レシピを1本実演、Devin CLI v3000.14（swe-2-flash-medium）で収録</a></li><li class="d2"><a href="#検証チェックリスト">検証チェックリスト</a></li><li class="d2"><a href="#落とし穴">落とし穴</a></li><li class="d2"><a href="#理解度チェック">理解度チェック</a></li><li class="d2"><a href="#出典">出典</a></li></ol></details>
 <h1>ガイド 13 — 公式ユースケース・クックブック</h1>
@@ -348,7 +348,7 @@
 <section class="related"><h3>同じステージ — ステージ0 · 基礎</h3><p><a href="talking-to-devin.html">ガイド 18 — Devin への伝え方：プロンプトの教義</a> · <a href="the-session-loop.html">ガイド 19 — セッションの全ループ：リサーチ、委任、レビュー、そしてコスト</a> · <a href="devin-desktop.html">ガイド 17 — Devin Desktop</a> · <a href="devin-cli.html">ガイド 12 — Devin CLI と拡張性</a> · <a href="bots-101-first-bot.html">ガイド 1 — 初めての Bot</a></p></section>
 <nav class="guide-pager"><a class="pg-prev" href="bots-101-first-bot.html"><span class="pg-dir">← 前へ</span><span class="pg-t">ガイド 1 — 初めての Bot</span></a><a class="pg-next" href="bot-outcome-prompts.html"><span class="pg-dir">次へ →</span><span class="pg-t">Bot 成果プロンプト、解剖</span></a></nav>
 </article>
-<footer><div class="wrap foot-base"><span data-i18n="foot.note">Unofficial community project — not affiliated with Cognition AI.</span><span><a href="../../index.html">built-with-devin</a> · <a href="https://github.com/Till3005/build-with-devin">build-with-devin</a></span></div></footer>
+<footer><div class="wrap foot-base"><span data-i18n="foot.note">非公式コミュニティプロジェクト——Cognition AI とは無関係。</span><span><a href="../../index.html">built-with-devin</a> · <a href="https://github.com/Till3005/build-with-devin">build-with-devin</a></span></div></footer>
 </main>
 <script src="../../assets/theme.js"></script>
 <script src="../../assets/i18n.js"></script>

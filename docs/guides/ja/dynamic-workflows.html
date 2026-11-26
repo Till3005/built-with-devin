@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ガイド 20 — Dynamic Workflows — build-with-devin guides</title>
+<meta name="description" content="決定的な Python スクリプトで複数の Devin sessions をオーケストレーションする——独立した作業をファンアウトし、構造化結果を後段に渡し、中断した run を再開し、ACU コストを常に把握する。">
+<link rel="canonical" href="https://till3005.github.io/built-with-devin/guides/ja/dynamic-workflows.html">
+<link rel="alternate" hreflang="en" href="https://till3005.github.io/built-with-devin/guides/dynamic-workflows.html">
+<link rel="alternate" hreflang="ja" href="https://till3005.github.io/built-with-devin/guides/ja/dynamic-workflows.html">
+<link rel="alternate" hreflang="pt" href="https://till3005.github.io/built-with-devin/guides/pt/dynamic-workflows.html">
+<link rel="alternate" hreflang="zh" href="https://till3005.github.io/built-with-devin/guides/zh/dynamic-workflows.html">
+<link rel="alternate" hreflang="x-default" href="https://till3005.github.io/built-with-devin/guides/dynamic-workflows.html">
+<link rel="alternate" type="application/rss+xml" title="built-with-devin feed" href="../../feed.xml">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "TechArticle", "headline": "ガイド 20 — Dynamic Workflows", "description": "決定的な Python スクリプトで複数の Devin sessions をオーケストレーションする——独立した作業をファンアウトし、構造化結果を後段に渡し、中断した run を再開し、ACU コストを常に把握する。", "inLanguage": "ja", "url": "https://till3005.github.io/built-with-devin/guides/ja/dynamic-workflows.html", "isPartOf": {"@type": "Course", "name": "build-with-devin", "url": "https://till3005.github.io/built-with-devin/guides/"}, "dateModified": "2026-11-26"}</script>
+<link rel="icon" href="../../assets/brand/Devin_Symbol.svg" type="image/svg+xml">
+<link rel="stylesheet" href="../../assets/site.css">
+<link rel="stylesheet" href="../../assets/guides.css">
+
+<meta property="og:title" content="ガイド 20 — Dynamic Workflows">
+<meta property="og:description" content="決定的な Python スクリプトで複数の Devin sessions をオーケストレーションする——独立した作業をファンアウトし、構造化結果を後段に渡し、中断した run を再開し、ACU コストを常に把握する。">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://till3005.github.io/built-with-devin/guides/ja/dynamic-workflows.html">
+<meta property="og:image" content="https://till3005.github.io/built-with-devin/assets/img/og-build.png?v=3">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://till3005.github.io/built-with-devin/assets/img/og-build.png?v=3">
+</head>
+<body>
+<a class="skip" href="#guide">Skip to content</a>
+<nav><div class="wrap nav-inner">
+  <div class="nav-left">
+    <a class="brand" href="../../index.html" aria-label="Built with Devin">
+      <span class="brand-text">built<strong>-with-</strong></span><img class="brand-mark" src="../../assets/brand/Devin_Primary_Logo.svg" alt="Devin" height="16"><span class="unofficial-chip">unofficial</span>
+    </a>
+  </div>
+  <div class="nav-side">
+    <div class="mode-toggle" role="tablist" aria-label="Site section">
+      <button class="mode-btn" data-mode="built" role="tab" aria-selected="false" onclick="location.href='../../index.html'">Built</button>
+      <button class="mode-btn on" data-mode="build" role="tab" aria-selected="true" onclick="location.href='../../index.html#build'">Build</button>
+      <span class="mode-pill" aria-hidden="true"></span>
+    </div>
+    <a class="cta" href="https://github.com/Till3005/build-with-devin/blob/main/guides/ja/dynamic-workflows.md">GitHub</a>
+  </div>
+</div></nav>
+<main>
+<article class="guide wrap" id="guide">
+  <p class="guide-crumb"><a href="index.html">← ガイド</a> · <a data-lang-link="en" href="../dynamic-workflows.html">English</a> · <a data-lang-link="pt" href="../pt/dynamic-workflows.html">Português</a> · <a data-lang-link="zh" href="../zh/dynamic-workflows.html">中文</a></p>
+<p class="guide-meta">更新 2026-11-26</p>
+<details class="toc" open><summary>このページの目次</summary><ol><li class="d2"><a href="#いつ使うか">いつ使うか</a></li><li class="d2"><a href="#メンタルモデル">メンタルモデル</a></li><li class="d2"><a href="#オーサリング契約">オーサリング契約</a></li><li class="d2"><a href="#決定性が-resume-の代償">決定性が resume の代償</a></li><li class="d2"><a href="#agent-はどこで実行されるか">Agent はどこで実行されるか</a></li><li class="d2"><a href="#最初の安全な-workflow-を作る">最初の安全な workflow を作る</a></li><li class="d3"><a href="#0-絞った単位を選ぶ">0. 絞った単位を選ぶ</a></li><li class="d3"><a href="#1-スクリプトではなく成果を書く">1. スクリプトではなく成果を書く</a></li><li class="d3"><a href="#2-承認前に生成スクリプトをレビューする">2. 承認前に生成スクリプトをレビューする</a></li><li class="d3"><a href="#3-実行-観察-正しい停止">3. 実行、観察、正しい停止</a></li><li class="d3"><a href="#4-決定性を保ってから再開する">4. 決定性を保ってから再開する</a></li><li class="d3"><a href="#5-実証済み-workflow-を保存する">5. 実証済み workflow を保存する</a></li><li class="d2"><a href="#コスト管理">コスト管理</a></li><li class="d2"><a href="#verify-it">Verify it</a></li><li class="d2"><a href="#落とし穴">落とし穴</a></li><li class="d2"><a href="#演習">演習</a></li><li class="d2"><a href="#capstone">Capstone</a></li><li class="d2"><a href="#knowledge-check">Knowledge check</a></li><li class="d2"><a href="#sources">Sources</a></li><li class="d2"><a href="#changelog">Changelog</a></li></ol></details>
+<h1>ガイド 20 — Dynamic Workflows</h1>
+<p><strong>目標：</strong> 決定的な Python スクリプトで複数の Devin sessions をオーケストレーションする——独立した作業をファンアウトし、構造化結果を後段に渡し、中断した run を再開し、ACU コストを常に把握する。
+<strong>レベル：</strong> 上級 · <strong>時間：</strong> 初回 run の設計に約 35 分。実コストは agent 数に依存
+<strong>ソース：</strong> <a href="https://docs.devin.ai/work-with-devin/dynamic-workflows">Dynamic Workflows 公式ドキュメント</a> · 2026-11-26 に公式ドキュメントを確認</p>
+<blockquote>
+<p><strong>エビデンス状態：</strong> これは公式ソースに基づく運用ガイドであり、まだ独立した再現実験ではありません。実際の workflow は複数の Devin sessions を起動し、大きな ACU を消費する可能性があるため、以下の再現演習は意図的に小さく限定し、承認制にしています。</p>
+</blockquote>
+<h2 id="いつ使うか">いつ使うか<a class="hlink" href="#いつ使うか" aria-hidden="true">#</a></h2>
+<p>作業そのものに構造がある場合に dynamic workflow を使います。</p>
+<ul>
+<li><strong>広いファンアウト + 統合ステップ</strong>——おおよそ 5 つ以上の独立したファイル、モジュール、エンドポイント、チケット、候補があり、それぞれ判断や検証が必要で、最後にマージ、重複排除、推奨を行う。</li>
+<li><strong>段階的パイプライン</strong>——後段が前段の構造化出力を消費する。例：<em>audit → fix → verify</em>。</li>
+<li><strong>制御されたループ</strong>——測定可能な停止条件を満たすまで run/fix/check を繰り返す。</li>
+</ul>
+<p>次の場合は使わないでください。</p>
+<ul>
+<li>codemod、linter autofix、ジェネレーター、shell loop で機械的に実行できる。</li>
+<li>独立した session が 1〜2 個だけで、データの受け渡しもない。</li>
+<li>共有状態で強く結合している、または小さく順次的な作業である。</li>
+</ul>
+<p>Workflow は「AI を増やす」ものではありません。オーケストレーションをコード化するものです。どの agent を、どの順序で、どの prompt で実行し、どの構造化データを次へ渡すかをスクリプトが決めます。</p>
+<h2 id="メンタルモデル">メンタルモデル<a class="hlink" href="#メンタルモデル" aria-hidden="true">#</a></h2>
+<pre><code class="language-text">あなたが成果を記述する
+        ↓
+Devin が workflow.py を書く
+        ↓
+スクリプトが prompt + JSON Schema で agent(...) を呼ぶ
+        ↓
+各 agent が構造化出力を返す
+        ↓
+後段の prompt が前段の出力から組み立てられる
+        ↓
+run が記録され、再開できる
+</code></pre>
+<p>Workflow がバックグラウンドで実行されている間も、オーケストレーション側の session は対話可能です。workflow パネルには phase、agent、live status が表示され、個別 agent session を開いたり、進捗要約を求めたり、run を停止したりできます。</p>
+<p>Enterprise アカウントでは、管理者が <strong>Enterprise Settings → Devin</strong> で <strong>Dynamic workflows</strong> を有効にするまで、企業内のどの organization でも使えない場合があります。</p>
+<h2 id="オーサリング契約">オーサリング契約<a class="hlink" href="#オーサリング契約" aria-hidden="true">#</a></h2>
+<p>スクリプトは Devin が書きますが、run を承認する前に本番コードと同じ基準でレビューしてください。</p>
+<table>
+<thead>
+<tr>
+<th>Primitive</th>
+<th>用途</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>register_workflow(meta)</code></td>
+<td>agent 実行前に名前、説明、phase を宣言</td>
+</tr>
+<tr>
+<td><code>agent(prompt, phase=..., schema=...)</code></td>
+<td>1 つの agent を実行し、JSON Schema に沿った dict を返す</td>
+</tr>
+<tr>
+<td><code>pipeline(items, stage1, stage2, ...)</code></td>
+<td>各 item を独立して各 stage に流す。stage 間にバリアはない</td>
+</tr>
+<tr>
+<td><code>parallel([...])</code></td>
+<td>async callables を並行実行し、すべて待つ。マージや dedup のように本当に全結果が必要な stage だけで使う</td>
+</tr>
+<tr>
+<td><code>log("message")</code></td>
+<td>実行中に見える進捗行を書く</td>
+</tr>
+</tbody>
+</table>
+<p>Schema 設計ルール：</p>
+<ol>
+<li>小さく、平坦で、明示的にする。</li>
+<li>長文ではなく識別子と証拠を返す——branch 名、ファイルパス、件数、状態、1 行の finding。</li>
+<li>後段の作業が不要なら <code>None</code> または明示的な failure status を返す。</li>
+<li>prompt や schema に secret を入れない。</li>
+<li>agent output は次の prompt への信頼できない入力として扱い、実行前に検証する。</li>
+</ol>
+<h2 id="決定性が-resume-の代償">決定性が resume の代償<a class="hlink" href="#決定性が-resume-の代償" aria-hidden="true">#</a></h2>
+<p>workflow を再開すると、スクリプトは先頭から再実行されます。完了済みの <code>agent()</code> 呼び出しは記録済み output を replay し、未完または失敗した呼び出しだけが再実行されます。これはスクリプトが毎回同じ呼び出しを行う場合にだけ成立します。</p>
+<p>したがって、workflow ロジックと prompt は次に依存してはいけません。</p>
+<ul>
+<li>現在時刻や日付</li>
+<li>乱数や生成 ID</li>
+<li>環境変数</li>
+<li>ファイルシステム状態</li>
+<li>ネットワーク応答</li>
+</ul>
+<p>外部世界を観測する必要がある処理は <code>agent()</code> 呼び出しの中に入れます。スクリプトは記録済み output だけを消費します。</p>
+<p>重要な結果が 2 つあります。</p>
+<ul>
+<li>prompt を編集すると、その agent と下游のすべてが再実行される。</li>
+<li>中断またはタイムアウトした run は run ID で再開できる。既定および最大の run budget は 7 日間。</li>
+</ul>
+<h2 id="agent-はどこで実行されるか">Agent はどこで実行されるか<a class="hlink" href="#agent-はどこで実行されるか" aria-hidden="true">#</a></h2>
+<table>
+<thead>
+<tr>
+<th>モード</th>
+<th>使う場面</th>
+<th>引き継ぎ</th>
+<th>主なリスク</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Separate VM（既定）</td>
+<td>agent に隔離された machine や通常の repo 環境が必要</td>
+<td>git branch を push/read する</td>
+<td>agent ごとの setup とコストが増える</td>
+</tr>
+<tr>
+<td>Shared VM</td>
+<td>agent が現在の working tree を読み書きする必要がある</td>
+<td>共有ファイルシステム</td>
+<td>CPU/メモリ競合と書き込み衝突</td>
+</tr>
+</tbody>
+</table>
+<p>Shared-VM のファンアウトでは、並行して書く agent には厳密に重ならないファイルまたはディレクトリを割り当てます。Separate-VM pipeline では、branch 名を構造化 output に含めます。</p>
+<p>分類のような大量・低判断の stage では、agent を低コストの Devin mode に固定することもできます。</p>
+<h2 id="最初の安全な-workflow-を作る">最初の安全な workflow を作る<a class="hlink" href="#最初の安全な-workflow-を作る" aria-hidden="true">#</a></h2>
+<p>最初の workflow をリポジトリ全体に向けないでください。パターンを証明できるだけの広さがあり、かつ負担できる小ささの slice を選びます。</p>
+<h3 id="0-絞った単位を選ぶ">0. 絞った単位を選ぶ<a class="hlink" href="#0-絞った単位を選ぶ" aria-hidden="true">#</a></h3>
+<p>良い最初の slice：</p>
+<ul>
+<li>3 コンポーネントのアクセシビリティ audit</li>
+<li>1 ディレクトリ内の SQL クエリの pagination 問題</li>
+<li>5 件の open ticket の dedup と severity triage</li>
+<li>3 つの migration unit（それぞれ独立 branch）</li>
+</ul>
+<p>悪い最初の slice：</p>
+<ul>
+<li>「monorepo 全体を audit」</li>
+<li>「flaky test を全部直す」</li>
+<li>「すべてのファイルを永久に review」</li>
+</ul>
+<h3 id="1-スクリプトではなく成果を書く">1. スクリプトではなく成果を書く<a class="hlink" href="#1-スクリプトではなく成果を書く" aria-hidden="true">#</a></h3>
+<p>公式 migration パターンを改変した例：</p>
+<pre><code class="language-text">Use a workflow to audit the auth, billing, and search modules for missing
+pagination and N+1 query patterns. Run one analysis agent per module.
+For each confirmed issue, run a fix agent on its own branch and verify the
+fix with an EXPLAIN plan before and after. Roll up the confirmed fixes,
+skipped items, and anything needing human review.
+</code></pre>
+<p>この prompt には、scope、並列化単位、stage、検証方法、rollup 形状が含まれています。</p>
+<h3 id="2-承認前に生成スクリプトをレビューする">2. 承認前に生成スクリプトをレビューする<a class="hlink" href="#2-承認前に生成スクリプトをレビューする" aria-hidden="true">#</a></h3>
+<p>次を正確に確認します。</p>
+<ul>
+<li><code>register_workflow()</code> が agent より先に呼ばれている。</li>
+<li>各 <code>agent()</code> に schema がある。</li>
+<li>agent 数が明示的な list で制限され、無制限 crawl ではない。</li>
+<li>failure behavior が明示されている：retry、status 付き skip、default 代入、run 失敗。</li>
+<li>スクリプトが決定的である。</li>
+<li>separate-VM agents が branch 経由でコードを受け渡し、shared-VM agents が互いを上書きしない。</li>
+<li>最終 rollup が「done」だけでなく、証拠と未解決項目を含む。</li>
+</ul>
+<p>Run は既定で自動承認されます。毎回 checkpoint が必要なら、<strong>Settings → Preferences → Auto-approve workflows</strong> をオフにします。</p>
+<h3 id="3-実行-観察-正しい停止">3. 実行、観察、正しい停止<a class="hlink" href="#3-実行-観察-正しい停止" aria-hidden="true">#</a></h3>
+<p>実行中：</p>
+<ul>
+<li>workflow パネルで phase と agent status を見る。</li>
+<li>1 つの agent session を開き、prompt と schema が意図に合うか確認する。</li>
+<li>各 agent を手動で止めるのではなく、オーケストレーション session に進捗要約を求める。</li>
+<li>設計が間違っていたら run を停止する。停止するとスクリプトが cancel され、残りの child sessions は sleep します。完了済みの結果は記録されたままです。</li>
+</ul>
+<h3 id="4-決定性を保ってから再開する">4. 決定性を保ってから再開する<a class="hlink" href="#4-決定性を保ってから再開する" aria-hidden="true">#</a></h3>
+<p>中断された run は、同じスクリプトと run ID で再開します。prompt を編集した場合、その agent と下游の作業が新しい作業になることを理解してください。</p>
+<h3 id="5-実証済み-workflow-を保存する">5. 実証済み workflow を保存する<a class="hlink" href="#5-実証済み-workflow-を保存する" aria-hidden="true">#</a></h3>
+<p>Workflow が成功したら、repo skill として保存するよう Devin に依頼します。<code>workflow.py</code> を、いつ使うかを説明する <code>SKILL.md</code> の隣に置きます。一度きりの orchestration が、再利用可能な組織の能力になります。</p>
+<h2 id="コスト管理">コスト管理<a class="hlink" href="#コスト管理" aria-hidden="true">#</a></h2>
+<p>各 workflow agent は 1 つの Devin session です。コストはファンアウト幅と session 深度の両方に比例します。</p>
+<p>次の順序で進めます。</p>
+<ol>
+<li>3 item で prototype する。</li>
+<li>workflow パネルで agent ごとの ACU usage を確認する。</li>
+<li>拡大前に full run を見積もる。</li>
+<li>分類・抽出 stage には低コスト mode を使う。</li>
+<li>高価な判断は、より少ない後段 agent に残す。</li>
+<li>loop には hard stop condition を設定する。</li>
+</ol>
+<p>Loop には「3 回連続で pass」「新しい修正がない round」など、書かれた終了条件が必要です。ない場合、workflow は予算を消費しながら、技術的には正しいが無用な進捗を生み続ける可能性があります。</p>
+<h2 id="verify-it">Verify it<a class="hlink" href="#verify-it" aria-hidden="true">#</a></h2>
+<p>初回再現は、次のすべてを満たす場合にだけ有効です。</p>
+<ul>
+<li>[ ] workflow が repo 全体ではなく 3–5 unit の限定 slice で実行された。</li>
+<li>[ ] workflow パネルに phase と個別 agent status が表示された。</li>
+<li>[ ] 少なくとも 1 つの後段 prompt が前段 agent の構造化 output を明示的に消費した。</li>
+<li>[ ] 1 つの agent session を開いて確認した。</li>
+<li>[ ] 最終 rollup が verified results、skipped items、failures、human-review items を分けた。</li>
+<li>[ ] agent ごとおよび run 全体の ACU usage を記録した。</li>
+<li>[ ] 中断または意図的停止後、run が正しく再開した。または再開できない理由を記録した。</li>
+</ul>
+<h2 id="落とし穴">落とし穴<a class="hlink" href="#落とし穴" aria-hidden="true">#</a></h2>
+<ul>
+<li><strong>機械的作業に agent を使う。</strong> スクリプトが決定的に変換できるなら、スクリプトをツールとして使い、agent は判断に限定する。</li>
+<li><strong>Schema が essay を返す。</strong> 長文は下游で使いにくい。 compact な structured facts を返す。</li>
+<li><strong>隠れた時間依存。</strong> スクリプト内の「今日」、timestamp、random ID、live network check は replay semantics を壊す。</li>
+<li><strong>Shared-VM の書き込み衝突。</strong> 2 つの agent が同じファイルを編集するのは並列化ではなく、merge conflict の製造です。</li>
+<li><strong>無制限ファンアウト。</strong> workflow 内部で追加作業を発見する crawl はコストを爆発させる可能性があります。発見を制限するか、上流で人間が承認した input にします。</li>
+<li><strong>Failure contract がない。</strong> 失敗した agent を skip、retry、item block、run failure のどれにするか、実行前に決めます。</li>
+<li><strong>早すぎる再利用。</strong> 実際の slice で成功し、コストを理解するまで workflow を skill として保存しないでください。</li>
+</ul>
+<h2 id="演習">演習<a class="hlink" href="#演習" aria-hidden="true">#</a></h2>
+<ol>
+<li>リポジトリ内の反復 review task を 1 つ選び、workflow prompt を書く。Devin に実行を求める前に、ファンアウト items を正確に列挙する。</li>
+<li><em>audit → fix</em> の 2 段階 schema を設計する。path や branch 名以外の各 field は 120 文字以内にする。</li>
+<li>失敗した agent を想定し、3 つの failure policy を書いて 1 つ選ぶ。rollup に何を表示すべきか説明する。</li>
+<li>3-item prototype から 50-item fan-out のコストを見積もる。その見積もりを有効にする証拠は何か。</li>
+</ol>
+<h2 id="capstone">Capstone<a class="hlink" href="#capstone" aria-hidden="true">#</a></h2>
+<p>書面化された standard に対して 5 つのファイルまたはモジュールを audit し、確認済み issue を独立 branch で修正し、利用可能な最も狭い実チェックで各修正を verify し、最終 evidence table を出す workflow を作ります。2 回目も成功した後にだけ、skill として保存します。</p>
+<h2 id="knowledge-check">Knowledge check<a class="hlink" href="#knowledge-check" aria-hidden="true">#</a></h2>
+<ol>
+<li>workflow prompt が「today」や random ID を避けるべき理由は？<em>（再開時にスクリプトが再実行され、入力変化が agent-call identity を変え、deterministic replay を壊すため。）</em></li>
+<li><code>parallel()</code> が既定の composition primitive でない理由は？<em>（多くの pipeline は item ごとに流れるべきで、<code>parallel()</code> はバリアを作る。本当に全結果が必要な stage だけに使うため。）</em></li>
+<li>最初に最も安全な fan-out サイズは？<em>（約 3–5 unit の限定 slice。orchestration を証明でき、コスト測定と挙動確認もできる大きさ。）</em></li>
+<li>workflow が skill になるに値するのはいつか？<em>（実作業で成功し、コストと failure behavior が分かり、再利用可能性が高いとき。）</em></li>
+</ol>
+<h2 id="sources">Sources<a class="hlink" href="#sources" aria-hidden="true">#</a></h2>
+<ul>
+<li><a href="https://docs.devin.ai/work-with-devin/dynamic-workflows">Dynamic Workflows — 公式ドキュメント</a></li>
+<li><a href="https://docs.devin.ai/work-with-devin/advanced-capabilities">Advanced capabilities — managed Devins</a></li>
+<li><a href="https://docs.devin.ai/product-guides/skills">Skills — 公式ドキュメント</a></li>
+<li><a href="https://docs.devin.ai/work-with-devin/devin-mcp">Devin MCP — 公式ドキュメント</a></li>
+</ul>
+<h2 id="changelog">Changelog<a class="hlink" href="#changelog" aria-hidden="true">#</a></h2>
+<ul>
+<li>2026-11-26 — 公式ドキュメントに基づく初版。独立した再現エビデンスは未整備。実際の run が記録されるまで、演習を検証済みとみなさないこと。</li>
+</ul>
+<section class="related"><h3>同じステージ — ステージ2 · スケール</h3><p><a href="bots-201-product-owner.html">ガイド 2 — プロダクトオーナー Bot</a> · <a href="bots-202-scheduled-sentinel.html">ガイド 3 — 定期監視 Bot</a> · <a href="bots-203-multi-bot-org.html">ガイド 4 — マルチ Bot 組織</a> · <a href="bots-204-reference-grounded-swarm.html">ガイド 5 — 参照基盤スウォーム</a> · <a href="migrations-at-scale.html">ガイド 11 — スケールする移行</a> · <a href="living-evals.html">ガイド 15 — 本番トレースから育つリビング eval</a> · <a href="enterprise-playbook.html">ガイド 7 — エンタープライズ導入パターン</a> · <a href="security-profiles-cloud-oidc.html">ガイド 21 — Security Profiles と Cloud OIDC</a></p></section>
+<nav class="guide-pager"><a class="pg-prev" href="enterprise-playbook.html"><span class="pg-dir">← 前へ</span><span class="pg-t">ガイド 7 — エンタープライズ導入パターン</span></a><a class="pg-next" href="security-profiles-cloud-oidc.html"><span class="pg-dir">次へ →</span><span class="pg-t">ガイド 21 — Security Profiles と Cloud OIDC</span></a></nav>
+</article>
+<footer><div class="wrap foot-base"><span data-i18n="foot.note">非公式コミュニティプロジェクト——Cognition AI とは無関係。</span><span><a href="../../index.html">built-with-devin</a> · <a href="https://github.com/Till3005/build-with-devin">build-with-devin</a></span></div></footer>
+</main>
+<script src="../../assets/theme.js"></script>
+<script src="../../assets/i18n.js"></script>
+<script src="../../assets/i18n-runtime.js"></script>
+</body>
+</html>

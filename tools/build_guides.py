@@ -72,7 +72,7 @@ PAGE = """<!DOCTYPE html>
 {related}
 {pager}
 </article>
-<footer><div class="wrap foot-base"><span data-i18n="foot.note">Unofficial community project — not affiliated with Cognition AI.</span><span><a href="{rel}index.html">built-with-devin</a> · <a href="https://github.com/Till3005/build-with-devin">build-with-devin</a></span></div></footer>
+<footer><div class="wrap foot-base"><span data-i18n="foot.note">{foot_note}</span><span><a href="{rel}index.html">built-with-devin</a> · <a href="https://github.com/Till3005/build-with-devin">build-with-devin</a></span></div></footer>
 </main>
 <script src="{rel}assets/theme.js"></script>
 <script src="{rel}assets/i18n.js"></script>
@@ -84,6 +84,10 @@ PAGE = """<!DOCTYPE html>
 LANG_LABEL = {"en": "English", "zh": "中文", "ja": "日本語", "pt": "Português"}
 GUIDES_LABEL = {"en": "Guides", "zh": "指南", "ja": "ガイド", "pt": "Guias"}
 UPDATED_LABEL = {"en": "Updated", "zh": "更新于", "ja": "更新", "pt": "Atualizado"}
+FOOT_NOTE = {"en": "Unofficial community project — not affiliated with Cognition AI.",
+             "zh": "非官方社区项目——与 Cognition AI 无关。",
+             "ja": "非公式コミュニティプロジェクト——Cognition AI とは無関係。",
+             "pt": "Projeto comunitário não oficial — sem afiliação com a Cognition AI."}
 TOC_LABEL = {"en": "On this page", "zh": "本页目录", "ja": "このページの目次", "pt": "Nesta página"}
 PAGER_LABEL = {"en": ("← Previous", "Next →"), "zh": ("← 上一篇", "下一篇 →"),
                "ja": ("← 前へ", "次へ →"), "pt": ("← Anterior", "Próximo →")}
@@ -244,8 +248,8 @@ def render(md_path: Path, out_path: Path, rel: str, lang: str, alt: str, mdsrc: 
     out_path.write_text(PAGE.format(
         lang=lang, etitle=html_.escape(title, quote=True), edesc=html_.escape(desc, quote=True),
         rel=rel, body=body, alt=alt, mdsrc=mdsrc, page=page, pager=pager,
-        crumb=crumb, meta=meta, toc=toc, guides_label=GUIDES_LABEL[lang],
-        ogimage=ogimage, canonical=canonical, hreflang=hreflang_block(page, langs),
+        crumb=crumb, meta=meta, toc=toc, guides_label=GUIDES_LABEL[lang], foot_note=FOOT_NOTE[lang],
+        ogimage=ogimage, canonical=canonical, hreflang=hreflang_block(out_path.name, langs),
         jsonld=jsonld_guide(title, desc, lang, upd, canonical), related=related), encoding="utf-8")
     return title
 
@@ -343,15 +347,15 @@ def main():
     lang_dirs = [d.name for d in sorted(SRC.iterdir()) if d.is_dir() and d.name in ("zh", "ja", "pt")]
     for en in en_files:
         mirrors = [l for l in lang_dirs if (SRC / l / en.name).exists()]
-        alts = " · ".join(f'<a href="{l}/{en.stem}.html">{LANG_LABEL[l]}</a>' for l in mirrors)
+        alts = " · ".join(f'<a data-lang-link="{l}" href="{l}/{en.stem}.html">{LANG_LABEL[l]}</a>' for l in mirrors)
         alt_en = f" · {alts}" if alts else ""
         render(en, OUT / f"{en.stem}.html", "../", "en", alt_en, en.name, "index.html",
                pager_for(en.stem, order, en_titles, "en"),
                related_html(en.stem, "en", stages["en"], en_titles), mirrors=mirrors)
         for l in mirrors:
             lt = lang_titles(l) or en_titles
-            alt_l = f' · <a href="../{en.stem}.html">English</a>' + "".join(
-                f' · <a href="../{o}/{en.stem}.html">{LANG_LABEL[o]}</a>' for o in mirrors if o != l)
+            alt_l = f' · <a data-lang-link="en" href="../{en.stem}.html">English</a>' + "".join(
+                f' · <a data-lang-link="{o}" href="../{o}/{en.stem}.html">{LANG_LABEL[o]}</a>' for o in mirrors if o != l)
             render(SRC / l / en.name, OUT / l / f"{en.stem}.html", "../../", l, alt_l,
                    f"{l}/{en.name}", "index.html",
                    pager_for(en.stem, order, lt, l),
@@ -364,7 +368,7 @@ def main():
         rel = "../" if l == "en" else "../../"
         langs = ["en"] + lang_dirs
         alt = " · ".join(
-            f'<a href="{"" if l == "en" else "../"}{"" if o == "en" else o + "/"}index.html">{LANG_LABEL[o]}</a>'
+            f'<a data-lang-link="{o}" href="{"" if l == "en" else "../"}{"" if o == "en" else o + "/"}index.html">{LANG_LABEL[o]}</a>'
             for o in langs if o != l)
         alt = f" · {alt}" if alt else ""
         canonical = f"{SITE}/guides/{'' if l == 'en' else l + '/'}"
@@ -375,7 +379,7 @@ def main():
             pager="", crumb=f"{rel}index.html", related="",
             canonical=canonical, hreflang=hreflang_block("index.html", langs),
             jsonld=jsonld_index(l, canonical, order, lt),
-            meta="", toc="", guides_label="built-with-devin"), encoding="utf-8")
+            meta="", toc="", guides_label="built-with-devin", foot_note=FOOT_NOTE[l]), encoding="utf-8")
 
     print(f"rendered {len(en_files)} guides × {1 + len(lang_dirs)} languages + {1 + len(lang_dirs)} indexes → docs/guides/")
 

@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Guia 20 — Dynamic Workflows — build-with-devin guides</title>
+<meta name="description" content="orquestrar muitas sessões Devin com um script Python determinístico — distribuir trabalho independente, passar resultados estruturados entre estágios, retomar r">
+<link rel="canonical" href="https://till3005.github.io/built-with-devin/guides/pt/dynamic-workflows.html">
+<link rel="alternate" hreflang="en" href="https://till3005.github.io/built-with-devin/guides/dynamic-workflows.html">
+<link rel="alternate" hreflang="ja" href="https://till3005.github.io/built-with-devin/guides/ja/dynamic-workflows.html">
+<link rel="alternate" hreflang="pt" href="https://till3005.github.io/built-with-devin/guides/pt/dynamic-workflows.html">
+<link rel="alternate" hreflang="zh" href="https://till3005.github.io/built-with-devin/guides/zh/dynamic-workflows.html">
+<link rel="alternate" hreflang="x-default" href="https://till3005.github.io/built-with-devin/guides/dynamic-workflows.html">
+<link rel="alternate" type="application/rss+xml" title="built-with-devin feed" href="../../feed.xml">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "TechArticle", "headline": "Guia 20 — Dynamic Workflows", "description": "orquestrar muitas sessões Devin com um script Python determinístico — distribuir trabalho independente, passar resultados estruturados entre estágios, retomar r", "inLanguage": "pt", "url": "https://till3005.github.io/built-with-devin/guides/pt/dynamic-workflows.html", "isPartOf": {"@type": "Course", "name": "build-with-devin", "url": "https://till3005.github.io/built-with-devin/guides/"}, "dateModified": "2026-11-26"}</script>
+<link rel="icon" href="../../assets/brand/Devin_Symbol.svg" type="image/svg+xml">
+<link rel="stylesheet" href="../../assets/site.css">
+<link rel="stylesheet" href="../../assets/guides.css">
+
+<meta property="og:title" content="Guia 20 — Dynamic Workflows">
+<meta property="og:description" content="orquestrar muitas sessões Devin com um script Python determinístico — distribuir trabalho independente, passar resultados estruturados entre estágios, retomar r">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://till3005.github.io/built-with-devin/guides/pt/dynamic-workflows.html">
+<meta property="og:image" content="https://till3005.github.io/built-with-devin/assets/img/og-build.png?v=3">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://till3005.github.io/built-with-devin/assets/img/og-build.png?v=3">
+</head>
+<body>
+<a class="skip" href="#guide">Skip to content</a>
+<nav><div class="wrap nav-inner">
+  <div class="nav-left">
+    <a class="brand" href="../../index.html" aria-label="Built with Devin">
+      <span class="brand-text">built<strong>-with-</strong></span><img class="brand-mark" src="../../assets/brand/Devin_Primary_Logo.svg" alt="Devin" height="16"><span class="unofficial-chip">unofficial</span>
+    </a>
+  </div>
+  <div class="nav-side">
+    <div class="mode-toggle" role="tablist" aria-label="Site section">
+      <button class="mode-btn" data-mode="built" role="tab" aria-selected="false" onclick="location.href='../../index.html'">Built</button>
+      <button class="mode-btn on" data-mode="build" role="tab" aria-selected="true" onclick="location.href='../../index.html#build'">Build</button>
+      <span class="mode-pill" aria-hidden="true"></span>
+    </div>
+    <a class="cta" href="https://github.com/Till3005/build-with-devin/blob/main/guides/pt/dynamic-workflows.md">GitHub</a>
+  </div>
+</div></nav>
+<main>
+<article class="guide wrap" id="guide">
+  <p class="guide-crumb"><a href="index.html">← Guias</a> · <a data-lang-link="en" href="../dynamic-workflows.html">English</a> · <a data-lang-link="ja" href="../ja/dynamic-workflows.html">日本語</a> · <a data-lang-link="zh" href="../zh/dynamic-workflows.html">中文</a></p>
+<p class="guide-meta">Atualizado 2026-11-26</p>
+<details class="toc" open><summary>Nesta página</summary><ol><li class="d2"><a href="#quando-usar">Quando usar</a></li><li class="d2"><a href="#modelo-mental">Modelo mental</a></li><li class="d2"><a href="#contrato-de-autoria">Contrato de autoria</a></li><li class="d2"><a href="#determinismo-é-o-preço-do-resume">Determinismo é o preço do resume</a></li><li class="d2"><a href="#onde-os-agents-rodam">Onde os agents rodam</a></li><li class="d2"><a href="#construa-sua-primeira-workflow-segura">Construa sua primeira workflow segura</a></li><li class="d3"><a href="#0-escolha-uma-unidade-estreita">0. Escolha uma unidade estreita</a></li><li class="d3"><a href="#1-escreva-o-resultado-não-o-script">1. Escreva o resultado, não o script</a></li><li class="d3"><a href="#2-revise-o-script-gerado-antes-de-aprovar">2. Revise o script gerado antes de aprovar</a></li><li class="d3"><a href="#3-execute-observe-e-pare-corretamente">3. Execute, observe e pare corretamente</a></li><li class="d3"><a href="#4-retome-somente-preservando-determinismo">4. Retome somente preservando determinismo</a></li><li class="d3"><a href="#5-salve-a-workflow-comprovada">5. Salve a workflow comprovada</a></li><li class="d2"><a href="#controle-de-custo">Controle de custo</a></li><li class="d2"><a href="#verify-it">Verify it</a></li><li class="d2"><a href="#armadilhas">Armadilhas</a></li><li class="d2"><a href="#exercícios">Exercícios</a></li><li class="d2"><a href="#capstone">Capstone</a></li><li class="d2"><a href="#knowledge-check">Knowledge check</a></li><li class="d2"><a href="#fontes">Fontes</a></li><li class="d2"><a href="#changelog">Changelog</a></li></ol></details>
+<h1>Guia 20 — Dynamic Workflows</h1>
+<p><strong>Objetivo:</strong> orquestrar muitas sessões Devin com um script Python determinístico — distribuir trabalho independente, passar resultados estruturados entre estágios, retomar runs interrompidas e manter o custo em ACUs visível.
+<strong>Nível:</strong> avançado · <strong>Tempo:</strong> cerca de 35 minutos para desenhar a primeira run; o custo depende do número de agents
+<strong>Fonte:</strong> <a href="https://docs.devin.ai/work-with-devin/dynamic-workflows">documentação oficial de Dynamic Workflows</a> · documentação oficial verificada em 26 de novembro de 2026</p>
+<blockquote>
+<p><strong>Estado da evidência:</strong> este é um guia operacional baseado em fonte oficial, ainda não uma reprodução independente. Uma workflow real inicia várias sessões Devin e pode consumir muitas ACUs; por isso o exercício de reprodução abaixo é deliberadamente estreito e depende de aprovação.</p>
+</blockquote>
+<h2 id="quando-usar">Quando usar<a class="hlink" href="#quando-usar" aria-hidden="true">#</a></h2>
+<p>Use uma dynamic workflow quando o trabalho tiver estrutura real:</p>
+<ul>
+<li><strong>Fan-out amplo com etapa de combinação</strong> — aproximadamente cinco ou mais arquivos, módulos, endpoints, tickets ou candidatos independentes, cada um exigindo julgamento ou verificação, seguidos de merge/deduplicação/recomendação.</li>
+<li><strong>Pipeline em estágios</strong> — estágios posteriores consomem output estruturado dos anteriores, como <em>audit → fix → verify</em>.</li>
+<li><strong>Loop controlado</strong> — repetir run/fix/check até uma condição de parada mensurável.</li>
+</ul>
+<p><strong>Não</strong> use quando:</p>
+<ul>
+<li>Um codemod, autofix de linter, gerador ou shell loop resolve mecanicamente.</li>
+<li>Apenas uma ou duas sessões independentes são necessárias e não há dados fluindo entre elas.</li>
+<li>O trabalho é fortemente acoplado por estado compartilhado, ou pequeno e sequencial.</li>
+</ul>
+<p>Uma workflow não é “mais IA”. É orquestração como código: o script decide quais agents rodam, em que ordem, com quais prompts e quais dados estruturados avançam.</p>
+<h2 id="modelo-mental">Modelo mental<a class="hlink" href="#modelo-mental" aria-hidden="true">#</a></h2>
+<pre><code class="language-text">Você descreve o resultado
+        ↓
+Devin escreve workflow.py
+        ↓
+o script chama agent(...) com prompt + JSON Schema
+        ↓
+cada agent retorna output estruturado
+        ↓
+prompts posteriores são construídos a partir de outputs anteriores
+        ↓
+a run é registrada e pode ser retomada
+</code></pre>
+<p>A sessão orquestradora continua interativa enquanto a workflow roda em segundo plano. O painel da workflow mostra fases, agents e status ao vivo; você pode abrir sessões individuais, pedir um resumo de progresso ou parar a run.</p>
+<p>Em contas Enterprise, um admin pode precisar ativar <strong>Dynamic workflows</strong> em <strong>Enterprise Settings → Devin</strong> antes que qualquer organização da empresa possa usá-las.</p>
+<h2 id="contrato-de-autoria">Contrato de autoria<a class="hlink" href="#contrato-de-autoria" aria-hidden="true">#</a></h2>
+<p>Devin escreve o script, mas você deve revisá-lo como código de produção antes de aprovar a run.</p>
+<table>
+<thead>
+<tr>
+<th>Primitive</th>
+<th>Uso</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>register_workflow(meta)</code></td>
+<td>Declara nome, descrição e fases antes dos agents rodarem</td>
+</tr>
+<tr>
+<td><code>agent(prompt, phase=..., schema=...)</code></td>
+<td>Executa um agent e retorna um dict no formato do JSON Schema</td>
+</tr>
+<tr>
+<td><code>pipeline(items, stage1, stage2, ...)</code></td>
+<td>Passa cada item pelos estágios independentemente, sem barreira entre eles</td>
+</tr>
+<tr>
+<td><code>parallel([...])</code></td>
+<td>Executa callables async concorrentemente e espera todas; use apenas quando todos os resultados são realmente necessários, como merge ou deduplicação</td>
+</tr>
+<tr>
+<td><code>log("message")</code></td>
+<td>Escreve progresso visível durante a run</td>
+</tr>
+</tbody>
+</table>
+<p>Regras de schema:</p>
+<ol>
+<li>Mantenha schemas pequenos, planos e explícitos.</li>
+<li>Retorne identificadores e evidência, não ensaios em prosa — nomes de branch, paths, contagens, status, findings de uma linha.</li>
+<li>Use <code>None</code> ou um status explícito de falha quando não houver trabalho downstream.</li>
+<li>Não coloque secrets em prompts ou schemas.</li>
+<li>Trate output de agent como input não confiável para o próximo prompt; valide antes de agir.</li>
+</ol>
+<h2 id="determinismo-é-o-preço-do-resume">Determinismo é o preço do resume<a class="hlink" href="#determinismo-é-o-preço-do-resume" aria-hidden="true">#</a></h2>
+<p>Quando uma workflow é retomada, o script é executado novamente desde o início. Chamadas <code>agent()</code> concluídas fazem replay dos outputs registrados; chamadas incompletas ou falhas rodam de novo. Isso só funciona se o script fizer as mesmas chamadas todas as vezes.</p>
+<p>Portanto, a lógica e os prompts da workflow não podem depender de:</p>
+<ul>
+<li>hora ou data atual</li>
+<li>aleatoriedade ou IDs gerados</li>
+<li>variáveis de ambiente</li>
+<li>estado do filesystem</li>
+<li>respostas de rede</li>
+</ul>
+<p>Qualquer inspeção do mundo externo pertence a uma chamada <code>agent()</code>. O script consome o output registrado.</p>
+<p>Duas consequências:</p>
+<ul>
+<li>Editar um prompt reexecuta aquele agent e tudo downstream dele.</li>
+<li>Uma run interrompida ou expirada pode ser retomada com seu run ID; o orçamento padrão e máximo de uma run é sete dias.</li>
+</ul>
+<h2 id="onde-os-agents-rodam">Onde os agents rodam<a class="hlink" href="#onde-os-agents-rodam" aria-hidden="true">#</a></h2>
+<table>
+<thead>
+<tr>
+<th>Modo</th>
+<th>Quando usar</th>
+<th>Handoff</th>
+<th>Principal risco</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Separate VM (padrão)</td>
+<td>Agents precisam de máquinas isoladas ou setup normal de repo</td>
+<td>push/read de branches git</td>
+<td>Mais setup e custo por agent</td>
+</tr>
+<tr>
+<td>Shared VM</td>
+<td>Agents precisam ler ou editar a working tree atual</td>
+<td>filesystem compartilhado</td>
+<td>Contenção de CPU/memória e colisões de escrita</td>
+</tr>
+</tbody>
+</table>
+<p>Para fan-out em Shared VM, atribua a escritores paralelos arquivos ou diretórios estritamente não sobrepostos. Para pipelines em Separate VM, coloque nomes de branch no output estruturado.</p>
+<p>Também é possível fixar agents em um modo Devin mais barato para estágios de alto volume e baixo julgamento, como classificação.</p>
+<h2 id="construa-sua-primeira-workflow-segura">Construa sua primeira workflow segura<a class="hlink" href="#construa-sua-primeira-workflow-segura" aria-hidden="true">#</a></h2>
+<p>Não aponte a primeira workflow para o repositório inteiro. Use uma fatia ampla o bastante para provar o padrão e pequena o bastante para pagar.</p>
+<h3 id="0-escolha-uma-unidade-estreita">0. Escolha uma unidade estreita<a class="hlink" href="#0-escolha-uma-unidade-estreita" aria-hidden="true">#</a></h3>
+<p>Boas primeiras fatias:</p>
+<ul>
+<li>três componentes para auditoria de acessibilidade</li>
+<li>um diretório de queries SQL para problemas de paginação</li>
+<li>cinco tickets abertos para deduplicação e triagem de severidade</li>
+<li>três unidades de migração, cada uma em sua branch</li>
+</ul>
+<p>Más primeiras fatias:</p>
+<ul>
+<li>“auditar todo o monorepo”</li>
+<li>“corrigir todos os flaky tests”</li>
+<li>“revisar todos os arquivos para sempre”</li>
+</ul>
+<h3 id="1-escreva-o-resultado-não-o-script">1. Escreva o resultado, não o script<a class="hlink" href="#1-escreva-o-resultado-não-o-script" aria-hidden="true">#</a></h3>
+<p>Exemplo adaptado do padrão oficial de migração:</p>
+<pre><code class="language-text">Use a workflow to audit the auth, billing, and search modules for missing
+pagination and N+1 query patterns. Run one analysis agent per module.
+For each confirmed issue, run a fix agent on its own branch and verify the
+fix with an EXPLAIN plan before and after. Roll up the confirmed fixes,
+skipped items, and anything needing human review.
+</code></pre>
+<p>Observe o que esse prompt inclui: escopo, unidade de paralelização, estágios, verificação e formato de rollup.</p>
+<h3 id="2-revise-o-script-gerado-antes-de-aprovar">2. Revise o script gerado antes de aprovar<a class="hlink" href="#2-revise-o-script-gerado-antes-de-aprovar" aria-hidden="true">#</a></h3>
+<p>Verifique exatamente estes pontos:</p>
+<ul>
+<li><code>register_workflow()</code> é chamado antes dos agents.</li>
+<li>Cada <code>agent()</code> tem schema.</li>
+<li>O número de agents é limitado por uma lista explícita, não por crawl ilimitado.</li>
+<li>O comportamento de falha é explícito: retry, pular com status, substituir por default ou falhar a run.</li>
+<li>O script é determinístico.</li>
+<li>Agents em Separate VM passam código por branches; agents em Shared VM não podem sobrescrever uns aos outros.</li>
+<li>O rollup final inclui evidência e itens não resolvidos, não apenas “done”.</li>
+</ul>
+<p>Runs são autoaprovadas por padrão. Se quiser um checkpoint antes de cada run, desative <strong>Settings → Preferences → Auto-approve workflows</strong>.</p>
+<h3 id="3-execute-observe-e-pare-corretamente">3. Execute, observe e pare corretamente<a class="hlink" href="#3-execute-observe-e-pare-corretamente" aria-hidden="true">#</a></h3>
+<p>Durante a execução:</p>
+<ul>
+<li>Observe fases e status dos agents no painel.</li>
+<li>Abra uma sessão de agent e confira se prompt e schema correspondem à intenção.</li>
+<li>Peça um resumo de progresso à sessão orquestradora em vez de interromper manualmente cada agent.</li>
+<li>Se o design estiver errado, pare a run. Parar cancela o script e coloca as child sessions restantes em sleep; resultados concluídos permanecem registrados.</li>
+</ul>
+<h3 id="4-retome-somente-preservando-determinismo">4. Retome somente preservando determinismo<a class="hlink" href="#4-retome-somente-preservando-determinismo" aria-hidden="true">#</a></h3>
+<p>Se uma run for interrompida, retome com o mesmo script e run ID. Se editar um prompt, entenda que o agent editado e seu downstream viram trabalho novo.</p>
+<h3 id="5-salve-a-workflow-comprovada">5. Salve a workflow comprovada<a class="hlink" href="#5-salve-a-workflow-comprovada" aria-hidden="true">#</a></h3>
+<p>Depois que uma workflow funcionar, peça para Devin salvá-la como skill do repositório: um <code>workflow.py</code> ao lado de um <code>SKILL.md</code> descrevendo quando usá-la. Isso transforma orquestração pontual em capacidade organizacional reutilizável.</p>
+<h2 id="controle-de-custo">Controle de custo<a class="hlink" href="#controle-de-custo" aria-hidden="true">#</a></h2>
+<p>Cada agent de workflow é uma sessão Devin. O custo escala com a largura do fan-out e a profundidade das sessões.</p>
+<p>Use esta sequência:</p>
+<ol>
+<li>Prototipe com 3 itens.</li>
+<li>Inspecione o uso de ACU por agent no painel.</li>
+<li>Estime a run completa antes de ampliar.</li>
+<li>Use modos mais baratos para classificação/extração.</li>
+<li>Reserve julgamento caro para agents menos numerosos e posteriores.</li>
+<li>Defina condições duras de parada para loops.</li>
+</ol>
+<p>Um loop precisa de condição escrita de saída, como “passa três vezes consecutivas” ou “uma rodada não corrige nada novo”. Sem isso, a workflow pode queimar orçamento produzindo progresso tecnicamente real, mas inútil.</p>
+<h2 id="verify-it">Verify it<a class="hlink" href="#verify-it" aria-hidden="true">#</a></h2>
+<p>Uma primeira reprodução só é válida se todas estas condições forem verdadeiras:</p>
+<ul>
+<li>[ ] A workflow rodou em uma fatia limitada de 3–5 unidades, não no repo inteiro.</li>
+<li>[ ] O painel mostrou fases e status individual dos agents.</li>
+<li>[ ] Pelo menos um prompt downstream consumiu visivelmente output estruturado de um agent upstream.</li>
+<li>[ ] Uma sessão de agent foi aberta e inspecionada.</li>
+<li>[ ] O rollup final separou resultados verificados, itens pulados, falhas e itens para revisão humana.</li>
+<li>[ ] O uso de ACU foi registrado por agent e para a run.</li>
+<li>[ ] Se interrompida ou parada intencionalmente, a run retomou corretamente ou o motivo da falha foi documentado.</li>
+</ul>
+<h2 id="armadilhas">Armadilhas<a class="hlink" href="#armadilhas" aria-hidden="true">#</a></h2>
+<ul>
+<li><strong>Usar agents para trabalho mecânico.</strong> Se um script transforma o código deterministicamente, use o script como ferramenta e reserve agents para julgamento.</li>
+<li><strong>Schemas que retornam ensaios.</strong> Prosa longa é difícil de consumir downstream; retorne fatos estruturados e compactos.</li>
+<li><strong>Dependência oculta de tempo.</strong> “Hoje”, timestamps, IDs aleatórios ou verificações de rede ao vivo no script quebram a semântica de replay.</li>
+<li><strong>Colisões de escrita em Shared VM.</strong> Dois agents editando o mesmo arquivo não são paralelismo; são uma fábrica de merge conflicts.</li>
+<li><strong>Fan-out ilimitado.</strong> Um crawl que descobre mais trabalho dentro da workflow pode explodir o custo. Limite a descoberta ou transforme-a em input aprovado por humano.</li>
+<li><strong>Sem contrato de falha.</strong> Decida antes de rodar se um agent falho será pulado, repetido, bloqueará o item ou falhará a run.</li>
+<li><strong>Reuso prematuro.</strong> Não salve uma workflow como skill até ela rodar com sucesso em uma fatia real e seu custo ser compreendido.</li>
+</ul>
+<h2 id="exercícios">Exercícios<a class="hlink" href="#exercícios" aria-hidden="true">#</a></h2>
+<ol>
+<li>Escolha uma tarefa repetitiva de review no seu repo. Escreva o prompt da workflow e liste exatamente os itens do fan-out antes de pedir para Devin executá-la.</li>
+<li>Desenhe um schema de dois estágios para <em>audit → fix</em>. Mantenha cada campo abaixo de 120 caracteres, exceto paths ou nomes de branch.</li>
+<li>Para um agent falho, escreva três políticas de falha possíveis e escolha uma. Explique o que o rollup deve mostrar.</li>
+<li>Estime o custo de um fan-out de 50 itens a partir de um protótipo de 3 itens. Que evidência torna a estimativa válida?</li>
+</ol>
+<h2 id="capstone">Capstone<a class="hlink" href="#capstone" aria-hidden="true">#</a></h2>
+<p>Construa uma workflow que audite cinco arquivos ou módulos contra um padrão escrito, corrija problemas confirmados em branches separadas, verifique cada correção com o check real mais estreito disponível e produza uma tabela final de evidências. Salve como skill somente depois de uma segunda execução bem-sucedida.</p>
+<h2 id="knowledge-check">Knowledge check<a class="hlink" href="#knowledge-check" aria-hidden="true">#</a></h2>
+<ol>
+<li>Por que prompts de workflow devem evitar “hoje” e IDs aleatórios? <em>(Uma run retomada reexecuta o script; inputs mutáveis mudam a identidade das chamadas de agent e quebram o replay determinístico.)</em></li>
+<li>Por que <code>parallel()</code> não é o primitive padrão de composição? <em>(A maioria dos pipelines deve fluir item a item; <code>parallel()</code> cria uma barreira e serve apenas para estágios que realmente precisam de todos os resultados.)</em></li>
+<li>Qual é o fan-out inicial mais seguro? <em>(Uma fatia limitada de cerca de 3–5 unidades — grande o suficiente para provar a orquestração, pequena o suficiente para medir custo e inspecionar comportamento.)</em></li>
+<li>Quando uma workflow merece virar skill? <em>(Depois de ter sucesso em trabalho real, com custo e comportamento de falha conhecidos, e com probabilidade de reúso.)</em></li>
+</ol>
+<h2 id="fontes">Fontes<a class="hlink" href="#fontes" aria-hidden="true">#</a></h2>
+<ul>
+<li><a href="https://docs.devin.ai/work-with-devin/dynamic-workflows">Dynamic Workflows — documentação oficial</a></li>
+<li><a href="https://docs.devin.ai/work-with-devin/advanced-capabilities">Advanced capabilities — managed Devins</a></li>
+<li><a href="https://docs.devin.ai/product-guides/skills">Skills — documentação oficial</a></li>
+<li><a href="https://docs.devin.ai/work-with-devin/devin-mcp">Devin MCP — documentação oficial</a></li>
+</ul>
+<h2 id="changelog">Changelog<a class="hlink" href="#changelog" aria-hidden="true">#</a></h2>
+<ul>
+<li>2026-11-26 — Versão inicial baseada na documentação oficial. Evidência independente de reprodução pendente; não trate o exercício como verificado até uma run real ser registrada.</li>
+</ul>
+<section class="related"><h3>Mesmo estágio — Estágio 2 · Escalar</h3><p><a href="bots-201-product-owner.html">Guia 2 — Bot product-owner</a> · <a href="bots-202-scheduled-sentinel.html">Guia 3 — Bot sentinela agendado</a> · <a href="bots-203-multi-bot-org.html">Guia 4 — Organização multi-Bot</a> · <a href="bots-204-reference-grounded-swarm.html">Guia 5 — Enxame ancorado em referência</a> · <a href="migrations-at-scale.html">Guia 11 — Migrações em escala</a> · <a href="living-evals.html">Guia 15 — Living evals a partir de traces de produção</a> · <a href="enterprise-playbook.html">Guia 7 — Padrões de rollout enterprise</a> · <a href="security-profiles-cloud-oidc.html">Guia 21 — Security Profiles e Cloud OIDC</a></p></section>
+<nav class="guide-pager"><a class="pg-prev" href="enterprise-playbook.html"><span class="pg-dir">← Anterior</span><span class="pg-t">Guia 7 — Padrões de rollout enterprise</span></a><a class="pg-next" href="security-profiles-cloud-oidc.html"><span class="pg-dir">Próximo →</span><span class="pg-t">Guia 21 — Security Profiles e Cloud OIDC</span></a></nav>
+</article>
+<footer><div class="wrap foot-base"><span data-i18n="foot.note">Projeto comunitário não oficial — sem afiliação com a Cognition AI.</span><span><a href="../../index.html">built-with-devin</a> · <a href="https://github.com/Till3005/build-with-devin">build-with-devin</a></span></div></footer>
+</main>
+<script src="../../assets/theme.js"></script>
+<script src="../../assets/i18n.js"></script>
+<script src="../../assets/i18n-runtime.js"></script>
+</body>
+</html>

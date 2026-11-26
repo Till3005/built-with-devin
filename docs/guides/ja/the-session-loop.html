@@ -6,13 +6,13 @@
 <title>ガイド 19 — セッションの全ループ：リサーチ、委任、レビュー、そしてコスト — build-with-devin guides</title>
 <meta name="description" content="Devin の全ループを端から端まで回す——ブリーフを書く前にインデックスでコードベースを理解し、スコープされたセッションを委任し、独立レビューを PR に通し、Session Insights を読んで次のループを安くする。">
 <link rel="canonical" href="https://till3005.github.io/built-with-devin/guides/ja/the-session-loop.html">
-<link rel="alternate" hreflang="en" href="https://till3005.github.io/built-with-devin/guides/ja/the-session-loop.html">
-<link rel="alternate" hreflang="ja" href="https://till3005.github.io/built-with-devin/guides/ja/ja/the-session-loop.html">
-<link rel="alternate" hreflang="pt" href="https://till3005.github.io/built-with-devin/guides/pt/ja/the-session-loop.html">
-<link rel="alternate" hreflang="zh" href="https://till3005.github.io/built-with-devin/guides/zh/ja/the-session-loop.html">
-<link rel="alternate" hreflang="x-default" href="https://till3005.github.io/built-with-devin/guides/ja/the-session-loop.html">
+<link rel="alternate" hreflang="en" href="https://till3005.github.io/built-with-devin/guides/the-session-loop.html">
+<link rel="alternate" hreflang="ja" href="https://till3005.github.io/built-with-devin/guides/ja/the-session-loop.html">
+<link rel="alternate" hreflang="pt" href="https://till3005.github.io/built-with-devin/guides/pt/the-session-loop.html">
+<link rel="alternate" hreflang="zh" href="https://till3005.github.io/built-with-devin/guides/zh/the-session-loop.html">
+<link rel="alternate" hreflang="x-default" href="https://till3005.github.io/built-with-devin/guides/the-session-loop.html">
 <link rel="alternate" type="application/rss+xml" title="built-with-devin feed" href="../../feed.xml">
-<script type="application/ld+json">{"@context": "https://schema.org", "@type": "TechArticle", "headline": "ガイド 19 — セッションの全ループ：リサーチ、委任、レビュー、そしてコスト", "description": "Devin の全ループを端から端まで回す——ブリーフを書く前にインデックスでコードベースを理解し、スコープされたセッションを委任し、独立レビューを PR に通し、Session Insights を読んで次のループを安くする。", "inLanguage": "ja", "url": "https://till3005.github.io/built-with-devin/guides/ja/the-session-loop.html", "isPartOf": {"@type": "Course", "name": "build-with-devin", "url": "https://till3005.github.io/built-with-devin/guides/"}, "dateModified": "2026-11-24"}</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "TechArticle", "headline": "ガイド 19 — セッションの全ループ：リサーチ、委任、レビュー、そしてコスト", "description": "Devin の全ループを端から端まで回す——ブリーフを書く前にインデックスでコードベースを理解し、スコープされたセッションを委任し、独立レビューを PR に通し、Session Insights を読んで次のループを安くする。", "inLanguage": "ja", "url": "https://till3005.github.io/built-with-devin/guides/ja/the-session-loop.html", "isPartOf": {"@type": "Course", "name": "build-with-devin", "url": "https://till3005.github.io/built-with-devin/guides/"}, "dateModified": "2026-11-25"}</script>
 <link rel="icon" href="../../assets/brand/Devin_Symbol.svg" type="image/svg+xml">
 <link rel="stylesheet" href="../../assets/site.css">
 <link rel="stylesheet" href="../../assets/guides.css">
@@ -44,8 +44,8 @@
 </div></nav>
 <main>
 <article class="guide wrap" id="guide">
-  <p class="guide-crumb"><a href="index.html">← ガイド</a> · <a href="../the-session-loop.html">English</a> · <a href="../pt/the-session-loop.html">Português</a> · <a href="../zh/the-session-loop.html">中文</a></p>
-<p class="guide-meta">更新 2026-11-24</p>
+  <p class="guide-crumb"><a href="index.html">← ガイド</a> · <a data-lang-link="en" href="../the-session-loop.html">English</a> · <a data-lang-link="pt" href="../pt/the-session-loop.html">Português</a> · <a data-lang-link="zh" href="../zh/the-session-loop.html">中文</a></p>
+<p class="guide-meta">更新 2026-11-25</p>
 <details class="toc" open><summary>このページの目次</summary><ol><li class="d2"><a href="#大半の人が半分しか回さないループ">大半の人が半分しか回さないループ</a></li><li class="d2"><a href="#理解-最初の-acu-を使う前に-deepwiki-と-ask-devin">理解：最初の ACU を使う前に DeepWiki と Ask Devin</a></li><li class="d2"><a href="#委任-もう知っているステップ">委任——もう知っているステップ</a></li><li class="d2"><a href="#レビュー-すべての-pr-に第二のエージェント">レビュー：すべての PR に第二のエージェント</a></li><li class="d2"><a href="#学習-session-insights-と-acu-メーター">学習：Session Insights と ACU メーター</a></li><li class="d2"><a href="#確認リスト">確認リスト</a></li><li class="d2"><a href="#落とし穴">落とし穴</a></li><li class="d2"><a href="#理解度チェック">理解度チェック</a></li><li class="d2"><a href="#出典">出典</a></li></ol></details>
 <h1>ガイド 19 — セッションの全ループ：リサーチ、委任、レビュー、そしてコスト</h1>
 <p><strong>目標：</strong> Devin の全ループを端から端まで回す——ブリーフを書く前にインデックスでコードベースを理解し、スコープされたセッションを委任し、独立レビューを PR に通し、Session Insights を読んで次のループを安くする。
@@ -84,9 +84,9 @@
 <h2 id="学習-session-insights-と-acu-メーター">学習：Session Insights と ACU メーター<a class="hlink" href="#学習-session-insights-と-acu-メーター" aria-hidden="true">#</a></h2>
 <p>完了したすべてのセッションに <strong>Session Insights</strong> がつく（メニュー <strong>⋯ → Session insights</strong>、無料）：</p>
 <ul>
-<li><strong>セッションサイズチップ</strong>——XS–XL の自動分類がティアダウン時に生成。L/XL セッションは自動で完全分析、小さいものは手動トリガー。</li>
+<li><strong>セッションサイズチップ</strong>——セッションが消費した利用量に応じて XS〜XL に分類される。ユーザーが送ったメッセージの数は分類に影響しない。L/XL のセッションは自動で詳細分析が行われ、それより小さいものは手動で分析できる。</li>
 <li><strong>ACU 使用量</strong>（クォータ制プランではオンデマンドのドル表示）——類似タスクを比較して、リトライや袋小路に計算資源を燃やしたセッションを見つける。</li>
-<li><strong>ユーザーメッセージ数</strong>——多いのはブリーフのコンテキスト不足のサイン。各メッセージは冒頭で書けたはずの軌道修正。</li>
+<li><strong>ユーザーメッセージ数</strong>——サイズとは別の指標。多い場合は、何度も軌道修正が必要だった可能性があり、最初の依頼に補うべき情報を見直す手掛かりになる。</li>
 <li>分析は具体的な改善を勧める——より厳密なプロンプト、不足している knowledge、誤ったスコープ。Cloud 103 の目標が正しい：<em>毎回のセッションを前回より安く。</em></li>
 </ul>
 <p>すべてのフィールドレポートに登場するコスト規律：セッションのスコープを狭く、放置セッションは止める（思考も待機も課金される）、フリートを回す前にクォータを確認——100 Days の運営者は Bot セットアップの 2 日間で<strong>週間クォータの 33%</strong> を燃やした（<a href="community-field-reports.html">フィールドレポート</a>）。Bots 固有の注意点としてコミュニティで報告された件：Bot の子セッションに<em>自分の</em>モデルキーを接続しても、プランの週間クォータの消耗は<strong>止まらない</strong>——Bot 本体の推論とクラウドコンピュートは引き続きプランに課金される（<a href="https://linux.do/t/topic/3225152">linux.do レポート</a>、zh）。</p>
@@ -108,7 +108,7 @@
 <ol>
 <li><em>なぜ Devin サイドバーではなく Ask Devin からセッションを始めるのか？</em> Plan モードがプロンプトをインデックス済みコードに根づかせるから——どこから始めるか、既存パターン、検証可能な面はすべてリポジトリ自身から来るので、セッションは手で打つか途中で発見するはずのコンテキストを持って始まる。</li>
 <li><em>セッション自身の報告が完了・テスト済みと言っているのに、なぜ Devin Review を回すのか？</em> 独立性。セッションは自分の宿題を採点した。Review は別のエージェントが新鮮なコンテキストで diff を読む——チームメイトの PR を自己承認しないのと同じ理由。</li>
-<li><em>ACU は定額で、あるセッションが XL になった。最初に何を見るか？</em> Session Insights のユーザーメッセージ数——多数の小さな修正に駆動された大きなセッションはブリーフの問題であり、タスクサイズの問題ではない。作業が本当に大きかったと結論する前に、分割か再ブリーフを。</li>
+<li><em>セッションが XL だった。最初に何を見るか？</em> 利用量を確認し、Session Insights の Issue Timeline でエラーや再試行が繰り返されていないかを見る。メッセージ数が多ければ依頼に補うべき情報があった可能性はあるが、サイズの判定には影響しない。</li>
 </ol>
 <h2 id="出典">出典<a class="hlink" href="#出典" aria-hidden="true">#</a></h2>
 <ul>
@@ -121,7 +121,7 @@
 <section class="related"><h3>同じステージ — ステージ0 · 基礎</h3><p><a href="talking-to-devin.html">ガイド 18 — Devin への伝え方：プロンプトの教義</a> · <a href="devin-desktop.html">ガイド 17 — Devin Desktop</a> · <a href="devin-cli.html">ガイド 12 — Devin CLI と拡張性</a> · <a href="bots-101-first-bot.html">ガイド 1 — 初めての Bot</a> · <a href="official-cookbook.html">ガイド 13 — 公式ユースケース・クックブック</a></p></section>
 <nav class="guide-pager"><a class="pg-prev" href="talking-to-devin.html"><span class="pg-dir">← 前へ</span><span class="pg-t">ガイド 18 — Devin への伝え方：プロンプトの教義</span></a><a class="pg-next" href="devin-desktop.html"><span class="pg-dir">次へ →</span><span class="pg-t">ガイド 17 — Devin Desktop</span></a></nav>
 </article>
-<footer><div class="wrap foot-base"><span data-i18n="foot.note">Unofficial community project — not affiliated with Cognition AI.</span><span><a href="../../index.html">built-with-devin</a> · <a href="https://github.com/Till3005/build-with-devin">build-with-devin</a></span></div></footer>
+<footer><div class="wrap foot-base"><span data-i18n="foot.note">非公式コミュニティプロジェクト——Cognition AI とは無関係。</span><span><a href="../../index.html">built-with-devin</a> · <a href="https://github.com/Till3005/build-with-devin">build-with-devin</a></span></div></footer>
 </main>
 <script src="../../assets/theme.js"></script>
 <script src="../../assets/i18n.js"></script>

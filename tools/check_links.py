@@ -16,8 +16,6 @@ class Links(HTMLParser):
         self.targets = []
 
     def handle_starttag(self, tag, attrs):
-        if tag == "link" and dict(attrs).get("rel") in {"alternate", "canonical"}:
-            return
         self.targets.extend(
             (self.getpos()[0], value) for name, value in attrs
             if name in {"href", "src", "poster"} and value
@@ -45,6 +43,16 @@ def errors(page):
                 yield line, f"missing Pages target: {target}"
 
 
+def sitemap_errors(pages):
+    sitemap = (DOCS / "sitemap.xml").read_text(encoding="utf-8")
+    for page in pages:
+        if page.name == "index.html":
+            continue
+        url = SITE + page.relative_to(DOCS).as_posix()
+        if url not in sitemap:
+            yield f"missing sitemap URL: {url}"
+
+
 def main():
     pages = sorted((DOCS / "guides").rglob("*.html"))
     failures = 0
@@ -52,6 +60,9 @@ def main():
         for line, error in errors(page):
             failures += 1
             print(f"{page.relative_to(DOCS)}:{line}: {error}")
+    for error in sitemap_errors(pages):
+        failures += 1
+        print(error)
     print(f"Checked {len(pages)} guide HTML pages: {failures} link errors")
     return int(bool(failures))
 

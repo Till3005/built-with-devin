@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ガイド 21 — Security Profiles と Cloud OIDC — build-with-devin guides</title>
+<meta name="description" content="2 層で Devin に最小権限アクセスを与える——再利用可能な Security Profiles で session が到達・操作できる範囲を制限し、Cloud OIDC で長期クラウド認証情報を短期 workload identity に置き換える。">
+<link rel="canonical" href="https://till3005.github.io/built-with-devin/guides/ja/security-profiles-cloud-oidc.html">
+<link rel="alternate" hreflang="en" href="https://till3005.github.io/built-with-devin/guides/security-profiles-cloud-oidc.html">
+<link rel="alternate" hreflang="ja" href="https://till3005.github.io/built-with-devin/guides/ja/security-profiles-cloud-oidc.html">
+<link rel="alternate" hreflang="pt" href="https://till3005.github.io/built-with-devin/guides/pt/security-profiles-cloud-oidc.html">
+<link rel="alternate" hreflang="zh" href="https://till3005.github.io/built-with-devin/guides/zh/security-profiles-cloud-oidc.html">
+<link rel="alternate" hreflang="x-default" href="https://till3005.github.io/built-with-devin/guides/security-profiles-cloud-oidc.html">
+<link rel="alternate" type="application/rss+xml" title="built-with-devin feed" href="../../feed.xml">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "TechArticle", "headline": "ガイド 21 — Security Profiles と Cloud OIDC", "description": "2 層で Devin に最小権限アクセスを与える——再利用可能な Security Profiles で session が到達・操作できる範囲を制限し、Cloud OIDC で長期クラウド認証情報を短期 workload identity に置き換える。", "inLanguage": "ja", "url": "https://till3005.github.io/built-with-devin/guides/ja/security-profiles-cloud-oidc.html", "isPartOf": {"@type": "Course", "name": "build-with-devin", "url": "https://till3005.github.io/built-with-devin/guides/"}, "dateModified": "2026-11-26"}</script>
+<link rel="icon" href="../../assets/brand/Devin_Symbol.svg" type="image/svg+xml">
+<link rel="stylesheet" href="../../assets/site.css">
+<link rel="stylesheet" href="../../assets/guides.css">
+
+<meta property="og:title" content="ガイド 21 — Security Profiles と Cloud OIDC">
+<meta property="og:description" content="2 層で Devin に最小権限アクセスを与える——再利用可能な Security Profiles で session が到達・操作できる範囲を制限し、Cloud OIDC で長期クラウド認証情報を短期 workload identity に置き換える。">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://till3005.github.io/built-with-devin/guides/ja/security-profiles-cloud-oidc.html">
+<meta property="og:image" content="https://till3005.github.io/built-with-devin/assets/img/og-build.png?v=3">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://till3005.github.io/built-with-devin/assets/img/og-build.png?v=3">
+</head>
+<body>
+<a class="skip" href="#guide">Skip to content</a>
+<nav><div class="wrap nav-inner">
+  <div class="nav-left">
+    <a class="brand" href="../../index.html" aria-label="Built with Devin">
+      <span class="brand-text">built<strong>-with-</strong></span><img class="brand-mark" src="../../assets/brand/Devin_Primary_Logo.svg" alt="Devin" height="16"><span class="unofficial-chip">unofficial</span>
+    </a>
+  </div>
+  <div class="nav-side">
+    <div class="mode-toggle" role="tablist" aria-label="Site section">
+      <button class="mode-btn" data-mode="built" role="tab" aria-selected="false" onclick="location.href='../../index.html'">Built</button>
+      <button class="mode-btn on" data-mode="build" role="tab" aria-selected="true" onclick="location.href='../../index.html#build'">Build</button>
+      <span class="mode-pill" aria-hidden="true"></span>
+    </div>
+    <a class="cta" href="https://github.com/Till3005/build-with-devin/blob/main/guides/ja/security-profiles-cloud-oidc.md">GitHub</a>
+  </div>
+</div></nav>
+<main>
+<article class="guide wrap" id="guide">
+  <p class="guide-crumb"><a href="index.html">← ガイド</a> · <a data-lang-link="en" href="../security-profiles-cloud-oidc.html">English</a> · <a data-lang-link="pt" href="../pt/security-profiles-cloud-oidc.html">Português</a> · <a data-lang-link="zh" href="../zh/security-profiles-cloud-oidc.html">中文</a></p>
+<p class="guide-meta">更新 2026-11-26</p>
+<details class="toc" open><summary>このページの目次</summary><ol><li class="d2"><a href="#2-層のメンタルモデル">2 層のメンタルモデル</a></li><li class="d2"><a href="#security-profile-が制限できるもの">Security Profile が制限できるもの</a></li><li class="d2"><a href="#profile-の-binding-先">Profile の binding 先</a></li><li class="d2"><a href="#recommended-と-mandatory">Recommended と mandatory</a></li><li class="d2"><a href="#cloud-oidc-が変えるもの">Cloud OIDC が変えるもの</a></li><li class="d2"><a href="#先に-access-model-を設計する">先に access model を設計する</a></li><li class="d2"><a href="#初めての-security-profile-を作る">初めての Security Profile を作る</a></li><li class="d3"><a href="#positive-negative-tests">Positive/negative tests</a></li><li class="d2"><a href="#automations-と-snapshot-builds">Automations と snapshot builds</a></li><li class="d2"><a href="#outposts-警告">Outposts 警告</a></li><li class="d2"><a href="#cloud-oidc-を設定する">Cloud OIDC を設定する</a></li><li class="d2"><a href="#最小権限-trust-policies-を書く">最小権限 trust policies を書く</a></li><li class="d2"><a href="#verify-it">Verify it</a></li><li class="d2"><a href="#落とし穴">落とし穴</a></li><li class="d2"><a href="#演習">演習</a></li><li class="d2"><a href="#capstone">Capstone</a></li><li class="d2"><a href="#knowledge-check">Knowledge check</a></li><li class="d2"><a href="#sources">Sources</a></li><li class="d2"><a href="#changelog">Changelog</a></li></ol></details>
+<h1>ガイド 21 — Security Profiles と Cloud OIDC</h1>
+<p><strong>目標：</strong> 2 層で Devin に最小権限アクセスを与える——再利用可能な Security Profiles で session が到達・操作できる範囲を制限し、Cloud OIDC で長期クラウド認証情報を短期 workload identity に置き換える。
+<strong>レベル：</strong> 上級 / 管理者 · <strong>時間：</strong> 初回の governed profile に約 45–90 分。クラウド設定は provider に依存
+<strong>ソース：</strong> <a href="https://docs.devin.ai/product-guides/security-profiles">Security Profiles 公式ドキュメント</a> · <a href="https://docs.devin.ai/product-guides/oidc">Cloud OIDC 公式ドキュメント</a> · 2026-11-26 に公式ドキュメントを確認</p>
+<blockquote>
+<p><strong>エビデンス状態：</strong> このガイドは公式ソースに基づきますが、実際のクラウド provider での独立再現はまだです。検証セクションでは、Devin 内でできる確認と、AWS/GCP/Vault/管理者リソースが必要な確認を分けています。</p>
+</blockquote>
+<h2 id="2-層のメンタルモデル">2 層のメンタルモデル<a class="hlink" href="#2-層のメンタルモデル" aria-hidden="true">#</a></h2>
+<p>Security Profiles と Cloud OIDC は別の問題を解決します。</p>
+<table>
+<thead>
+<tr>
+<th>層</th>
+<th>答える問い</th>
+<th>仕組み</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Security Profile</td>
+<td>この Devin session は何に到達し、何を操作できるか</td>
+<td>Network allowlist、MCP allowlist、Devin MCP read-only、git access level、GitHub CLI token removal</td>
+</tr>
+<tr>
+<td>Cloud OIDC</td>
+<td>この session はクラウドサービスに対して自分が誰かをどう証明するか</td>
+<td>Devin が発行する短期 identity token をクラウドが検証し、一時的で scoped な認証情報に交換</td>
+</tr>
+</tbody>
+</table>
+<p>両方を併用してください。Profile は session が触れるべきでないシステムへの到達や操作を防ぎ、OIDC は正当なアクセスにクラウドキーを保存しない方法を与えます。</p>
+<p>Security Profiles は、脆弱性スキャン製品である <strong>Devin Security</strong> とは別物です。Profile はスキャンを設定しません。</p>
+<h2 id="security-profile-が制限できるもの">Security Profile が制限できるもの<a class="hlink" href="#security-profile-が制限できるもの" aria-hidden="true">#</a></h2>
+<p>Profile は optional restrictions をまとめた名前付きの束です。設定した項目だけを制約します。</p>
+<table>
+<thead>
+<tr>
+<th>制限</th>
+<th>制御対象</th>
+<th>重要な詳細</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Network policy</td>
+<td>session machine から許可される outbound destinations</td>
+<td>hostname は <code>*</code> wildcard をサポート。IPv4/IPv6 CIDR も可</td>
+</tr>
+<tr>
+<td>MCP access</td>
+<td>session が使える installed MCP servers</td>
+<td>network policy から独立。許可された MCP servers は自動的に到達可能</td>
+</tr>
+<tr>
+<td>Devin MCP access</td>
+<td>組み込み Devin 管理ツールが write 可能か</td>
+<td>read-only でも list/inspect は可能だが、session 作成や knowledge 編集などの write は不可</td>
+</tr>
+<tr>
+<td>Git access</td>
+<td>clone/fetch のみか、full push/PR capability か</td>
+<td>read-only は push と PR 作成を防ぐ</td>
+</tr>
+<tr>
+<td>GitHub CLI token</td>
+<td>machine が GitHub API を直接呼べる <code>gh</code> token を持つか</td>
+<td>保持には full git access が必要。network policy がある場合は <code>api.github.com</code> も必要</td>
+</tr>
+</tbody>
+</table>
+<p>接続リポジトリ用 git proxy など、Devin の動作に必要な destinations は自動で許可されます。</p>
+<h2 id="profile-の-binding-先">Profile の binding 先<a class="hlink" href="#profile-の-binding-先" aria-hidden="true">#</a></h2>
+<p>Profile は hierarchy 経由で効果を持ちます。上位に mandatory profile が floor を課していない限り、より具体的な binding が勝ちます。</p>
+<ol>
+<li>Enterprise default</li>
+<li>Organization default</li>
+<li>Automations default</li>
+<li>個別 automation</li>
+<li>個別 session</li>
+<li>Bot security profile（その Bot が開始する sessions に適用）</li>
+</ol>
+<p>各レベルでは inherit、profile pin、または明示的な no profile を選べます。Child sessions は parent と同じ governing chain に従うため、作業を委譲しても制限を逃れられません。</p>
+<p>実行中の session は boot または wake のたびに profile を解決します。Profile や binding の編集は、実行中 session を遡って変更しません。新しい session には即時反映され、既存 session には次回 resume 時に反映されます。</p>
+<h2 id="recommended-と-mandatory">Recommended と mandatory<a class="hlink" href="#recommended-と-mandatory" aria-hidden="true">#</a></h2>
+<p>rollout 初期は <strong>recommended</strong> から始めます。Recommended profile は default であり、下位レベルが別 profile を選んだり opt out したりできます。</p>
+<p>Allowlist を理解した後で <strong>mandatory</strong> に切り替えます。Mandatory profile は floor です。</p>
+<ul>
+<li>下位の “no profile” は無視される。</li>
+<li>下位 profile は tighten だけでき、loosen できない。</li>
+<li>Network/MCP allowlist は intersection になる。</li>
+<li>Git access は最小レベルになる。</li>
+<li>どちらかが read-only なら Devin MCP は read-only。</li>
+<li>どちらかが GitHub CLI token を削除すれば削除される。</li>
+<li>session 中に承認された network access も mandatory policy で clamp される。</li>
+</ul>
+<p>したがって、mandatory は enterprise-wide boundary の primitive、recommended は team-level rollout の primitive です。</p>
+<h2 id="cloud-oidc-が変えるもの">Cloud OIDC が変えるもの<a class="hlink" href="#cloud-oidc-が変えるもの" aria-hidden="true">#</a></h2>
+<p>OIDC がない場合、AWS、GCP、Vault、JFrog、Databricks、内部 API にアクセスする session には通常、保存済み key や token が必要です。OIDC では：</p>
+<ol>
+<li>各 Devin session が Devin 署名の短期 identity token を自動的に受け取る。</li>
+<li>クラウドまたはサービスが Devin の公開 OIDC issuer に対して token を検証する。</li>
+<li>サービスが token を一時的で scoped な認証情報に交換する。</li>
+<li>token は自動的に期限切れになり、 rotate や revoke すべき静的なものは残らない。</li>
+</ol>
+<p>Token には <code>org_id</code>、<code>account_id</code>、<code>devin_id</code>、<code>devin_trigger</code>、<code>requesting_user_id</code>、<code>requesting_user_email</code>、<code>service_user_id</code> などの claims を含められます。したがって trust policy は organization 全体、特定 user、さらには特定 session にアクセスを制限できます。</p>
+<p>Issuer は通常 <code>https://app.devin.ai</code> です。enterprise の custom domain deployment では、その custom Devin URL が issuer です。</p>
+<h2 id="先に-access-model-を設計する">先に access model を設計する<a class="hlink" href="#先に-access-model-を設計する" aria-hidden="true">#</a></h2>
+<p>YAML から始めないでください。trust boundaries から始めます。</p>
+<p>次を書き出します。</p>
+<ul>
+<li>どの sessions/automations が cloud access を本当に必要とするか</li>
+<li>どの provider、project/account が必要か</li>
+<li>read-only か write access か</li>
+<li>正当に必要な network destinations は何か</li>
+<li>使うべき MCP servers は何か</li>
+<li>child sessions や Devin resources の管理が必要か</li>
+<li>通常の git operations を超える GitHub API access が必要か</li>
+</ul>
+<p>その後、全員向けの巨大な profile ではなく、実際の job type に合わせた小さな profile を作ります。</p>
+<p>初期 profile の例：</p>
+<table>
+<thead>
+<tr>
+<th>Profile</th>
+<th>典型用途</th>
+<th>推奨 posture</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>research-readonly</code></td>
+<td>evidence gathering、docs、read-only review</td>
+<td>必要な docs/repos に network を限定、git read-only、Devin MCP read-only、<code>gh</code> token なし</td>
+</tr>
+<tr>
+<td><code>automation-pr-writer</code></td>
+<td>CI repair、dependency updates、hygiene loops</td>
+<td>repo/package APIs に network を限定、full git、無関係な MCP なし、必要時のみ <code>gh</code></td>
+</tr>
+<tr>
+<td><code>cloud-operator</code></td>
+<td>infrastructure inspection または controlled operations</td>
+<td>cloud endpoints に network を限定、OIDC 有効、cloud role を厳密化、広い MCP なし</td>
+</tr>
+<tr>
+<td><code>incident-hotfix</code></td>
+<td>human-supervised incident response</td>
+<td>時間限定、full git、incident 関連の network/MCP のみ、merge/deploy 前に human review</td>
+</tr>
+</tbody>
+</table>
+<h2 id="初めての-security-profile-を作る">初めての Security Profile を作る<a class="hlink" href="#初めての-security-profile-を作る" aria-hidden="true">#</a></h2>
+<p>専用の <strong>Manage security profiles</strong> permission が必要です。Organization admins には organization-level permission、enterprise admins には enterprise-level permission が既定であり、custom roles で委譲もできます。</p>
+<ol>
+<li>Organization profile なら <strong>Settings → Customization → Security profiles</strong>、enterprise profile なら <strong>Enterprise settings → Devin → Security profiles</strong> に移動。</li>
+<li><code>default-secure</code> ではなく、<code>automation-pr-writer</code> のような狭い名前で profile を作成。</li>
+<li>理解している制限だけを設定。</li>
+<li>最初は <strong>recommended</strong> のままにする。</li>
+<li>Organization default に bind するか、低リスク automation に pin する。</li>
+<li>Rollout を広げる前に positive/negative access をテストする。</li>
+<li>徐々に tighten し、正当な destinations/workflows をカバーできた後にだけ mandatory へ切り替える。</li>
+</ol>
+<h3 id="positive-negative-tests">Positive/negative tests<a class="hlink" href="#positive-negative-tests" aria-hidden="true">#</a></h3>
+<p>Positive tests は許可された作業がまだ動くことを証明します。</p>
+<ul>
+<li>対象 repo を clone/fetch できる</li>
+<li>対象 package install または API に到達できる</li>
+<li>許可された MCP server を使える</li>
+<li>full git が期待される場合 branch を push できる</li>
+</ul>
+<p>Negative tests は boundary が存在することを証明します。</p>
+<ul>
+<li>許可されていない domain が失敗する</li>
+<li>許可されていない MCP server が使えない</li>
+<li>read-only git が push できない</li>
+<li>read-only mode で Devin MCP write operations が失敗する</li>
+<li>token が削除された状態で直接 <code>gh api</code> が失敗する</li>
+</ul>
+<p>両方を記録してください。「session が起動した」は security verification ではありません。</p>
+<h2 id="automations-と-snapshot-builds">Automations と snapshot builds<a class="hlink" href="#automations-と-snapshot-builds" aria-hidden="true">#</a></h2>
+<p>Automations は独自の network policy と MCP selection を持てますが、それらは restriction-only layers です。Automation は governing profile を広げられません。session は automation と profile の両方が許可したものだけを得ます。</p>
+<p>Snapshot builds は異なります。Profile の network policy だけが builds と blueprint author sessions に適用されます。MCP、git access、GitHub CLI restrictions は適用されません。Builds は sessions が必要としない package registries を必要とすることが多いため、session profiles を緩めるのではなく、別設定の <strong>Default profile for snapshot builds</strong> を使ってください。</p>
+<h2 id="outposts-警告">Outposts 警告<a class="hlink" href="#outposts-警告" aria-hidden="true">#</a></h2>
+<p>Devin-managed VMs では、Devin が machine level で network policy を enforce します。Outposts では、enforce するのはあなたのインフラです。</p>
+<p>Devin は queued session の effective network policy を Outposts API に <code>spec.network_policy</code> として公開します。Orchestrator は egress proxy、Kubernetes <code>NetworkPolicy</code>、VM firewall rules などでそれを enforce しなければなりません。そうでなければ、“mandatory” network boundary は outpost infrastructure 上で hard boundary ではありません。</p>
+<p>Session が queued/re-queued されるたびに <code>spec.network_policy</code> を再読込してください。固定と仮定しないでください。</p>
+<h2 id="cloud-oidc-を設定する">Cloud OIDC を設定する<a class="hlink" href="#cloud-oidc-を設定する" aria-hidden="true">#</a></h2>
+<p>Cloud OIDC には両側の設定が必要です。</p>
+<ul>
+<li>cloud/service が Devin issuer を信頼し、どの token claims がどの role/identity を assume できるか定義する</li>
+<li>Devin environment blueprint が対応する setup action を install する</li>
+</ul>
+<p>関連 action を <code>initialize</code> に追加します。</p>
+<table>
+<thead>
+<tr>
+<th>サービス</th>
+<th>Blueprint action</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>AWS</td>
+<td><code>github.com/CognitionAI/actions/setup-aws-oidc@main</code></td>
+</tr>
+<tr>
+<td>GCP</td>
+<td><code>github.com/CognitionAI/actions/setup-gcp-oidc@main</code></td>
+</tr>
+<tr>
+<td>Vault</td>
+<td><code>github.com/CognitionAI/actions/setup-vault-oidc@main</code></td>
+</tr>
+<tr>
+<td>JFrog</td>
+<td><code>github.com/CognitionAI/actions/setup-jfrog-oidc@main</code></td>
+</tr>
+<tr>
+<td>Custom services</td>
+<td><code>github.com/CognitionAI/actions/setup-devin-oidc@main</code></td>
+</tr>
+</tbody>
+</table>
+<p>AWS の例：</p>
+<pre><code class="language-yaml">initialize:
+  - uses: github.com/CognitionAI/actions/setup-aws-oidc@main
+    with:
+      role-arn: &quot;arn:aws:iam::123456789012:role/devin-sessions&quot;
+      region: &quot;us-east-1&quot;
+</code></pre>
+<p>GCP の例：</p>
+<pre><code class="language-yaml">initialize:
+  - uses: github.com/CognitionAI/actions/setup-gcp-oidc@main
+    with:
+      workload-identity-provider: &quot;projects/123456789/locations/global/workloadIdentityPools/devin/providers/devin-oidc&quot;
+      service-account: &quot;devin@my-project.iam.gserviceaccount.com&quot;
+      project: &quot;my-project&quot;
+</code></pre>
+<p>Custom service では、サービスが受け付ける audience の token を要求します。</p>
+<pre><code class="language-bash">devin-oidc token --audience my-api --subject-keys &quot;org_id&quot;
+</code></pre>
+<p>サービスは正しい issuer の下で、Devin が <code>/.well-known/jwks.json</code> に公開する JWKS を使って token を検証します。</p>
+<h2 id="最小権限-trust-policies-を書く">最小権限 trust policies を書く<a class="hlink" href="#最小権限-trust-policies-を書く" aria-hidden="true">#</a></h2>
+<p>狭い claims と狭い roles を優先します。</p>
+<ul>
+<li>Organization-wide automation identity には <code>org_id</code> を使う。</li>
+<li>特定 initiator のみに許可する場合は <code>requesting_user_email</code> または <code>service_user_id</code> を追加する。</li>
+<li><code>devin_id</code> は厳しく限定された one-off/debug access にだけ使う。再利用 automation には通常狭すぎる。</li>
+<li>Assumed role には job に必要な permission だけを与える。</li>
+<li>Read-only と write-capable roles を分け、1 つの role を広げない。</li>
+</ul>
+<p>OIDC により、cloud audit logs は shared static key ではなく特定の Devin session/requesting user に帰属させられるため、監査性が向上します。</p>
+<h2 id="verify-it">Verify it<a class="hlink" href="#verify-it" aria-hidden="true">#</a></h2>
+<p>Devin 側チェック：</p>
+<ul>
+<li>[ ] テスト session が意図した profile を解決する。</li>
+<li>[ ] 許可された network、MCP、git、Devin MCP operations が動く。</li>
+<li>[ ] 設定した各カテゴリで、少なくとも 1 つの disallowed operation が失敗する。</li>
+<li>[ ] Profile/binding 編集が、実行中 session を変えると仮定せず、new/resumed session に影響することを確認した。</li>
+<li>[ ] Automation-triggered sessions が automation/profile restrictions の意図した intersection を継承する。</li>
+</ul>
+<p>Cloud 側チェック（provider を管理できる場合）：</p>
+<ul>
+<li>[ ] 保存済み key なしで <code>aws sts get-caller-identity</code> または相当コマンドが成功する。</li>
+<li>[ ] Assumed identity が意図した least-privilege role/service account である。</li>
+<li>[ ] Cloud audit logs に期待する Devin session/user identity claims が出る。</li>
+<li>[ ] 誤った audience または trust subject の token が拒否される。</li>
+<li>[ ] Devin secrets または環境に長期 cloud credential がない。</li>
+</ul>
+<h2 id="落とし穴">落とし穴<a class="hlink" href="#落とし穴" aria-hidden="true">#</a></h2>
+<ul>
+<li><strong>Profile を scan として扱う。</strong> これは access-control envelope であり、脆弱性検出ではない。</li>
+<li><strong>最初の profile を mandatory にする。</strong> 必要な destinations を理解する前に正当な作業を止める。</li>
+<li><strong>巨大な profile を 1 つ作る。</strong> Job-shaped profiles は audit できるが、universal profile は意味のない妥協になる。</li>
+<li><strong><code>api.github.com</code> を忘れる。</strong> Network policy がある場合、<code>api.github.com</code> を許可しなければ profile は GitHub CLI token を保持できない。</li>
+<li><strong>実行中 session がすぐ更新されると思う。</strong> Profile は boot/wake 時に解決される。</li>
+<li><strong>Outposts が自動 enforcement すると思う。</strong> Operator が Devin-managed infrastructure の外で <code>spec.network_policy</code> を enforce する必要がある。</li>
+<li><strong>Cloud trust を狭めずに OIDC を使う。</strong> Keyless でも、role が広く trust policy が緩ければ安全ではない。</li>
+<li><strong>古い static keys を残す。</strong> Static keys を削除または無効化して初めて、OIDC は credential risk を下げる。</li>
+</ul>
+<h2 id="演習">演習<a class="hlink" href="#演習" aria-hidden="true">#</a></h2>
+<ol>
+<li>Dependency-update automation の profile specification を書く。Network destinations、git access、MCP needs、<code>gh</code> の必要性を含める。</li>
+<li>その profile の各 restriction について positive/negative test を 1 つずつ書く。</li>
+<li>1 プロジェクトへの read-only access 用 cloud trust policy を設計する。どの token claims が十分で、どれが狭すぎるか。</li>
+<li>Mandatory enterprise profile と、より厳しい organization profile がどう intersect するか説明する。</li>
+</ol>
+<h2 id="capstone">Capstone<a class="hlink" href="#capstone" aria-hidden="true">#</a></h2>
+<p>低リスクな repo maintenance task について governed automation path を作ります。Recommended profile を作り、automation に pin し、positive/negative behavior を検証し、可能なら 1 つの cloud read-only operation に OIDC を設定して、正確な evidence を記録します。これらが完了して初めて、mandatory にするかを提案します。</p>
+<h2 id="knowledge-check">Knowledge check<a class="hlink" href="#knowledge-check" aria-hidden="true">#</a></h2>
+<ol>
+<li>Security Profiles と OIDC が代替ではなく補完なのはなぜか。<em>（Profiles は session が到達・操作できるものを制限し、OIDC は長期認証情報を保存せずに service へ session identity を証明するため。）</em></li>
+<li>Recommended enforcement から始める理由は？<em>（正当なアクセス需要を観察し、allowlist が揃う前にチームを止めないため。）</em></li>
+<li>Child-session delegation が profile を逃れられない理由は？<em>（children は parent と同じ governing chain を継承するため。）</em></li>
+<li>OIDC が auditability に有効な理由は？<em>（cloud logs が shared static key ではなく session、organization、requesting-user claims に帰属するため。）</em></li>
+</ol>
+<h2 id="sources">Sources<a class="hlink" href="#sources" aria-hidden="true">#</a></h2>
+<ul>
+<li><a href="https://docs.devin.ai/product-guides/security-profiles">Security Profiles — 公式ドキュメント</a></li>
+<li><a href="https://docs.devin.ai/product-guides/oidc">Cloud Authentication with OIDC — 公式ドキュメント</a></li>
+<li><a href="https://docs.devin.ai/api-reference/v3/security-profiles/list-organizations-security-profiles">Security Profiles API — 公式リファレンス</a></li>
+<li><a href="https://github.com/CognitionAI/actions">CognitionAI actions repository</a></li>
+<li><a href="https://docs.devin.ai/cloud/outposts/overview">Devin Outposts overview</a></li>
+</ul>
+<h2 id="changelog">Changelog<a class="hlink" href="#changelog" aria-hidden="true">#</a></h2>
+<ul>
+<li>2026-11-26 — 公式ドキュメントに基づく初版。Cloud-provider reproduction evidence は未整備。検証コマンドは示したが、ここでは独立実行していない。</li>
+</ul>
+<section class="related"><h3>同じステージ — ステージ2 · スケール</h3><p><a href="bots-201-product-owner.html">ガイド 2 — プロダクトオーナー Bot</a> · <a href="bots-202-scheduled-sentinel.html">ガイド 3 — 定期監視 Bot</a> · <a href="bots-203-multi-bot-org.html">ガイド 4 — マルチ Bot 組織</a> · <a href="bots-204-reference-grounded-swarm.html">ガイド 5 — 参照基盤スウォーム</a> · <a href="migrations-at-scale.html">ガイド 11 — スケールする移行</a> · <a href="living-evals.html">ガイド 15 — 本番トレースから育つリビング eval</a> · <a href="enterprise-playbook.html">ガイド 7 — エンタープライズ導入パターン</a> · <a href="dynamic-workflows.html">ガイド 20 — Dynamic Workflows</a></p></section>
+<nav class="guide-pager"><a class="pg-prev" href="dynamic-workflows.html"><span class="pg-dir">← 前へ</span><span class="pg-t">ガイド 20 — Dynamic Workflows</span></a><a class="pg-next" href="community-field-reports.html"><span class="pg-dir">次へ →</span><span class="pg-t">ガイド 14 — コミュニティ実践レポート</span></a></nav>
+</article>
+<footer><div class="wrap foot-base"><span data-i18n="foot.note">非公式コミュニティプロジェクト——Cognition AI とは無関係。</span><span><a href="../../index.html">built-with-devin</a> · <a href="https://github.com/Till3005/build-with-devin">build-with-devin</a></span></div></footer>
+</main>
+<script src="../../assets/theme.js"></script>
+<script src="../../assets/i18n.js"></script>
+<script src="../../assets/i18n-runtime.js"></script>
+</body>
+</html>

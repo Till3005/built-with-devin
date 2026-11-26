@@ -6,11 +6,11 @@
 <title>指南 3 — 定时哨兵 Bot — build-with-devin guides</title>
 <meta name="description" content="一个拥有某 recurring 质量检查的 Bot——按时间表运行它、分拣失败、追到根因、交付修复。">
 <link rel="canonical" href="https://till3005.github.io/built-with-devin/guides/zh/bots-202-scheduled-sentinel.html">
-<link rel="alternate" hreflang="en" href="https://till3005.github.io/built-with-devin/guides/zh/bots-202-scheduled-sentinel.html">
-<link rel="alternate" hreflang="ja" href="https://till3005.github.io/built-with-devin/guides/ja/zh/bots-202-scheduled-sentinel.html">
-<link rel="alternate" hreflang="pt" href="https://till3005.github.io/built-with-devin/guides/pt/zh/bots-202-scheduled-sentinel.html">
-<link rel="alternate" hreflang="zh" href="https://till3005.github.io/built-with-devin/guides/zh/zh/bots-202-scheduled-sentinel.html">
-<link rel="alternate" hreflang="x-default" href="https://till3005.github.io/built-with-devin/guides/zh/bots-202-scheduled-sentinel.html">
+<link rel="alternate" hreflang="en" href="https://till3005.github.io/built-with-devin/guides/bots-202-scheduled-sentinel.html">
+<link rel="alternate" hreflang="ja" href="https://till3005.github.io/built-with-devin/guides/ja/bots-202-scheduled-sentinel.html">
+<link rel="alternate" hreflang="pt" href="https://till3005.github.io/built-with-devin/guides/pt/bots-202-scheduled-sentinel.html">
+<link rel="alternate" hreflang="zh" href="https://till3005.github.io/built-with-devin/guides/zh/bots-202-scheduled-sentinel.html">
+<link rel="alternate" hreflang="x-default" href="https://till3005.github.io/built-with-devin/guides/bots-202-scheduled-sentinel.html">
 <link rel="alternate" type="application/rss+xml" title="built-with-devin feed" href="../../feed.xml">
 <script type="application/ld+json">{"@context": "https://schema.org", "@type": "TechArticle", "headline": "指南 3 — 定时哨兵 Bot", "description": "一个拥有某 recurring 质量检查的 Bot——按时间表运行它、分拣失败、追到根因、交付修复。", "inLanguage": "zh", "url": "https://till3005.github.io/built-with-devin/guides/zh/bots-202-scheduled-sentinel.html", "isPartOf": {"@type": "Course", "name": "build-with-devin", "url": "https://till3005.github.io/built-with-devin/guides/"}, "dateModified": "2026-11-24"}</script>
 <link rel="icon" href="../../assets/brand/Devin_Symbol.svg" type="image/svg+xml">
@@ -44,7 +44,7 @@
 </div></nav>
 <main>
 <article class="guide wrap" id="guide">
-  <p class="guide-crumb"><a href="index.html">← 指南</a> · <a href="../bots-202-scheduled-sentinel.html">English</a> · <a href="../ja/bots-202-scheduled-sentinel.html">日本語</a> · <a href="../pt/bots-202-scheduled-sentinel.html">Português</a></p>
+  <p class="guide-crumb"><a href="index.html">← 指南</a> · <a data-lang-link="en" href="../bots-202-scheduled-sentinel.html">English</a> · <a data-lang-link="ja" href="../ja/bots-202-scheduled-sentinel.html">日本語</a> · <a data-lang-link="pt" href="../pt/bots-202-scheduled-sentinel.html">Português</a></p>
 <p class="guide-meta">更新于 2026-11-24</p>
 <details class="toc" open><summary>本页目录</summary><ol><li class="d2"><a href="#模式">模式</a></li><li class="d2"><a href="#前置条件">前置条件</a></li><li class="d2"><a href="#第-1-步-outcome-prompt">第 1 步 — outcome prompt</a></li><li class="d2"><a href="#第-2-步-排定周期">第 2 步 — 排定周期</a></li><li class="d2"><a href="#第-3-步-真实条件才有意义">第 3 步 — 真实条件才有意义</a></li><li class="d2"><a href="#第-4-步-噪声纪律">第 4 步 — 噪声纪律</a></li><li class="d2"><a href="#第-5-步-每个修复都带证据">第 5 步 — 每个修复都带证据</a></li><li class="d2"><a href="#verify-it">Verify it</a></li><li class="d2"><a href="#坑">坑</a></li><li class="d2"><a href="#自检">自检</a></li><li class="d2"><a href="#sources">Sources</a></li></ol></details>
 <h1>指南 3 — 定时哨兵 Bot</h1>
@@ -156,10 +156,10 @@ that introduced it, and open a fix PR with before/after evidence.
 <li><a href="https://docs.devin.ai/product-guides/automations">Automations — docs</a> — 排程、触发器、条件</li>
 <li>相关：<a href="automations-101-event-driven.html">第 6 篇 — 事件驱动的 Automations</a>（这个循环的非 Bot 版本）</li>
 </ul>
-<section class="related"><h3>同阶段 — 二阶 · 规模化</h3><p><a href="bots-201-product-owner.html">指南 2 — 产品所有制 Bot</a> · <a href="bots-203-multi-bot-org.html">指南 4 — 多 Bot 组织</a> · <a href="bots-204-reference-grounded-swarm.html">指南 5 — 参考基准锚定的 swarm</a> · <a href="migrations-at-scale.html">指南 11 — 规模化迁移</a> · <a href="living-evals.html">指南 15 — 生产 trace 驱动的&quot;活&quot;评测集</a> · <a href="enterprise-playbook.html">指南 7 — 企业级铺开模式</a></p></section>
+<section class="related"><h3>同阶段 — 二阶 · 规模化</h3><p><a href="bots-201-product-owner.html">指南 2 — 产品所有制 Bot</a> · <a href="bots-203-multi-bot-org.html">指南 4 — 多 Bot 组织</a> · <a href="bots-204-reference-grounded-swarm.html">指南 5 — 参考基准锚定的 swarm</a> · <a href="migrations-at-scale.html">指南 11 — 规模化迁移</a> · <a href="living-evals.html">指南 15 — 生产 trace 驱动的&quot;活&quot;评测集</a> · <a href="enterprise-playbook.html">指南 7 — 企业级铺开模式</a> · <a href="dynamic-workflows.html">指南 20 — Dynamic Workflows</a> · <a href="security-profiles-cloud-oidc.html">指南 21 — Security Profiles 与 Cloud OIDC</a></p></section>
 <nav class="guide-pager"><a class="pg-prev" href="bots-201-product-owner.html"><span class="pg-dir">← 上一篇</span><span class="pg-t">指南 2 — 产品所有制 Bot</span></a><a class="pg-next" href="bots-203-multi-bot-org.html"><span class="pg-dir">下一篇 →</span><span class="pg-t">指南 4 — 多 Bot 组织</span></a></nav>
 </article>
-<footer><div class="wrap foot-base"><span data-i18n="foot.note">Unofficial community project — not affiliated with Cognition AI.</span><span><a href="../../index.html">built-with-devin</a> · <a href="https://github.com/Till3005/build-with-devin">build-with-devin</a></span></div></footer>
+<footer><div class="wrap foot-base"><span data-i18n="foot.note">非官方社区项目——与 Cognition AI 无关。</span><span><a href="../../index.html">built-with-devin</a> · <a href="https://github.com/Till3005/build-with-devin">build-with-devin</a></span></div></footer>
 </main>
 <script src="../../assets/theme.js"></script>
 <script src="../../assets/i18n.js"></script>
