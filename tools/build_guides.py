@@ -347,15 +347,15 @@ def main():
     lang_dirs = [d.name for d in sorted(SRC.iterdir()) if d.is_dir() and d.name in ("zh", "ja", "pt")]
     for en in en_files:
         mirrors = [l for l in lang_dirs if (SRC / l / en.name).exists()]
-        alts = " · ".join(f'<a href="{l}/{en.stem}.html">{LANG_LABEL[l]}</a>' for l in mirrors)
+        alts = " · ".join(f'<a data-lang-link="{l}" href="{l}/{en.stem}.html">{LANG_LABEL[l]}</a>' for l in mirrors)
         alt_en = f" · {alts}" if alts else ""
         render(en, OUT / f"{en.stem}.html", "../", "en", alt_en, en.name, "index.html",
                pager_for(en.stem, order, en_titles, "en"),
                related_html(en.stem, "en", stages["en"], en_titles), mirrors=mirrors)
         for l in mirrors:
             lt = lang_titles(l) or en_titles
-            alt_l = f' · <a href="../{en.stem}.html">English</a>' + "".join(
-                f' · <a href="../{o}/{en.stem}.html">{LANG_LABEL[o]}</a>' for o in mirrors if o != l)
+            alt_l = f' · <a data-lang-link="en" href="../{en.stem}.html">English</a>' + "".join(
+                f' · <a data-lang-link="{o}" href="../{o}/{en.stem}.html">{LANG_LABEL[o]}</a>' for o in mirrors if o != l)
             render(SRC / l / en.name, OUT / l / f"{en.stem}.html", "../../", l, alt_l,
                    f"{l}/{en.name}", "index.html",
                    pager_for(en.stem, order, lt, l),
@@ -368,7 +368,7 @@ def main():
         rel = "../" if l == "en" else "../../"
         langs = ["en"] + lang_dirs
         alt = " · ".join(
-            f'<a href="{"" if l == "en" else "../"}{"" if o == "en" else o + "/"}index.html">{LANG_LABEL[o]}</a>'
+            f'<a data-lang-link="{o}" href="{"" if l == "en" else "../"}{"" if o == "en" else o + "/"}index.html">{LANG_LABEL[o]}</a>'
             for o in langs if o != l)
         alt = f" · {alt}" if alt else ""
         canonical = f"{SITE}/guides/{'' if l == 'en' else l + '/'}"
