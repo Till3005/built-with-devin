@@ -25,7 +25,7 @@ Key difference from a one-shot session: the Bot persists. The Android Bot ran **
 | Mechanism | What it does | Observed in |
 | --- | --- | --- |
 | **Chat** | The primary interface — you talk to the Bot like a teammate, in Devin, Slack, or iMessage | All deployments |
-| **Sessions** | Each unit of work runs as a normal Devin session the Bot starts and supervises; you can open any session to inspect | Android Bot (1,134 sessions→PRs) |
+| **Sessions** | Each unit of work runs as a normal Devin session the Bot starts and supervises; you can open any session to inspect | Android Bot |
 | **Needs you** | The Bot's escalation channel — it surfaces only decisions requiring human judgment, not status noise | SuperJennyStack (emoji-only human replies) |
 | **Memory** | A persistent, editable store the Bot accumulates — preferences, decisions, conventions — carried across weeks | Android Bot (44-day single assignment); Harvey Phil (memory + decision logs as the steering layer) |
 | **Grants** | Bot-to-bot handoffs: a Bot can delegate a unit of work to another Bot with the right scope | Documented grant flow: QA Bot finds bug → grants fix to Dev Bot → re-tests → PM Bot reports |
@@ -35,11 +35,10 @@ Key difference from a one-shot session: the Bot persists. The Android Bot ran **
 
 | Metric | Deployment | Source |
 | --- | --- | --- |
-| 1,134 merged PRs / 344,651 lines Kotlin / 2,841 screenshot tests | Android Bot, 44 days | launch post |
-| 88% of PRs self-merged | Android Bot | launch post |
-| 159 PRs in 3 weeks, jank −70% | Layout Bot | launch post |
-| ~50 → 1,900 PRs/week, studio revenue ×6 | SuperJennyStack | Jenny Xu |
-| 1M+ lines Rust+TS in 3 weeks, zero human engineers | Harvey Phil | Gabe Pereyra |
+| 1,134 merged PRs | Android Bot, 44 days | [Cognition launch post](https://devin.ai/blog/introducing-devin-bots) |
+| 159 PRs in 3 weeks, jank −70% | Layout Bot | [Cognition launch post](https://devin.ai/blog/introducing-devin-bots) |
+| About 50 → 1,900 PRs/week | SuperJennyStack | [Cognition launch post](https://devin.ai/blog/introducing-devin-bots) |
+| Over one million lines in three weeks (Rust and TypeScript editor) | Harvey Phil | [Gabe Pereyra’s write-up](https://x.com/gabepereyra/status/2122756324173992166) |
 | 4.5× more PRs merged per message (beta-wide) | 1,000+ beta testers | Fortune |
 | 2,000+ PRs/week merged at Cognition; 40× merge throughput; 1,000+ PRs from one autonomous goal | Cognition internal | Fortune |
 | Up to 2.5× throughput per GPU | Decagon AutoResearch | Decagon |
@@ -54,7 +53,6 @@ Key difference from a one-shot session: the Bot persists. The Android Bot ran **
 ## Known boundaries
 
 - Bots are strongest where "done" is checkable (tests, screenshots, replayed traffic, reference implementations). Open-ended judgment work still routes through Needs-you.
-- Self-merge rates (88%) reflect repos where CI + review gates were already configured for autonomous merges — not a default.
 - Memory is editable: operators can and do correct a bot's accumulated beliefs directly in its chat.
 - **Fleet observability doesn't scale by itself.** The independent [100 Days of Devin](https://www.raijuna.com/blog/devin-100-day-challenge-day-1) log reports session tracking is the first operational wall at ~15 bots ("which one produced this PR?"), and environment setup alone consumed ~18% of weekly quota.
 - **Shared Bots are scoped, not org-wide.** Under the Nov 20 Access & Sharing rollout, shared Bots and service users see only the repos, secrets, playbooks and skills explicitly granted to them — a Bot that can message you may still be unable to read the repo it needs ([access & security docs](https://docs.devin.ai/work-with-devin/bots/access-and-security)).

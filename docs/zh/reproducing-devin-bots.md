@@ -32,7 +32,7 @@ title: 复现 Devin Bots — 实战指南 — Built with Devin
 - **汇报：** 每日 Slack 报告，附改动处的屏幕录像。
 - **人类负载：** 约每 6 个合并 PR 一条消息；很多天是零。消息主要回答需要人类判断的项（如安全评审）——或给方向（"be more ambitious"）。
 - **稳态：** Bot 与参照项目保持功能对齐，并分诊 beta 报告。
-- **数字：** 44 天，1,134 个 PR，34.4 万行 Kotlin，2,841 个截图测试，1,217 张工单。
+- **数字：** 据 [Cognition 发布博客](https://devin.ai/blog/introducing-devin-bots)，该 Bot 用了 44 天，合并了 1,134 个 PR。
 
 ## 配方 2 — 定时巡检 Bot（Layout Bot）
 
@@ -62,7 +62,7 @@ Jenny Xu 的游戏工作室——约 20 个 Bot，各司其职。她公开的结
 
 - **汇报节奏：** SuperJenny 把每个下属 Bot 的待决事项收集进**一个 Slack 帖子，每天 4 次**；人类用 emoji 作答。
 - **机制：** 每个职位建一个 Bot，给编排者授予对各 Bot 的读/发消息权限，并指示它做汇总。
-- **数字：** ~50 → 1,900 PR/周；每周发版；工作室营收 6×。已作为**社区模板**（"SuperJennyStack"）发布到 Bot 市场。
+- **数字：** 据 [Cognition 发布博客](https://devin.ai/blog/introducing-devin-bots)，每周 PR 从约 50 个增至 1,900 个，并保持每周发布。
 - **变体（官方）：** QA Bot 发现 bug → 经 grant 交给 Developer Bot → Developer 修复 → QA 在 staging 复测 → PM Bot 在频道汇报状态。
 
 ## 配方 4 — 单一职责 Bot（官方模板模式）
@@ -91,7 +91,7 @@ Jenny Xu 的游戏工作室——约 20 个 Bot，各司其职。她公开的结
 
 具名 beta 部署（全部报道于 2026-11-17~18，发布首日）：
 
-- **Harvey — "Phil"**（[@gabepereyra 的 X 文章](https://x.com/gabepereyra)）——Harvey 的 Assistant 团队跑了约 30 个 agent 的层级团队，三周写出一个协作式、Word 兼容的编辑器引擎（Rust + TypeScript，100 万+ 行），零人类工程师。两条复现要点：(1) 给蜂群一个*可靠参照*——他们持续对照真实 Microsoft Word 行为并模拟律师谈判；(2) 人类通过 Bot 累积的记忆和决策日志来掌舵，而不是读代码。
+- **Harvey — “Phil”** —— [Gabe Pereyra 称](https://x.com/gabepereyra/status/2122756324173992166)，全由 agent 组成的团队在三周内为协作式 Word 兼容编辑器写出 100 多万行代码。
 - **Decagon — 共享 Bot 舰队**（[@tylerxdev 的帖](https://x.com/tylerxdev/status/2122743518712287400)）——早期试用几周后 Slack 里有 50+ 共享 Bot：on-call、DevEx 优化、以及一个团队直接发消息而不手工管理帖子的 Chief of Staff Bot。要点：Bot 是多人的——一个共享 Bot 承载团队累积的上下文，单用户会话做不到。
 - **Decagon — AutoResearch**（[完整文章](https://x.com/DecagonAI/article/2115511110120120437)，[@devindevelopers](https://x.com/devindevelopers/status/2115601107581821172)）——一个 Devin 在 Devin Cloud 上编排一座推理研究实验室；子 agent 并行追逐相互竞争的假设，每个想法都用 Modal GPU 上回放的生产流量验证。每 GPU 吞吐最高 2.5×。要点：给循环一个*可度量*的奖励（延迟 SLA 内的 requests/sec/GPU），让发现建立在最近一次已验证基线上复利累积。
 - **Mark Fenner — "Frankie 的组织"**（[演示](https://x.com/markfenner/status/2122740244328145211)）——一位大使运营四个分工明确的 Bot，上面是一个负责汇总回报的协调 Chief Agent Bot。要点：即使单人运营者也能跑多 Bot 组织形态——一个协调者就是单一决策面。
