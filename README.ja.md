@@ -13,7 +13,7 @@
 
 <sub>Curated by [@darega0mae](https://x.com/darega0mae) · 姉妹チュートリアル：[build-with-devin](https://github.com/Till3005/build-with-devin) · [プロジェクトを追加](CONTRIBUTING.md)</sub>
 
-<sub>**17** 件の実証済み Bot 導入 · **45** 件のエンタープライズ事例 · **9** 件の公開プロダクト · **47** 件のツール・統合 · **39** 件の実践レポート</sub>
+<sub>**17** 件の実証済み Bot 導入 · **45** 件のエンタープライズ事例 · **9** 件の公開プロダクト · **47** 件のツール・統合 · **40** 件の実践レポート</sub>
 
 <sub>[English](README.md) · [简体中文](README.zh.md) · 日本語 · [Português](README.pt.md)</sub>
 
@@ -318,6 +318,7 @@ Devin *で*作られたものではなく、Devin の*ために*コミュニテ�
 - **[SMARTCAMP の Trivy スキャン → Devin 修復](https://zenn.dev/smartcamp/articles/97ac804043530e)** —— 定期 GitHub Actions が ECS イメージを pull して Trivy スキャン、HIGH/CRITICAL を issue 化して Devin が対応。AWS 認証ジョブとスキャンジョブを分離し artifact のみで連携。
 - **[Devin が1か月間、私のエンジニアチームだった記録](https://ravtheman.medium.com/im-17-and-for-one-month-devin-was-my-entire-engineering-team-here-s-everything-i-learned-183d59099384)** —— メルボルンの高校生による Max 枠1か月の実測：一晩で 67 PR 処理・44 マージ。授業の合間に Linux ディストロ、ローカルモデル群、マルチエージェント IDE を構築 — 実測の CLI/クラウド運用解説つき（Medium）。
 - **[Devin 2025 年次パフォーマンスレビュー](https://cognition.com/blog/devin-annual-performance-review-2025)** —— Cognition 自身の 18 ヶ月通信簿、ベンダーとして異例の正直さ：強み（PR マージ率 34%→67%、問題解決 4 倍速、脆弱性修正 20 倍、ETL 移行 10 倍、カバレッジ 50–60%→80–90%、自社 webapp コミットの約 1/3）と名指しの弱点（曖昧な要件、途中スコープ変更、ソフトスキル）。
+- **[Ahead の 4 週間エンタープライズパイロット](https://rss.com/podcasts/craig-meeting-recaps/3240600/)** —— 社内 recap：本番 8 件中 7 件成功。失敗は story 選択に起因。運用形状は、Devin Local を補助作業に使い、Cloud は本番アクセスのない制限アカウント、PR は人間がレビュー。前提は健全な GitHub repo、堅牢な Confluence docs、明確な Jira stories。
 - **[100 Days of Devin——エージェント工場主の移行ログ](https://www.raijuna.com/blog/devin-100-day-challenge-day-1)** —— 自前のエージェント工場で日産数百 PR を出す著者が、Devin Bots に載せ替えて 100 日間検証。Day 1：~15 Bot、正直な摩擦記録（セッション追跡が艦隊規模に耐えない——「どれが PR を出した？どれが私を待ってる？」）、スクリーンショットを上回る動画 QA、セットアップで週クォータの 18% 消費。[Day 2](https://www.raijuna.com/blog/devin-100-day-challenge-day-2)：GPT モデル上で Bot が数分で文脈を失いタスクを拾わず（本人注：モデル要因の可能性あり）、bot/ローカル/VPS/クラウドのセッション区別は依然読みにくいまま、2 日で週クォータの 33% 消費——現時点では「オープンソースと自前マシンに敵わない」。連載中。
 - **[swyx の Devin Bots 一週間レポート](https://x.com/swyx/status/2122746401482592549)** —— AEO、QA、クロスプラットフォーム移植、個人管理、動画編集を丸ごと委譲し、ローカル worktree 地獄からも解放：「multi-agent teams done right……欲しいのは『AI 従業員』ではなく、成果を所有するエージェントマネージャー」。本人も明言する注意点：Cognition と関係あり、品質指標なし——実践者レポートでありベンチマークではない。
 - **[linux.do——poke.com/bots プロモ実録](https://linux.do/t/topic/3206201)**（zh）—— 無料 Bot 実験の失敗モードを集めた 20 ポストのコミュニティ記録：Poke が値切った額（$45→$20→$5）をバックエンドが拒否、iMessage/Apple Messages 限定で Android 登録者は後から弾かれる——「玩不起可以不出这个活动」。LP に書かれない細則を群衆が補完。
