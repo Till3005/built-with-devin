@@ -12,7 +12,7 @@
 <link rel="alternate" hreflang="zh" href="https://till3005.github.io/built-with-devin/guides/zh/devin-apps.html">
 <link rel="alternate" hreflang="x-default" href="https://till3005.github.io/built-with-devin/guides/devin-apps.html">
 <link rel="alternate" type="application/rss+xml" title="built-with-devin feed" href="../../feed.xml">
-<script type="application/ld+json">{"@context": "https://schema.org", "@type": "TechArticle", "headline": "Guia 10 — Devin Apps: ferramentas ao vivo a partir de um chat", "description": "descrever uma ferramenta interna, dashboard ou cópia de staging — o Devin a constrói e serve numa URL estável que sua equipe abre fazendo sign-in.", "inLanguage": "pt", "url": "https://till3005.github.io/built-with-devin/guides/pt/devin-apps.html", "isPartOf": {"@type": "Course", "name": "build-with-devin", "url": "https://till3005.github.io/built-with-devin/guides/"}, "dateModified": "2026-11-24"}</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "TechArticle", "headline": "Guia 10 — Devin Apps: ferramentas ao vivo a partir de um chat", "description": "descrever uma ferramenta interna, dashboard ou cópia de staging — o Devin a constrói e serve numa URL estável que sua equipe abre fazendo sign-in.", "inLanguage": "pt", "url": "https://till3005.github.io/built-with-devin/guides/pt/devin-apps.html", "isPartOf": {"@type": "Course", "name": "build-with-devin", "url": "https://till3005.github.io/built-with-devin/guides/"}, "dateModified": "2026-11-27"}</script>
 <link rel="icon" href="../../assets/brand/Devin_Symbol.svg" type="image/svg+xml">
 <link rel="stylesheet" href="../../assets/site.css">
 <link rel="stylesheet" href="../../assets/guides.css">
@@ -45,7 +45,7 @@
 <main>
 <article class="guide wrap" id="guide">
   <p class="guide-crumb"><a href="index.html">← Guias</a> · <a data-lang-link="en" href="../devin-apps.html">English</a> · <a data-lang-link="ja" href="../ja/devin-apps.html">日本語</a> · <a data-lang-link="zh" href="../zh/devin-apps.html">中文</a></p>
-<p class="guide-meta">Atualizado 2026-11-24</p>
+<p class="guide-meta">Atualizado 2026-11-27</p>
 <details class="toc" open><summary>Nesta página</summary><ol><li class="d2"><a href="#o-que-é">O que é</a></li><li class="d2"><a href="#construir-uma">Construir uma</a></li><li class="d2"><a href="#loop-de-atualização">Loop de atualização</a></li><li class="d2"><a href="#como-rodam-as-partes-que-importam">Como rodam (as partes que importam)</a></li><li class="d2"><a href="#os-três-usos-comprovados">Os três usos comprovados</a></li><li class="d2"><a href="#checklist-de-verificação">Checklist de verificação</a></li><li class="d2"><a href="#armadilhas">Armadilhas</a></li><li class="d2"><a href="#teste-de-conhecimento">Teste de conhecimento</a></li><li class="d2"><a href="#fontes">Fontes</a></li></ol></details>
 <h1>Guia 10 — Devin Apps: ferramentas ao vivo a partir de um chat</h1>
 <p><strong>Objetivo:</strong> descrever uma ferramenta interna, dashboard ou cópia de staging — o Devin a constrói e serve numa URL estável que sua equipe abre fazendo sign-in.
@@ -63,6 +63,7 @@
 <h2 id="loop-de-atualização">Loop de atualização<a class="hlink" href="#loop-de-atualização" aria-hidden="true">#</a></h2>
 <ul>
 <li><strong>Edit in session</strong> na página da App → descreva a mudança → o Devin constrói uma nova versão na mesma URL. Toda atualização é um deployment versionado; se uma versão nova falhar ao iniciar, a anterior continua servindo.</li>
+<li>Desde 25/11, Apps aparecem na barra lateral do app web, e o element picker da aba Browser permite apontar Devin para um elemento visual em vez de descrevê-lo.</li>
 <li><strong>Mantida fresca por automação:</strong> ligue uma automação (Guia 6) para re-deployar em agenda ou em mudanças de branch — um dashboard que puxa dados frescos toda manhã é o uso canônico.</li>
 </ul>
 <h2 id="como-rodam-as-partes-que-importam">Como rodam (as partes que importam)<a class="hlink" href="#como-rodam-as-partes-que-importam" aria-hidden="true">#</a></h2>
