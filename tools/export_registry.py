@@ -56,6 +56,19 @@ def last_commit_date(rel_path):
         return None
 
 
+def sitemap_date(rel_path):
+    try:
+        dirty = subprocess.run(
+            ["git", "status", "--porcelain", "--", rel_path],
+            cwd=ROOT, capture_output=True, text=True, check=True,
+        ).stdout.strip()
+    except Exception:
+        dirty = ""
+    if dirty:
+        return datetime.now(timezone.utc).strftime("%Y-%m-%d")
+    return last_commit_date(rel_path)
+
+
 def cell_links(text):
     return [{"text": t, "url": u} for t, u in LINK.findall(text)]
 
@@ -97,7 +110,7 @@ def write_sitemap():
             urls.append((f"/guides/{lang}/{slug}.html", f"docs/guides/{lang}/{slug}.html"))
     items = []
     for path, file in urls:
-        lastmod = last_commit_date(file) or "2026-11-19"
+        lastmod = sitemap_date(file) or "2026-11-19"
         items.append(f"  <url>\n    <loc>{SITE}{path}</loc>\n    <lastmod>{lastmod}</lastmod>\n  </url>")
     SITEMAP.write_text(
         '<?xml version="1.0" encoding="UTF-8"?>\n'
