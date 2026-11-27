@@ -13,7 +13,7 @@
 
 <sub>维护者 [@darega0mae](https://x.com/darega0mae) · 姊妹教程库：[build-with-devin](https://github.com/Till3005/build-with-devin) · [收录你的项目](CONTRIBUTING.md)</sub>
 
-<sub>**17** 个有据可查的 Bot 部署 · **45** 个企业案例 · **9** 个已发布产品 · **47** 个工具与集成 · **39** 篇实战报告</sub>
+<sub>**17** 个有据可查的 Bot 部署 · **45** 个企业案例 · **9** 个已发布产品 · **47** 个工具与集成 · **40** 篇实战报告</sub>
 
 <sub>[English](README.md) · 简体中文 · [日本語](README.ja.md) · [Português](README.pt.md)</sub>
 
@@ -318,6 +318,7 @@ flowchart LR
 - **[SMARTCAMP 的 Trivy 扫描 → Devin 修复](https://zenn.dev/smartcamp/articles/97ac804043530e)** —— 定时 GitHub Actions 拉取 ECS 镜像跑 Trivy，HIGH/CRITICAL 落成 issue 交给 Devin 修复；AWS 凭证 job 和扫描 job 分离、只靠 artifact 传递（日文）。
 - **[Devin 当我一整个月的工程团队](https://ravtheman.medium.com/im-17-and-for-one-month-devin-was-my-entire-engineering-team-here-s-everything-i-learned-183d59099384)** —— 一个墨尔本高中生的 Max 体验月：一晚 67 个 PR 处理、44 个合入；课间造出一个 Linux 发行版、一套本地模型家族和一个多 agent IDE —— 附实测的 CLI/云端工作流（Medium）。
 - **[Devin 2025 年度表现复核](https://cognition.com/blog/devin-annual-performance-review-2025)** —— Cognition 自己 18 个月的成绩单，少见地诚实：强项（PR 合并率 34%→67%、解题快 4×、漏洞修复比人快 20×、ETL 迁移 10×、覆盖率通常 50–60%→80–90%、自家 webapp 约三分之一 commit 出自 Devin）和点名弱点（需求模糊、中途改范围、软技能）。
+- **[Ahead 的四周企业试点](https://rss.com/podcasts/craig-meeting-recaps/3240600/)** —— 内部复盘：8 个生产用例 7 个成功；失败归因于 story 选择。操作形状：Devin Local 做人机协作，Cloud 跑在无生产权限受限账号，PR 由人类审查；前置条件是健康的 GitHub 仓库、扎实 Confluence 文档、定义清楚的 Jira stories。
 - **[Devin 百日挑战——一个「agent 工厂主」的迁移日志](https://www.raijuna.com/blog/devin-100-day-challenge-day-1)** —— 作者本来用自己的 agent 工厂日产数百个 PR，现在把整套搬到 Devin Bots 跑 100 天。Day 1：~15 个 bot，诚实记了摩擦（会话追踪撑不起舰队——「哪个出了 PR？哪个在等我？」）、视频 QA 胜过截图、装完生态先烧掉 18% 周额度。[Day 2](https://www.raijuna.com/blog/devin-100-day-challenge-day-2)：bot 在 GPT 模型下几分钟就丢上下文、不接任务（他自己注明：也可能是模型问题）；bot/本地/VPS/云端会话视图依然难读；两天烧掉 33% 周额度——目前「还打不过开源自建」。连载中，值得盯。
 - **[swyx 的 Devin Bots 一周实战](https://x.com/swyx/status/2122746401482592549)** —— 把 AEO、QA、跨平台 App 移植、个人事务、视频剪辑全交了出去，顺便摆脱本地 worktree：「multi-agent teams done right……你要的不是『AI 员工』，是对结果负责的 agent 管理者。」他自己也说明：与 Cognition 有关联、无质量指标——这是从业者手记，不是基准测试。
 - **[linux.do——poke.com/bots 活动亲历记](https://linux.do/t/topic/3206201)** —— 20 楼社区实录，记下这场免费 Bot 实验的失败模式：Poke 砍价（$45→$20→$5）后后端照样拒发；仅限 iMessage/Apple Messages，安卓用户注册完才被弹回；「玩不起可以不出这个活动」。官网没写的细则，群众给凑齐了。

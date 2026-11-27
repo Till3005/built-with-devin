@@ -4,7 +4,7 @@
   <title>Built with Devin — registry updates</title>
   <link>https://till3005.github.io/built-with-devin/</link>
   <description>New entries indexed in the built-with-devin registry.</description>
-  <lastBuildDate>Wed, 25 Nov 2026 00:42:19 +0000</lastBuildDate>
+  <lastBuildDate>Fri, 27 Nov 2026 08:21:33 +0000</lastBuildDate>
   <item>
     <title>Indexed: GTM Engineering fleet</title>
     <link>https://till3005.github.io/built-with-devin/#deployments</link>
@@ -167,18 +167,18 @@
     <description>Code Scans early tester — Digital Computational Pathology, Enterprise Informatics</description>
   </item>
   <item>
-    <title>Indexed: Layout Bot</title>
+    <title>Indexed: Rewards Chief-of-Staff</title>
     <link>https://till3005.github.io/built-with-devin/#deployments</link>
-    <guid isPermaLink="false">bot:Layout Bot</guid>
+    <guid isPermaLink="false">bot:Rewards Chief-of-Staff</guid>
     <pubDate>Thu, 19 Nov 2026 00:00:00 +0000</pubDate>
-    <description>Cognition — Layout-shift regression on the Devin web app</description>
+    <description>Avinash (Cognition, MENA) — Daily standup + rewards for a personal bot fleet</description>
   </item>
   <item>
-    <title>Indexed: Super Jenny</title>
+    <title>Indexed: Personal data Bots</title>
     <link>https://till3005.github.io/built-with-devin/#deployments</link>
-    <guid isPermaLink="false">bot:Super Jenny</guid>
+    <guid isPermaLink="false">bot:Personal data Bots</guid>
     <pubDate>Thu, 19 Nov 2026 00:00:00 +0000</pubDate>
-    <description>Jenny Xu (community) — An entire mobile game studio</description>
+    <description>Bryan Johnson — Health synthesis + family updates</description>
   </item>
 </channel>
 </rss>
