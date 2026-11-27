@@ -12,7 +12,7 @@
 <link rel="alternate" hreflang="zh" href="https://till3005.github.io/built-with-devin/guides/zh/automations-101-event-driven.html">
 <link rel="alternate" hreflang="x-default" href="https://till3005.github.io/built-with-devin/guides/automations-101-event-driven.html">
 <link rel="alternate" type="application/rss+xml" title="built-with-devin feed" href="../../feed.xml">
-<script type="application/ld+json">{"@context": "https://schema.org", "@type": "TechArticle", "headline": "ガイド 6 — イベント駆動の自動化", "description": "外部イベント——Slack、Teams、GitHub、Linear、Jira、PagerDuty、cron、webhook——を、自分で起動する Devin セッションに配線する。", "inLanguage": "ja", "url": "https://till3005.github.io/built-with-devin/guides/ja/automations-101-event-driven.html", "isPartOf": {"@type": "Course", "name": "build-with-devin", "url": "https://till3005.github.io/built-with-devin/guides/"}, "dateModified": "2026-11-26"}</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "TechArticle", "headline": "ガイド 6 — イベント駆動の自動化", "description": "外部イベント——Slack、Teams、GitHub、Linear、Jira、PagerDuty、cron、webhook——を、自分で起動する Devin セッションに配線する。", "inLanguage": "ja", "url": "https://till3005.github.io/built-with-devin/guides/ja/automations-101-event-driven.html", "isPartOf": {"@type": "Course", "name": "build-with-devin", "url": "https://till3005.github.io/built-with-devin/guides/"}, "dateModified": "2026-11-27"}</script>
 <link rel="icon" href="../../assets/brand/Devin_Symbol.svg" type="image/svg+xml">
 <link rel="stylesheet" href="../../assets/site.css">
 <link rel="stylesheet" href="../../assets/guides.css">
@@ -45,7 +45,7 @@
 <main>
 <article class="guide wrap" id="guide">
   <p class="guide-crumb"><a href="index.html">← ガイド</a> · <a data-lang-link="en" href="../automations-101-event-driven.html">English</a> · <a data-lang-link="pt" href="../pt/automations-101-event-driven.html">Português</a> · <a data-lang-link="zh" href="../zh/automations-101-event-driven.html">中文</a></p>
-<p class="guide-meta">更新 2026-11-26</p>
+<p class="guide-meta">更新 2026-11-27</p>
 <details class="toc" open><summary>このページの目次</summary><ol><li class="d2"><a href="#構造">構造</a></li><li class="d2"><a href="#トリガーカタログ">トリガーカタログ</a></li><li class="d2"><a href="#レシピ-1-任意の-issue-で-devin">レシピ 1 — 任意の issue で /devin</a></li><li class="d2"><a href="#レシピ-2-ci-失敗の自己修復">レシピ 2 — CI 失敗の自己修復</a></li><li class="d2"><a href="#レシピ-3-定期スイープ">レシピ 3 — 定期スイープ</a></li><li class="d2"><a href="#アクション種別の選び方">アクション種別の選び方</a></li><li class="d2"><a href="#作り方">作り方</a></li><li class="d2"><a href="#実録ウォークスルー-automation-を実際に作成・発火・検証-devin-desktop-v3-14-pro-プラン-で収録">実録ウォークスルー — automation を実際に作成・発火・検証、Devin Desktop v3.14（Pro プラン）で収録</a></li><li class="d2"><a href="#安全に運用する">安全に運用する</a></li><li class="d2"><a href="#検証チェックリスト">検証チェックリスト</a></li><li class="d2"><a href="#落とし穴">落とし穴</a></li><li class="d2"><a href="#理解度チェック">理解度チェック</a></li><li class="d2"><a href="#出典">出典</a></li></ol></details>
 <h1>ガイド 6 — イベント駆動の自動化</h1>
 <p><strong>目標：</strong> 外部イベント——Slack、Teams、GitHub、Linear、Jira、PagerDuty、cron、webhook——を、自分で起動する Devin セッションに配線する。
@@ -207,6 +207,8 @@ Action:    Start session: &quot;Sweep yesterday's Sentry issues in
 <li>GitHub トリガーは特定リポジトリを指名する必要がある</li>
 <li>多数運用するなら <strong>Terraform provider</strong> で宣言的管理</li>
 <li>v3 のセッション作成 API は <code>memory_enabled: false</code> を受け付ける——起動されたセッション（とその子セッション）はメモリ無効で動く。実行間に学習コンテキストを持ち越したくない automation 向け</li>
+<li>11 月 26 日以降、dispatch ステータス通知は v3 API の <code>notifications.slack</code> で Slack チャンネルへ投稿できるようになった。フリートの可視性には使うが、作業結果そのものの代替にはしない</li>
+<li>11 月 25 日以降、mention または assignment で起動した Jira Rovo セッションは、設定済みの Jira playbooks を適用し、work item の添付ファイルも受け取るようになった。label マクロは playbook に残し、添付ファイルに証拠を持たせる</li>
 </ul>
 <h2 id="実録ウォークスルー-automation-を実際に作成・発火・検証-devin-desktop-v3-14-pro-プラン-で収録">実録ウォークスルー — automation を実際に作成・発火・検証、Devin Desktop v3.14（Pro プラン）で収録<a class="hlink" href="#実録ウォークスルー-automation-を実際に作成・発火・検証-devin-desktop-v3-14-pro-プラン-で収録" aria-hidden="true">#</a></h2>
 <p><em>Create with Devin</em> 経路を端から端まで：毎週 changelog スイープを平易に記述 → 設定質問に回答 → 生成された automation を承認 → 手動発火 → 本物のレポートが届くまで。</p>

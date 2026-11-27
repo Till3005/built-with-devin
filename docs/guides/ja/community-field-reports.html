@@ -12,7 +12,7 @@
 <link rel="alternate" hreflang="zh" href="https://till3005.github.io/built-with-devin/guides/zh/community-field-reports.html">
 <link rel="alternate" hreflang="x-default" href="https://till3005.github.io/built-with-devin/guides/community-field-reports.html">
 <link rel="alternate" type="application/rss+xml" title="built-with-devin feed" href="../../feed.xml">
-<script type="application/ld+json">{"@context": "https://schema.org", "@type": "TechArticle", "headline": "ガイド 14 — コミュニティ実践レポート", "description": "実際の業務で Devin を運用したエンジニアたちが学んだこと——失敗も含めて。称賛的・批判的双方の公開体験記から抽出。", "inLanguage": "ja", "url": "https://till3005.github.io/built-with-devin/guides/ja/community-field-reports.html", "isPartOf": {"@type": "Course", "name": "build-with-devin", "url": "https://till3005.github.io/built-with-devin/guides/"}, "dateModified": "2026-11-26"}</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "TechArticle", "headline": "ガイド 14 — コミュニティ実践レポート", "description": "実際の業務で Devin を運用したエンジニアたちが学んだこと——失敗も含めて。称賛的・批判的双方の公開体験記から抽出。", "inLanguage": "ja", "url": "https://till3005.github.io/built-with-devin/guides/ja/community-field-reports.html", "isPartOf": {"@type": "Course", "name": "build-with-devin", "url": "https://till3005.github.io/built-with-devin/guides/"}, "dateModified": "2026-11-27"}</script>
 <link rel="icon" href="../../assets/brand/Devin_Symbol.svg" type="image/svg+xml">
 <link rel="stylesheet" href="../../assets/site.css">
 <link rel="stylesheet" href="../../assets/guides.css">
@@ -45,7 +45,7 @@
 <main>
 <article class="guide wrap" id="guide">
   <p class="guide-crumb"><a href="index.html">← ガイド</a> · <a data-lang-link="en" href="../community-field-reports.html">English</a> · <a data-lang-link="pt" href="../pt/community-field-reports.html">Português</a> · <a data-lang-link="zh" href="../zh/community-field-reports.html">中文</a></p>
-<p class="guide-meta">更新 2026-11-26</p>
+<p class="guide-meta">更新 2026-11-27</p>
 <details class="toc" open><summary>このページの目次</summary><ol><li class="d2"><a href="#すべてのレポートに繰り返されるパターン">すべてのレポートに繰り返されるパターン</a></li><li class="d2"><a href="#devin-が勝った-記録された事例">Devin が勝った、記録された事例</a></li><li class="d2"><a href="#失敗した-記録された事例">失敗した、記録された事例</a></li><li class="d2"><a href="#名付けられたチーム導入-コミュニティ-数値つき">名付けられたチーム導入（コミュニティ、数値つき）</a></li><li class="d2"><a href="#bots-時代-最初の領収書-2026-年-11-月">Bots 時代——最初の領収書（2026 年 11 月）</a></li><li class="d2"><a href="#抽出された教訓">抽出された教訓</a></li><li class="d2"><a href="#scott-wu-の社内トップ-5-lenny-s-インタビューより">Scott Wu の社内トップ 5（Lenny&#x27;s インタビューより）</a></li><li class="d2"><a href="#深読み-何を真似るか-何に気をつけるか">深読み — 何を真似るか、何に気をつけるか</a></li><li class="d2"><a href="#検証チェックリスト">検証チェックリスト</a></li><li class="d2"><a href="#落とし穴">落とし穴</a></li><li class="d2"><a href="#理解度チェック">理解度チェック</a></li><li class="d2"><a href="#出典">出典</a></li></ol></details>
 <h1>ガイド 14 — コミュニティ実践レポート</h1>
 <p><strong>目標：</strong> 実際の業務で Devin を運用したエンジニアたちが学んだこと——失敗も含めて。称賛的・批判的双方の公開体験記から抽出。
@@ -174,6 +174,7 @@
 <p><strong>canly のアナリスト導入。</strong> Devin に「原因未特定」で滞留した約 700 件の問い合わせ履歴を分類させた。半数以上はバグではなかった——そしてこの取り組みの真の産物はラベルではなく、AI にまだ足りないコンテキストの地図（ドキュメント、DB 可視性、チケットのメタデータ）だった。真似る点：アナリストとしての Devin は第一級の使い道——ツールを買う前に「誰も分類したことがない山」に向けてみる。注意点：ボトルネックはモデルの質ではなくコンテキストの選び方。</p>
 <p><strong>Tavrn の HIPAA テナント艦隊。</strong> 8 人のエンジニアが HIPAA テナント内（SSO・スコープ権限・監査ログ）で Slack から eng/ops/CS/sales 横断の Devin に指示：6 週間で 1,600 セッション → 1,800+ PR、決定済み PR のマージ率 ~80%、先月のマージコードの 93% が Devin 発。本質は中央値：アラート→調査 35 秒、~90% のアラートがスレッド内で完全調査、ops/CS/sales から eng への質問は ~80% 減——5 件中 4 件は Devin の回答で吸収。真似る点：価値は PR 数ではなく「調査が無料になる」こと——日次 automation が品質判定落ちの案件を再調査し、システム自身の評価が次の仕事を供給する。注意点：「全社の質問を投げる」が成立するのはテナント権限が最初から完璧だから——SSO/スコープ/監査ログを先に固めてから蛇口を開ける。</p>
 <p><strong>Hamming の「Devinable」フレームワーク。</strong> Hamming は「Devin にできるか」ではなく、タスクを Devinable / 非 Devinable に振り分ける：有界・仕様が明確・客観的評価（テスト・チェック・数値）があるものだけが合格。その上でコードベース自体をエージェント向けに最適化：OOP より関数型、無アサーションテストより eval 駆動。結果：Devin が全コード量の 25% を生成し、人間エンジニア 2 人と並ぶトップ貢献者。真似る点：明日から使えるフィルター——派遣前に「有界+仕様+客観評価」を確認。どれか欠けたら、失敗はモデルではなくタスクの形の問題。注意点：エージェント向けコードベース最適化は本物の投資——艦隊規模が見合って初めて回収できる。</p>
+<p><strong>Ahead のパイロットフィルター。</strong> Ahead 社内の enterprise-tech パイロットは 4 週間で 8 件の本番ユースケースを検証し、7 件が成功。失敗した 1 件はツールではなく story 選択に起因するとされた。結果と同じく重要なのは運用形状である。Devin Local は補助作業に使い、Devin Cloud は本番アクセスのない制限アカウントで動かし、PR は人間がレビューしてからマージする。前提条件は健全な GitHub リポジトリ、十分な Confluence ドキュメント、明確な Jira stories。真似る点：パイロット拡大前に story 品質とドキュメント衛生を preflight ゲートにする。注意点：報告された onboarding 比較（~16 時間 vs 6–9 週間、推定 $37k 削減）は社内推計であって独立ベンチマークではない。</p>
 <p><strong>Cognition 自身の通信簿。</strong> 18 ヶ月のパフォーマンスレビューはベンダーとして異例に正直：PR マージ率 34%→67%、脆弱性修正は人間の 20 倍速（30 分→1.5 分/件）、ETL 移行 10 倍、カバレッジは概ね 50–60%→80–90%、自社 webapp コミットの約 1/3 が Devin 作——弱点も名指ししている：曖昧な要件、途中でのスコープ変更、ソフトスキル（悪い計画に異議を唱えない）。真似る点：組織内の期待値設定に使う——Devin の強みは機械的で測定可能、失敗モードは良い brief が防げるものだけ。注意点：強みの数字はすべてベンダー公表——このレビュー自体が、どの数字も引用する前に自艦隊を監査する方法の見本。</p>
 <p><strong>Ryan Carson のワンマン艦隊。</strong> Untangle のソロファウンダーは月 ~$20k で ~15 台の Devin エージェントを同時稼働——統制はダッシュボードではなくフォルダシステム + 紙の P0 リスト。その規模で本当のボトルネックはエージェントのスループットではなく<em>彼の</em>注意力だから。運用を支える 2 つの playbook：「Watchdog」が全法律事務所アカウントを監視し一人でカスタマーサクセスを担い、「LAN PR」が ~40 PR/日を締める——レビューループ + ビデオウォークスルー + 自動マージ、QA レビュアーなし。真似る点：スケールの単位は「面ごとの命名済み playbook」であってエージェント数ではない。注意点：ローカルエージェントはほぼ卒業——長いループはクラウド担当。残した例外は Codex での厳密スコープの設計書ビルドだけ。</p>
 <h2 id="検証チェックリスト">検証チェックリスト<a class="hlink" href="#検証チェックリスト" aria-hidden="true">#</a></h2>
@@ -219,6 +220,7 @@
 <li><a href="https://cognition.com/blog/devin-annual-performance-review-2025">Cognition — Devin's 2025 Performance Review</a> — strengths and named weaknesses, 18 months of internal numbers</li>
 <li><a href="https://devin.ai/customers/tavrn">Tavrn customer story</a> · <a href="https://devin.ai/customers/hamming">Hamming customer story</a> · <a href="https://devin.ai/customers/crosby">Crosby customer story</a> — fleet telemetry, the "Devinable" task filter, lawyer-in-the-loop triage</li>
 <li><a href="https://aietalks.com/talks/40x-more-merged-prs-with-2-7x-the-engineers">AI Engineer — Walden Yan: 40× merged PRs on 2.7× engineers</a> — Cognition's internal software-factory talk</li>
+<li><a href="https://rss.com/podcasts/craig-meeting-recaps/3240600/">Ahead Replay — 4 週間の Devin パイロット</a> — 本番 8 件中 7 件成功；失敗は story 選択、クラウド制限アカウント + 人間の PR レビュー</li>
 </ul>
 
 <nav class="guide-pager"><a class="pg-prev" href="security-profiles-cloud-oidc.html"><span class="pg-dir">← 前へ</span><span class="pg-t">ガイド 21 — Security Profiles と Cloud OIDC</span></a></nav>

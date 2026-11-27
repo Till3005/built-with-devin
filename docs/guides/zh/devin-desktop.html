@@ -12,7 +12,7 @@
 <link rel="alternate" hreflang="zh" href="https://till3005.github.io/built-with-devin/guides/zh/devin-desktop.html">
 <link rel="alternate" hreflang="x-default" href="https://till3005.github.io/built-with-devin/guides/devin-desktop.html">
 <link rel="alternate" type="application/rss+xml" title="built-with-devin feed" href="../../feed.xml">
-<script type="application/ld+json">{"@context": "https://schema.org", "@type": "TechArticle", "headline": "指南 17 — Devin Desktop", "description": "面向 agent 的原生编辑器——Devin 的所有面集中在一个窗口：云会话、本地会话（Devin Local）、Bots，外加一个完整的 IDE。", "inLanguage": "zh", "url": "https://till3005.github.io/built-with-devin/guides/zh/devin-desktop.html", "isPartOf": {"@type": "Course", "name": "build-with-devin", "url": "https://till3005.github.io/built-with-devin/guides/"}, "dateModified": "2026-11-26"}</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "TechArticle", "headline": "指南 17 — Devin Desktop", "description": "面向 agent 的原生编辑器——Devin 的所有面集中在一个窗口：云会话、本地会话（Devin Local）、Bots，外加一个完整的 IDE。", "inLanguage": "zh", "url": "https://till3005.github.io/built-with-devin/guides/zh/devin-desktop.html", "isPartOf": {"@type": "Course", "name": "build-with-devin", "url": "https://till3005.github.io/built-with-devin/guides/"}, "dateModified": "2026-11-27"}</script>
 <link rel="icon" href="../../assets/brand/Devin_Symbol.svg" type="image/svg+xml">
 <link rel="stylesheet" href="../../assets/site.css">
 <link rel="stylesheet" href="../../assets/guides.css">
@@ -45,7 +45,7 @@
 <main>
 <article class="guide wrap" id="guide">
   <p class="guide-crumb"><a href="index.html">← 指南</a> · <a data-lang-link="en" href="../devin-desktop.html">English</a> · <a data-lang-link="ja" href="../ja/devin-desktop.html">日本語</a> · <a data-lang-link="pt" href="../pt/devin-desktop.html">Português</a></p>
-<p class="guide-meta">更新于 2026-11-26</p>
+<p class="guide-meta">更新于 2026-11-27</p>
 <details class="toc" open><summary>本页目录</summary><ol><li class="d2"><a href="#它是什么">它是什么</a></li><li class="d2"><a href="#agent-command-center">Agent Command Center</a></li><li class="d2"><a href="#devin-local-daemon-变化">Devin Local —— daemon 变化</a></li><li class="d2"><a href="#local-hands-云会话伸手到你的机器">Local Hands —— 云会话伸手到你的机器</a></li><li class="d2"><a href="#ide-模式">IDE 模式</a></li><li class="d2"><a href="#模型说明-swe-2-1">模型说明 —— SWE-2.1</a></li><li class="d2"><a href="#两个值得抄的工作流">两个值得抄的工作流</a></li><li class="d2"><a href="#实录演示-录于-devin-desktop-v3-14-30825">实录演示 —— 录于 Devin Desktop v3.14.30825</a></li><li class="d2"><a href="#验证它">验证它</a></li><li class="d2"><a href="#坑">坑</a></li><li class="d2"><a href="#自测">自测</a></li><li class="d2"><a href="#来源">来源</a></li></ol></details>
 <h1>指南 17 — Devin Desktop</h1>
 <p><strong>目标：</strong> 面向 agent 的原生编辑器——Devin 的所有面集中在一个窗口：云会话、本地会话（Devin Local）、Bots，外加一个完整的 IDE。
@@ -111,7 +111,7 @@
 <ul>
 <li>内嵌 IDE 用 <strong>Cmd/Ctrl+S</strong> 手动保存（不再自动保存）；未保存标签带个点。</li>
 <li>在 Devin Local 的浏览器预览里，<strong>点选一个页面元素或 console 输出会直接放进 composer</strong>——指着 bug 而不是描述 bug。</li>
-<li>Files 标签能预览 PDF、把 CSV/TSV 渲染成表格、播放媒体。</li>
+<li>Files 标签能预览 PDF、把 CSV/TSV 渲染成表格、播放媒体。自 11 月 26 日起，Changes 页还会显示 Devin 删除文件的内容。</li>
 </ul>
 <h2 id="模型说明-swe-2-1">模型说明 —— SWE-2.1<a class="hlink" href="#模型说明-swe-2-1" aria-hidden="true">#</a></h2>
 <p>SWE-2.1 已在 Devin Desktop、Cloud、CLI 提供。Cognition 称 Desktop/CLI 到 2026 年 12 月 8 日免费，并以折扣价持续到 2027 年 1 月 30 日。<strong>SWE-2.1 Ultrafast</strong> 通过 Cerebras 以 10× token 速度提供同一模型；<strong>SWE-2.1 Cyber</strong> 正在进入 Devin Security，用更宽松的安全护栏支持防御性安全工作。公开 benchmark 数字按厂商自报处理，不当作独立验证。</p>
