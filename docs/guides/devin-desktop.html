@@ -12,7 +12,7 @@
 <link rel="alternate" hreflang="zh" href="https://till3005.github.io/built-with-devin/guides/zh/devin-desktop.html">
 <link rel="alternate" hreflang="x-default" href="https://till3005.github.io/built-with-devin/guides/devin-desktop.html">
 <link rel="alternate" type="application/rss+xml" title="built-with-devin feed" href="../feed.xml">
-<script type="application/ld+json">{"@context": "https://schema.org", "@type": "TechArticle", "headline": "Guide 17 — Devin Desktop", "description": "the agent-native editor — every surface of Devin in one window: cloud sessions, local sessions Devin Local, Bots, and a real IDE around them.", "inLanguage": "en", "url": "https://till3005.github.io/built-with-devin/guides/devin-desktop.html", "isPartOf": {"@type": "Course", "name": "build-with-devin", "url": "https://till3005.github.io/built-with-devin/guides/"}, "dateModified": "2026-11-26"}</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "TechArticle", "headline": "Guide 17 — Devin Desktop", "description": "the agent-native editor — every surface of Devin in one window: cloud sessions, local sessions Devin Local, Bots, and a real IDE around them.", "inLanguage": "en", "url": "https://till3005.github.io/built-with-devin/guides/devin-desktop.html", "isPartOf": {"@type": "Course", "name": "build-with-devin", "url": "https://till3005.github.io/built-with-devin/guides/"}, "dateModified": "2026-11-27"}</script>
 <link rel="icon" href="../assets/brand/Devin_Symbol.svg" type="image/svg+xml">
 <link rel="stylesheet" href="../assets/site.css">
 <link rel="stylesheet" href="../assets/guides.css">
@@ -45,7 +45,7 @@
 <main>
 <article class="guide wrap" id="guide">
   <p class="guide-crumb"><a href="index.html">← Guides</a> · <a data-lang-link="ja" href="ja/devin-desktop.html">日本語</a> · <a data-lang-link="pt" href="pt/devin-desktop.html">Português</a> · <a data-lang-link="zh" href="zh/devin-desktop.html">中文</a></p>
-<p class="guide-meta">Updated 2026-11-26</p>
+<p class="guide-meta">Updated 2026-11-27</p>
 <details class="toc" open><summary>On this page</summary><ol><li class="d2"><a href="#what-it-is">What it is</a></li><li class="d2"><a href="#agent-command-center">Agent Command Center</a></li><li class="d2"><a href="#devin-local-the-daemon-change">Devin Local — the daemon change</a></li><li class="d2"><a href="#local-hands-a-cloud-session-reaches-your-machine">Local Hands — a cloud session reaches your machine</a></li><li class="d2"><a href="#ide-mode">IDE mode</a></li><li class="d2"><a href="#model-notes-swe-2-1">Model notes — SWE-2.1</a></li><li class="d2"><a href="#two-workflows-worth-copying">Two workflows worth copying</a></li><li class="d2"><a href="#walkthrough-recorded-on-devin-desktop-v3-14-30825">Walkthrough — recorded on Devin Desktop v3.14.30825</a></li><li class="d2"><a href="#verify-it">Verify it</a></li><li class="d2"><a href="#pitfalls">Pitfalls</a></li><li class="d2"><a href="#knowledge-check">Knowledge check</a></li><li class="d2"><a href="#sources">Sources</a></li></ol></details>
 <h1>Guide 17 — Devin Desktop</h1>
 <p><strong>Goal:</strong> the agent-native editor — every surface of Devin in one window: cloud sessions, local sessions (Devin Local), Bots, and a real IDE around them.
@@ -86,7 +86,7 @@
 <li><strong>Session header "..." menu</strong>: the session's MCP servers — toggle one, or re-authenticate it, per session.</li>
 <li><strong>Devin Review</strong>: the PR walkthrough (diff, bugs, test recording) opens as a page in the same window — the review step of the loop in <a href="the-session-loop.html">Guide 19</a>.</li>
 <li><strong>Split panes</strong> (Nov 23): <code>Option/Alt+click</code> a session link to open it side by side — compare two runs or monitor a long session while starting another.</li>
-<li><strong><code>Cmd/Ctrl+K</code> session search</strong>: session search moved into the command palette; the inline Sessions-sidebar search is gone.</li>
+<li><strong><code>Cmd/Ctrl+K</code> command palette</strong>: session search moved here and the inline Sessions-sidebar search is gone. Since Nov 24 it has All/Sessions/Bots/Apps/Actions tabs (Tab/Shift+Tab to switch) plus page results for left-rail destinations.</li>
 </ul>
 <h2 id="devin-local-the-daemon-change">Devin Local — the daemon change<a class="hlink" href="#devin-local-the-daemon-change" aria-hidden="true">#</a></h2>
 <p>Since v3.13.4 (Desktop) / v3000.13.4 (CLI), a local session runs in a <strong>background process</strong>, not inside the window that started it:</p>
@@ -111,7 +111,7 @@
 <ul>
 <li>The embedded IDE saves on <strong>Cmd/Ctrl+S</strong> (no auto-save); unsaved tabs show a dot.</li>
 <li>In a Devin Local browser preview, <strong>picking a page element or console output adds it to the composer</strong> — point at the bug instead of describing it.</li>
-<li>The Files tab previews PDFs, renders CSV/TSV as tables, and plays media.</li>
+<li>The Files tab previews PDFs, renders CSV/TSV as tables, and plays media. Since Nov 26, the Changes pane also shows the contents of files Devin deleted.</li>
 </ul>
 <h2 id="model-notes-swe-2-1">Model notes — SWE-2.1<a class="hlink" href="#model-notes-swe-2-1" aria-hidden="true">#</a></h2>
 <p>SWE-2.1 is available in Devin Desktop, Cloud, and CLI. Cognition says it is free on Desktop and CLI through December 8, 2026, and discounted through January 30, 2027. <strong>SWE-2.1 Ultrafast</strong> serves the same model at 10× token speed through Cerebras; <strong>SWE-2.1 Cyber</strong> is rolling out in Devin Security with more permissive safeguards for defensive security work. Treat the published benchmark numbers as vendor-reported evidence, not independent verification.</p>
